@@ -2,7 +2,7 @@ package juego;
 
 import java.awt.Canvas;
 
-import ventanas.Ventana;
+import ventanas.PantallaDeJuego;
 
 public class GameLoop extends Canvas implements Runnable{
 	
@@ -10,14 +10,14 @@ public class GameLoop extends Canvas implements Runnable{
 	private static final int MillisPorSegundo = 1000;
 	private static final int NanosPorSegundo = 1000000000;
 	private static final double NumTicks = 60.0;
-	private static final String Nombre = "Super Mario Bros";
 	
+	private static final String Nombre = "Super Mario Bros";
 	private static final int AnchoVentana = 960;
 	private static final int AlturaVentana = 720;
 	
 	//Variables
 	private boolean running;
-	private Ventana ventana;
+	private PantallaDeJuego pantallaDeJuego;
 	//Componentes
 	private Thread thread;
 	
@@ -30,7 +30,7 @@ public class GameLoop extends Canvas implements Runnable{
 	}
 	
 	private void initialize() {
-		ventana = new Ventana(AnchoVentana, AlturaVentana, Nombre, this);
+		pantallaDeJuego = new PantallaDeJuego(AnchoVentana, AlturaVentana, Nombre, this);
 		
 		start();
 	}
@@ -107,10 +107,10 @@ public class GameLoop extends Canvas implements Runnable{
 
 	
 	private void tick() {
-		ventana.moveMario();
+		pantallaDeJuego.update();
 	}
 	
 	private void render() {
-		ventana.render();
+		pantallaDeJuego.render();
 	}
 }

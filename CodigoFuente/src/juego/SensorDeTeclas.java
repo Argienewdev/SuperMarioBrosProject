@@ -8,12 +8,12 @@ import javax.swing.JFrame;
 public class SensorDeTeclas extends JFrame implements KeyListener{
 	private boolean Apresionada;
 	private boolean Dpresionada;
-	private boolean salto;
+	private boolean Wpresionada;
 	
 	public SensorDeTeclas() {
 		Apresionada = false;
 		Dpresionada = false;
-		salto = false;
+		Wpresionada = false;
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
         }else if (keyCode == KeyEvent.VK_D) {
     		Dpresionada = true;
         }else if (keyCode == KeyEvent.VK_W) {
-        	salto = true;
+        	Wpresionada = true;
         }
     }
 
@@ -37,7 +37,7 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
         } else if (keyCode == KeyEvent.VK_D) {
             Dpresionada = false;
         }else if (keyCode == KeyEvent.VK_W) {
-        	salto = false;
+        	Wpresionada = false;
         }
     }
 
@@ -45,15 +45,15 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
     public void keyTyped(KeyEvent e) {
     }
 
-	public boolean obtenerApresionada() {
+	public boolean obtenerAPresionada() {
 		return Apresionada;
 	}
 
-	public boolean obtenerDpresionada() {
+	public boolean obtenerDPresionada() {
 		return Dpresionada;
 	}
 	
-	public boolean obtenerSalto() {
-		return salto;
+	public boolean obtenerWPresionada() {
+		return Wpresionada;
 	}
 }
