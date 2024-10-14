@@ -17,14 +17,6 @@ public class Ventana {
 	private Dimension size;
 	private JPanel panel;
 	private JLabel mario;
-	private ImageIcon marioQuieto1;
-	private ImageIcon marioQuieto2;
-	private ImageIcon marioCaminando1;
-	private ImageIcon marioCaminando2;
-	private ImageIcon marioVolviendo1;
-	private ImageIcon marioVolviendo2;
-	private ImageIcon marioSaltando;
-	private ImageIcon marioSaltando2;
 	private int posX = 50;
 	private int posY = 400;
 	private SensorDeTeclas sensorDeTeclas;
@@ -40,19 +32,11 @@ public class Ventana {
 		size = new Dimension(width, height);
 		frame = new JFrame(title);
 		panel = new JPanel();
-		marioQuieto1 = new ImageIcon("src\\imagenes\\marioQuieto.png");
-		marioQuieto2 = new ImageIcon("src\\imagenes\\marioQuieto2.png");
-		marioCaminando1 = new ImageIcon("src\\\\imagenes\\\\marioCaminando1.png");
-		marioCaminando2 = new ImageIcon("src\\\\imagenes\\\\marioCaminando2.png");
-		marioVolviendo1 = new ImageIcon("src\\\\imagenes\\\\marioVolviendo1.png");
-		marioVolviendo2 = new ImageIcon("src\\\\imagenes\\\\marioVolviendo2.png");
-		marioSaltando = new ImageIcon("src\\\\imagenes\\\\marioSaltando.png");
-		marioSaltando2 = new ImageIcon("src\\\\imagenes\\\\marioSaltando2.png");
 		marioSprites = new MarioSprites();
-        mario = new JLabel(marioQuieto1);
+        mario = new JLabel(marioSprites.getMarioQuieto1());
         velHorizontal = 0;
         velVertical = 0;
-        saltando= false;
+        saltando = false;
 
 		sensorDeTeclas = new SensorDeTeclas();
 		
@@ -74,7 +58,7 @@ public class Ventana {
 	    frame.addKeyListener(sensorDeTeclas);  // Fix: Add the key listener to the frame
 	    
 	    panel.setLayout(null);  // Important: This allows free positioning of components
-	    mario.setBounds(posX, posY, marioQuieto1.getIconWidth(), marioQuieto1.getIconHeight());  // Position the Mario JPanel
+	    mario.setBounds(posX, posY, marioSprites.getMarioQuieto1().getIconWidth(), marioSprites.getMarioQuieto1().getIconHeight());  // Position the Mario JPanel
 	    panel.add(mario);  // Add Mario to the panel
 
 	    frame.add(panel);  // Add the panel to the frame
@@ -96,10 +80,10 @@ public class Ventana {
 		else if(sensorDeTeclas.obtenerApresionada() && !saltando && !sensorDeTeclas.obtenerDpresionada() && posX > 0) {
 			moveMarioIzquierda();
 		}else {
-			if((mario.getIcon() == marioCaminando1 || mario.getIcon() == marioCaminando2 || mario.getIcon() == marioSaltando) && !saltando) {
-				mario.setIcon(marioQuieto1);
-			}else if((mario.getIcon() == marioVolviendo1 || mario.getIcon() == marioVolviendo2 || mario.getIcon() == marioSaltando2) && !saltando) {
-				mario.setIcon(marioQuieto2);
+			if((mario.getIcon() == marioSprites.getMarioCaminando1() || mario.getIcon() == marioSprites.getMarioCaminando2() || mario.getIcon() == marioSprites.getMarioSaltando()) && !saltando) {
+				mario.setIcon(marioSprites.getMarioQuieto1());
+			}else if((mario.getIcon() == marioSprites.getMarioVolviendo1() || mario.getIcon() == marioSprites.getMarioVolviendo2() || mario.getIcon() == marioSprites.getMarioSaltando2()) && !saltando) {
+				mario.setIcon(marioSprites.getMarioQuieto2());
 			}
 			if(!saltando)
 				velHorizontal = 0;
@@ -111,8 +95,13 @@ public class Ventana {
 			if((velHorizontal > 0 && posX < size.width - mario.getWidth()) || (velHorizontal < 0 && posX > 0) ) 
 				posX += velHorizontal;
 			
-		}else {
+		}else if(saltando){
 			saltando = false;
+			if(mario.getIcon() == marioSprites.getMarioSaltando()) {
+				mario.setIcon(marioSprites.getMarioQuieto1());
+			}else if(mario.getIcon() == marioSprites.getMarioSaltando2()) {
+				mario.setIcon(marioSprites.getMarioQuieto2());
+			}
 		}
 		mario.setLocation(posX, posY);
 	}
@@ -138,19 +127,19 @@ public class Ventana {
 		}
 	}
 	public void moveMarioSalto() {
-		if(mario.getIcon() == marioCaminando1 || mario.getIcon() == marioCaminando2) {
+		if(mario.getIcon() == marioSprites.getMarioCaminando1() || mario.getIcon() == marioSprites.getMarioCaminando2()) {
 			velHorizontal = 10;
-		}else if(mario.getIcon() == marioVolviendo1 || mario.getIcon() == marioVolviendo2){
+		}else if(mario.getIcon() == marioSprites.getMarioVolviendo1() || mario.getIcon() == marioSprites.getMarioVolviendo2()){
 			velHorizontal = -10;
 		}
 		velVertical = fuerzaSalto;
 		posY += velVertical;
 		saltando = true;
 		ticksTotal++;
-		if(mario.getIcon() == marioCaminando1 || mario.getIcon() == marioCaminando2 || mario.getIcon() == marioQuieto1) {
-			mario.setIcon(marioSaltando);
-		}else if(mario.getIcon() == marioVolviendo1 || mario.getIcon() == marioVolviendo2 || mario.getIcon() == marioQuieto2) {
-			mario.setIcon(marioSaltando2);
+		if(mario.getIcon() == marioSprites.getMarioCaminando1() || mario.getIcon() == marioSprites.getMarioCaminando2() || mario.getIcon() == marioSprites.getMarioQuieto1()) {
+			mario.setIcon(marioSprites.getMarioSaltando());
+		}else if(mario.getIcon() == marioSprites.getMarioVolviendo1() || mario.getIcon() == marioSprites.getMarioVolviendo2() || mario.getIcon() == marioSprites.getMarioQuieto2()) {
+			mario.setIcon(marioSprites.getMarioSaltando2());
 		}
 	}
 }
