@@ -2,12 +2,13 @@ package juego;
 
 import fabricas.Sprite;
 
-public class Silueta{
-	
+
+public class Silueta {
+    
 	protected Sprite sprite;
 	
-	public Silueta(Sprite sprite) {
-		this.sprite=sprite;
-	}
-
+    public Silueta (Sprite sprite) {
+        this.sprite = sprite;
+    }
+   
 }

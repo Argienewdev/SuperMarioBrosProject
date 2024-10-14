@@ -1,6 +1,13 @@
 package fabricas;
+<<<<<<< HEAD
+
 import elementos.*;
 import juego.Silueta;
+
+=======
+import elementos.*;
+import juego.Silueta;
+>>>>>>> origin/main
 public abstract class FabricaSprites {
 	protected String rutaACarpeta;
 	
@@ -15,10 +22,14 @@ public abstract class FabricaSprites {
 	public Sprite getMario() {
 		return new Sprite(rutaACarpeta + "/mario.png");
 	}
-	
 	public Sprite getLadrillo() {
 		return new Sprite(rutaACarpeta + "/ladrillo.png");
 	}
+<<<<<<< HEAD
+	
+=======
+	
+
 	
 
 }

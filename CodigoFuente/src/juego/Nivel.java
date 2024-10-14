@@ -1,4 +1,9 @@
 package juego;
+<<<<<<< HEAD
+
+public class Nivel {
+
+=======
 import java.util.ArrayList;
 
 import elementos.*;
@@ -51,4 +56,5 @@ public class Nivel {
 	public Iterable<Enemigo> getEnemigo(){
 		return enemigos;
 	}
+=======
 }
