@@ -1,4 +1,9 @@
 package fabricas;
+import java.util.Vector;
+
+import elementos.*;
+import juego.Silueta;
+import visitors.Visitante;
 
 import java.util.Vector;
 
@@ -9,6 +14,7 @@ import juego.Silueta;
 import elementos.plataforma.*;
 
 public class FabricaEntidades {
+<<<<<<< HEAD
     
     protected FabricaSprites fabricaSprites;
 
@@ -70,3 +76,4 @@ public class FabricaEntidades {
     public ContextoKoopa ...
 
 }
+=======

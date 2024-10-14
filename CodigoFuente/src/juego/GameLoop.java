@@ -75,16 +75,16 @@ public class GameLoop extends Canvas implements Runnable{
 	        long now = System.nanoTime();
 	        
 	        // Suma al delta la fracción del tiempo transcurrido desde el último ciclo
-	        delta += (now - lastTime) / ns;
+	        delta += (now - lastTime);
 	        
 	        // Actualiza lastTime para la próxima iteración
 	        lastTime = now;
 	        
 	        // Si delta es mayor o igual a 1, significa que ha pasado suficiente tiempo para un tick
-	        while (delta >= 1) {
+	        while (delta >= ns) {
 	            tick(); // Llama a la actualización lógica del juego
 	            updates++; // Incrementa el número de actualizaciones (ticks)
-	            delta--; // Decrementa delta para seguir controlando el tiempo
+	            delta -= ns; // Decrementa delta para seguir controlando el tiempo
 	        }
 	        
 	        // Renderiza el juego si está corriendo
