@@ -1,5 +1,8 @@
 package juego;
 
-public class Juego {
+import java.util.ArrayList;
 
+public class Juego {
+	
+	protected ArrayList<Nivel> niveles;
 }
