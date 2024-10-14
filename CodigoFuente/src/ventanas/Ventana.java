@@ -14,18 +14,31 @@ import juego.SensorDeTeclas;
 
 public class Ventana {
 	private JFrame frame;
+	
 	private Dimension size;
+	
 	private JPanel panel;
+	
 	private JLabel mario;
+	
 	private int posX = 50;
+	
 	private int posY = 400;
+	
 	private SensorDeTeclas sensorDeTeclas;
+	
 	private int ticksTotal;
+	
 	private int velHorizontal;
+	
 	private int velVertical;
+	
 	private boolean saltando;
-	private static final int fuerzaSalto = -40;
-	private static final int gravedad = 4;
+	
+	private static final int fuerzaSalto = -30;
+	
+	private static final int gravedad = 3;
+	
 	private MarioSprites marioSprites;
 	
 	public Ventana(int width, int height, String title, GameLoop game) {
@@ -88,15 +101,15 @@ public class Ventana {
 			if(!saltando)
 				velHorizontal = 0;
 		}
-		if(velVertical < 100)
+		if(velVertical < 40)
 			velVertical += gravedad;
 		if(posY < 400 && saltando) {
 			posY += velVertical;
 			if((velHorizontal > 0 && posX < size.width - mario.getWidth()) || (velHorizontal < 0 && posX > 0) ) 
 				posX += velHorizontal;
-			
 		}else if(saltando){
 			saltando = false;
+			velHorizontal = 0;
 			if(mario.getIcon() == marioSprites.getMarioSaltando()) {
 				mario.setIcon(marioSprites.getMarioQuieto1());
 			}else if(mario.getIcon() == marioSprites.getMarioSaltando2()) {
@@ -127,18 +140,18 @@ public class Ventana {
 		}
 	}
 	public void moveMarioSalto() {
-		if(mario.getIcon() == marioSprites.getMarioCaminando1() || mario.getIcon() == marioSprites.getMarioCaminando2()) {
+		if(sensorDeTeclas.obtenerDpresionada()){
 			velHorizontal = 10;
-		}else if(mario.getIcon() == marioSprites.getMarioVolviendo1() || mario.getIcon() == marioSprites.getMarioVolviendo2()){
+		}else if(sensorDeTeclas.obtenerApresionada()){
 			velHorizontal = -10;
 		}
 		velVertical = fuerzaSalto;
 		posY += velVertical;
 		saltando = true;
 		ticksTotal++;
-		if(mario.getIcon() == marioSprites.getMarioCaminando1() || mario.getIcon() == marioSprites.getMarioCaminando2() || mario.getIcon() == marioSprites.getMarioQuieto1()) {
+		if(sensorDeTeclas.obtenerDpresionada() || (mario.getIcon() == marioSprites.getMarioQuieto1() && !sensorDeTeclas.obtenerApresionada())) {
 			mario.setIcon(marioSprites.getMarioSaltando());
-		}else if(mario.getIcon() == marioSprites.getMarioVolviendo1() || mario.getIcon() == marioSprites.getMarioVolviendo2() || mario.getIcon() == marioSprites.getMarioQuieto2()) {
+		}else if(sensorDeTeclas.obtenerApresionada() || (mario.getIcon() == marioSprites.getMarioQuieto2() && !sensorDeTeclas.obtenerApresionada())) {
 			mario.setIcon(marioSprites.getMarioSaltando2());
 		}
 	}

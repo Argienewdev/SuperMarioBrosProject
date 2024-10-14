@@ -21,14 +21,14 @@ public class MarioSprites {
 	private ImageIcon marioSaltando2;
 	
 	public MarioSprites() {
-		marioQuieto1 = new ImageIcon("C:\\Users\\Santi\\Desktop\\proy tdp\\p-comision-14\\CodigoFuente\\src\\imagenes\\marioQuieto.png");
-		marioQuieto2 = new ImageIcon("C:\\Users\\Santi\\Desktop\\proy tdp\\p-comision-14\\CodigoFuente\\src\\imagenes\\marioQuieto2.png");
-		marioCaminando1 = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioCaminando1.png");
-		marioCaminando2 = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioCaminando2.png");
-		marioVolviendo1 = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioVolviendo1.png");
-		marioVolviendo2 = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioVolviendo2.png");
-		marioSaltando = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioSaltando.png");
-		marioSaltando2 = new ImageIcon("C:\\\\Users\\\\Santi\\\\Desktop\\\\proy tdp\\\\p-comision-14\\\\CodigoFuente\\\\src\\\\imagenes\\\\marioSaltando2.png");
+		marioQuieto1 = new ImageIcon("src\\imagenes\\marioQuieto.png");
+		marioQuieto2 = new ImageIcon("src\\imagenes\\marioQuieto2.png");
+		marioCaminando1 = new ImageIcon("src\\\\imagenes\\\\marioCaminando1.png");
+		marioCaminando2 = new ImageIcon("src\\\\imagenes\\\\marioCaminando2.png");
+		marioVolviendo1 = new ImageIcon("src\\\\imagenes\\\\marioVolviendo1.png");
+		marioVolviendo2 = new ImageIcon("src\\\\imagenes\\\\marioVolviendo2.png");
+		marioSaltando = new ImageIcon("src\\\\imagenes\\\\marioSaltando.png");
+		marioSaltando2 = new ImageIcon("src\\\\imagenes\\\\marioSaltando2.png");
 	}
 	
 	public ImageIcon getMarioQuieto1() {

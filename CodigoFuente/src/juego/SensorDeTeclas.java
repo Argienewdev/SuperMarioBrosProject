@@ -13,6 +13,7 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
 	public SensorDeTeclas() {
 		Apresionada = false;
 		Dpresionada = false;
+		salto = false;
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
     		Apresionada = true;
         }else if (keyCode == KeyEvent.VK_D) {
     		Dpresionada = true;
-        }else if (keyCode == KeyEvent.VK_SPACE) {
+        }else if (keyCode == KeyEvent.VK_W) {
         	salto = true;
         }
     }
@@ -35,7 +36,7 @@ public class SensorDeTeclas extends JFrame implements KeyListener{
             Apresionada = false;
         } else if (keyCode == KeyEvent.VK_D) {
             Dpresionada = false;
-        }else if (keyCode == KeyEvent.VK_SPACE) {
+        }else if (keyCode == KeyEvent.VK_W) {
         	salto = false;
         }
     }
