@@ -1,5 +1,5 @@
 package visitors;
 
 public interface Visitado {
-	public void aceptarVisitante(Visitor visitante);
+	public void aceptarVisitante(Visitante visitante);
 }
