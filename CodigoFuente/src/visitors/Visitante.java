@@ -2,9 +2,9 @@ package visitors;
 
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
-import elementos.personaje.*;
-import elementos.plataforma.*;
-import elementos.powerUp.*;
+import elementos.personajes.*;
+import elementos.plataformas.*;
+import elementos.powerUps.*;
 
 public interface Visitante {
 	public void visitarBowser(Bowser bowser);

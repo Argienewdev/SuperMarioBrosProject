@@ -9,9 +9,9 @@ import java.util.Vector;
 
 import elementos.enemigos.*;
 import elementos.entidades.*;
-import elementos.powerUp.*;
+import elementos.plataformas.*;
+import elementos.powerUps.*;
 import juego.Silueta;
-import elementos.plataforma.*;
 
 public class FabricaEntidades {
     

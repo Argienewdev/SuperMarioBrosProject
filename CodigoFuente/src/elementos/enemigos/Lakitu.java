@@ -4,19 +4,27 @@ import java.util.LinkedList;
 import java.util.Vector;
 
 import fabricas.Sprite;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
-    //Constructor
-    public Lakitu (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-    	super(sprite, posicion,visitor, direccion,velocidad,60,0);
+    // Constructor
+    public Lakitu(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+    			  int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+    	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    	this.puntosOtorgadosPorEliminacion = 60;
+    	this.puntosSustraidosPorMuerteCausada = 0;
     }
 
-    //Operaciones
+    // Metodos
     public void lanzarSpiny () {
+    	// TODO Auto-generated method stub    
     }
+    
+    @Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarLakitu(this);
     }
+    
 }

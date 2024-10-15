@@ -2,9 +2,9 @@ package visitors;
 
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
-import elementos.plataforma.*;
-import elementos.powerUp.*;
-import elementos.personaje.*;
+import elementos.personajes.*;
+import elementos.plataformas.*;
+import elementos.powerUps.*;
 public class VisitorMarioFuego implements Visitante{
 
 	@Override

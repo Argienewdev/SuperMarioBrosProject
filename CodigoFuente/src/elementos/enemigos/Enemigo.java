@@ -4,27 +4,31 @@ import java.util.Vector;
 
 import elementos.entidades.NoJugable;
 import fabricas.Sprite;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public abstract class Enemigo extends NoJugable{
+public abstract class Enemigo extends NoJugable {
 	
-	protected int killPoint;
-	protected int deathPoint;
+	// Atributos
+	protected int puntosOtorgadosPorEliminacion;
+		
+	protected int puntosSustraidosPorMuerteCausada;
 	
-	public Enemigo(Sprite sprite, Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion,
-			int velocidad, int killPoint, int deathPoint) {
-		super(sprite, posicion, visitor, direccion, velocidad);
-		this.killPoint=killPoint;
-		this.deathPoint=deathPoint;
+	// Constructor
+	public Enemigo(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+				   int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
 	}
-	
-	public int getPuntosKill() {
-		return killPoint;
-	}
-	
-	public int getPuntosDeath() {
-		return deathPoint;
-	}
+    
+    // Metodos
+    public int getPuntosOtorgadosPorEliminacion() {
+        return this.puntosOtorgadosPorEliminacion;
+    }
+    
+    public int getPuntosSustraidosPorMuerteCausada() {
+        return this.puntosSustraidosPorMuerteCausada;
+    }
 
-
+    public abstract void aceptarVisitante(Visitante visitante);
+    
 }
