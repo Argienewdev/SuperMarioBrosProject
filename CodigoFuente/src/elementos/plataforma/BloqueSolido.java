@@ -5,16 +5,11 @@ import java.util.Vector;
 import fabricas.Sprite;
 import visitors.Visitante;
 
-public class BloqueSolido extends Plataforma {
-    //Constructor
-    public BloqueSolido (Sprite sprite, Vector<Integer> pos) {
-        this.sprite = sprite;
-        posicion = pos;
-        setSolido(true);
-    }
+public abstract class BloqueSolido extends Plataforma{
+	
+	public BloqueSolido(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+		super(sprite, posicion, visitor, true);
+		// El ultimo argumento corresponde a solido
+	}
 
-    //Operaciones
-    public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarBloqueSolido(this);
-    }
 }

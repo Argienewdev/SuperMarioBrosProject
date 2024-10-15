@@ -1,12 +1,9 @@
 package juego;
-<<<<<<< HEAD
-
-public class Nivel {
-
-=======
 import java.util.ArrayList;
 
-import elementos.*;
+import elementos.enemigos.Enemigo;
+import elementos.plataforma.Plataforma;
+import elementos.powerUp.PowerUp;
 import generadores.GeneradorDeNivel;
 
 public class Nivel {
@@ -56,5 +53,4 @@ public class Nivel {
 	public Iterable<Enemigo> getEnemigo(){
 		return enemigos;
 	}
-=======
 }

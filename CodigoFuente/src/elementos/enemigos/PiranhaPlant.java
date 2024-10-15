@@ -12,12 +12,9 @@ public class PiranhaPlant extends Enemigo{
     protected boolean dentroTuberia;
 
     //Constructor
-    public PiranhaPlant (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad, Tuberia tub) {
-        this.sprite = sprite;
-        posicion = pos;
-        direccion = dir;
-        this.velocidad = velocidad;
-        miTuberia = tub;
+    public PiranhaPlant (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, Tuberia miTuberia) {
+    	super(sprite, posicion,visitor, direccion,velocidad,30,-30);
+        this.miTuberia = miTuberia;
     }
 
     public void setDentroTuberia() {

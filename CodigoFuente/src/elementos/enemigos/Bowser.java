@@ -7,14 +7,11 @@ import visitors.Visitante;
 
 public class Bowser extends Enemigo {
 
-    protected int vidas = 5;
+    protected static final int VIDAS = 5;
 
    
-    public Bowser (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad) {
-        this.velocidad = velocidad;
-        this.direccion = dir;
-        this.posicion = pos;
-        this.sprite = sprite;
+    public Bowser (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+        super(sprite, posicion,visitor, direccion,velocidad,0,0);
     }
 
     public void aceptarVisitante(Visitante visitante) {

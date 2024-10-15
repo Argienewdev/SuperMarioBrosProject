@@ -9,11 +9,8 @@ public class Estrella extends PowerUp {
 	
 	public static final int TIEMPO_DURACION = 10;
 	
-	public Estrella (Sprite sprite, Vector<Integer> posicion, Vector<Integer> direccion, int velocidad) {
-		this.sprite = sprite;
-		this.posicion = posicion;
-		this.direccion = direccion;
-		this.velocidad = velocidad;
+	public Estrella (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+        super(sprite, posicion,visitor, direccion,velocidad,20);
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {

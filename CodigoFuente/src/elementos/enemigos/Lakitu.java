@@ -7,25 +7,14 @@ import fabricas.Sprite;
 import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
-    //Atributos de instancia
-    protected LinkedList<Spiny> spinys;
-
+    
     //Constructor
-    public Lakitu (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad) {
-         this.sprite = sprite;
-         posicion = pos;
-         direccion = dir;
-         this.velocidad = velocidad;
-         spinys = new LinkedList<Spiny>();
+    public Lakitu (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+    	super(sprite, posicion,visitor, direccion,velocidad,60,0);
     }
 
     //Operaciones
-    public void acumularSpiny (Spiny spiny) {
-        spinys.addLast(spiny);
-    }
-    public Spiny lanzarSpiny () {
-        Spiny spiny = spinys.removeLast();
-        return spiny;
+    public void lanzarSpiny () {
     }
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarLakitu(this);

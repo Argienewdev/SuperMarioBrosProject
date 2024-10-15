@@ -12,7 +12,6 @@ public class ContextoMario extends Jugable {
 	
 	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion,
 			int velocidad, int vidas, EstadoMario estadoMario) {
-		//super a Jugable???
 		super(sprite, posicion, visitor, direccion, velocidad, vidas);
 		this.estadoMario=estadoMario;
 	}

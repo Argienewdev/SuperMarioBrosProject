@@ -2,6 +2,7 @@ package elementos;
 
 import java.util.Vector;
 
+import elementos.ElementoDeJuego;
 import fabricas.Sprite;
 import visitors.Visitante;
 

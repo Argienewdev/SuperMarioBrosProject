@@ -2,37 +2,45 @@ package elementos.entidades;
 
 import java.util.Vector;
 
-import elementos.ElementosDeJuego;
-import observers.ObserverGrafico;
+import elementos.ElementoDeJuego;
+import fabricas.Sprite;
+import visitors.Visitante;
+import vista.Observer;
+import juego.*;
 
-public class Entidad extends ElementosDeJuego{
-
-    protected Vector<Integer> direccion;
-    protected int velocidad;
-    protected ObserverGrafico suscriptor;
-
-    
-    public void setDireccion(Vector<Integer> direccion) {
-        this.direccion = direccion;
-    }
-    
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-    
-    public Vector<Integer> getDireccion() {
-        return direccion;
-    }
-    
-    public int getVelocidad() {
-        return velocidad;
-    }
-    public void moverADerecha (Vector<Integer> dir) {
-    	setDireccion(dir);
-    	//notificar a pantalla ...
-    }
-    public void moverAIzquierda (Vector<Integer> dir) {
-    	setDireccion(dir);
-    	//notificar a pantalla
-    }
+public abstract class Entidad extends ElementoDeJuego implements EntidadLogica{
+	
+	protected Vector<Integer> direccion;
+	protected int velocidad;
+	protected Observer observer;
+	
+	
+	public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion, int velocidad){
+		super(sprite, posicion, visitor);
+		this.direccion=direccion;
+		this.velocidad=velocidad;
+	}
+	
+	public void setDireccion(Vector<Integer> direccion) {
+		this.direccion=direccion;
+	}
+	
+	public void setVelocidad(int velocidad){
+		this.velocidad=velocidad;
+	}
+	
+	public void setObserver(Observer observer) {
+		this.observer=observer;
+	}
+	
+	public Vector<Integer> getDireccion(){
+		return direccion;
+	}
+	
+	public int getVelocidad(){
+		return velocidad;
+	}
+	
+		
+	
 }

@@ -1,24 +1,26 @@
 package elementos.enemigos;
 
+import java.util.Vector;
+
 import fabricas.Sprite;
 import visitors.Visitante;
 
 public class ContextoKoopaTroopa extends Enemigo {
-	protected KoopaState estado;
+	protected EstadoKoopa estado;
 
-    public ContextoKoopaTroopa (Sprite sprite, KoopaState estado) {
-        this.sprite = sprite;
-        this.estado = estado;
-        killPoints = 90;
-        deathPoints = 45;
+    public ContextoKoopaTroopa (Sprite sprite,Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion,
+			int velocidad, EstadoKoopa estado) {
+    	super(sprite, posicion,visitor, direccion,velocidad,90,-45);
+    	this.estado=estado;
     }
 
     //Operaciones
-    public void cambiarEstado (KoopaState estado) {
+    public void cambiarEstado (EstadoKoopa estado) {
         this.estado = estado;
     }
-
+    
     public void aceptarVisitante(Visitante visitante) {
         estado.aceptarVisitante(this);
     }
+    
 }

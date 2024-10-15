@@ -1,16 +1,25 @@
 package elementos.plataforma;
 
-import elementos.ElementosDeJuego;
+import java.util.Vector;
 
-public abstract class Plataforma extends ElementosDeJuego {
-    //Atributos de instancia
-    protected boolean solido;
+import elementos.ElementoDeJuego;
+import fabricas.Sprite;
+import visitors.Visitante;
 
-    //Operaciones
-    public void setSolido (boolean sol) {
-        solido = sol;
-    }
-    public  boolean esSolida() {
-        return solido;
-    }
+public abstract class Plataforma extends ElementoDeJuego{
+	
+	protected boolean solido;
+
+	public Plataforma(Sprite sprite, Vector<Integer> posicion, Visitante visitor, boolean solido) {
+		super(sprite, posicion, visitor);
+		this.solido =solido;
+	}
+	
+	public void setSolido(boolean solido) {
+		this.solido =solido;
+	}
+	
+	public boolean esSolido() {
+		return solido;
+	}
 }

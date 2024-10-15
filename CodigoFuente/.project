@@ -14,6 +14,13 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/generadores/Formateo-de-niveles.pdf</name>
+			<type>1</type>
+			<location>D:/Usuario/Descargas/Formateo-de-niveles.pdf</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1728612923456</id>

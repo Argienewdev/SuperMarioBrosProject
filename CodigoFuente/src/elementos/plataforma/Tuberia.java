@@ -11,8 +11,8 @@ public class Tuberia extends BloqueSolido{
     protected PiranhaPlant planta;
 
     //Constructor
-    public Tuberia (Sprite sprite, Vector<Integer> pos, PiranhaPlant planta) {
-        super(sprite,pos);
+    public Tuberia (Sprite sprite, Vector<Integer> pos,Visitante visitor, PiranhaPlant planta) {
+        super(sprite,pos,visitor);
         this.planta = planta;
     }
 

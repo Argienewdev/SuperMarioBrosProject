@@ -7,11 +7,8 @@ import visitors.Visitante;
 
 public class Spiny extends Enemigo{
  
-    public Spiny (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad) {
-        this.sprite = sprite;
-        posicion = pos;
-        direccion = dir;
-        this.velocidad = velocidad;
+    public Spiny (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+    	super(sprite, posicion,visitor, direccion,velocidad,60,-30);
     }
 
     public void aceptarVisitante(Visitante visitante) {

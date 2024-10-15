@@ -1,4 +1,9 @@
 package visitors;
+import elementos.enemigos.*;
+import elementos.entidades.Fireball;
+import elementos.plataforma.*;
+import elementos.powerUp.*;
+import elementos.personaje.*;
 
 public class VisitorCaparazonEstatico implements Visitante{
 
@@ -9,7 +14,7 @@ public class VisitorCaparazonEstatico implements Visitante{
 	}
 
 	@Override
-	public void visitarVisitorBuzzyBeetle(BuzzyBeetle buzzy) {
+	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -87,7 +92,7 @@ public class VisitorCaparazonEstatico implements Visitante{
 	}
 
 	@Override
-	public void visitarMonedas(Monedas monedas) {
+	public void visitarMonedas(Monedas moneda) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -153,9 +158,22 @@ public class VisitorCaparazonEstatico implements Visitante{
 	}
 
 	@Override
-	public void visitarPiso(Piso piso) {
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visitarContextoMario(ContextoMario contextoMario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

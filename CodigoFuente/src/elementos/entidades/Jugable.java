@@ -2,32 +2,29 @@ package elementos.entidades;
 
 import java.util.Vector;
 
-public abstract class Jugable extends Entidad {
-    //Atributos de instancia
-    protected int vidas;
+import fabricas.Sprite;
+import visitors.Visitante;
 
-    //Operaciones
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
-    public int getVidas() {
-        return vidas;
-    }
-    public void saltar (Vector<Integer> dir) {
-        move(dir);
-    }
-    public void detenerse (Vector<Integer> dir) {
-        posicion = dir;
-    }
-    public void caer (Vector<Integer> dir){
-        move(dir);
-    }
-    public void ganarVida () {
-        vidas++;
-    }
-    public void perderVida () {
-        if (vidas > 0)
-            vidas--;
-    }
-    public void actualizarHud() {}
+public abstract class Jugable extends Entidad{
+	
+	protected int vidas;
+	
+	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion,
+			int velocidad, int vidas) {
+		super(sprite, posicion, visitor, direccion, velocidad);
+		this.vidas=vidas;
+	}
+	
+	public void ganarVida(int vidas) {
+		vidas++;
+	}
+	
+	public void perderVida(int vidas) {
+		vidas--;
+	}
+	
+	public int getVidas() {
+		return vidas;
+	}
+
 }

@@ -2,6 +2,7 @@ package fabricas;
 import java.util.Vector;
 
 import elementos.*;
+import elementos.plataforma.Ladrillo;
 import visitors.Visitante;
 public class FabricaPlataformas {
 

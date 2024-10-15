@@ -7,11 +7,8 @@ import visitors.Visitante;
 
 public class Goomba extends Enemigo {
     //Constructor
-    public Goomba (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad) {
-        this.sprite = sprite;
-        posicion = pos;
-        direccion = dir;
-        this.velocidad = velocidad;
+    public Goomba (Sprite sprite, Vector<Integer> posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+        super(sprite, posicion,visitor, direccion,velocidad,60,-30);
     }
     //Operaciones
     public void aceptarVisitante(Visitante visitante) {

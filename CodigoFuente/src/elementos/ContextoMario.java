@@ -2,6 +2,8 @@ package elementos;
 
 import java.util.Vector;
 
+import elementos.entidades.Jugable;
+import elementos.personaje.EstadoMario;
 import fabricas.Sprite;
 import visitors.Visitante;
 

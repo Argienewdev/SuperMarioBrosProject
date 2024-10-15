@@ -10,8 +10,8 @@ public class BloqueDePregunta extends BloqueSolido {
 	
 	protected PowerUp powerUp;
 	
-	public BloqueDePregunta (Sprite sprite, PowerUp powerUp, Vector<Integer> pos) {
-		super(sprite,pos);
+	public BloqueDePregunta (Sprite sprite, Vector<Integer> pos,Visitante visitor,PowerUp powerUp) {
+		super(sprite,pos,visitor);
 		this.powerUp = powerUp;
 		
 	}

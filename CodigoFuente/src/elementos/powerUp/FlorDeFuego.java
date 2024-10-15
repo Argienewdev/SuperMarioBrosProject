@@ -7,9 +7,8 @@ import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
-	public FlorDeFuego (Sprite sprite, Vector<Integer> posicion) {
-		this.sprite = sprite;
-		this.posicion = posicion;
+	public FlorDeFuego (Sprite sprite, Vector<Integer> posicion,Visitante visitor) {
+		super(sprite,posicion,visitor,new Vector<Integer>(0,0),0,5);
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
