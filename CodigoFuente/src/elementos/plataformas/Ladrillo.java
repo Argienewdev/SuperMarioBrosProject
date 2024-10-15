@@ -15,4 +15,10 @@ public class Ladrillo extends BloqueSolido{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void aceptarVisitante(Visitante visitante) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
