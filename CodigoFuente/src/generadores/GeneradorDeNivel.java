@@ -34,16 +34,62 @@ public class GeneradorDeNivel {
                 for (int i = 0; i < partes.length; i++) {
                     numeros[i] = Integer.parseInt(partes[i]);
                 }
-                /*Manejo los numeros de la siguiente manera, en el txt, hay 3 o mas numeros,
-                 * el primero es un mapeo al elemento del nivel, el segundo y tercer componente
-                 * corresponeden a las coordenadas, x e y.
-                 * 	En esta version simplificada solo coloco ladrillos, los cuales estan mapeados 
-                 * al numero 1
-                */
+               
                 Vector<Integer> posicion= new Vector<Integer>(numeros[1],numeros[2]);
                 switch(numeros[0]) {
+                	case 0:{
+            			nivel.addPlataforma(fabricaPlataformas.getVacio(posicion, null));
+            		}
                 	case 1:{
-                		nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, null));
+                		nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, null,0));
+                	}
+                	case 2:{
+                		nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, null,numeros[3]));
+                	}
+                	case 3:{
+                		//Añadir tuberia vacia
+                	}
+                	case 4:{
+                		//Añadir tuberia con piranha
+                	}
+                	case 6:{
+                		nivel.addPlataforma(fabricaPlataformas.getBandera(posicion, null));
+                	}
+                	case 7:{
+                		nivel.addPlataforma(fabricaPlataformas.getPrincesaPeach(posicion, null));
+                	}
+                	case 20:{
+                		//Analizar constructor moneda
+                	}
+                	case 21:{
+                		//Añadir Estrella
+                	}
+                	case 22:{
+                		//Añadir ChampinionVerde                		           
+                	}
+                	case 23:{
+                		//Añadir flor de fuego
+                	}
+                	case 24:{
+                		//Añadir Super champinion
+                	}
+                	case 40:{
+                		//Añadir Lakitu
+                	}
+                	case 41:{
+                		//Añadir  Koopa Troopa
+                	}
+                	case 42:{
+                		//Añadir Goomba
+                	}
+                	case 43:{
+                		//Añadir Spiny
+                	}
+                	case 44:{
+                		//Añadir Buzzy Beetle
+                	}
+                	case 45:{
+                		//Añadir Bowser
                 	}
                 }
                 //Falta terminar, y hay que pasar el visitor a cada elemento que se le añade al nivel

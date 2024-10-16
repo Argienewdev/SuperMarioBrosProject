@@ -62,6 +62,16 @@ public abstract class FabricaSprites {
 		return new Sprite(rutaACarpeta + "/monedas.png");
 	}
 
+	public Sprite getVacio() {
+		return new Sprite(rutaACarpeta + "/vacio.png");
+	}
+	public Sprite getBandera() {
+		return new Sprite(rutaACarpeta + "/bandera.png");
+	}
+	public Sprite getPrincesaPeach() {
+		return new Sprite(rutaACarpeta + "/princesa.png");
+	}
+
 
 	
 
