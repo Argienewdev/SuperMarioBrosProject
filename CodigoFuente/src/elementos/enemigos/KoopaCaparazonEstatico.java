@@ -10,6 +10,10 @@ public class KoopaCaparazonEstatico implements KoopaState {
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
+	public KoopaCaparazonEstatico(ContextoKoopaTroopa contexto) {
+		this.contexto = contexto;
+	}
+	
 	// Metodos
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;

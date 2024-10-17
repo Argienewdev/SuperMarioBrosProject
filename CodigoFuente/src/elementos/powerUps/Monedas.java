@@ -4,26 +4,34 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
 
-import fabricas.Sprite;
+import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Monedas extends PowerUp {
 
 	// Atributos
-	protected Collection<Integer> monedas;
+	protected int monedas;
 	
 	// Constructor
 	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 				   int velocidad, Vector<Integer> direccion, 
 				   ObserverGrafico observerGrafico, int puntosOtorgados) {
 		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
-		this.monedas = new ArrayList<Integer>(); // Detallar mejor
+		this.monedas = 0;
 	}
 	
 	// Metodos
-	public Collection<Integer> getMonedas() {
+	public int getMonedas() {
 		return this.monedas;
+	}
+	
+	public void consumirMoneda() {
+		this.monedas--;
+	}
+	
+	public void agregarMoneda() {
+		this.monedas++;
 	}
 	
 	@Override

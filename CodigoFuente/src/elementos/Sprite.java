@@ -1,4 +1,4 @@
-package fabricas;
+package elementos;
 
 public class Sprite {
 	
@@ -9,7 +9,7 @@ public class Sprite {
 	}
 	
 	public String getRutaImagen() {
-		return rutaImagen;
+		return this.rutaImagen;
 	}
 	
 	public void setRutaImagen(String rutaImagen) {

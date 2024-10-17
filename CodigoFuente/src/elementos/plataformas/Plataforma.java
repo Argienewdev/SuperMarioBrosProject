@@ -3,7 +3,7 @@ package elementos.plataformas;
 import java.util.Vector;
 
 import elementos.ElementoDeJuego;
-import fabricas.Sprite;
+import elementos.Sprite;
 import visitors.Visitante;
 
 public abstract class Plataforma extends ElementoDeJuego{

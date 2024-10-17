@@ -2,6 +2,7 @@ package juego;
 
 import java.util.ArrayList;
 
+import elementos.Silueta;
 import elementos.enemigos.Enemigo;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;

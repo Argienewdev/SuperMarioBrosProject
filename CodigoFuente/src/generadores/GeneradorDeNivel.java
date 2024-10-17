@@ -1,8 +1,11 @@
 package generadores;
 import fabricas.*;
 import juego.Nivel;
-import juego.Silueta;
+
 import java.util.*;
+
+import elementos.Silueta;
+
 import java.io.*;
 
 public class GeneradorDeNivel {

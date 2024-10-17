@@ -2,16 +2,21 @@ package fabricas;
 import java.util.Vector;
 
 import elementos.*;
-import juego.Silueta;
 import visitors.Visitante;
 
 import java.util.Vector;
 
 import elementos.enemigos.*;
 import elementos.entidades.*;
+import elementos.personajes.ContextoMario;
+import elementos.personajes.MarioDefault;
+import elementos.personajes.MarioFuego;
+import elementos.personajes.MarioInvulnerable;
+import elementos.personajes.MarioState;
+import elementos.personajes.SuperMario;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-import juego.Silueta;
+import observers.ObserverGrafico;
 
 public class FabricaEntidades {
     
@@ -20,50 +25,117 @@ public class FabricaEntidades {
     public FabricaEntidades(FabricaSprites fabricaSprites) {
         this.fabricaSprites = fabricaSprites;
     }
+    
+    public ContextoMario getContextoMario(Sprite sprite, Vector<Integer> posicion, 
+    									  Visitante visitor, int velocidad, 
+    									  Vector<Integer> direccion, 
+			 							  ObserverGrafico observerGrafico, int vidas, 
+			 							  MarioState estado) {
+    	return new ContextoMario(sprite, posicion, visitor, velocidad, direccion, observerGrafico, vidas, estado);
+    }
+    
+    public MarioDefault getMarioDefault(ContextoMario contexto) {
+    	return new MarioDefault(contexto);
+    }
+    
+    public SuperMario getSuperMario(ContextoMario contexto) {
+    	return new SuperMario(contexto);
+    }
+    
+    public MarioInvulnerable getMarioInvulnerable(ContextoMario contexto) {
+    	return new MarioInvulnerable(contexto);
+    }
+    
+    public MarioFuego getMarioFuego(ContextoMario contexto) {
+    	return new MarioFuego(contexto);
+    }
+    
+    public Monedas getMonedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+			   				  int velocidad, Vector<Integer> direccion, 
+			   				  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Monedas(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public Estrella getEstrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						   		int velocidad, Vector<Integer> direccion, 
+						   		ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Estrella(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
 
-    public Spiny getSpiny(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getSpiny();
-        return new Spiny (sprite, posicion, visitor, velocidad, direccion);
+    public ChampinionVerde getChampinionVerde(Sprite sprite, Vector<Integer> posicion, 
+    										  Visitante visitor, int velocidad, 
+    										  Vector<Integer> direccion, 
+    										  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new ChampinionVerde(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
     }
-    public PiranhaPlant getPiranhaPlant(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, Tuberia tub) {
-        Sprite sprite = fabricaSprites.getPiranhaPlant();
-        return new PiranhaPlant(sprite,posicion,visitor,direccion,velocidad,tub);
+    
+    public SuperChampinion getSuperChampinion(Sprite sprite, Vector<Integer> posicion, 
+			  							      Visitante visitor, int velocidad, 
+			  							      Vector<Integer> direccion, 
+			  							      ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new SuperChampinion(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
     }
-    public Lakitu getLakitu(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getLakitu();
-        return new Lakitu (sprite,posicion,visitor,direccion,velocidad);
+    
+    public FlorDeFuego getFlorDeFuego(Sprite sprite, Vector<Integer> posicion, 
+			  						  Visitante visitor, int velocidad, 
+			  						  Vector<Integer> direccion, 
+			  						  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new FlorDeFuego(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
     }
-    public BuzzyBeetle getBuzzyBeetle(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getBuzzyBeetle();
-        return new BuzzyBeetle (sprite,posicion,visitor,direccion,velocidad);
+    
+    public Fireball getFireball(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+								int velocidad, Vector<Integer> direccion, 
+								ObserverGrafico observerGrafico) {
+    	return new Fireball(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
     }
-    public Goomba getGoomba(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad){
-        Sprite sprite = fabricaSprites.getGoomba();
-        return new Goomba (sprite,posicion,visitor,direccion,velocidad);
+    
+    public PiranhaPlant getPiranhaPlanta(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+										 int velocidad, Vector<Integer> direccion,
+										 ObserverGrafico observerGrafico, Tuberia miTuberia) {
+    	return new PiranhaPlant(sprite, posicion, visitor, velocidad, direccion, observerGrafico, miTuberia);
     }
-    public Bowser getBowser(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getBowser();
-        return new Bowser (sprite,posicion,visitor,direccion,velocidad);
+    
+    public Lakitu getLakitu(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+			  				int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+    	return new Lakitu(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
     }
-    public Estrella getEstrella(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getEstrella();
-        return new Estrella (sprite,posicion,visitor,direccion,velocidad);
+    
+    public ContextoKoopaTroopa getContextoKoopaTroopa(Sprite sprite,Vector<Integer> posicion, 
+    												  Visitante visitor, int velocidad, 
+    												  Vector<Integer> direccion, 
+    												  ObserverGrafico observerGrafico, 
+    												  KoopaState estado) {
+    	return new ContextoKoopaTroopa(sprite, posicion, visitor, velocidad, direccion, observerGrafico, estado);
     }
-    public ChampinionVerde getChampinionVerde(Vector<Integer>posicion,Visitante visitor) {
-        Sprite sprite = fabricaSprites.getChampinionVerde();
-        return new ChampinionVerde (sprite,posicion,visitor);
+    
+    public KoopaCaparazonEstatico getKoopaCaparazonEstatico(ContextoKoopaTroopa contexto) {
+    	return new KoopaCaparazonEstatico(contexto);
     }
-    public SuperChampinion getSuperChampinion(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getSuperChampinion();
-        return new SuperChampinion (sprite,posicion,visitor,direccion,velocidad);
+    
+    public KoopaCaparazonMovil getKoopaCaparazonMovil(ContextoKoopaTroopa contexto) {
+    	return new KoopaCaparazonMovil(contexto);
     }
-    public FlorDeFuego getFlorDeFuego(Vector<Integer>posicion,Visitante visitor) {
-        Sprite sprite = fabricaSprites.getFlorDeFuego();
-        return new FlorDeFuego (sprite,posicion,visitor);
+    
+    public KoopaDefault getKoopaDefault(ContextoKoopaTroopa contexto) {
+    	return new KoopaDefault(contexto);
     }
-    public Monedas getMonedas(Vector<Integer>posicion,Visitante visitor, int cantidad) {
-        Sprite sprite = fabricaSprites.getMonedas();
-        return new Monedas (sprite,posicion,visitor,cantidad);
+    
+    public Goomba getGoomba(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+			  				int velocidad, Vector<Integer> direccion, 
+			  				ObserverGrafico observerGrafico) {
+    	return new Goomba(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public Spiny getSpiny(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						  int velocidad, Vector<Integer> direccion, 
+						  ObserverGrafico observerGrafico) {
+    	return new Spiny(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public BuzzyBeetle getBuzzyBeetle(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+			  			  			  int velocidad, Vector<Integer> direccion, 
+			  			  			  ObserverGrafico observerGrafico) {
+    	return new BuzzyBeetle(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
     }
 
 }

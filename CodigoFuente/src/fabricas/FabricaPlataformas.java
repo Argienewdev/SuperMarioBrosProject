@@ -37,6 +37,6 @@ public class FabricaPlataformas {
 		return princesaPeachADevolver;
 	}
 	
-	
-	public Tuberia getTuberia (Vector<Integer> posicion
+
+>>>>>>> 154755ff046504fb6667aad0653081a42363ebe9
 }
