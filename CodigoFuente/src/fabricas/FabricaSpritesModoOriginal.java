@@ -349,18 +349,16 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getTuberiaPequenia() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaPequenia.png");
-    }
-    
-    @Override
-    public Sprite getTuberiaMediana() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaMediana.png");
-    }
-    
-    @Override
-    public Sprite getTuberiaGrande() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaGrande.png");
+    public Sprite getTuberia(int altura) {
+    	String rutaAux = rutaACarpeta;
+    	if (altura >= 0 && altura <= 5) {
+    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaPequenia.png";
+    	} else if (altura > 5 && altura <= 10) {
+    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaMediana.png";
+    	} else if (altura > 10) {
+    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaMediana.png";
+    	}
+        return new Sprite(rutaAux);
     }
 
     @Override
