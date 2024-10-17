@@ -7,6 +7,7 @@ import visitors.Visitante;
 public class MarioDefault implements MarioState {
 	
 	protected ContextoMario contexto;
+	
 	protected int monedas;
 	
 	public MarioDefault() {
@@ -49,7 +50,5 @@ public class MarioDefault implements MarioState {
 		else 
 			monedas += cantidad;
 	}
-
-
 	
 }

@@ -8,9 +8,6 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	protected static final int DURACION = 10;
 	
-	public MarioInvulnerable() {
-		super();
-	
 	@Override
 	public void moverAIzquierda(Vector<Integer> direccion) {
 		// TODO Auto-generated method stub

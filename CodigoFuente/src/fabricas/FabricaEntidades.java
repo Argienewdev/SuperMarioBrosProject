@@ -101,7 +101,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Monedas getMonedas(Vector<Integer>posicion,Visitante visitor, int cantidad,
+	public Monedas getMonedas(Vector<Integer>posicion, Visitante visitor, int cantidad,
 							  ObserverGrafico observer ) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
         return new Monedas (sprite,posicion,visitor,observer, cantidad);
@@ -136,11 +136,10 @@ public class FabricaEntidades {
     	return new MarioFuego(contexto);
     }
     
-<<<<<<< HEAD
-    public Moneda getMonedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+    public Monedas getMonedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 			   				  int velocidad, Vector<Integer> direccion, 
 			   				  ObserverGrafico observerGrafico, int puntosOtorgados) {
-    	return new Moneda(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    	return new Monedas(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
     }
     
     public Estrella getEstrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,

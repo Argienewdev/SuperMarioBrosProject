@@ -20,7 +20,7 @@ public class ContextoMario extends Jugable {
 		this.velocidad = velocidad;
 		this.observerGrafico = observerGrafico;
 		this.estado = estado;
-		vidas = 3;
+		this.vidas = 3;
 	}
 	
 	public MarioState getEstado() {

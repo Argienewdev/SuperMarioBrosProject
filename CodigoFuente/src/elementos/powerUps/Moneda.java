@@ -13,9 +13,18 @@ public class Moneda extends PowerUp {
 	// Constructor
 	public Moneda(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 				   int velocidad, Vector<Integer> direccion, 
-				   ObserverGrafico observerGrafico, int puntosOtorgados) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
-		this.monedas = 0;
+				   ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+		this.cantidadMonedas = 0;
+	}
+	
+	public void consumirMonedas() {
+		this.cantidadMonedas--;
+	}
+	
+	public void aumentarMonedas() {
+		this.cantidadMonedas++;
+	}
 	
 	public int getCantidadMonedas() {
 		return this.cantidadMonedas;
