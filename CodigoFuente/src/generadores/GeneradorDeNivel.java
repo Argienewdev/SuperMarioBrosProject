@@ -13,18 +13,22 @@ import java.io.*;
 public class GeneradorDeNivel {
 	
 	protected FabricaEntidades fabricaEntidades;
+	
 	protected FabricaSilueta fabricaSilueta;
+	
 	protected FabricaPlataformas fabricaPlataformas;
 	
 	public GeneradorDeNivel(FabricaEntidades fabricaEntidades){
-		this.fabricaEntidades=fabricaEntidades;
+		this.fabricaEntidades = fabricaEntidades;
 	}
-	public Nivel generarNivel(int numeroModo, String rutaTxtNivel ){
+	
+	public Nivel generarNivel(int numeroModo, String rutaTxtNivel){
 		
 		Silueta silueta = fabricaSilueta.getSilueta();
-		Nivel nivel= new Nivel(silueta);
-		FileReader archivoDeNivel=null;
-		BufferedReader lectorBuffer=null;
+		Nivel nivel = new Nivel(silueta);
+		FileReader archivoDeNivel = null;
+		BufferedReader lectorBuffer = null;
+		
 		try {
 			
 			archivoDeNivel = new FileReader(rutaTxtNivel);
@@ -142,6 +146,8 @@ public class GeneradorDeNivel {
 				e.printStackTrace();
 			}
 		}
-	return nivel;
+		
+		return nivel;
 	}
+	
 }

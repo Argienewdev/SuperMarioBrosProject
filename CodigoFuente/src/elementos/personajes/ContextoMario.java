@@ -9,10 +9,8 @@ import visitors.Visitante;
 
 public class ContextoMario extends Jugable {
 
-	// Atributos
 	private MarioState estado;
 	
-	// Constructor
 	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 						 int velocidad, Vector<Integer> direccion, 
 						 ObserverGrafico observerGrafico, int vidas, MarioState estado) {
@@ -20,7 +18,6 @@ public class ContextoMario extends Jugable {
 		this.estado = estado;
 	}
 	
-	// Metodos
 	public MarioState getEstado() {
 		return this.estado;
 	}

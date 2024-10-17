@@ -6,14 +6,12 @@ import visitors.Visitante;
 
 public class MarioInvulnerable  extends MarioDefault {
 	
+	protected static final int DURACION = 10;
+	
 	public MarioInvulnerable(ContextoMario contexto) {
 		super(contexto);
 	}
-
-	// Atributos
-	protected static final int DURACION = 10;
 	
-	// Metodos
 	@Override
 	public void moverAIzquierda(Vector<Integer> direccion) {
 		// TODO Auto-generated method stub

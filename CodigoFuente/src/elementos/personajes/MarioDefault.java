@@ -6,14 +6,12 @@ import visitors.Visitante;
 
 public class MarioDefault implements MarioState {
 	
-	// Atributos
 	protected ContextoMario contexto;
 	
 	public MarioDefault(ContextoMario contexto) {
 		this.contexto = contexto;
 	}
 	
-	// Metodos
 	public void setContext(ContextoMario contexto) {
 		this.contexto = contexto;
 	} 

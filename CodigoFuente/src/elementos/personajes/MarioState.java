@@ -6,7 +6,6 @@ import visitors.Visitante;
 
 public interface MarioState {
 	
-	// Metodos
 	public void moverAIzquierda(Vector<Integer> direccion);
 		
 	public void moverADerecha(Vector<Integer> direccion);

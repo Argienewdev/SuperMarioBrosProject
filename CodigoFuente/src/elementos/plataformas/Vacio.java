@@ -7,7 +7,7 @@ import visitors.Visitante;
 
 public class Vacio extends Plataforma {
 	
-	public Vacio (Sprite sprite, Vector<Integer> posicion,Visitante visitor) {
+	public Vacio (Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
 		super(sprite,posicion,visitor);
 		this.setSolido(false);
 	}

@@ -8,7 +8,6 @@ import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
-	// Constructor
 	public FlorDeFuego(Sprite sprite, Vector<Integer> posicion, Visitante visitor,					   
 					   ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
@@ -17,7 +16,6 @@ public class FlorDeFuego extends PowerUp {
 		 */
 	}
 	
-	// Metodos
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarFlorDeFuego(this);
