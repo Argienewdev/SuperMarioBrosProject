@@ -6,6 +6,10 @@ import visitors.Visitante;
 
 public class MarioInvulnerable  extends MarioDefault {
 	
+	public MarioInvulnerable(ContextoMario contexto) {
+		super(contexto);
+	}
+
 	// Atributos
 	protected static final int DURACION = 10;
 	

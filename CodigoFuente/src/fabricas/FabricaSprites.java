@@ -1,5 +1,7 @@
 package fabricas;
 
+import elementos.Sprite;
+
 public abstract class FabricaSprites {
 	
 	protected String rutaACarpeta;

@@ -8,6 +8,10 @@ public class KoopaDefault implements KoopaState {
 	
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
+	
+	public KoopaDefault(ContextoKoopaTroopa contexto) {
+		this.contexto = contexto;
+	}
 
 	// Metodos
 	public void setContext(ContextoKoopaTroopa contexto) {

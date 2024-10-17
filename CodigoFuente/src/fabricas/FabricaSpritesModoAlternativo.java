@@ -1,5 +1,7 @@
 package fabricas;
 
+import elementos.Sprite;
+
 public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
 	public FabricaSpritesModoAlternativo(String rutaACarpeta) {

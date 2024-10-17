@@ -2,8 +2,8 @@ package elementos.enemigos;
 
 import java.util.Vector;
 
+import elementos.Sprite;
 import elementos.plataformas.Tuberia;
-import fabricas.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
