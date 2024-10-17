@@ -2,7 +2,9 @@ package juego;
 
 import java.util.ArrayList;
 
-import elementos.*;
+import elementos.enemigos.Enemigo;
+import elementos.plataformas.Plataforma;
+import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
 
 public class Nivel {

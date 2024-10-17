@@ -2,24 +2,29 @@ package elementos.enemigos;
 
 import java.util.Vector;
 
-import elementos.plataforma.Tuberia;
+import elementos.plataformas.Tuberia;
 import fabricas.Sprite;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class PiranhaPlant extends Enemigo{
-    //Atributos de instancia
+public class PiranhaPlant extends Enemigo {
+	
+    // Atributos
     protected Tuberia miTuberia;
+    
     protected boolean dentroTuberia;
 
-    //Constructor
-    public PiranhaPlant (Sprite sprite, Vector<Integer> pos, Vector<Integer> dir, int velocidad, Tuberia tub) {
-        this.sprite = sprite;
-        posicion = pos;
-        direccion = dir;
-        this.velocidad = velocidad;
-        miTuberia = tub;
+    // Constructor
+    public PiranhaPlant(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+    					int velocidad, Vector<Integer> direccion,
+    					ObserverGrafico observerGrafico, Tuberia miTuberia) {
+    	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    	this.miTuberia = miTuberia;
+    	this.puntosOtorgadosPorEliminacion = 30;
+    	this.puntosSustraidosPorMuerteCausada = 30;
     }
 
+    // Metodos
     public void setDentroTuberia() {
         dentroTuberia = true;
     }
@@ -32,9 +37,9 @@ public class PiranhaPlant extends Enemigo{
         return dentroTuberia;
     }
     
+    @Override
     public void aceptarVisitante (Visitante visitante) {
         visitante.visitarPiranhaPlant(this);
     }
-
 
 }

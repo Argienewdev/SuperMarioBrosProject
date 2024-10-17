@@ -1,17 +1,30 @@
 package elementos.entidades;
 
 import java.util.Vector;
-
 import elementos.ElementoDeJuego;
+import fabricas.Sprite;
 import observers.ObserverGrafico;
+import visitors.Visitante;
 
-public abstract class Entidad extends ElementoDeJuego{
+public abstract class Entidad extends ElementoDeJuego {
 
+	// Atributos
     protected Vector<Integer> direccion;
-    protected int velocidad;
-    protected ObserverGrafico suscriptor;
-
     
+    protected int velocidad;
+    
+    protected ObserverGrafico observerGrafico;
+
+    // Constructor
+    public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+    				int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+    	super(sprite, posicion, visitor);
+    	this.velocidad = velocidad;
+    	this.direccion = direccion;
+    	this.observerGrafico = observerGrafico;
+    }
+    
+    // Metodos
     public void setDireccion(Vector<Integer> direccion) {
         this.direccion = direccion;
     }
@@ -27,12 +40,15 @@ public abstract class Entidad extends ElementoDeJuego{
     public int getVelocidad() {
         return velocidad;
     }
+    
     public void moverADerecha (Vector<Integer> dir) {
     	setDireccion(dir);
-    	//notificar a pantalla ...
     }
+    
     public void moverAIzquierda (Vector<Integer> dir) {
     	setDireccion(dir);
-    	//notificar a pantalla
     }
+    
+	public abstract void aceptarVisitante(Visitante visitante);
+	
 }

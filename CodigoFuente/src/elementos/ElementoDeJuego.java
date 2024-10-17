@@ -4,21 +4,25 @@ import java.util.Vector;
 import fabricas.Sprite;
 import visitors.*;
 
-public abstract class ElementoDeJuego {
+public abstract class ElementoDeJuego implements Visitado {
+	
 	protected Sprite sprite;
+	
 	protected Vector<Integer> posicion;
+	
 	protected Visitante visitor;
 	
+
 	public void setSprite(Sprite sprite) {
-		this.sprite=sprite;
+		this.sprite = sprite;
 	}
 	
 	public void setPosicion(Vector<Integer> posicion) {
-		this.posicion=posicion;
+		this.posicion = posicion;
 	}
 	
 	public void setVisitor(Visitante visitor) {
-		this.visitor=visitor;
+		this.visitor = visitor;
 	}
 	
 	public Sprite getSprite() {
@@ -32,4 +36,7 @@ public abstract class ElementoDeJuego {
 	public Visitante getVisitor() {
 		return visitor;
 	}
+
+	public abstract void aceptarVisitante(Visitante visitante);
+	
 }

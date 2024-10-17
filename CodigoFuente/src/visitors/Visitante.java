@@ -2,9 +2,9 @@ package visitors;
 
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
-import elementos.personaje.*;
-import elementos.plataforma.*;
-import elementos.powerUp.*;
+import elementos.personajes.*;
+import elementos.plataformas.*;
+import elementos.powerUps.*;
 
 public interface Visitante {
 	public void visitarBowser(Bowser bowser);
@@ -35,7 +35,7 @@ public interface Visitante {
 	
 	public void visitarEstrella(Estrella estrella);
 	
-	public void visitarMoneda(Moneda moneda);
+	public void visitarMonedas(Monedas moneda);
 	
 	public void visitarMarioDefault(MarioDefault marioNormal);
 	
@@ -57,11 +57,10 @@ public interface Visitante {
 	
 	public void visitarTuberia(Tuberia tuberia);
 	
-	public void visitarPiso(Piso piso);
-	
 	public void visitarBloqueSolido(BloqueSolido bloqueSolido);
 	
 	public void visitarContextoMario (ContextoMario contextoMario);
 	
 	public void visitarContextoKoopaTroopa (ContextoKoopaTroopa contextoKoopa);
+
 }
