@@ -2,8 +2,8 @@ package elementos.plataformas;
 
 import java.util.Vector;
 
+import elementos.Sprite;
 import elementos.enemigos.PiranhaPlant;
-import fabricas.Sprite;
 import visitors.Visitante;
 
 public class Tuberia extends BloqueSolido{

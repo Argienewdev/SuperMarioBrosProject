@@ -1,7 +1,8 @@
 package elementos.entidades;
 
 import java.util.Vector;
-import fabricas.Sprite;
+
+import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 

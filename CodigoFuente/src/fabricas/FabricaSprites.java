@@ -1,5 +1,7 @@
 package fabricas;
 
+import elementos.Sprite;
+
 public abstract class FabricaSprites {
 	
 	protected String rutaACarpeta;
@@ -8,13 +10,13 @@ public abstract class FabricaSprites {
 		this.rutaACarpeta = rutaACarpeta;
 	}
 	
-	public abstract Sprite getSilueta(int numNivel);
-	
 	public abstract Sprite getMarioDefaultFrontalQuieto();
 		
 	public abstract Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion();
 		
 	public abstract Sprite getMarioDefaultFrontalCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioDefaultFrontalSaltando();
 	
 	public abstract Sprite getMarioDefaultReversoQuieto();
 	

@@ -1,6 +1,7 @@
 package juego;
 import java.util.Vector;
-import fabricas.Sprite;
+
+import elementos.Sprite;
 import visitors.Visitante;
 
 public interface EntidadLogica {

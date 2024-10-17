@@ -2,8 +2,8 @@ package elementos.entidades;
 
 import java.util.Vector;
 
+import elementos.Sprite;
 import elementos.powerUps.Monedas;
-import fabricas.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 

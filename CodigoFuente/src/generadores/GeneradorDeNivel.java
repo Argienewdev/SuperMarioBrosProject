@@ -1,6 +1,7 @@
 package generadores;
 import fabricas.*;
 import juego.Nivel;
+<<<<<<< HEAD
 import juego.Silueta;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -8,6 +9,12 @@ import visitors.Visitante;
 import java.util.*;
 
 import elementos.powerUps.PowerUp;
+=======
+
+import java.util.*;
+
+import elementos.Silueta;
+>>>>>>> 154755ff046504fb6667aad0653081a42363ebe9
 
 import java.io.*;
 

@@ -1,19 +1,15 @@
 package fabricas;
 
-import juego.Silueta;
+import elementos.Silueta;
 
-public class FabricaSilueta {
+public abstract class FabricaSilueta {
 
-	protected FabricaSprites fabricaSprites;
+	protected String rutaACarpeta;
 	
-	public FabricaSilueta(FabricaSprites fabricaSprites) {
-		this.fabricaSprites=fabricaSprites;
+	public FabricaSilueta(String rutaACarpeta) {
+		this.rutaACarpeta = rutaACarpeta;
 	}
 	
-	public Silueta getSilueta(int numNivel) {
-		Sprite spriteSilueta = fabricaSprites.getSilueta(numNivel);
-		Silueta silueta = new Silueta(spriteSilueta);
-		return silueta;
-	}
+	public abstract Silueta getSilueta();
 	
 }

@@ -2,8 +2,8 @@ package elementos.personajes;
 
 import java.util.Vector;
 
+import elementos.Sprite;
 import elementos.entidades.Jugable;
-import fabricas.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 

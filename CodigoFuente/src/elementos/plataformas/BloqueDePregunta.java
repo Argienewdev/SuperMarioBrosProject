@@ -2,8 +2,8 @@ package elementos.plataformas;
 
 import java.util.Vector;
 
+import elementos.Sprite;
 import elementos.powerUps.PowerUp;
-import fabricas.Sprite;
 import visitors.Visitante;
 
 public class BloqueDePregunta extends BloqueSolido {

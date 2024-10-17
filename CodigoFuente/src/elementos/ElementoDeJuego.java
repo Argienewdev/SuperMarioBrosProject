@@ -1,7 +1,7 @@
 package elementos;
 
 import java.util.Vector;
-import fabricas.Sprite;
+
 import visitors.*;
 
 public abstract class ElementoDeJuego implements Visitado {
