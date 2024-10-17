@@ -4,6 +4,7 @@ import java.util.Vector;
 import elementos.enemigos.PiranhaPlant;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -64,7 +65,6 @@ public class FabricaPlataformas {
 		return princesaPeachADevolver;
 	}
 	
-<<<<<<< HEAD
 	@SuppressWarnings("exports")
 	public BloqueDePregunta getBloqueDePreguntaConMonedas(Vector<Integer> posicion, Visitante visitor,int cantidadMonedas){
 		Sprite spriteBloqueDePregunta = fabricaSprites.getBloqueDePreguntaEncendido();
@@ -102,9 +102,4 @@ public class FabricaPlataformas {
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUpDentroBloqueDePregunta);
 		return bloqueDePreguntaADevolver;
 	}
-	
-	
-	
-=======
->>>>>>> 154755ff046504fb6667aad0653081a42363ebe9
 }

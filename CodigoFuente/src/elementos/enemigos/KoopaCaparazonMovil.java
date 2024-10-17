@@ -9,10 +9,6 @@ public class KoopaCaparazonMovil implements KoopaState {
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
-	public KoopaCaparazonMovil(ContextoKoopaTroopa contexto) {
-		this.contexto = contexto;
-	}
-
 	// Metodos
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;

@@ -1,20 +1,12 @@
 package generadores;
 import fabricas.*;
 import juego.Nivel;
-<<<<<<< HEAD
-import juego.Silueta;
+import elementos.Silueta;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
 import java.util.*;
 
-import elementos.powerUps.PowerUp;
-=======
-
-import java.util.*;
-
-import elementos.Silueta;
->>>>>>> 154755ff046504fb6667aad0653081a42363ebe9
 
 import java.io.*;
 
@@ -29,7 +21,7 @@ public class GeneradorDeNivel {
 	}
 	public Nivel generarNivel(int numeroModo, String rutaTxtNivel ){
 		
-		Silueta silueta = fabricaSilueta.getSilueta(numeroModo);
+		Silueta silueta = fabricaSilueta.getSilueta();
 		Nivel nivel= new Nivel(silueta);
 		FileReader archivoDeNivel=null;
 		BufferedReader lectorBuffer=null;
@@ -111,7 +103,7 @@ public class GeneradorDeNivel {
                 		Vector<Integer> direccion= new Vector<Integer>(1,0);
                 		int velocidad =1;
                 		ObserverGrafico observer=null;
-                		nivel.addEnemigo(fabricaEntidades.getKoopaTroopa(posicion, visitor, direccion, velocidad, observer));
+                		nivel.addEnemigo(fabricaEntidades.getContextoKoopaTroopa(posicion, visitor, velocidad, direccion, observer));
                 		
                 	}
                 	case 42:{
@@ -138,7 +130,6 @@ public class GeneradorDeNivel {
                 	}               
                 }
 			}
-		
 		} catch (IOException  e) {
 			e.printStackTrace();
 		} finally {
