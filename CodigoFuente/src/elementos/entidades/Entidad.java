@@ -2,10 +2,10 @@ package elementos.entidades;
 
 import java.util.Vector;
 
-import elementos.ElementosDeJuego;
+import elementos.ElementoDeJuego;
 import observers.ObserverGrafico;
 
-public class Entidad extends ElementosDeJuego{
+public abstract class Entidad extends ElementoDeJuego{
 
     protected Vector<Integer> direccion;
     protected int velocidad;

@@ -2,6 +2,8 @@ package ventanas;
 
 import javax.swing.JFrame;
 
+import juego.EntidadLogica;
+
 public class ControladorVistas implements ControladorDeVistas, ControladorEntreJuegoVista {
 	
 	private JFrame ventana;

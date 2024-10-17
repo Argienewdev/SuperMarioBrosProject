@@ -17,9 +17,9 @@ public class GeneradorDeNivel {
 	public Nivel generarNivel(int numeroModo, String rutaTxtNivel ){
 		
 		Silueta silueta = fabricaSilueta.getSilueta(numeroModo);
-		Nivel nivel= new Nivel(silueta);
-		FileReader archivoDeNivel=null;
-		BufferedReader lectorBuffer=null;
+		Nivel nivel = new Nivel(silueta);
+		FileReader archivoDeNivel = null;
+		BufferedReader lectorBuffer = null;
 		try {
 			
 			archivoDeNivel = new FileReader(rutaTxtNivel);

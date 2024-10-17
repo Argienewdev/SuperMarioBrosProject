@@ -17,4 +17,5 @@ public class FabricaPlataformas {
 		return ladrilloADevolver;
 	}
 	
+	public Tuberia getTuberia (Vector<Integer> posicion
 }

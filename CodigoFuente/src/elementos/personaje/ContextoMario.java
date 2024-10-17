@@ -10,10 +10,11 @@ public class ContextoMario extends Jugable {
 
 	private EstadoMario estadoMario;
 	
-	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion,
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Vector<Integer> direccion,
 			int velocidad, int vidas, EstadoMario estadoMario) {
-		//super a Jugable???
-		super(sprite, posicion, visitor, direccion, velocidad, vidas);
+		this.sprite = sprite;
+		this.posicion = posicion;
+		this.direccion = direccion;
 		this.estadoMario=estadoMario;
 	}
 	

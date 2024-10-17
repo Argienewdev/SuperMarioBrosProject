@@ -1,5 +1,7 @@
 package ventanas;
 
+import juego.EntidadLogica;
+
 public interface ControladorEntreJuegoVista {
 	
 	public Observer registrarEntidad(EntidadLogica entidadLogica);

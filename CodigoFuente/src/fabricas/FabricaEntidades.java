@@ -14,7 +14,6 @@ import juego.Silueta;
 import elementos.plataforma.*;
 
 public class FabricaEntidades {
-<<<<<<< HEAD
     
     protected FabricaSprites fabricaSprites;
 
@@ -76,4 +75,3 @@ public class FabricaEntidades {
     public ContextoKoopa ...
 
 }
-=======

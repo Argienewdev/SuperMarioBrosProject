@@ -1,8 +1,8 @@
 package elementos.plataforma;
 
-import elementos.ElementosDeJuego;
+import elementos.ElementoDeJuego;
 
-public abstract class Plataforma extends ElementosDeJuego {
+public abstract class Plataforma extends ElementoDeJuego {
     //Atributos de instancia
     protected boolean solido;
 

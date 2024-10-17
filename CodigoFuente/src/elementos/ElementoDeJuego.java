@@ -4,16 +4,10 @@ import java.util.Vector;
 import fabricas.Sprite;
 import visitors.*;
 
-public class ElementoDeJuego {
+public abstract class ElementoDeJuego {
 	protected Sprite sprite;
 	protected Vector<Integer> posicion;
 	protected Visitante visitor;
-	
-	public ElementoDeJuego(Sprite sprite,Vector<Integer> posicion, Visitante visitor){
-		this.sprite=sprite;
-		this.posicion=posicion;
-		this.visitor=visitor;
-	}
 	
 	public void setSprite(Sprite sprite) {
 		this.sprite=sprite;
