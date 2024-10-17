@@ -14,8 +14,8 @@ public class Estrella extends PowerUp {
 	// Constructor
 	public Estrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
 						   int velocidad, Vector<Integer> direccion, 
-						   ObserverGrafico observerGrafico, int puntosOtorgados) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+						   ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
 	}
 	
 	// Metodos

@@ -1,7 +1,5 @@
 package elementos.powerUps;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Vector;
 
 import fabricas.Sprite;
@@ -11,19 +9,18 @@ import visitors.Visitante;
 public class Monedas extends PowerUp {
 
 	// Atributos
-	protected Collection<Integer> monedas;
+	protected int cantidadMonedas;
 	
 	// Constructor
-	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
-				   int velocidad, Vector<Integer> direccion, 
-				   ObserverGrafico observerGrafico, int puntosOtorgados) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
-		this.monedas = new ArrayList<Integer>(); // Detallar mejor
+	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor,  
+				   ObserverGrafico observerGrafico,int cantidadMonedas) {
+		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
+		this.cantidadMonedas = cantidadMonedas;
 	}
 	
 	// Metodos
-	public Collection<Integer> getMonedas() {
-		return this.monedas;
+	public int getCantidadMonedas() {
+		return cantidadMonedas;
 	}
 	
 	@Override

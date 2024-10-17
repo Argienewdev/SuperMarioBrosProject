@@ -3,6 +3,7 @@ import java.util.Vector;
 
 import elementos.*;
 import juego.Silueta;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 import java.util.Vector;
@@ -20,50 +21,72 @@ public class FabricaEntidades {
     public FabricaEntidades(FabricaSprites fabricaSprites) {
         this.fabricaSprites = fabricaSprites;
     }
-
-    public Spiny getSpiny(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getSpiny();
-        return new Spiny (sprite, posicion, visitor, velocidad, direccion);
+    
+    @SuppressWarnings("exports")
+	public Spiny getSpiny(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad,ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getSpinyReversoQuieto();
+        return new Spiny (sprite, posicion, visitor, velocidad, direccion,observer);
     }
-    public PiranhaPlant getPiranhaPlant(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, Tuberia tub) {
-        Sprite sprite = fabricaSprites.getPiranhaPlant();
-        return new PiranhaPlant(sprite,posicion,visitor,direccion,velocidad,tub);
+    
+    @SuppressWarnings("exports")
+	public ContextoKoopaTroopa getKoopaTroopa(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad,ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getSpinyReversoQuieto();
+        KoopaState estadoIncial= new KoopaDefault();
+        return new ContextoKoopaTroopa (sprite, posicion, visitor, velocidad, direccion,observer,estadoIncial);
     }
-    public Lakitu getLakitu(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getLakitu();
-        return new Lakitu (sprite,posicion,visitor,direccion,velocidad);
+   
+	@SuppressWarnings("exports")
+	public PiranhaPlant getPiranhaPlant(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getPiranhaPlantCerrada();
+        return new PiranhaPlant(sprite,posicion, visitor, velocidad, direccion, observer);
     }
-    public BuzzyBeetle getBuzzyBeetle(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getBuzzyBeetle();
-        return new BuzzyBeetle (sprite,posicion,visitor,direccion,velocidad);
+    
+    @SuppressWarnings("exports")
+	public Lakitu getLakitu(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getLakituReversoDentroDeLaNube();
+        return new Lakitu (sprite,posicion,visitor,velocidad,direccion, observer);
     }
-    public Goomba getGoomba(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad){
-        Sprite sprite = fabricaSprites.getGoomba();
-        return new Goomba (sprite,posicion,visitor,direccion,velocidad);
+    
+    @SuppressWarnings("exports")
+	public BuzzyBeetle getBuzzyBeetle(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getBuzzyBeetleReversoQuieto();
+        return new BuzzyBeetle (sprite,posicion,visitor,velocidad,direccion,observer);
     }
-    public Bowser getBowser(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getBowser();
-        return new Bowser (sprite,posicion,visitor,direccion,velocidad);
+    
+    @SuppressWarnings("exports")
+	public Goomba getGoomba(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer){
+        Sprite sprite = fabricaSprites.getGoombaQuieto();
+        return new Goomba (sprite, posicion, visitor, velocidad, direccion, observer);
     }
-    public Estrella getEstrella(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
-        Sprite sprite = fabricaSprites.getEstrella();
-        return new Estrella (sprite,posicion,visitor,direccion,velocidad);
-    }
-    public ChampinionVerde getChampinionVerde(Vector<Integer>posicion,Visitante visitor) {
+   
+    @SuppressWarnings("exports")
+	public Estrella getEstrella(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getEstrellaEncendida();
+        return new Estrella (sprite, posicion, visitor, velocidad, direccion, observer);
+    } 
+    
+    @SuppressWarnings("exports")
+	public ChampinionVerde getChampinionVerde(Vector<Integer>posicion,Visitante visitor, ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getChampinionVerde();
-        return new ChampinionVerde (sprite,posicion,visitor);
+        return new ChampinionVerde (sprite, posicion, visitor, observer);
     }
-    public SuperChampinion getSuperChampinion(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad) {
+    
+    @SuppressWarnings("exports")
+	public SuperChampinion getSuperChampinion(Vector<Integer>posicion,Visitante visitor, Vector<Integer> direccion, int velocidad, ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getSuperChampinion();
-        return new SuperChampinion (sprite,posicion,visitor,direccion,velocidad);
+        return new SuperChampinion (sprite, posicion, visitor, velocidad, direccion, observer);
     }
-    public FlorDeFuego getFlorDeFuego(Vector<Integer>posicion,Visitante visitor) {
-        Sprite sprite = fabricaSprites.getFlorDeFuego();
-        return new FlorDeFuego (sprite,posicion,visitor);
+    
+    @SuppressWarnings("exports")
+	public FlorDeFuego getFlorDeFuego(Vector<Integer>posicion,Visitante visitor, ObserverGrafico observer) {
+        Sprite sprite = fabricaSprites.getFlorDeFuegoPrimeraTransicion();
+        return new FlorDeFuego (sprite,posicion,visitor, observer);
     }
-    public Monedas getMonedas(Vector<Integer>posicion,Visitante visitor, int cantidad) {
-        Sprite sprite = fabricaSprites.getMonedas();
-        return new Monedas (sprite,posicion,visitor,cantidad);
+    
+    @SuppressWarnings("exports")
+	public Monedas getMonedas(Vector<Integer>posicion,Visitante visitor, int cantidad,ObserverGrafico observer ) {
+        Sprite sprite = fabricaSprites.getMonedaEncendida();
+        return new Monedas (sprite,posicion,visitor,observer, cantidad);
     }
 
 }

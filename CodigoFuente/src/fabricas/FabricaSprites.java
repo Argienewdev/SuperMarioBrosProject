@@ -144,7 +144,7 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getBloqueSolido();
 	
-	public abstract Sprite getTuberia();
+	public abstract Sprite getTuberia(int altura);
 	
 	public abstract Sprite getBloqueDePreguntaApagado();
 	
