@@ -10,9 +10,9 @@ public class Ladrillo extends BloqueSolido{
 	
 	protected Monedas monedas;
 	
-	public Ladrillo(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+	public Ladrillo(Sprite sprite, Vector<Integer> posicion, Visitante visitor,Monedas monedas) {
 		super(sprite, posicion, visitor);
-		// TODO Auto-generated constructor stub
+		this.monedas=monedas;
 	}
 
 	@Override

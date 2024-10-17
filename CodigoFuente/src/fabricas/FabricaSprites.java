@@ -16,8 +16,6 @@ public abstract class FabricaSprites {
 		
 	public abstract Sprite getMarioDefaultFrontalCaminandoSegundaTransicion();
 	
-	public abstract Sprite getMarioDefaultFrontalSaltando();
-	
 	public abstract Sprite getMarioDefaultReversoQuieto();
 	
 	public abstract Sprite getMarioDefaultReversoCaminandoPrimeraTransicion();

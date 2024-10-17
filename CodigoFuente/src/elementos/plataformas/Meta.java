@@ -1,5 +1,20 @@
 package elementos.plataformas;
 
-public class Meta {
+import java.util.Vector;
+
+import fabricas.Sprite;
+import visitors.Visitante;
+
+public abstract class Meta extends Plataforma{
+
+	public Meta(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+		super(sprite, posicion, visitor);
+		this.solido=false;
+	}
+
+	@Override
+	public void aceptarVisitante(Visitante visitante) {
+		
+	}
 
 }
