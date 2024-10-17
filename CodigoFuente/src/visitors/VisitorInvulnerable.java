@@ -91,7 +91,7 @@ public class VisitorInvulnerable implements Visitante{
 	}
 
 	@Override
-	public void visitarMonedas(Monedas moneda) {
+	public void visitarMonedas(Moneda moneda) {
 		// TODO Auto-generated method stub
 		
 	}

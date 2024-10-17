@@ -9,8 +9,7 @@ public class KoopaCaparazonMovil implements KoopaState {
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
-	public KoopaCaparazonMovil(ContextoKoopaTroopa contexto) {
-		this.contexto = contexto;
+	public KoopaCaparazonMovil() {
 	}
 
 	// Metodos
@@ -31,6 +30,11 @@ public class KoopaCaparazonMovil implements KoopaState {
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		// TODO Auto-generated method stub
+	}
+
+	public ContextoKoopaTroopa getContext() {
+		
+		return contexto;
 	}
 
 }

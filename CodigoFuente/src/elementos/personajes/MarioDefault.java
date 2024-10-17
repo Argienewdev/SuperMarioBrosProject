@@ -6,17 +6,21 @@ import visitors.Visitante;
 
 public class MarioDefault implements MarioState {
 	
-	// Atributos
 	protected ContextoMario contexto;
+	protected int monedas;
 	
-	public MarioDefault(ContextoMario contexto) {
-		this.contexto = contexto;
+	public MarioDefault() {
+		this.contexto = null;
+		monedas = 0;
 	}
 	
-	// Metodos
 	public void setContext(ContextoMario contexto) {
 		this.contexto = contexto;
 	} 
+	
+	public ContextoMario getContext() {
+		return contexto;
+	}
 
 	@Override
 	public void moverAIzquierda(Vector<Integer> direccion) {
@@ -33,9 +37,19 @@ public class MarioDefault implements MarioState {
 		// TODO Auto-generated method stub
 	}
 	
-	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		// TODO Auto-generated method stub
+		visitante.visitarMarioDefault(this);
 	}
+	
+	public void incrementarMonedas (int cantidad) {
+		if ((monedas + cantidad) >= 100) {
+			contexto.ganarVida();
+			monedas += cantidad - 100;
+		}
+		else 
+			monedas += cantidad;
+	}
+
+
 	
 }

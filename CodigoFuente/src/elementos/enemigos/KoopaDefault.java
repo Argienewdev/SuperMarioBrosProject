@@ -9,8 +9,7 @@ public class KoopaDefault implements KoopaState {
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
-	public KoopaDefault(ContextoKoopaTroopa contexto) {
-		this.contexto = contexto;
+	public KoopaDefault() {
 	}
 
 	// Metodos
@@ -31,6 +30,10 @@ public class KoopaDefault implements KoopaState {
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		// TODO Auto-generated method stub
+	}
+
+	public ContextoKoopaTroopa getContext() {
+		return contexto;
 	}
 
 }

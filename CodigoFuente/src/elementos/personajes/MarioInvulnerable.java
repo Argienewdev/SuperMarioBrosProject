@@ -6,8 +6,8 @@ import visitors.Visitante;
 
 public class MarioInvulnerable  extends MarioDefault {
 	
-	public MarioInvulnerable(ContextoMario contexto) {
-		super(contexto);
+	public MarioInvulnerable() {
+		super();
 	}
 
 	// Atributos

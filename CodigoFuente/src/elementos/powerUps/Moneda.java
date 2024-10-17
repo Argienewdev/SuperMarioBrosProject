@@ -8,13 +8,13 @@ import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Monedas extends PowerUp {
+public class Moneda extends PowerUp {
 
 	// Atributos
 	protected int monedas;
 	
 	// Constructor
-	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+	public Moneda(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 				   int velocidad, Vector<Integer> direccion, 
 				   ObserverGrafico observerGrafico, int puntosOtorgados) {
 		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);

@@ -3,7 +3,7 @@ package elementos.entidades;
 import java.util.Vector;
 
 import elementos.Sprite;
-import elementos.powerUps.Monedas;
+import elementos.powerUps.Moneda;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -14,23 +14,15 @@ public abstract class Jugable extends Entidad {
 	
 	protected int puntos;
 	
-	protected Monedas monedas;
+	protected Moneda monedas;
 	
-	// Constructor
-	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
-				   int velocidad, Vector<Integer> direccion, 
-				   ObserverGrafico observerGrafico, int vidas) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
-		this.vidas = vidas;
-		this.puntos = 0;
-	}
 	
 	// Metodos
-	public void ganarVida(int vidas) {
+	public void ganarVida() {
 		this.vidas++;
 	}
 	
-	public void perderVida(int vidas) {
+	public void perderVida() {
 		this.vidas--;
 	}
 	
@@ -58,7 +50,7 @@ public abstract class Jugable extends Entidad {
 		return this.puntos;
 	}
 	
-	public Monedas getMonedas() {
+	public Moneda getMonedas() {
 		return this.monedas;
 	}
 	

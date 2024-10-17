@@ -9,15 +9,18 @@ import visitors.Visitante;
 
 public class ContextoMario extends Jugable {
 
-	// Atributos
 	private MarioState estado;
 	
-	// Constructor
-	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion, 
 						 int velocidad, Vector<Integer> direccion, 
-						 ObserverGrafico observerGrafico, int vidas, MarioState estado) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, vidas);
+						 ObserverGrafico observerGrafico, MarioState estado) {
+		this.sprite = sprite;
+		this.posicion = posicion;
+		this.direccion = direccion;
+		this.velocidad = velocidad;
+		this.observerGrafico = observerGrafico;
 		this.estado = estado;
+		vidas = 3;
 	}
 	
 	// Metodos

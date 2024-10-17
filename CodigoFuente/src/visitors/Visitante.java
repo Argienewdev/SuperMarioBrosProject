@@ -7,7 +7,6 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 
 public interface Visitante {
-	public void visitarBowser(Bowser bowser);
 	
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy);
 	
@@ -35,7 +34,7 @@ public interface Visitante {
 	
 	public void visitarEstrella(Estrella estrella);
 	
-	public void visitarMonedas(Monedas moneda);
+	public void visitarMonedas(Moneda moneda);
 	
 	public void visitarMarioDefault(MarioDefault marioNormal);
 	

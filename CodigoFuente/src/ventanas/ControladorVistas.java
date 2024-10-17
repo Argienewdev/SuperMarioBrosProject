@@ -81,5 +81,13 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		// TODO Auto-generated method stub
 		
 	}
+	public void cambiarNivel() {
+		
+	}
+
+	public void finDeJuego() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -10,8 +10,8 @@ public class KoopaCaparazonEstatico implements KoopaState {
 	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
-	public KoopaCaparazonEstatico(ContextoKoopaTroopa contexto) {
-		this.contexto = contexto;
+	public KoopaCaparazonEstatico() {
+		
 	}
 	
 	// Metodos
@@ -32,6 +32,10 @@ public class KoopaCaparazonEstatico implements KoopaState {
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		// TODO Auto-generated method stub
+	}
+
+	public ContextoKoopaTroopa getContext() {
+		return contexto;
 	}
 
 }
