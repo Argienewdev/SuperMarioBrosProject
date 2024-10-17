@@ -349,10 +349,20 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getTuberia() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoAlternativo/tuberia.png");
+    public Sprite getTuberiaPequenia() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoAlternativo/tuberiaPequenia.png");
     }
-
+    
+    @Override
+    public Sprite getTuberiaMediana() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoAlternativo/tuberiaMediana.png");
+    }
+    
+    @Override
+    public Sprite getTuberiaGrande() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoAlternativo/tuberiaGrande.png");
+    }
+       
     @Override
     public Sprite getBloqueDePreguntaApagado() {
         return new Sprite(rutaACarpeta + "/FabricaSpritesModoAlternativo/bloqueDePreguntaApagado.png");

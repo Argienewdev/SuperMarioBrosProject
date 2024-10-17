@@ -8,7 +8,6 @@ public class SuperMario extends MarioDefault {
 		super();
 	}
 
-	// Metodos
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		// TODO Auto-generated method stub

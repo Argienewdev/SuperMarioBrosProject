@@ -6,13 +6,11 @@ import visitors.Visitante;
 
 public class KoopaCaparazonMovil implements KoopaState {
 
-	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
 	public KoopaCaparazonMovil() {
 	}
 
-	// Metodos
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}

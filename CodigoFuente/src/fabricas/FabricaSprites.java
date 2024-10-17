@@ -145,7 +145,11 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getBloqueSolido();
 	
-	public abstract Sprite getTuberia();
+	public abstract Sprite getTuberiaPequenia();
+	
+	public abstract Sprite getTuberiaMediana();
+	
+	public abstract Sprite getTuberiaGrande();
 	
 	public abstract Sprite getBloqueDePreguntaApagado();
 	

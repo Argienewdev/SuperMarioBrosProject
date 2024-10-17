@@ -349,8 +349,18 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getTuberia() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberia.png");
+    public Sprite getTuberiaPequenia() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaPequenia.png");
+    }
+    
+    @Override
+    public Sprite getTuberiaMediana() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaMediana.png");
+    }
+    
+    @Override
+    public Sprite getTuberiaGrande() {
+        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/tuberiaGrande.png");
     }
 
     @Override

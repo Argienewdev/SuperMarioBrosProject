@@ -19,6 +19,6 @@ public abstract class Plataforma extends ElementoDeJuego{
 	}
 	
 	public boolean esSolido() {
-		return solido;
+		return this.solido;
 	}
 }

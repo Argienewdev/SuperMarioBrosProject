@@ -12,7 +12,6 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected Visitante visitor;
 	
-
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
@@ -26,15 +25,15 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public Sprite getSprite() {
-		return sprite;
+		return this.sprite;
 	}
 	
 	public Vector<Integer> getPosicion() {
-		return posicion;
+		return this.posicion;
 	}
 	
 	public Visitante getVisitor() {
-		return visitor;
+		return this.visitor;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);

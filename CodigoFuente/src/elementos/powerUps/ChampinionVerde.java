@@ -8,14 +8,14 @@ import visitors.Visitante;
 
 public class ChampinionVerde extends PowerUp {
 	
-	// Constructor
-	public ChampinionVerde(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
-						   int velocidad, Vector<Integer> direccion, 
-						   ObserverGrafico observerGrafico, int puntosOtorgados) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+	public ChampinionVerde(Sprite sprite, Vector<Integer> posicion, Visitante visitor,						 
+						   ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
+		/* El cero  y el vector (0,0), corresponden a la velocidad y dirección, que en 
+		 * este caso son nulos al ser un power Up estático
+		 */
 	}
 	
-	// Metodos
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarChampinionVerde(this);

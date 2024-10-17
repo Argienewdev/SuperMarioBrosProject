@@ -10,16 +10,13 @@ import visitors.Visitante;
 public class PiranhaPlant extends Enemigo {
 	
     // Atributos
-    protected Tuberia miTuberia;
     
     protected boolean dentroTuberia;
-
     // Constructor
     public PiranhaPlant(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
     					int velocidad, Vector<Integer> direccion,
-    					ObserverGrafico observerGrafico, Tuberia miTuberia) {
+    					ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
-    	this.miTuberia = miTuberia;
     	this.puntosOtorgadosPorEliminacion = 30;
     	this.puntosSustraidosPorMuerteCausada = 30;
     }
