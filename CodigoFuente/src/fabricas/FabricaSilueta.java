@@ -11,8 +11,9 @@ public class FabricaSilueta {
 	}
 	
 	public Silueta getSilueta(int numNivel) {
-		Sprite spriteSilueta= fabricaSprites.getSilueta(numNivel);
+		Sprite spriteSilueta = fabricaSprites.getSilueta(numNivel);
 		Silueta silueta = new Silueta(spriteSilueta);
 		return silueta;
 	}
+	
 }

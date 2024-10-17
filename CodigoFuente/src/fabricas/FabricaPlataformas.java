@@ -4,12 +4,13 @@ import java.util.Vector;
 import elementos.*;
 import elementos.plataformas.Ladrillo;
 import visitors.Visitante;
+
 public class FabricaPlataformas {
 
 	protected FabricaSprites fabricaSprites;
 	
 	public FabricaPlataformas(FabricaSprites fabricaSprites) {
-		this.fabricaSprites=fabricaSprites;
+		this.fabricaSprites = fabricaSprites;
 	}
 	
 	public Ladrillo getLadrillo(Vector<Integer> posicion, Visitante visitor) {

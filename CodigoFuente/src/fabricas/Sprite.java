@@ -1,10 +1,11 @@
 package fabricas;
 
 public class Sprite {
+	
 	protected String rutaImagen;
 	
 	public Sprite(String rutaImagen) {
-		this.rutaImagen=rutaImagen;
+		this.rutaImagen = rutaImagen;
 	}
 	
 	public String getRutaImagen() {
@@ -12,7 +13,7 @@ public class Sprite {
 	}
 	
 	public void setRutaImagen(String rutaImagen) {
-		this.rutaImagen=rutaImagen;
+		this.rutaImagen = rutaImagen;
 	}
 	
 }
