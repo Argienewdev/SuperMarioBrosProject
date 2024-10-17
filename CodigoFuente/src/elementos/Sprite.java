@@ -16,4 +16,5 @@ public class Sprite {
 		this.rutaImagen = rutaImagen;
 	}
 	
+
 }

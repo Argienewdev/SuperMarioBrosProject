@@ -4,8 +4,8 @@ import visitors.Visitante;
 
 public class SuperMario extends MarioDefault {
 		
-	public SuperMario(ContextoMario contexto) {
-		super(contexto);
+	public SuperMario() {
+		super();
 	}
 
 	@Override

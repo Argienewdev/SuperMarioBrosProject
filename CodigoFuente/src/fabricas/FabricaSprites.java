@@ -9,7 +9,6 @@ public abstract class FabricaSprites {
 	public FabricaSprites(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
-	
 	public abstract Sprite getMarioDefaultFrontalQuieto();
 		
 	public abstract Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion();
@@ -158,4 +157,5 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getPrincesaPeach();
 	
+
 }

@@ -14,4 +14,5 @@ public interface MarioState {
 		
 	public void aceptarVisitante(Visitante visitante);
 	
+	public void incrementarMonedas(int cantidad);
 }

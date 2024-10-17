@@ -6,10 +6,11 @@ import visitors.Visitante;
 
 public class KoopaCaparazonMovil implements KoopaState {
 
-	// Atributos
 	protected ContextoKoopaTroopa contexto;
 	
-	// Metodos
+	public KoopaCaparazonMovil() {
+	}
+
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
@@ -27,6 +28,11 @@ public class KoopaCaparazonMovil implements KoopaState {
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		// TODO Auto-generated method stub
+	}
+
+	public ContextoKoopaTroopa getContext() {
+		
+		return contexto;
 	}
 
 }

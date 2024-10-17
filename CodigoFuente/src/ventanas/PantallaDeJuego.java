@@ -66,11 +66,16 @@ public class PantallaDeJuego {
 		panel.repaint();
 	}
 	
+	//Actualiza la parte logica de la pantalla
 	public void update() {
-		//Actualiza la parte logica de la pantalla
 		movimientoJugador.moveMario();
 	}
 	
+	/**
+	 * 
+	 * @param posX
+	 * @param posY
+	 */
 	public void actualizarPosicionMario(int posX, int posY) {
 		mario.setLocation(posX,posY);
 	}

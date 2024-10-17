@@ -28,7 +28,6 @@ public class GeneradorDeNivel {
 		Nivel nivel = new Nivel(silueta);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
-		
 		try {
 			
 			archivoDeNivel = new FileReader(rutaTxtNivel);

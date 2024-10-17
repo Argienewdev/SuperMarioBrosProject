@@ -5,176 +5,107 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import ventanas.ControladorVistas;
 
 
 public class VisitorBandera implements Visitante{
-
-	@Override
-	public void visitarBowser(Bowser bowser) {
-		// TODO Auto-generated method stub
+	
+	private ControladorVistas controlador;
+	
+	public VisitorBandera (ControladorVistas controlador) {
+		this.controlador = controlador;
 		
 	}
 
-	@Override
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
-		
+	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {	
 	}
 
-	@Override
-	public void visitarSpiny(Spiny spiny) {
-		// TODO Auto-generated method stub
-		
+	public void visitarSpiny(Spiny spiny) {	
 	}
 
-	@Override
-	public void visitarGoomba(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+	public void visitarGoomba(Goomba goomba) {	
+	}
+	
+	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {	
 	}
 
-	@Override
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
+	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {	
 	}
 
-	@Override
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
+	public void visitarKoopaDefault(KoopaDefault koopaDefault) {	
+	}
+	
+	public void visitarLakitu(Lakitu lakitu) {	
+	}
+	
+	public void visitarPiranhaPlant(PiranhaPlant planta) {	
+	}
+	
+	public void visitarFireball(Fireball fireball) {	
+	}
+	
+	public void visitarSuperChampinion(SuperChampinion superChamp) {	
+	}
+	
+	public void visitarFlorDeFuego(FlorDeFuego flor) {		
 	}
 
-	@Override
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
+	public void visitarChampinionVerde(ChampinionVerde champVerde) {	
+	}
+	
+	public void visitarEstrella(Estrella estrella) {	
+	}
+	
+	public void visitarMonedas(Moneda moneda) {	
+	}
+	
+	public void visitarMarioDefault(MarioDefault marioNormal) {	
+		controlador.cambiarNivel();
+	}
+	
+	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {		
+		controlador.cambiarNivel();
+		MarioState estado = new MarioDefault();
+		marioInv.getContext().cambiarEstado(estado);
 	}
 
-	@Override
-	public void visitarLakitu(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarFireball(Fireball fireball) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarFlorDeFuego(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarEstrella(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMonedas(Monedas moneda) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMarioDefault(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitarMarioFuego(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
+		controlador.cambiarNivel();
+		MarioState estado = new MarioDefault();
+		marioFuego.getContext().cambiarEstado(estado);
 	}
 
-	@Override
 	public void visitarSuperMario(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
+		controlador.cambiarNivel();
+		MarioState estado = new MarioDefault();
+		superMario.getContext().cambiarEstado(estado);
 	}
 
-	@Override
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {		
 	}
 
-	@Override
-	public void visitarLadrillo(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
+	public void visitarLadrillo(Ladrillo ladrillo) {	
 	}
-
-	@Override
-	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
+	
+	public void visitarVacio(Vacio vacio) {	
 	}
-
-	@Override
+	
 	public void visitarPrincesaPeach(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void visitarBandera(Bandera bandera) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void visitarTuberia(Tuberia tuberia) {	
 	}
 
-	@Override
-	public void visitarTuberia(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {		
 	}
 
-	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
+	public void visitarContextoMario(ContextoMario contextoMario) {		
 	}
-
-	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
+	
+	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {	
 	}
 
 	

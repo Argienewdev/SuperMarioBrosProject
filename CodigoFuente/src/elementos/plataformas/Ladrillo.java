@@ -17,7 +17,7 @@ public class Ladrillo extends BloqueSolido{
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		// TODO Auto-generated method stub
+		/
 		
 	}
 

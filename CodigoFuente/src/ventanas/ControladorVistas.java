@@ -2,6 +2,8 @@ package ventanas;
 
 import javax.swing.JFrame;
 
+import juego.EntidadLogica;
+
 public class ControladorVistas implements ControladorDeVistas, ControladorEntreJuegoVista {
 	
 	private JFrame ventana;
@@ -76,6 +78,14 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 
 	@Override
 	public void mostrarHUD() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void cambiarNivel() {
+		
+	}
+
+	public void finDeJuego() {
 		// TODO Auto-generated method stub
 		
 	}

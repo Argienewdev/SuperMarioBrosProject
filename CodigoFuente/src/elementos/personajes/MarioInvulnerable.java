@@ -8,9 +8,8 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	protected static final int DURACION = 10;
 	
-	public MarioInvulnerable(ContextoMario contexto) {
-		super(contexto);
-	}
+	public MarioInvulnerable() {
+		super();
 	
 	@Override
 	public void moverAIzquierda(Vector<Integer> direccion) {

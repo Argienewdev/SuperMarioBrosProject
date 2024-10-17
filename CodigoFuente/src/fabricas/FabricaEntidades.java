@@ -136,4 +136,94 @@ public class FabricaEntidades {
     	return new MarioFuego(contexto);
     }
     
+<<<<<<< HEAD
+    public Moneda getMonedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+			   				  int velocidad, Vector<Integer> direccion, 
+			   				  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Moneda(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public Estrella getEstrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						   		int velocidad, Vector<Integer> direccion, 
+						   		ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Estrella(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+
+    public ChampinionVerde getChampinionVerde(Sprite sprite, Vector<Integer> posicion, 
+    										  Visitante visitor, int velocidad, 
+    										  Vector<Integer> direccion, 
+    										  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new ChampinionVerde(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public SuperChampinion getSuperChampinion(Sprite sprite, Vector<Integer> posicion, 
+			  							      Visitante visitor, int velocidad, 
+			  							      Vector<Integer> direccion, 
+			  							      ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new SuperChampinion(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public FlorDeFuego getFlorDeFuego(Sprite sprite, Vector<Integer> posicion, 
+			  						  Visitante visitor, int velocidad, 
+			  						  Vector<Integer> direccion, 
+			  						  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new FlorDeFuego(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public Fireball getFireball(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+								int velocidad, Vector<Integer> direccion, 
+								ObserverGrafico observerGrafico) {
+    	return new Fireball(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public PiranhaPlant getPiranhaPlanta(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+										 int velocidad, Vector<Integer> direccion,
+										 ObserverGrafico observerGrafico, Tuberia miTuberia) {
+    	return new PiranhaPlant(sprite, posicion, visitor, velocidad, direccion, observerGrafico, miTuberia);
+    }
+    
+    public Lakitu getLakitu(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+			  				int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+    	return new Lakitu(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public ContextoKoopaTroopa getContextoKoopaTroopa(Sprite sprite,Vector<Integer> posicion, 
+    												  Visitante visitor, int velocidad, 
+    												  Vector<Integer> direccion, 
+    												  ObserverGrafico observerGrafico, 
+    												  KoopaState estado) {
+    	return new ContextoKoopaTroopa(sprite, posicion, visitor, velocidad, direccion, observerGrafico, estado);
+    }
+    
+    public KoopaCaparazonEstatico getKoopaCaparazonEstatico(ContextoKoopaTroopa contexto) {
+    	return new KoopaCaparazonEstatico(contexto);
+    }
+    
+    public KoopaCaparazonMovil getKoopaCaparazonMovil(ContextoKoopaTroopa contexto) {
+    	return new KoopaCaparazonMovil(contexto);
+    }
+    
+    public KoopaDefault getKoopaDefault(ContextoKoopaTroopa contexto) {
+    	return new KoopaDefault(contexto);
+    }
+    
+    public Goomba getGoomba(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+			  				int velocidad, Vector<Integer> direccion, 
+			  				ObserverGrafico observerGrafico) {
+    	return new Goomba(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public Spiny getSpiny(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						  int velocidad, Vector<Integer> direccion, 
+						  ObserverGrafico observerGrafico) {
+    	return new Spiny(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+    
+    public BuzzyBeetle getBuzzyBeetle(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+			  			  			  int velocidad, Vector<Integer> direccion, 
+			  			  			  ObserverGrafico observerGrafico) {
+    	return new BuzzyBeetle(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    }
+
+
 }

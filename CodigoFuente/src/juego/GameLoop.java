@@ -57,7 +57,7 @@ public class GameLoop extends Canvas implements Runnable{
 	    
 	    // Se calcula cuántos nanosegundos corresponden a cada tick basado en 60 ticks por segundo
 	    double cantidadTicks = NumTicks; // 60 ticks por segundo
-	    double ns = NanosPorSegundo / cantidadTicks; // Cuántos nanosegundos por tick
+	    double nanoSegundosPorTick = NanosPorSegundo / cantidadTicks; // Cuántos nanosegundos por tick
 	    
 	    // delta controla cuántos ticks se deben ejecutar antes de volver a renderizar
 	    double delta = 0;
@@ -81,10 +81,10 @@ public class GameLoop extends Canvas implements Runnable{
 	        lastTime = now;
 	        
 	        // Si delta es mayor o igual a 1, significa que ha pasado suficiente tiempo para un tick
-	        while (delta >= ns) {
+	        while (delta >= nanoSegundosPorTick) {
 	            tick(); // Llama a la actualización lógica del juego
 	            updates++; // Incrementa el número de actualizaciones (ticks)
-	            delta -= ns; // Decrementa delta para seguir controlando el tiempo
+	            delta -= nanoSegundosPorTick; // Decrementa delta para seguir controlando el tiempo
 	        }
 	        
 	        // Renderiza el juego si está corriendo
@@ -105,7 +105,6 @@ public class GameLoop extends Canvas implements Runnable{
 	    stop(); // Si el bucle sale, detiene el juego
 	}
 
-	
 	private void tick() {
 		pantallaDeJuego.update();
 	}

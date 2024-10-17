@@ -1,4 +1,5 @@
 package juego;
+
 import java.util.ArrayList;
 
 import elementos.Silueta;
@@ -54,4 +55,5 @@ public class Nivel {
 	public Iterable<Enemigo> getEnemigo(){
 		return enemigos;
 	}
+
 }
