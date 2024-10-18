@@ -13,6 +13,7 @@ public class ContextoMario extends Jugable {
 						 Visitante visitor, int vidas, MarioDefault estadoMario) {
 		super(sprite, posicion, visitor);
 		this.estadoMario = estadoMario;
+		estadoMario.setContext(this);
 	}
 	
 	public void cambiarEstado(EstadoMario estadoMario) {

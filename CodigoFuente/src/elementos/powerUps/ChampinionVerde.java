@@ -9,7 +9,7 @@ public class ChampinionVerde extends PowerUp {
 	
 	public ChampinionVerde(Sprite sprite, Point posicion, Visitante visitor, 						 
 						   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, 0, new Point(0,0), observerGrafico);
+		super(sprite, posicion, visitor, new Point(0,0), observerGrafico);
 		
 	}
 	

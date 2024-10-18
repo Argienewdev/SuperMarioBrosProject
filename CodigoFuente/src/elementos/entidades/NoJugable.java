@@ -9,10 +9,9 @@ import visitors.Visitante;
 public abstract class NoJugable extends Entidad {
 	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
-					 int velocidad, Point direccion, ObserverGrafico observerGrafico) {
+					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor);
-		this.velocidad = velocidad;
-		this.direccion = direccion;
+		this.velocidadDireccional = velocidadDireccional;
 		this.observerGrafico = observerGrafico;
 	}
 

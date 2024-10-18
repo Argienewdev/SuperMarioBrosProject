@@ -6,6 +6,7 @@ import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.Entidad;
+import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
@@ -23,6 +24,8 @@ public class Nivel {
 	private ArrayList<Enemigo> enemigos;
 	
 	protected Silueta silueta;
+	
+	protected ContextoMario mario;
 	
 	protected ElementoDeJuego matrizElementosDeJuego[][];
 	
@@ -47,6 +50,12 @@ public class Nivel {
 	public void addPowerUps(PowerUp powerUp) {
 		powerUps.add(powerUp);
 		agregarElementoDeJuegoALaMatriz(powerUp);
+	}
+	
+	@SuppressWarnings("exports")
+	public void setMario(ContextoMario mario) {
+		this.mario=mario;
+		agregarElementoDeJuegoALaMatriz(mario);
 	}
 	
 	@SuppressWarnings("exports")
@@ -82,6 +91,11 @@ public class Nivel {
 		return this.enemigos;
 	}
 	
+	@SuppressWarnings("exports")
+	public ContextoMario setMario() {
+		return this.mario;
+	}
+		
 	public void inicializarMatriz(Silueta silueta) {
 		int filas = silueta.obtenerAlto() / TAMANIO_HEATBOX_ENTIDADES;
 		int columnas = silueta.obtenerAncho() / TAMANIO_HEATBOX_ENTIDADES;

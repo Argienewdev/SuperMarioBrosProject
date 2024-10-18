@@ -9,9 +9,8 @@ import visitors.Visitante;
 public class SuperChampinion extends PowerUp {
 	
 	public SuperChampinion(Sprite sprite, Point posicion, Visitante visitor,
-						   int velocidad, Point direccion, 
-						   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+						   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 	}
 	
 	@Override

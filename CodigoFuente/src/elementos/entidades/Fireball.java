@@ -10,8 +10,8 @@ public class Fireball extends NoJugable {
 	protected static final int DANIO = 1; // Consultar valor
 	
 	public Fireball(Sprite sprite, Point posicion, Visitante visitor, 
-					int velocidad, Point direccion, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+					int velocidad, Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 	}
 	
 	// Metodos

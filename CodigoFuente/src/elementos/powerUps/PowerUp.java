@@ -10,8 +10,8 @@ import visitors.Visitante;
 public abstract class PowerUp extends NoJugable {
 
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
-				   int velocidad, Point direccion, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
