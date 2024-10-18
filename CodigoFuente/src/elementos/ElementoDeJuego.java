@@ -20,8 +20,8 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.sprite = sprite;
 		this.posicion = posicion;
 		this.visitor = visitor;
-		int x = (int) posicion.getX();
-		int y = (int) posicion.getY();
+		int x =  posicion.x;
+		int y = posicion.y;
 		int ancho = obtenerAncho();
 		int alto = obtenerAlto();
 		this.hitbox = new Rectangle(x,y,ancho,alto);
@@ -31,10 +31,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.sprite = sprite;
 	}
 	
-	@SuppressWarnings("exports")
-	public void setPosicion( Point posicion) {
-		this.posicion = posicion;
-	}
+	
 	
 	public void setVisitor(Visitante visitor) {
 		this.visitor = visitor;
@@ -64,6 +61,19 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	public int obtenerAlto() {
 		return 50;
+	}
+	
+	@SuppressWarnings("exports")
+	public void obtenerPosicion( Point posicion) {
+		this.posicion = posicion;
+	}
+	
+	public Visitante obtenerVisitante() {
+		return visitor;
+	}
+	
+	public boolean huboColision (ElementoDeJuego elemento) {
+		return hitbox.intersects(elemento.obtenerHitbox());
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);

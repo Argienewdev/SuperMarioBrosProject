@@ -36,6 +36,7 @@ public abstract class Entidad extends ElementoDeJuego {
     	this.miNivel = nivel;
     }
     
+    
     public Point getDireccion() {
         return this.direccion;
     }
