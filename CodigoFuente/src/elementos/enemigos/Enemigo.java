@@ -13,8 +13,8 @@ public abstract class Enemigo extends NoJugable {
 	protected int puntosSustraidosPorMuerteCausada;
 	
 	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, 
-				   int velocidad, Point direccion, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+				   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 	}
     
     public int getPuntosOtorgadosPorEliminacion() {

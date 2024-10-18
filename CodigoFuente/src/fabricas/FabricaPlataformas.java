@@ -18,11 +18,8 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Ladrillo getLadrillo(Point posicion, Visitante visitor, int cantidadMonedas) {
+	public Ladrillo getLadrillo(Point posicion, Visitante visitor) {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
-		Visitante visitorMoneda = null;
-		ObserverGrafico observerMoneda = null;
-		Monedas monedasDentroLadrillo = this.fabricaEntidades.getMonedas(posicion, visitorMoneda, cantidadMonedas, observerMoneda);
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor);
 		return ladrilloADevolver;
 	}
@@ -35,20 +32,20 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Plataforma getTuberiaVacia(Point posicion, Visitante visitor, int ancho, int altura) {
+	public Plataforma getTuberiaVacia(Point posicion, Visitante visitor, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		PiranhaPlant piranhaPlant = null;
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant,ancho, altura);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura);
 		return tuberiaADevolver;
 	}
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor,int ancho, int altura) {
+	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		Point direccionPiranhaPlant = new Point(0,1);
-		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion, visitor, direccionPiranhaPlant, 1, null);
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant,ancho, altura);
+		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion, visitor, direccionPiranhaPlant, null);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura);
 		return tuberiaADevolver;
 	}
 	
@@ -81,14 +78,13 @@ public class FabricaPlataformas {
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
 		PowerUp powerUpDentroBloqueDePregunta = null;
 		Visitante visitorPowerUp = null;
-		int velocidad = 1;
-		Point direccion = new Point(0,0);
+		Point velocidadDireccional = new Point(0,0);
 		//La dirección  del power up debe ser contraria a la ubicación de Mario, por lo tanto no se inicializa acá
 		ObserverGrafico observerPowerUp = null;
 		
 		switch(identificadorPowerUp) {
 			case 21:{
-				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getEstrella(posicion, visitorPowerUp, direccion, velocidad, observerPowerUp);
+				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getEstrella(posicion, visitorPowerUp, velocidadDireccional, observerPowerUp);
 			}
 			case 22:{
 				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getChampinionVerde(posicion, visitorPowerUp, observerPowerUp);
@@ -97,7 +93,7 @@ public class FabricaPlataformas {
 				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getFlorDeFuego(posicion, visitorPowerUp, observerPowerUp);
 			}
 			case 24:{
-				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getSuperChampinion(posicion, visitorPowerUp, direccion, velocidad, observerPowerUp);
+				powerUpDentroBloqueDePregunta = this.fabricaEntidades.getSuperChampinion(posicion, visitorPowerUp, velocidadDireccional, observerPowerUp);
 			}
 		}
 		

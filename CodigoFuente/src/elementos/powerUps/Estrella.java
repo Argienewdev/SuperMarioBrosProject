@@ -12,9 +12,8 @@ public class Estrella extends PowerUp {
 	public static final int TIEMPO_DURACION = 10;
 	
 	public Estrella(Sprite sprite,Point posicion, Visitante visitor,
-					int velocidad, Point direccion, 
-					ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+					Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 	}
 	
 	@Override

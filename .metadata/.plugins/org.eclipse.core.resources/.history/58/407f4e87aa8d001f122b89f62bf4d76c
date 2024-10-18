@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
+<<<<<<< HEAD
+=======
 import elementos.entidades.Entidad;
 import elementos.personajes.ContextoMario;
+>>>>>>> origin/main
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
@@ -92,19 +95,20 @@ public class Nivel {
 		return this.enemigos;
 	}
 	
+<<<<<<< HEAD
 	public void inicializarMatriz() {
 		int filas = obtenerFilasMatriz();
 		int columnas = obtenerColumnasMatriz();
-	}
-	
+=======
 	@SuppressWarnings("exports")
 	public ContextoMario setMario() {
 		return this.mario;
 	}
 		
 	public void inicializarMatriz(Silueta silueta) {
-		int filas = silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
-		int columnas = silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
+		int filas = silueta.obtenerAlto() / TAMANIO_HEATBOX_ENTIDADES;
+		int columnas = silueta.obtenerAncho() / TAMANIO_HEATBOX_ENTIDADES;
+>>>>>>> origin/main
 		this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	

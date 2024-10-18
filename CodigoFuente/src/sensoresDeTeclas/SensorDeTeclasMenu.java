@@ -5,56 +5,93 @@ import java.awt.event.KeyListener;
 
 public class SensorDeTeclasMenu implements KeyListener{
 	
-	private boolean SPresionada;
+	private boolean SPresionado;
 	
-	private boolean WPresionada;
+	private boolean WPresionado;
 	
-	private boolean EnterPresionado;
+	private boolean enterPresionado;
+
+	private boolean WAccionado;
+
+	private boolean SAccionado;
+	
+	private boolean enterAccionado;
 	
 	public SensorDeTeclasMenu() {
-		SPresionada = false;
-		WPresionada = false;
-		EnterPresionado = false;
+		SPresionado = false;
+		WPresionado = false;
+		enterPresionado = false;
+		WAccionado = false;
+		SAccionado = false;
+		enterAccionado = false;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_ENTER) {
-    		EnterPresionado = true;
-        }else if (keyCode == KeyEvent.VK_S) {
-    		SPresionada = true;
-        }else if (keyCode == KeyEvent.VK_W) {
-        	WPresionada = true;
-        }
+		int keyCode = e.getKeyCode();
+		if (keyCode == KeyEvent.VK_ENTER) {
+			enterPresionado = true;
+		}else if (keyCode == KeyEvent.VK_S) {
+			SPresionado = true;
+		}else if (keyCode == KeyEvent.VK_W) {
+			WPresionado = true;
+		}
     }
 
-    // Invoked when a key is released
     @Override
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_ENTER) {
-        	EnterPresionado = false;
-        } else if (keyCode == KeyEvent.VK_S) {
-        	SPresionada = false;
-        }else if (keyCode == KeyEvent.VK_W) {
-        	WPresionada = false;
-        }
+    	if (keyCode == KeyEvent.VK_ENTER) {
+    		enterPresionado = false;
+    		enterAccionado = false;
+    	}else if (keyCode == KeyEvent.VK_S) {
+    		SPresionado = false;
+    		SAccionado = false;
+    	}else if (keyCode == KeyEvent.VK_W) {
+    		WPresionado = false;
+    		WAccionado = false;
+    	}
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
-	public boolean obtenerSPresionada() {
-		return SPresionada;
-	}
-
-	public boolean obtenerEnterPresionada() {
-		return EnterPresionado;
-	}
-	
-	public boolean obtenerWPresionada() {
-		return WPresionada;
-	}
+    
+    public void accionarW() {
+    	WAccionado = true;
+    }
+    
+    public void accionarS() {
+    	SAccionado = true;
+    }
+    
+    public void accionarEnter() {
+    	enterAccionado = true;
+    }
+    
+    public boolean obtenerEnterPresionado() {
+    	return enterPresionado;
+    }
+    
+    public boolean obtenerSPresionado() {
+    	return SPresionado;
+    }
+    
+    public boolean obtenerWPresionado() {
+    	return WPresionado;
+    }
+    
+    public boolean obtenerWAccionada() {
+    	return WAccionado;
+    }
+    
+    public boolean obtenerSAccionada() {
+    	return SAccionado;
+    }
+    
+    public boolean obtenerEnterAccionada() {
+    	return enterAccionado;
+    }
+    
+    
 }

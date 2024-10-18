@@ -26,11 +26,11 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public void ganarPuntos(int puntos) {
-		this.puntos++;
+		this.puntos += puntos; 
 	}
 	
 	public void perderPuntos(int puntos) {
-		this.puntos--;
+		this.puntos -= puntos;
 	}
 	
 	public void recogerMoneda() {

@@ -2,7 +2,10 @@ package observers;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import elementos.ElementoDeJuego;
+=======
+>>>>>>> origin/main
 import elementos.entidades.Entidad;
 import juego.EntidadLogica;
 import juego.Nivel;
@@ -25,7 +28,8 @@ public class GestorDeColisiones implements ObserverColisiones {
 	public void eliminarEntidad (EntidadLogica entidad) {
 		 entidadesObservadas.remove(entidad);
 	}
-
+	
+<<<<<<< HEAD
 	/*public void verificarColisiones(Entidad entidad) {
 		int fila = nivel.obtenerFilaElementoDeJuegoEnLaMatriz(entidad);
 		int columna = nivel.obtenerColumnaElementoDeJuegoEnLaMatriz(entidad);
@@ -144,7 +148,7 @@ public class GestorDeColisiones implements ObserverColisiones {
 				resultado = entidad.huboColision(elementoDeJuego); 
 			}
 		}
-		entidad.getVisitor();
+		entidad.getVisitor().visi
 		return resultado;
 	}
 

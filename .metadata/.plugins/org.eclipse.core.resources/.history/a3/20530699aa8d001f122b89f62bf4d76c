@@ -103,8 +103,8 @@ public class Nivel {
 	}
 		
 	public void inicializarMatriz(Silueta silueta) {
-		int filas = silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
-		int columnas = silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
+		int filas = silueta.obtenerAlto() / TAMANIO_HEATBOX_ENTIDADES;
+		int columnas = silueta.obtenerAncho() / TAMANIO_HEATBOX_ENTIDADES;
 		this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	

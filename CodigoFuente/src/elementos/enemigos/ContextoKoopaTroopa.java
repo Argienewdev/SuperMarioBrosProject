@@ -10,9 +10,9 @@ public class ContextoKoopaTroopa extends Enemigo {
 	private EstadoKoopa estado;
 
     public ContextoKoopaTroopa(Sprite sprite,Point posicion, Visitante visitor,
-							   int velocidad, Point direccion, 
+							   Point velocidadDireccional, 
 							   ObserverGrafico observerGrafico, KoopaDefault estado) {
-    	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    	super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
     	this.estado = estado;
     	this.puntosOtorgadosPorEliminacion = 90;
     	this.puntosSustraidosPorMuerteCausada = 45;

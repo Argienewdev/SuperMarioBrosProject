@@ -9,10 +9,8 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
-	
-    protected int velocidad;
     
-    protected Point direccion;
+    protected Point velocidadDireccional;
     
     protected ObserverGrafico observerGrafico;
     
@@ -24,12 +22,8 @@ public abstract class Entidad extends ElementoDeJuego {
 		super(sprite, posicion, visitor);
 	}
 
-    public void setDireccion(Point direccion) {
-        this.direccion = direccion;
-    }
-    
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
+    public void setVelocidadDireccional(Point velocidadDireccional) {
+        this.velocidadDireccional = velocidadDireccional;
     }
     
     public void setNivel (Nivel nivel) {
@@ -37,12 +31,8 @@ public abstract class Entidad extends ElementoDeJuego {
     }
     
     
-    public Point getDireccion() {
-        return this.direccion;
-    }
-    
-    public int getVelocidad() {
-        return this.velocidad;
+    public Point getVelocidadDireccional() {
+        return this.velocidadDireccional;
     }
     
     public Nivel getNivel() {
@@ -50,11 +40,15 @@ public abstract class Entidad extends ElementoDeJuego {
     }
     
     public void moverADerecha (Point dir) {
-    	setDireccion(dir);
+    	setVelocidadDireccional(dir);
     }
     
     public void moverAIzquierda (Point dir) {
-    	setDireccion(dir);
+    	setVelocidadDireccional(dir);
+    }
+    
+    public void establecerPosicion (Point pos) {
+    	posicion = pos;
     }
     
 	public abstract void aceptarVisitante(Visitante visitante);

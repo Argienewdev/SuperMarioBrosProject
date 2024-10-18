@@ -4,7 +4,13 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorFlorDeFuego implements Visitante{
+public class VisitorFlorDeFuego implements Visitante {
+	
+	protected FlorDeFuego miEntidad;
+	
+	public VisitorFlorDeFuego (FlorDeFuego miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
@@ -92,7 +98,9 @@ public class VisitorFlorDeFuego implements Visitante{
 
 	@Override
 	public void visitarMarioDefault(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = marioNormal.getContext();
+		EstadoMario estado = new MarioFuego();
+		contexto.cambiarEstado(estado);
 		
 	}
 
@@ -110,7 +118,9 @@ public class VisitorFlorDeFuego implements Visitante{
 
 	@Override
 	public void visitarSuperMario(SuperMario superMario) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = superMario.getContext();
+		EstadoMario estado = new MarioFuego();
+		contexto.cambiarEstado(estado);
 		
 	}
 

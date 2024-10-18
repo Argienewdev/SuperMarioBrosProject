@@ -8,8 +8,8 @@ import visitors.Visitante;
 public class Spiny extends Enemigo {
 	
     public Spiny(Sprite sprite, Point posicion, Visitante visitor, 
-    			 int velocidad, Point direccion, ObserverGrafico observerGrafico) {
-    	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+    			  Point direccion, ObserverGrafico observerGrafico) {
+    	super(sprite, posicion, visitor, direccion, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 60;
     	this.puntosSustraidosPorMuerteCausada = 30;
     }
