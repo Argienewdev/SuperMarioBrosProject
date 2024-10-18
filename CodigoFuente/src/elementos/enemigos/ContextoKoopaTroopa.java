@@ -9,7 +9,7 @@ import visitors.Visitante;
 public class ContextoKoopaTroopa extends Enemigo {
 	
 	// Atributos
-	private KoopaState estado;
+	private EstadoKoopa estado;
 
 	// Constructor
     public ContextoKoopaTroopa(Sprite sprite,Vector<Integer> posicion, Visitante visitor,
@@ -23,11 +23,11 @@ public class ContextoKoopaTroopa extends Enemigo {
     }
 
     // Metodos
-    public KoopaState getEstado() {
+    public EstadoKoopa getEstado() {
     	return this.estado;
     }
     
-    public void cambiarEstado(KoopaState estado) {
+    public void cambiarEstado(EstadoKoopa estado) {
         this.estado = estado;
     }
     

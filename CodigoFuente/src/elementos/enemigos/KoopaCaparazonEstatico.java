@@ -5,7 +5,7 @@ import java.util.Vector;
 import elementos.personajes.ContextoMario;
 import visitors.Visitante;
 
-public class KoopaCaparazonEstatico implements KoopaState {
+public class KoopaCaparazonEstatico implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
 	

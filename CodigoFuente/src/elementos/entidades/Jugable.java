@@ -3,7 +3,7 @@ package elementos.entidades;
 import java.util.Vector;
 
 import elementos.Sprite;
-import elementos.powerUps.Moneda;
+import elementos.powerUps.Monedas;
 import visitors.Visitante;
 
 public abstract class Jugable extends Entidad {
@@ -13,11 +13,10 @@ public abstract class Jugable extends Entidad {
 	
 	protected int puntos;
 	
-	protected Moneda monedas;
+	protected Monedas monedas;
 	
 	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
-		// TODO Auto-generated constructor stub
 	}
 	
 	// Metodos
@@ -53,7 +52,7 @@ public abstract class Jugable extends Entidad {
 		return this.puntos;
 	}
 	
-	public Moneda getMonedas() {
+	public Monedas getMonedas() {
 		return this.monedas;
 	}
 	

@@ -6,16 +6,15 @@ import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Moneda extends PowerUp {
+public class Monedas extends PowerUp {
 
 	protected int cantidadMonedas;
 	
 	// Constructor
-	public Moneda(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
-				   int velocidad, Vector<Integer> direccion, 
-				   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
-		this.cantidadMonedas = 0;
+	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor,  
+			   ObserverGrafico observerGrafico,int cantidadMonedas) {
+	super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
+	this.cantidadMonedas = cantidadMonedas;
 	}
 	
 	public void consumirMonedas() {

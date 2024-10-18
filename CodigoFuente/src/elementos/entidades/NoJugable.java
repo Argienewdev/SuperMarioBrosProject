@@ -11,7 +11,10 @@ public abstract class NoJugable extends Entidad {
 	// Constructor
 	public NoJugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
 					 int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+		super(sprite, posicion, visitor);
+		this.velocidad=velocidad;
+		this.direccion=direccion;
+		this.observerGrafico=observerGrafico;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);
