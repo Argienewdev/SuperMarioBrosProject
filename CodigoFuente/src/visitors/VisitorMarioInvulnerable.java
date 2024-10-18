@@ -4,7 +4,7 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorInvulnerable implements Visitante{
+public class VisitorMarioInvulnerable implements Visitante{
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {

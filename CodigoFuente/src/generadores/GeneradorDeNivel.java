@@ -66,6 +66,7 @@ public class GeneradorDeNivel {
 	                case 3: {
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
+	                    int anchoTuberia = 0;
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia));
 	                    break;
 	                }

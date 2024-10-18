@@ -9,15 +9,23 @@ public class Fireball extends NoJugable {
 	
 	protected static final int DANIO = 1; // Consultar valor
 	
-	public Fireball(Sprite sprite, Point posicion, Visitante visitor, 
-					int velocidad, Point velocidadDireccional, ObserverGrafico observerGrafico) {
+	protected Jugable miJugador;
+	
+	public Fireball(Sprite sprite, Point posicion, Visitante visitor,
+					int velocidad, Point velocidadDireccional,
+					ObserverGrafico observerGrafico, Jugable miJugador) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		this.miJugador = miJugador;
 	}
 	
 	// Metodos
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarFireball(this);
+	}
+	
+	public Jugable obtenerJugador() {
+		return miJugador;
 	}
 
 }

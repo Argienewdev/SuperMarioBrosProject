@@ -2,6 +2,7 @@ package observers;
 
 import java.util.ArrayList;
 
+import elementos.entidades.Entidad;
 import juego.EntidadLogica;
 
 public class GestorDeColisiones implements ObserverColisiones {
@@ -21,9 +22,10 @@ public class GestorDeColisiones implements ObserverColisiones {
 		 entidadesObservadas.remove(entidad);
 	}
 	
-	public void verificarColisiones() {
+	public boolean verificarColisiones(Entidad entidad) {
 		//TODO o verificar todos con todos
 		// o dividir el nivel por zonas
+		return false;
 	}
 	
 	public void actualizar() {
