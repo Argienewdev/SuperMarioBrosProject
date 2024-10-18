@@ -127,10 +127,8 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		return null;
 	}
 	
-	//TODO implementar transicion de niveles
-	public void cambiarNivel() {
-		
-	}
+	//TODO implementar cambiarNivel()
+	
 
 	
 }
