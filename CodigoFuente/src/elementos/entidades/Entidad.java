@@ -1,6 +1,7 @@
 package elementos.entidades;
 
-import java.util.Vector;
+import java.awt.Point;
+import java.awt.Rectangle;
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
 import juego.Nivel;
@@ -9,19 +10,21 @@ import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
 	
-	protected Vector<Integer> direccion;
-    
     protected int velocidad;
+    
+    protected Point direccion;
     
     protected ObserverGrafico observerGrafico;
     
     protected Nivel miNivel;
+    
+    protected Rectangle hitbox;
 
-    public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+    public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 	}
 
-    public void setDireccion(Vector<Integer> direccion) {
+    public void setDireccion(Point direccion) {
         this.direccion = direccion;
     }
     
@@ -33,7 +36,7 @@ public abstract class Entidad extends ElementoDeJuego {
     	this.miNivel = nivel;
     }
     
-    public Vector<Integer> getDireccion() {
+    public Point getDireccion() {
         return this.direccion;
     }
     
@@ -45,11 +48,11 @@ public abstract class Entidad extends ElementoDeJuego {
     	return miNivel;
     }
     
-    public void moverADerecha (Vector<Integer> dir) {
+    public void moverADerecha (Point dir) {
     	setDireccion(dir);
     }
     
-    public void moverAIzquierda (Vector<Integer> dir) {
+    public void moverAIzquierda (Point dir) {
     	setDireccion(dir);
     }
     

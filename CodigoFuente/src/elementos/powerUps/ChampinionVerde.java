@@ -8,7 +8,7 @@ import visitors.Visitante;
 
 public class ChampinionVerde extends PowerUp {
 	
-	public ChampinionVerde(Sprite sprite, Vector<Integer> posicion, Visitante visitor,						 
+	public ChampinionVerde(Sprite sprite, Point posicion, Visitante visitor,						 
 						   ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
 		/* El cero  y el vector (0,0), corresponden a la velocidad y dirección, que en 

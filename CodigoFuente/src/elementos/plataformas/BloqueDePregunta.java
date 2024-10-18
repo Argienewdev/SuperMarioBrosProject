@@ -1,6 +1,7 @@
 package elementos.plataformas;
 
-import java.util.Vector;
+import java.awt.Point;
+
 
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
@@ -13,7 +14,7 @@ public class BloqueDePregunta extends BloqueSolido {
 	
 	protected boolean estaVacio;
 	
-	public BloqueDePregunta (Sprite sprite, Vector<Integer> pos, 
+	public BloqueDePregunta (Sprite sprite, Point pos, 
 							 Visitante visitor, PowerUp powerUp) {
 		super(sprite,pos,visitor);
 		this.powerUp = powerUp;

@@ -1,6 +1,7 @@
 package elementos;
 
-import java.util.Vector;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 import visitors.*;
 
@@ -8,21 +9,30 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected Sprite sprite;
 	
-	protected Vector<Integer> posicion;
+	protected Rectangle hitbox;
+	
+	protected Point posicion;
 	
 	protected Visitante visitor;
 	
-	public ElementoDeJuego(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+	@SuppressWarnings("exports")
+	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitor) {
 		this.sprite = sprite;
 		this.posicion = posicion;
 		this.visitor = visitor;
+		int x = (int) posicion.getX();
+		int y = (int) posicion.getY();
+		int ancho = obtenerAncho();
+		int alto = obtenerAlto();
+		this.hitbox = new Rectangle(x,y,ancho,alto);
 	}
 	
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
 	
-	public void setPosicion(Vector<Integer> posicion) {
+	@SuppressWarnings("exports")
+	public void setPosicion( Point posicion) {
 		this.posicion = posicion;
 	}
 	
@@ -34,12 +44,26 @@ public abstract class ElementoDeJuego implements Visitado {
 		return this.sprite;
 	}
 	
-	public Vector<Integer> getPosicion() {
+	@SuppressWarnings("exports")
+	public Rectangle obtenerHitbox() {
+		return hitbox;
+	}
+	
+	@SuppressWarnings("exports")
+	public Point getPosicion() {
 		return this.posicion;
 	}
 	
 	public Visitante getVisitor() {
 		return this.visitor;
+	}
+	
+	public int obtenerAncho() {
+		return 50;
+	}
+	
+	public int obtenerAlto() {
+		return 50;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);

@@ -1,0 +1,40 @@
+package elementos;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Silueta {
+    
+	protected String rutaImagen;
+	
+	public Silueta(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
+	
+	public String getRutaSilueta() {
+		return this.rutaImagen;
+	}
+	
+	public void setRutaSilueta(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
+	
+	public int obtenerAncho() {
+		try {
+			
+            BufferedImage imagen = ImageIO.read(new File("ruta_de_la_imagen.jpg"));
+            int ancho = imagen.getWidth();
+            
+        } catch (IOException e) {
+            System.out.println("Error al cargar la imagen: " + e.getMessage());
+        }
+	}
+	
+	public int obtenerAlto() {
+		//
+	}
+   
+}

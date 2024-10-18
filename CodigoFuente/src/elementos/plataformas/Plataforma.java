@@ -1,6 +1,6 @@
 package elementos.plataformas;
 
-import java.util.Vector;
+import java.awt.Point;
 
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
@@ -10,7 +10,7 @@ public abstract class Plataforma extends ElementoDeJuego{
 	
 	protected boolean solido;
 
-	public Plataforma(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+	public Plataforma(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 	}
 	
