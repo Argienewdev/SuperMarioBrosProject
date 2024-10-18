@@ -3,9 +3,7 @@ package ventanas;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import juego.EntidadJugador;
-import juego.EntidadLogica;
-import juego.Juego;
+import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
@@ -23,7 +21,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	private PantallaInicial pantallaInicial;
 	
 	private SensorDeTeclasMenu sensorDeTeclasMenu;
-	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	protected Juego juego;	
@@ -125,9 +122,10 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		ventana.repaint();
 	}
 
-	@Override
+	
 	public Observer registrarEntidad(EntidadJugador entidadJugador) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }

@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class PantallaDeJuego extends JPanel {
 	
 	private Dimension size;
