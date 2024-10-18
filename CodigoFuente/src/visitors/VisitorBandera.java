@@ -8,6 +8,7 @@ import elementos.powerUps.*;
 import ventanas.ControladorVistas;
 
 
+
 public class VisitorBandera implements Visitante{
 	
 	private ControladorVistas controlador;
@@ -66,19 +67,19 @@ public class VisitorBandera implements Visitante{
 	
 	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {		
 		controlador.cambiarNivel();
-		MarioState estado = new MarioDefault();
+		EstadoMario estado = new MarioDefault();
 		marioInv.getContext().cambiarEstado(estado);
 	}
 
 	public void visitarMarioFuego(MarioFuego marioFuego) {
 		controlador.cambiarNivel();
-		MarioState estado = new MarioDefault();
+		EstadoMario estado = new MarioDefault();
 		marioFuego.getContext().cambiarEstado(estado);
 	}
 
 	public void visitarSuperMario(SuperMario superMario) {
 		controlador.cambiarNivel();
-		MarioState estado = new MarioDefault();
+		EstadoMario estado = new MarioDefault();
 		superMario.getContext().cambiarEstado(estado);
 	}
 

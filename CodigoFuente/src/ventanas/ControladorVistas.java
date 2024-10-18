@@ -126,6 +126,11 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public Observer registrarEntidad(EntidadJugador entidadJugador) {
 		return null;
 	}
+	
+	//TODO implementar transicion de niveles
+	public void cambiarNivel() {
+		
+	}
 
 	
 }

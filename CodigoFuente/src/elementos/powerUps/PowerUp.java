@@ -16,4 +16,6 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
+	public abstract int getPuntosOtorgados();
+	
 }

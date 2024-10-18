@@ -75,7 +75,7 @@ public class VisitorMarioDefault implements Visitante {
 
 	public void visitarSuperChampinion(SuperChampinion superChamp) {
 		ContextoMario contexto = miEntidad.getContext();
-		MarioState estado = new SuperMario();
+		EstadoMario estado = new SuperMario();
 		contexto.cambiarEstado(estado);
 		int puntosGandos = superChamp.getPuntosOtorgados();
 		contexto.ganarPuntos(puntosGandos);
@@ -83,7 +83,7 @@ public class VisitorMarioDefault implements Visitante {
 
 	public void visitarFlorDeFuego(FlorDeFuego flor) {
 		ContextoMario contexto = miEntidad.getContext();
-		MarioState estado = new MarioFuego();
+		EstadoMario estado = new MarioFuego();
 		contexto.cambiarEstado(estado);
 		int puntosGandos = flor.getPuntosOtorgados();
 		contexto.ganarPuntos(puntosGandos);
@@ -99,7 +99,7 @@ public class VisitorMarioDefault implements Visitante {
 	
 	public void visitarEstrella(Estrella estrella) {
 		ContextoMario contexto = miEntidad.getContext();
-		MarioState estado = new MarioInvulnerable();
+		EstadoMario estado = new MarioInvulnerable();
 		contexto.cambiarEstado(estado);
 		int puntosGandos = estrella.getPuntosOtorgados();
 		contexto.ganarPuntos(puntosGandos);
