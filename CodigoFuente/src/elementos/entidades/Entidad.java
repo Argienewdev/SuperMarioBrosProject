@@ -57,6 +57,10 @@ public abstract class Entidad extends ElementoDeJuego {
     	setDireccion(dir);
     }
     
+    public void establecerPosicion (Point pos) {
+    	posicion = pos;
+    }
+    
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 }

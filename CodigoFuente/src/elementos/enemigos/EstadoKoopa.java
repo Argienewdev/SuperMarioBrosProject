@@ -1,14 +1,14 @@
 package elementos.enemigos;
 
-import java.util.Vector;
+import java.awt.Point;
 
 import visitors.Visitante;
 
 public interface EstadoKoopa {
 
-	public void moverAIzquierda(Vector<Integer> direccion);
+	public void moverAIzquierda(Point direccion);
 	
-	public void moverADerecha(Vector<Integer> direccion);
+	public void moverADerecha(Point direccion);
 	
 	public void aceptarVisitante(Visitante visitante);
 	

@@ -5,54 +5,82 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import juego.Nivel;
 
-public class VisitorFireball implements Visitante{
+public class VisitorFireball implements Visitante {
+	
+	protected Fireball miEntidad;
+	
+	public VisitorFireball (Fireball miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
+		int puntos = buzzy.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = buzzy.getNivel();
+		nivel.removeEnemigo(buzzy);
 		
 	}
 
 	@Override
 	public void visitarSpiny(Spiny spiny) {
-		// TODO Auto-generated method stub
-		
+		int puntos = spiny.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = spiny.getNivel();
+		nivel.removeEnemigo(spiny);
 	}
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		// TODO Auto-generated method stub
+		int puntos = goomba.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = goomba.getNivel();
+		nivel.removeEnemigo(goomba);
 		
 	}
 
 	@Override
 	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
+		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
+		EstadoKoopa estado = new KoopaCaparazonMovil();
+		contexto.cambiarEstado(estado);
 		
 	}
 
 	@Override
 	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
+		ContextoKoopaTroopa contexto = koopaMovil.getContext();
+		int puntos = contexto.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = contexto.getNivel();
+		nivel.removeEnemigo(contexto);
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
+		ContextoKoopaTroopa contexto = koopaDefault.getContext();
+		EstadoKoopa estado = new KoopaCaparazonEstatico();
+		contexto.cambiarEstado(estado);
 		
 	}
 
 	@Override
 	public void visitarLakitu(Lakitu lakitu) {
-		// TODO Auto-generated method stub
+		int puntos = lakitu.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = lakitu.getNivel();
+		nivel.removeEnemigo(lakitu);
 		
 	}
 
 	@Override
 	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
+		int puntos = planta.getPuntosOtorgadosPorEliminacion();
+		miEntidad.obtenerJugador().ganarPuntos(puntos);
+		Nivel nivel = planta.getNivel();
+		nivel.removeEnemigo(planta);
 		
 	}
 

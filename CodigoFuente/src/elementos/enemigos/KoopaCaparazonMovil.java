@@ -1,6 +1,6 @@
 package elementos.enemigos;
 
-import java.util.Vector;
+import java.awt.Point;
 
 import visitors.Visitante;
 
@@ -13,12 +13,12 @@ public class KoopaCaparazonMovil implements EstadoKoopa {
 	}
 	
 	@Override
-	public void moverAIzquierda(Vector<Integer> direccion) {
+	public void moverAIzquierda(Point direccion) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void moverADerecha(Vector<Integer> direccion) {
+	public void moverADerecha(Point direccion) {
 		// TODO Auto-generated method stub
 	}
 
@@ -28,7 +28,6 @@ public class KoopaCaparazonMovil implements EstadoKoopa {
 	}
 
 	public ContextoKoopaTroopa getContext() {
-		
 		return this.contexto;
 	}
 

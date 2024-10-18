@@ -121,4 +121,6 @@ public class FabricaEntidades {
     	return new ContextoMario(sprite, posicion, visitor, vidas, estadoInicial);
     } 
     
+    //TODO getFireball
+    
 }

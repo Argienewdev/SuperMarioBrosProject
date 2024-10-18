@@ -16,9 +16,9 @@ public class Tuberia extends BloqueSolido{
     protected int ancho;
 
     public Tuberia (Sprite sprite, Point pos, Visitante visitor, 
-    				PiranhaPlant miPiranhaPlant, int ancho, int altura) {
+    				PiranhaPlant miPiranhaPlant, int altura) {
         super(sprite,pos,visitor);
-        this.ancho = ancho;
+        this.ancho = 100;
         this.altura = altura;
         this.miPiranhaPlant = miPiranhaPlant;
     }
