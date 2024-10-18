@@ -9,9 +9,9 @@ public class Monedas extends PowerUp {
 
 	protected int cantidadMonedas;
 	
-	public Monedas(Sprite sprite, Point posicion, Visitante visitor, Point direccion, 
+	public Monedas(Sprite sprite, Point posicion, Visitante visitor, 
 			   	   ObserverGrafico observerGrafico, int cantidadMonedas) {
-		super(sprite, posicion, visitor, 0, direccion, observerGrafico);
+		super(sprite, posicion, visitor, 0, new Point (0,0), observerGrafico);
 		this.cantidadMonedas = cantidadMonedas;
 	}
 	

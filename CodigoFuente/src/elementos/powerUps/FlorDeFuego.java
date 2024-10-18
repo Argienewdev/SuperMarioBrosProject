@@ -7,9 +7,9 @@ import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
-	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point direccion,					   
+	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor,					   
 					   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, 0, direccion, observerGrafico);
+		super(sprite, posicion, visitor, 0, new Point (0,0), observerGrafico);
 	}
 	
 	@Override

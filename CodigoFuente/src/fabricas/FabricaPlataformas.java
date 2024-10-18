@@ -22,8 +22,7 @@ public class FabricaPlataformas {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
 		Visitante visitorMoneda = null;
 		ObserverGrafico observerMoneda = null;
-		Point direccion = new Point (0,0);
-		Monedas monedasDentroLadrillo = this.fabricaEntidades.getMonedas(posicion, visitorMoneda,direccion, cantidadMonedas, observerMoneda);
+		Monedas monedasDentroLadrillo = this.fabricaEntidades.getMonedas(posicion, visitorMoneda, cantidadMonedas, observerMoneda);
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor);
 		return ladrilloADevolver;
 	}
@@ -45,11 +44,11 @@ public class FabricaPlataformas {
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor, int altura) {
+	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor,int ancho, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		Point direccionPiranhaPlant = new Point(0,1);
 		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion, visitor, direccionPiranhaPlant, 1, null);
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant,ancho, altura);
 		return tuberiaADevolver;
 	}
 	

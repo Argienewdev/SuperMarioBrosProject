@@ -82,10 +82,10 @@ public class FabricaEntidades {
     } 
     
     @SuppressWarnings("exports")
-	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor, Point direccion,
+	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor,
 											  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getChampinionVerde();
-        return new ChampinionVerde(sprite, posicion, visitor,direccion, observer);
+        return new ChampinionVerde(sprite, posicion, visitor, observer);
     }
     
     @SuppressWarnings("exports")
@@ -97,17 +97,17 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public FlorDeFuego getFlorDeFuego(Point posicion, Visitante visitor, Point direccion,
+	public FlorDeFuego getFlorDeFuego(Point posicion, Visitante visitor,
 									  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getFlorDeFuegoPrimeraTransicion();
-        return new FlorDeFuego(sprite,posicion,visitor,direccion, observer);
+        return new FlorDeFuego(sprite,posicion,visitor, observer);
     }
     
     @SuppressWarnings("exports")
-	public Monedas getMonedas(Point posicion, Visitante visitor, Point direccion,
+	public Monedas getMonedas(Point posicion, Visitante visitor,
 							  int cantidad, ObserverGrafico observer ) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
-        return new Monedas(sprite,posicion,visitor,direccion,observer, cantidad);
+        return new Monedas(sprite,posicion,visitor,observer, cantidad);
     }
     
     @SuppressWarnings("exports")
