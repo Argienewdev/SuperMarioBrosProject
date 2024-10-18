@@ -91,7 +91,7 @@ public class VisitorCaparazonEstatico implements Visitante{
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		
 		
 	}

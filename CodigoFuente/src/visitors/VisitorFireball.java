@@ -9,12 +9,6 @@ import elementos.powerUps.*;
 public class VisitorFireball implements Visitante{
 
 	@Override
-	public void visitarBowser(Bowser bowser) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
 		// TODO Auto-generated method stub
 		
@@ -93,7 +87,7 @@ public class VisitorFireball implements Visitante{
 	}
 
 	@Override
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		// TODO Auto-generated method stub
 		
 	}

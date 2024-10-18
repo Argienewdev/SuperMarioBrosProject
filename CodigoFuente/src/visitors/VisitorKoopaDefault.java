@@ -85,7 +85,7 @@ public class VisitorKoopaDefault implements Visitante{
 	}
 
 	@Override
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		// TODO Auto-generated method stub
 		
 	}

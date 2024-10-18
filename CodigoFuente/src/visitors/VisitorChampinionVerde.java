@@ -89,7 +89,7 @@ public class VisitorChampinionVerde implements Visitante {
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		
 		
 	}

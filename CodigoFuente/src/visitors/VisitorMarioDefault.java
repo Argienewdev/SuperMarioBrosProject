@@ -106,7 +106,7 @@ public class VisitorMarioDefault implements Visitante {
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		ContextoMario contexto = miEntidad.getContext();
 		int puntosGandos = moneda.getPuntosOtorgados();
 		contexto.ganarPuntos(puntosGandos);

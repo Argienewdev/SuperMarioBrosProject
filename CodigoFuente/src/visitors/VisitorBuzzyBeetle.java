@@ -77,8 +77,8 @@ public class VisitorBuzzyBeetle implements Visitante{
 		
 	}
 
-	
-	public void visitarMonedas(Moneda moneda) {
+	@Override
+	public void visitarMonedas(Monedas moneda) {
 		
 	}
 

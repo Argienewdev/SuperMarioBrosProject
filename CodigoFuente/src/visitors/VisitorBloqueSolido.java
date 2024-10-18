@@ -75,8 +75,8 @@ public class VisitorBloqueSolido implements Visitante{
 		
 	}
 
-	
-	public void visitarMonedas(Moneda moneda) {
+	@Override
+	public void visitarMonedas(Monedas moneda) {
 			
 	}
 
@@ -156,5 +156,4 @@ public class VisitorBloqueSolido implements Visitante{
 		
 		
 	}
-	
 }
