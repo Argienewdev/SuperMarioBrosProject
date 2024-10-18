@@ -1,6 +1,5 @@
 package elementos.enemigos;
 
-import java.util.LinkedList;
 import java.util.Vector;
 
 import elementos.Sprite;
@@ -9,7 +8,6 @@ import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
-    // Constructor
     public Lakitu(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
     			  int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
@@ -17,7 +15,6 @@ public class Lakitu extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 0;
     }
 
-    // Metodos
     public void lanzarSpiny () {
     	// TODO Auto-generated method stub    
     }

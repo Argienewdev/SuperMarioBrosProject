@@ -11,4 +11,9 @@ public class Bandera extends Meta {
 		super(sprite, posicion, visitor);
 	}
 
+	@Override
+	public void aceptarVisitante(Visitante visitante) {
+		visitante.visitarBandera(this);
+	}
+
 }

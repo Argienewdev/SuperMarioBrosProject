@@ -10,13 +10,14 @@ public class ContextoMario extends Jugable {
 
 	private EstadoMario estadoMario;
 	
-	public ContextoMario(Sprite sprite, Vector<Integer> posicion,Visitante visitor, int vidas, MarioDefault estadoMario) {
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion,
+						 Visitante visitor, int vidas, MarioDefault estadoMario) {
 		super(sprite, posicion, visitor);
-		this.estadoMario=estadoMario;
+		this.estadoMario = estadoMario;
 	}
 	
 	public void cambiarEstado(EstadoMario estadoMario) {
-		this.estadoMario=estadoMario;
+		this.estadoMario = estadoMario;
 	}
 
 	@Override
@@ -31,6 +32,4 @@ public class ContextoMario extends Jugable {
 		
 	}
 	
-	
-
 }

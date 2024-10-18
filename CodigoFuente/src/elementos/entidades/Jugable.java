@@ -8,7 +8,6 @@ import visitors.Visitante;
 
 public abstract class Jugable extends Entidad {
 	
-	// Atributos
 	protected int vidas;
 	
 	protected int puntos;
@@ -19,7 +18,6 @@ public abstract class Jugable extends Entidad {
 		super(sprite, posicion, visitor);
 	}
 	
-	// Metodos
 	public void ganarVida() {
 		this.vidas++;
 	}

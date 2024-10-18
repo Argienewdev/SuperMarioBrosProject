@@ -9,10 +9,6 @@ public class KoopaCaparazonEstatico implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
 	
-	public KoopaCaparazonEstatico() {
-		
-	}
-	
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
@@ -29,11 +25,11 @@ public class KoopaCaparazonEstatico implements EstadoKoopa {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		// TODO Auto-generated method stub
+		visitante.visitarKoopaCaparazonEstatico(this);
 	}
 
 	public ContextoKoopaTroopa getContext() {
-		return contexto;
+		return this.contexto;
 	}
 
 }

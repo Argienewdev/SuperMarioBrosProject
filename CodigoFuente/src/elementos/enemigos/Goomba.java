@@ -8,7 +8,6 @@ import visitors.Visitante;
 
 public class Goomba extends Enemigo {
 	
-    // Constructor
     public Goomba(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
     			  int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
         super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
@@ -16,7 +15,6 @@ public class Goomba extends Enemigo {
         this.puntosSustraidosPorMuerteCausada = 30;
     }
     
-    // Metodos
     @Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarGoomba(this);
