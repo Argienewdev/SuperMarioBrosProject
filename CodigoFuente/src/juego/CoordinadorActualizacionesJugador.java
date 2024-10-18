@@ -22,8 +22,8 @@ public class CoordinadorActualizacionesJugador {
 	
 	public CoordinadorActualizacionesJugador() {
 		actualizadorGraficoJugador = new ActualizadorGraficoJugador();
-		controladorMovimiento = new ControladorMovimiento(posicion);
 		posicion = new Point(POSICION_INICIAL_X,POSICION_INICIAL_Y);
+		controladorMovimiento = new ControladorMovimiento(posicion);
 		velocidad = new Point(0,0);
 		/**
 		ImageIcon o Sprite marioSprite = actualizadorGraficoJugador.obtenerSpriteInicial();

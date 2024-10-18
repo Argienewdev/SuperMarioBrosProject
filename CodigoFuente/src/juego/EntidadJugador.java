@@ -20,7 +20,7 @@ public class EntidadJugador implements EntidadLogica{
 	
 	public EntidadJugador() { //Deberia recibir dos enteros para la posicion inicial y un sprite inicial
 		posicion = new Point(0,0); //Esto debe ser inicializado en la posicion inicial de mario
-		mario.setIcon(null); //Sprite pasado por parametro
+		//mario = new JLabel(spriteInicial);
 		//falta configurar el tamaño y demas del label en pantalla
 	}
 	
