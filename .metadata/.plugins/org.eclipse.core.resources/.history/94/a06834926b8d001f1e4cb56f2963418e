@@ -101,14 +101,14 @@ public class VisitorBuzzyBeetle implements Visitante{
 	
 	public void visitarMarioFuego(MarioFuego marioFuego) {
 		ContextoMario contexto = marioFuego.getContext();
-		EstadoMario estado = new SuperMario();
+		MarioState estado = new SuperMario();
 		contexto.cambiarEstado(estado);
 	}
 
 	
 	public void visitarSuperMario(SuperMario superMario) {
 		ContextoMario contexto = superMario.getContext();
-		EstadoMario estado = new MarioDefault();
+		MarioState estado = new MarioDefault();
 		contexto.cambiarEstado(estado);
 				
 	}

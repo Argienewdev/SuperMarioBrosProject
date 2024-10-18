@@ -1,6 +1,6 @@
 package elementos.personajes;
 
-public class MarioDefault implements EstadoMario {
+public class MarioDefault implements EstadoMario{
 	
 	protected ContextoMario contexto;
 	

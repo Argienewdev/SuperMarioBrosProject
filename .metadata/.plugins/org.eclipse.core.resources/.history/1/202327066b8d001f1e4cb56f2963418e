@@ -1,0 +1,10 @@
+package elementos.personajes;
+
+public class MarioDefault implements EstadoMari{
+	
+	protected ContextoMario contexto;
+	
+	public void setContext(ContextoMario contexto) {
+		this.contexto=contexto;
+	}
+}

@@ -25,10 +25,15 @@ public class ContextoMario extends Jugable {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public EstadoMario getContext() {
+		return this.contexto;
+	}
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarContextoMario(this);
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

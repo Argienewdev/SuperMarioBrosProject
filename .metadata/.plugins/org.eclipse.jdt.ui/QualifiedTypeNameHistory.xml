@@ -13,4 +13,5 @@
     <fullyQualifiedTypeName name="elementos.personajes.MarioInvulnerable"/>
     <fullyQualifiedTypeName name="elementos.personajes.MarioFuego"/>
     <fullyQualifiedTypeName name="elementos.powerUps.Monedas"/>
+    <fullyQualifiedTypeName name="elementos.personajes.EstadoMario"/>
 </qualifiedTypeNameHistroy>

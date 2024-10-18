@@ -92,7 +92,7 @@ public class VisitorEstrella implements Visitante{
 	
 	public void visitarMarioDefault(MarioDefault marioNormal) {
 		ContextoMario contexto = marioNormal.getContext();
-		MarioState estado = new MarioInvulnerable();
+		EstadoMario estado = new MarioInvulnerable();
 		contexto.cambiarEstado(estado);
 		
 	}
@@ -106,14 +106,14 @@ public class VisitorEstrella implements Visitante{
 	
 	public void visitarMarioFuego(MarioFuego marioFuego) {
 		ContextoMario contexto = marioFuego.getContext();
-		MarioState estado = new MarioInvulnerable();
+		EstadoMario estado = new MarioInvulnerable();
 		contexto.cambiarEstado(estado);
 	}
 
 	
 	public void visitarSuperMario(SuperMario superMario) {
 		ContextoMario contexto = superMario.getContext();
-		MarioState estado = new MarioInvulnerable();
+		EstadoMario estado = new MarioInvulnerable();
 		contexto.cambiarEstado(estado);
 	}
 

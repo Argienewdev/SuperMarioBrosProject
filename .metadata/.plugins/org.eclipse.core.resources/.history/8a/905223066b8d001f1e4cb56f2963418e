@@ -8,7 +8,7 @@ import visitors.Visitante;
 
 public class ContextoMario extends Jugable {
 
-	private EstadoMario estadoMario;
+	private EstadoMari estadoMario;
 	
 	public ContextoMario(Sprite sprite, Vector<Integer> posicion,
 						 Visitante visitor, int vidas, MarioDefault estadoMario) {
@@ -16,7 +16,7 @@ public class ContextoMario extends Jugable {
 		this.estadoMario = estadoMario;
 	}
 	
-	public void cambiarEstado(EstadoMario estadoMario) {
+	public void cambiarEstado(EstadoMari estadoMario) {
 		this.estadoMario = estadoMario;
 	}
 
@@ -28,7 +28,8 @@ public class ContextoMario extends Jugable {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarContextoMario(this);
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

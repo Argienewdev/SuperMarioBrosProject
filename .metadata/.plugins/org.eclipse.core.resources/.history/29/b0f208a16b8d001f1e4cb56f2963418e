@@ -66,19 +66,19 @@ public class VisitorBandera implements Visitante{
 	
 	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {		
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
+		MarioState estado = new MarioDefault();
 		marioInv.getContext().cambiarEstado(estado);
 	}
 
 	public void visitarMarioFuego(MarioFuego marioFuego) {
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
+		MarioState estado = new MarioDefault();
 		marioFuego.getContext().cambiarEstado(estado);
 	}
 
 	public void visitarSuperMario(SuperMario superMario) {
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
+		MarioState estado = new MarioDefault();
 		superMario.getContext().cambiarEstado(estado);
 	}
 
