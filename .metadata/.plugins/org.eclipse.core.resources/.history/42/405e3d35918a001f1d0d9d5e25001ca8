@@ -1,0 +1,25 @@
+package elementos.enemigos;
+
+import java.util.Vector;
+
+import fabricas.Sprite;
+import visitors.Visitante;
+
+public class Bowser extends Enemigo {
+
+    protected final static int VIDAS = 5;
+
+   
+    public Bowser (Sprite sprite, Vector<Integer> posicion, Vector<Integer> direccion, int velocidad) {
+    	this.sprite = sprite;
+    	this.velocidad = velocidad;
+        this.direccion = direccion;
+        this.posicion = posicion;
+    }
+
+    public void aceptarVisitante(Visitante visitante) {
+        visitante.visitarBowser(this);
+    }
+
+
+}

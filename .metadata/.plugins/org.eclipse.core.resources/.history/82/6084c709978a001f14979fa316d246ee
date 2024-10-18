@@ -1,0 +1,20 @@
+package elementos.powerUp;
+
+import java.util.Vector;
+
+import fabricas.Sprite;
+import visitors.Visitante;
+
+public class ChampinionVerde extends PowerUp {
+	
+	public ChampinionVerde(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						   int velocidad, Vector<Integer> direccion, 
+						   ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+	}
+	
+	public void aceptarVisitante (Visitante visitante) {
+		visitante.visitarChampinionVerde(this);
+	}
+
+}

@@ -1,0 +1,10 @@
+package elementos.entidades;
+
+import visitors.Visitante;
+
+public abstract class NoJugable extends Entidad {
+	
+	// Metodos
+	public abstract void aceptarVisitante(Visitante visitante);
+
+}

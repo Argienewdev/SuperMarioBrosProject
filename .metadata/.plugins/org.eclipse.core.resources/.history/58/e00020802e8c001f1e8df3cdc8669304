@@ -1,0 +1,101 @@
+package fabricas;
+
+public abstract class FabricaSprites {
+	
+	protected String rutaACarpeta;
+	
+	public FabricaSprites(String rutaACarpeta) {
+		this.rutaACarpeta = rutaACarpeta;
+	}
+	
+	public abstract Sprite getSilueta(int numNivel);
+	
+	public abstract Sprite getMarioDefaultFrontalQuieto();
+		
+	public abstract Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion();
+		
+	public abstract Sprite getMarioDefaultFrontalCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioDefaultFrontalSaltando();
+	
+	public abstract Sprite getMarioDefaultReversoQuieto();
+	
+	public abstract Sprite getMarioDefaultReversoCaminandoPrimeraTransicion();
+	
+	public abstract Sprite getMarioDefaultReversoCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioDefaultReversoSaltando();
+	
+	public abstract Sprite getSuperMarioFrontalQuieto();
+	
+	public abstract Sprite getSuperMarioFrontalCaminandoPrimeraTransicion();
+		
+	public abstract Sprite getSuperMarioFrontalCaminandoSegundaTransicion();
+	
+	public abstract Sprite getSuperMarioFrontalSaltando();
+	
+	public abstract Sprite getSuperMarioReversoQuieto();
+	
+	public abstract Sprite getSuperMarioReversoCaminandoPrimeraTransicion();
+	
+	public abstract Sprite getSuperMarioReversoCaminandoSegundaTransicion();
+	
+	public abstract Sprite getSuperMarioReversoSaltando();
+	
+	public abstract Sprite getMarioFuegoFrontalQuieto();
+	
+	public abstract Sprite getMarioFuegoFrontalCaminandoPrimeraTransicion();
+		
+	public abstract Sprite getMarioFuegoFrontalCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioFuegoFrontalSaltando();
+	
+	public abstract Sprite getMarioFuegoReversoQuieto();
+	
+	public abstract Sprite getMarioFuegoReversoCaminandoPrimeraTransicion();
+	
+	public abstract Sprite getMarioFuegoReversoCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioFuegoReversoSaltando();
+	
+	public abstract Sprite getMarioInvulnerableFrontalQuieto();
+	
+	public abstract Sprite getMarioFuegoFrontalCaminandoPrimeraTransicion();
+		
+	public abstract Sprite getMarioFuegoFrontalCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioFuegoFrontalSaltando();
+	
+	public abstract Sprite getMarioFuegoReversoQuieto();
+	
+	public abstract Sprite getMarioFuegoReversoCaminandoPrimeraTransicion();
+	
+	public abstract Sprite getMarioFuegoReversoCaminandoSegundaTransicion();
+	
+	public abstract Sprite getMarioFuegoReversoSaltando();
+	
+	public abstract Sprite getLadrillo();
+
+	public abstract Sprite getSpiny();
+
+	public abstract Sprite getPiranhaPlant();
+
+	public abstract Sprite getLakitu();
+
+	public abstract Sprite getBuzzyBeetle();
+
+	public abstract Sprite getGoomba();
+
+	public abstract Sprite getBowser();
+
+	public abstract Sprite getEstrella();
+	
+	public abstract Sprite getChampinionVerde();
+
+	public abstract Sprite getFlorDeFuego();
+
+	public abstract Sprite getSuperChampinion();
+
+	public abstract Sprite getMonedas();
+
+}

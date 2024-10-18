@@ -1,0 +1,35 @@
+package elementos.personaje;
+
+import java.util.Vector;
+
+import elementos.entidades.Jugable;
+import fabricas.Sprite;
+import observers.ObserverGrafico;
+import visitors.Visitante;
+
+public class ContextoMario extends Jugable {
+
+	// Atributos
+	private MarioState estadoMario;
+	
+	// Constructor
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+						 int velocidad, Vector<Integer> direccion, 
+						 ObserverGrafico observerGrafico, int vidas, MarioState estadoMario) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico, vidas);
+		this.estadoMario = estadoMario;
+	}
+	
+	// Metodos
+	public void cambiarEstado(MarioState estadoMario) {
+		this.estadoMario=estadoMario;
+	}
+
+	@Override
+	public void aceptarVisitante(Visitante visitante) {
+		visitante.visitarContextoMario(this);
+	}
+	
+	
+
+}

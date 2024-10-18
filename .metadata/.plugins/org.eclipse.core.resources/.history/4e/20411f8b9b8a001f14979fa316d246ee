@@ -1,0 +1,18 @@
+package elementos.personaje;
+
+import java.util.Vector;
+
+import visitors.Visitante;
+
+public interface MarioState {
+	
+	// Metodos
+	public void moverAIzquierda(Vector<Integer> direccion);
+		
+	public void moverADerecha(Vector<Integer> direccion);
+	
+	public void saltar(Visitante visitante);
+		
+	public void aceptarVisitante(Visitante visitante);
+	
+}

@@ -1,0 +1,30 @@
+package elementos.entidades;
+
+import java.util.Vector;
+
+import fabricas.Sprite;
+import observers.ObserverGrafico;
+import visitors.Visitante;
+
+public abstract class Jugable extends Entidad{
+	
+	protected static final int vidas;
+	
+	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+				   int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, direccion, velocidad);
+	}
+	
+	public void ganarVida(int vidas) {
+		vidas++;
+	}
+	
+	public void perderVida(int vidas) {
+		vidas--;
+	}
+	
+	public int getVidas() {
+		return vidas;
+	}
+
+}

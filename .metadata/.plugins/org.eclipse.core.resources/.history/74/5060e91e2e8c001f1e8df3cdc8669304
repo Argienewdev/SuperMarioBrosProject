@@ -1,0 +1,43 @@
+package fabricas;
+
+public abstract class FabricaSprites {
+	
+	protected String rutaACarpeta;
+	
+	public FabricaSprites(String rutaACarpeta) {
+		this.rutaACarpeta = rutaACarpeta;
+	}
+	
+	public abstract Sprite getSilueta(int numNivel);
+	
+	public abstract Sprite getMarioDefaultFrontalQuieto();
+	
+	public abstract Sprite getMarioDefaultReversoQuieto();
+	
+	public abstract Sprite getMarioDefaultFrontalCaminando();
+	
+	public abstract Sprite getLadrillo();
+
+	public abstract Sprite getSpiny();
+
+	public abstract Sprite getPiranhaPlant();
+
+	public abstract Sprite getLakitu();
+
+	public abstract Sprite getBuzzyBeetle();
+
+	public abstract Sprite getGoomba();
+
+	public abstract Sprite getBowser();
+
+	public abstract Sprite getEstrella();
+	
+	public abstract Sprite getChampinionVerde();
+
+	public abstract Sprite getFlorDeFuego();
+
+	public abstract Sprite getSuperChampinion();
+
+	public abstract Sprite getMonedas();
+
+}
