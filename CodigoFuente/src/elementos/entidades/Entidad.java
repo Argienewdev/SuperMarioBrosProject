@@ -9,7 +9,12 @@ import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
 
-    protected Vector<Integer> direccion;
+    public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+		super(sprite, posicion, visitor);
+		// TODO Auto-generated constructor stub
+	}
+
+	protected Vector<Integer> direccion;
     
     protected int velocidad;
     

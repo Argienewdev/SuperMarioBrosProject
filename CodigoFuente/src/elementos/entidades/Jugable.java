@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import elementos.Sprite;
 import elementos.powerUps.Moneda;
-import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class Jugable extends Entidad {
@@ -16,6 +15,10 @@ public abstract class Jugable extends Entidad {
 	
 	protected Moneda monedas;
 	
+	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+		super(sprite, posicion, visitor);
+		// TODO Auto-generated constructor stub
+	}
 	
 	// Metodos
 	public void ganarVida() {

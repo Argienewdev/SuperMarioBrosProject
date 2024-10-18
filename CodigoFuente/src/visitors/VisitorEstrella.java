@@ -6,9 +6,6 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 public class VisitorEstrella implements Visitante{
 
-
-
-	
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
 		
 		

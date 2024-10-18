@@ -1,6 +1,8 @@
 package ventanas;
 
-public class PantallaFinal {
+import javax.swing.JPanel;
+
+public class PantallaFinal extends JPanel{
 
 	private ControladorVistas controladorVistas;
 

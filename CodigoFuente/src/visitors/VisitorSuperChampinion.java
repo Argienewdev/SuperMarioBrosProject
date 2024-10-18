@@ -7,12 +7,6 @@ import elementos.powerUps.*;
 public class VisitorSuperChampinion implements Visitante{
 
 	@Override
-	public void visitarBowser(Bowser bowser) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
 		// TODO Auto-generated method stub
 		

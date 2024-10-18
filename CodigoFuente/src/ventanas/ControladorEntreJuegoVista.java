@@ -1,5 +1,6 @@
 package ventanas;
 
+import juego.EntidadJugador;
 import juego.EntidadLogica;
 
 public interface ControladorEntreJuegoVista {
