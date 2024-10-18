@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import visitors.Visitante;
 
-public interface KoopaState {
+public interface EstadoKoopa {
 
 	// Metodos
 	public void moverAIzquierda(Vector<Integer> direccion);

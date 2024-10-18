@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import visitors.Visitante;
 
-public class KoopaCaparazonMovil implements KoopaState {
+public class KoopaCaparazonMovil implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
 	

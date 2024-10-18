@@ -34,7 +34,7 @@ public interface Visitante {
 	
 	public void visitarEstrella(Estrella estrella);
 	
-	public void visitarMonedas(Moneda moneda);
+	public void visitarMonedas(Monedas monedas);
 	
 	public void visitarMarioDefault(MarioDefault marioNormal);
 	

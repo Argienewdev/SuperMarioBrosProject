@@ -1,6 +1,5 @@
 package elementos.personajes;
 
-import java.awt.Point;
 import java.util.Vector;
 
 import elementos.Sprite;
@@ -8,13 +7,11 @@ import elementos.entidades.Jugable;
 import visitors.Visitante;
 
 public class ContextoMario extends Jugable {
-	//TODO por que hay 2 contexto mario
-	
+
 	private EstadoMario estadoMario;
 	
-	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, int vidas, EstadoMario estadoMario) {
-		//super a Jugable???
-		super(sprite, posicion, visitor, vidas);
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion,Visitante visitor, int vidas, MarioDefault estadoMario) {
+		super(sprite, posicion, visitor);
 		this.estadoMario=estadoMario;
 	}
 	

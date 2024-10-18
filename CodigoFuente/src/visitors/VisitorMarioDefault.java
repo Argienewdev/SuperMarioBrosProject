@@ -41,13 +41,13 @@ public class VisitorMarioDefault implements Visitante {
 	
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
 		ContextoKoopaTroopa contexto = koopaDefault.getContext();
-		KoopaState estado = new KoopaCaparazonEstatico();
+		EstadoKoopa estado = new KoopaCaparazonEstatico();
 		contexto.cambiarEstado(estado);
 	}
 
 	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
 		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
-		KoopaState estado = new KoopaCaparazonMovil();
+		EstadoKoopa estado = new KoopaCaparazonMovil();
 		contexto.cambiarEstado(estado);
 	}
 

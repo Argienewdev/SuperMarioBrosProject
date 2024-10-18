@@ -24,7 +24,7 @@ public class FabricaPlataformas {
 		Visitante visitorMoneda = null;
 		ObserverGrafico observerMoneda = null;
 		Monedas monedasDentroLadrillo = fabricaEntidades.getMonedas(posicion, visitorMoneda, cantidadMonedas, observerMoneda);
-		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor, monedasDentroLadrillo);
+		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor);
 		return ladrilloADevolver;
 	}
 	
