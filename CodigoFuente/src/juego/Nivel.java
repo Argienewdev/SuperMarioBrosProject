@@ -1,18 +1,18 @@
 package juego;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
-import elementos.entidades.Entidad;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
 
 public class Nivel {
 	
-	protected static final int TAMANIO_HEATBOX_ENTIDADES = 50;
+	protected static final int TAMANIO_HITBOX_ENTIDADES = 50;
 	
 	protected GeneradorDeNivel generadorDeNivel;
 	
@@ -28,7 +28,7 @@ public class Nivel {
 	
 	public Nivel(Silueta silueta) {
 		this.silueta = silueta;
-		inicializarMatriz(silueta);
+		inicializarMatriz();
 	}
 	
 	@SuppressWarnings("exports")
@@ -82,18 +82,54 @@ public class Nivel {
 		return this.enemigos;
 	}
 	
-	public void inicializarMatriz(Silueta silueta) {
-		int filas = silueta.obtenerAlto() / TAMANIO_HEATBOX_ENTIDADES;
-		int columnas = silueta.obtenerAncho() / TAMANIO_HEATBOX_ENTIDADES;
+	public void inicializarMatriz() {
+		int filas = obtenerFilasMatriz();
+		int columnas = obtenerColumnasMatriz();
 		this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	
 	public void agregarElementoDeJuegoALaMatriz(ElementoDeJuego elementoDeJuego) {
-		elementoDeJuego.getPosicion();
+	    int fila = parsearPosicionY(elementoDeJuego);
+		int columna = parsearPosicionX(elementoDeJuego);
+		establecerElementoDeJuegoEnMatriz(elementoDeJuego, fila, columna);
 	}
 	
 	public void quitarElementoDeJuegoDeLaMatriz(ElementoDeJuego elementoDeJuego) {
-		//
+		int fila = parsearPosicionY(elementoDeJuego);
+		int columna = parsearPosicionX(elementoDeJuego);
+		establecerElementoDeJuegoEnMatriz(null, fila, columna);
+	}
+	
+	public int obtenerFilaElementoDeJuegoEnLaMatriz(ElementoDeJuego elementoDeJuego) {
+		return parsearPosicionY(elementoDeJuego);
+	}
+	
+	public int obtenerColumnaElementoDeJuegoEnLaMatriz(ElementoDeJuego elementoDeJuego) {
+		return parsearPosicionX(elementoDeJuego);
+	}
+	
+	public int obtenerFilasMatriz() {
+		return this.silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
+	}
+	
+	public int obtenerColumnasMatriz() {
+		return this.silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
+	}
+	
+	public ElementoDeJuego obtenerElementoDeJuegoEnLaMatriz(int fila, int columna) {
+		return this.matrizElementosDeJuego[fila][columna];
+	}
+	
+	private void establecerElementoDeJuegoEnMatriz(ElementoDeJuego elementoDeJuego, int fila, int columna) {
+		 this.matrizElementosDeJuego[fila][columna] = elementoDeJuego;
+	}
+	
+	private int parsearPosicionY(ElementoDeJuego elementoDeJuego) {
+		return obtenerFilasMatriz() - elementoDeJuego.getPosicion().y;
+	}
+	
+	private int parsearPosicionX(ElementoDeJuego elementoDeJuego) {
+		return elementoDeJuego.getPosicion().x;
 	}
 
 }

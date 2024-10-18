@@ -31,8 +31,6 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.sprite = sprite;
 	}
 	
-	
-	
 	public void setVisitor(Visitante visitor) {
 		this.visitor = visitor;
 	}
@@ -43,7 +41,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	@SuppressWarnings("exports")
 	public Rectangle obtenerHitbox() {
-		return hitbox;
+		return this.hitbox;
 	}
 	
 	@SuppressWarnings("exports")
@@ -72,7 +70,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		return visitor;
 	}
 	
-	public boolean huboColision (ElementoDeJuego elemento) {
+	public boolean huboColision(ElementoDeJuego elemento) {
 		return hitbox.intersects(elemento.obtenerHitbox());
 	}
 

@@ -1,0 +1,53 @@
+package observers;
+
+import java.util.ArrayList;
+
+import elementos.entidades.Entidad;
+import juego.EntidadLogica;
+import juego.Nivel;
+
+public class GestorDeColisiones implements ObserverColisiones {
+	
+	protected Nivel nivel;
+	
+	protected ArrayList<EntidadLogica> entidadesObservadas;
+	
+	
+	public GestorDeColisiones() {
+		entidadesObservadas = new ArrayList<>();
+	}
+	
+	public void agregarEntidad (EntidadLogica entidad) {
+		entidadesObservadas.add(entidad);
+	}
+	
+	public void eliminarEntidad (EntidadLogica entidad) {
+		 entidadesObservadas.remove(entidad);
+	}
+	
+	public void verificarColisiones(Entidad entidad) {
+		//TODO o verificar todos con todos
+		// o dividir el nivel por zonas
+		
+		int fila = nivel.obtenerFilaEnLaMatriz(entidad);
+		int columna = nivel.obtenerColumnaEnLaMatriz(entidad);
+		
+		verificarColisionArriba(fila, entidad);
+		verificarColisionAbajo(fila, entidad);
+		verificarColisionDerecha(columna, entidad);
+		verificarColisionIzquierda(columna, entidad);
+		verificarColisionDiagonalSuperiorDerecha(fila, columna, entidad);
+		verificarColisionDiagonalSuperiorIzquierda(fila, columna, entidad);
+		verificarColisionDiagonalInferiorDerecha(fila, columna, entidad);
+		verificarColisionDiagonalInferiorDerecha(fila, columna, entidad);
+		
+	}
+	
+	public void actualizar() {
+		//TODO llamar a actualizadorGraficoJugador?
+	}
+	
+	
+	
+
+}
