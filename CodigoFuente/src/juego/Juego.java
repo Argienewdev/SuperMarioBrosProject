@@ -27,7 +27,7 @@ public class Juego {
 	}
 	
 	public void actualizar() {
-		//TICK
+		controladorVistas.refrescar();
 	}
 	
 	public void render() {

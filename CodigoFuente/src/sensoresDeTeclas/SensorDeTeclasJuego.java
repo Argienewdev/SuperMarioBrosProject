@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	private boolean Apresionada;
-	
 	private boolean Dpresionada;
 	
 	private boolean Wpresionada;

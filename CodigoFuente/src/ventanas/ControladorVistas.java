@@ -13,6 +13,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	
 	private HUD HUD;
 	
+	
 	private PantallaDeJuego pantallaDeJuego;
 	
 	private PantallaFinal pantallaFinal;
@@ -27,16 +28,15 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 
 	
 	public ControladorVistas(Juego juego){
-		pantallaInicial= new PantallaInicial();
+		sensorDeTeclasMenu = new SensorDeTeclasMenu();
+		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal();
 		pantallaDeJuego= new PantallaDeJuego();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);
 		RegistrarOyenteInicial();
-		accionarInicioJuego();
 	}
 	
 	public void configurarVentana(){
@@ -67,19 +67,16 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 
 	
 	public void accionarPantallaPuntajes() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	
 	public void accionarPantallaModoDeJuego() {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 	public void cambiarModoDeJuego() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -119,7 +116,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	}
 	
 	public void refrescar(){
-		pantallaDeJuego.correr();
+		pantallaInicial.actualizarFoco();
 		ventana.revalidate();
 		ventana.repaint();
 	}
@@ -128,9 +125,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public Observer registrarEntidad(EntidadJugador entidadJugador) {
 		return null;
 	}
-	
-	//TODO implementar cambiarNivel()
-	
 
 	
 }
