@@ -1,17 +1,15 @@
 package elementos.personajes;
 
-public class MarioDefault implements EstadoMario{
+public class MarioDefault implements EstadoMario {
 	
 	protected ContextoMario contexto;
 	
-	public MarioDefault() {
-	}
-	
 	public void setContext(ContextoMario contexto) {
-		this.contexto=contexto;
+		this.contexto = contexto;
 	}
 	
 	public ContextoMario getContext() {
-		return contexto;
+		return this.contexto;
 	}
+	
 }

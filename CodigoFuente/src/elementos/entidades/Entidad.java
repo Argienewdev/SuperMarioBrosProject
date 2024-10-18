@@ -8,12 +8,7 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
-
-    public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	protected Vector<Integer> direccion;
     
     protected int velocidad;
@@ -22,8 +17,10 @@ public abstract class Entidad extends ElementoDeJuego {
     
     protected Nivel miNivel;
 
-    
-    // Metodos
+    public Entidad(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+		super(sprite, posicion, visitor);
+	}
+
     public void setDireccion(Vector<Integer> direccion) {
         this.direccion = direccion;
     }
@@ -33,15 +30,15 @@ public abstract class Entidad extends ElementoDeJuego {
     }
     
     public void setNivel (Nivel nivel) {
-    	miNivel = nivel;
+    	this.miNivel = nivel;
     }
     
     public Vector<Integer> getDireccion() {
-        return direccion;
+        return this.direccion;
     }
     
     public int getVelocidad() {
-        return velocidad;
+        return this.velocidad;
     }
     
     public Nivel getNivel() {

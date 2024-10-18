@@ -7,10 +7,7 @@ import visitors.Visitante;
 public class KoopaDefault implements EstadoKoopa {
 	
 	protected ContextoKoopaTroopa contexto;
-
-    public KoopaDefault() {
-	}
-
+	
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
@@ -27,11 +24,11 @@ public class KoopaDefault implements EstadoKoopa {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		// TODO Auto-generated method stub
+		visitante.visitarKoopaDefault(this);
 	}
 
 	public ContextoKoopaTroopa getContext() {
-		return contexto;
+		return this.contexto;
 	}
 
 }

@@ -8,7 +8,6 @@ import visitors.Visitante;
 
 public class Spiny extends Enemigo {
 	
-	// Constructor
     public Spiny(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
     			 int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
@@ -16,7 +15,6 @@ public class Spiny extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 30;
     }
 
-    // Metodos
     @Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarSpiny(this);

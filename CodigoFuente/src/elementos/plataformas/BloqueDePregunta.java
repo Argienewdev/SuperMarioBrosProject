@@ -10,21 +10,23 @@ import visitors.Visitante;
 public class BloqueDePregunta extends BloqueSolido {
 	
 	protected PowerUp powerUp;
+	
 	protected boolean estaVacio;
 	
-	public BloqueDePregunta (Sprite sprite, Vector<Integer> pos, Visitante visitor, PowerUp powerUp) {
+	public BloqueDePregunta (Sprite sprite, Vector<Integer> pos, 
+							 Visitante visitor, PowerUp powerUp) {
 		super(sprite,pos,visitor);
 		this.powerUp = powerUp;
 		if (powerUp != null)
-			estaVacio = false;
+			this.estaVacio = false;
 		else
-			estaVacio = true;
+			this.estaVacio = true;
 		
 	}
 	
 	public void setPowerUp (PowerUp powerUp) {
 		this.powerUp = powerUp;
-		estaVacio = false;
+		this.estaVacio = false;
 	}
 	
 	public PowerUp getPowerUp() {
@@ -36,11 +38,11 @@ public class BloqueDePregunta extends BloqueSolido {
 	}
 
 	public boolean estaVacio() {
-		return estaVacio;
+		return this.estaVacio;
 	}
 	
 	public void setVacio (boolean vacio) {
-		estaVacio = vacio;
+		this.estaVacio = vacio;
 	}
 	
 	public PowerUp liberarPowerUp() { 
@@ -48,7 +50,7 @@ public class BloqueDePregunta extends BloqueSolido {
 			Nivel nivel = powerUp.getNivel();
 			nivel.addPowerUps(powerUp);
 		}
-		return powerUp;
+		return this.powerUp;
 	}
 
 }

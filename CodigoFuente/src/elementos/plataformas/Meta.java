@@ -13,8 +13,6 @@ public abstract class Meta extends Plataforma{
 	}
 
 	@Override
-	public void aceptarVisitante(Visitante visitante) {
-		
-	}
+	public abstract void aceptarVisitante(Visitante visitante);
 
 }

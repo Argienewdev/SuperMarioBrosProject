@@ -8,11 +8,9 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class PiranhaPlant extends Enemigo {
-	
-    // Atributos
-    
+	    
     protected boolean dentroTuberia;
-    // Constructor
+
     public PiranhaPlant(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
     					int velocidad, Vector<Integer> direccion,
     					ObserverGrafico observerGrafico) {
@@ -21,17 +19,16 @@ public class PiranhaPlant extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 30;
     }
 
-    // Metodos
     public void setDentroTuberia() {
-        dentroTuberia = true;
+        this.dentroTuberia = true;
     }
     
     public void setFueraTuberia() {
-        dentroTuberia = false;
+        this.dentroTuberia = false;
     }
     
     public boolean enTuberia() {
-        return dentroTuberia;
+        return this.dentroTuberia;
     }
     
     @Override
