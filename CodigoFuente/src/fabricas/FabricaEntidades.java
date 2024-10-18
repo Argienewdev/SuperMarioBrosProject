@@ -1,4 +1,5 @@
 package fabricas;
+import java.awt.Point;
 import java.util.Vector;
 
 import elementos.*;
@@ -25,15 +26,15 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Spiny getSpiny(Vector<Integer> posicion, Visitante visitor, Vector<Integer> direccion, 
+	public Spiny getSpiny(Point posicion, Visitante visitor, Point direccion, 
 						  int velocidad,ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getSpinyReversoQuieto();
         return new Spiny(sprite, posicion, visitor, velocidad, direccion,observer);
     }
     
     @SuppressWarnings("exports")
-	public ContextoKoopaTroopa getContextoKoopaTroopa(Vector<Integer> posicion, Visitante visitor, 
-													  int velocidad, Vector<Integer> direccion, 
+	public ContextoKoopaTroopa getContextoKoopaTroopa(Point posicion, Visitante visitor, 
+													  int velocidad, Point direccion, 
 													  ObserverGrafico observerGrafico) {
     	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoQuieto();
     	KoopaDefault estadoInicial= new KoopaDefault();
@@ -41,78 +42,78 @@ public class FabricaEntidades {
     }
        
 	@SuppressWarnings("exports")
-	public PiranhaPlant getPiranhaPlant(Vector<Integer> posicion, Visitante visitor, 
-										Vector<Integer> direccion, int velocidad, 
+	public PiranhaPlant getPiranhaPlant(Point posicion, Visitante visitor, 
+										Point direccion, int velocidad, 
 										ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getPiranhaPlantCerrada();
         return new PiranhaPlant(sprite,posicion, visitor, velocidad, direccion, observer);
     }
     
     @SuppressWarnings("exports")
-	public Lakitu getLakitu(Vector<Integer>posicion, Visitante visitor, 
-							Vector<Integer> direccion, int velocidad, 
+	public Lakitu getLakitu(Point posicion, Visitante visitor, 
+							Point direccion, int velocidad, 
 							ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getLakituReversoDentroDeLaNube();
         return new Lakitu(sprite,posicion,visitor,velocidad,direccion, observer);
     }
     
     @SuppressWarnings("exports")
-	public BuzzyBeetle getBuzzyBeetle(Vector<Integer> posicion, Visitante visitor, 
-									  Vector<Integer> direccion, int velocidad, 
+	public BuzzyBeetle getBuzzyBeetle(Point posicion, Visitante visitor, 
+									  Point direccion, int velocidad, 
 									  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getBuzzyBeetleReversoQuieto();
         return new BuzzyBeetle(sprite,posicion,visitor,velocidad,direccion,observer);
     }
     
     @SuppressWarnings("exports")
-	public Goomba getGoomba(Vector<Integer> posicion, Visitante visitor, 
-							Vector<Integer> direccion, int velocidad, 
+	public Goomba getGoomba(Point posicion, Visitante visitor, 
+							Point direccion, int velocidad, 
 							ObserverGrafico observer){
         Sprite sprite = fabricaSprites.getGoombaQuieto();
         return new Goomba(sprite, posicion, visitor, velocidad, direccion, observer);
     }
    
     @SuppressWarnings("exports")
-	public Estrella getEstrella(Vector<Integer> posicion, Visitante visitor, 
-								Vector<Integer> direccion, int velocidad, 
+	public Estrella getEstrella(Point posicion, Visitante visitor, 
+								Point direccion, int velocidad, 
 								ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getEstrellaEncendida();
         return new Estrella(sprite, posicion, visitor, velocidad, direccion, observer);
     } 
     
     @SuppressWarnings("exports")
-	public ChampinionVerde getChampinionVerde(Vector<Integer> posicion, Visitante visitor, 
+	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor, Point direccion,
 											  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getChampinionVerde();
-        return new ChampinionVerde(sprite, posicion, visitor, observer);
+        return new ChampinionVerde(sprite, posicion, visitor,direccion, observer);
     }
     
     @SuppressWarnings("exports")
-	public SuperChampinion getSuperChampinion(Vector<Integer> posicion, Visitante visitor, 
-											  Vector<Integer> direccion, int velocidad, 
+	public SuperChampinion getSuperChampinion(Point posicion, Visitante visitor, 
+											  Point direccion, int velocidad, 
 											  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getSuperChampinion();
         return new SuperChampinion(sprite, posicion, visitor, velocidad, direccion, observer);
     }
     
     @SuppressWarnings("exports")
-	public FlorDeFuego getFlorDeFuego(Vector<Integer> posicion, Visitante visitor, 
+	public FlorDeFuego getFlorDeFuego(Point posicion, Visitante visitor, Point direccion,
 									  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getFlorDeFuegoPrimeraTransicion();
-        return new FlorDeFuego(sprite,posicion,visitor, observer);
+        return new FlorDeFuego(sprite,posicion,visitor,direccion, observer);
     }
     
     @SuppressWarnings("exports")
-	public Monedas getMonedas(Vector<Integer> posicion, Visitante visitor, 
+	public Monedas getMonedas(Point posicion, Visitante visitor, Point direccion,
 							  int cantidad, ObserverGrafico observer ) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
-        return new Monedas(sprite,posicion,visitor,observer, cantidad);
+        return new Monedas(sprite,posicion,visitor,direccion,observer, cantidad);
     }
     
     @SuppressWarnings("exports")
-    public ContextoMario getContextoMario(Vector<Integer> posicion, 
+    public ContextoMario getContextoMario(Point posicion, 
 										  Visitante visitor, int velocidad, 
-										  Vector<Integer> direccion, 
+										  Point direccion, 
 										  ObserverGrafico observerGrafico, int vidas, 
 										  MarioDefault estado) {
     	Sprite sprite = fabricaSprites.getMarioDefaultFrontalQuieto();

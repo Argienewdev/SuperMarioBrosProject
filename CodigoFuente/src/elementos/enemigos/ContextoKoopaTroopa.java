@@ -1,7 +1,6 @@
 package elementos.enemigos;
 
-import java.util.Vector;
-
+import java.awt.Point;
 import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -10,8 +9,8 @@ public class ContextoKoopaTroopa extends Enemigo {
 	
 	private EstadoKoopa estado;
 
-    public ContextoKoopaTroopa(Sprite sprite,Vector<Integer> posicion, Visitante visitor,
-							   int velocidad, Vector<Integer> direccion, 
+    public ContextoKoopaTroopa(Sprite sprite,Point posicion, Visitante visitor,
+							   int velocidad, Point direccion, 
 							   ObserverGrafico observerGrafico, KoopaDefault estado) {
     	super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
     	this.estado = estado;

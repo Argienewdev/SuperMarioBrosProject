@@ -1,7 +1,6 @@
 package elementos.entidades;
 
-import java.util.Vector;
-
+import java.awt.Point;
 import elementos.Sprite;
 import elementos.powerUps.Monedas;
 import visitors.Visitante;
@@ -14,7 +13,7 @@ public abstract class Jugable extends Entidad {
 	
 	protected Monedas monedas;
 	
-	public Jugable(Sprite sprite, Vector<Integer> posicion, Visitante visitor) {
+	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 	}
 	
@@ -54,7 +53,7 @@ public abstract class Jugable extends Entidad {
 		return this.monedas;
 	}
 	
-	public abstract void saltar(Vector<Integer> direccion);
+	public abstract void saltar(Point direccion);
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 

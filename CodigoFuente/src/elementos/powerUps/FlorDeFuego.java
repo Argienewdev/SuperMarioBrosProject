@@ -1,24 +1,36 @@
 package elementos.powerUps;
 
-import java.util.Vector;
-
+import java.awt.Point;
 import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
-	public FlorDeFuego(Sprite sprite, Vector<Integer> posicion, Visitante visitor,					   
+	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point direccion,					   
 					   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
-		/* El cero  y el vector (0,0), corresponden a la velocidad y dirección, que en 
-		 * este caso son nulos al ser un power Up estático
-		 */
+		super(sprite, posicion, visitor, 0, direccion, observerGrafico);
 	}
 	
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarFlorDeFuego(this);
+	}
+	
+	public int obtenerPuntosPorDefault() {
+		return 5;
+	}
+	
+	public int obtenerPuntosPorSuper() {
+		return 30;
+	}
+	
+	public int obtenerPuntosPorInvencible() {
+		return obtenerPuntosPorSuper();
+	}
+	
+	public int obtenerPuntosPorFuego() {
+		return 50;
 	}
 
 }

@@ -1,10 +1,9 @@
 package elementos.powerUps;
 
 import java.awt.Point;
-import java.util.Vector;
-
 import elementos.Sprite;
 import elementos.entidades.NoJugable;
+import elementos.personajes.ContextoMario;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -17,6 +16,11 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
-	public abstract int getPuntosOtorgados();
+	public abstract int obtenerPuntosPorDefault();
 	
+	public abstract int obtenerPuntosPorSuper();
+	
+	public abstract int obtenerPuntosPorInvencible();
+	
+	public abstract int obtenerPuntosPorFuego();
 }

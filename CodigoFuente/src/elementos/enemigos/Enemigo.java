@@ -1,7 +1,6 @@
 package elementos.enemigos;
 
-import java.util.Vector;
-
+import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.NoJugable;
 import observers.ObserverGrafico;
@@ -13,8 +12,8 @@ public abstract class Enemigo extends NoJugable {
 		
 	protected int puntosSustraidosPorMuerteCausada;
 	
-	public Enemigo(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
-				   int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico) {
+	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, 
+				   int velocidad, Point direccion, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
 	}
     

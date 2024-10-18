@@ -1,5 +1,6 @@
 package elementos.powerUps;
 
+import java.awt.Point;
 import java.util.Vector;
 
 import elementos.Sprite;
@@ -10,8 +11,8 @@ public class Estrella extends PowerUp {
 	
 	public static final int TIEMPO_DURACION = 10;
 	
-	public Estrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
-					int velocidad, Vector<Integer> direccion, 
+	public Estrella(Sprite sprite,Point posicion, Visitante visitor,
+					int velocidad, Point direccion, 
 					ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
 	}
@@ -19,6 +20,22 @@ public class Estrella extends PowerUp {
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarEstrella(this);
+	}
+	
+	public int obtenerPuntosPorDefault() {
+		return 20;
+	}
+	
+	public int obtenerPuntosPorSuper() {
+		return 30;
+	}
+	
+	public int obtenerPuntosPorInvencible() {
+		return 35;
+	}
+	
+	public int obtenerPuntosPorFuego() {
+		return obtenerPuntosPorSuper();
 	}
 
 }

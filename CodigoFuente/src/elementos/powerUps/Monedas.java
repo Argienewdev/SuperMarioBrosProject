@@ -1,7 +1,6 @@
 package elementos.powerUps;
 
-import java.util.Vector;
-
+import java.awt.Point;
 import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -10,9 +9,9 @@ public class Monedas extends PowerUp {
 
 	protected int cantidadMonedas;
 	
-	public Monedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor,  
+	public Monedas(Sprite sprite, Point posicion, Visitante visitor, Point direccion, 
 			   	   ObserverGrafico observerGrafico, int cantidadMonedas) {
-		super(sprite, posicion, visitor, 0, new Vector<Integer>(0,0), observerGrafico);
+		super(sprite, posicion, visitor, 0, direccion, observerGrafico);
 		this.cantidadMonedas = cantidadMonedas;
 	}
 	
@@ -32,4 +31,19 @@ public class Monedas extends PowerUp {
 		visitante.visitarMonedas(this);
 	}
 	
+	public int obtenerPuntosPorDefault() {
+		return 5;
+	}
+	
+	public int obtenerPuntosPorSuper() {
+		return obtenerPuntosPorDefault();
+	}
+	
+	public int obtenerPuntosPorInvencible() {
+		return obtenerPuntosPorDefault();
+	}
+	
+	public int obtenerPuntosPorFuego() {
+		return obtenerPuntosPorDefault();
+	}
 }
