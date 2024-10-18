@@ -89,7 +89,7 @@ public class Nivel {
 	}
 	
 	public void agregarElementoDeJuegoALaMatriz(ElementoDeJuego elementoDeJuego) {
-		elementoDeJuego.getPosicion();
+		//
 	}
 	
 	public void quitarElementoDeJuegoDeLaMatriz(ElementoDeJuego elementoDeJuego) {

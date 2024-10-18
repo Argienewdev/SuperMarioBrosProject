@@ -21,7 +21,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	private PantallaInicial pantallaInicial;
 	
 	private SensorDeTeclasMenu sensorDeTeclasMenu;
-	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	protected Juego juego;	

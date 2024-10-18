@@ -34,37 +34,37 @@ public class Nivel {
 	@SuppressWarnings("exports")
 	public void addPlataforma(Plataforma plataforma) {
 		plataformas.add(plataforma);
-		agregarElementoDeJuegoALaMatriz(plataforma);
+		ubicarEntidadEnLaMatriz(plataforma);
 	}
 	
 	@SuppressWarnings("exports")
 	public void addEnemigo(Enemigo enemigo) {
 		enemigos.add(enemigo);
-		agregarElementoDeJuegoALaMatriz(enemigo);
+		ubicarEntidadEnLaMatriz(enemigo);
 	}
 	
 	@SuppressWarnings("exports")
 	public void addPowerUps(PowerUp powerUp) {
 		powerUps.add(powerUp);
-		agregarElementoDeJuegoALaMatriz(powerUp);
+		ubicarEntidadEnLaMatriz(powerUp);
 	}
 	
 	@SuppressWarnings("exports")
 	public void removePlataforma(Plataforma plataforma) {
 		plataformas.remove(plataforma);
-		quitarElementoDeJuegoDeLaMatriz(plataforma);
+		quitarEntidadEnLaMatriz(plataforma);
 
 	}
 	@SuppressWarnings("exports")
 	public void removeEnemigo(Enemigo enemigo) {
 		enemigos.remove(enemigo);
-		quitarElementoDeJuegoDeLaMatriz(enemigo);
+		quitarEntidadEnLaMatriz(enemigo);
 	}
 	
 	@SuppressWarnings("exports")
 	public void removePowerUps(PowerUp powerUp) {
 		powerUps.remove(powerUp);
-		quitarElementoDeJuegoDeLaMatriz(powerUp);
+		quitarEntidadEnLaMatriz(powerUp);
 	}
 	
 	@SuppressWarnings("exports")
@@ -88,12 +88,6 @@ public class Nivel {
 		this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	
-	public void agregarElementoDeJuegoALaMatriz(ElementoDeJuego elementoDeJuego) {
-		elementoDeJuego.getPosicion();
-	}
-	
-	public void quitarElementoDeJuegoDeLaMatriz(ElementoDeJuego elementoDeJuego) {
-		//
-	}
+	public void ubicarEntidadEnLaMatriz(Entidad entidad)
 
 }

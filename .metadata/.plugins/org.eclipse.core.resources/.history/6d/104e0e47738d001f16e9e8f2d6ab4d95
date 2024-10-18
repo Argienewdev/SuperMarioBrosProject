@@ -24,28 +24,20 @@ public class Silueta {
 	
 	public int obtenerAncho() {
 		int ancho = 0;
-		
 		try {
-            BufferedImage imagen = ImageIO.read(new File(getRutaSilueta()));
+			
+            BufferedImage imagen = ImageIO.read(new File("ruta_de_la_imagen.jpg"));
             ancho = imagen.getWidth();
-        } catch (IOException exception) {
-            System.out.println("Error al cargar la imagen: " + exception.getMessage());
+            
+        } catch (IOException e) {
+            System.out.println("Error al cargar la imagen: " + e.getMessage());
         }
 		
 		return ancho;
 	}
 	
 	public int obtenerAlto() {
-		int alto = 0;
-		
-		try {
-            BufferedImage imagen = ImageIO.read(new File(getRutaSilueta()));
-            alto = imagen.getHeight();
-        } catch (IOException exception) {
-            System.out.println("Error al cargar la imagen: " + exception.getMessage());
-        }
-		
-		return alto;
+		//
 	}
    
 }
