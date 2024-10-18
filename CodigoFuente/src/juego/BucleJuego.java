@@ -2,19 +2,16 @@ package juego;
 
 public class BucleJuego implements Runnable{
 	
-	//Constantes
 	private static final int MILISEGUNDOS_POR_SEGUNDO = 1000;
 	
 	private static final int NANOSEGUNDOS_POR_SEGUNDO = 1000000000;
 	
 	private static final double CANTIDAD_TICKS = 60.0;
 	
-	//Variables
 	private boolean running;
 	
 	private Juego juego;
 	
-	//Componentes
 	private Thread thread;
 	
 	public BucleJuego(Juego juego) {
@@ -86,6 +83,7 @@ public class BucleJuego implements Runnable{
 
 	
 	private void tick() {
+		juego.actualizar();
 	}
 	
 	private void render() {

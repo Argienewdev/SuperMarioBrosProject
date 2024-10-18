@@ -2,11 +2,18 @@ package juego;
 
 import java.awt.Point;
 
+import elementos.Sprite;
+import elementos.entidades.Jugable;
+import fabricas.FabricaEntidades;
+import sensoresDeTeclas.SensorDeTeclasJuego;
+
 public class CoordinadorActualizacionesJugador {
 	
 	private static final int POSICION_INICIAL_X = 50;
 	
 	private static final int POSICION_INICIAL_Y = 400;
+	
+	private FabricaEntidades fabricaEntidades;
 	
 	private ControladorMovimiento controladorMovimiento;
 	
@@ -14,25 +21,23 @@ public class CoordinadorActualizacionesJugador {
 	
 	private EntidadJugador entidadJugador;
 	
+	private Jugable jugador;
+	
 	private Point posicion;
 	
 	private Point velocidad;
 	
-	//TODO private ImageIcon o Sprite marioSprite;
+	private Sprite marioSprite;
 	
-	public CoordinadorActualizacionesJugador() {
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego) {
 		actualizadorGraficoJugador = new ActualizadorGraficoJugador();
 		posicion = new Point(POSICION_INICIAL_X,POSICION_INICIAL_Y);
-		controladorMovimiento = new ControladorMovimiento(posicion);
 		velocidad = new Point(0,0);
-		/**
-		ImageIcon o Sprite marioSprite = actualizadorGraficoJugador.obtenerSpriteInicial();
-		 
-		ControladorMovimiento debe recibir el sprite inicial para Mario
-		**/
-		
+		marioSprite = actualizadorGraficoJugador.obtenerSpriteInicial();
+		controladorMovimiento = new ControladorMovimiento(posicion, sensorDeTeclasJuego);
+		//TODO todavia no me cierra que mario este aca en esta clase
 		//TODO el jugador es creado por el coordinador de actualizaciones? no creo
-		entidadJugador = new EntidadJugador();
+		entidadJugador = new EntidadJugador(posicion, marioSprite);
 	}
 	
 	private Point actualizarVelocidad() {
@@ -44,7 +49,7 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarSprite() {
-		//Sprite o ImageIcon marioSprite = actualizadorGraficoJugador.actualizar(velocidad);
+		marioSprite = actualizadorGraficoJugador.actualizar(marioSprite, velocidad);
 		//TODO Recibe la velocidad para ver en que direccion va para retornar el sprite adecuado
 		//este metodo guarda el sprite para mario en un atributo
 	}
@@ -59,5 +64,8 @@ public class CoordinadorActualizacionesJugador {
 		actualizarSprite();
 		actualizarMarioLabel();
 	}
-
+	
+	public Jugable obtenerJugador() {
+		return jugador;
+	}
 }

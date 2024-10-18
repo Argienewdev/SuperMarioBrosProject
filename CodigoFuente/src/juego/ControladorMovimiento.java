@@ -23,9 +23,9 @@ public class ControladorMovimiento {
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	public ControladorMovimiento(Point posicion) {
+	public ControladorMovimiento(Point posicion, SensorDeTeclasJuego sensorDeTeclasJuego) {
 		//TODO Necesito recibir posicion y sprite como parametro
-		sensorDeTeclasJuego = new SensorDeTeclasJuego(); 
+		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		//TODO ¿Como hago para que esta instancia de sensor este en FRAME?
 		jugador = new Jugador(posicion); //TODO Aca paso la pos inicial como parametro
 		velocidadHorizontal = 0;

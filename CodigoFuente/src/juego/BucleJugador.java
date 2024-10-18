@@ -12,17 +12,17 @@ public class BucleJugador implements Runnable{
 	//Variables
 	private boolean running;
 	
-	private Juego juego;
+	private Partida partida;
 	
 	//Componentes
 	private Thread thread;
 	
-	public BucleJugador(Juego juego) {
-		initialize(juego);
+	public BucleJugador(Partida partida) {
+		initialize(partida);
 	}
 	
-	private void initialize(Juego juego) {
-		this.juego = juego;
+	private void initialize(Partida partida) {
+		this.partida = partida;
 		start();
 	}
 	
@@ -86,7 +86,7 @@ public class BucleJugador implements Runnable{
 
 	
 	private void tick() {
-		juego.actualizar();
+		partida.actualizar();
 	}
 	
 	private void render() {

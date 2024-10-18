@@ -2,6 +2,9 @@ package juego;
 
 import java.util.ArrayList;
 
+import elementos.entidades.Jugable;
+import sensoresDeTeclas.SensorDeTeclasJuego;
+import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
 
 public class Juego {
@@ -10,27 +13,29 @@ public class Juego {
 	
 	private static Juego juego;
 	
-	//private BucleJuego bucleJuego;
-	
-	private BucleJugador bucleJugador;
-	
-	private CoordinadorActualizacionesJugador coordinadorActualizacionesJugador;
+	private BucleJuego bucleJuego;
 	
 	private ControladorVistas controladorVistas;
+	
+	private Partida partida;
 	
 	public static void main(String args[]) {
 		juego = new Juego();
 		//juego.bucleJuego = new BucleJuego();
-		juego.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador();
-		juego.controladorVistas = new ControladorVistas();
-		juego.bucleJugador = new BucleJugador(juego);
+		juego.controladorVistas = new ControladorVistas(juego);
+		juego.bucleJuego = new BucleJuego(juego);
 	}
 	
 	public void actualizar() {
-		coordinadorActualizacionesJugador.actualizar();
+		//TICK
 	}
 	
 	public void render() {
-		//controladorVistas.actualizar();
+		//TICK
+	}
+
+	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego) {
+		partida = new Partida(sensorDeTeclasJuego);
+		return partida.obtenerJugador();
 	}
 }

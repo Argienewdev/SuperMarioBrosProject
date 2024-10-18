@@ -13,7 +13,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	
 	private HUD HUD;
 	
-	
 	private PantallaDeJuego pantallaDeJuego;
 	
 	private PantallaFinal pantallaFinal;
@@ -21,18 +20,23 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	private PantallaInicial pantallaInicial;
 	
 	private SensorDeTeclasMenu sensorDeTeclasMenu;
+	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	protected Juego juego;	
 
 	
-	public ControladorVistas(){
+	public ControladorVistas(Juego juego){
 		pantallaInicial= new PantallaInicial();
 		pantallaFinal= new PantallaFinal();
 		pantallaDeJuego= new PantallaDeJuego();
+		sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		sensorDeTeclasMenu = new SensorDeTeclasMenu();
+		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);
 		RegistrarOyenteInicial();
+		accionarInicioJuego();
 	}
 	
 	public void configurarVentana(){
@@ -53,12 +57,10 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	}
 	
 	public void RegistrarOyenteInicial(){
-		sensorDeTeclasMenu= new SensorDeTeclasMenu();
 		ventana.addKeyListener(sensorDeTeclasMenu);
 	}
 	
 	public void RegistrarOyenteJuego(){
-		sensorDeTeclasJuego= new SensorDeTeclasJuego();
 		ventana.removeKeyListener(sensorDeTeclasMenu);
 		ventana.addKeyListener(sensorDeTeclasJuego);
 	}
