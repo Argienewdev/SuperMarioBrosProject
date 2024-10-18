@@ -77,7 +77,7 @@ public class VisitorBloqueDePregunta implements Visitante {
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		
 	}
 

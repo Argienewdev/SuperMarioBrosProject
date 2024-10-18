@@ -84,7 +84,7 @@ public class VisitorEstrella implements Visitante{
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		
 		
 	}

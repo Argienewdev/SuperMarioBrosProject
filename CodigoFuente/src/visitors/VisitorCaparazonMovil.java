@@ -87,7 +87,7 @@ public class VisitorCaparazonMovil implements Visitante{
 	}
 
 	
-	public void visitarMonedas(Moneda moneda) {
+	public void visitarMonedas(Monedas moneda) {
 		
 		
 	}
