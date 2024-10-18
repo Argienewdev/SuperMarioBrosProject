@@ -1,0 +1,5 @@
+package elementos.personaje;
+
+public interface MarioState {
+
+}

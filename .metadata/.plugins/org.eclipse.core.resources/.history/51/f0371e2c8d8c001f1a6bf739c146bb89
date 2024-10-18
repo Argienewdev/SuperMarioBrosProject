@@ -1,0 +1,73 @@
+package fabricas;
+import java.util.Vector;
+
+import elementos.*;
+import visitors.Visitante;
+
+import java.util.Vector;
+
+import elementos.enemigos.*;
+import elementos.entidades.*;
+import elementos.personajes.ContextoMario;
+import elementos.personajes.MarioDefault;
+import elementos.personajes.MarioFuego;
+import elementos.personajes.MarioInvulnerable;
+import elementos.personajes.MarioState;
+import elementos.personajes.SuperMario;
+import elementos.plataformas.*;
+import elementos.powerUps.*;
+import observers.ObserverGrafico;
+
+public class FabricaEntidades {
+    
+    protected FabricaSprites fabricaSprites;
+
+    public FabricaEntidades(FabricaSprites fabricaSprites) {
+        this.fabricaSprites = fabricaSprites;
+    }
+    
+    public ContextoMario getContextoMario(Sprite sprite, Vector<Integer> posicion, 
+    									  Visitante visitor, int velocidad, 
+    									  Vector<Integer> direccion, 
+			 							  ObserverGrafico observerGrafico, int vidas, 
+			 							  MarioState estado) {
+    	return new ContextoMario(sprite, posicion, visitor, velocidad, direccion, observerGrafico, vidas, estado);
+    }
+    
+    public MarioDefault getMarioDefault(ContextoMario contexto) {
+    	return new MarioDefault(contexto);
+    }
+    
+    public SuperMario getSuperMario(ContextoMario contexto) {
+    	return new SuperMario(contexto);
+    }
+    
+    public MarioInvulnerable getMarioInvulnerable(ContextoMario contexto) {
+    	return new MarioInvulnerable(contexto);
+    }
+    
+    public MarioFuego getMarioFuego(ContextoMario contexto) {
+    	return new MarioFuego(contexto);
+    }
+    
+    public Monedas getMonedas(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+			   				  int velocidad, Vector<Integer> direccion, 
+			   				  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Monedas(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+    public Estrella getEstrella(Sprite sprite, Vector<Integer> posicion, Visitante visitor,
+						   		int velocidad, Vector<Integer> direccion, 
+						   		ObserverGrafico observerGrafico, int puntosOtorgados) {
+    	return new Estrella(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+
+    public ChampinionVerde getChampinionVerde(Sprite sprite, Vector<Integer> posicion, 
+    										  Visitante visitor, int velocidad, 
+    										  Vector<Integer> direccion, 
+    										  ObserverGrafico observerGrafico, int puntosOtorgados) {
+    		return new ChampinionVerde(sprite, posicion, visitor, velocidad, direccion, observerGrafico, puntosOtorgados);
+    }
+    
+}
+

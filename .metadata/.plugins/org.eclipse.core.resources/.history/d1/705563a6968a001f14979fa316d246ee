@@ -1,0 +1,27 @@
+package elementos.powerUp;
+
+import java.util.Vector;
+
+import elementos.entidades.NoJugable;
+import fabricas.Sprite;
+import observers.ObserverGrafico;
+import visitors.Visitante;
+
+public abstract class PowerUp extends NoJugable {
+
+	protected int puntos;
+	
+	public PowerUp(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+				   int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico,
+			int velocidad, int puntos) {
+		super(sprite, posicion, visitor, direccion, velocidad);
+		this.puntos=puntos;
+	}
+	
+	public int getPuntos() {
+		return puntos;
+	}
+	
+	public abstract void aceptarVisitante(Visitante visitante);
+	
+}

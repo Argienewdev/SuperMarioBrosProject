@@ -1,0 +1,26 @@
+package elementos.personaje;
+
+import java.util.Vector;
+
+import elementos.entidades.Jugable;
+import fabricas.Sprite;
+import visitors.Visitante;
+
+public class ContextoMario extends Jugable {
+
+	private MarioState estadoMario;
+	
+	public ContextoMario(Sprite sprite, Vector<Integer> posicion, Visitante visitor, 
+						 int velocidad, Vector<Integer> direccion, ObserverGrafico observerGrafico,
+						 int vidas, MarioState estadoMario) {
+		super(sprite, posicion, visitor, velocidad, direccion, observerGrafico);
+		this.estadoMario=estadoMario;
+	}
+	
+	public void cambiarEstado(MarioState estadoMario) {
+		this.estadoMario=estadoMario;
+	}
+	
+	
+
+}

@@ -1,0 +1,17 @@
+package fabricas;
+
+import juego.Silueta;
+
+public class FabricaSiluetaModoAlternativo extends FabricaSilueta {
+
+	public FabricaSiluetaModoAlternativo(String rutaACarpeta) {
+		super(rutaACarpeta);
+	}
+
+	@Override
+	public Silueta getSilueta() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
