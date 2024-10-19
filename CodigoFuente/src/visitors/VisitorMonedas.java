@@ -107,20 +107,23 @@ public class VisitorMonedas implements Visitante {
 
 	@Override
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioInv.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorInvencible();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioFuego.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorFuego();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = superMario.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorSuper();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
