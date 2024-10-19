@@ -1,5 +1,6 @@
 package visitors;
 
+import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
 import elementos.enemigos.Goomba;
@@ -29,167 +30,158 @@ import elementos.powerUps.Monedas;
 import elementos.powerUps.SuperChampinion;
 
 public class VisitorContextoKoopaTroopa implements Visitante {
+	
+	protected ContextoKoopaTroopa miEntidad;
+	
+	public VisitorContextoKoopaTroopa (ContextoKoopaTroopa miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(buzzy);
 		
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(spiny);
 		
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(goomba);
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(lakitu);
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(planta);
 	}
 
 	@Override
 	public void visitar(Fireball fireball) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(fireball);
 	}
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas monedas) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(monedas);
 	}
 
 	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(marioNormal.getContext());
 		
 	}
 
 	@Override
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(marioInv.getContext());
 		
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(marioFuego.getContext());
 		
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(superMario.getContext());
 		
 	}
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
+		aVisitorConcreto(bloquePregunta);
 		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(ladrillo);
 	}
 
 	@Override
 	public void visitar(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(vacio);
 	}
 
 	@Override
 	public void visitar(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(princesa);
 	}
 
 	@Override
 	public void visitar(Bandera bandera) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(bandera);
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(tuberia);
 	}
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(bloqueSolido);
 	}
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
+		aVisitorConcreto(contextoKoopa);
 	}
-
+	
+	private void aVisitorConcreto (ElementoDeJuego elemento) {
+		miEntidad.aceptarVisitante(elemento.getVisitor());
+		elemento.aceptarVisitante(miEntidad.getVisitor());
+	}
 }
