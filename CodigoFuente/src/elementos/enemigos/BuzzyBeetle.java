@@ -16,7 +16,7 @@ public class BuzzyBeetle extends Enemigo {
 	
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarBuzzyBeetle(this);
+		visitante.visitar(this);
 	}
 
 }

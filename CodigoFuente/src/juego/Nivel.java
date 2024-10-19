@@ -1,3 +1,4 @@
+
 package juego;
 
 import java.awt.Point;
@@ -55,11 +56,7 @@ public class Nivel {
 	
 	@SuppressWarnings("exports")
 	public void setMario(ContextoMario mario) {
-<<<<<<< HEAD
-		this.mario=mario;
-=======
 		this.mario = mario;
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
 		agregarElementoDeJuegoALaMatriz(mario);
 	}
 	
@@ -96,18 +93,8 @@ public class Nivel {
 		return this.enemigos;
 	}
 	
-<<<<<<< HEAD
-	public void inicializarMatriz() {
-		int filas = obtenerFilasMatriz();
-		int columnas = obtenerColumnasMatriz();
-	}
-	
-	@SuppressWarnings("exports")
-	public ContextoMario setMario() {
-=======
 	@SuppressWarnings("exports")
 	public ContextoMario getMario() {
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
 		return this.mario;
 	}
 		

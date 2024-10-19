@@ -14,10 +14,6 @@ public abstract class Entidad extends ElementoDeJuego {
     
     protected ObserverGrafico observerGrafico;
     
-    protected Nivel miNivel;
-    
-    protected Rectangle hitbox;
-
     public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 	}
@@ -26,18 +22,11 @@ public abstract class Entidad extends ElementoDeJuego {
         this.velocidadDireccional = velocidadDireccional;
     }
     
-    public void setNivel (Nivel nivel) {
-    	this.miNivel = nivel;
-    }
-    
     
     public Point getVelocidadDireccional() {
         return this.velocidadDireccional;
     }
     
-    public Nivel getNivel() {
-    	return miNivel;
-    }
     
     public void moverADerecha (Point dir) {
     	setVelocidadDireccional(dir);

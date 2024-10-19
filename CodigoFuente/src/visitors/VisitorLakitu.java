@@ -1,3 +1,4 @@
+
 package visitors;
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
@@ -155,9 +156,6 @@ public class VisitorLakitu implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
-<<<<<<< HEAD
-	}
-=======
 	}
 
 	@Override
@@ -173,4 +171,3 @@ public class VisitorLakitu implements Visitante{
 	}
 
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52

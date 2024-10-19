@@ -1,3 +1,4 @@
+
 package visitors;
 
 import elementos.enemigos.*;
@@ -8,83 +9,6 @@ import elementos.powerUps.*;
 import juego.Nivel;
 
 public class VisitorFireball implements Visitante {
-<<<<<<< HEAD
-	
-	protected Fireball miEntidad;
-	
-	public VisitorFireball (Fireball miEntidad) {
-		this.miEntidad = miEntidad;
-	}
-
-	@Override
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-		int puntos = buzzy.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = buzzy.getNivel();
-		nivel.removeEnemigo(buzzy);
-		
-	}
-
-	@Override
-	public void visitarSpiny(Spiny spiny) {
-		int puntos = spiny.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = spiny.getNivel();
-		nivel.removeEnemigo(spiny);
-	}
-
-	@Override
-	public void visitarGoomba(Goomba goomba) {
-		int puntos = goomba.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = goomba.getNivel();
-		nivel.removeEnemigo(goomba);
-		
-	}
-
-	@Override
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
-		EstadoKoopa estado = new KoopaCaparazonMovil();
-		contexto.cambiarEstado(estado);
-		
-	}
-
-	@Override
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		ContextoKoopaTroopa contexto = koopaMovil.getContext();
-		int puntos = contexto.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = contexto.getNivel();
-		nivel.removeEnemigo(contexto);
-	}
-
-	@Override
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		ContextoKoopaTroopa contexto = koopaDefault.getContext();
-		EstadoKoopa estado = new KoopaCaparazonEstatico();
-		contexto.cambiarEstado(estado);
-		
-	}
-
-	@Override
-	public void visitarLakitu(Lakitu lakitu) {
-		int puntos = lakitu.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = lakitu.getNivel();
-		nivel.removeEnemigo(lakitu);
-		
-	}
-
-	@Override
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		int puntos = planta.getPuntosOtorgadosPorEliminacion();
-		miEntidad.obtenerJugador().ganarPuntos(puntos);
-		Nivel nivel = planta.getNivel();
-		nivel.removeEnemigo(planta);
-		
-	}
-=======
 
     protected Fireball miEntidad;
 
@@ -116,7 +40,6 @@ public class VisitorFireball implements Visitante {
     public void visitar(KoopaDefault koopaDefault) {
         koopaDefault.getContext().cambiarEstado(new KoopaCaparazonEstatico());
     }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
 
     public void visitar(Lakitu lakitu) {
         otorgarPuntosYEliminar(lakitu);

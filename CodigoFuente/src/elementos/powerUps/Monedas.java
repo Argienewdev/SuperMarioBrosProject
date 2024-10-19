@@ -28,7 +28,7 @@ public class Monedas extends PowerUp {
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarMonedas(this);
+		visitante.visitar(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {

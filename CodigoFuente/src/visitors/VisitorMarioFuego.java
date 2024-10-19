@@ -5,46 +5,72 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import juego.Nivel;
 public class VisitorMarioFuego implements Visitante{
+	
+	protected MarioFuego miEntidad;
+	
+	@SuppressWarnings("exports")
+	public VisitorMarioFuego (MarioFuego miEntidad) {
+		this.miEntidad = miEntidad;
+	}
+	
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
+		int puntosGanados = buzzy.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contexto = miEntidad.getContext();
+		contexto.ganarPuntos(puntosGanados);
+		Nivel nivel = buzzy.getNivel();
+		nivel.removeEnemigo(buzzy);
 		
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+		int puntosGanados = goomba.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contexto = miEntidad.getContext();
+		contexto.ganarPuntos(puntosGanados);
+		Nivel nivel = goomba.getNivel();
+		nivel.removeEnemigo(goomba);
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
+		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
+		EstadoKoopa estado = new KoopaCaparazonMovil();
+		contexto.cambiarEstado(estado);
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
+		ContextoKoopaTroopa contexto = koopaMovil.getContext();
+		int puntosGanados = contexto.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contextoM = miEntidad.getContext();
+		contextoM.ganarPuntos(puntosGanados);
+		contexto.getNivel().removeEnemigo(contexto);
 		
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
+		ContextoKoopaTroopa contexto = koopaDefault.getContext();
+		EstadoKoopa estado = new KoopaCaparazonEstatico();
+		contexto.cambiarEstado(estado);
 		
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
+		int puntosGanados = lakitu.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contexto = miEntidad.getContext();
+		contexto.ganarPuntos(puntosGanados);
+		Nivel nivel = lakitu.getNivel();
+		nivel.removeEnemigo(lakitu);
 		
 	}
 
@@ -62,32 +88,44 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = miEntidad.getContext();
+		EstadoMario estado = new SuperMario();
+		contexto.cambiarEstado(estado);
+		int puntosGandos = superChamp.obtenerPuntosPorFuego();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = miEntidad.getContext();
+		int puntosGandos = flor.obtenerPuntosPorFuego();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = miEntidad.getContext();
+		contexto.ganarVida();
+		int puntosGandos = champVerde.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = miEntidad.getContext();
+		EstadoMario estado = new MarioInvulnerable();
+		contexto.cambiarEstado(estado);
+		int puntosGandos = estrella.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = miEntidad.getContext();
+		int puntosGandos = moneda.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
@@ -116,13 +154,16 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if (!bloquePregunta.estaVacio()) 
+			bloquePregunta.liberarPowerUp();
+		Nivel nivel = bloquePregunta.getNivel();
+		nivel.removePlataforma(bloquePregunta);
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
+		Nivel nivel = ladrillo.getNivel();
+		nivel.removePlataforma(ladrillo);
 		
 	}
 
@@ -154,10 +195,9 @@ public class VisitorMarioFuego implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
-<<<<<<< HEAD
+
 	}
-=======
-	}
+
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
@@ -170,6 +210,4 @@ public class VisitorMarioFuego implements Visitante{
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52

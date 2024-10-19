@@ -26,7 +26,7 @@ public class VisitorMarioDefault implements Visitante {
 	}
 	
 	public void visitar(Spiny spiny) {
-		//Solo es afectado por MarioFuego
+		//Solo es afectado por FireBall
 	}
 
 	
@@ -54,7 +54,10 @@ public class VisitorMarioDefault implements Visitante {
 	
 	public void visitar(KoopaCaparazonMovil koopaMovil) {
 		ContextoKoopaTroopa contexto = koopaMovil.getContext();
-		contexto.getNivel().removeEnemigo(contexto);
+		int puntosGanados = contexto.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contextoM = miEntidad.getContext();
+		contextoM.ganarPuntos(puntosGanados);
+		contexto.getNivel().removeEnemigo(contexto);;
 	}
 	
 	public void visitar(Lakitu lakitu) {
@@ -66,7 +69,7 @@ public class VisitorMarioDefault implements Visitante {
 	}
 
 	public void visitar(PiranhaPlant planta) {
-		//Solo es afectado por MarioFuego
+		//Solo es afectado por una Fireball
 	}
 
 	public void visitar(Fireball fireball) {
@@ -77,7 +80,7 @@ public class VisitorMarioDefault implements Visitante {
 		ContextoMario contexto = miEntidad.getContext();
 		EstadoMario estado = new SuperMario();
 		contexto.cambiarEstado(estado);
-		int puntosGandos = superChamp.getPuntosOtorgados();
+		int puntosGandos = superChamp.obtenerPuntosPorDefault();
 		contexto.ganarPuntos(puntosGandos);
 	}
 
@@ -85,14 +88,13 @@ public class VisitorMarioDefault implements Visitante {
 		ContextoMario contexto = miEntidad.getContext();
 		EstadoMario estado = new MarioFuego();
 		contexto.cambiarEstado(estado);
-		int puntosGandos = flor.getPuntosOtorgados();
+		int puntosGandos = flor.obtenerPuntosPorDefault();
 		contexto.ganarPuntos(puntosGandos);
 	}
 
 	public void visitar(ChampinionVerde champVerde) {
 		ContextoMario contexto = miEntidad.getContext();
-		contexto.ganarVida();
-		int puntosGandos = champVerde.getPuntosOtorgados();
+		int puntosGandos = champVerde.obtenerPuntosPorDefault();
 		contexto.ganarPuntos(puntosGandos);
 	}
 
@@ -101,16 +103,14 @@ public class VisitorMarioDefault implements Visitante {
 		ContextoMario contexto = miEntidad.getContext();
 		EstadoMario estado = new MarioInvulnerable();
 		contexto.cambiarEstado(estado);
-		int puntosGandos = estrella.getPuntosOtorgados();
+		int puntosGandos = estrella.obtenerPuntosPorDefault();
 		contexto.ganarPuntos(puntosGandos);
 	}
 
 	
 	public void visitar(Monedas moneda) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = moneda.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
-		miEntidad.incrementarMonedas(moneda.getMonedas());
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 	
 	public void visitar(MarioDefault marioNormal) {	

@@ -3,6 +3,7 @@ package elementos;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import juego.Nivel;
 import visitors.*;
 
 public abstract class ElementoDeJuego implements Visitado {
@@ -14,6 +15,9 @@ public abstract class ElementoDeJuego implements Visitado {
 	protected Point posicion;
 	
 	protected Visitante visitor;
+	
+    protected Nivel miNivel;
+    
 	
 	@SuppressWarnings("exports")
 	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitor) {
@@ -35,6 +39,10 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.visitor = visitor;
 	}
 	
+	public void setNivel (Nivel nivel) {
+		this.miNivel = nivel;
+	}
+	
 	public Sprite getSprite() {
 		return this.sprite;
 	}
@@ -52,6 +60,9 @@ public abstract class ElementoDeJuego implements Visitado {
 	public Visitante getVisitor() {
 		return this.visitor;
 	}
+    public Nivel getNivel() {
+    	return miNivel;
+    }
 	
 	public int obtenerAncho() {
 		return 50;

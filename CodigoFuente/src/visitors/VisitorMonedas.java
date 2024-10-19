@@ -1,10 +1,17 @@
+
 package visitors;
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorMonedas implements Visitante{
+public class VisitorMonedas implements Visitante {
+	
+	protected Monedas miEntidad;
+	
+	public VisitorMonedas (Monedas miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
@@ -92,7 +99,9 @@ public class VisitorMonedas implements Visitante{
 
 	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = marioNormal.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 
@@ -154,9 +163,6 @@ public class VisitorMonedas implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
-<<<<<<< HEAD
-	}
-=======
 	}
 	
 	@Override
@@ -172,4 +178,3 @@ public class VisitorMonedas implements Visitante{
 	}
 
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
