@@ -83,9 +83,9 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getKoopaTroopaCaparazonEstático();
 	
-	public abstract Sprite getGoombaQuieto();
+	public abstract Sprite getGoombaCaminandoPrimeraTransicion();
 	
-	public abstract Sprite getGoombaCaminando();
+	public abstract Sprite getGoombaCaminandoSegundaTransicion();
 	
 	public abstract Sprite getGoombaAplastado();
 
