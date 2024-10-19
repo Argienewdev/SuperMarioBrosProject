@@ -158,8 +158,9 @@ public class GeneradorDeNivel {
 	
 	public void agregarMarioAlNivel(Nivel nivel) {
 		Point posicionInicio = new Point(0,0);
-		Visitante visitorContextoMario = new VisitorContextoMario();
-		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, visitorContextoMario, null, 3);
+		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, 3);
+		Visitante visitorContextoMario = new VisitorContextoMario(mario);
+		mario.setVisitor(visitorContextoMario);
 		nivel.setMario(mario);
 	}
 	

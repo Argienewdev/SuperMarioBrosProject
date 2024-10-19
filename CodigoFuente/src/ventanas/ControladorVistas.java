@@ -56,7 +56,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
-		juego.crearPartida(sensorDeTeclasJuego, modo);
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
 	}

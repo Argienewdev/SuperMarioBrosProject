@@ -50,10 +50,13 @@ public class Juego {
 	}
 
 	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
-		if (modo.equals("Modo Original")) {
+		System.out.println("Modo recibido: [" + modo + "]");
+		if (modo.equals("Modo original")) {
+			System.out.println("hhh");
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoOriginal.png");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (modo.equals("Modo Alternativo")) {
+		} else if (modo.equals("Modo alternativo")) {
+			System.out.println("iiii");
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoAlternativo.png");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}

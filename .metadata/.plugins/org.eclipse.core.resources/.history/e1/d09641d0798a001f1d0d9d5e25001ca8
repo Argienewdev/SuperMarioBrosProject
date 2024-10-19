@@ -1,5 +1,0 @@
-package elementos.enemigos;
-
-public interface KoopaState {
-	public void aceptarVisitante(Visitante visitante);
-}

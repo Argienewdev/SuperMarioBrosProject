@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\Users\aagus\OneDrive\Documentos\Universidad\materias\TDP\proyecto\super_mario_bros\p-comision-14\.metadata\.plugins\org.eclipse.jdt.core
-3959137331.index
-1865797976.index
