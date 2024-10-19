@@ -2,7 +2,7 @@ package juego;
 
 import java.awt.Point;
 
-public class Jugador {
+public class ActualizadorDePosicionDeJugador {
 	
 	private Point posicion;
 
@@ -12,9 +12,9 @@ public class Jugador {
 	
 	private GestorDeColisiones gestorDeColisiones;
 	
-	public Jugador(Point posicion, GestorDeColisiones gestorDeColisiones) {
-		posicionX = posicion.x;
-		posicionY = posicion.y;
+	public ActualizadorDePosicionDeJugador(Point posicion, GestorDeColisiones gestorDeColisiones) {
+		this.posicionX = posicion.x;
+		this.posicionY = posicion.y;
 		this.posicion = posicion;
 		this.gestorDeColisiones = gestorDeColisiones;
 	}

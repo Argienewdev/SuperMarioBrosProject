@@ -3,6 +3,7 @@ package ventanas;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import elementos.entidades.Jugable;
 import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
@@ -13,6 +14,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	
 	private HUD HUD;
 	
+	private Jugable marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -54,6 +56,8 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego);
+		pantallaDeJuego.registrarJugable(marioJugable);
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -116,7 +120,14 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	}
 	
 	public void refrescar(){
-		pantallaInicial.actualizarFoco();
+		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
+			pantallaInicial.actualizarFoco();
+		}else {
+			pantallaDeJuego.refrescar();
+		}
+		if(sensorDeTeclasJuego.obtenerDPresionada()) {
+			System.out.println("D");
+		}
 		ventana.revalidate();
 		ventana.repaint();
 	}

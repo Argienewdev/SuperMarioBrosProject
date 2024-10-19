@@ -99,9 +99,11 @@ public class Nivel {
 	}
 		
 	public void inicializarMatriz(Silueta silueta) {
+		//TODO la silueta da tamaño 0 asi que vamos a elegir un tamaño arbitrario por testing
+		this.matrizElementosDeJuego = new ElementoDeJuego[8][8];
 		int filas = silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
 		int columnas = silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
-		this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
+		//this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	
 	public void agregarElementoDeJuegoALaMatriz(ElementoDeJuego elementoDeJuego) {

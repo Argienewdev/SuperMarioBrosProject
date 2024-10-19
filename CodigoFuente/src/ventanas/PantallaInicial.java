@@ -31,12 +31,12 @@ public class PantallaInicial extends JPanel {
 	
 	protected Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
 	
-	protected ControladorDeVistas controlador;
+	protected ControladorVistas controlador;
 	
 	Fuentes tipoFuentes;
 	
-	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorDeVistas controladorDeVistas){
-		controlador= controladorDeVistas;
+	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
+		controlador= controladorVistas;
 		this.sensor = sensor;
 		fondo = new JLabel();
 		modo1 = new JLabel("MODO DE JUEGO 1");

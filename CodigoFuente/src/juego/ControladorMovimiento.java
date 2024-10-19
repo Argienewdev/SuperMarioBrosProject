@@ -3,6 +3,7 @@ package juego;
 
 import java.awt.Point;
 
+import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class ControladorMovimiento {
@@ -18,21 +19,25 @@ public class ControladorMovimiento {
 	
 	private int velocidadVertical;
 	
+	private Point posicion;
+	
 	private Point velocidad;
 	
-	private Jugador jugador;
+	private ActualizadorDePosicionDeJugador actualizadorDePosicionDeJugador;
+	
+	private Jugable marioJugable;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	public ControladorMovimiento(Point posicion, SensorDeTeclasJuego sensorDeTeclasJuego) {
-		//TODO Necesito recibir posicion y sprite como parametro
+	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		//TODO ¿Como hago para que esta instancia de sensor este en FRAME?
-		jugador = new Jugador(posicion); //TODO Aca paso la pos inicial como parametro
+		this.marioJugable = marioJugable; 
 		velocidadHorizontal = 0;
 		velocidadVertical = 0;
+		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
 		velocidad = new Point(0, 0);
 		saltando = false;
+		actualizadorDePosicionDeJugador = new ActualizadorDePosicionDeJugador(posicion, null);
 	}
 	
 	public Point actualizarVelocidad() {
@@ -41,7 +46,7 @@ public class ControladorMovimiento {
 	}
 	
 	public Point actualizarPosicion() {
-		Point posicion = jugador.actualizar(velocidad);
+		posicion = actualizadorDePosicionDeJugador.actualizar(velocidad);
 		reiniciarVelocidadHorizontal();
 		return posicion;
 	}
@@ -63,7 +68,7 @@ public class ControladorMovimiento {
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(jugador.marioEnElPiso()) {
+		if(actualizadorDePosicionDeJugador.marioEnElPiso()) {
 			reiniciarVelocidadVertical();
 			saltando = false;
 		}else {

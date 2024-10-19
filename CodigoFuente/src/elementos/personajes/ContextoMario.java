@@ -28,7 +28,7 @@ public class ContextoMario extends Jugable {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarContextoMario(this);
+		//visitante.visitarContextoMario(this);
 	}
 	
 }

@@ -10,19 +10,11 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class CoordinadorActualizacionesJugador {
 	
-	private static final int POSICION_INICIAL_X = 50;
-	
-	private static final int POSICION_INICIAL_Y = 400;
-	
-	private FabricaEntidades fabricaEntidades;
-	
 	private ControladorMovimiento controladorMovimiento;
 	
 	private ActualizadorGraficoJugador actualizadorGraficoJugador;
 	
-	private EntidadJugador entidadJugador;
-	
-	private Jugable jugador;
+	private Jugable marioJugable;
 	
 	private Point posicion;
 	
@@ -30,15 +22,12 @@ public class CoordinadorActualizacionesJugador {
 	
 	private Sprite marioSprite;
 	
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego) {
-		actualizadorGraficoJugador = new ActualizadorGraficoJugador();
-		posicion = new Point(POSICION_INICIAL_X,POSICION_INICIAL_Y);
-		velocidad = new Point(0,0);
-		marioSprite = actualizadorGraficoJugador.obtenerSpriteInicial();
-		controladorMovimiento = new ControladorMovimiento(posicion, sensorDeTeclasJuego);
-		//TODO todavia no me cierra que mario este aca en esta clase
-		//TODO el jugador es creado por el coordinador de actualizaciones? no creo
-		entidadJugador = new EntidadJugador(posicion, marioSprite);
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable marioJugable) {
+		this.actualizadorGraficoJugador = new ActualizadorGraficoJugador();
+		this.posicion = new Point(marioJugable.getPosicion().x,marioJugable.getPosicion().y);
+		this.velocidad = new Point(0,0);
+		this.marioSprite = marioJugable.getSprite();
+		this.controladorMovimiento = new ControladorMovimiento(marioJugable, sensorDeTeclasJuego);
 	}
 	
 	private Point actualizarVelocidad() {
@@ -66,7 +55,4 @@ public class CoordinadorActualizacionesJugador {
 		actualizarMarioLabel();
 	}
 	
-	public Jugable obtenerJugador() {
-		return jugador;
-	}
 }

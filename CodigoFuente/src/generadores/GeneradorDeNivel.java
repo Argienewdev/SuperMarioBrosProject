@@ -21,6 +21,8 @@ public class GeneradorDeNivel {
 	
 	public GeneradorDeNivel(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
+		//TODO forzando modo 1
+		this.fabricaSilueta = new FabricaSiluetaModoOriginal("../imagenes/siluetas/siluetaModoOriginal.png");
 	}
 	
 	public Nivel generarNivel(String rutaTxtNivel){
@@ -32,7 +34,7 @@ public class GeneradorDeNivel {
 		//Creo a mario al comienzo del nivel
 		Point posicionInicio=new Point(0,0);
 		int vidas=3;
-		ContextoMario mario=fabricaEntidades.getContextoMario(posicionInicio, null, null, vidas);
+		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, vidas);
 		nivel.setMario(mario);
 		try {
 			
@@ -160,7 +162,6 @@ public class GeneradorDeNivel {
 				error.printStackTrace();
 			}
 		}
-		
 		return nivel;
 	}
 	
