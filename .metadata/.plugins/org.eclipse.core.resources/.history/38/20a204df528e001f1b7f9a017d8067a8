@@ -19,8 +19,18 @@ public class GeneradorDeNivel {
 	
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	public GeneradorDeNivel(FabricaEntidades fabricaEntidades) {
+	private enum Modo {
+		modoOriginal,
+		modoAlternativo
+	}
+	
+	public GeneradorDeNivel(FabricaEntidades fabricaEntidades, Modo modo) {
 		this.fabricaEntidades = fabricaEntidades;
+		if (modo == modoOriginal) {
+			this.fabricaSilueta = new FabricaSiluetaModoOriginal("../imagenes/siluetas/siluetaModoOriginal.png");
+		} else if (modo == 2) {
+			this.fabricaSilueta = new FabricaSiluetaModoOriginal("../imagenes/siluetas/siluetaModoAlternativo.png");
+		}
 	}
 	
 	public Nivel generarNivel(String rutaTxtNivel){

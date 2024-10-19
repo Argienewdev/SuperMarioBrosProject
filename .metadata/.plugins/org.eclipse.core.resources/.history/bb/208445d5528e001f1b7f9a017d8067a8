@@ -58,7 +58,7 @@ public class Juego {
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades);
+		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, modo);
 		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel);
 		return partida.obtenerJugador();
 	}
