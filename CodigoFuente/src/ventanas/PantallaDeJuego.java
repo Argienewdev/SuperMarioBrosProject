@@ -7,12 +7,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import elementos.entidades.Jugable;
+
 public class PantallaDeJuego extends JPanel {
 	
 	private Dimension size;
 	
+	private Jugable marioJugable;
 	
-	private JLabel mario;
+	private JLabel marioLabel;
 	
 	private JLabel fondo;
 	
@@ -31,7 +34,6 @@ public class PantallaDeJuego extends JPanel {
 		setPreferredSize(size);
 		setMaximumSize(size);
 		setMinimumSize(size);
-		establecerFondo();
 	}
 	
 	protected void establecerFondo(){
@@ -45,14 +47,18 @@ public class PantallaDeJuego extends JPanel {
 		 add(fondo);
 	}
 	
-	public void correr(){
-		int x = fondo.getX();
-	    int y = fondo.getY();
-	    x -= 10;
-	    // Si el fondo se ha desplazado completamente fuera del panel, reiniciar la posición
-	    if (x <= -size.width/2) {
-	        x = 0;
-	    }
-	    fondo.setLocation(x, y);
+	public void registrarJugable(Jugable jugable) {
+		marioJugable = jugable;
+		ImageIcon marioIcono = new ImageIcon(marioJugable.getSprite().getRutaImagen());
+		marioLabel = new JLabel(marioIcono);
+		marioLabel.setBounds(marioJugable.getPosicion().x, marioJugable.getPosicion().y, marioIcono.getIconWidth(), marioIcono.getIconHeight());
+		marioLabel.setVisible(true);
+		add(marioLabel);
+		establecerFondo();
+	}
+	
+	public void refrescar(){
+		marioLabel.setLocation(marioJugable.getPosicion());
+		repaint();
 	}
 }

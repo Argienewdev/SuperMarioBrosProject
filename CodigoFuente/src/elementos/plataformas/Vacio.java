@@ -12,7 +12,7 @@ public class Vacio extends Plataforma {
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarVacio(this);
+		visitante.visitar(this);
 	}
 
 }

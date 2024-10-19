@@ -6,7 +6,13 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorPiranhaPlant implements Visitante{
+public class VisitorPiranhaPlant implements Visitante {
+	
+	protected PiranhaPlant miEntidad;
+	
+	public VisitorPiranhaPlant (PiranhaPlant miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
@@ -92,28 +98,34 @@ public class VisitorPiranhaPlant implements Visitante{
 		
 	}
 
-	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioNormal.getContext();
+		if (contexto.getVidas() == 1) {
+			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+			contexto.perderPuntos(perdidaPuntos);
+		}
+		contexto.perderVida();
+			
 	}
 
-	@Override
+	
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
+	    
 	}
 
-	@Override
+	
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioFuego.getContext();
+		EstadoMario estado = new SuperMario();
+		contexto.cambiarEstado(estado);
 	}
 
-	@Override
+	
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = superMario.getContext();
+		EstadoMario estado = new MarioDefault();
+		contexto.cambiarEstado(estado);
+				
 	}
 
 	@Override
@@ -155,10 +167,6 @@ public class VisitorPiranhaPlant implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
-	}
-=======
 	}
 	
 	@Override
@@ -174,4 +182,4 @@ public class VisitorPiranhaPlant implements Visitante{
 	}
 	
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
+

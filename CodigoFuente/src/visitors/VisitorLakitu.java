@@ -6,7 +6,13 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorLakitu implements Visitante{
+public class VisitorLakitu implements Visitante {
+	
+	protected Lakitu miEntidad;
+	
+	public VisitorLakitu (Lakitu miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
@@ -94,7 +100,12 @@ public class VisitorLakitu implements Visitante{
 
 	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = marioNormal.getContext();
+		if (contexto.getVidas() == 1) {
+			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+			contexto.perderPuntos(perdidaPuntos);
+		}
+		contexto.perderVida();
 		
 	}
 
@@ -106,13 +117,17 @@ public class VisitorLakitu implements Visitante{
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = marioFuego.getContext();
+		EstadoMario estado = new SuperMario();
+		contexto.cambiarEstado(estado);
 		
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = superMario.getContext();
+		EstadoMario estado = new MarioDefault();
+		contexto.cambiarEstado(estado);
 		
 	}
 

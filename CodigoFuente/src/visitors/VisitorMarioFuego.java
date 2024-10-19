@@ -88,44 +88,33 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new SuperMario();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = superChamp.obtenerPuntosPorFuego();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = flor.obtenerPuntosPorFuego();
-		contexto.ganarPuntos(puntosGandos);
-		
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		ContextoMario contexto = miEntidad.getContext();
-		contexto.ganarVida();
-		int puntosGandos = champVerde.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = estrella.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = moneda.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 
 	@Override

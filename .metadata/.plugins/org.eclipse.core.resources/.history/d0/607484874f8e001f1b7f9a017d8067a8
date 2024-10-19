@@ -21,6 +21,14 @@ public class Partida {
 	private CoordinadorActualizacionesJugador coordinadorActualizacionesJugador;
 	
 	private GeneradorDeNivel generadorDeNivel;
+	
+	@SuppressWarnings("exports")
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
+		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego);
+		this.generadorDeNivel = generadorDeNivel;
+		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
+	}
 
 	private FabricaEntidades fabricaEntidades;
 	
@@ -30,13 +38,17 @@ public class Partida {
 	
 	private Nivel nivel;
 	
-	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		this.generadorDeNivel = generadorDeNivel;
-		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
-		this.nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
-		this.jugador = nivel.getMario();
+		//TODO la partida indica al nivel que se genere, luego pido al jugador para tenerlo y que 
+		//el controlador de vistas y el coordinador puedan acceder a el para alterarlo
+		this.fabricaSpritesModoAlternativo = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
+		this.fabricaSpritesModoOriginal = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+		//TODO Falta un condicional para ver que fabrica mandarle a la fabrica de entidades, la partida deberia saber el modo
+		this.fabricaEntidades = new FabricaEntidades(fabricaSpritesModoOriginal);
+		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades);
+		nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
+		jugador = nivel.getMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugador);
 		this.bucleJugador = new BucleJugador(this);
 	}

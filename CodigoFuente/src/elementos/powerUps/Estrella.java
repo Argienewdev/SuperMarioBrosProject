@@ -18,7 +18,7 @@ public class Estrella extends PowerUp {
 	
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarEstrella(this);
+		visitante.visitar(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {

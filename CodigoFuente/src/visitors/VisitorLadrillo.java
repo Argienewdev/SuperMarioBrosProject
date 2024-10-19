@@ -5,7 +5,11 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorLadrillo implements Visitante{
+public class VisitorLadrillo implements Visitante {
+	
+	public VisitorLadrillo() {
+		
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {

@@ -20,7 +20,7 @@ public class Lakitu extends Enemigo {
     
     @Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarLakitu(this);
+        visitante.visitar(this);
     }
     
 }

@@ -4,7 +4,13 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorKoopaDefault implements Visitante{
+public class VisitorKoopaDefault implements Visitante {
+	
+	protected KoopaDefault miEntidad;
+	
+	public VisitorKoopaDefault (KoopaDefault miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
@@ -90,29 +96,32 @@ public class VisitorKoopaDefault implements Visitante{
 		
 	}
 
-	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
-	}
+        ContextoMario contextoMario = marioNormal.getContext();
+        if (contextoMario.getVidas() == 1) {
+            ContextoKoopaTroopa contextoTroopa = miEntidad.getContext();
+            int perdidaPuntos = contextoTroopa.getPuntosSustraidosPorMuerteCausada();
+            contextoMario.perderPuntos(perdidaPuntos);
+        }
+        contextoMario.perderVida();
+    }
 
-	@Override
-	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void visitar(MarioInvulnerable marioInv) {
+    	
+    }
 
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void visitar(MarioFuego marioFuego) {
+        ContextoMario contexto = marioFuego.getContext();
+        EstadoMario estado = new SuperMario();
+        contexto.cambiarEstado(estado);
+    }
 
-	@Override
-	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void visitar(SuperMario superMario) {
+        ContextoMario contexto = superMario.getContext();
+        EstadoMario estado = new MarioDefault();
+        contexto.cambiarEstado(estado);
+    }
+
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {

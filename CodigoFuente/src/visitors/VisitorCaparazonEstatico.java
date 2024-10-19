@@ -67,6 +67,7 @@ public class VisitorCaparazonEstatico implements Visitante {
     }
 
     public void visitar(MarioInvulnerable marioInv) {
+    	
     }
 
     public void visitar(MarioFuego marioFuego) {

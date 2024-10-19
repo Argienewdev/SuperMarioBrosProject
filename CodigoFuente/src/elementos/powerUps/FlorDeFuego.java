@@ -14,7 +14,7 @@ public class FlorDeFuego extends PowerUp {
 	
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarFlorDeFuego(this);
+		visitante.visitar(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {

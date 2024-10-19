@@ -4,7 +4,14 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorPrincesa implements Visitante{
+import ventanas.ControladorVistas;
+public class VisitorPrincesa implements Visitante {
+	
+	protected ControladorVistas controlador;
+	
+	public VisitorPrincesa (ControladorVistas controlador) {
+		this.controlador = controlador;
+	}
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
 		// TODO Auto-generated method stub
@@ -91,25 +98,24 @@ public class VisitorPrincesa implements Visitante{
 
 	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
+		controlador.mostrarPantallaFinal();		
 	}
 
 	@Override
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
+		controlador.mostrarPantallaFinal();	
 		
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
+		controlador.mostrarPantallaFinal();	
 		
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
+		controlador.mostrarPantallaFinal();	
 		
 	}
 
@@ -152,10 +158,6 @@ public class VisitorPrincesa implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
-	}
-=======
 	}
 
 	@Override
@@ -171,4 +173,4 @@ public class VisitorPrincesa implements Visitante{
 	}
 	
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
+

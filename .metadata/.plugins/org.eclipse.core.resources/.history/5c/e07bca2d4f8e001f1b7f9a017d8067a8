@@ -56,6 +56,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
+<<<<<<< HEAD
 		switch(modo) {
 			case 1:
 				juego.crearPartida(sensorDeTeclasJuego,1);
@@ -66,8 +67,10 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 			default:
 				System.out.println("Modo invalido");
 		}
-		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+=======
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego);
 		pantallaDeJuego.registrarJugable(marioJugable);
+>>>>>>> origin/main
 	}
 	
 	public void RegistrarOyenteInicial(){

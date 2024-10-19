@@ -21,6 +21,17 @@ public class Partida {
 	private CoordinadorActualizacionesJugador coordinadorActualizacionesJugador;
 	
 	private GeneradorDeNivel generadorDeNivel;
+	
+	@SuppressWarnings("exports")
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
+		this.generadorDeNivel = generadorDeNivel;
+		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
+		nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
+		jugador = nivel.getMario();
+		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego);
+		this.bucleJugador = new BucleJugador(this);
+	}
 
 	private FabricaEntidades fabricaEntidades;
 	
@@ -29,17 +40,6 @@ public class Partida {
 	private FabricaSprites fabricaSpritesModoOriginal;
 	
 	private Nivel nivel;
-	
-	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
-		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		this.generadorDeNivel = generadorDeNivel;
-		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
-		this.nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
-		this.jugador = nivel.getMario();
-		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugador);
-		this.bucleJugador = new BucleJugador(this);
-	}
 	
 	public Jugable obtenerJugador() {
 		return jugador;

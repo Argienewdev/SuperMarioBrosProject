@@ -66,7 +66,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 			default:
 				System.out.println("Modo invalido");
 		}
-		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego);
 		pantallaDeJuego.registrarJugable(marioJugable);
 	}
 	

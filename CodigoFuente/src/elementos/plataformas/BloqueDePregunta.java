@@ -35,7 +35,7 @@ public class BloqueDePregunta extends BloqueSolido {
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarBloqueDePregunta(this);
+		visitante.visitar(this);
 	}
 
 	public boolean estaVacio() {
