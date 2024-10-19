@@ -4,7 +4,6 @@ import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
-import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -33,12 +32,7 @@ public class Partida {
 		//TODO la partida indica al nivel que se genere, luego pido al jugador para tenerlo y que 
 		//el controlador de vistas y el coordinador puedan acceder a el para alterarlo
 		this.fabricaSpritesModoAlternativo = new FabricaSpritesModoAlternativo("../imagenes/sprites");
-		this.fabricaSpritesModoOriginal = new FabricaSpritesModoOriginal("../imagenes/sprites");
-		// Falta un condicional para ver que fabrica mandarle a la fabrica de entidades, la partida deberia saber el modo
-		this.fabricaEntidades = new FabricaEntidades(fabricaSpritesModoOriginal);
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades);
-		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
-		//REVISAR
+		this.fabricaEntidadesModoOriginal = new FabricaSpritesModoriginal("../imagenes/sprites");
 		this.bucleJugador = new BucleJugador(this);
 	}
 	
