@@ -6,12 +6,10 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import juego.Nivel;
-import ventanas.ControladorVistas;
 
 public class VisitorMarioDefault implements Visitante {
 	
 	protected MarioDefault miEntidad;
-	protected ControladorVistas controlador;
 	
 	public VisitorMarioDefault (MarioDefault miEntidad) {
 		this.miEntidad = miEntidad;
@@ -57,7 +55,7 @@ public class VisitorMarioDefault implements Visitante {
 		int puntosGanados = contexto.getPuntosOtorgadosPorEliminacion();
 		ContextoMario contextoM = miEntidad.getContext();
 		contextoM.ganarPuntos(puntosGanados);
-		contexto.getNivel().removeEnemigo(contexto);;
+		contexto.getNivel().removeEnemigo(contexto);
 	}
 	
 	public void visitar(Lakitu lakitu) {
@@ -77,37 +75,28 @@ public class VisitorMarioDefault implements Visitante {
 	}
 
 	public void visitar(SuperChampinion superChamp) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new SuperMario();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = superChamp.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 	}
 
 	public void visitar(FlorDeFuego flor) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new MarioFuego();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = flor.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
+	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = champVerde.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
-	
+	@Override
 	public void visitar(Estrella estrella) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = estrella.obtenerPuntosPorDefault();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
-	
+	@Override
 	public void visitar(Monedas moneda) {
 		Nivel nivel = moneda.getNivel();
 		nivel.removePowerUps(moneda);

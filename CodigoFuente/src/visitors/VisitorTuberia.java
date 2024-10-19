@@ -153,12 +153,8 @@ public class VisitorTuberia implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
 	}
-=======
-	}
-
+	
 	@Override
 	public void visitar(ContextoMario contextoMario) {
 		// TODO Auto-generated method stub
@@ -172,4 +168,4 @@ public class VisitorTuberia implements Visitante{
 	}
 	
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
+

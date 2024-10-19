@@ -16,7 +16,7 @@ public class Spiny extends Enemigo {
 
     @Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarSpiny(this);
+        visitante.visitar(this);
     }
     
 }

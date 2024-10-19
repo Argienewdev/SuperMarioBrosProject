@@ -101,18 +101,23 @@ public class VisitorFlorDeFuego implements Visitante {
 		ContextoMario contexto = marioNormal.getContext();
 		EstadoMario estado = new MarioFuego();
 		contexto.cambiarEstado(estado);
+		int puntosGandos = miEntidad.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 
 	@Override
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioInv.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorInvencible();
+		contexto.ganarPuntos(puntosGandos);
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
+		ContextoMario contexto = marioFuego.getContext();
+		int puntosGandos = miEntidad.obtenerPuntosPorFuego();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 
@@ -121,6 +126,8 @@ public class VisitorFlorDeFuego implements Visitante {
 		ContextoMario contexto = superMario.getContext();
 		EstadoMario estado = new MarioFuego();
 		contexto.cambiarEstado(estado);
+		int puntosGandos = miEntidad.obtenerPuntosPorSuper();
+		contexto.ganarPuntos(puntosGandos);
 		
 	}
 

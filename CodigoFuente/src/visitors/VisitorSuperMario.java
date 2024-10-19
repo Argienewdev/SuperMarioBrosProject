@@ -4,12 +4,18 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorSuperMario implements Visitante{
+import juego.Nivel;
+public class VisitorSuperMario implements Visitante {
+	
+	protected SuperMario miEntidad;
+	
+	public VisitorSuperMario (SuperMario miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
-		
+		otorgarPuntosYEliminar(buzzy);
 	}
 
 	@Override
@@ -20,38 +26,33 @@ public class VisitorSuperMario implements Visitante{
 
 	@Override
 	public void visitar(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+		otorgarPuntosYEliminar(goomba);
 	}
 
-	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
+		ContextoKoopaTroopa contexto = koopaDefault.getContext();
+		EstadoKoopa estado = new KoopaCaparazonEstatico();
+		contexto.cambiarEstado(estado);
+	}
+
+	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
+		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
+		EstadoKoopa estado = new KoopaCaparazonMovil();
+		contexto.cambiarEstado(estado);
+	}
+
+	public void visitar(KoopaCaparazonMovil koopaMovil) {
+		otorgarPuntosYEliminar(koopaMovil.getContext());
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
+		otorgarPuntosYEliminar(lakitu);
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -60,36 +61,34 @@ public class VisitorSuperMario implements Visitante{
 		
 	}
 
-	@Override
 	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 	}
 
-	@Override
 	public void visitar(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
-
+	
 	@Override
 	public void visitar(MarioDefault marioNormal) {
 		// TODO Auto-generated method stub
@@ -116,14 +115,19 @@ public class VisitorSuperMario implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
+		if (!bloquePregunta.estaVacio()) {
+			bloquePregunta.liberarPowerUp();
+		}
+		bloquePregunta.setVacio(true);
+		Nivel nivel = bloquePregunta.getNivel();
+		nivel.removePlataforma(bloquePregunta);
 		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
+		Nivel nivel = ladrillo.getNivel();
+		nivel.removePlataforma(ladrillo);
 	}
 
 	@Override
@@ -153,10 +157,6 @@ public class VisitorSuperMario implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
-	}
-=======
 	}
 
 	@Override
@@ -170,6 +170,11 @@ public class VisitorSuperMario implements Visitante{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
+		miEntidad.getContext().ganarPuntos(puntos);
+		Nivel nivel = enemigo.getNivel();
+		nivel.removeEnemigo(enemigo);
+	}
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52

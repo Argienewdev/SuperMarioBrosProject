@@ -7,6 +7,12 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 
 public class VisitorCaparazonMovil implements Visitante {
+	
+	protected KoopaCaparazonMovil miEntidad;
+	
+	public VisitorCaparazonMovil (KoopaCaparazonMovil miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
     public void visitar(BuzzyBeetle buzzy) {
     }
@@ -51,15 +57,29 @@ public class VisitorCaparazonMovil implements Visitante {
     }
 
     public void visitar(MarioDefault marioNormal) {
+        ContextoMario contextoMario = marioNormal.getContext();
+        if (contextoMario.getVidas() == 1) {
+            ContextoKoopaTroopa contextoTroopa = miEntidad.getContext();
+            int perdidaPuntos = contextoTroopa.getPuntosSustraidosPorMuerteCausada();
+            contextoMario.perderPuntos(perdidaPuntos);
+        }
+        contextoMario.perderVida();
     }
 
     public void visitar(MarioInvulnerable marioInv) {
+    	
     }
 
     public void visitar(MarioFuego marioFuego) {
+        ContextoMario contexto = marioFuego.getContext();
+        EstadoMario estado = new SuperMario();
+        contexto.cambiarEstado(estado);
     }
 
     public void visitar(SuperMario superMario) {
+        ContextoMario contexto = superMario.getContext();
+        EstadoMario estado = new MarioDefault();
+        contexto.cambiarEstado(estado);
     }
 
     public void visitar(BloqueDePregunta bloquePregunta) {

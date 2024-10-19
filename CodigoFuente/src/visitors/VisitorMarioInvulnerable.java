@@ -98,39 +98,34 @@ public class VisitorMarioInvulnerable implements Visitante {
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = superChamp.obtenerPuntosPorInvencible();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = flor.obtenerPuntosPorInvencible();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = champVerde.obtenerPuntosPorInvencible();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 		
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = estrella.obtenerPuntosPorInvencible();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 		
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = moneda.obtenerPuntosPorInvencible();
-		contexto.ganarPuntos(puntosGandos);
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 
 	@Override

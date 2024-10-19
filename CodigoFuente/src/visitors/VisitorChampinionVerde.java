@@ -7,6 +7,12 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 
 public class VisitorChampinionVerde implements Visitante {
+	
+	protected ChampinionVerde miEntidad;
+	
+	public VisitorChampinionVerde (ChampinionVerde miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
     public VisitorChampinionVerde() {
     }
@@ -54,23 +60,31 @@ public class VisitorChampinionVerde implements Visitante {
     }
 
     public void visitar(MarioDefault marioNormal) {
-        ContextoMario contexto = marioNormal.getContext();
-        contexto.ganarVida();
+    	ContextoMario contexto = marioNormal.getContext();
+		contexto.ganarVida();
+		int puntosGandos = miEntidad.obtenerPuntosPorDefault();
+		contexto.ganarPuntos(puntosGandos);
     }
 
     public void visitar(MarioInvulnerable marioInv) {
-        ContextoMario contexto = marioInv.getContext();
-        contexto.ganarVida();
+    	ContextoMario contexto = marioInv.getContext();
+		contexto.ganarVida();
+		int puntosGandos = miEntidad.obtenerPuntosPorInvencible();
+		contexto.ganarPuntos(puntosGandos);
     }
 
     public void visitar(MarioFuego marioFuego) {
-        ContextoMario contexto = marioFuego.getContext();
-        contexto.ganarVida();
+    	ContextoMario contexto = marioFuego.getContext();
+		contexto.ganarVida();
+		int puntosGandos = miEntidad.obtenerPuntosPorFuego();
+		contexto.ganarPuntos(puntosGandos);
     }
 
     public void visitar(SuperMario superMario) {
-        ContextoMario contexto = superMario.getContext();
-        contexto.ganarVida();
+    	ContextoMario contexto = superMario.getContext();
+		contexto.ganarVida();
+		int puntosGandos = miEntidad.obtenerPuntosPorSuper();
+		contexto.ganarPuntos(puntosGandos);
     }
 
     public void visitar(BloqueDePregunta bloquePregunta) {

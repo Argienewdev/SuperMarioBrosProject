@@ -4,7 +4,13 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorSuperChampinion implements Visitante{
+public class VisitorSuperChampinion implements Visitante {
+	
+	protected SuperChampinion miEntidad;
+	
+	public VisitorSuperChampinion (SuperChampinion miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
@@ -92,25 +98,25 @@ public class VisitorSuperChampinion implements Visitante{
 
 	@Override
 	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
+		ContextoMario contexto = marioNormal.getContext();
+		contexto.cambiarEstado(new SuperMario());
+		contexto.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
 	}
 
 	@Override
 	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
+		marioInv.getContext().ganarPuntos(miEntidad.obtenerPuntosPorInvencible());
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
+		marioFuego.getContext().ganarPuntos(miEntidad.obtenerPuntosPorFuego());
 		
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
+		superMario.getContext().ganarPuntos(miEntidad.obtenerPuntosPorSuper());
 		
 	}
 
@@ -153,10 +159,6 @@ public class VisitorSuperChampinion implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-		
-<<<<<<< HEAD
-	}
-=======
 	}
 
 	@Override
@@ -172,4 +174,3 @@ public class VisitorSuperChampinion implements Visitante{
 	}
 	
 }
->>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
