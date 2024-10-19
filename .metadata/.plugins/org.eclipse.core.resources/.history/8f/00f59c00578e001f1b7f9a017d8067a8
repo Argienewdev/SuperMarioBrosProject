@@ -66,7 +66,6 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 4: {
-	                	//TODO agregar visitor
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, visitor, alturaTuberia));

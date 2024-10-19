@@ -5,7 +5,8 @@ import elementos.Silueta;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import observers.ObserverGrafico;
-import visitors.*;
+import visitors.Visitante;
+import visitors.VisitorContextoMario;
 
 import java.util.*;
 import java.awt.Point;
@@ -32,10 +33,12 @@ public class GeneradorDeNivel {
 		
 		agregarMarioAlNivel(nivel);
 		
+		
 		try {
 			archivoDeNivel = new FileReader(rutaTxtNivel);
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;
+			
 			while((linea = lectorBuffer.readLine()) != null) {
 				String[] partes = linea.split("\\s+");
 				int[] numeros = new int[partes.length];
@@ -49,24 +52,23 @@ public class GeneradorDeNivel {
                 
                 switch(identificadorElemento) {
 	                case 0: {
-	                    Visitante visitor = new VisitorVacio();
+	                    Visitante visitor = null;
 	                    nivel.addPlataforma(fabricaPlataformas.getVacio(posicion, visitor));
 	                    break;
 	                }
 	                case 1: {
-	                    Visitante visitor = new VisitorLadrillo();
+	                    Visitante visitor = null;
 	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor));
 	                    break;
 	                }	             
 	                case 3: {
-	                    Visitante visitor = new VisitorTuberia();
+	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    int anchoTuberia = 0;
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia));
 	                    break;
 	                }
 	                case 4: {
-	                	//TODO agregar visitor
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, visitor, alturaTuberia));
@@ -159,7 +161,7 @@ public class GeneradorDeNivel {
 	public void agregarMarioAlNivel(Nivel nivel) {
 		Point posicionInicio = new Point(0,0);
 		Visitante visitorContextoMario = new VisitorContextoMario();
-		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, visitorContextoMario, null, 3);
+		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, 3);
 		nivel.setMario(mario);
 	}
 	

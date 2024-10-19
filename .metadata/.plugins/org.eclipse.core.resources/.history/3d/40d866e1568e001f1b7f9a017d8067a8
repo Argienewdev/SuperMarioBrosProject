@@ -49,24 +49,23 @@ public class GeneradorDeNivel {
                 
                 switch(identificadorElemento) {
 	                case 0: {
-	                    Visitante visitor = new VisitorVacio();
+	                    Visitante visitor = null;
 	                    nivel.addPlataforma(fabricaPlataformas.getVacio(posicion, visitor));
 	                    break;
 	                }
 	                case 1: {
-	                    Visitante visitor = new VisitorLadrillo();
+	                    Visitante visitor = null;
 	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor));
 	                    break;
 	                }	             
 	                case 3: {
-	                    Visitante visitor = new VisitorTuberia();
+	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    int anchoTuberia = 0;
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia));
 	                    break;
 	                }
 	                case 4: {
-	                	//TODO agregar visitor
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, visitor, alturaTuberia));
