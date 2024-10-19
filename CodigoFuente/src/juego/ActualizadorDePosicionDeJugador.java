@@ -27,7 +27,8 @@ public class ActualizadorDePosicionDeJugador {
 	}
 	
 	public boolean marioEnElPiso() {
-		// Se deberia pasar el piso 
-		return gestorDeColisiones.verificarColisiones(null);
+		//TODO Se deberia pasar el piso 
+		//return gestorDeColisiones.verificarColisiones(null);
+		return posicionY >= 603;
 	}
 }

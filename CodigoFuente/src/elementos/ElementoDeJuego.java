@@ -43,6 +43,10 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.miNivel = nivel;
 	}
 	
+	public void setPosicion (Point posicion) {
+		this.posicion = posicion;
+	}
+	
 	public Sprite getSprite() {
 		return this.sprite;
 	}

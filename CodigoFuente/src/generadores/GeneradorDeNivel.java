@@ -22,7 +22,7 @@ public class GeneradorDeNivel {
 	public GeneradorDeNivel(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
 		//TODO forzando modo 1
-		this.fabricaSilueta = new FabricaSiluetaModoOriginal("../imagenes/siluetas/siluetaModoOriginal.png");
+		this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoOriginal.png");
 	}
 	
 	public Nivel generarNivel(String rutaTxtNivel){

@@ -28,6 +28,7 @@ public class CoordinadorActualizacionesJugador {
 		this.velocidad = new Point(0,0);
 		this.marioSprite = marioJugable.getSprite();
 		this.controladorMovimiento = new ControladorMovimiento(marioJugable, sensorDeTeclasJuego);
+		this.marioJugable = marioJugable;
 	}
 	
 	private Point actualizarVelocidad() {
@@ -45,7 +46,7 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarMarioLabel() {
-		//TODO entidadJugador.actualizar(posicion, marioSprite);
+		marioJugable.setPosicion(posicion);
 	}
 
 	public void actualizar() {
