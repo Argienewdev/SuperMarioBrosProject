@@ -93,7 +93,7 @@ public class Nivel {
 	}
 	
 	@SuppressWarnings("exports")
-	public ContextoMario getMario() {
+	public ContextoMario setMario() {
 		return this.mario;
 	}
 		

@@ -27,7 +27,6 @@ public class Jugador {
 	}
 	
 	public boolean marioEnElPiso() {
-		// Se deberia pasar el piso 
 		return gestorDeColisiones.verificarColisiones(null);
 	}
 }
