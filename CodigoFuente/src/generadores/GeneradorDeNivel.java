@@ -2,12 +2,13 @@ package generadores;
 import fabricas.*;
 import juego.Nivel;
 import elementos.Silueta;
+import elementos.personajes.ContextoMario;
+import elementos.personajes.MarioDefault;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
 import java.util.*;
-
-
+import java.awt.Point;
 import java.io.*;
 
 public class GeneradorDeNivel {
@@ -28,6 +29,11 @@ public class GeneradorDeNivel {
 		Nivel nivel = new Nivel(silueta);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
+		//Creo a mario al comienzo del nivel
+		Point posicionInicio=new Point(0,0);
+		int vidas=3;
+		ContextoMario mario=fabricaEntidades.getContextoMario(posicionInicio, null, null, vidas);
+		nivel.setMario(mario);
 		try {
 			
 			archivoDeNivel = new FileReader(rutaTxtNivel);
@@ -44,7 +50,7 @@ public class GeneradorDeNivel {
                 }
                 
                 int identificadorElemento = numeros[0];
-                Vector<Integer> posicion = new Vector<Integer>(numeros[1],numeros[2]);
+                Point posicion = new Point(numeros[1],numeros[2]);
                 
                 switch(identificadorElemento) {
 	                case 0: {
@@ -54,18 +60,13 @@ public class GeneradorDeNivel {
 	                }
 	                case 1: {
 	                    Visitante visitor = null;
-	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor, 0));
+	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor));
 	                    break;
-	                }
-	                case 2: {
-	                    Visitante visitor = null;
-	                    int cantidadDeMonedasDentroDelLadrillo = numeros[3];
-	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor, cantidadDeMonedasDentroDelLadrillo));
-	                    break;
-	                }
+	                }	             
 	                case 3: {
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
+	                    int anchoTuberia = 0;
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia));
 	                    break;
 	                }
@@ -106,42 +107,37 @@ public class GeneradorDeNivel {
 	                }
 	                case 40: {
 	                    Visitante visitor = null;
-	                    Vector<Integer> direccion = new Vector<Integer>(1, 0);
-	                    int velocidad = 1;
+	                    Point velocidadDireccional= new Point(1,0);	                    
 	                    ObserverGrafico observer = null;
-	                    nivel.addEnemigo(fabricaEntidades.getLakitu(posicion, visitor, direccion, velocidad, observer));
+	                    nivel.addEnemigo(fabricaEntidades.getLakitu(posicion, visitor, velocidadDireccional, observer));
 	                    break;
 	                }
 	                case 41: {
 	                    Visitante visitor = null;
-	                    Vector<Integer> direccion = new Vector<Integer>(1, 0);
-	                    int velocidad = 1;
+	                    Point velocidadDireccional= new Point(1,0);	                    
 	                    ObserverGrafico observer = null;
-	                    nivel.addEnemigo(fabricaEntidades.getContextoKoopaTroopa(posicion, visitor, velocidad, direccion, observer));
+	                    nivel.addEnemigo(fabricaEntidades.getContextoKoopaTroopa(posicion, visitor, velocidadDireccional, observer));
 	                    break;
 	                }
 	                case 42: {
 	                    Visitante visitor = null;
-	                    Vector<Integer> direccion = new Vector<Integer>(1, 0);
-	                    int velocidad = 1;
+	                    Point velocidadDireccional= new Point(1,0);	                    
 	                    ObserverGrafico observer = null;
-	                    nivel.addEnemigo(fabricaEntidades.getGoomba(posicion, visitor, direccion, velocidad, observer));
+	                    nivel.addEnemigo(fabricaEntidades.getGoomba(posicion, visitor, velocidadDireccional, observer));
 	                    break;
 	                }
 	                case 43: {
 	                    Visitante visitor = null;
-	                    Vector<Integer> direccion = new Vector<Integer>(1, 0);
-	                    int velocidad = 1;
+	                    Point velocidadDireccional= new Point(1,0);	                    
 	                    ObserverGrafico observer = null;
-	                    nivel.addEnemigo(fabricaEntidades.getSpiny(posicion, visitor, direccion, velocidad, observer));
+	                    nivel.addEnemigo(fabricaEntidades.getSpiny(posicion, visitor, velocidadDireccional, observer));
 	                    break;
 	                }
 	                case 44: {
 	                    Visitante visitor = null;
-	                    Vector<Integer> direccion = new Vector<Integer>(1, 0);
-	                    int velocidad = 1;
+	                    Point velocidadDireccional= new Point(1,0);	                  
 	                    ObserverGrafico observer = null;
-	                    nivel.addEnemigo(fabricaEntidades.getBuzzyBeetle(posicion, visitor, direccion, velocidad, observer));
+	                    nivel.addEnemigo(fabricaEntidades.getBuzzyBeetle(posicion, visitor, velocidadDireccional, observer));
 	                    break;
 	                }
 	                default: {
@@ -149,7 +145,6 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
                 }
-                
 			}
 		
 		} catch (IOException exception) {

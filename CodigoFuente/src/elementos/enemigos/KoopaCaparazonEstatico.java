@@ -1,5 +1,6 @@
 package elementos.enemigos;
 
+import java.awt.Point;
 import java.util.Vector;
 
 import elementos.personajes.ContextoMario;
@@ -14,12 +15,12 @@ public class KoopaCaparazonEstatico implements EstadoKoopa {
 	}
 	
 	@Override
-	public void moverAIzquierda(Vector<Integer> direccion) {
+	public void moverAIzquierda(Point direccion) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void moverADerecha(Vector<Integer> direccion) {
+	public void moverADerecha(Point direccion) {
 		// TODO Auto-generated method stub
 	}
 

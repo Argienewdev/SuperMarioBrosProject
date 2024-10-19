@@ -6,169 +6,166 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 public class VisitorMarioFuego implements Visitante{
-
 	@Override
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
+	public void visitar(BuzzyBeetle buzzy) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarSpiny(Spiny spiny) {
+	public void visitar(Spiny spiny) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarGoomba(Goomba goomba) {
+	public void visitar(Goomba goomba) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
+	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
+	public void visitar(KoopaCaparazonMovil koopaMovil) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarLakitu(Lakitu lakitu) {
+	public void visitar(Lakitu lakitu) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
+	public void visitar(PiranhaPlant planta) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarFireball(Fireball fireball) {
+	public void visitar(Fireball fireball) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
+	public void visitar(SuperChampinion superChamp) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarFlorDeFuego(FlorDeFuego flor) {
+	public void visitar(FlorDeFuego flor) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
+	public void visitar(ChampinionVerde champVerde) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarEstrella(Estrella estrella) {
+	public void visitar(Estrella estrella) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarMonedas(Monedas moneda) {
+	public void visitar(Monedas moneda) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarMarioDefault(MarioDefault marioNormal) {
+	public void visitar(MarioDefault marioNormal) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
+	public void visitar(MarioInvulnerable marioInv) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {
+	public void visitar(MarioFuego marioFuego) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarSuperMario(SuperMario superMario) {
+	public void visitar(SuperMario superMario) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
+	public void visitar(BloqueDePregunta bloquePregunta) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarLadrillo(Ladrillo ladrillo) {
+	public void visitar(Ladrillo ladrillo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarVacio(Vacio vacio) {
+	public void visitar(Vacio vacio) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarPrincesaPeach(PrincesaPeach princesa) {
+	public void visitar(PrincesaPeach princesa) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {
+	public void visitar(Bandera bandera) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarTuberia(Tuberia tuberia) {
+	public void visitar(Tuberia tuberia) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {
+	public void visitar(ContextoMario contextoMario) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 	
 }

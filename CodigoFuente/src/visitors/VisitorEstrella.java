@@ -1,174 +1,100 @@
 package visitors;
+
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorEstrella implements Visitante{
 
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-		
-		
-	}
+public class VisitorEstrella implements Visitante {
 
-	
-	public void visitarSpiny(Spiny spiny) {
-		
-		
-	}
+    public void visitar(BuzzyBeetle buzzy) {
+    }
 
-	
-	public void visitarGoomba(Goomba goomba) {
-		
-		
-	}
+    public void visitar(Spiny spiny) {
+    }
 
-	
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		
-		
-	}
+    public void visitar(Goomba goomba) {
+    }
 
-	
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		
-		
-	}
+    public void visitar(KoopaCaparazonEstatico koopaEstatico) {
+    }
 
-	
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		
-		
-	}
+    public void visitar(KoopaCaparazonMovil koopaMovil) {
+    }
 
-	
-	public void visitarLakitu(Lakitu lakitu) {
-		
-		
-	}
+    public void visitar(KoopaDefault koopaDefault) {
+    }
 
-	
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		
-		
-	}
+    public void visitar(Lakitu lakitu) {
+    }
 
-	
-	public void visitarFireball(Fireball fireball) {
-		
-		
-	}
+    public void visitar(PiranhaPlant planta) {
+    }
 
-	
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
-		
-		
-	}
+    public void visitar(Fireball fireball) {
+    }
 
-	
-	public void visitarFlorDeFuego(FlorDeFuego flor) {
-		
-		
-	}
+    public void visitar(SuperChampinion superChamp) {
+    }
 
-	
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
-		
-		
-	}
+    public void visitar(FlorDeFuego flor) {
+    }
 
-	
-	public void visitarEstrella(Estrella estrella) {
-		
-		
-	}
+    public void visitar(ChampinionVerde champVerde) {
+    }
 
-	
-	public void visitarMonedas(Monedas moneda) {
-		
-		
-	}
+    public void visitar(Estrella estrella) {
+    }
 
-	
-	public void visitarMarioDefault(MarioDefault marioNormal) {
-		ContextoMario contexto = marioNormal.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-		
-	}
+    public void visitar(Monedas moneda) {
+    }
 
-	
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
-		
-		
-	}
+    public void visitar(MarioDefault marioNormal) {
+        ContextoMario contexto = marioNormal.getContext();
+        EstadoMario estado = new MarioInvulnerable();
+        contexto.cambiarEstado(estado);
+    }
 
-	
-	public void visitarMarioFuego(MarioFuego marioFuego) {
-		ContextoMario contexto = marioFuego.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-	}
+    public void visitar(MarioInvulnerable marioInv) {
+    }
 
-	
-	public void visitarSuperMario(SuperMario superMario) {
-		ContextoMario contexto = superMario.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-	}
+    public void visitar(MarioFuego marioFuego) {
+        ContextoMario contexto = marioFuego.getContext();
+        EstadoMario estado = new MarioInvulnerable();
+        contexto.cambiarEstado(estado);
+    }
 
-	
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
-		
-		
-	}
+    public void visitar(SuperMario superMario) {
+        ContextoMario contexto = superMario.getContext();
+        EstadoMario estado = new MarioInvulnerable();
+        contexto.cambiarEstado(estado);
+    }
 
-	
-	public void visitarLadrillo(Ladrillo ladrillo) {
-		
-		
-	}
+    public void visitar(BloqueDePregunta bloquePregunta) {
+    }
 
-	
-	public void visitarVacio(Vacio vacio) {
-		
-		
-	}
+    public void visitar(Ladrillo ladrillo) {
+    }
 
-	
-	public void visitarPrincesaPeach(PrincesaPeach princesa) {
-		
-		
-	}
+    public void visitar(Vacio vacio) {
+    }
 
-	
-	public void visitarBandera(Bandera bandera) {
-		
-		
-	}
+    public void visitar(PrincesaPeach princesa) {
+    }
 
-	
-	public void visitarTuberia(Tuberia tuberia) {
-		
-		
-	}
+    public void visitar(Bandera bandera) {
+    }
 
-	
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		
-		
-	}
+    public void visitar(Tuberia tuberia) {
+    }
 
-	
-	public void visitarContextoMario(ContextoMario contextoMario) {
-		
-		
-	}
+    public void visitar(BloqueSolido bloqueSolido) {
+    }
 
-	
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
-		
-		
-	}
+    public void visitar(ContextoMario contextoMario) {
+    }
 
+    public void visitar(ContextoKoopaTroopa contextoKoopa) {
+    }
 }

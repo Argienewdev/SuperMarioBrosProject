@@ -11,9 +11,11 @@ public class PantallaDeJuego extends JPanel {
 	
 	private Dimension size;
 	
+	
 	private JLabel mario;
 	
 	private JLabel fondo;
+	
 	
 	public PantallaDeJuego() {
 		setVisible(true);

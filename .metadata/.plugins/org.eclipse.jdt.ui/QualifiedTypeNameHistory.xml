@@ -14,11 +14,12 @@
     <fullyQualifiedTypeName name="elementos.personajes.MarioFuego"/>
     <fullyQualifiedTypeName name="elementos.powerUps.Monedas"/>
     <fullyQualifiedTypeName name="elementos.personajes.EstadoMario"/>
-    <fullyQualifiedTypeName name="elementos.entidades.Entidad"/>
     <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="elementos.ElementoDeJuego"/>
     <fullyQualifiedTypeName name="java.awt.Point"/>
+    <fullyQualifiedTypeName name="elementos.entidades.Entidad"/>
+    <fullyQualifiedTypeName name="juego.Nivel"/>
+    <fullyQualifiedTypeName name="elementos.ElementoDeJuego"/>
 </qualifiedTypeNameHistroy>
