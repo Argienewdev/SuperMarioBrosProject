@@ -224,18 +224,13 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getLakituFrontalDentroDeLaNube() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituFrontalDentroDeLaNube.png");
+    public Sprite getLakituDentroDeLaNube() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituDentroDeLaNube.png");
     }
 
     @Override
     public Sprite getLakituReversoFueraDeLaNube() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituReversoFueraDeLaNube.png");
-    }
-
-    @Override
-    public Sprite getLakituReversoDentroDeLaNube() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituReversoDentroDeLaNube.png");
     }
 
     @Override

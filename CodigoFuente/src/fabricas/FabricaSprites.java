@@ -95,11 +95,9 @@ public abstract class FabricaSprites {
 
 	public abstract Sprite getLakituFrontalFueraDeLaNube();
 	
-	public abstract Sprite getLakituFrontalDentroDeLaNube();
+	public abstract Sprite getLakituDentroDeLaNube();
 
 	public abstract Sprite getLakituReversoFueraDeLaNube();
-	
-	public abstract Sprite getLakituReversoDentroDeLaNube();
 	
 	public abstract Sprite getSpinyAntesDeCaerPrimeraTransicion();
 	
