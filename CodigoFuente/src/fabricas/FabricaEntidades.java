@@ -53,7 +53,7 @@ public class FabricaEntidades {
 	public Lakitu getLakitu(Point posicion, Visitante visitor, 
 							Point velocidadDireccional, 
 							ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getLakituReversoDentroDeLaNube();
+        Sprite sprite = fabricaSprites.getLakituDentroDeLaNube();
         return new Lakitu(sprite,posicion,visitor,velocidadDireccional, observer);
     }
     

@@ -7,7 +7,7 @@ import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 20;
+	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
 	private static final int FUERZA_SALTO = -30;
 	
@@ -71,8 +71,10 @@ public class ControladorMovimiento {
 		if(actualizadorDePosicionDeJugador.marioEnElPiso()) {
 			reiniciarVelocidadVertical();
 			saltando = false;
-		}else {
+		}else if(velocidadVertical >= FUERZA_SALTO){
 			velocidadVertical += GRAVEDAD;
+			aplicarVelocidad();
+		}else {
 			aplicarVelocidad();
 		}
 	}

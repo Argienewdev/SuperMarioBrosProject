@@ -33,8 +33,8 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal();
-		pantallaDeJuego= new PantallaDeJuego();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		pantallaDeJuego= new PantallaDeJuego(sensorDeTeclasJuego);
 		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);
@@ -52,11 +52,11 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		ventana.setLocationRelativeTo(null);
 	}
 	
-	public void accionarInicioJuego() {
+	public void accionarInicioJuego(String modo) {
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
-		marioJugable = juego.crearPartida(sensorDeTeclasJuego);
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
 	}
 	
@@ -67,6 +67,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public void RegistrarOyenteJuego(){
 		ventana.removeKeyListener(sensorDeTeclasMenu);
 		ventana.addKeyListener(sensorDeTeclasJuego);
+		ventana.requestFocusInWindow();
 	}
 
 	
@@ -124,9 +125,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 			pantallaInicial.actualizarFoco();
 		}else {
 			pantallaDeJuego.refrescar();
-		}
-		if(sensorDeTeclasJuego.obtenerDPresionada()) {
-			System.out.println("D");
 		}
 		ventana.revalidate();
 		ventana.repaint();
