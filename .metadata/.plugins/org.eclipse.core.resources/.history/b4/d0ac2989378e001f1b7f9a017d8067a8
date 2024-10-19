@@ -37,7 +37,6 @@ public class Partida {
 		// Falta un condicional para ver que fabrica mandarle a la fabrica de entidades, la partida deberia saber el modo
 		this.fabricaEntidades = new FabricaEntidades(fabricaSpritesModoOriginal);
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades);
-		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
 		//REVISAR
 		this.bucleJugador = new BucleJugador(this);
 	}

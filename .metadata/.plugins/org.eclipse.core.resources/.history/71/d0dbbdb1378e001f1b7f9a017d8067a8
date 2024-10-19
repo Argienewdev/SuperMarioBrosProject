@@ -23,7 +23,7 @@ public class GeneradorDeNivel {
 		this.fabricaEntidades = fabricaEntidades;
 	}
 	
-	public Nivel generarNivel(String rutaTxtNivel){
+	public Nivel generarNivel( String rutaTxtNivel){
 		
 		Silueta silueta = fabricaSilueta.getSilueta();
 		Nivel nivel = new Nivel(silueta);
