@@ -154,4 +154,22 @@ public class VisitorSuperChampinion implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 		
+<<<<<<< HEAD
 	}
+=======
+	}
+
+	@Override
+	public void visitar(ContextoMario contextoMario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+>>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52

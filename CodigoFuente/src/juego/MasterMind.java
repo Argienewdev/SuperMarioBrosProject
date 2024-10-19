@@ -3,7 +3,10 @@ package juego;
 import java.awt.Point;
 
 import elementos.entidades.NoJugable;
+<<<<<<< HEAD
 import observers.GestorDeColisiones;
+=======
+>>>>>>> 05d0b3a3d21377cd747608863f04eee1714edc52
 import observers.ObserverEntidades;
 
 public class MasterMind {

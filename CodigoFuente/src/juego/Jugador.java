@@ -3,9 +3,6 @@ package juego;
 import java.awt.Point;
 
 public class Jugador {
-	private static final int VIDAS_INICIALES = 3;
-	
-	private int vidas;
 	
 	private Point posicion;
 
@@ -13,11 +10,13 @@ public class Jugador {
 	
 	private int posicionX;
 	
-	public Jugador(Point posicion) {
-		vidas = VIDAS_INICIALES;
+	private GestorDeColisiones gestorDeColisiones;
+	
+	public Jugador(Point posicion, GestorDeColisiones gestorDeColisiones) {
 		posicionX = posicion.x;
 		posicionY = posicion.y;
 		this.posicion = posicion;
+		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
 	public Point actualizar(Point velocidad) {
@@ -28,7 +27,7 @@ public class Jugador {
 	}
 	
 	public boolean marioEnElPiso() {
-		//TODO Esto en realidad se determina con el gestor de colisiones
-		return posicionY >= 400;
+		// Se deberia pasar el piso 
+		return gestorDeColisiones.verificarColisiones(null);
 	}
 }
