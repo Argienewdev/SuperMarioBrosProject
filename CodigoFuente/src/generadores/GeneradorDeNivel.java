@@ -5,7 +5,7 @@ import elementos.Silueta;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import observers.ObserverGrafico;
-import visitors.Visitante;
+import visitors.*;
 
 import java.util.*;
 import java.awt.Point;
@@ -19,31 +19,24 @@ public class GeneradorDeNivel {
 	
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	public GeneradorDeNivel(FabricaEntidades fabricaEntidades) {
+	public GeneradorDeNivel(FabricaEntidades fabricaEntidades, FabricaSilueta fabricaSilueta) {
 		this.fabricaEntidades = fabricaEntidades;
-		//TODO forzando modo 1
-		this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoOriginal.png");
+		this.fabricaSilueta = fabricaSilueta;
 	}
 	
-	public Nivel generarNivel(String rutaTxtNivel){
-		
+	public Nivel generarNivel(String rutaTxtNivel) {
 		Silueta silueta = fabricaSilueta.getSilueta();
 		Nivel nivel = new Nivel(silueta);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
-		//Creo a mario al comienzo del nivel
-		Point posicionInicio=new Point(0,0);
-		int vidas=3;
-		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, vidas);
-		nivel.setMario(mario);
+		
+		agregarMarioAlNivel(nivel);
+		
 		try {
-			
 			archivoDeNivel = new FileReader(rutaTxtNivel);
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;
-			
 			while((linea = lectorBuffer.readLine()) != null) {
-				
 				String[] partes = linea.split("\\s+");
 				int[] numeros = new int[partes.length];
 				
@@ -56,23 +49,24 @@ public class GeneradorDeNivel {
                 
                 switch(identificadorElemento) {
 	                case 0: {
-	                    Visitante visitor = null;
+	                    Visitante visitor = new VisitorVacio();
 	                    nivel.addPlataforma(fabricaPlataformas.getVacio(posicion, visitor));
 	                    break;
 	                }
 	                case 1: {
-	                    Visitante visitor = null;
+	                    Visitante visitor = new VisitorLadrillo();
 	                    nivel.addPlataforma(fabricaPlataformas.getLadrillo(posicion, visitor));
 	                    break;
 	                }	             
 	                case 3: {
-	                    Visitante visitor = null;
+	                    Visitante visitor = new VisitorTuberia();
 	                    int alturaTuberia = numeros[3];
 	                    int anchoTuberia = 0;
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia));
 	                    break;
 	                }
 	                case 4: {
+	                	//TODO agregar visitor
 	                    Visitante visitor = null;
 	                    int alturaTuberia = numeros[3];
 	                    nivel.addPlataforma(fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, visitor, alturaTuberia));
@@ -148,21 +142,25 @@ public class GeneradorDeNivel {
 	                }
                 }
 			}
-		
 		} catch (IOException exception) {
 			exception.printStackTrace();
 		} finally {
 			try {
-				
 				if(lectorBuffer != null) {
 					lectorBuffer.close();
 				}
-				
 			} catch (IOException error) {
 				error.printStackTrace();
 			}
 		}
 		return nivel;
+	}
+	
+	public void agregarMarioAlNivel(Nivel nivel) {
+		Point posicionInicio = new Point(0,0);
+		Visitante visitorContextoMario = new VisitorContextoMario();
+		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, visitorContextoMario, null, 3);
+		nivel.setMario(mario);
 	}
 	
 }

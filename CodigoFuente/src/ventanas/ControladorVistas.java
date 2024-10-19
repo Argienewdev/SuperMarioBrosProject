@@ -52,11 +52,12 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		ventana.setLocationRelativeTo(null);
 	}
 	
-	public void accionarInicioJuego() {
+	public void accionarInicioJuego(String modo) {
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
-		marioJugable = juego.crearPartida(sensorDeTeclasJuego);
+		juego.crearPartida(sensorDeTeclasJuego, modo);
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
 	}
 	

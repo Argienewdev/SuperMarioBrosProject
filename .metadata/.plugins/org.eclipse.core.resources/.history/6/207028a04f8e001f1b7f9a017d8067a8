@@ -1,0 +1,51 @@
+package juego;
+
+import elementos.entidades.Jugable;
+import elementos.personajes.MarioDefault;
+import fabricas.FabricaEntidades;
+import fabricas.FabricaSprites;
+import fabricas.FabricaSpritesModoAlternativo;
+import fabricas.FabricaSpritesModoOriginal;
+import generadores.GeneradorDeNivel;
+import sensoresDeTeclas.SensorDeTeclasJuego;
+
+public class Partida {
+	
+	//TODO para que me lo guardo? es necesario?
+	private SensorDeTeclasJuego sensorDeTeclasJuego;
+	
+	private Jugable jugador;
+	
+	private BucleJugador bucleJugador;
+	
+	private CoordinadorActualizacionesJugador coordinadorActualizacionesJugador;
+	
+	private GeneradorDeNivel generadorDeNivel;
+	
+	@SuppressWarnings("exports")
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
+		this.generadorDeNivel = generadorDeNivel;
+		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
+		nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
+		jugador = nivel.getMario();
+		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego);
+		this.bucleJugador = new BucleJugador(this);
+	}
+
+	private FabricaEntidades fabricaEntidades;
+	
+	private FabricaSprites fabricaSpritesModoAlternativo;
+	
+	private FabricaSprites fabricaSpritesModoOriginal;
+	
+	private Nivel nivel;
+	
+	public Jugable obtenerJugador() {
+		return jugador;
+	}
+	
+	public void actualizar() {
+		coordinadorActualizacionesJugador.actualizar();
+	}
+}
