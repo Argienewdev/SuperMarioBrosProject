@@ -2,7 +2,7 @@ package ventanas;
 
 public interface ControladorDeVistas {
 	
-	public void accionarInicioJuego(int modo);
+	public void accionarInicioJuego();
 	
 	public void accionarPantallaPuntajes();
 	

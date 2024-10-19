@@ -1,6 +1,10 @@
 package juego;
 
 import elementos.entidades.Jugable;
+import fabricas.FabricaEntidades;
+import fabricas.FabricaSprites;
+import fabricas.FabricaSpritesModoAlternativo;
+import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -17,12 +21,12 @@ public class Partida {
 	
 	private GeneradorDeNivel generadorDeNivel;
 	
-	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNIvel) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego);
 		this.generadorDeNivel = generadorDeNivel;
 		this.generadorDeNivel.generarNivel("../niveles/nivel-1.txt");
+		//REVISAR
 		this.bucleJugador = new BucleJugador(this);
 	}
 	

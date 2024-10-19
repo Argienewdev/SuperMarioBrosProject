@@ -34,13 +34,14 @@ public class GeneradorDeNivel {
 		int vidas=3;
 		ContextoMario mario=fabricaEntidades.getContextoMario(posicionInicio, null, null, vidas);
 		nivel.setMario(mario);
-		
 		try {
+			
 			archivoDeNivel = new FileReader(rutaTxtNivel);
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;
 			
 			while((linea = lectorBuffer.readLine()) != null) {
+				
 				String[] partes = linea.split("\\s+");
 				int[] numeros = new int[partes.length];
 				
@@ -145,13 +146,16 @@ public class GeneradorDeNivel {
 	                }
                 }
 			}
+		
 		} catch (IOException exception) {
 			exception.printStackTrace();
 		} finally {
 			try {
+				
 				if(lectorBuffer != null) {
 					lectorBuffer.close();
 				}
+				
 			} catch (IOException error) {
 				error.printStackTrace();
 			}

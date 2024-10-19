@@ -17,8 +17,7 @@ public class Partida {
 	
 	private GeneradorDeNivel generadorDeNivel;
 	
-	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel) {
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNIvel) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego);
 		this.generadorDeNivel = generadorDeNivel;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
-import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
@@ -24,7 +23,9 @@ public class Juego {
 	
 	private Partida partida;
 
-	private FabricaSprites fabricaSprites;
+	private FabricaSpritesModoAlternativo fabricaSpritesModoAlternativo;
+
+	private FabricaSpritesModoOriginal fabricaSpritesModoOriginal;
 
 	private FabricaEntidades fabricaEntidades;
 
@@ -46,14 +47,11 @@ public class Juego {
 	}
 
 	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, int modo) {
-		if (modo == 1) {
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (modo == 2) {
-			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
+		this.fabricaSpritesModoAlternativo = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
+		this.fabricaSpritesModoOriginal = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+		this.fabricaEntidades = new FabricaEntidades(fabricaSpritesModoOriginal);
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades);
-		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel);
+		partida = new Partida(sensorDeTeclasJuego);
 		return partida.obtenerJugador();
 	}
 }

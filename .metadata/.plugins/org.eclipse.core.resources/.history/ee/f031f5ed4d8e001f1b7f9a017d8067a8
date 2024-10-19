@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
-import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
@@ -24,7 +23,7 @@ public class Juego {
 	
 	private Partida partida;
 
-	private FabricaSprites fabricaSprites;
+	private FabricaSpritesModoAlternativo fabricaSprites;
 
 	private FabricaEntidades fabricaEntidades;
 
@@ -48,7 +47,7 @@ public class Juego {
 	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, int modo) {
 		if (modo == 1) {
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (modo == 2) {
+		} else {
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);

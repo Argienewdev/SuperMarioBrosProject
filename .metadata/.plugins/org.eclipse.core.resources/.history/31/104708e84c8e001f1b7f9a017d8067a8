@@ -54,16 +54,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
-		switch(modo) {
-			case 1:
-				juego.crearPartida(sensorDeTeclasJuego,1);
-				break;
-			case 2:
-				juego.crearPartida(sensorDeTeclasJuego,2);
-				break;
-			default:
-				System.out.println("Modo invalido");
-		}
 	}
 	
 	public void RegistrarOyenteInicial(){
