@@ -1,16 +1,17 @@
 package observers;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import juego.EntidadLogica;
+import elementos.Sprite;
+import elementos.entidades.Entidad;;
 
-public class ObserverGrafico extends JLabel implements Observer{
+public class ObserverGrafico extends JLabel implements Observer {
 	
-	//TODO esta clase debe actualizar los sprites segun el estado de las entidades
+	private Entidad entidad_observada;
 	
-	private EntidadLogica entidad_observada;
-	
-	protected ObserverGrafico(EntidadLogica entidad_observada) {
+	//TODO por que no puede conocer a todas las entidades?
+	public ObserverGrafico(Entidad entidad_observada) {
 		super();
 		this.entidad_observada = entidad_observada;
 	}
@@ -21,10 +22,9 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
 	
 	protected void actualizar_imagen() {
-		//TODO cambiar SPRITE
-//		String ruta_imagen = entidad_observada.get_sprite().get_ruta_imagen();
-//		Sprite icono = new ImageIcon(getClass().getClassLoader().getResource(ruta_imagen));
-//		setIcon(icono);
+		String ruta_imagen = entidad_observada.getSprite().getRutaImagen();
+		ImageIcon icono = new ImageIcon(ruta_imagen);
+		setIcon(icono);
 	}
 	
 	protected void actualizar_posicion_tamano() {
@@ -34,4 +34,5 @@ public class ObserverGrafico extends JLabel implements Observer{
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
 	}
+	
 }

@@ -33,24 +33,27 @@ public class Nivel {
 	
 	public Nivel(Silueta silueta) {
 		this.silueta = silueta;
+		this.plataformas = new ArrayList<Plataforma>();
+		this.powerUps = new ArrayList<PowerUp>();
+		this.enemigos = new ArrayList<Enemigo>();
 		inicializarMatriz(silueta);
 	}
 	
 	@SuppressWarnings("exports")
 	public void addPlataforma(Plataforma plataforma) {
-		plataformas.add(plataforma);
+		this.plataformas.add(plataforma);
 		agregarElementoDeJuegoALaMatriz(plataforma);
 	}
 	
 	@SuppressWarnings("exports")
 	public void addEnemigo(Enemigo enemigo) {
-		enemigos.add(enemigo);
+		this.enemigos.add(enemigo);
 		agregarElementoDeJuegoALaMatriz(enemigo);
 	}
 	
 	@SuppressWarnings("exports")
 	public void addPowerUps(PowerUp powerUp) {
-		powerUps.add(powerUp);
+		this.powerUps.add(powerUp);
 		agregarElementoDeJuegoALaMatriz(powerUp);
 	}
 	
@@ -62,19 +65,19 @@ public class Nivel {
 	
 	@SuppressWarnings("exports")
 	public void removePlataforma(Plataforma plataforma) {
-		plataformas.remove(plataforma);
+		this.plataformas.remove(plataforma);
 		quitarElementoDeJuegoDeLaMatriz(plataforma);
 
 	}
 	@SuppressWarnings("exports")
 	public void removeEnemigo(Enemigo enemigo) {
-		enemigos.remove(enemigo);
+		this.enemigos.remove(enemigo);
 		quitarElementoDeJuegoDeLaMatriz(enemigo);
 	}
 	
 	@SuppressWarnings("exports")
 	public void removePowerUps(PowerUp powerUp) {
-		powerUps.remove(powerUp);
+		this.powerUps.remove(powerUp);
 		quitarElementoDeJuegoDeLaMatriz(powerUp);
 	}
 	
@@ -101,8 +104,8 @@ public class Nivel {
 	public void inicializarMatriz(Silueta silueta) {
 		//TODO la silueta da tamaño 0 asi que vamos a elegir un tamaño arbitrario por testing
 		this.matrizElementosDeJuego = new ElementoDeJuego[8][8];
-		int filas = silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
-		int columnas = silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
+		int filas = this.silueta.obtenerAlto() / TAMANIO_HITBOX_ENTIDADES;
+		int columnas = this.silueta.obtenerAncho() / TAMANIO_HITBOX_ENTIDADES;
 		//this.matrizElementosDeJuego = new ElementoDeJuego[filas][columnas];
 	}
 	

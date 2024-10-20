@@ -8,7 +8,7 @@ import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
-public class ControladorVistas implements ControladorDeVistas, ControladorEntreJuegoVista {
+public class ControladorVistas {
 	
 	private JFrame ventana;
 	
@@ -84,18 +84,6 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public void cambiarModoDeJuego() {
 		
 	}
-
-	public Observer registrarEntidad(EntidadLogica entidadLogica) {
-		
-		return null;
-	}
-
-	
-	public Observer registrarSilueta(EntidadLogica silueta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	public void mostrarPantallaDeJuego() {
 		// TODO Auto-generated method stub
@@ -130,10 +118,4 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		ventana.repaint();
 	}
 
-	
-	public Observer registrarEntidad(EntidadJugador entidadJugador) {
-		return null;
-	}
-
-	
 }

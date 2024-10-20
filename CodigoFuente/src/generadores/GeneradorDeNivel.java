@@ -19,9 +19,10 @@ public class GeneradorDeNivel {
 	
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	public GeneradorDeNivel(FabricaEntidades fabricaEntidades, FabricaSilueta fabricaSilueta) {
+	public GeneradorDeNivel(FabricaEntidades fabricaEntidades, FabricaSilueta fabricaSilueta, FabricaPlataformas fabricaPlataformas) {
 		this.fabricaEntidades = fabricaEntidades;
 		this.fabricaSilueta = fabricaSilueta;
+		this.fabricaPlataformas = fabricaPlataformas;
 	}
 	
 	public Nivel generarNivel(String rutaTxtNivel) {
@@ -159,6 +160,8 @@ public class GeneradorDeNivel {
 	public void agregarMarioAlNivel(Nivel nivel) {
 		Point posicionInicio = new Point(0,0);
 		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, 3);
+		ObserverGrafico observerGraficoMario = new ObserverGrafico(mario);
+		mario.setObserverGrafico(observerGraficoMario);
 		Visitante visitorContextoMario = new VisitorContextoMario(mario);
 		mario.setVisitor(visitorContextoMario);
 		nivel.setMario(mario);

@@ -37,7 +37,11 @@ public abstract class Entidad extends ElementoDeJuego {
     }
     
     public void establecerPosicion (Point pos) {
-    	posicion = pos;
+    	this.posicion = pos;
+    }
+    
+    public void setObserverGrafico(ObserverGrafico observerGrafico) {
+    	this.observerGrafico = observerGrafico;
     }
     
 	public abstract void aceptarVisitante(Visitante visitante);

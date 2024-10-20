@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
+import fabricas.FabricaPlataformas;
 import fabricas.FabricaSilueta;
 import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
@@ -29,6 +30,8 @@ public class Juego {
 	private FabricaSprites fabricaSprites;
 
 	private FabricaEntidades fabricaEntidades;
+	
+	private FabricaPlataformas fabricaPlataformas;
 
 	private GeneradorDeNivel generadorDeNivel;
 	
@@ -50,18 +53,16 @@ public class Juego {
 	}
 
 	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
-		System.out.println("Modo recibido: [" + modo + "]");
 		if (modo.equals("Modo original")) {
-			System.out.println("hhh");
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoOriginal.png");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 		} else if (modo.equals("Modo alternativo")) {
-			System.out.println("iiii");
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoAlternativo.png");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta);
+		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites);
+		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas);
 		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel);
 		return partida.obtenerJugador();
 	}
