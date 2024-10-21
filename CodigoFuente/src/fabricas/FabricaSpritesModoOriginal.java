@@ -320,7 +320,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getMonedaEncendida() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/monedaEncendida.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/monedaEncendida.gif");
     }
 
     @Override

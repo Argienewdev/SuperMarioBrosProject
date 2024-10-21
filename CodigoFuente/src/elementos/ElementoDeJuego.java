@@ -15,7 +15,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected Point posicion;
 	
-	protected Visitante visitor;
+	protected Visitante visitante;
 	
     protected Nivel miNivel;
     
@@ -23,15 +23,15 @@ public abstract class ElementoDeJuego implements Visitado {
     
 	
 	@SuppressWarnings("exports")
-	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitor) {
+	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante) {
 		this.sprite = sprite;
 		this.posicion = posicion;
-		this.visitor = visitor;
+		this.visitante = visitante;
 		int x =  posicion.x;
 		int y = posicion.y;
 		int ancho = obtenerAncho();
 		int alto = obtenerAlto();
-		this.hitbox = new Rectangle(x,y,ancho,alto);
+		this.hitbox = new Rectangle(x, y, ancho, alto);
 	}
 	
 	public void setSprite(Sprite sprite) {
@@ -39,7 +39,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public void setVisitor(Visitante visitor) {
-		this.visitor = visitor;
+		this.visitante = visitor;
 	}
 	
 	public void setNivel (Nivel nivel) {
@@ -47,6 +47,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public void setPosicion (Point posicion) {
+		this.hitbox.setLocation(posicion);
 		this.posicion = posicion;
 	}
 	
@@ -65,7 +66,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public Visitante getVisitor() {
-		return this.visitor;
+		return this.visitante;
 	}
 	
     public Nivel getNivel() {
@@ -80,17 +81,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		return 50;
 	}
 	
-	@SuppressWarnings("exports")
-	public void obtenerPosicion( Point posicion) {
-		this.posicion = posicion;
-	}
-	
-	public Visitante obtenerVisitante() {
-		return this.visitor;
-	}
-	
 	public boolean huboColision(ElementoDeJuego elemento) {
-		System.out.println("Detecté colision");
 		return this.hitbox.intersects(elemento.obtenerHitbox());
 	}
 

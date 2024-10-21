@@ -50,6 +50,7 @@ public class ControladorVistas {
 		ventana.setResizable(false);
 		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
 		ventana.setLocationRelativeTo(null);
+		ventana.pack();
 	}
 	
 	public void accionarInicioJuego(String modo) {
@@ -89,20 +90,17 @@ public class ControladorVistas {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 	public void mostrarPantallaFinal() {
 		ventana.setContentPane(pantallaFinal);
 		
 	}
 
-
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(pantallaInicial);
 		refrescar();
 	}
 
-	
 	public void mostrarHUD() {
 		ventana.setContentPane(HUD);
 		refrescar();

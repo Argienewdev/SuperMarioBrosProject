@@ -30,7 +30,7 @@ public class ObserverGrafico extends JLabel implements Observer {
 	
 	protected void actualizar_posicion_tamanio() {
 		int x = entidad_observada.getPosicion().x;
-		int y = 600 - entidad_observada.getPosicion().y;
+		int y = entidad_observada.getPosicion().y;
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);

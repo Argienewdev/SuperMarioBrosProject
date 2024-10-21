@@ -24,7 +24,7 @@ public class PantallaInicial extends JPanel {
 	protected JLabel currentLabel;
 	
 	protected JLabel ranking;
-	
+
 	protected SensorDeTeclasMenu sensor;
 	
 	private ArregloDeBotones arregloDeBotones;

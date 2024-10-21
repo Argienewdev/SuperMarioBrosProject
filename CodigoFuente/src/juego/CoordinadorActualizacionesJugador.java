@@ -54,6 +54,7 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarMarioLabel() {
+		//TODO no sirve
 		marioJugable.getObserverGrafico().actualizar();
 	}
 
