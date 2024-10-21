@@ -39,23 +39,14 @@ public class GeneradorDeNivel {
 	
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	protected FabricaSprites fabricaSprites;
-	
 	protected PantallaDeJuego pantallaDeJuego;
 	
 	protected ControladorVistas controladorVistas;
 	
-	public GeneradorDeNivel(String ModoDeJuego, PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
-		
-		if (ModoDeJuego.equals("Modo original")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (ModoDeJuego.equals("Modo alternativo")) {
-			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites);
+	public GeneradorDeNivel(FabricaEntidades fabricaEntidades, FabricaSilueta fabricaSilueta, FabricaPlataformas fabricaPlataformas, PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
+		this.fabricaEntidades = fabricaEntidades;
+		this.fabricaSilueta = fabricaSilueta;
+		this.fabricaPlataformas = fabricaPlataformas;
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;
 	}
@@ -288,9 +279,7 @@ public class GeneradorDeNivel {
 		mario.setVisitor(visitorContextoMario);
 		nivel.setMario(mario);
 	}
-	public FabricaSprites getFabricaSprites() {
-		return fabricaSprites;
-	}
+	
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, DimensionesConstantes.NIVEL_PISO - (y * 50));
 	}
