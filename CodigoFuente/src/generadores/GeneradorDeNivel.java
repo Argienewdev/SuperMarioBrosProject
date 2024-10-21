@@ -23,6 +23,7 @@ import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
 import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
+import ventanas.DimensionesConstantes;
 import ventanas.PantallaDeJuego;
 import visitors.*;
 
@@ -65,8 +66,6 @@ public class GeneradorDeNivel {
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
 		
-		agregarMarioAlNivel(nivel);
-		
 		try {
 			archivoDeNivel = new FileReader(rutaTxtNivel);
 			lectorBuffer = new BufferedReader(archivoDeNivel);
@@ -80,7 +79,7 @@ public class GeneradorDeNivel {
                 }
                 
                 int identificadorElemento = numeros[0];
-                Point posicion = new Point(numeros[1],numeros[2]);
+                Point posicion = parsearPosicion(numeros[1],numeros[2]);
                 
                 switch(identificadorElemento) {
 	                case 0: {
@@ -251,6 +250,9 @@ public class GeneradorDeNivel {
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoBuzzy);
 	                    break;
 	                }
+	                case 45:{
+	                	agregarMarioAlNivel(nivel, posicion);
+	                }
                 }
 			}
 		} catch (IOException exception) {
@@ -264,6 +266,7 @@ public class GeneradorDeNivel {
 				error.printStackTrace();
 			}
 		}
+		
 		for(Plataforma plataforma : nivel.getPlataformas()) {
 			plataforma.getObserverGrafico().actualizar();
 		}
@@ -276,8 +279,8 @@ public class GeneradorDeNivel {
 		return nivel;
 	}
 	
-	public void agregarMarioAlNivel(Nivel nivel) {
-		Point posicionInicio = new Point(0,0);
+	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
+		Point posicionInicio = posicion;
 		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, 3);
 		ObserverGrafico observerGraficoMario = new ObserverGrafico(mario);
 		mario.setObserverGrafico(observerGraficoMario);
@@ -285,8 +288,10 @@ public class GeneradorDeNivel {
 		mario.setVisitor(visitorContextoMario);
 		nivel.setMario(mario);
 	}
-	
 	public FabricaSprites getFabricaSprites() {
 		return fabricaSprites;
+	}
+	private Point parsearPosicion(int x, int y) {
+		return new Point(x * 50, DimensionesConstantes.NIVEL_PISO - (y * 50));
 	}
 }

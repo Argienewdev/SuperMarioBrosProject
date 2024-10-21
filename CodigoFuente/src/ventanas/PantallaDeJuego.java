@@ -26,7 +26,7 @@ public class PantallaDeJuego extends JPanel {
 	private ObserverGrafico observerGrafico;
 	private boolean enElSuelo = true; // Nueva variable para controlar el estado de Mario
 	private int fondoX = 0; // Nueva variable para la posición X del fondo
-	private double velocidadFondo = 2; // Ajusta la velocidad a la que se mueve fondo 
+	private double velocidadFondovEL = 2; // Ajusta la velocidad a la que se mueve fondo 
 	private final int GRAVEDAD = 2;  // Constante de gravedad
 	private int velocidadY = 0;      // Velocidad vertical inicial de Mario
 

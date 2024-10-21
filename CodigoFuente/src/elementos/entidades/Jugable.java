@@ -13,8 +13,14 @@ public abstract class Jugable extends Entidad {
 	
 	protected Monedas monedas;
 	
+	private boolean colisionADerecha;
+	
+	private boolean colisionAIzquierda;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
+		this.colisionADerecha = false;
+		this.colisionAIzquierda = false;
 	}
 	
 	public void ganarVida() {
@@ -56,5 +62,32 @@ public abstract class Jugable extends Entidad {
 	public abstract void saltar(Point direccion);
 	
 	public abstract void aceptarVisitante(Visitante visitante);
+	
+	public void setColisionADerecha(boolean colisionADerecha) {
+		this.colisionADerecha = colisionADerecha;
+	}
+	
+	public boolean getColisionADerecha() {
+		return this.colisionADerecha;
+	}
+	
+	public void setColisionAIzquierda(boolean colisionAIzquierda) {
+		this.colisionAIzquierda = colisionAIzquierda;
+	}
+	
+	public boolean getColisionAIzquierda() {
+		System.out.println("Detecte colision a izquierda");
+		return this.colisionAIzquierda;
+	}
+	
+	public void retrotraerMovimiento() {
+	    if (this.colisionADerecha) {
+	        Point newPos = new Point(this.getPosicion().x - this.getVelocidadDireccional().x, this.getPosicion().y);
+	        this.setPosicion(newPos);
+	    } else {
+	    	Point newPos = new Point(this.getPosicion().x + this.getVelocidadDireccional().x, this.getPosicion().y);
+	        this.setPosicion(newPos);
+	    }
+	}
 
 }

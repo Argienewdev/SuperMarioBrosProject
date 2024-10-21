@@ -1,5 +1,7 @@
 
 package visitors;
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
 import elementos.personajes.*;
@@ -163,8 +165,11 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
+		if (contextoMario.getVelocidadDireccional().x > 0) {
+			contextoMario.setColisionADerecha(true);
+			contextoMario.retrotraerMovimiento();
+		}
+		contextoMario.setVelocidadDireccional(new Point(0,0));
 	}
 
 	@Override

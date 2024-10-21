@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
@@ -39,75 +41,61 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		aVisitorConcreto(buzzy);
 		
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		aVisitorConcreto(spiny);
 		
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
-		aVisitorConcreto(goomba);
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		aVisitorConcreto(koopaEstatico.getContext());
 	}
 
 	@Override
 	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		aVisitorConcreto(koopaMovil.getContext());
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		aVisitorConcreto(koopaDefault.getContext());
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		aVisitorConcreto(lakitu);
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
-		aVisitorConcreto(planta);
 	}
 
 	@Override
 	public void visitar(Fireball fireball) {
-		aVisitorConcreto(fireball);
 	}
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		aVisitorConcreto(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		aVisitorConcreto(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		aVisitorConcreto(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		aVisitorConcreto(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas monedas) {
-		aVisitorConcreto(monedas);
 	}
 
 	@Override
@@ -136,38 +124,44 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		aVisitorConcreto(bloquePregunta);
 		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		aVisitorConcreto(ladrillo);
+		 System.out.println("Mario ha colisionado con un ladrillo.");
+		    
+		    // Bloqueamos solo la dirección de colisión
+		    if (miEntidad.getVelocidadDireccional().x > 0) {
+		        miEntidad.setColisionADerecha(true);  // Colisión al moverse a la derecha
+		        miEntidad.retrotraerMovimiento();
+		    } else if (miEntidad.getVelocidadDireccional().x < 0) {
+		    	miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
+		    	miEntidad.retrotraerMovimiento();
+		    }
+
+		    // Detenemos a Mario después de la colisión
+		    miEntidad.setVelocidadDireccional(new Point(0, 0));
 	}
 
 	@Override
 	public void visitar(Vacio vacio) {
-		aVisitorConcreto(vacio);
 	}
 
 	@Override
 	public void visitar(PrincesaPeach princesa) {
-		aVisitorConcreto(princesa);
 	}
 
 	@Override
 	public void visitar(Bandera bandera) {
-		aVisitorConcreto(bandera);
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		aVisitorConcreto(tuberia);
 	}
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		aVisitorConcreto(bloqueSolido);
 	}
 
 	@Override
@@ -177,11 +171,8 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		aVisitorConcreto(contextoKoopa);
 	}
 	
 	private void aVisitorConcreto (ElementoDeJuego elemento) {
-		miEntidad.aceptarVisitante(elemento.getVisitor());
-		elemento.aceptarVisitante(miEntidad.getVisitor());
 	}
 }

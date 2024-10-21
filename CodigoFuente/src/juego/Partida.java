@@ -36,7 +36,6 @@ public class Partida {
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.generadorDeNivel = generadorDeNivel;
-		this.generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
 		this.nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
 		this.jugador = nivel.getMario();
 		this.gestorDeColisiones = new GestorDeColisiones(this.nivel);

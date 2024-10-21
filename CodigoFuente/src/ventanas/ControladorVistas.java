@@ -28,7 +28,6 @@ public class ControladorVistas {
 	
 	protected Juego juego;	
 
-	
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);

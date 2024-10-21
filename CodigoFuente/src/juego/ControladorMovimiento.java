@@ -1,8 +1,9 @@
-
 package juego;
 
 import java.awt.Point;
 
+import elementos.ElementoDeJuego;
+import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -21,8 +22,6 @@ public class ControladorMovimiento {
 	
 	private Point posicion;
 	
-	private Point velocidad;
-	
 	private Jugable marioJugable;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
@@ -34,10 +33,10 @@ public class ControladorMovimiento {
 	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
+		this.marioJugable.setVelocidadDireccional(new Point(0,0));
 		velocidadHorizontal = 0;
 		velocidadVertical = 0;
 		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
-		velocidad = new Point(0, 0);
 		saltando = false;
 		this.nivel = nivel;
 		this.gestorDeColisiones = gestorDeColisiones;
@@ -45,7 +44,7 @@ public class ControladorMovimiento {
 	
 	public Point actualizarVelocidad() {
 		determinarDireccion();
-		return velocidad;
+		return marioJugable.getVelocidadDireccional();
 	}
 	
 	public Point actualizarPosicion() {
@@ -65,14 +64,12 @@ public class ControladorMovimiento {
 	}
 	
 	private void actualizarPosicionMarioEnMatriz() {
-		this.nivel.eliminarElementoDeJuegoDeLaMatriz(marioJugable);
 		cambiarPosicionLogicaDeMario();
-		this.nivel.agregarElementoDeJuegoALaMatriz(marioJugable);
 	}
 	
 	private void cambiarPosicionLogicaDeMario() {
-		int nuevaPosicionX = posicion.x + velocidad.x;
-		int nuevaPosicionY = posicion.y + velocidad.y;
+		int nuevaPosicionX = posicion.x + this.marioJugable.getVelocidadDireccional().x;
+		int nuevaPosicionY = posicion.y + this.marioJugable.getVelocidadDireccional().y;
 		posicion.move(nuevaPosicionX, nuevaPosicionY);
 	}
 	
@@ -97,22 +94,45 @@ public class ControladorMovimiento {
 	private void determinarDireccion() {
 		if(!saltando && sensorDeTeclasJuego.obtenerWPresionada()) {
 			iniciarSalto();
-			gestorDeColisiones.verificarColisiones(marioJugable);
+			verificarColisiones(this.marioJugable);
 		}else if(saltando) {
 			aplicarGravedadSalto();
-			gestorDeColisiones.verificarColisiones(marioJugable);
+			verificarColisiones(this.marioJugable);
 		}
-		if(movimientoADerecha()) {
-			moveMarioDerecha();
-			gestorDeColisiones.verificarColisiones(marioJugable);
-		}else if(movimientoAIzquierda()) {
-			moveMarioIzquierda();
-			gestorDeColisiones.verificarColisiones(marioJugable);
-		}
+		// Movimiento horizontal
+        if (movimientoADerecha() && !marioJugable.getColisionADerecha()) {
+            marioJugable.setColisionAIzquierda(false);
+            moveMarioDerecha();
+        } else if (movimientoAIzquierda() && !marioJugable.getColisionAIzquierda()) {
+            marioJugable.setColisionADerecha(false);
+            moveMarioIzquierda();
+        } else {
+            velocidadHorizontal = 0; // Detener movimiento si no hay entrada
+        }
+
+        aplicarVelocidad();
+        verificarColisiones(this.marioJugable);
+    }
+	
+	public void verificarColisiones(Jugable entidad) {
+	    boolean colisionDetectada = false;
+	    for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+	        if (entidad.huboColision(elemento)) {
+	            System.out.println("Detecté colisión con: " + elemento.getClass().getSimpleName());
+	            entidad.aceptarVisitante(elemento.getVisitor());
+	            elemento.aceptarVisitante(entidad.getVisitor());
+	            colisionDetectada = true;
+	        }
+	    }
+	    if (!colisionDetectada) {
+	        entidad.setColisionADerecha(false);
+	        entidad.setColisionAIzquierda(false);
+	    }
 	}
 	
 	private void aplicarVelocidad() {
-		velocidad.move(velocidadHorizontal, velocidadVertical);
+		this.marioJugable.getVelocidadDireccional().move(velocidadHorizontal, velocidadVertical);
+		marioJugable.setVelocidadDireccional(this.marioJugable.getVelocidadDireccional());
 	}
 	
 	private void reiniciarVelocidadHorizontal() {
