@@ -1,13 +1,16 @@
 package juego;
 
-import java.util.ArrayList;
-
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
+import ventanas.ControladorVistas;
 
 public class GestorDeColisiones {
 	
 	protected Nivel nivel;
+	
+	public GestorDeColisiones(Nivel nivel) {
+		this.nivel = nivel;
+	}
 
 	public boolean verificarColisiones(Entidad entidad) {
 		int fila = nivel.obtenerFilaElementoDeJuegoEnLaMatriz(entidad);

@@ -22,26 +22,20 @@ public abstract class Entidad extends ElementoDeJuego {
         this.velocidadDireccional = velocidadDireccional;
     }
     
-    
     public Point getVelocidadDireccional() {
         return this.velocidadDireccional;
     }
     
-    
-    public void moverADerecha (Point dir) {
+    public void moverADerecha(Point dir) {
     	setVelocidadDireccional(dir);
     }
     
-    public void moverAIzquierda (Point dir) {
+    public void moverAIzquierda(Point dir) {
     	setVelocidadDireccional(dir);
     }
     
-    public void establecerPosicion (Point pos) {
+    public void establecerPosicion(Point pos) {
     	this.posicion = pos;
-    }
-    
-    public void setObserverGrafico(ObserverGrafico observerGrafico) {
-    	this.observerGrafico = observerGrafico;
     }
     
 	public abstract void aceptarVisitante(Visitante visitante);

@@ -15,6 +15,7 @@ import elementos.personajes.MarioFuego;
 import elementos.personajes.MarioInvulnerable;
 import elementos.personajes.EstadoMario;
 import elementos.personajes.SuperMario;
+import elementos.plataformas.BloqueSolido;
 import elementos.powerUps.*;
 
 public class FabricaEntidades {
@@ -69,7 +70,7 @@ public class FabricaEntidades {
 	public Goomba getGoomba(Point posicion, Visitante visitor, 
 							Point velocidadDireccional, 
 							ObserverGrafico observer){
-        Sprite sprite = fabricaSprites.getGoombaQuieto();
+        Sprite sprite = fabricaSprites.getGoombaCaminandoPrimeraTransicion();
         return new Goomba(sprite, posicion, visitor, velocidadDireccional, observer);
     }
    

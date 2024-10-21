@@ -117,5 +117,13 @@ public class ControladorVistas {
 		ventana.revalidate();
 		ventana.repaint();
 	}
+	
+	public PantallaDeJuego obtenerPantallaDeJuego() {
+		return this.pantallaDeJuego;
+	}
+	
+	public void cambiarNivel() {
+		//TODO
+	}
 
 }

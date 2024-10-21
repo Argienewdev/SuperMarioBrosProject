@@ -194,13 +194,13 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getGoombaQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaQuieto.png");
+    public Sprite getGoombaCaminandoPrimeraTransicion() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminandoPrimeraTransicion.png");
     }
 
     @Override
-    public Sprite getGoombaCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.png");
+    public Sprite getGoombaCaminandoSegundaTransicion() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminandoSegundaTransicion.png");
     }
 
     @Override

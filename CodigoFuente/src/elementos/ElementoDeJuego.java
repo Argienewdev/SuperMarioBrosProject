@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import juego.Nivel;
+import observers.ObserverGrafico;
 import visitors.*;
 
 public abstract class ElementoDeJuego implements Visitado {
@@ -17,6 +18,8 @@ public abstract class ElementoDeJuego implements Visitado {
 	protected Visitante visitor;
 	
     protected Nivel miNivel;
+    
+    protected ObserverGrafico observerGrafico;
     
 	
 	@SuppressWarnings("exports")
@@ -64,8 +67,9 @@ public abstract class ElementoDeJuego implements Visitado {
 	public Visitante getVisitor() {
 		return this.visitor;
 	}
+	
     public Nivel getNivel() {
-    	return miNivel;
+    	return this.miNivel;
     }
 	
 	public int obtenerAncho() {
@@ -82,13 +86,22 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return visitor;
+		return this.visitor;
 	}
 	
 	public boolean huboColision(ElementoDeJuego elemento) {
-		return hitbox.intersects(elemento.obtenerHitbox());
+		System.out.println("Detecté colision");
+		return this.hitbox.intersects(elemento.obtenerHitbox());
 	}
 
+	public void setObserverGrafico(ObserverGrafico observerGrafico) {
+    	this.observerGrafico = observerGrafico;
+    }
+    
+    public ObserverGrafico getObserverGrafico() {
+    	return this.observerGrafico;
+    }
+	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 }

@@ -23,13 +23,15 @@ public class ControladorMovimiento {
 	
 	private Point velocidad;
 	
-	private ActualizadorDePosicionDeJugador actualizadorDePosicionDeJugador;
-	
 	private Jugable marioJugable;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego) {
+	private Nivel nivel;
+	
+	private GestorDeColisiones gestorDeColisiones;
+	
+	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
 		velocidadHorizontal = 0;
@@ -37,7 +39,8 @@ public class ControladorMovimiento {
 		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
 		velocidad = new Point(0, 0);
 		saltando = false;
-		actualizadorDePosicionDeJugador = new ActualizadorDePosicionDeJugador(posicion, null);
+		this.nivel = nivel;
+		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
 	public Point actualizarVelocidad() {
@@ -46,7 +49,7 @@ public class ControladorMovimiento {
 	}
 	
 	public Point actualizarPosicion() {
-		posicion = actualizadorDePosicionDeJugador.actualizar(velocidad);
+		actualizarPosicionMarioEnMatriz();
 		reiniciarVelocidadHorizontal();
 		return posicion;
 	}
@@ -61,6 +64,18 @@ public class ControladorMovimiento {
 		aplicarVelocidad();
 	}
 	
+	private void actualizarPosicionMarioEnMatriz() {
+		this.nivel.eliminarElementoDeJuegoDeLaMatriz(marioJugable);
+		cambiarPosicionLogicaDeMario();
+		this.nivel.agregarElementoDeJuegoALaMatriz(marioJugable);
+	}
+	
+	private void cambiarPosicionLogicaDeMario() {
+		int nuevaPosicionX = posicion.x + velocidad.x;
+		int nuevaPosicionY = posicion.y + velocidad.y;
+		posicion.move(nuevaPosicionX, nuevaPosicionY);
+	}
+	
 	private void iniciarSalto() {
 		saltando = true;
 		velocidadVertical = FUERZA_SALTO;
@@ -68,7 +83,7 @@ public class ControladorMovimiento {
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(actualizadorDePosicionDeJugador.marioEnElPiso()) {
+		if(marioJugable.getPosicion().y >= 600) {
 			reiniciarVelocidadVertical();
 			saltando = false;
 		}else if(velocidadVertical >= FUERZA_SALTO){
@@ -82,13 +97,17 @@ public class ControladorMovimiento {
 	private void determinarDireccion() {
 		if(!saltando && sensorDeTeclasJuego.obtenerWPresionada()) {
 			iniciarSalto();
+			gestorDeColisiones.verificarColisiones(marioJugable);
 		}else if(saltando) {
 			aplicarGravedadSalto();
+			gestorDeColisiones.verificarColisiones(marioJugable);
 		}
 		if(movimientoADerecha()) {
 			moveMarioDerecha();
+			gestorDeColisiones.verificarColisiones(marioJugable);
 		}else if(movimientoAIzquierda()) {
 			moveMarioIzquierda();
+			gestorDeColisiones.verificarColisiones(marioJugable);
 		}
 	}
 	

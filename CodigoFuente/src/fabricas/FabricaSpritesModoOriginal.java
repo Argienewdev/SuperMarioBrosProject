@@ -194,12 +194,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getGoombaQuieto() {
+    public Sprite getGoombaCaminandoPrimeraTransicion() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaQuieto.png");
     }
 
     @Override
-    public Sprite getGoombaCaminando() {
+    public Sprite getGoombaCaminandoSegundaTransicion() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaCaminando.png");
     }
 

@@ -6,13 +6,14 @@ import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
+import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class CoordinadorActualizacionesJugador {
 	
 	private ControladorMovimiento controladorMovimiento;
 	
-	private ActualizadorGraficoJugador actualizadorGraficoJugador;
+	private ActualizadorDeSpriteJugador actualizadorDeSpriteJugador;
 	
 	private Jugable marioJugable;
 	
@@ -22,13 +23,22 @@ public class CoordinadorActualizacionesJugador {
 	
 	private Sprite marioSprite;
 	
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable marioJugable) {
-		this.actualizadorGraficoJugador = new ActualizadorGraficoJugador();
-		this.posicion = new Point(marioJugable.getPosicion().x,marioJugable.getPosicion().y);
-		this.velocidad = new Point(0,0);
-		this.marioSprite = marioJugable.getSprite();
-		this.controladorMovimiento = new ControladorMovimiento(marioJugable, sensorDeTeclasJuego);
+	private FabricaSprites fabricaSprites;
+	
+	private GestorDeColisiones gestorDeColisiones;
+	
+	private Nivel nivel;
+	
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable marioJugable, FabricaSprites fabricaSprites, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
+		this.fabricaSprites = fabricaSprites;
 		this.marioJugable = marioJugable;
+		this.actualizadorDeSpriteJugador = new ActualizadorDeSpriteJugador(this.fabricaSprites);
+		this.posicion = new Point(this.marioJugable.getPosicion().x,this.marioJugable.getPosicion().y);
+		this.velocidad = new Point(0,0);
+		this.marioSprite = this.marioJugable.getSprite();
+		this.gestorDeColisiones = gestorDeColisiones;
+		this.nivel = nivel;
+		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel, gestorDeColisiones);
 	}
 	
 	private Point actualizarVelocidad() {
@@ -40,20 +50,23 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarSprite() {
-		marioSprite = actualizadorGraficoJugador.actualizar(marioSprite, velocidad);
-		//TODO Recibe la velocidad para ver en que direccion va para retornar el sprite adecuado
-		//este metodo guarda el sprite para mario en un atributo
+		marioSprite = actualizadorDeSpriteJugador.actualizar(velocidad);
 	}
 	
 	private void actualizarMarioLabel() {
-		marioJugable.setPosicion(posicion);
+		marioJugable.getObserverGrafico().actualizar();
 	}
 
 	public void actualizar() {
 		velocidad = actualizarVelocidad();
 		posicion = actualizarPosicion(); 
 		actualizarSprite();
+		actualizarPosicionMario();
 		actualizarMarioLabel();
+	}
+	
+	public void actualizarPosicionMario() {
+		this.marioJugable.setPosicion(this.posicion);
 	}
 	
 }

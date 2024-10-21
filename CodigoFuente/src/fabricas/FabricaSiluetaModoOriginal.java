@@ -10,7 +10,7 @@ public class FabricaSiluetaModoOriginal extends FabricaSilueta {
 
 	@Override
 	public Silueta getSilueta() {
-		return new Silueta(rutaACarpeta + "../imagenes/siluetas/siluetaModoOriginal/silueta.png");
+		return new Silueta(rutaACarpeta + "/siluetaModoOriginal/silueta.png");
 	}
 
 }

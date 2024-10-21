@@ -6,6 +6,7 @@ import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaPlataformas;
 import fabricas.FabricaSilueta;
+import fabricas.FabricaSiluetaModoAlternativo;
 import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
@@ -14,6 +15,7 @@ import generadores.GeneradorDeNivel;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
+import ventanas.PantallaDeJuego;
 
 public class Juego {
 	
@@ -37,6 +39,8 @@ public class Juego {
 	
 	private FabricaSilueta fabricaSilueta;
 	
+	private PantallaDeJuego pantallaDeJuego;
+	
 	public static void main(String args[]) {
 		juego = new Juego();
 		//juego.bucleJuego = new BucleJuego();
@@ -54,16 +58,17 @@ public class Juego {
 
 	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		if (modo.equals("Modo original")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoOriginal.png");
+			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 		} else if (modo.equals("Modo alternativo")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas/siluetaModoAlternativo.png");
+			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites);
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas);
-		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel);
+		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
+		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
+		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites);
 		return partida.obtenerJugador();
 	}
 }

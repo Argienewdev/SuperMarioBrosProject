@@ -1,102 +1,204 @@
 package ventanas;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import elementos.entidades.Jugable;
+import observers.ObserverGrafico;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class PantallaDeJuego extends JPanel {
 	
+	private ArrayList<JLabel> labelsElementoDeJuego;
+	
 	private Dimension size;
-	
 	private Jugable marioJugable;
-	
 	private JLabel marioLabel;
-	
 	private JLabel fondo;
-	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
-	
-	private int posicionPreviaDeMario;
-	
+	private ObserverGrafico observerGrafico;
+	private boolean enElSuelo = true; // Nueva variable para controlar el estado de Mario
+	private int fondoX = 0; // Nueva variable para la posición X del fondo
+	private double velocidadFondo = 2; // Ajusta la velocidad a la que se mueve fondo 
+	private final int GRAVEDAD = 2;  // Constante de gravedad
+	private int velocidadY = 0;      // Velocidad vertical inicial de Mario
+
 	public PantallaDeJuego(SensorDeTeclasJuego sensorDeTeclasJuego) {
 		setVisible(true);
-		fondo= new JLabel();
+		this.fondo = new JLabel();
 		configurarVentana();
 	    this.sensorDeTeclasJuego = sensorDeTeclasJuego;
+	    this.labelsElementoDeJuego = new ArrayList<JLabel>();
 	}
+	
+	@Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        dibujarCuadricula(g);
+    }
+    
+    private void dibujarCuadricula(Graphics g) {
+        int width = getWidth();
+        int height = getHeight();
+        int gridSize = 50; // Tamaño de cada celda de la cuadrícula
+
+        // Dibuja líneas verticales
+        for (int x = 0; x <= width; x += gridSize) {
+            g.drawLine(x, 0, x, height);
+        }
+
+        // Dibuja líneas horizontales
+        for (int y = 0; y <= height; y += gridSize) {
+            g.drawLine(0, y, width, y);
+        }
+
+        // Dibuja las coordenadas en cada celda
+        g.setColor(Color.RED); // Color del texto
+        g.setFont(new Font("Arial", Font.PLAIN, 10)); // Fuente del texto
+
+        for (int row = 0; row * gridSize < height; row++) {
+            for (int col = 0; col * gridSize < width; col++) {
+                // Calcula las coordenadas en formato (fila, columna)
+                String coordenadas = "(" + row + ", " + col + ")";
+                // Ajusta la posición del texto
+                g.drawString(coordenadas, col * gridSize + 5, row * gridSize + 15);
+            }
+        }
+    }
 	
 	protected void configurarVentana(){
 		setVisible(true);
 		setLayout(null);
-		size = new Dimension(2200, DimensionesConstantes.PANEL_ALTO);
+		this.size = new Dimension(2200, DimensionesConstantes.PANEL_ALTO);
 		setPreferredSize(size);
 		setMaximumSize(size);
 		setMinimumSize(size);
 	}
 	
 	protected void establecerFondo(){
-		/**
-		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
-		 fondo = new JLabel(fondoImagen);
-		 fondo.setPreferredSize(size);
-		 fondo.setMaximumSize(size);
-		 fondo.setMinimumSize(size);
-		 fondo.setBounds(-100, -30, size.height, size.height);
-		 add(fondo);
-		 **/
 		ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
-	    
-	    fondo = new JLabel(fondoImagen);
-	    
-	    // El tamaño del JLabel es el del panel, pero la imagen de fondo se mantiene en 4000x760
-	    fondo.setBounds(0, 0, 4000, size.height); // El borde izquierdo está en 0, pero la imagen tiene 4000 de ancho
-	    
-	    // Añades el JLabel al panel y lo mantienes alineado al borde izquierdo
+		fondo = new JLabel(fondoImagen);
+	    fondo.setBounds(fondoX, 0, 4000, size.height); // Ajusta la posición X del fondo
 	    add(fondo);
-	    
-	    // Forzar tamaño del panel a 960x760 para que solo se vea la parte izquierda del fondo
-	    setPreferredSize(new Dimension(size.height, size.width));
-	    setLayout(null); // Usamos layout nulo para controlar el posicionamiento exacto
 	}
 	
 	public void registrarJugable(Jugable jugable) {
 		marioJugable = jugable;
-		posicionPreviaDeMario = marioJugable.getPosicion().x;
 		ImageIcon marioIcono = new ImageIcon(marioJugable.getSprite().getRutaImagen());
 		marioLabel = new JLabel(marioIcono);
-		marioLabel.setBounds(marioJugable.getPosicion().x, marioJugable.getPosicion().y, marioIcono.getIconWidth(), marioIcono.getIconHeight());
-		marioLabel.setVisible(true);
-		add(marioLabel);
+		Point aux = parsearPosicionDelJugable(marioJugable.getPosicion());
+		marioLabel.setBounds(aux.x, aux.y,marioIcono.getIconWidth(), marioIcono.getIconHeight());
+		agregarLabel(marioLabel);
+		mostrarLabels();
 		establecerFondo();
-	}
-	
-	public int moverADerecha() {
-		int toRet = 0;
-		if(sensorDeTeclasJuego.obtenerDPresionada()) {
-			toRet = 10;
-		}
-		return toRet;
-	}
-	
-	public void refrescar(){
-		if(marioJugable.getPosicion().x < 300) {
-			marioLabel.setLocation(marioJugable.getPosicion());
-		}else if(marioJugable.getPosicion().x >= 300) {
-			if(sensorDeTeclasJuego.obtenerAPresionada()) {
-				marioLabel.setLocation(marioLabel.getLocation().x - 10, marioJugable.getPosicion().y);
-			}else if(marioJugable.getPosicion().x >= 300 && marioLabel.getLocation().x >= 300){
-				marioLabel.setLocation(marioLabel.getLocation().x, marioJugable.getPosicion().y);
-				fondo.setLocation(fondo.getLocation().x - moverADerecha(), fondo.getLocation().y);
-			}else if(sensorDeTeclasJuego.obtenerDPresionada()){
-				marioLabel.setLocation(marioLabel.getLocation().x + 10, marioJugable.getPosicion().y);
-			}
-		}
+		revalidate();
 		repaint();
 	}
+	
+	public void agregarLabel(JLabel labelElementoDeJuego) {
+		labelsElementoDeJuego.add(labelElementoDeJuego);
+		mostrarLabels();
+	}
+	
+	public void mostrarLabels() {
+		for(JLabel label : labelsElementoDeJuego) {
+			add(label);
+			label.setVisible(true);
+			revalidate();
+			repaint();
+		}
+	}
+	
+	private Point parsearPosicionDelJugable(Point posicion) {
+		Point toReturn = new Point();
+		toReturn.x = parsearPosicionX(posicion.x);
+		toReturn.y = parsearPosicionY(posicion.y);
+		return toReturn;
+	}
+	
+	private int parsearPosicionX(int posX) {
+		return posX;
+	}
+	
+	private int parsearPosicionY(int posY) {
+		return posY+35;
+	}
+    
+	public void refrescar() {
+	    int deltaX = 0;
+
+	    // Movimiento horizontal con verificación de límites
+	    if (sensorDeTeclasJuego.obtenerAPresionada()) {
+	        if (marioJugable.getPosicion().x > 0) {
+	            deltaX = -10;  // Mover a la izquierda
+	        } else {
+	            deltaX = 0;  // Evitar que salga del límite izquierdo
+	        }
+	    }
+	    if (sensorDeTeclasJuego.obtenerDPresionada()) {
+	        if (marioJugable.getPosicion().x < getWidth() - marioLabel.getWidth()) {
+	            deltaX = 10;  // Mover a la derecha
+	        } else {
+	            deltaX = 0;  // Evitar que salga del límite derecho
+	        }
+	    }
+
+	    // Movimiento vertical (salto) con gravedad
+	    if (sensorDeTeclasJuego.obtenerWPresionada() && enElSuelo) {
+	        velocidadY = -20;
+	        enElSuelo = false;
+	    }
+	    if (!enElSuelo) {
+	        velocidadY += GRAVEDAD;  // Aplicar gravedad
+	    }
+
+	    // Actualización de la posición de Mario
+	    Point nuevaPosicion = new Point(marioJugable.getPosicion());
+	    nuevaPosicion.x += deltaX;
+	    nuevaPosicion.y += velocidadY;
+
+	    // Ajustar la posición para evitar desbordamientos
+	    nuevaPosicion.x = Math.max(0, Math.min(nuevaPosicion.x, getWidth() - marioLabel.getWidth()));
+
+	    // Verificar si Mario toca el suelo
+	    if (nuevaPosicion.y >= 600) {
+	        nuevaPosicion.y = 600;
+	        enElSuelo = true;
+	        velocidadY = 0;
+	    } else if (nuevaPosicion.y < 0) {
+	        nuevaPosicion.y = 0;
+	        velocidadY = 0;
+	    }
+
+	    // Actualizar la posición del Jugable y el JLabel
+	    marioJugable.setPosicion(nuevaPosicion);
+	    marioLabel.setLocation(parsearPosicionDelJugable(nuevaPosicion));
+
+	    // Mover el fondo y otros labels si Mario se mueve hacia la derecha
+	    if (deltaX > 0 && fondoX > -(4000 - getWidth())) {
+	        fondoX -= deltaX * velocidadFondo;
+	        fondo.setBounds(fondoX, 0, 4000, size.height);
+
+	        // Desplazar los labels junto con el fondo
+	        for (JLabel label : labelsElementoDeJuego) {
+	            Point posActual = label.getLocation();
+	            label.setLocation(posActual.x - (int) (deltaX * velocidadFondo), posActual.y);
+	        }
+	    }
+
+	    // Redibujar el panel
+	    repaint();
+	}
+
+
+
+	
+	
 }

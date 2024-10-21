@@ -7,26 +7,25 @@ import elementos.Sprite;
 import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoOriginal;
 
-public class ActualizadorGraficoJugador {
+public class ActualizadorDeSpriteJugador {
 	
 	private FabricaSprites fabricaSprites;
 	
-	public ActualizadorGraficoJugador() {
-		//TODO quien crea las fabricas?
-		fabricaSprites = new FabricaSpritesModoOriginal("src\\imagenes");
+	public ActualizadorDeSpriteJugador(FabricaSprites fabricaSprites) {
+		this.fabricaSprites = fabricaSprites;
 	}
 	
-	public Sprite actualizar(Sprite posicionPrevia, Point velocidad) {
-		Sprite aRetornar;
+	public Sprite actualizar(Point velocidad) {
+		Sprite aRetornar = null;
 		int velocidadHorizontal = velocidad.x;
 		int velocidadVertical = velocidad.y;
 		if(enElAire(velocidadVertical) && avanzando(velocidadHorizontal)) {
 			aRetornar = fabricaSprites.getMarioDefaultFrontalSaltando();
-		}else if(enElAire(velocidadVertical)) {
+		} else if(enElAire(velocidadVertical)) {
 			aRetornar = fabricaSprites.getMarioDefaultReversoSaltando();
-		}else if(avanzando(velocidadHorizontal)) {
+		} else if(avanzando(velocidadHorizontal)) {
 			aRetornar = fabricaSprites.getMarioDefaultFrontalCaminandoPrimeraTransicion();
-		}else {
+		} else if(retrocediendo(velocidadHorizontal)){
 			aRetornar = fabricaSprites.getMarioDefaultReversoCaminandoPrimeraTransicion();
 		}
 		return aRetornar;
@@ -47,4 +46,5 @@ public class ActualizadorGraficoJugador {
 	private boolean retrocediendo(int velocidadHorizontal) {
 		return velocidadHorizontal < 0;
 	}
+	
 }
