@@ -1,9 +1,0 @@
-package elementos.personaje;
-
-public class MarioInvulnerable  extends MarioDefault {
-	
-	// Atributos
-	protected static final int DURACION = 10;
-	
-	
-}
