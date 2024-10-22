@@ -42,16 +42,13 @@ public class ControladorMovimiento {
 		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
-	public Point actualizarVelocidad() {
-		determinarDireccion();
-		return marioJugable.getVelocidadDireccional();
-	}
-	
 	public Point actualizarPosicion() {
-		cambiarPosicionLogicaDeMario();
-        verificarColisiones(this.marioJugable);
+		determinarDireccion();
+//		cambiarPosicionHitboxDeMario();
+//      verificarColisiones(this.marioJugable);
+        Point velocidadARetornar = marioJugable.getVelocidadDireccional();
         reiniciarVelocidadHorizontal();
-		return posicion;
+        return velocidadARetornar;
 	}
 	
 	private void moveMarioDerecha() {
@@ -64,7 +61,7 @@ public class ControladorMovimiento {
 		aplicarVelocidad();
 	}
 	
-	private void cambiarPosicionLogicaDeMario() {
+	private void cambiarPosicionHitboxDeMario() {
 		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
 		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
 		Point nuevaPosicion = new Point(nuevaPosicionX, nuevaPosicionY);
@@ -87,29 +84,41 @@ public class ControladorMovimiento {
 	}
 	
 	private void determinarDireccion() {
-		if(marioJugable.getColisionAbajo() && sensorDeTeclasJuego.obtenerWPresionada()) {
-			iniciarSalto();
-			marioJugable.setColisionAbajo(false);
-		}else{
-			aplicarGravedadSalto();
-		}
-		// Movimiento horizontal
-        if (movimientoADerecha()) {
-            moveMarioDerecha();
-        } else if (movimientoAIzquierda()) {
-            moveMarioIzquierda();
-        }
-    }
+	    // Apply vertical (gravity-related) movement first
+	    if (!marioJugable.getColisionAbajo()) {
+	        aplicarGravedadSalto();
+	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
+	        iniciarSalto();
+	        marioJugable.setColisionAbajo(false);
+	    } else {
+	        reiniciarVelocidadVertical();
+	    }
+
+	    // Then check for horizontal movement after vertical resolution
+	    if (movimientoADerecha()) {
+	    	marioJugable.setColisionAbajo(false);
+	        moveMarioDerecha();
+	    } else if (movimientoAIzquierda()) {
+	    	marioJugable.setColisionAbajo(false);
+	        moveMarioIzquierda();
+	    }
+
+	    // Adjust hitbox positions accordingly
+	    cambiarPosicionHitboxDeMario();
+	    verificarColisiones(marioJugable);
+	}
 	
 	public void verificarColisiones(Jugable entidad) {
+		boolean huboColision = false;
 	    for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 	        if (entidad.huboColision(elemento)) {
-	            System.out.println("Detecté colisión con: " + elemento.getClass().getSimpleName());
+	        	huboColision = true;
 	            entidad.aceptarVisitante(elemento.getVisitor());
 	            elemento.aceptarVisitante(entidad.getVisitor());
-	        }else {
-	        	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	        }
+	    }
+	    if(!huboColision) {
+	    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	    }
 	}
 	

@@ -19,11 +19,14 @@ public abstract class Jugable extends Entidad {
 	
 	private boolean colisionAbajo;
 	
+	private boolean colisionArriba;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 		this.colisionADerecha = false;
 		this.colisionAIzquierda = false;
 		this.colisionAbajo = true;
+		this.colisionArriba = false;
 	}
 	
 	public void ganarVida() {
@@ -86,23 +89,36 @@ public abstract class Jugable extends Entidad {
 		return this.colisionAbajo;
 	}
 	
-	public void retrotraerMovimiento() {
-	    if (this.colisionADerecha) {
-	        Point newPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
-	        this.moverHitbox(newPos);
-	        colisionADerecha = false;
-	    } else if (this.colisionAIzquierda){
-	    	Point newPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
-	        this.moverHitbox(newPos);
-	        colisionAIzquierda = false;
-	    }
+	public void setColisionArriba(boolean colisionArriba) {
+		this.colisionArriba = colisionArriba;
+	}
+	
+	public boolean getColisionArriba() {
+		return this.colisionArriba;
+	}
+	
+	public void retrotraerMovimientoAIzquierda() {
+    	Point olsPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
+        this.moverHitbox(olsPos);
+        setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
+	}
+	
+	public void retrotraerMovimientoADerecha() {
+		Point olsPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
+		this.moverHitbox(olsPos);
+		setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {
-		if(this.colisionAbajo) {
-			Point newPos = new Point(this.obtenerHitbox().x, posY);
-			this.moverHitbox(newPos);
+		Point newPos = new Point(0,0);
+		if(colisionAbajo) {
+			newPos.move(this.obtenerHitbox().x, posY);
+		}else if(colisionArriba) {
+			newPos.move(this.obtenerHitbox().x, posY);
 		}
+		this.moverHitbox(newPos);
+		setPosicion(newPos);
+		setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
 	}
 
 }

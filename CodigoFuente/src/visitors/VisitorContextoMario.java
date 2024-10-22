@@ -129,42 +129,49 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		 System.out.println("Mario ha colisionado con un ladrillo.");
-		    // Bloqueamos solo la dirección de colisión
-		    if (miEntidad.getVelocidadDireccional().x > 0) {
-		        miEntidad.setColisionADerecha(true);  // Colisión al moverse a la derecha
-		        miEntidad.retrotraerMovimiento();
-		    } else if (miEntidad.getVelocidadDireccional().x < 0) {
-		    	miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
-		    	miEntidad.retrotraerMovimiento();
-		    }
-		    if(miEntidad.getVelocidadDireccional().y > 0) {
-		    	//Estoy cayendo
-		    	miEntidad.setColisionAbajo(true);
-		    	miEntidad.retrotraerMovimientoVertical(ladrillo.getPosicion().y - 50);
-		    }
+		// Bloqueamos solo la dirección de colisión
+		if (choquePorDerecha(ladrillo)) {
+			miEntidad.retrotraerMovimientoADerecha();
+		}else if (choquePorIzquierda(ladrillo)) {
+			miEntidad.retrotraerMovimientoAIzquierda();
+		}
+		if(choquePorArriba(ladrillo)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}else if(choquePorAbajo(ladrillo)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+		}
 	}
 	
-	public void visitarr(Ladrillo ladrillo) {
-		System.out.println("Mario ha colisionado con un ladrillo.");
-		// Bloqueamos solo la dirección de colisión
-		if (miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > ladrillo.obtenerHitbox().x) {
-			if(miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > ladrillo.obtenerHitbox().y) {
-				//Choque la cara derecha
-				miEntidad.setColisionADerecha(true);
-				miEntidad.retrotraerMovimiento();
-			}
-		} else if (miEntidad.obtenerHitbox().x < ladrillo.obtenerHitbox().x + ladrillo.obtenerHitbox().width) {
-			miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
-			miEntidad.retrotraerMovimiento();
-		}
-		if(miEntidad.getVelocidadDireccional().y > 0) {
-			//Estoy cayendo
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - ladrillo.obtenerHitbox().height);
-		}
+	private boolean choquePorDerecha(BloqueSolido bloque) {
+		boolean parte1 = (miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width) > bloque.obtenerHitbox().x;
+		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
+		boolean parte3 = miEntidad.getVelocidadDireccional().x > 0;
+		return parte1 && parte2 && parte3;
 	}
-
+	
+	private boolean choquePorIzquierda(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
+		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
+		boolean parte3 = miEntidad.getVelocidadDireccional().x < 0;
+		return parte1 && parte2 && parte3;
+	}
+	
+	private boolean choquePorArriba(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > bloque.obtenerHitbox().y;
+		boolean parte2 = !(miEntidad.getPosicion().y + miEntidad.obtenerAlto() > bloque.getPosicion().y);
+		boolean parte3 = miEntidad.getVelocidadDireccional().y > 0;
+		return parte1 && parte2 && parte3;
+	}
+	
+	private boolean choquePorAbajo(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().y < bloque.obtenerHitbox().y + bloque.obtenerHitbox().height;
+		boolean parte2 = !(miEntidad.getPosicion().y < bloque.getPosicion().y + bloque.obtenerAlto());
+		boolean parte3 = miEntidad.getVelocidadDireccional().y < 0;
+		return parte1 && parte2 && parte3;
+	}
+	
 	@Override
 	public void visitar(Vacio vacio) {
 	}
