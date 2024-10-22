@@ -3,6 +3,8 @@ package elementos;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JLabel;
+
 import juego.Nivel;
 import observers.ObserverGrafico;
 import visitors.*;
@@ -18,6 +20,8 @@ public abstract class ElementoDeJuego implements Visitado {
 	protected Visitante visitante;
 	
     protected Nivel miNivel;
+    
+    protected JLabel label;
     
     protected ObserverGrafico observerGrafico;
     
@@ -47,7 +51,6 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public void setPosicion (Point posicion) {
-		this.hitbox.setLocation(posicion);
 		this.posicion = posicion;
 	}
 	
@@ -58,6 +61,10 @@ public abstract class ElementoDeJuego implements Visitado {
 	@SuppressWarnings("exports")
 	public Rectangle obtenerHitbox() {
 		return this.hitbox;
+	}
+	
+	public void moverHitbox(Point nuevaPosicion) {
+		this.hitbox.setLocation(nuevaPosicion);
 	}
 	
 	@SuppressWarnings("exports")

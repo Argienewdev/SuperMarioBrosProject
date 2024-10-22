@@ -281,6 +281,6 @@ public class GeneradorDeNivel {
 	}
 	
 	private Point parsearPosicion(int x, int y) {
-		return new Point(x * 50, DimensionesConstantes.NIVEL_PISO - (y * 50));
+		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
 	}
 }

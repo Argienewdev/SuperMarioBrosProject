@@ -48,8 +48,9 @@ public class ControladorMovimiento {
 	}
 	
 	public Point actualizarPosicion() {
-		actualizarPosicionMarioEnMatriz();
-		reiniciarVelocidadHorizontal();
+		cambiarPosicionLogicaDeMario();
+        verificarColisiones(this.marioJugable);
+        reiniciarVelocidadHorizontal();
 		return posicion;
 	}
 	
@@ -63,14 +64,11 @@ public class ControladorMovimiento {
 		aplicarVelocidad();
 	}
 	
-	private void actualizarPosicionMarioEnMatriz() {
-		cambiarPosicionLogicaDeMario();
-	}
-	
 	private void cambiarPosicionLogicaDeMario() {
-		int nuevaPosicionX = posicion.x + this.marioJugable.getVelocidadDireccional().x;
-		int nuevaPosicionY = posicion.y + this.marioJugable.getVelocidadDireccional().y;
-		posicion.move(nuevaPosicionX, nuevaPosicionY);
+		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
+		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
+		Point nuevaPosicion = new Point(nuevaPosicionX, nuevaPosicionY);
+		marioJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void iniciarSalto() {
@@ -80,59 +78,44 @@ public class ControladorMovimiento {
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(marioJugable.getPosicion().y >= 600) {
-			reiniciarVelocidadVertical();
-			saltando = false;
-		}else if(velocidadVertical >= FUERZA_SALTO){
+		if(velocidadVertical >= FUERZA_SALTO && !marioJugable.getColisionAbajo()){
 			velocidadVertical += GRAVEDAD;
 			aplicarVelocidad();
-		}else {
+		}else if(!marioJugable.getColisionAbajo()){
 			aplicarVelocidad();
 		}
 	}
 	
 	private void determinarDireccion() {
-		if(!saltando && sensorDeTeclasJuego.obtenerWPresionada()) {
+		if(marioJugable.getColisionAbajo() && sensorDeTeclasJuego.obtenerWPresionada()) {
 			iniciarSalto();
-			verificarColisiones(this.marioJugable);
-		}else if(saltando) {
+			marioJugable.setColisionAbajo(false);
+		}else{
 			aplicarGravedadSalto();
-			verificarColisiones(this.marioJugable);
 		}
 		// Movimiento horizontal
-        if (movimientoADerecha() && !marioJugable.getColisionADerecha()) {
-            marioJugable.setColisionAIzquierda(false);
+        if (movimientoADerecha()) {
             moveMarioDerecha();
-        } else if (movimientoAIzquierda() && !marioJugable.getColisionAIzquierda()) {
-            marioJugable.setColisionADerecha(false);
+        } else if (movimientoAIzquierda()) {
             moveMarioIzquierda();
-        } else {
-            velocidadHorizontal = 0; // Detener movimiento si no hay entrada
         }
-
-        aplicarVelocidad();
-        verificarColisiones(this.marioJugable);
     }
 	
 	public void verificarColisiones(Jugable entidad) {
-	    boolean colisionDetectada = false;
 	    for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 	        if (entidad.huboColision(elemento)) {
 	            System.out.println("Detecté colisión con: " + elemento.getClass().getSimpleName());
 	            entidad.aceptarVisitante(elemento.getVisitor());
 	            elemento.aceptarVisitante(entidad.getVisitor());
-	            colisionDetectada = true;
+	        }else {
+	        	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	        }
-	    }
-	    if (!colisionDetectada) {
-	        entidad.setColisionADerecha(false);
-	        entidad.setColisionAIzquierda(false);
 	    }
 	}
 	
 	private void aplicarVelocidad() {
-		this.marioJugable.getVelocidadDireccional().move(velocidadHorizontal, velocidadVertical);
-		marioJugable.setVelocidadDireccional(this.marioJugable.getVelocidadDireccional());
+		Point nuevaVelocidad = new Point(velocidadHorizontal, velocidadVertical);
+		marioJugable.setVelocidadDireccional(nuevaVelocidad);
 	}
 	
 	private void reiniciarVelocidadHorizontal() {

@@ -62,12 +62,8 @@ public class CoordinadorActualizacionesJugador {
 		velocidad = actualizarVelocidad();
 		posicion = actualizarPosicion(); 
 		actualizarSprite();
-		actualizarPosicionMario();
 		actualizarMarioLabel();
 	}
 	
-	public void actualizarPosicionMario() {
-		this.marioJugable.setPosicion(this.posicion);
-	}
 	
 }

@@ -130,7 +130,6 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitar(Ladrillo ladrillo) {
 		 System.out.println("Mario ha colisionado con un ladrillo.");
-		    
 		    // Bloqueamos solo la dirección de colisión
 		    if (miEntidad.getVelocidadDireccional().x > 0) {
 		        miEntidad.setColisionADerecha(true);  // Colisión al moverse a la derecha
@@ -139,9 +138,31 @@ public class VisitorContextoMario implements Visitante {
 		    	miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
 		    	miEntidad.retrotraerMovimiento();
 		    }
-
-		    // Detenemos a Mario después de la colisión
-		    miEntidad.setVelocidadDireccional(new Point(0, 0));
+		    if(miEntidad.getVelocidadDireccional().y > 0) {
+		    	//Estoy cayendo
+		    	miEntidad.setColisionAbajo(true);
+		    	miEntidad.retrotraerMovimientoVertical(ladrillo.getPosicion().y - 50);
+		    }
+	}
+	
+	public void visitarr(Ladrillo ladrillo) {
+		System.out.println("Mario ha colisionado con un ladrillo.");
+		// Bloqueamos solo la dirección de colisión
+		if (miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > ladrillo.obtenerHitbox().x) {
+			if(miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > ladrillo.obtenerHitbox().y) {
+				//Choque la cara derecha
+				miEntidad.setColisionADerecha(true);
+				miEntidad.retrotraerMovimiento();
+			}
+		} else if (miEntidad.obtenerHitbox().x < ladrillo.obtenerHitbox().x + ladrillo.obtenerHitbox().width) {
+			miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
+			miEntidad.retrotraerMovimiento();
+		}
+		if(miEntidad.getVelocidadDireccional().y > 0) {
+			//Estoy cayendo
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - ladrillo.obtenerHitbox().height);
+		}
 	}
 
 	@Override

@@ -17,10 +17,13 @@ public abstract class Jugable extends Entidad {
 	
 	private boolean colisionAIzquierda;
 	
+	private boolean colisionAbajo;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 		this.colisionADerecha = false;
 		this.colisionAIzquierda = false;
+		this.colisionAbajo = true;
 	}
 	
 	public void ganarVida() {
@@ -40,10 +43,6 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public void recogerMoneda() {
-		// TODO Auto-generated method stub
-	}
-	
-	public void perderMoneda() {
 		// TODO Auto-generated method stub
 	}
 	
@@ -76,18 +75,34 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public boolean getColisionAIzquierda() {
-		System.out.println("Detecte colision a izquierda");
 		return this.colisionAIzquierda;
+	}
+	
+	public void setColisionAbajo(boolean colisionAbajo) {
+		this.colisionAbajo = colisionAbajo;
+	}
+	
+	public boolean getColisionAbajo() {
+		return this.colisionAbajo;
 	}
 	
 	public void retrotraerMovimiento() {
 	    if (this.colisionADerecha) {
-	        Point newPos = new Point(this.getPosicion().x - this.getVelocidadDireccional().x, this.getPosicion().y);
-	        this.setPosicion(newPos);
-	    } else {
-	    	Point newPos = new Point(this.getPosicion().x + this.getVelocidadDireccional().x, this.getPosicion().y);
-	        this.setPosicion(newPos);
+	        Point newPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
+	        this.moverHitbox(newPos);
+	        colisionADerecha = false;
+	    } else if (this.colisionAIzquierda){
+	    	Point newPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
+	        this.moverHitbox(newPos);
+	        colisionAIzquierda = false;
 	    }
+	}
+	
+	public void retrotraerMovimientoVertical(int posY) {
+		if(this.colisionAbajo) {
+			Point newPos = new Point(this.obtenerHitbox().x, posY);
+			this.moverHitbox(newPos);
+		}
 	}
 
 }

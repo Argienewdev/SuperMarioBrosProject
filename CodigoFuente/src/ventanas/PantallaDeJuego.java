@@ -77,12 +77,7 @@ public class PantallaDeJuego extends JPanel {
 
     public void refrescar() {
         Point posicionMario = marioJugable.getPosicion();
-
-        // Limitar movimiento de Mario para que no salga por la izquierda
-        if (posicionMario.x < 0) {
-            posicionMario.x = 0;
-        }
-
+        /*
         // Si Mario llega a la mitad de la pantalla, desplazamos el fondo y los labels
         if (posicionMario.x >= MITAD_PANTALLA && desplazamientoFondo > -fondo.getWidth() + DimensionesConstantes.PANEL_ANCHO) {
             int desplazamiento = posicionMario.x - MITAD_PANTALLA;
@@ -94,7 +89,7 @@ public class PantallaDeJuego extends JPanel {
         if (posicionMario.x + marioLabel.getWidth() > DimensionesConstantes.PANEL_ANCHO) {
             posicionMario.x = DimensionesConstantes.PANEL_ANCHO - marioLabel.getWidth();
         }
-
+         */
         marioLabel.setLocation(posicionMario);
         repaint();
     }
