@@ -24,19 +24,19 @@ public class PantallaInicial extends JPanel {
 	protected JLabel currentLabel;
 	
 	protected JLabel ranking;
-	
+
 	protected SensorDeTeclasMenu sensor;
 	
 	private ArregloDeBotones arregloDeBotones;
 	
 	protected Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
 	
-	protected ControladorDeVistas controlador;
+	protected ControladorVistas controlador;
 	
 	Fuentes tipoFuentes;
 	
-	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorDeVistas controladorDeVistas){
-		controlador= controladorDeVistas;
+	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
+		controlador= controladorVistas;
 		this.sensor = sensor;
 		fondo = new JLabel();
 		modo1 = new JLabel("MODO DE JUEGO 1");
@@ -69,9 +69,9 @@ public class PantallaInicial extends JPanel {
 	
 	public void configurarFuente() {
 		tipoFuentes= new Fuentes();
-	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
-	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
-	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
+	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO/30));
+	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0,  DimensionesConstantes.PANEL_ANCHO/30));
+	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0,  DimensionesConstantes.PANEL_ANCHO/30));
 	    modo1.setForeground(Color.WHITE);
 	    modo2.setForeground(Color.WHITE);
 	    ranking.setForeground(Color.WHITE);
@@ -91,11 +91,11 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	protected void establecerFondo(){
-		 ImageIcon fondoImagen = new ImageIcon(getClass().getResource("/imagenes/fondoJuegoCielo.png"));
+		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoJuegoCielo.png");
 		 Image imagen = fondoImagen.getImage();
 		 Image imagenEscalada = imagen.getScaledInstance(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO, Image.SCALE_SMOOTH);
 		 
-		 ImageIcon iconoCartel = new ImageIcon(getClass().getResource("/imagenes/cartelSuperMarioBros.png"));
+		 ImageIcon iconoCartel = new ImageIcon("src/imagenes/cartelSuperMarioBros.png");
 		 Image imagenCartel= iconoCartel.getImage();
 		 Image imagenCartelEscalada= imagenCartel.getScaledInstance(400, 200, Image.SCALE_SMOOTH);
 		 JLabel cartelLabel= new JLabel(new ImageIcon(imagenCartelEscalada));
@@ -118,13 +118,13 @@ public class PantallaInicial extends JPanel {
 	
 	 public void actualizarFoco() {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
-			 if(currentLabel== modo1){
-				 controlador.accionarInicioJuego();
+			 if(currentLabel == modo1){
+				 controlador.accionarInicioJuego("Modo original");
 			 }
-			 else if(currentLabel== modo2){
-				 
+			 else if(currentLabel == modo2){
+				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
-			 else if(currentLabel== ranking) {
+			 else if(currentLabel == ranking) {
 				
 			 }
 		 }

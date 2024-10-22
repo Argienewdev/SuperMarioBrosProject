@@ -12,148 +12,90 @@ public class VisitorBloqueSolido implements Visitante{
 		
 	}
 	
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-		
+	public void visitar(BuzzyBeetle buzzy) {	
 	}
 
+	public void visitar(Spiny spiny) {	
+	}
+
+	public void visitar(Goomba goomba) {	
+	}
 	
-	public void visitarSpiny(Spiny spiny) {
-		
+	public void visitar(KoopaCaparazonEstatico koopaEstatico) {	
 	}
 
+	public void visitar(KoopaCaparazonMovil koopaMovil) {	
+	}
+
+	public void visitar(KoopaDefault koopaDefault) {	
+	}
 	
-	public void visitarGoomba(Goomba goomba) {
-		
+	public void visitar(Lakitu lakitu) {	
 	}
-
 	
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		
+	public void visitar(PiranhaPlant planta) {	
 	}
-
 	
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		
+	public void visitar(Fireball fireball) {	
 	}
-
 	
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		
+	public void visitar(SuperChampinion superChamp) {	
 	}
-
 	
-	public void visitarLakitu(Lakitu lakitu) {
-		
+	public void visitar(FlorDeFuego flor) {		
 	}
 
+	public void visitar(ChampinionVerde champVerde) {	
+	}
 	
-	public void visitarPiranhaPlant(PiranhaPlant planta) {	
-		
+	public void visitar(Estrella estrella) {	
 	}
-
 	
-	public void visitarFireball(Fireball fireball) {	
+	public void visitar(Monedas monedas) {
 		
 	}
-
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
-			
-	}
-
 	
-	public void visitarFlorDeFuego(FlorDeFuego flor) {	
+	public void visitar(MarioDefault marioNormal) {	
 		
 	}
-
 	
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
+	public void visitar(MarioInvulnerable marioInv) {		
 		
 	}
 
+	public void visitar(MarioFuego marioFuego) {
+		
+	}
+
+	public void visitar(SuperMario superMario) {
+		
+	}
+
+	public void visitar(BloqueDePregunta bloquePregunta) {		
+	}
+
+	public void visitar(Ladrillo ladrillo) {	
+	}
 	
-	public void visitarEstrella(Estrella estrella) {
-		
+	public void visitar(Vacio vacio) {	
 	}
-
-	@Override
-	public void visitarMonedas(Monedas moneda) {
-			
-	}
-
 	
-	public void visitarMarioDefault(MarioDefault marioNormal) {
-		
+	public void visitar(PrincesaPeach princesa) {
 	}
 
+	public void visitar(Bandera bandera) {
+	}
 	
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
-		
-		
+	public void visitar(Tuberia tuberia) {	
 	}
 
-	
-	public void visitarMarioFuego(MarioFuego marioFuego) {
-		
-		
+	public void visitar(BloqueSolido bloqueSolido) {		
 	}
 
+	public void visitar(ContextoMario contextoMario) {		
+	}
 	
-	public void visitarSuperMario(SuperMario superMario) {
-		
-		
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
 	}
 
-	
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
-		
-		
-	}
-
-	
-	public void visitarLadrillo(Ladrillo ladrillo) {
-		
-		
-	}
-
-	
-	public void visitarVacio(Vacio vacio) {
-		
-		
-	}
-
-	
-	public void visitarPrincesaPeach(PrincesaPeach princesa) {
-		
-		
-	}
-
-	
-	public void visitarBandera(Bandera bandera) {
-		
-		
-	}
-
-	
-	public void visitarTuberia(Tuberia tuberia) {
-		
-		
-	}
-
-	
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		
-		
-	}
-
-	
-	public void visitarContextoMario(ContextoMario contextoMario) {
-		
-		
-	}
-
-	
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
-		
-		
-	}
 }

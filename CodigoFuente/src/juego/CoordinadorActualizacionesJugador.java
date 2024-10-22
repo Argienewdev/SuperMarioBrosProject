@@ -1,3 +1,4 @@
+
 package juego;
 
 import java.awt.Point;
@@ -5,23 +6,16 @@ import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
+import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class CoordinadorActualizacionesJugador {
 	
-	private static final int POSICION_INICIAL_X = 50;
-	
-	private static final int POSICION_INICIAL_Y = 400;
-	
-	private FabricaEntidades fabricaEntidades;
-	
 	private ControladorMovimiento controladorMovimiento;
 	
-	private ActualizadorGraficoJugador actualizadorGraficoJugador;
+	private ActualizadorDeSpriteJugador actualizadorDeSpriteJugador;
 	
-	private EntidadJugador entidadJugador;
-	
-	private Jugable jugador;
+	private Jugable marioJugable;
 	
 	private Point posicion;
 	
@@ -29,19 +23,22 @@ public class CoordinadorActualizacionesJugador {
 	
 	private Sprite marioSprite;
 	
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego) {
-		actualizadorGraficoJugador = new ActualizadorGraficoJugador();
-		posicion = new Point(POSICION_INICIAL_X,POSICION_INICIAL_Y);
-		velocidad = new Point(0,0);
-		marioSprite = actualizadorGraficoJugador.obtenerSpriteInicial();
-		controladorMovimiento = new ControladorMovimiento(posicion, sensorDeTeclasJuego);
-		//TODO todavia no me cierra que mario este aca en esta clase
-		//TODO el jugador es creado por el coordinador de actualizaciones? no creo
-		entidadJugador = new EntidadJugador(posicion, marioSprite);
-	}
+	private FabricaSprites fabricaSprites;
 	
-	private Point actualizarVelocidad() {
-		return controladorMovimiento.actualizarVelocidad();
+	private GestorDeColisiones gestorDeColisiones;
+	
+	private Nivel nivel;
+	
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable marioJugable, FabricaSprites fabricaSprites, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
+		this.fabricaSprites = fabricaSprites;
+		this.marioJugable = marioJugable;
+		this.actualizadorDeSpriteJugador = new ActualizadorDeSpriteJugador(this.fabricaSprites);
+		this.posicion = new Point(this.marioJugable.getPosicion().x,this.marioJugable.getPosicion().y);
+		this.velocidad = new Point(0,0);
+		this.marioSprite = this.marioJugable.getSprite();
+		this.gestorDeColisiones = gestorDeColisiones;
+		this.nivel = nivel;
+		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel, gestorDeColisiones);
 	}
 	
 	private Point actualizarPosicion() {
@@ -49,23 +46,19 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarSprite() {
-		marioSprite = actualizadorGraficoJugador.actualizar(marioSprite, velocidad);
-		//TODO Recibe la velocidad para ver en que direccion va para retornar el sprite adecuado
-		//este metodo guarda el sprite para mario en un atributo
+		marioSprite = actualizadorDeSpriteJugador.actualizar(velocidad);
 	}
 	
 	private void actualizarMarioLabel() {
-		//TODO entidadJugador.actualizar(posicion, marioSprite);
+		//TODO no hace nada
+		//marioJugable.getObserverGrafico().actualizar();
 	}
 
 	public void actualizar() {
-		velocidad = actualizarVelocidad();
-		posicion = actualizarPosicion(); 
+		velocidad = actualizarPosicion();
 		actualizarSprite();
 		actualizarMarioLabel();
 	}
 	
-	public Jugable obtenerJugador() {
-		return jugador;
-	}
+	
 }

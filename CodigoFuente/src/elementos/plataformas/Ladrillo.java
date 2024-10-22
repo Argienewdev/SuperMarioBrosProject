@@ -12,7 +12,7 @@ public class Ladrillo extends BloqueSolido {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarLadrillo(this);
+		visitante.visitar(this);
 	}
 
 }

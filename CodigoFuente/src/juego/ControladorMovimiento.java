@@ -2,47 +2,50 @@ package juego;
 
 import java.awt.Point;
 
+import elementos.ElementoDeJuego;
+import elementos.entidades.Entidad;
+import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 20;
+	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
 	private static final int FUERZA_SALTO = -30;
 	
 	private static final int GRAVEDAD = 3;
 	
-	private boolean saltando;
-	
 	private int velocidadHorizontal;
 	
 	private int velocidadVertical;
 	
-	private Point velocidad;
+	private Point posicion;
 	
-	private Jugador jugador;
+	private Jugable marioJugable;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	public ControladorMovimiento(Point posicion, SensorDeTeclasJuego sensorDeTeclasJuego) {
-		//TODO Necesito recibir posicion y sprite como parametro
+	private Nivel nivel;
+	
+	private GestorDeColisiones gestorDeColisiones;
+	
+	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		//TODO ¿Como hago para que esta instancia de sensor este en FRAME?
-		jugador = new Jugador(posicion); //TODO Aca paso la pos inicial como parametro
+		this.marioJugable = marioJugable; 
+		this.marioJugable.setVelocidadDireccional(new Point(0,0));
 		velocidadHorizontal = 0;
 		velocidadVertical = 0;
-		velocidad = new Point(0, 0);
-		saltando = false;
-	}
-	
-	public Point actualizarVelocidad() {
-		determinarDireccion();
-		return velocidad;
+		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
+		this.nivel = nivel;
+		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
 	public Point actualizarPosicion() {
-		Point posicion = jugador.actualizar(velocidad);
-		reiniciarVelocidadHorizontal();
-		return posicion;
+		determinarDireccion();
+//		cambiarPosicionHitboxDeMario();
+//      verificarColisiones(this.marioJugable);
+        Point velocidadARetornar = marioJugable.getVelocidadDireccional();
+        reiniciarVelocidadHorizontal();
+        return velocidadARetornar;
 	}
 	
 	private void moveMarioDerecha() {
@@ -55,37 +58,71 @@ public class ControladorMovimiento {
 		aplicarVelocidad();
 	}
 	
+	private void cambiarPosicionHitboxDeMario() {
+		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, marioJugable.getPosicion().y);
+		marioJugable.moverHitbox(nuevaPosicion);
+	    verificarColisiones(marioJugable);
+		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
+		nuevaPosicion.move(marioJugable.getPosicion().x, nuevaPosicionY);
+		marioJugable.moverHitbox(nuevaPosicion);
+		verificarColisiones(marioJugable);
+	}
+	
 	private void iniciarSalto() {
-		saltando = true;
 		velocidadVertical = FUERZA_SALTO;
 		aplicarVelocidad();
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(jugador.marioEnElPiso()) {
-			reiniciarVelocidadVertical();
-			saltando = false;
-		}else {
+		if(velocidadVertical >= FUERZA_SALTO && !marioJugable.getColisionAbajo()){
 			velocidadVertical += GRAVEDAD;
+			aplicarVelocidad();
+		}else if(!marioJugable.getColisionAbajo()){
 			aplicarVelocidad();
 		}
 	}
 	
 	private void determinarDireccion() {
-		if(!saltando && sensorDeTeclasJuego.obtenerWPresionada()) {
-			iniciarSalto();
-		}else if(saltando) {
-			aplicarGravedadSalto();
-		}
-		if(movimientoADerecha()) {
-			moveMarioDerecha();
-		}else if(movimientoAIzquierda()) {
-			moveMarioIzquierda();
-		}
+	    if (!marioJugable.getColisionAbajo()) {
+	        aplicarGravedadSalto();
+	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
+	        iniciarSalto();
+	        marioJugable.setColisionAbajo(false);
+	    } else {
+	        reiniciarVelocidadVertical();
+	    }
+
+	    //TODO si reinicio las colisiones con el piso, no puedo chocar hacia adelante pero si hacia atras
+	    if (movimientoAIzquierda()) {
+	    	marioJugable.setColisionAbajo(false);
+	    	moveMarioIzquierda();
+	    }
+	    if (movimientoADerecha()) {
+	    	marioJugable.setColisionAbajo(false);
+	    	moveMarioDerecha();
+	    }
+	    cambiarPosicionHitboxDeMario();
+//	    verificarColisiones(marioJugable);
+	}
+	
+	public void verificarColisiones(Jugable entidad) {
+		boolean huboColision = false;
+	    for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+	        if (entidad.huboColision(elemento)) {
+	        	huboColision = true;
+	            entidad.aceptarVisitante(elemento.getVisitor());
+	            elemento.aceptarVisitante(entidad.getVisitor());
+	        }
+	    }
+	    if(!huboColision) {
+	    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
+	    }
 	}
 	
 	private void aplicarVelocidad() {
-		velocidad.move(velocidadHorizontal, velocidadVertical);
+		Point nuevaVelocidad = new Point(velocidadHorizontal, velocidadVertical);
+		marioJugable.setVelocidadDireccional(nuevaVelocidad);
 	}
 	
 	private void reiniciarVelocidadHorizontal() {

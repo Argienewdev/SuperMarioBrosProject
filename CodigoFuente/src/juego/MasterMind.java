@@ -1,9 +1,9 @@
+
 package juego;
 
 import java.awt.Point;
 
 import elementos.entidades.NoJugable;
-import observers.GestorDeColisiones;
 import observers.ObserverEntidades;
 
 public class MasterMind {

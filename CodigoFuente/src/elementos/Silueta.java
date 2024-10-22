@@ -9,9 +9,11 @@ import javax.imageio.ImageIO;
 public class Silueta {
     
 	protected String rutaImagen;
-	
+    private BufferedImage imagenCargada;  // Guarda la imagen cargada en memoria
+    
 	public Silueta(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
+        cargarImagen();  // Carga la imagen en el constructor
 	}
 	
 	public String getRutaSilueta() {
@@ -20,32 +22,38 @@ public class Silueta {
 	
 	public void setRutaSilueta(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
+        cargarImagen();  // Recarga la imagen si la ruta cambia
 	}
 	
+	// Carga la imagen desde la ruta proporcionada
+	private void cargarImagen() {
+		try {
+            this.imagenCargada = ImageIO.read(new File(getRutaSilueta()));
+        } catch (IOException exception) {
+        	System.out.println("El error está en Silueta.java");
+            System.out.println("Error al cargar la imagen desde la ruta: " + getRutaSilueta());
+            System.out.println("Detalles del error: " + exception.getMessage());
+            this.imagenCargada = null;  // Si hay error, se asegura de que sea null
+        }
+	}
+
+	// Retorna el ancho de la imagen si fue cargada correctamente
 	public int obtenerAncho() {
-		int ancho = 0;
-		
-		try {
-            BufferedImage imagen = ImageIO.read(new File(getRutaSilueta()));
-            ancho = imagen.getWidth();
-        } catch (IOException exception) {
-            System.out.println("Error al cargar la imagen: " + exception.getMessage());
+		if (imagenCargada != null) {
+            return imagenCargada.getWidth();
+        } else {
+            System.out.println("Imagen no cargada.");
+            return 0;
         }
-		
-		return ancho;
 	}
 	
+	// Retorna el alto de la imagen si fue cargada correctamente
 	public int obtenerAlto() {
-		int alto = 0;
-		
-		try {
-            BufferedImage imagen = ImageIO.read(new File(getRutaSilueta()));
-            alto = imagen.getHeight();
-        } catch (IOException exception) {
-            System.out.println("Error al cargar la imagen: " + exception.getMessage());
+		if (imagenCargada != null) {
+            return imagenCargada.getHeight();
+        } else {
+            System.out.println("Imagen no cargada.");
+            return 0;
         }
-		
-		return alto;
 	}
-   
 }

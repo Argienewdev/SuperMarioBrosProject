@@ -35,7 +35,7 @@ public class BloqueDePregunta extends BloqueSolido {
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarBloqueDePregunta(this);
+		visitante.visitar(this);
 	}
 
 	public boolean estaVacio() {
@@ -49,7 +49,7 @@ public class BloqueDePregunta extends BloqueSolido {
 	public PowerUp liberarPowerUp() { 
 		if (!estaVacio) {
 			Nivel nivel = powerUp.getNivel();
-			nivel.addPowerUps(powerUp);
+			nivel.addPowerUp(powerUp);
 		}
 		return this.powerUp;
 	}

@@ -1,10 +1,10 @@
 package observers;
 
-import juego.EntidadLogica;
+import elementos.entidades.Entidad;
 
 public class ObserverEntidades extends ObserverGrafico {
 	
-	public ObserverEntidades(EntidadLogica entidad_observada) {
+	public ObserverEntidades(Entidad entidad_observada) {
 		super(entidad_observada);
 		actualizar();
 	}

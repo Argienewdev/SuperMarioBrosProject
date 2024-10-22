@@ -4,168 +4,177 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorSuperMario implements Visitante{
+import juego.Nivel;
+public class VisitorSuperMario implements Visitante {
+	
+	protected SuperMario miEntidad;
+	
+	public VisitorSuperMario (SuperMario miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
+	public void visitar(BuzzyBeetle buzzy) {
+		otorgarPuntosYEliminar(buzzy);
+	}
+
+	@Override
+	public void visitar(Spiny spiny) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitarSpiny(Spiny spiny) {
+	public void visitar(Goomba goomba) {
+		otorgarPuntosYEliminar(goomba);
+	}
+
+	public void visitar(KoopaDefault koopaDefault) {
+		ContextoKoopaTroopa contexto = koopaDefault.getContext();
+		EstadoKoopa estado = new KoopaCaparazonEstatico();
+		contexto.cambiarEstado(estado);
+	}
+
+	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
+		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
+		EstadoKoopa estado = new KoopaCaparazonMovil();
+		contexto.cambiarEstado(estado);
+	}
+
+	public void visitar(KoopaCaparazonMovil koopaMovil) {
+		otorgarPuntosYEliminar(koopaMovil.getContext());
+	}
+
+	@Override
+	public void visitar(Lakitu lakitu) {
+		otorgarPuntosYEliminar(lakitu);
+	}
+
+	@Override
+	public void visitar(PiranhaPlant planta) {
+
+	}
+
+	@Override
+	public void visitar(Fireball fireball) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void visitarGoomba(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(SuperChampinion superChamp) {
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
+	}
+
+	public void visitar(FlorDeFuego flor) {
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
 	@Override
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(ChampinionVerde champVerde) {
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
 	@Override
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(Estrella estrella) {
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
 	@Override
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarLakitu(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarFireball(Fireball fireball) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarFlorDeFuego(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarEstrella(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMonedas(Monedas moneda) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMarioDefault(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarSuperMario(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarLadrillo(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarPrincesaPeach(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarBandera(Bandera bandera) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarTuberia(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(Monedas moneda) {
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 	
+	@Override
+	public void visitar(MarioDefault marioNormal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(MarioInvulnerable marioInv) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(SuperMario superMario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(BloqueDePregunta bloquePregunta) {
+		if (!bloquePregunta.estaVacio()) {
+			bloquePregunta.liberarPowerUp();
+		}
+		bloquePregunta.setVacio(true);
+		Nivel nivel = bloquePregunta.getNivel();
+		nivel.removePlataforma(bloquePregunta);
+		
+	}
+
+	@Override
+	public void visitar(Ladrillo ladrillo) {
+		Nivel nivel = ladrillo.getNivel();
+		nivel.removePlataforma(ladrillo);
+	}
+
+	@Override
+	public void visitar(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(PrincesaPeach princesa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Bandera bandera) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Tuberia tuberia) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(BloqueSolido bloqueSolido) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void visitar(ContextoMario contextoMario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
+		miEntidad.getContext().ganarPuntos(puntos);
+		Nivel nivel = enemigo.getNivel();
+		nivel.removeEnemigo(enemigo);
+	}
 }

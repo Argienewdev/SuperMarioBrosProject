@@ -16,7 +16,7 @@ public class Goomba extends Enemigo {
     
     @Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarGoomba(this);
+        visitante.visitar(this);
     }
     
 }

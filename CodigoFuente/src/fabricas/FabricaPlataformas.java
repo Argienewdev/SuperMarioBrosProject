@@ -32,20 +32,20 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Plataforma getTuberiaVacia(Point posicion, Visitante visitor, int altura) {
+	public Tuberia getTuberiaVacia(Point posicion, Visitante visitor, int altura, int ancho) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		PiranhaPlant piranhaPlant = null;
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura, ancho);
 		return tuberiaADevolver;
 	}
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor, int altura) {
+	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor, int altura, int ancho) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		Point direccionPiranhaPlant = new Point(0,1);
 		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion, visitor, direccionPiranhaPlant, null);
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura, ancho);
 		return tuberiaADevolver;
 	}
 	
@@ -101,5 +101,11 @@ public class FabricaPlataformas {
 		
 		return bloqueDePreguntaADevolver;
 	}
+	
+	// TODO IMPLEMENTAR
+    @SuppressWarnings("exports")
+	public BloqueSolido getBloqueSolido() {
+    	return null;
+    }
 	
 }

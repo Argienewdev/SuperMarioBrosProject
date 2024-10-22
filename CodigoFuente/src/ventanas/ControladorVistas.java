@@ -3,16 +3,18 @@ package ventanas;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import elementos.entidades.Jugable;
 import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
-public class ControladorVistas implements ControladorDeVistas, ControladorEntreJuegoVista {
+public class ControladorVistas {
 	
 	private JFrame ventana;
 	
 	private HUD HUD;
 	
+	private Jugable marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -31,8 +33,8 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal();
-		pantallaDeJuego= new PantallaDeJuego();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		pantallaDeJuego= new PantallaDeJuego(sensorDeTeclasJuego);
 		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);
@@ -48,12 +50,15 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 		ventana.setResizable(false);
 		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
 		ventana.setLocationRelativeTo(null);
+		ventana.pack();
 	}
 	
-	public void accionarInicioJuego() {
+	public void accionarInicioJuego(String modo) {
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
 		ventana.add(pantallaDeJuego);
+		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+		pantallaDeJuego.registrarJugable(marioJugable);
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -63,6 +68,7 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public void RegistrarOyenteJuego(){
 		ventana.removeKeyListener(sensorDeTeclasMenu);
 		ventana.addKeyListener(sensorDeTeclasJuego);
+		ventana.requestFocusInWindow();
 	}
 
 	
@@ -79,52 +85,43 @@ public class ControladorVistas implements ControladorDeVistas, ControladorEntreJ
 	public void cambiarModoDeJuego() {
 		
 	}
-
-	public Observer registrarEntidad(EntidadLogica entidadLogica) {
-		
-		return null;
-	}
-
-	
-	public Observer registrarSilueta(EntidadLogica silueta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	public void mostrarPantallaDeJuego() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 	public void mostrarPantallaFinal() {
 		ventana.setContentPane(pantallaFinal);
 		
 	}
 
-
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(pantallaInicial);
 		refrescar();
 	}
 
-	
 	public void mostrarHUD() {
 		ventana.setContentPane(HUD);
 		refrescar();
 	}
 	
 	public void refrescar(){
-		pantallaInicial.actualizarFoco();
+		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
+			pantallaInicial.actualizarFoco();
+		}else {
+			pantallaDeJuego.refrescar();
+		}
 		ventana.revalidate();
 		ventana.repaint();
 	}
-
 	
-	public Observer registrarEntidad(EntidadJugador entidadJugador) {
-		return null;
+	public PantallaDeJuego obtenerPantallaDeJuego() {
+		return this.pantallaDeJuego;
+	}
+	
+	public void cambiarNivel() {
+		//TODO
 	}
 
-	
 }

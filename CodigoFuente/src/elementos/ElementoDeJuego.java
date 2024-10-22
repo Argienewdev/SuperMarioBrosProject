@@ -3,6 +3,10 @@ package elementos;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JLabel;
+
+import juego.Nivel;
+import observers.ObserverGrafico;
 import visitors.*;
 
 public abstract class ElementoDeJuego implements Visitado {
@@ -13,28 +17,41 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected Point posicion;
 	
-	protected Visitante visitor;
+	protected Visitante visitante;
+	
+    protected Nivel miNivel;
+    
+    protected JLabel label;
+    
+    protected ObserverGrafico observerGrafico;
+    
 	
 	@SuppressWarnings("exports")
-	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitor) {
+	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante) {
 		this.sprite = sprite;
 		this.posicion = posicion;
-		this.visitor = visitor;
+		this.visitante = visitante;
 		int x =  posicion.x;
 		int y = posicion.y;
 		int ancho = obtenerAncho();
 		int alto = obtenerAlto();
-		this.hitbox = new Rectangle(x,y,ancho,alto);
+		this.hitbox = new Rectangle(x, y, ancho, alto);
 	}
 	
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
 	
-	
-	
 	public void setVisitor(Visitante visitor) {
-		this.visitor = visitor;
+		this.visitante = visitor;
+	}
+	
+	public void setNivel (Nivel nivel) {
+		this.miNivel = nivel;
+	}
+	
+	public void setPosicion (Point posicion) {
+		this.posicion = posicion;
 	}
 	
 	public Sprite getSprite() {
@@ -43,7 +60,11 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	@SuppressWarnings("exports")
 	public Rectangle obtenerHitbox() {
-		return hitbox;
+		return this.hitbox;
+	}
+	
+	public void moverHitbox(Point nuevaPosicion) {
+		this.hitbox.setLocation(nuevaPosicion);
 	}
 	
 	@SuppressWarnings("exports")
@@ -52,8 +73,12 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	public Visitante getVisitor() {
-		return this.visitor;
+		return this.visitante;
 	}
+	
+    public Nivel getNivel() {
+    	return this.miNivel;
+    }
 	
 	public int obtenerAncho() {
 		return 50;
@@ -63,19 +88,18 @@ public abstract class ElementoDeJuego implements Visitado {
 		return 50;
 	}
 	
-	@SuppressWarnings("exports")
-	public void obtenerPosicion( Point posicion) {
-		this.posicion = posicion;
-	}
-	
-	public Visitante obtenerVisitante() {
-		return visitor;
-	}
-	
-	public boolean huboColision (ElementoDeJuego elemento) {
-		return hitbox.intersects(elemento.obtenerHitbox());
+	public boolean huboColision(ElementoDeJuego elemento) {
+		return this.hitbox.intersects(elemento.obtenerHitbox());
 	}
 
+	public void setObserverGrafico(ObserverGrafico observerGrafico) {
+    	this.observerGrafico = observerGrafico;
+    }
+    
+    public ObserverGrafico getObserverGrafico() {
+    	return this.observerGrafico;
+    }
+	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 }

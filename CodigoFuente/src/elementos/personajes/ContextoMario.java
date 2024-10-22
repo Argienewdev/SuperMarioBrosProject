@@ -8,7 +8,7 @@ import visitors.Visitante;
 public class ContextoMario extends Jugable {
 
 	private EstadoMario estadoMario;
-	
+		
 	public ContextoMario(Sprite sprite, Point posicion,
 						 Visitante visitor, int vidas, MarioDefault estadoMario) {
 		super(sprite, posicion, visitor);
@@ -28,7 +28,7 @@ public class ContextoMario extends Jugable {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarContextoMario(this);
+		//visitante.visitarContextoMario(this);
 	}
 	
 }

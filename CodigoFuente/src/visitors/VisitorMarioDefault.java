@@ -6,18 +6,16 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import juego.Nivel;
-import ventanas.ControladorVistas;
 
 public class VisitorMarioDefault implements Visitante {
 	
 	protected MarioDefault miEntidad;
-	protected ControladorVistas controlador;
 	
 	public VisitorMarioDefault (MarioDefault miEntidad) {
 		this.miEntidad = miEntidad;
 	}
 	
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
+	public void visitar(BuzzyBeetle buzzy) {
 		int puntosGanados = buzzy.getPuntosOtorgadosPorEliminacion();
 		ContextoMario contexto = miEntidad.getContext();
 		contexto.ganarPuntos(puntosGanados);
@@ -25,12 +23,12 @@ public class VisitorMarioDefault implements Visitante {
 		nivel.removeEnemigo(buzzy);
 	}
 	
-	public void visitarSpiny(Spiny spiny) {
-		//Solo es afectado por MarioFuego
+	public void visitar(Spiny spiny) {
+		//Solo es afectado por FireBall
 	}
 
 	
-	public void visitarGoomba(Goomba goomba) {
+	public void visitar(Goomba goomba) {
 		int puntosGanados = goomba.getPuntosOtorgadosPorEliminacion();
 		ContextoMario contexto = miEntidad.getContext();
 		contexto.ganarPuntos(puntosGanados);
@@ -39,25 +37,28 @@ public class VisitorMarioDefault implements Visitante {
 		
 	}
 	
-	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+	public void visitar(KoopaDefault koopaDefault) {
 		ContextoKoopaTroopa contexto = koopaDefault.getContext();
 		EstadoKoopa estado = new KoopaCaparazonEstatico();
 		contexto.cambiarEstado(estado);
 	}
 
-	public void visitarKoopaCaparazonEstatico(KoopaCaparazonEstatico koopaEstatico) {
+	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
 		ContextoKoopaTroopa contexto = koopaEstatico.getContext();
 		EstadoKoopa estado = new KoopaCaparazonMovil();
 		contexto.cambiarEstado(estado);
 	}
 
 	
-	public void visitarKoopaCaparazonMovil(KoopaCaparazonMovil koopaMovil) {
+	public void visitar(KoopaCaparazonMovil koopaMovil) {
 		ContextoKoopaTroopa contexto = koopaMovil.getContext();
+		int puntosGanados = contexto.getPuntosOtorgadosPorEliminacion();
+		ContextoMario contextoM = miEntidad.getContext();
+		contextoM.ganarPuntos(puntosGanados);
 		contexto.getNivel().removeEnemigo(contexto);
 	}
 	
-	public void visitarLakitu(Lakitu lakitu) {
+	public void visitar(Lakitu lakitu) {
 		int puntosGanados = lakitu.getPuntosOtorgadosPorEliminacion();
 		ContextoMario contexto = miEntidad.getContext();
 		contexto.ganarPuntos(puntosGanados);
@@ -65,112 +66,100 @@ public class VisitorMarioDefault implements Visitante {
 		nivel.removeEnemigo(lakitu);
 	}
 
-	public void visitarPiranhaPlant(PiranhaPlant planta) {
-		//Solo es afectado por MarioFuego
+	public void visitar(PiranhaPlant planta) {
+		//Solo es afectado por una Fireball
 	}
 
-	public void visitarFireball(Fireball fireball) {
+	public void visitar(Fireball fireball) {
 		
 	}
 
-	public void visitarSuperChampinion(SuperChampinion superChamp) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new SuperMario();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = superChamp.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
+	public void visitar(SuperChampinion superChamp) {
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 	}
 
-	public void visitarFlorDeFuego(FlorDeFuego flor) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new MarioFuego();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = flor.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
+	public void visitar(FlorDeFuego flor) {
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
-	public void visitarChampinionVerde(ChampinionVerde champVerde) {
-		ContextoMario contexto = miEntidad.getContext();
-		contexto.ganarVida();
-		int puntosGandos = champVerde.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
+	@Override
+	public void visitar(ChampinionVerde champVerde) {
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
-	
-	public void visitarEstrella(Estrella estrella) {
-		ContextoMario contexto = miEntidad.getContext();
-		EstadoMario estado = new MarioInvulnerable();
-		contexto.cambiarEstado(estado);
-		int puntosGandos = estrella.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
+	@Override
+	public void visitar(Estrella estrella) {
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
-	
-	public void visitarMonedas(Monedas moneda) {
-		ContextoMario contexto = miEntidad.getContext();
-		int puntosGandos = moneda.getPuntosOtorgados();
-		contexto.ganarPuntos(puntosGandos);
-		miEntidad.incrementarMonedas(moneda.getMonedas());
+	@Override
+	public void visitar(Monedas moneda) {
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 	
-	public void visitarMarioDefault(MarioDefault marioNormal) {	
+	public void visitar(MarioDefault marioNormal) {	
 		
 	}
 
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
+	public void visitar(MarioInvulnerable marioInv) {
 				
 	}
 	
-	public void visitarMarioFuego(MarioFuego marioFuego) {
+	public void visitar(MarioFuego marioFuego) {
 			
 	}
 
-	public void visitarSuperMario(SuperMario superMario) {		
+	public void visitar(SuperMario superMario) {		
 		
 	}
 
-	public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
+	public void visitar(BloqueDePregunta bloquePregunta) {
 		if (!bloquePregunta.estaVacio()) {
 			bloquePregunta.liberarPowerUp();
 		}
 		bloquePregunta.setVacio(true);
 	}
 
-	public void visitarLadrillo(Ladrillo ladrillo) {
+	public void visitar(Ladrillo ladrillo) {
 		
 	}
 
 	
-	public void visitarVacio(Vacio vacio) {
+	public void visitar(Vacio vacio) {
 		
 	}
 
-	public void visitarPrincesaPeach(PrincesaPeach princesa) {
-		
-	}
-
-	
-	public void visitarBandera(Bandera bandera) {
+	public void visitar(PrincesaPeach princesa) {
 		
 	}
 
 	
-	public void visitarTuberia(Tuberia tuberia) {
+	public void visitar(Bandera bandera) {
 		
 	}
 
 	
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+	public void visitar(Tuberia tuberia) {
 		
 	}
 
 	
-	public void visitarContextoMario(ContextoMario contextoMario) {
+	public void visitar(BloqueSolido bloqueSolido) {
 		
 	}
 
 	
-	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {
+	public void visitar(ContextoMario contextoMario) {
+		
+	}
+
+	
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 		
 	}
 

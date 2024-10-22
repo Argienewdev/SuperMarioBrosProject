@@ -10,380 +10,375 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
 	@Override
     public Sprite getMarioDefaultFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalQuieto.png");
     }
 
     @Override
     public Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultFrontalCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioDefaultFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultFrontalCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioDefaultFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultFrontalSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalSaltando.png");
     }
 
     @Override
     public Sprite getMarioDefaultReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoQuieto.png");
     }
 
     @Override
     public Sprite getMarioDefaultReversoCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultReversoCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioDefaultReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultReversoCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioDefaultReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioDefaultReversoSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoSaltando.png");
     }
 
     @Override
     public Sprite getSuperMarioFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioFrontalQuieto.png");
     }
 
     @Override
     public Sprite getSuperMarioFrontalCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioFrontalCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioFrontalCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getSuperMarioFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioFrontalCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getSuperMarioFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioFrontalSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioFrontalSaltando.png");
     }
 
     @Override
     public Sprite getSuperMarioReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioReversoQuieto.png");
     }
 
     @Override
     public Sprite getSuperMarioReversoCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioReversoCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioReversoCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getSuperMarioReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioReversoCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getSuperMarioReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superMarioReversoSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superMarioReversoSaltando.png");
     }
 
     @Override
     public Sprite getMarioFuegoFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoFrontalQuieto.png");
     }
 
     @Override
     public Sprite getMarioFuegoFrontalCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoFrontalCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoFrontalCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioFuegoFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoFrontalCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioFuegoFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoFrontalSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoFrontalSaltando.png");
     }
 
     @Override
     public Sprite getMarioFuegoReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoReversoQuieto.png");
     }
 
     @Override
     public Sprite getMarioFuegoReversoCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoReversoCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoReversoCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioFuegoReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoReversoCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioFuegoReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioFuegoReversoSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoReversoSaltando.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalQuieto.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableFrontalCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableFrontalCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableFrontalCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableFrontalSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalSaltando.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoQuieto.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableReversoCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableReversoCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoCaminandoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableReversoCaminandoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/marioInvulnerableReversoSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoSaltando.png");
     }
 
     @Override
     public Sprite getKoopaTroopaDefaultFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/koopaTroopaDefaultFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultFrontalQuieto.png");
     }
 
     @Override
     public Sprite getKoopaTroopaDefaultFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/koopaTroopaDefaultFrontalCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultFrontalCaminando.png");
     }
 
     @Override
     public Sprite getKoopaTroopaDefaultReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/koopaTroopaDefaultReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultReversoQuieto.png");
     }
 
     @Override
     public Sprite getKoopaTroopaDefaultReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/koopaTroopaDefaultReversoCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultReversoCaminando.png");
     }
 
     @Override
     public Sprite getKoopaTroopaCaparazonEstático() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/koopaTroopaCaparazonEstatico.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaCaparazonEstatico.png");
     }
 
     @Override
-    public Sprite getGoombaQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/goombaQuieto.png");
+    public Sprite getGoombaCaminandoPrimeraTransicion() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaQuieto.png");
     }
 
     @Override
-    public Sprite getGoombaCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/goombaCaminando.png");
+    public Sprite getGoombaCaminandoSegundaTransicion() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaCaminando.png");
     }
 
     @Override
     public Sprite getGoombaAplastado() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/goombaAplastado.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaAplastado.png");
     }
 
     @Override
     public Sprite getPiranhaPlantCerrada() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/piranhaPlantCerrada.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/piranhaPlantCerrada.png");
     }
 
     @Override
     public Sprite getPiranhaPlantAbierta() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/piranhaPlantAbierta.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/piranhaPlantAbierta.png");
     }
 
     @Override
     public Sprite getLakituFrontalFueraDeLaNube() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/lakituFrontalFueraDeLaNube.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/lakituFrontalFueraDeLaNube.png");
     }
 
     @Override
-    public Sprite getLakituFrontalDentroDeLaNube() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/lakituFrontalDentroDeLaNube.png");
+    public Sprite getLakituDentroDeLaNube() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/lakituFrontalDentroDeLaNube.png");
     }
 
     @Override
     public Sprite getLakituReversoFueraDeLaNube() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/lakituReversoFueraDeLaNube.png");
-    }
-
-    @Override
-    public Sprite getLakituReversoDentroDeLaNube() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/lakituReversoDentroDeLaNube.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/lakituReversoFueraDeLaNube.png");
     }
 
     @Override
     public Sprite getSpinyAntesDeCaerPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyAntesDeCaerPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyAntesDeCaerPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getSpinyAntesDeCaerSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyAntesDeCaerSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyAntesDeCaerSegundaTransicion.png");
     }
 
     @Override
     public Sprite getSpinyFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyFrontalQuieto.png");
     }
 
     @Override
     public Sprite getSpinyFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyFrontalCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyFrontalCaminando.png");
     }
 
     @Override
     public Sprite getSpinyReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyReversoQuieto.png");
     }
 
     @Override
     public Sprite getSpinyReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/spinyReversoCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyReversoCaminando.png");
     }
 
     @Override
     public Sprite getBuzzyBeetleFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/buzzyBeetleFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalQuieto.png");
     }
 
     @Override
     public Sprite getBuzzyBeetleFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/buzzyBeetleFrontalCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalCaminando.png");
     }
 
     @Override
     public Sprite getBuzzyBeetleReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/buzzyBeetleReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleReversoQuieto.png");
     }
 
     @Override
     public Sprite getBuzzyBeetleReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/buzzyBeetleReversoCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleReversoCaminando.png");
     }
 
     @Override
     public Sprite getEstrellaApagada() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/estrellaApagada.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrellaApagada.png");
     }
 
     @Override
     public Sprite getEstrellaEncendida() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/estrellaEncendida.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrellaEncendida.png");
     }
 
     @Override
     public Sprite getFlorDeFuegoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/florDeFuegoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/florDeFuegoPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getFlorDeFuegoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/florDeFuegoSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/florDeFuegoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getChampinionVerde() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/champinionVerde.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/champinionVerde.png");
     }
 
     @Override
     public Sprite getSuperChampinion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/superChampinion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.png");
     }
 
     @Override
     public Sprite getMonedaApagada() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/monedaApagada.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/monedaApagada.png");
     }
 
     @Override
     public Sprite getMonedaEncendida() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/monedaEncendida.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/monedaEncendida.gif");
     }
 
     @Override
     public Sprite getFireballPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/fireballPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/fireballPrimeraTransicion.png");
     }
 
     @Override
     public Sprite getFireballSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/fireballSegundaTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/fireballSegundaTransicion.png");
     }
 
     @Override
     public Sprite getLadrillo() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/ladrillo.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/ladrillo.png");
     }
 
     @Override
     public Sprite getBloqueSolido() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/bloqueSolido.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueSolido.png");
     }
 
     @Override
     public Sprite getTuberia(int altura) {
     	String rutaAux = rutaACarpeta;
     	if (altura >= 0 && altura <= 5) {
-    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaPequenia.png";
+    		rutaAux += "/spritesModoOriginal/tuberiaPequenia.png";
     	} else if (altura > 5 && altura <= 10) {
-    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaMediana.png";
+    		rutaAux += "/spritesModoOriginal/tuberiaMediana.png";
     	} else if (altura > 10) {
-    		rutaAux += "/FabricaSpritesModoOriginal/tuberiaMediana.png";
+    		rutaAux += "/spritesModoOriginal/tuberiaMediana.png";
     	}
         return new Sprite(rutaAux);
     }
 
     @Override
     public Sprite getBloqueDePreguntaApagado() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/bloqueDePreguntaApagado.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueDePreguntaApagado.png");
     }
 
     @Override
     public Sprite getBloqueDePreguntaEncendido() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/bloqueDePreguntaEncendido.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueDePreguntaEncendido.png");
     }
 
     @Override
     public Sprite getBandera() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/bandera.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bandera.png");
     }
 
     @Override
     public Sprite getVacio() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/vacio.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/vacio.png");
     }
 
     @Override
     public Sprite getPrincesaPeach() {
-        return new Sprite(rutaACarpeta + "/FabricaSpritesModoOriginal/princesaPeach.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/princesaPeach.png");
     }
     
 }

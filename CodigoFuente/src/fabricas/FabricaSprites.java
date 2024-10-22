@@ -83,9 +83,9 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getKoopaTroopaCaparazonEstático();
 	
-	public abstract Sprite getGoombaQuieto();
+	public abstract Sprite getGoombaCaminandoPrimeraTransicion();
 	
-	public abstract Sprite getGoombaCaminando();
+	public abstract Sprite getGoombaCaminandoSegundaTransicion();
 	
 	public abstract Sprite getGoombaAplastado();
 
@@ -95,11 +95,9 @@ public abstract class FabricaSprites {
 
 	public abstract Sprite getLakituFrontalFueraDeLaNube();
 	
-	public abstract Sprite getLakituFrontalDentroDeLaNube();
+	public abstract Sprite getLakituDentroDeLaNube();
 
 	public abstract Sprite getLakituReversoFueraDeLaNube();
-	
-	public abstract Sprite getLakituReversoDentroDeLaNube();
 	
 	public abstract Sprite getSpinyAntesDeCaerPrimeraTransicion();
 	

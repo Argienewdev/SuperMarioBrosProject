@@ -14,7 +14,7 @@ public class ChampinionVerde extends PowerUp {
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarChampinionVerde(this);
+		visitante.visitar(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {
