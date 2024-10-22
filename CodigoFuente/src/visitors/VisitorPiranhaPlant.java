@@ -32,23 +32,6 @@ public class VisitorPiranhaPlant implements Visitante {
 		
 	}
 
-	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
@@ -97,35 +80,25 @@ public class VisitorPiranhaPlant implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void visitar(MarioDefault marioNormal) {
-		ContextoMario contexto = marioNormal.getContext();
-		if (contexto.getVidas() == 1) {
-			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-			contexto.perderPuntos(perdidaPuntos);
+	public void visitar(ContextoMario contextoMario) {
+		MarioDefault estadoDefault= new MarioDefault();
+		estadoDefault.setContext(contextoMario);
+		SuperMario estadoSuper= new SuperMario();
+		estadoSuper.setContext(contextoMario);
+		MarioFuego estadoFuego= new MarioFuego();
+		estadoFuego.setContext(contextoMario);
+		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
+		estadoInvulnerable.setContext(contextoMario);
+		
+		if(contextoMario.getEstado().equals(estadoDefault)) {
+			if (contextoMario.getVidas() == 1) {
+				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+				contextoMario.perderPuntos(perdidaPuntos);
+			}
+			contextoMario.perderVida();
+		}else if(contextoMario.getEstado().equals(estadoSuper)|| contextoMario.getEstado().equals(estadoFuego)){
+			contextoMario.cambiarEstado(estadoDefault);
 		}
-		contexto.perderVida();
-			
-	}
-
-	
-	public void visitar(MarioInvulnerable marioInv) {
-	    
-	}
-
-	
-	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contexto = marioFuego.getContext();
-		EstadoMario estado = new SuperMario();
-		contexto.cambiarEstado(estado);
-	}
-
-	
-	public void visitar(SuperMario superMario) {
-		ContextoMario contexto = superMario.getContext();
-		EstadoMario estado = new MarioDefault();
-		contexto.cambiarEstado(estado);
-				
 	}
 
 	@Override
@@ -175,11 +148,7 @@ public class VisitorPiranhaPlant implements Visitante {
 		
 	}
 
-	@Override
-	public void visitar(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }
 

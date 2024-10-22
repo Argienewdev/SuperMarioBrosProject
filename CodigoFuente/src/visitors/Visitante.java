@@ -14,11 +14,7 @@ public interface Visitante {
 
 	public void visitar(Goomba goomba);
 	
-	public void visitar(KoopaCaparazonEstatico koopaEstatico);
-
-	public void visitar(KoopaCaparazonMovil koopaMovil);
-
-	public void visitar(KoopaDefault koopaDefault);
+	public void visitar(ContextoKoopaTroopa contextoKoopa);
 	
 	public void visitar(Lakitu lakitu);
 	
@@ -36,13 +32,6 @@ public interface Visitante {
 	
 	public void visitar(Monedas monedas);
 	
-	public void visitar(MarioDefault marioNormal);
-	
-	public void visitar(MarioInvulnerable marioInv);
-
-	public void visitar(MarioFuego marioFuego);
-
-	public void visitar(SuperMario superMario);
 
 	public void visitar(BloqueDePregunta bloquePregunta);
 
@@ -60,6 +49,4 @@ public interface Visitante {
 
 	public void visitar(ContextoMario contextoMario);
 	
-	public void visitar(ContextoKoopaTroopa contextoKoopa);
-
 }

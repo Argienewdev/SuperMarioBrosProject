@@ -19,13 +19,16 @@ public class ContextoMario extends Jugable {
 	public void cambiarEstado(EstadoMario estadoMario) {
 		this.estadoMario = estadoMario;
 	}
-
+	
 	@Override
 	public void saltar(Point direccion) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public EstadoMario getEstado() {
+		return estadoMario;
+	}
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		//visitante.visitarContextoMario(this);

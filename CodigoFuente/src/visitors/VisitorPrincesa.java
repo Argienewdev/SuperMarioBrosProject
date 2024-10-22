@@ -30,23 +30,6 @@ public class VisitorPrincesa implements Visitante {
 		
 	}
 
-	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
@@ -93,29 +76,6 @@ public class VisitorPrincesa implements Visitante {
 	@Override
 	public void visitar(Monedas moneda) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(MarioDefault marioNormal) {
-		controlador.mostrarPantallaFinal();		
-	}
-
-	@Override
-	public void visitar(MarioInvulnerable marioInv) {
-		controlador.mostrarPantallaFinal();	
-		
-	}
-
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		controlador.mostrarPantallaFinal();	
-		
-	}
-
-	@Override
-	public void visitar(SuperMario superMario) {
-		controlador.mostrarPantallaFinal();	
 		
 	}
 
@@ -168,8 +128,7 @@ public class VisitorPrincesa implements Visitante {
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
+		controlador.mostrarPantallaFinal();		
 	}
 	
 }

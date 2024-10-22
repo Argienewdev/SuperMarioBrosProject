@@ -26,22 +26,6 @@ public class VisitorBuzzyBeetle implements Visitante{
 	public void visitar(Goomba goomba) {
 		
 	}
-
-	
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		
-	}
-
-	
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		
-	}
-
-	
-	public void visitar(KoopaDefault koopaDefault) {
-		
-	}
-
 	
 	public void visitar(Lakitu lakitu) {
 		
@@ -81,38 +65,26 @@ public class VisitorBuzzyBeetle implements Visitante{
 	public void visitar(Monedas moneda) {
 		
 	}
-
-	
-	public void visitar(MarioDefault marioNormal) {
-		ContextoMario contexto = marioNormal.getContext();
-		if (contexto.getVidas() == 1) {
-			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-			contexto.perderPuntos(perdidaPuntos);
+	public void visitar(ContextoMario contextoMario) {
+		MarioDefault estadoDefault= new MarioDefault();
+		estadoDefault.setContext(contextoMario);
+		SuperMario estadoSuper= new SuperMario();
+		estadoSuper.setContext(contextoMario);
+		MarioFuego estadoFuego= new MarioFuego();
+		estadoFuego.setContext(contextoMario);
+		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
+		estadoInvulnerable.setContext(contextoMario);
+		
+		if(contextoMario.getEstado().equals(estadoDefault)) {
+			if (contextoMario.getVidas() == 1) {
+				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+				contextoMario.perderPuntos(perdidaPuntos);
+			}
+			contextoMario.perderVida();
+		}else if(contextoMario.getEstado().equals(estadoSuper)|| contextoMario.getEstado().equals(estadoFuego)){
+			contextoMario.cambiarEstado(estadoDefault);
 		}
-		contexto.perderVida();
-			
 	}
-
-	
-	public void visitar(MarioInvulnerable marioInv) {
-	    
-	}
-
-	
-	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contexto = marioFuego.getContext();
-		EstadoMario estado = new SuperMario();
-		contexto.cambiarEstado(estado);
-	}
-
-	
-	public void visitar(SuperMario superMario) {
-		ContextoMario contexto = superMario.getContext();
-		EstadoMario estado = new MarioDefault();
-		contexto.cambiarEstado(estado);
-				
-	}
-
 	
 	public void visitar(BloqueDePregunta bloquePregunta) {
 		
@@ -148,10 +120,6 @@ public class VisitorBuzzyBeetle implements Visitante{
 		
 	}
 
-	
-	public void visitar(ContextoMario contextoMario) {
-		
-	}
 
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {

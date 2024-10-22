@@ -15,7 +15,6 @@ public class VisitorBandera implements Visitante{
 	
 	public VisitorBandera (ControladorVistas controlador) {
 		this.controlador = controlador;
-		
 	}
 
 	public void visitar(BuzzyBeetle buzzy) {	
@@ -27,15 +26,9 @@ public class VisitorBandera implements Visitante{
 	public void visitar(Goomba goomba) {	
 	}
 	
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {	
+	public void visitar(ContextoKoopaTroopa koopaEstatico) {	
 	}
 
-	public void visitar(KoopaCaparazonMovil koopaMovil) {	
-	}
-
-	public void visitar(KoopaDefault koopaDefault) {	
-	}
-	
 	public void visitar(Lakitu lakitu) {	
 	}
 	
@@ -107,7 +100,5 @@ public class VisitorBandera implements Visitante{
 	public void visitar(ContextoMario contextoMario) {		
 	}
 	
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
-	}
 	
 }

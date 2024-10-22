@@ -21,15 +21,6 @@ public class VisitorBloqueSolido implements Visitante{
 	public void visitar(Goomba goomba) {	
 	}
 	
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {	
-	}
-
-	public void visitar(KoopaCaparazonMovil koopaMovil) {	
-	}
-
-	public void visitar(KoopaDefault koopaDefault) {	
-	}
-	
 	public void visitar(Lakitu lakitu) {	
 	}
 	

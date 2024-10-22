@@ -28,17 +28,13 @@ public class VisitorFireball implements Visitante {
         otorgarPuntosYEliminar(goomba);
     }
 
-    public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-        koopaEstatico.getContext().cambiarEstado(new KoopaCaparazonMovil());
-    }
-
-    public void visitar(KoopaCaparazonMovil koopaMovil) {
-        ContextoKoopaTroopa contexto = koopaMovil.getContext();
-        otorgarPuntosYEliminar(contexto);
+    public void visitar(ContextoKoopaTroopa contextoKoopa) {
+    	otorgarPuntosYEliminar(contextoKoopa);
+    	
     }
 
     public void visitar(KoopaDefault koopaDefault) {
-        koopaDefault.getContext().cambiarEstado(new KoopaCaparazonEstatico());
+        koopaDefault.getContext().cambiarEstado(new KoopaEnCaparazon());
     }
 
     public void visitar(Lakitu lakitu) {
@@ -87,7 +83,6 @@ public class VisitorFireball implements Visitante {
 
     public void visitar(ContextoMario contextoMario) { }
 
-    public void visitar(ContextoKoopaTroopa contextoKoopa) { }
 
     // Método auxiliar para otorgar puntos y eliminar enemigos
     private void otorgarPuntosYEliminar(Enemigo enemigo) {
