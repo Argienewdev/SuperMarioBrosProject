@@ -16,7 +16,7 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 public class PantallaDeJuego extends JPanel {
 
     private ArrayList<ObserverGrafico> labelsElementoDeJuego;
-    
+
     private Dimension size;
     
     private Jugable marioJugable;
@@ -97,6 +97,8 @@ public class PantallaDeJuego extends JPanel {
         	// Solo mueve el fondo si su posición ha cambiado
         	if (nuevaPosicionFondoX != posicionFondo.x) {
         		fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
+        		revalidate();
+        		repaint();
         		fondoMovido = true; // Se ha movido el fondo
         	}
 
@@ -109,6 +111,8 @@ public class PantallaDeJuego extends JPanel {
         				observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
         				observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
         				observerGrafico.actualizar();
+        				revalidate();
+        				repaint();
         			}
         		}
         	}
@@ -116,6 +120,8 @@ public class PantallaDeJuego extends JPanel {
         	// Mantener a Mario en el centro de la pantalla
         	posicionMario.x = MITAD_PANTALLA;
         	marioLabel.setLocation(posicionMario);
+        	revalidate();
+        	repaint();
         }
 
         // Actualizar la posición y refrescar los gráficos

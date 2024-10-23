@@ -21,13 +21,10 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(Goomba goomba) {	
 	}
 	
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {	
+	public void visitar(ContextoMario contextoMario) {		
 	}
-
-	public void visitar(KoopaCaparazonMovil koopaMovil) {	
-	}
-
-	public void visitar(KoopaDefault koopaDefault) {	
+	
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
 	}
 	
 	public void visitar(Lakitu lakitu) {	
@@ -92,10 +89,5 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(BloqueSolido bloqueSolido) {		
 	}
 
-	public void visitar(ContextoMario contextoMario) {		
-	}
-	
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
-	}
 	
 }

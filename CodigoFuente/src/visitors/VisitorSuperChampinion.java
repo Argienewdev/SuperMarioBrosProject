@@ -31,24 +31,6 @@ public class VisitorSuperChampinion implements Visitante {
 	}
 
 	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitar(Lakitu lakitu) {
 		// TODO Auto-generated method stub
 		
@@ -95,29 +77,26 @@ public class VisitorSuperChampinion implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void visitar(MarioDefault marioNormal) {
-		ContextoMario contexto = marioNormal.getContext();
-		contexto.cambiarEstado(new SuperMario());
-		contexto.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
-	}
-
-	@Override
-	public void visitar(MarioInvulnerable marioInv) {
-		marioInv.getContext().ganarPuntos(miEntidad.obtenerPuntosPorInvencible());
-	}
-
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		marioFuego.getContext().ganarPuntos(miEntidad.obtenerPuntosPorFuego());
+	public void visitar(ContextoMario contextoMario) {
+		MarioDefault estadoDefault= new MarioDefault();
+		estadoDefault.setContext(contextoMario);
+		SuperMario estadoSuper= new SuperMario();
+		estadoSuper.setContext(contextoMario);
+		MarioFuego estadoFuego= new MarioFuego();
+		estadoFuego.setContext(contextoMario);
+		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
+		estadoInvulnerable.setContext(contextoMario);
 		
-	}
-
-	@Override
-	public void visitar(SuperMario superMario) {
-		superMario.getContext().ganarPuntos(miEntidad.obtenerPuntosPorSuper());
-		
+		if(contextoMario.getEstado().equals(estadoDefault)) {
+			contextoMario.cambiarEstado(estadoSuper);
+			contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
+		}else if(contextoMario.getEstado().equals(estadoSuper) ){
+			contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorSuper());
+			}else if(contextoMario.getEstado().equals(estadoFuego)){
+				contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorFuego());
+				}else {
+					contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorInvencible());
+				}
 	}
 
 	@Override
@@ -161,11 +140,7 @@ public class VisitorSuperChampinion implements Visitante {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void visitar(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {

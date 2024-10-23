@@ -5,15 +5,16 @@ import java.awt.Point;
 import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
+import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
-import elementos.enemigos.KoopaCaparazonEstatico;
-import elementos.enemigos.KoopaCaparazonMovil;
+import elementos.enemigos.KoopaEnCaparazon;
 import elementos.enemigos.KoopaDefault;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.entidades.Fireball;
 import elementos.personajes.ContextoMario;
+import elementos.personajes.EstadoMario;
 import elementos.personajes.MarioDefault;
 import elementos.personajes.MarioFuego;
 import elementos.personajes.MarioInvulnerable;
@@ -42,36 +43,37 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		
+		otorgarPuntosYEliminar(buzzy);
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		
+		//Solo es afectado por FireBall
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
+		otorgarPuntosYEliminar(goomba);
 	}
 
-	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-	}
-
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
+	public void visitar(ContextoKoopaTroopa koopaTroopa) {
+		KoopaDefault estadoDefault=new KoopaDefault();
+		if(koopaTroopa.getEstado().equals(estadoDefault)) {
+			KoopaEnCaparazon estadoEstatico=new KoopaEnCaparazon();
+			koopaTroopa.cambiarEstado(estadoEstatico);
+		}else {
+			otorgarPuntosYEliminar(koopaTroopa);
+		}
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
+		otorgarPuntosYEliminar(lakitu);
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
+		//Solo es afectado por FireBall
 	}
 
 	@Override
@@ -80,19 +82,27 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
+		Nivel nivel = superChamp.getNivel();
+		nivel.removePowerUps(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
+		Nivel nivel = flor.getNivel();
+		nivel.removePowerUps(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
+		Nivel nivel = champVerde.getNivel();
+		nivel.removePowerUps(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
+		Nivel nivel = estrella.getNivel();
+		nivel.removePowerUps(estrella);
 	}
 
 	@Override
@@ -102,32 +112,11 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitar(MarioDefault marioNormal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(MarioInvulnerable marioInv) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		
+		if (!bloquePregunta.estaVacio()) {
+			bloquePregunta.liberarPowerUp();
+		}
+		bloquePregunta.setVacio(true);
 	}
 
 	@Override
@@ -142,6 +131,20 @@ public class VisitorContextoMario implements Visitante {
 		if(choquePorAbajo(ladrillo)){
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
 		}
+			
+			MarioDefault estadoDefault= new MarioDefault();
+			estadoDefault.setContext(miEntidad);
+			
+			//No se porque se da falso el equals, ambos son de la clase MarioDefault y tienen el mismo contexto
+			/*
+			if(!miEntidad.getEstado().equals(estadoDefault)){
+				nivel = ladrillo.getNivel();
+				nivel.removePlataforma(ladrillo);
+			}
+			*/
+			
+			
+		
 	}
 	
 	private boolean choquePorDerecha(BloqueSolido bloque) {
@@ -194,11 +197,14 @@ public class VisitorContextoMario implements Visitante {
 	public void visitar(ContextoMario contextoMario) {
 		
 	}
-
-	@Override
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-	}
 	
 	private void aVisitorConcreto (ElementoDeJuego elemento) {
+	}
+	
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
+		miEntidad.ganarPuntos(puntos);
+		Nivel nivel = enemigo.getNivel();
+		nivel.removeEnemigo(enemigo);
 	}
 }

@@ -23,7 +23,6 @@ public class KoopaDefault implements EstadoKoopa {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitar(this);
 	}
 
 	public ContextoKoopaTroopa getContext() {

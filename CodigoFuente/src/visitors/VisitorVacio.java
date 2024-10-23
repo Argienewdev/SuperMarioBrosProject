@@ -27,23 +27,11 @@ public class VisitorVacio implements Visitante{
 	}
 
 	@Override
-	public void visitar(KoopaCaparazonEstatico koopaEstatico) {
-		Nivel nivel = koopaEstatico.getContext().getNivel();
-		nivel.removeEnemigo(koopaEstatico.getContext());
-		
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
+		Nivel nivel =contextoKoopa.getNivel();
+		nivel.removeEnemigo(contextoKoopa);		
 	}
 
-	@Override
-	public void visitar(KoopaCaparazonMovil koopaMovil) {
-		Nivel nivel = koopaMovil.getContext().getNivel();
-		nivel.removeEnemigo(koopaMovil.getContext());
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-		Nivel nivel = koopaDefault.getContext().getNivel();
-		nivel.removeEnemigo(koopaDefault.getContext());
-	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
@@ -96,31 +84,10 @@ public class VisitorVacio implements Visitante{
 	}
 
 	@Override
-	public void visitar(MarioDefault marioNormal) {
-		marioNormal.getContext().perderVida();
+	public void visitar(ContextoMario contextoMario) {
+		contextoMario.perderPuntos(15);
+		contextoMario.perderVida();
 	}
-
-	@Override
-	public void visitar(MarioInvulnerable marioInv) {
-		ContextoMario contexto = marioInv.getContext();
-		contexto.cambiarEstado(new MarioDefault());
-		contexto.perderVida();
-	}
-
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contexto = marioFuego.getContext();
-		contexto.cambiarEstado(new MarioDefault());
-		contexto.perderVida();
-	}
-
-	@Override
-	public void visitar(SuperMario superMario) {
-		ContextoMario contexto = superMario.getContext();
-		contexto.cambiarEstado(new MarioDefault());
-		contexto.perderVida();
-	}
-
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
 		// TODO Auto-generated method stub
@@ -160,19 +127,6 @@ public class VisitorVacio implements Visitante{
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
-	}
-	
-
-	@Override
-	public void visitar(ContextoMario contextoMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

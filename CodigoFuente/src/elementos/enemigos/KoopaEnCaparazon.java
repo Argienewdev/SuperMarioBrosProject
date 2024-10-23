@@ -1,13 +1,15 @@
 package elementos.enemigos;
 
 import java.awt.Point;
+import java.util.Vector;
 
+import elementos.personajes.ContextoMario;
 import visitors.Visitante;
 
-public class KoopaCaparazonMovil implements EstadoKoopa {
+public class KoopaEnCaparazon implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
-
+	
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
@@ -24,7 +26,6 @@ public class KoopaCaparazonMovil implements EstadoKoopa {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitar(this);
 	}
 
 	public ContextoKoopaTroopa getContext() {
