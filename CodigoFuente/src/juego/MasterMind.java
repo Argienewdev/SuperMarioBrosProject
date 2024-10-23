@@ -2,38 +2,62 @@
 package juego;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import elementos.enemigos.Enemigo;
 import elementos.entidades.NoJugable;
+import elementos.powerUps.PowerUp;
+import fabricas.FabricaSprites;
 import observers.ObserverEntidades;
 
 public class MasterMind {
 	
-	protected ObserverEntidades observer;
+	protected Collection<NoJugable> entidadesNoJugables;
 	
-	protected GestorDeColisiones gestor;
+	protected ControladorMovimientoEntidadesNoJugables controladorMovimientoEntidadesNoJugables;
 	
-	public MasterMind (ObserverEntidades observer, GestorDeColisiones gestor) {
-		this.observer = observer;
-		this.gestor = gestor;
-	}
+	protected FabricaSprites fabricaSprites;
 	
-	@SuppressWarnings("exports")
-	public boolean moverEntidad (NoJugable entidad, Point posicion) {
-		Point posActual = entidad.getPosicion();
-		mover(entidad,posicion);
-		boolean pudoMover = gestor.verificarColisiones(entidad);
-		if (pudoMover)
-			observer.actualizar();
-		else  
-			mover(entidad,posActual);
-		return pudoMover;
-	}
-	
-	private void mover (NoJugable entidad, Point posicion) {
-		Point posActual = entidad.getPosicion();
-		int posX = posicion.x;
-		int posY = posicion.y;
-		posActual.move(posX,posY);
+	protected Nivel nivel;
+		
+	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
+		this.controladorMovimientoEntidadesNoJugables = new ControladorMovimientoEntidadesNoJugables();
+		this.fabricaSprites = fabricaSprites;
+		this.nivel = nivel;
+		crearColeccionDeEntidades();
 	}
 
+	public void crearColeccionDeEntidades() {
+		this.entidadesNoJugables = new ArrayList<NoJugable>();
+		for(Enemigo enemigo : this.nivel.getEnemigos()) {
+			this.entidadesNoJugables.add(enemigo);
+		}
+		for(PowerUp powerUp : this.nivel.getPowerUps()) {
+			this.entidadesNoJugables.add(powerUp);
+		}
+	}
+	
+	public void actualizar() {
+		actualizarPosiciones();
+		actualizarSprites();
+		actualizarLabels();
+	}
+	
+	public void actualizarPosiciones() {
+		this.controladorMovimientoEntidadesNoJugables.actualizarPosicion(this.entidadesNoJugables);
+	}
+	
+	public void actualizarSprites() {
+		for(NoJugable entidadNoJugable : this.entidadesNoJugables) {
+			entidadNoJugable.actualizarSprite(this.fabricaSprites);
+		}
+	}	
+	
+	public void actualizarLabels() {
+		for(NoJugable entidadNoJugable : this.entidadesNoJugables) {
+			entidadNoJugable.getObserverGrafico().actualizar();
+		}
+	}
+	
 }

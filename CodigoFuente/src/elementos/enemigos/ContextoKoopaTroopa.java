@@ -2,6 +2,7 @@ package elementos.enemigos;
 
 import java.awt.Point;
 import elementos.Sprite;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -31,5 +32,11 @@ public class ContextoKoopaTroopa extends Enemigo {
     public void aceptarVisitante(Visitante visitante) {
         this.estado.aceptarVisitante(visitante);
     }
+
+	@Override
+	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		// TODO Auto-generated method stub
+		// Segun su velocidad direccional actualizar el sprite
+	}
     
 }

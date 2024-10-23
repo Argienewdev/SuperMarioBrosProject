@@ -1,6 +1,7 @@
 package juego;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
@@ -14,11 +15,11 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
 
-    private ArrayList<Plataforma> plataformas;
+    private Collection<Plataforma> plataformas;
 
-    private ArrayList<PowerUp> powerUps;
+    private Collection<PowerUp> powerUps;
 
-    private ArrayList<Enemigo> enemigos;
+    private Collection<Enemigo> enemigos;
 
     protected Silueta silueta;
 

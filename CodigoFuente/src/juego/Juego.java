@@ -24,7 +24,7 @@ public class Juego {
 	private static Juego juego;
 	
 	private BucleJuego bucleJuego;
-	
+		
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
@@ -43,7 +43,6 @@ public class Juego {
 	
 	public static void main(String args[]) {
 		juego = new Juego();
-		//juego.bucleJuego = new BucleJuego();
 		juego.controladorVistas = new ControladorVistas(juego);
 		juego.bucleJuego = new BucleJuego(juego);
 	}

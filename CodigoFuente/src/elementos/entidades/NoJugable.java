@@ -3,6 +3,7 @@ package elementos.entidades;
 import java.awt.Point;
 
 import elementos.Sprite;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -17,4 +18,5 @@ public abstract class NoJugable extends Entidad {
 
 	public abstract void aceptarVisitante(Visitante visitante);
 	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 }

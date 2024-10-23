@@ -2,6 +2,7 @@ package elementos.powerUps;
 
 import java.awt.Point;
 import elementos.Sprite;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -31,6 +32,12 @@ public class ChampinionVerde extends PowerUp {
 	
 	public int obtenerPuntosPorFuego() {
 		return obtenerPuntosPorDefault();
+	}
+
+	@Override
+	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

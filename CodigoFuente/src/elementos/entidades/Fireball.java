@@ -2,6 +2,7 @@ package elementos.entidades;
 
 import java.awt.Point;
 import elementos.Sprite;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -26,6 +27,12 @@ public class Fireball extends NoJugable {
 	
 	public Jugable obtenerJugador() {
 		return miJugador;
+	}
+
+	@Override
+	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		// TODO Auto-generated method stub
+		// Segun su velocidad direccional actualizar el sprite
 	}
 
 }
