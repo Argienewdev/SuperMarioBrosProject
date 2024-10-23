@@ -9,11 +9,11 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.DimensionesConstantes;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 2;
+	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
 	private static final int FUERZA_SALTO = -30;
 	
-	private static final int GRAVEDAD = 1;
+	private static final int GRAVEDAD = 3;
 	
 	private int velocidadHorizontal;
 	

@@ -369,7 +369,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBloqueDePreguntaEncendido() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueDePreguntaEncendido.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueDePreguntaEncendido.gif");
     }
 
     @Override
