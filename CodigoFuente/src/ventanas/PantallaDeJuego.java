@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import elementos.entidades.Jugable;
 import observers.ObserverGrafico;
 import sensoresDeTeclas.SensorDeTeclasJuego;
@@ -23,6 +25,8 @@ public class PantallaDeJuego extends JPanel {
     
     private ObserverGrafico marioLabel;
     
+    private Interfaz hud;
+    
     private JLabel fondo;
     
     private ObserverGrafico observerGrafico;
@@ -31,19 +35,22 @@ public class PantallaDeJuego extends JPanel {
 
     public PantallaDeJuego() {
         this.fondo = new JLabel();
+        hud = new Interfaz();
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
 
-    protected void configurarVentana() {
+    protected void configurarVentana(){
         setVisible(true);
         setLayout(null);
         this.size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
         setPreferredSize(size);
         setMaximumSize(size);
         setMinimumSize(size);
+        hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        add(hud);
     }
-
+    
     protected void establecerFondo() {
         ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
         fondo = new JLabel(fondoImagen);
@@ -57,6 +64,9 @@ public class PantallaDeJuego extends JPanel {
         agregarLabel(jugable.getObserverGrafico());
         mostrarLabels();
         establecerFondo();
+        
+        // Asegurar que el HUD esté en la capa superior
+        setComponentZOrder(hud, 0);
         revalidate();
         repaint();
     }
@@ -75,6 +85,7 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
+    	hud.actualizarTiempo();
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
         boolean fondoMovido = false; // Bandera para indicar si el fondo se ha movido
@@ -128,6 +139,7 @@ public class PantallaDeJuego extends JPanel {
         marioLabel.actualizar(); // Asegura que Mario siempre esté actualizado
         revalidate();
         repaint();
+ 
     }
 
     

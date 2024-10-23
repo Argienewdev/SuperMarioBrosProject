@@ -12,8 +12,6 @@ public class ControladorVistas {
 	
 	private JFrame ventana;
 	
-	private Interfaz hud;
-	
 	private Jugable marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
@@ -26,6 +24,8 @@ public class ControladorVistas {
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
+	private Interfaz hud;
+	
 	protected Juego juego;	
 
 	
@@ -35,10 +35,10 @@ public class ControladorVistas {
 		pantallaFinal= new PantallaFinal();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		pantallaDeJuego= new PantallaDeJuego();
-		hud= new Interfaz();
+		hud = new Interfaz();
 		this.juego = juego;
+		
 		configurarVentana();
-		ventana.setVisible(true);
 		RegistrarOyenteInicial();
 	}
 	
@@ -52,16 +52,16 @@ public class ControladorVistas {
 		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
 		ventana.setLocationRelativeTo(null);
 		ventana.pack();
+		ventana.setGlassPane(hud);
+		ventana.setVisible(true);
 	}
 	
 	public void accionarInicioJuego(String modo) {
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
-		ventana.add(pantallaDeJuego);
+		mostrarPantallaDeJuego();
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
-		ventana.add(hud);
-		ventana.setComponentZOrder(hud, 0); // Asegura que el HUD está al frente
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -90,8 +90,7 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaDeJuego() {
-		// TODO Auto-generated method stub
-		
+		 ventana.add(pantallaDeJuego);		
 	}
 	
 	public void mostrarPantallaFinal() {
@@ -101,12 +100,6 @@ public class ControladorVistas {
 
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(pantallaInicial);
-		refrescar();
-	}
-
-	public void mostrarHUD() {
-		ventana.setContentPane(hud);
-		refrescar();
 	}
 	
 	public void refrescar(){
@@ -114,6 +107,7 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 		}else {
 			pantallaDeJuego.refrescar();
+		
 		}
 		ventana.revalidate();
 		ventana.repaint();
