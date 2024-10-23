@@ -7,6 +7,7 @@ import elementos.Sprite;
 import elementos.entidades.Jugable;
 import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoOriginal;
+import ventanas.DimensionesConstantes;
 
 public class ActualizadorDeSpriteJugador {
 	
@@ -21,7 +22,9 @@ public class ActualizadorDeSpriteJugador {
 	
 	public void actualizar() {
 		Sprite aRetornar = null;
-		if(spriteAereoFrontal()) {
+		if(marioJugable.getPosicion().y > (DimensionesConstantes.PANEL_ALTO - 150)){
+			aRetornar = fabricaSprites.getMarioDefaultCayendo();
+		}else if(spriteAereoFrontal()) {
 			aRetornar = fabricaSprites.getMarioDefaultFrontalSaltando();
 		} else if(spriteAereoReverso()) {
 			aRetornar = fabricaSprites.getMarioDefaultReversoSaltando();
@@ -31,7 +34,7 @@ public class ActualizadorDeSpriteJugador {
 			aRetornar = fabricaSprites.getMarioDefaultReversoCaminandoPrimeraTransicion();
 		} else if(spriteFrontal()){
 			aRetornar = fabricaSprites.getMarioDefaultFrontalQuieto();
-		} else {
+		} else if(spriteReverso()){
 			aRetornar = fabricaSprites.getMarioDefaultReversoQuieto();
 		}
 		marioJugable.setSprite(aRetornar);
