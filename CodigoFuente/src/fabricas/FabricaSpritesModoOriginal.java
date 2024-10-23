@@ -15,7 +15,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalCaminandoPrimeraTransicion.gif");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getMarioDefaultReversoCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoCaminandoPrimeraTransicion.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultReversoCaminandoPrimeraTransicion.gif");
     }
 
     @Override
