@@ -15,6 +15,8 @@ public abstract class FabricaSprites {
 		
 	public abstract Sprite getMarioDefaultFrontalCaminandoSegundaTransicion();
 	
+	public abstract Sprite getMarioDefaultCayendo();
+
 	public abstract Sprite getMarioDefaultFrontalSaltando();
 	
 	public abstract Sprite getMarioDefaultReversoQuieto();
@@ -154,6 +156,5 @@ public abstract class FabricaSprites {
 	public abstract Sprite getVacio();
 	
 	public abstract Sprite getPrincesaPeach();
-	
 
 }

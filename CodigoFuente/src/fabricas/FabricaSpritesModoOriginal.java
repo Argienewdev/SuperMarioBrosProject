@@ -24,6 +24,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
+    public Sprite getMarioDefaultCayendo() {
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultCayendo.png");
+    }
+    
+    
+    @Override
     public Sprite getMarioDefaultFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalSaltando.png");
     }
