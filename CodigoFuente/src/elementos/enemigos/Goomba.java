@@ -25,15 +25,15 @@ public class Goomba extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(cont%10 == 0) {
-			this.setSprite(fabricaSprites.getGoombaCaminandoPrimeraTransicion());
-		} else if(cont%5 == 0){
-			this.setSprite(fabricaSprites.getGoombaCaminandoSegundaTransicion());
-		}
-		cont++;
-		if(cont == 999) {
-			cont = 1;
-		}
+//		cont++;
+//		if(cont%10 == 0) {
+//			this.setSprite(fabricaSprites.getGoombaCaminandoPrimeraTransicion());
+//		} else if(cont%5 == 0){
+//			this.setSprite(fabricaSprites.getGoombaCaminandoSegundaTransicion());
+//		}
+//		if(cont == 999) {
+//			cont = 0;
+//		}
 	}
     
 }
