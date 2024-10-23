@@ -24,13 +24,10 @@ public class VisitorBuzzyBeetle implements Visitante{
 
 	
 	public void visitar(Goomba goomba) {
-		
 	}
 	
 	public void visitar(Lakitu lakitu) {
-		
 	}
-
 	
 	public void visitar(PiranhaPlant planta) {
 		
@@ -38,27 +35,19 @@ public class VisitorBuzzyBeetle implements Visitante{
 
 	
 	public void visitar(Fireball fireball) {
-		
 	}
 
 	
 	public void visitar(SuperChampinion superChamp) {
-		
 	}
 
-	
 	public void visitar(FlorDeFuego flor) {
-		
 	}
 
-	
 	public void visitar(ChampinionVerde champVerde) {
-		
 	}
-
 	
 	public void visitar(Estrella estrella) {
-		
 	}
 
 	@Override
@@ -66,26 +55,36 @@ public class VisitorBuzzyBeetle implements Visitante{
 		
 	}
 	public void visitar(ContextoMario contextoMario) {
-		MarioDefault estadoDefault= new MarioDefault();
-		estadoDefault.setContext(contextoMario);
-		SuperMario estadoSuper= new SuperMario();
-		estadoSuper.setContext(contextoMario);
-		MarioFuego estadoFuego= new MarioFuego();
-		estadoFuego.setContext(contextoMario);
-		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
-		estadoInvulnerable.setContext(contextoMario);
-		
-		if(contextoMario.getEstado().equals(estadoDefault)) {
-			if (contextoMario.getVidas() == 1) {
-				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-				contextoMario.perderPuntos(perdidaPuntos);
-			}
-			contextoMario.perderVida();
-		}else if(contextoMario.getEstado().equals(estadoSuper)|| contextoMario.getEstado().equals(estadoFuego)){
-			contextoMario.cambiarEstado(estadoDefault);
+		contextoMario.getEstado().aceptarVisitante(this);
+	}
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+		ContextoMario contextoMario = marioDefault.getContext();
+		if (contextoMario.getVidas() == 1) {
+			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+			contextoMario.perderPuntos(perdidaPuntos);
 		}
+		contextoMario.perderVida();
 	}
 	
+	@Override
+	public void visitar(SuperMario superMario) {
+		ContextoMario contextoMario = superMario.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		ContextoMario contextoMario = marioFuego.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+	
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		
+	}
 	public void visitar(BloqueDePregunta bloquePregunta) {
 		
 	}
@@ -117,14 +116,19 @@ public class VisitorBuzzyBeetle implements Visitante{
 
 	
 	public void visitar(BloqueSolido bloqueSolido) {
-		
 	}
 
 
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		
 	}
 
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+	}
 	
 }

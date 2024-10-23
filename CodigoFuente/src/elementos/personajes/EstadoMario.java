@@ -1,7 +1,14 @@
 package elementos.personajes;
 
-public interface EstadoMario {
+import visitors.Visitante;
+
+public interface EstadoMario{
 	
 	public ContextoMario getContext();
 
+	public void aceptarVisitante(Visitante visitante);
+
+	public void setContext(ContextoMario contextoMario);
+	
+	public Visitante getVisitor();
 }

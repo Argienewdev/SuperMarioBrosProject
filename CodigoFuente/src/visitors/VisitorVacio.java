@@ -87,7 +87,34 @@ public class VisitorVacio implements Visitante{
 	public void visitar(ContextoMario contextoMario) {
 		contextoMario.perderPuntos(15);
 		contextoMario.perderVida();
+		contextoMario.getEstado().aceptarVisitante(this);
 	}
+	
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+	}
+
+	@Override
+	public void visitar(SuperMario superMario) {
+		ContextoMario contextoMario = superMario.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		ContextoMario contextoMario = marioFuego.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		ContextoMario contextoMario = marioInvulnerable.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+	
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
 		// TODO Auto-generated method stub
@@ -128,5 +155,18 @@ public class VisitorVacio implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

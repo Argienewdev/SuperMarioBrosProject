@@ -56,14 +56,20 @@ public class VisitorContextoMario implements Visitante {
 		otorgarPuntosYEliminar(goomba);
 	}
 
-	public void visitar(ContextoKoopaTroopa koopaTroopa) {
-		KoopaDefault estadoDefault=new KoopaDefault();
-		if(koopaTroopa.getEstado().equals(estadoDefault)) {
-			KoopaEnCaparazon estadoEstatico=new KoopaEnCaparazon();
-			koopaTroopa.cambiarEstado(estadoEstatico);
-		}else {
-			otorgarPuntosYEliminar(koopaTroopa);
-		}
+	public void visitar(ContextoKoopaTroopa ContextoKoopa) {
+		ContextoKoopa.getEstado().aceptarVisitante(this);
+	}
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		otorgarPuntosYEliminar(koopaEnCaparazon.getContext());
+	}
+	
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+		ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+		KoopaEnCaparazon nuevoEstado=new KoopaEnCaparazon();
+		contextoKoopa.cambiarEstado(nuevoEstado);
 	}
 
 	@Override
@@ -117,61 +123,15 @@ public class VisitorContextoMario implements Visitante {
 			bloquePregunta.liberarPowerUp();
 		}
 		bloquePregunta.setVacio(true);
+		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		if (choquePorDerecha(ladrillo) || choquePorIzquierda(ladrillo)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(choquePorArriba(ladrillo)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(choquePorAbajo(ladrillo)){
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
-		}
-			
-			MarioDefault estadoDefault= new MarioDefault();
-			estadoDefault.setContext(miEntidad);
-			
-			//No se porque se da falso el equals, ambos son de la clase MarioDefault y tienen el mismo contexto
-			/*
-			if(!miEntidad.getEstado().equals(estadoDefault)){
-				nivel = ladrillo.getNivel();
-				nivel.removePlataforma(ladrillo);
-			}
-			*/
-			
-			
-		
+		ladrillo.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 	
-	private boolean choquePorDerecha(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > bloque.obtenerHitbox().x;
-		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
-		return parte1 && parte2;
-	}
 	
-	private boolean choquePorIzquierda(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
-		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
-		return parte1 && parte2;
-	}
-	
-	private boolean choquePorArriba(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > bloque.obtenerHitbox().y;
-		boolean parte2 = !(miEntidad.getPosicion().y + miEntidad.obtenerAlto() > bloque.getPosicion().y);
-		boolean parte3 = miEntidad.getVelocidadDireccional().y > 0;
-		return parte1 && parte2 && parte3;
-	}
-	
-	private boolean choquePorAbajo(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().y < bloque.obtenerHitbox().y + bloque.obtenerHitbox().height;
-		boolean parte2 = !(miEntidad.getPosicion().y < bloque.getPosicion().y + bloque.obtenerAlto());
-		boolean parte3 = miEntidad.getVelocidadDireccional().y < 0;
-		return parte1 && parte2 && parte3;
-	}
 	
 	@Override
 	public void visitar(Vacio vacio) {
@@ -197,8 +157,29 @@ public class VisitorContextoMario implements Visitante {
 	public void visitar(ContextoMario contextoMario) {
 		
 	}
-	
-	private void aVisitorConcreto (ElementoDeJuego elemento) {
+
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(SuperMario superMario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {

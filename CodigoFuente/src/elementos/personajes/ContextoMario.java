@@ -18,6 +18,7 @@ public class ContextoMario extends Jugable {
 	
 	public void cambiarEstado(EstadoMario estadoMario) {
 		this.estadoMario = estadoMario;
+		estadoMario.setContext(this);
 	}
 	
 	@Override

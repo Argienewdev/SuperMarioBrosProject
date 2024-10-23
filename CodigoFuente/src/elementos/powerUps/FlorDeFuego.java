@@ -26,7 +26,7 @@ public class FlorDeFuego extends PowerUp {
 		return 30;
 	}
 	
-	public int obtenerPuntosPorInvencible() {
+	public int obtenerPuntosPorInvulnerable() {
 		return obtenerPuntosPorSuper();
 	}
 	

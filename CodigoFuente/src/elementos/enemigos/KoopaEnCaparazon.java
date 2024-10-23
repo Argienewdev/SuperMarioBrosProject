@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import elementos.personajes.ContextoMario;
 import visitors.Visitante;
+import visitors.VisitorKoopaEnCaparazon;
 
 public class KoopaEnCaparazon implements EstadoKoopa {
 
@@ -25,11 +26,17 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	}
 
 	@Override
-	public void aceptarVisitante(Visitante visitante) {
-	}
+    public void aceptarVisitante(Visitante visitante) {
+        visitante.visitar(this);
+    }
 
 	public ContextoKoopaTroopa getContext() {
 		return this.contexto;
 	}
 
+	@Override
+	public Visitante getVisitor() {
+		return new VisitorKoopaEnCaparazon(this);
+	}
+	
 }

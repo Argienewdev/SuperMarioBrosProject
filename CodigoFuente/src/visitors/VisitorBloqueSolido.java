@@ -89,4 +89,12 @@ public class VisitorBloqueSolido implements Visitante{
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
 	}
 
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+	}
+
 }

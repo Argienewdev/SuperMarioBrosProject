@@ -27,7 +27,7 @@ public class SuperChampinion extends PowerUp {
 		return 50;
 	}
 	
-	public int obtenerPuntosPorInvencible() {
+	public int obtenerPuntosPorInvulnerable() {
 		return obtenerPuntosPorSuper();
 	}
 	

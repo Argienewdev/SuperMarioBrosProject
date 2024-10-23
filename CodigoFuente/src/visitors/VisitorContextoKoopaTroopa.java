@@ -11,6 +11,7 @@ import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.entidades.Fireball;
 import elementos.personajes.ContextoMario;
+import elementos.personajes.EstadoMario;
 import elementos.personajes.MarioDefault;
 import elementos.personajes.MarioFuego;
 import elementos.personajes.MarioInvulnerable;
@@ -38,83 +39,83 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		aVisitorConcreto(buzzy);
-		
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		aVisitorConcreto(spiny);
 		
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
-		aVisitorConcreto(goomba);
 	}
 
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		aVisitorConcreto(lakitu);
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
-		aVisitorConcreto(planta);
 	}
 
 	@Override
 	public void visitar(Fireball fireball) {
-		aVisitorConcreto(fireball);
 	}
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		aVisitorConcreto(superChamp);
-		
+
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		aVisitorConcreto(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		aVisitorConcreto(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		aVisitorConcreto(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas monedas) {
-		aVisitorConcreto(monedas);
+	}
+	
+	@Override
+	public void visitar(ContextoMario contextoMario) {
+		contextoMario.getEstado().aceptarVisitante(this);
+	}
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+		ContextoMario contextoMario = marioDefault.getContext();
+		if (contextoMario.getVidas() == 1) {
+			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+			contextoMario.perderPuntos(perdidaPuntos);
+		}
+		contextoMario.perderVida();
+	}
+	
+	@Override
+	public void visitar(SuperMario superMario) {
+		ContextoMario contextoMario = superMario.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
 	}
 
 	@Override
-	public void visitar(ContextoMario contextoMario) {
-		MarioDefault estadoDefault= new MarioDefault();
-		estadoDefault.setContext(contextoMario);
-		SuperMario estadoSuper= new SuperMario();
-		estadoSuper.setContext(contextoMario);
-		MarioFuego estadoFuego= new MarioFuego();
-		estadoFuego.setContext(contextoMario);
-		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
-		estadoInvulnerable.setContext(contextoMario);
+	public void visitar(MarioFuego marioFuego) {
+		ContextoMario contextoMario = marioFuego.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
 		
-		if(contextoMario.getEstado().equals(estadoDefault)) {
-			if (contextoMario.getVidas() == 1) {
-				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-				contextoMario.perderPuntos(perdidaPuntos);
-			}
-			contextoMario.perderVida();
-		}else if(contextoMario.getEstado().equals(estadoSuper)|| contextoMario.getEstado().equals(estadoFuego)){
-			contextoMario.cambiarEstado(estadoDefault);
-		}
 	}
 
 	@Override
@@ -163,5 +164,17 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 	private void aVisitorConcreto (ElementoDeJuego elemento) {
 		miEntidad.aceptarVisitante(elemento.getVisitor());
 		elemento.aceptarVisitante(miEntidad.getVisitor());
+	}
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+		// TODO Auto-generated method stub
+		
 	}
 }

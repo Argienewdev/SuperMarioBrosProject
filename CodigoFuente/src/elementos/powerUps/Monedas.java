@@ -40,7 +40,7 @@ public class Monedas extends PowerUp {
 		return obtenerPuntosPorDefault();
 	}
 	
-	public int obtenerPuntosPorInvencible() {
+	public int obtenerPuntosPorInvulnerable() {
 		return obtenerPuntosPorDefault();
 	}
 	

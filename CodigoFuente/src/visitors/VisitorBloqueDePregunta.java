@@ -8,8 +8,7 @@ import elementos.powerUps.*;
 
 public class VisitorBloqueDePregunta implements Visitante {
 	
-	public VisitorBloqueDePregunta() {
-		
+	public VisitorBloqueDePregunta() {		
 	}
 
 	public void visitar(BuzzyBeetle buzzy) {	
@@ -48,24 +47,19 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(Estrella estrella) {	
 	}
 	
-	public void visitar(Monedas monedas) {
-		
+	public void visitar(Monedas monedas) {		
 	}
 	
-	public void visitar(MarioDefault marioNormal) {	
-		
+	public void visitar(MarioDefault marioNormal) {		
 	}
 	
 	public void visitar(MarioInvulnerable marioInv) {		
-		
 	}
 
-	public void visitar(MarioFuego marioFuego) {
-		
+	public void visitar(MarioFuego marioFuego) {		
 	}
 
-	public void visitar(SuperMario superMario) {
-		
+	public void visitar(SuperMario superMario) {		
 	}
 
 	public void visitar(BloqueDePregunta bloquePregunta) {		
@@ -87,6 +81,14 @@ public class VisitorBloqueDePregunta implements Visitante {
 	}
 
 	public void visitar(BloqueSolido bloqueSolido) {		
+	}
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {		
 	}
 
 	

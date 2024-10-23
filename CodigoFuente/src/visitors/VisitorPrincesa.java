@@ -131,5 +131,41 @@ public class VisitorPrincesa implements Visitante {
 		controlador.mostrarPantallaFinal();		
 	}
 	
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override	
+	public void visitar(MarioDefault marioDefault) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void visitar(SuperMario superMario) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
 

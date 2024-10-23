@@ -26,7 +26,7 @@ public class ChampinionVerde extends PowerUp {
 		return obtenerPuntosPorDefault();
 	}
 	
-	public int obtenerPuntosPorInvencible() {
+	public int obtenerPuntosPorInvulnerable() {
 		return obtenerPuntosPorDefault();
 	}
 	

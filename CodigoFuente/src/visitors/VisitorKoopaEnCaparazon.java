@@ -1,16 +1,42 @@
-
 package visitors;
-import java.awt.Point;
 
-import elementos.enemigos.*;
+import elementos.enemigos.BuzzyBeetle;
+import elementos.enemigos.ContextoKoopaTroopa;
+import elementos.enemigos.EstadoKoopa;
+import elementos.enemigos.Goomba;
+import elementos.enemigos.KoopaDefault;
+import elementos.enemigos.KoopaEnCaparazon;
+import elementos.enemigos.Lakitu;
+import elementos.enemigos.PiranhaPlant;
+import elementos.enemigos.Spiny;
 import elementos.entidades.Fireball;
-import elementos.personajes.*;
-import elementos.plataformas.*;
-import elementos.powerUps.*;
-public class VisitorLadrillo implements Visitante {
+import elementos.personajes.ContextoMario;
+import elementos.personajes.MarioDefault;
+import elementos.personajes.MarioFuego;
+import elementos.personajes.MarioInvulnerable;
+import elementos.personajes.SuperMario;
+import elementos.plataformas.Bandera;
+import elementos.plataformas.BloqueDePregunta;
+import elementos.plataformas.BloqueSolido;
+import elementos.plataformas.Ladrillo;
+import elementos.plataformas.PrincesaPeach;
+import elementos.plataformas.Tuberia;
+import elementos.plataformas.Vacio;
+import elementos.powerUps.ChampinionVerde;
+import elementos.powerUps.Estrella;
+import elementos.powerUps.FlorDeFuego;
+import elementos.powerUps.Monedas;
+import elementos.powerUps.SuperChampinion;
+
+public class VisitorKoopaEnCaparazon implements Visitante{
+
+	protected EstadoKoopa miEstado;
 	
-	public VisitorLadrillo() {
-		
+	private ContextoKoopaTroopa miEntidad;
+	
+	public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado) {
+		this.miEstado = miEstado;
+		miEntidad=miEstado.getContext();
 	}
 
 	@Override
@@ -27,6 +53,24 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(Goomba goomba) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -74,7 +118,7 @@ public class VisitorLadrillo implements Visitante {
 	}
 
 	@Override
-	public void visitar(Monedas moneda) {
+	public void visitar(Monedas monedas) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -123,23 +167,6 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		
-	}
-
-	@Override
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
 	}

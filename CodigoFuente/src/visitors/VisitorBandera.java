@@ -53,27 +53,24 @@ public class VisitorBandera implements Visitante{
 	public void visitar(Monedas monedas) {
 		
 	}
-	
-	public void visitar(MarioDefault marioNormal) {	
+	public void visitar(ContextoMario contextoMario) {
+		contextoMario.getEstado().aceptarVisitante(this);
+	}
+	@Override
+	public void visitar(MarioDefault marioDefault) {
 		controlador.cambiarNivel();
 	}
 	
 	public void visitar(MarioInvulnerable marioInv) {		
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
-		marioInv.getContext().cambiarEstado(estado);
 	}
 
 	public void visitar(MarioFuego marioFuego) {
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
-		marioFuego.getContext().cambiarEstado(estado);
 	}
 
 	public void visitar(SuperMario superMario) {
 		controlador.cambiarNivel();
-		EstadoMario estado = new MarioDefault();
-		superMario.getContext().cambiarEstado(estado);
 	}
 
 	public void visitar(BloqueDePregunta bloquePregunta) {		
@@ -97,7 +94,12 @@ public class VisitorBandera implements Visitante{
 	public void visitar(BloqueSolido bloqueSolido) {		
 	}
 
-	public void visitar(ContextoMario contextoMario) {		
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {		
 	}
 	
 	

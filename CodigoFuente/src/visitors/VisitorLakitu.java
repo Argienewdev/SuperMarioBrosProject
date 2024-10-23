@@ -82,24 +82,35 @@ public class VisitorLakitu implements Visitante {
 		
 	}
 	public void visitar(ContextoMario contextoMario) {
-		MarioDefault estadoDefault= new MarioDefault();
-		estadoDefault.setContext(contextoMario);
-		SuperMario estadoSuper= new SuperMario();
-		estadoSuper.setContext(contextoMario);
-		MarioFuego estadoFuego= new MarioFuego();
-		estadoFuego.setContext(contextoMario);
-		MarioInvulnerable estadoInvulnerable= new MarioInvulnerable();
-		estadoInvulnerable.setContext(contextoMario);
-		
-		if(contextoMario.getEstado().equals(estadoDefault)) {
-			if (contextoMario.getVidas() == 1) {
-				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-				contextoMario.perderPuntos(perdidaPuntos);
-			}
-			contextoMario.perderVida();
-		}else if(contextoMario.getEstado().equals(estadoSuper)|| contextoMario.getEstado().equals(estadoFuego)){
-			contextoMario.cambiarEstado(estadoDefault);
+		contextoMario.getEstado().aceptarVisitante(this);
+	}
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+		ContextoMario contextoMario = marioDefault.getContext();
+		if (contextoMario.getVidas() == 1) {
+			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+			contextoMario.perderPuntos(perdidaPuntos);
 		}
+		contextoMario.perderVida();
+	}
+	
+	@Override
+	public void visitar(SuperMario superMario) {
+		ContextoMario contextoMario = superMario.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		ContextoMario contextoMario = marioFuego.getContext();
+		EstadoMario nuevoEstado= new MarioDefault();
+		contextoMario.cambiarEstado(nuevoEstado);
+	}
+	
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		
 	}
 
 	@Override
@@ -146,6 +157,18 @@ public class VisitorLakitu implements Visitante {
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
 	}

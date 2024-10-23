@@ -20,7 +20,7 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract int obtenerPuntosPorSuper();
 	
-	public abstract int obtenerPuntosPorInvencible();
+	public abstract int obtenerPuntosPorInvulnerable();
 	
 	public abstract int obtenerPuntosPorFuego();
 }

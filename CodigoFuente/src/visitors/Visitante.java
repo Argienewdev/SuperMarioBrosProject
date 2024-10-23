@@ -16,6 +16,10 @@ public interface Visitante {
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa);
 	
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon);
+
+	public void visitar(KoopaDefault koopaDefault);
+	
 	public void visitar(Lakitu lakitu);
 	
 	public void visitar(PiranhaPlant planta);
@@ -48,5 +52,13 @@ public interface Visitante {
 	public void visitar(BloqueSolido bloqueSolido);
 
 	public void visitar(ContextoMario contextoMario);
+	
+	public void visitar(MarioDefault marioDefault);
+	
+	public void visitar(SuperMario superMario);
+
+	public void visitar(MarioFuego marioFuego);
+	
+	public void visitar(MarioInvulnerable marioInvulnerable);
 	
 }

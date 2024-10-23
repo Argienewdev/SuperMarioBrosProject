@@ -29,13 +29,15 @@ public class VisitorFireball implements Visitante {
     }
 
     public void visitar(ContextoKoopaTroopa contextoKoopa) {
-    	otorgarPuntosYEliminar(contextoKoopa);
-    	
+    	otorgarPuntosYEliminar(contextoKoopa);	
     }
 
     public void visitar(KoopaDefault koopaDefault) {
-        koopaDefault.getContext().cambiarEstado(new KoopaEnCaparazon());
     }
+    
+    @Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
+	}
 
     public void visitar(Lakitu lakitu) {
         otorgarPuntosYEliminar(lakitu);
@@ -91,4 +93,5 @@ public class VisitorFireball implements Visitante {
         Nivel nivel = enemigo.getNivel();
         nivel.removeEnemigo(enemigo);
     }
+
 }

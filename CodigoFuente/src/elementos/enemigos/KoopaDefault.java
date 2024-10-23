@@ -2,6 +2,7 @@ package elementos.enemigos;
 
 import java.awt.Point;
 import visitors.Visitante;
+import visitors.VisitorKoopaDefault;
 
 public class KoopaDefault implements EstadoKoopa {
 	
@@ -22,11 +23,15 @@ public class KoopaDefault implements EstadoKoopa {
 	}
 
 	@Override
-	public void aceptarVisitante(Visitante visitante) {
-	}
+    public void aceptarVisitante(Visitante visitante) {
+        visitante.visitar(this);
+    }
 
 	public ContextoKoopaTroopa getContext() {
 		return this.contexto;
+	}
+	public Visitante getVisitor() {
+		return new VisitorKoopaDefault(this);
 	}
 
 }

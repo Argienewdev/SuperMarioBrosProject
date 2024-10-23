@@ -49,13 +49,35 @@ public class VisitorChampinionVerde implements Visitante {
 
     public void visitar(Monedas moneda) {
     }
-    
-    public void visitar(ContextoMario contextoMario) {
+    @Override
+	public void visitar(ContextoMario contextoMario) {
     	contextoMario.ganarVida();
-    	//Se gana la misma cantidad de puntos en cualquier estado
-    	contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
+    	contextoMario.getEstado().aceptarVisitante(this);
+	}
+	
+	@Override
+	public void visitar(MarioDefault marioDefault) {
+		ContextoMario contextoMario= marioDefault.getContext();
+		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
 	}
 
+	@Override
+	public void visitar(SuperMario superMario) {
+		ContextoMario contextoMario= superMario.getContext();
+		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorSuper());
+	}
+
+	@Override
+	public void visitar(MarioFuego marioFuego) {
+		ContextoMario contextoMario= marioFuego.getContext();
+		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorFuego());
+	}
+
+	@Override
+	public void visitar(MarioInvulnerable marioInvulnerable) {
+		ContextoMario contextoMario = marioInvulnerable.getContext();
+		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorInvulnerable());
+	}
 
     public void visitar(BloqueDePregunta bloquePregunta) {
     }
@@ -80,4 +102,16 @@ public class VisitorChampinionVerde implements Visitante {
 
     public void visitar(ContextoKoopaTroopa contextoKoopa) {
     }
+
+	@Override
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
+		// TODO Auto-generated method stub
+		
+	}
 }

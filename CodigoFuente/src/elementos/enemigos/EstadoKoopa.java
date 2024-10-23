@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import visitors.Visitante;
 
-public interface EstadoKoopa {
+public interface EstadoKoopa{
 
 	public void moverAIzquierda(Point direccion);
 	
@@ -12,4 +12,5 @@ public interface EstadoKoopa {
 	
 	public void aceptarVisitante(Visitante visitante);
 	
+	public Visitante getVisitor();
 }

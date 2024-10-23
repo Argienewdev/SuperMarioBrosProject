@@ -30,7 +30,7 @@ public class Estrella extends PowerUp {
 		return 30;
 	}
 	
-	public int obtenerPuntosPorInvencible() {
+	public int obtenerPuntosPorInvulnerable() {
 		return 35;
 	}
 	
