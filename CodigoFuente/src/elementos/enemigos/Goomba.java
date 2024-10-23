@@ -8,7 +8,7 @@ import visitors.Visitante;
 
 public class Goomba extends Enemigo {
 	
-	int cont;
+	private int cont;
 	
     public Goomba(Sprite sprite, Point posicion, Visitante visitor,
     			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
@@ -25,14 +25,14 @@ public class Goomba extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		cont++;
 		if(cont%10 == 0) {
 			this.setSprite(fabricaSprites.getGoombaCaminandoPrimeraTransicion());
 		} else if(cont%5 == 0){
 			this.setSprite(fabricaSprites.getGoombaCaminandoSegundaTransicion());
 		}
+		cont++;
 		if(cont == 999) {
-			cont = 0;
+			cont = 1;
 		}
 	}
     

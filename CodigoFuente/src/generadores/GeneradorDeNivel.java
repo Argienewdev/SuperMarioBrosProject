@@ -81,6 +81,7 @@ public class GeneradorDeNivel {
 	                    vacio.setNivel(nivel);
 	                    nivel.addPlataforma(vacio);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoVacio);
+	                    System.out.println("Agregue el vacio");
 	                    break;
 	                }
 	                case 1: {
