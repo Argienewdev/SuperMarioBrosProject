@@ -1,2 +1,6 @@
-/bin/
 /.metadata/
+.project
+/CodigoFuente/bin/
+/CodigoFuente/.metadata/
+/CodigoFuente/.classpath
+/CodigoFuente/.project
