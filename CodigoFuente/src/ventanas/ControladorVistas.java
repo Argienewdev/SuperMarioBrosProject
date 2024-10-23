@@ -12,7 +12,7 @@ public class ControladorVistas {
 	
 	private JFrame ventana;
 	
-	private HUD HUD;
+	private Interfaz hud;
 	
 	private Jugable marioJugable;
 	
@@ -34,7 +34,8 @@ public class ControladorVistas {
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		pantallaDeJuego= new PantallaDeJuego();
+		pantallaDeJuego= new PantallaDeJuego(sensorDeTeclasJuego);
+		hud= new Interfaz();
 		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);
@@ -59,6 +60,8 @@ public class ControladorVistas {
 		ventana.add(pantallaDeJuego);
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
+		ventana.add(hud);
+		ventana.setComponentZOrder(hud, 0); // Asegura que el HUD está al frente
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -102,7 +105,7 @@ public class ControladorVistas {
 	}
 
 	public void mostrarHUD() {
-		ventana.setContentPane(HUD);
+		ventana.setContentPane(hud);
 		refrescar();
 	}
 	
