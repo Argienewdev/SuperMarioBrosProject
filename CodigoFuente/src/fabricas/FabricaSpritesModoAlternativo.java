@@ -22,6 +22,11 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	public Sprite getMarioDefaultFrontalCaminandoSegundaTransicion() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCaminandoSegundaTransicion.png");
 	}
+	
+	@Override
+	public Sprite getMarioDefaultCayendo() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultCayendo.png");
+	}
 
 	@Override
 	public Sprite getMarioDefaultFrontalSaltando() {
