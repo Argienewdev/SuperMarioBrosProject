@@ -40,20 +40,20 @@ public class ControladorMovimiento {
 		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
-	public Point actualizarPosicion() {
+	public void actualizarPosicion() {
 		determinarDireccion();
-        Point velocidadARetornar = marioJugable.getVelocidadDireccional();
         reiniciarVelocidadHorizontal();
-        return velocidadARetornar;
 	}
 	
 	private void moveMarioDerecha() {
 		this.velocidadHorizontal = VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.setAvanzando(true);
 		aplicarVelocidad();
 	}
 	
 	private void moveMarioIzquierda() {
 		this.velocidadHorizontal = -VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.setRetrocediendo(true);
 		aplicarVelocidad();
 	}
 	
@@ -78,6 +78,7 @@ public class ControladorMovimiento {
 	
 	private void iniciarSalto() {
 		velocidadVertical = FUERZA_SALTO;
+		marioJugable.setEnElAire(true);
 		aplicarVelocidad();
 	}
 	
@@ -91,6 +92,8 @@ public class ControladorMovimiento {
 	}
 	
 	private void determinarDireccion() {
+		this.marioJugable.setAvanzando(false);
+		this.marioJugable.setRetrocediendo(false);
 		if(marioJugable.getColisionArriba()) {
 			reiniciarVelocidadVertical();
 			marioJugable.setColisionArriba(false);

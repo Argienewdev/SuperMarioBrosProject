@@ -13,20 +13,23 @@ public abstract class Jugable extends Entidad {
 	
 	protected Monedas monedas;
 	
-	private boolean colisionADerecha;
-	
-	private boolean colisionAIzquierda;
-	
 	private boolean colisionAbajo;
 	
 	private boolean colisionArriba;
 	
+	private boolean enElAire;
+	
+	private boolean retrocediendo;
+	
+	private boolean avanzando;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
-		this.colisionADerecha = false;
-		this.colisionAIzquierda = false;
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
+		this.enElAire = false;
+		this.retrocediendo = false;
+		this.avanzando = false;
 	}
 	
 	public void ganarVida() {
@@ -65,22 +68,6 @@ public abstract class Jugable extends Entidad {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
-	public void setColisionADerecha(boolean colisionADerecha) {
-		this.colisionADerecha = colisionADerecha;
-	}
-	
-	public boolean getColisionADerecha() {
-		return this.colisionADerecha;
-	}
-	
-	public void setColisionAIzquierda(boolean colisionAIzquierda) {
-		this.colisionAIzquierda = colisionAIzquierda;
-	}
-	
-	public boolean getColisionAIzquierda() {
-		return this.colisionAIzquierda;
-	}
-	
 	public void setColisionAbajo(boolean colisionAbajo) {
 		this.colisionAbajo = colisionAbajo;
 	}
@@ -99,14 +86,38 @@ public abstract class Jugable extends Entidad {
 	
 	public void retrotraerMovimientoHorizontal() {
         this.moverHitbox(this.posicion);
-        setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
+        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(this.posicion);
-		setPosicion(nuevaPosicion);
-		setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
+		this.setPosicion(nuevaPosicion);
+		this.setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
+		this.setEnElAire(false);
+	}
+	
+	public boolean getEnElAire() {
+		return enElAire;
+	}
+	
+	public void setEnElAire(boolean enElAire) {
+		this.enElAire = enElAire;
+	}
+	
+	public boolean getRetrocediendo() {
+		return retrocediendo;
+	}
+	
+	public void setRetrocediendo(boolean retrocediendo) {
+		this.retrocediendo = retrocediendo;
+	}
+	public boolean getAvanzando() {
+		return avanzando;
+	}
+	
+	public void setAvanzando(boolean avanzando) {
+		this.avanzando = avanzando;
 	}
 
 }
