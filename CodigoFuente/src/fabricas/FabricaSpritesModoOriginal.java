@@ -195,7 +195,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getGoombaCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaQuieto.gif");
     }
 
     @Override
