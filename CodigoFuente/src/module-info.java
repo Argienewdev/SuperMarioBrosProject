@@ -4,6 +4,6 @@
 /**
  * 
  */
-module CodigoFuente {
+module superMario {
 	requires java.desktop;
 }
