@@ -98,16 +98,14 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public void retrotraerMovimientoHorizontal() {
-    	Point oldPos = new Point(this.obtenerHitbox().x - this.getVelocidadDireccional().x, this.obtenerHitbox().y);
-        this.moverHitbox(oldPos);
+        this.moverHitbox(this.posicion);
         setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {
-		Point oldPos = new Point(0,0);
-		oldPos.move(this.obtenerHitbox().x, posY);
-		this.moverHitbox(oldPos);
-		setPosicion(oldPos);
+		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
+		this.moverHitbox(this.posicion);
+		setPosicion(nuevaPosicion);
 		setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
 	}
 

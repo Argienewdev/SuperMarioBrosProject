@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
@@ -129,6 +127,7 @@ public class VisitorContextoMario implements Visitante {
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
 		if(choquePorAbajo(ladrillo)){
+			miEntidad.setColisionArriba(true);
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
 		}
 			
