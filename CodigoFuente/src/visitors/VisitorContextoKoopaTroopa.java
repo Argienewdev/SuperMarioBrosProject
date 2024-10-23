@@ -120,50 +120,36 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		aVisitorConcreto(bloquePregunta);
 		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		aVisitorConcreto(ladrillo);
+		ladrillo.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitar(Vacio vacio) {
-		aVisitorConcreto(vacio);
 	}
 
 	@Override
 	public void visitar(PrincesaPeach princesa) {
-		aVisitorConcreto(princesa);
 	}
 
 	@Override
 	public void visitar(Bandera bandera) {
-		aVisitorConcreto(bandera);
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		aVisitorConcreto(tuberia);
 	}
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		aVisitorConcreto(bloqueSolido);
 	}
-
-	
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		aVisitorConcreto(contextoKoopa);
-	}
-	
-	private void aVisitorConcreto (ElementoDeJuego elemento) {
-		miEntidad.aceptarVisitante(elemento.getVisitor());
-		elemento.aceptarVisitante(miEntidad.getVisitor());
 	}
 
 	@Override

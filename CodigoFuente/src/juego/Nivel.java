@@ -63,7 +63,7 @@ public class Nivel {
     }
 
     @SuppressWarnings("exports")
-    public void removePowerUps(PowerUp powerUp) {
+    public void removePowerUp(PowerUp powerUp) {
         this.powerUps.remove(powerUp);
     }
 

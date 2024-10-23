@@ -13,6 +13,8 @@ public class Interfaz extends JPanel{
 	private JLabel puntajeLabel;
 	private JLabel tiempoLabel;
 	
+	//TODO SE DEBE IR ACTUALIZANDO CON CADA TICK
+	
 	public Interfaz(){
 		setPreferredSize(new Dimension(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.PANEL_ALTO));
 		setLayout(new BorderLayout());	

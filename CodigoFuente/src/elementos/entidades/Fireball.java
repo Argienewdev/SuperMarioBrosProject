@@ -35,4 +35,8 @@ public class Fireball extends NoJugable {
 		// Segun su velocidad direccional actualizar el sprite
 	}
 
+	public void eliminarDelNivel() {
+		//TODO
+	}
+	
 }

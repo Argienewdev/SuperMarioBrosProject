@@ -19,4 +19,6 @@ public abstract class NoJugable extends Entidad {
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+	
+	public abstract void eliminarDelNivel();
 }

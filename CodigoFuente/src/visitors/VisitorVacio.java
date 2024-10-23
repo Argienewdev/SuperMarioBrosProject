@@ -54,26 +54,26 @@ public class VisitorVacio implements Visitante{
 	@Override
 	public void visitar(SuperChampinion superChamp) {
 		Nivel nivel = superChamp.getNivel();
-		nivel.removePowerUps(superChamp);
+		nivel.removePowerUp(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
 		Nivel nivel = flor.getNivel();
-		nivel.removePowerUps(flor);
+		nivel.removePowerUp(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
 		Nivel nivel = champVerde.getNivel();
-		nivel.removePowerUps(champVerde);
+		nivel.removePowerUp(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
 		Nivel nivel = estrella.getNivel();
-		nivel.removePowerUps(estrella);
+		nivel.removePowerUp(estrella);
 		
 	}
 

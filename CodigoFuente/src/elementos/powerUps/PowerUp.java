@@ -23,4 +23,9 @@ public abstract class PowerUp extends NoJugable {
 	public abstract int obtenerPuntosPorInvulnerable();
 	
 	public abstract int obtenerPuntosPorFuego();
+
+	public void eliminarDelNivel() {
+		this.miNivel.removePowerUp(this);
+	}
+
 }
