@@ -27,6 +27,8 @@ public class ActualizadorDeSpriteJugador {
 			aRetornar = fabricaSprites.getMarioDefaultFrontalCaminandoPrimeraTransicion();
 		} else if(retrocediendo(velocidadHorizontal)){
 			aRetornar = fabricaSprites.getMarioDefaultReversoCaminandoPrimeraTransicion();
+		} else {
+			aRetornar = fabricaSprites.getMarioDefaultFrontalQuieto();
 		}
 		return aRetornar;
 	}

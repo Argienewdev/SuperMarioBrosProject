@@ -30,6 +30,7 @@ import elementos.powerUps.Estrella;
 import elementos.powerUps.FlorDeFuego;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.SuperChampinion;
+import juego.Nivel;
 
 public class VisitorContextoMario implements Visitante {
 	
@@ -95,7 +96,9 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitar(Monedas monedas) {
+	public void visitar(Monedas moneda) {
+		Nivel nivel = moneda.getNivel();
+		nivel.removePowerUps(moneda);
 	}
 
 	@Override
@@ -129,21 +132,44 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		 System.out.println("Mario ha colisionado con un ladrillo.");
-		    
-		    // Bloqueamos solo la dirección de colisión
-		    if (miEntidad.getVelocidadDireccional().x > 0) {
-		        miEntidad.setColisionADerecha(true);  // Colisión al moverse a la derecha
-		        miEntidad.retrotraerMovimiento();
-		    } else if (miEntidad.getVelocidadDireccional().x < 0) {
-		    	miEntidad.setColisionAIzquierda(true); // Colisión al moverse a la izquierda
-		    	miEntidad.retrotraerMovimiento();
-		    }
-
-		    // Detenemos a Mario después de la colisión
-		    miEntidad.setVelocidadDireccional(new Point(0, 0));
+		if (choquePorDerecha(ladrillo) || choquePorIzquierda(ladrillo)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(choquePorArriba(ladrillo)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(choquePorAbajo(ladrillo)){
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+		}
 	}
-
+	
+	private boolean choquePorDerecha(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > bloque.obtenerHitbox().x;
+		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
+		return parte1 && parte2;
+	}
+	
+	private boolean choquePorIzquierda(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
+		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
+		return parte1 && parte2;
+	}
+	
+	private boolean choquePorArriba(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > bloque.obtenerHitbox().y;
+		boolean parte2 = !(miEntidad.getPosicion().y + miEntidad.obtenerAlto() > bloque.getPosicion().y);
+		boolean parte3 = miEntidad.getVelocidadDireccional().y > 0;
+		return parte1 && parte2 && parte3;
+	}
+	
+	private boolean choquePorAbajo(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().y < bloque.obtenerHitbox().y + bloque.obtenerHitbox().height;
+		boolean parte2 = !(miEntidad.getPosicion().y < bloque.getPosicion().y + bloque.obtenerAlto());
+		boolean parte3 = miEntidad.getVelocidadDireccional().y < 0;
+		return parte1 && parte2 && parte3;
+	}
+	
 	@Override
 	public void visitar(Vacio vacio) {
 	}

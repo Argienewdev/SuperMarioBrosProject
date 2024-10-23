@@ -69,9 +69,9 @@ public class PantallaInicial extends JPanel {
 	
 	public void configurarFuente() {
 		tipoFuentes= new Fuentes();
-	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
-	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
-	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, 30));
+	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
 	    modo1.setForeground(Color.WHITE);
 	    modo2.setForeground(Color.WHITE);
 	    ranking.setForeground(Color.WHITE);

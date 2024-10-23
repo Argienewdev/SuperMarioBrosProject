@@ -165,11 +165,7 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		if (contextoMario.getVelocidadDireccional().x > 0) {
-			contextoMario.setColisionADerecha(true);
-			contextoMario.retrotraerMovimiento();
-		}
-		contextoMario.setVelocidadDireccional(new Point(0,0));
+		
 	}
 
 	@Override

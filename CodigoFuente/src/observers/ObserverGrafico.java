@@ -22,6 +22,10 @@ public class ObserverGrafico extends JLabel implements Observer {
 		actualizar_posicion_tamanio();
 	}
 	
+	public ElementoDeJuego getEntidadObservada() {
+		return this.entidad_observada;
+	}
+	
 	protected void actualizar_imagen() {
 		String ruta_imagen = entidad_observada.getSprite().getRutaImagen();
 		ImageIcon icono = new ImageIcon(ruta_imagen);

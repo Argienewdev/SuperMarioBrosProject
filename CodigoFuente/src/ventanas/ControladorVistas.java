@@ -34,7 +34,7 @@ public class ControladorVistas {
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		pantallaDeJuego= new PantallaDeJuego(sensorDeTeclasJuego);
+		pantallaDeJuego= new PantallaDeJuego();
 		this.juego = juego;
 		configurarVentana();
 		ventana.setVisible(true);

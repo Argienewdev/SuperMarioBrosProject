@@ -41,33 +41,23 @@ public class CoordinadorActualizacionesJugador {
 		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel, gestorDeColisiones);
 	}
 	
-	private Point actualizarVelocidad() {
-		return controladorMovimiento.actualizarVelocidad();
-	}
-	
 	private Point actualizarPosicion() {
-		return controladorMovimiento.actualizarPosicion();
+		return this.controladorMovimiento.actualizarPosicion();
 	}
 	
 	private void actualizarSprite() {
-		marioSprite = actualizadorDeSpriteJugador.actualizar(velocidad);
+		this.marioSprite = actualizadorDeSpriteJugador.actualizar(velocidad);
 	}
 	
 	private void actualizarMarioLabel() {
-		//TODO no sirve
-		marioJugable.getObserverGrafico().actualizar();
+		this.marioJugable.getObserverGrafico().actualizar();
 	}
 
 	public void actualizar() {
-		velocidad = actualizarVelocidad();
-		posicion = actualizarPosicion(); 
+		velocidad = actualizarPosicion();
 		actualizarSprite();
-		actualizarPosicionMario();
 		actualizarMarioLabel();
 	}
 	
-	public void actualizarPosicionMario() {
-		this.marioJugable.setPosicion(this.posicion);
-	}
 	
 }

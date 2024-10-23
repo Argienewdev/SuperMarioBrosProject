@@ -85,6 +85,7 @@ public class GeneradorDeNivel {
 	                }
 	                case 1: {
 	                    Visitante visitor = new VisitorLadrillo();
+	            		System.out.println("Posicion inicial Ladrillo  = " + posicion.x + "," + posicion.y);
 	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, visitor);
 	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);
 	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
@@ -281,6 +282,6 @@ public class GeneradorDeNivel {
 	}
 	
 	private Point parsearPosicion(int x, int y) {
-		return new Point(x * 50, DimensionesConstantes.NIVEL_PISO - (y * 50));
+		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
 	}
 }

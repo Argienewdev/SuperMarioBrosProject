@@ -6,6 +6,7 @@ import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
+import ventanas.DimensionesConstantes;
 
 public class ControladorMovimiento {
 	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
@@ -13,8 +14,6 @@ public class ControladorMovimiento {
 	private static final int FUERZA_SALTO = -30;
 	
 	private static final int GRAVEDAD = 3;
-	
-	private boolean saltando;
 	
 	private int velocidadHorizontal;
 	
@@ -37,20 +36,17 @@ public class ControladorMovimiento {
 		velocidadHorizontal = 0;
 		velocidadVertical = 0;
 		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
-		saltando = false;
 		this.nivel = nivel;
 		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
-	public Point actualizarVelocidad() {
-		determinarDireccion();
-		return marioJugable.getVelocidadDireccional();
-	}
-	
 	public Point actualizarPosicion() {
-		actualizarPosicionMarioEnMatriz();
-		reiniciarVelocidadHorizontal();
-		return posicion;
+		determinarDireccion();
+//		cambiarPosicionHitboxDeMario();
+//      verificarColisiones(this.marioJugable);
+        Point velocidadARetornar = marioJugable.getVelocidadDireccional();
+        reiniciarVelocidadHorizontal();
+        return velocidadARetornar;
 	}
 	
 	private void moveMarioDerecha() {
@@ -63,76 +59,76 @@ public class ControladorMovimiento {
 		aplicarVelocidad();
 	}
 	
-	private void actualizarPosicionMarioEnMatriz() {
-		cambiarPosicionLogicaDeMario();
-	}
-	
-	private void cambiarPosicionLogicaDeMario() {
-		int nuevaPosicionX = posicion.x + this.marioJugable.getVelocidadDireccional().x;
-		int nuevaPosicionY = posicion.y + this.marioJugable.getVelocidadDireccional().y;
-		posicion.move(nuevaPosicionX, nuevaPosicionY);
+	private void cambiarPosicionHitboxDeMario() {
+		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, marioJugable.getPosicion().y);
+		marioJugable.moverHitbox(nuevaPosicion);
+	    verificarColisiones(marioJugable);
+		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
+		nuevaPosicion.move(marioJugable.getPosicion().x, nuevaPosicionY);
+		marioJugable.moverHitbox(nuevaPosicion);
+		verificarColisiones(marioJugable);
 	}
 	
 	private void iniciarSalto() {
-		saltando = true;
 		velocidadVertical = FUERZA_SALTO;
 		aplicarVelocidad();
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(marioJugable.getPosicion().y >= 600) {
-			reiniciarVelocidadVertical();
-			saltando = false;
-		}else if(velocidadVertical >= FUERZA_SALTO){
+		if(velocidadVertical >= FUERZA_SALTO && !marioJugable.getColisionAbajo()){
 			velocidadVertical += GRAVEDAD;
 			aplicarVelocidad();
-		}else {
+		}else if(!marioJugable.getColisionAbajo()){
 			aplicarVelocidad();
 		}
 	}
 	
 	private void determinarDireccion() {
-		if(!saltando && sensorDeTeclasJuego.obtenerWPresionada()) {
-			iniciarSalto();
-			verificarColisiones(this.marioJugable);
-		}else if(saltando) {
-			aplicarGravedadSalto();
-			verificarColisiones(this.marioJugable);
-		}
-		// Movimiento horizontal
-        if (movimientoADerecha() && !marioJugable.getColisionADerecha()) {
-            marioJugable.setColisionAIzquierda(false);
-            moveMarioDerecha();
-        } else if (movimientoAIzquierda() && !marioJugable.getColisionAIzquierda()) {
-            marioJugable.setColisionADerecha(false);
-            moveMarioIzquierda();
-        } else {
-            velocidadHorizontal = 0; // Detener movimiento si no hay entrada
-        }
+	    if (!marioJugable.getColisionAbajo()) {
+	        aplicarGravedadSalto();
+	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
+	        iniciarSalto();
+	        marioJugable.setColisionAbajo(false);
+	    } else {
+	        reiniciarVelocidadVertical();
+	    }
 
-        aplicarVelocidad();
-        verificarColisiones(this.marioJugable);
-    }
+	    //TODO si reinicio las colisiones con el piso, no puedo chocar hacia adelante pero si hacia atras
+	    if (movimientoAIzquierda()) {
+	    	marioJugable.setColisionAbajo(false);
+	    	moveMarioIzquierda();
+	    }
+	    if (movimientoADerecha()) {
+	    	marioJugable.setColisionAbajo(false);
+	    	moveMarioDerecha();
+	    }
+	    cambiarPosicionHitboxDeMario();
+//	    verificarColisiones(marioJugable);
+	}
 	
 	public void verificarColisiones(Jugable entidad) {
-	    boolean colisionDetectada = false;
-	    for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-	        if (entidad.huboColision(elemento)) {
-	            System.out.println("Detecté colisión con: " + elemento.getClass().getSimpleName());
-	            entidad.aceptarVisitante(elemento.getVisitor());
-	            elemento.aceptarVisitante(entidad.getVisitor());
-	            colisionDetectada = true;
-	        }
-	    }
-	    if (!colisionDetectada) {
-	        entidad.setColisionADerecha(false);
-	        entidad.setColisionAIzquierda(false);
+		boolean huboColision = false;
+		if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
+			huboColision = true;
+			marioJugable.retrotraerMovimientoHorizontal();
+		} else {
+			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+		        if(entidad.huboColision(elemento)) {
+		        	huboColision = true;
+		            entidad.aceptarVisitante(elemento.getVisitor());
+		            elemento.aceptarVisitante(entidad.getVisitor());
+		        }
+		    }
+		}
+	    if(!huboColision) {
+	    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	    }
 	}
 	
 	private void aplicarVelocidad() {
-		this.marioJugable.getVelocidadDireccional().move(velocidadHorizontal, velocidadVertical);
-		marioJugable.setVelocidadDireccional(this.marioJugable.getVelocidadDireccional());
+		Point nuevaVelocidad = new Point(velocidadHorizontal, velocidadVertical);
+		marioJugable.setVelocidadDireccional(nuevaVelocidad);
 	}
 	
 	private void reiniciarVelocidadHorizontal() {

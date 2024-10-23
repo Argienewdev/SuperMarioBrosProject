@@ -12,8 +12,6 @@ import generadores.GeneradorDeNivel;
 
 public class Nivel {
 
-    protected static final int TAMANIO_HITBOX_ENTIDADES = 50;
-
     protected GeneradorDeNivel generadorDeNivel;
 
     private ArrayList<Plataforma> plataformas;

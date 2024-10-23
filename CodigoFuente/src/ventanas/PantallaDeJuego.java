@@ -15,22 +15,24 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class PantallaDeJuego extends JPanel {
 
-    private ArrayList<JLabel> labelsElementoDeJuego;
+    private ArrayList<ObserverGrafico> labelsElementoDeJuego;
+    
     private Dimension size;
+    
     private Jugable marioJugable;
-    private JLabel marioLabel;
+    
+    private ObserverGrafico marioLabel;
+    
     private JLabel fondo;
-    private SensorDeTeclasJuego sensorDeTeclasJuego;
+    
     private ObserverGrafico observerGrafico;
 
-    private static final int MITAD_PANTALLA = DimensionesConstantes.PANEL_ANCHO / 2;
-    private int desplazamientoFondo = 0;
+    private static final int MITAD_PANTALLA = (DimensionesConstantes.PANEL_ANCHO / 2) - 100;
 
-    public PantallaDeJuego(SensorDeTeclasJuego sensorDeTeclasJuego) {
+    public PantallaDeJuego() {
         this.fondo = new JLabel();
         configurarVentana();
-        this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-        this.labelsElementoDeJuego = new ArrayList<>();
+        this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
 
     protected void configurarVentana() {
@@ -51,23 +53,20 @@ public class PantallaDeJuego extends JPanel {
 
     public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
-        ImageIcon marioIcono = new ImageIcon(marioJugable.getSprite().getRutaImagen());
-        marioLabel = new JLabel(marioIcono);
-        Point aux = marioJugable.getPosicion();
-        marioLabel.setBounds(aux.x, aux.y, marioIcono.getIconWidth(), marioIcono.getIconHeight());
-        agregarLabel(marioLabel);
+        marioLabel = new ObserverGrafico(jugable);
+        agregarLabel(jugable.getObserverGrafico());
         mostrarLabels();
         establecerFondo();
         revalidate();
         repaint();
     }
 
-    public void agregarLabel(JLabel labelElementoDeJuego) {
+    public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
         labelsElementoDeJuego.add(labelElementoDeJuego);
     }
 
     public void mostrarLabels() {
-        for (JLabel label : labelsElementoDeJuego) {
+        for(JLabel label : labelsElementoDeJuego) {
             add(label);
             label.setVisible(true);
             revalidate();
@@ -76,38 +75,54 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
-        Point posicionMario = marioJugable.getPosicion();
+        // Obtener la posición actual de Mario
+        Point posicionMario = marioLabel.getLocation();
+        boolean fondoMovido = false; // Bandera para indicar si el fondo se ha movido
 
-        // Limitar movimiento de Mario para que no salga por la izquierda
-        if (posicionMario.x < 0) {
-            posicionMario.x = 0;
-        }
+            if (posicionMario.x >= MITAD_PANTALLA && fondo.getLocation().x + fondo.getWidth() > DimensionesConstantes.PANEL_ANCHO) {
+                int desplazamiento = posicionMario.x - MITAD_PANTALLA;
 
-        // Si Mario llega a la mitad de la pantalla, desplazamos el fondo y los labels
-        if (posicionMario.x >= MITAD_PANTALLA && desplazamientoFondo > -fondo.getWidth() + DimensionesConstantes.PANEL_ANCHO) {
-            int desplazamiento = posicionMario.x - MITAD_PANTALLA;
-            moverFondoYLabels(desplazamiento);
-            posicionMario.x = MITAD_PANTALLA; // Mario se queda en la mitad
-        }
+                // Mueve el fondo hacia la izquierda en función del desplazamiento de Mario
+                Point posicionFondo = fondo.getLocation();
+                int nuevaPosicionFondoX = posicionFondo.x - desplazamiento;
 
-        // Limitar Mario al borde derecho si el fondo ya no puede desplazarse más
-        if (posicionMario.x + marioLabel.getWidth() > DimensionesConstantes.PANEL_ANCHO) {
-            posicionMario.x = DimensionesConstantes.PANEL_ANCHO - marioLabel.getWidth();
-        }
+                // Obtener el ancho del fondo para limitar el desplazamiento
+                int anchoFondo = fondo.getWidth();
 
-        marioLabel.setLocation(posicionMario);
+                // Asegúrate de que el fondo no se desplace más allá de su posición inicial
+                if (nuevaPosicionFondoX < -anchoFondo + DimensionesConstantes.PANEL_ANCHO) {
+                    nuevaPosicionFondoX = -anchoFondo + DimensionesConstantes.PANEL_ANCHO; // Limitar movimiento del fondo
+                }
+
+                // Solo mueve el fondo si su posición ha cambiado
+                if (nuevaPosicionFondoX != posicionFondo.x) {
+                    fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
+                    fondoMovido = true; // Se ha movido el fondo
+                }
+
+                // Si el fondo se movió, mover los labels
+                if (fondoMovido) {
+                    for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+                        if (observerGrafico != marioLabel) { // No mover a Mario aquí
+                            Point posicionLabel = observerGrafico.getLocation();
+                            posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
+                            observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
+                            observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
+                            observerGrafico.actualizar();
+                        }
+                    }
+                }
+
+                // Mantener a Mario en el centro de la pantalla
+                posicionMario.x = MITAD_PANTALLA;
+                marioLabel.setLocation(posicionMario);
+            }
+
+        // Actualizar la posición y refrescar los gráficos
+        marioLabel.actualizar(); // Asegura que Mario siempre esté actualizado
+        revalidate();
         repaint();
     }
 
-
-    private void moverFondoYLabels(int desplazamiento) {
-        desplazamientoFondo -= desplazamiento;
-        fondo.setLocation(desplazamientoFondo, fondo.getY());
-
-        // Mueve todos los labels en sincronía con el fondo
-        for (JLabel label : labelsElementoDeJuego) {
-            Point posicionActual = label.getLocation();
-            label.setLocation(posicionActual.x - desplazamiento, posicionActual.y);
-        }
-    }
+    
 }
