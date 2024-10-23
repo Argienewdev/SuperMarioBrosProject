@@ -15,7 +15,7 @@ public class Lakitu extends Enemigo {
     }
 
     public void lanzarSpiny () {
-    	// TODO Auto-generated method stub    
+    	// TODO   
     }
     
     @Override
