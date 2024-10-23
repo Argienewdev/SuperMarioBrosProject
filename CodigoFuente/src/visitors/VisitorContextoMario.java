@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;

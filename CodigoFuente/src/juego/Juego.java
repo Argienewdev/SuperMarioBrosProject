@@ -14,6 +14,7 @@ import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
+import sonido.ReproductorDeMusicaFondo;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 
@@ -45,6 +46,8 @@ public class Juego {
 		juego = new Juego();
 		juego.controladorVistas = new ControladorVistas(juego);
 		juego.bucleJuego = new BucleJuego(juego);
+		ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
+		reproductorDeMusicaFondo.playMusic("src/sonido/musica_juego.wav");
 	}
 	
 	public void actualizar() {

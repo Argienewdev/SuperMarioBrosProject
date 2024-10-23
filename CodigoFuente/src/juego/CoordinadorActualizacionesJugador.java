@@ -17,12 +17,6 @@ public class CoordinadorActualizacionesJugador {
 	
 	private Jugable marioJugable;
 	
-	private Point posicion;
-	
-	private Point velocidad;
-	
-	private Sprite marioSprite;
-	
 	private FabricaSprites fabricaSprites;
 	
 	private GestorDeColisiones gestorDeColisiones;
@@ -32,32 +26,28 @@ public class CoordinadorActualizacionesJugador {
 	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable marioJugable, FabricaSprites fabricaSprites, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
 		this.fabricaSprites = fabricaSprites;
 		this.marioJugable = marioJugable;
-		this.actualizadorDeSpriteJugador = new ActualizadorDeSpriteJugador(this.fabricaSprites);
-		this.posicion = new Point(this.marioJugable.getPosicion().x,this.marioJugable.getPosicion().y);
-		this.velocidad = new Point(0,0);
-		this.marioSprite = this.marioJugable.getSprite();
+		this.actualizadorDeSpriteJugador = new ActualizadorDeSpriteJugador(this.fabricaSprites, marioJugable);
 		this.gestorDeColisiones = gestorDeColisiones;
 		this.nivel = nivel;
 		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel, gestorDeColisiones);
 	}
 	
-	private Point actualizarPosicion() {
-		return this.controladorMovimiento.actualizarPosicion();
+	public void actualizar() {
+		actualizarPosicion();
+		actualizarSprite();
+		actualizarObserverMario();
+	}
+	
+	private void actualizarPosicion() {
+		this.controladorMovimiento.actualizarPosicion();
 	}
 	
 	private void actualizarSprite() {
-		this.marioSprite = actualizadorDeSpriteJugador.actualizar(velocidad);
+		actualizadorDeSpriteJugador.actualizar();
 	}
 	
-	private void actualizarMarioLabel() {
+	private void actualizarObserverMario() {
 		this.marioJugable.getObserverGrafico().actualizar();
 	}
 
-	public void actualizar() {
-		this.velocidad = actualizarPosicion();
-		actualizarSprite();
-		actualizarMarioLabel();
-	}
-	
-	
 }

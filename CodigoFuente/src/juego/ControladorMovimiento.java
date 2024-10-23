@@ -40,38 +40,45 @@ public class ControladorMovimiento {
 		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
-	public Point actualizarPosicion() {
+	public void actualizarPosicion() {
 		determinarDireccion();
-//		cambiarPosicionHitboxDeMario();
-//      verificarColisiones(this.marioJugable);
-        Point velocidadARetornar = marioJugable.getVelocidadDireccional();
         reiniciarVelocidadHorizontal();
-        return velocidadARetornar;
 	}
 	
 	private void moveMarioDerecha() {
 		this.velocidadHorizontal = VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.setAvanzando(true);
 		aplicarVelocidad();
 	}
 	
 	private void moveMarioIzquierda() {
 		this.velocidadHorizontal = -VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.setRetrocediendo(true);
 		aplicarVelocidad();
 	}
 	
-	private void cambiarPosicionHitboxDeMario() {
+	private void cambiarYVerificarPosicionHitboxDeMario() {
+		cambiarPosicionHitboxDeMarioX();
+		verificarColisiones(marioJugable);
+		cambiarPosicionHitboxDeMarioY();
+		verificarColisiones(marioJugable);
+	}
+	
+	private void cambiarPosicionHitboxDeMarioX() {
 		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
 		Point nuevaPosicion = new Point(nuevaPosicionX, marioJugable.getPosicion().y);
 		marioJugable.moverHitbox(nuevaPosicion);
-	    verificarColisiones(marioJugable);
+	}
+	
+	private void cambiarPosicionHitboxDeMarioY() {
 		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
-		nuevaPosicion.move(marioJugable.getPosicion().x, nuevaPosicionY);
+		Point nuevaPosicion = new Point(marioJugable.getPosicion().x, nuevaPosicionY);
 		marioJugable.moverHitbox(nuevaPosicion);
-		verificarColisiones(marioJugable);
 	}
 	
 	private void iniciarSalto() {
 		velocidadVertical = FUERZA_SALTO;
+		marioJugable.setEnElAire(true);
 		aplicarVelocidad();
 	}
 	
@@ -85,26 +92,26 @@ public class ControladorMovimiento {
 	}
 	
 	private void determinarDireccion() {
-	    if (!marioJugable.getColisionAbajo()) {
+		this.marioJugable.setAvanzando(false);
+		this.marioJugable.setRetrocediendo(false);
+		if(marioJugable.getColisionArriba()) {
+			reiniciarVelocidadVertical();
+			marioJugable.setColisionArriba(false);
+		}else if (!marioJugable.getColisionAbajo()) {
 	        aplicarGravedadSalto();
 	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
 	        iniciarSalto();
-	        marioJugable.setColisionAbajo(false);
 	    } else {
 	        reiniciarVelocidadVertical();
 	    }
-
-	    //TODO si reinicio las colisiones con el piso, no puedo chocar hacia adelante pero si hacia atras
 	    if (movimientoAIzquierda()) {
-	    	marioJugable.setColisionAbajo(false);
 	    	moveMarioIzquierda();
 	    }
 	    if (movimientoADerecha()) {
-	    	marioJugable.setColisionAbajo(false);
 	    	moveMarioDerecha();
 	    }
-	    cambiarPosicionHitboxDeMario();
-//	    verificarColisiones(marioJugable);
+	    marioJugable.setColisionAbajo(false);
+	    cambiarYVerificarPosicionHitboxDeMario();
 	}
 	
 	public void verificarColisiones(Jugable entidad) {
