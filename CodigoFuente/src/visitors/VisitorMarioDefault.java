@@ -32,11 +32,14 @@ public class VisitorMarioDefault implements Visitante{
 
 	protected MarioDefault miEstado;
 	
+	protected DetectorDireccionColision detectarDireccionColision;
+	
 	private ContextoMario miEntidad;
 	
 	public VisitorMarioDefault (MarioDefault miEstado) {
 		this.miEstado = miEstado;
 		miEntidad=miEstado.getContext();
+		detectarDireccionColision= new DetectorDireccionColision(miEntidad);
 	}
 	
 	@Override
@@ -125,14 +128,14 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		if (choquePorDerecha(bloquePregunta) || choquePorIzquierda(bloquePregunta)) {
+		if (detectarDireccionColision.choquePorDerecha(bloquePregunta) || detectarDireccionColision.choquePorIzquierda(bloquePregunta)) {
 			miEntidad.retrotraerMovimientoHorizontal();
 		}
-		if(choquePorArriba(bloquePregunta)) {
+		if(detectarDireccionColision.choquePorArriba(bloquePregunta)) {
 			miEntidad.setColisionAbajo(true);
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
-		if(choquePorAbajo(bloquePregunta)){
+		if(detectarDireccionColision.choquePorAbajo(bloquePregunta)){
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
 			bloquePregunta.liberarPowerUp();
 		}
@@ -140,14 +143,14 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		if (choquePorDerecha(ladrillo) || choquePorIzquierda(ladrillo)) {
+		if (detectarDireccionColision.choquePorDerecha(ladrillo) || detectarDireccionColision.choquePorIzquierda(ladrillo)) {
 			miEntidad.retrotraerMovimientoHorizontal();
 		}
-		if(choquePorArriba(ladrillo)) {
+		if(detectarDireccionColision.choquePorArriba(ladrillo)) {
 			miEntidad.setColisionAbajo(true);
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
-		if(choquePorAbajo(ladrillo)){
+		if(detectarDireccionColision.choquePorAbajo(ladrillo)){
 			miEntidad.setColisionArriba(true);
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
 		}
@@ -212,30 +215,5 @@ public class VisitorMarioDefault implements Visitante{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private boolean choquePorDerecha(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > bloque.obtenerHitbox().x;
-		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
-		return parte1 && parte2;
-	}
-	
-	private boolean choquePorIzquierda(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
-		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
-		return parte1 && parte2;
-	}
-	
-	private boolean choquePorArriba(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().y + miEntidad.obtenerHitbox().height > bloque.obtenerHitbox().y;
-		boolean parte2 = !(miEntidad.getPosicion().y + miEntidad.obtenerAlto() > bloque.getPosicion().y);
-		boolean parte3 = miEntidad.getVelocidadDireccional().y > 0;
-		return parte1 && parte2 && parte3;
-	}
-	
-	private boolean choquePorAbajo(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().y < bloque.obtenerHitbox().y + bloque.obtenerHitbox().height;
-		boolean parte2 = !(miEntidad.getPosicion().y < bloque.getPosicion().y + bloque.obtenerAlto());
-		boolean parte3 = miEntidad.getVelocidadDireccional().y < 0;
-		return parte1 && parte2 && parte3;
-	}
+
 }
