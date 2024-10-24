@@ -6,10 +6,12 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorBloqueSolido implements Visitante{
+public class VisitorBloqueSolido implements Visitante {
+	
+	private BloqueSolido miEntidad;
 
-	public VisitorBloqueSolido() {
-		
+	public VisitorBloqueSolido(BloqueSolido miEntidad) {
+		this.miEntidad = miEntidad;
 	}
 	
 	public void visitar(BuzzyBeetle buzzy) {	
