@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Visitado.class
 /Visitante.class
 /VisitorBandera.class
@@ -27,4 +28,6 @@
 /VisitorTuberia.class
 /VisitorVacio.class
 /VisitorPiso.class
+=======
+>>>>>>> 81c68f248bc8d545f5401cc0ee6147ee661bf0ae
 /DetectorDireccionColision.class
