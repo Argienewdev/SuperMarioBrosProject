@@ -13,7 +13,6 @@ public class FlorDeFuego extends PowerUp {
 		super(sprite, posicion, visitor, new Point (0,0), observerGrafico);
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = true;
-		this.estaEnElNivel = false;
 	}
 	
 	@Override

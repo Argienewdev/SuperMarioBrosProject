@@ -158,5 +158,7 @@ public abstract class FabricaSprites {
 	public abstract Sprite getVacio();
 	
 	public abstract Sprite getPrincesaPeach();
+	
+	public abstract Sprite getPowerUpInactivo();
 
 }

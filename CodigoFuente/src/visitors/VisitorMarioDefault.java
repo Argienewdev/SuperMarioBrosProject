@@ -132,7 +132,8 @@ public class VisitorMarioDefault implements Visitante{
 			miEntidad.setColisionAbajo(true);
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
-		if(choquePorAbajo(bloquePregunta)){
+		if(choquePorAbajo(bloquePregunta)) {
+			miEntidad.setColisionArriba(true);
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
 			bloquePregunta.liberarPowerUp();
 		}
