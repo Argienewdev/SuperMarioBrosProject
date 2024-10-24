@@ -6,9 +6,9 @@ import java.util.Vector;
 import elementos.Sprite;
 import visitors.Visitante;
 
-public class BloqueSolido extends Plataforma{
+public class Piso extends BloqueSolido{
 	
-	public BloqueSolido(Sprite sprite, Point posicion, Visitante visitor) {
+	public Piso(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 		this.setSolido(true);
 	}

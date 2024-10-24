@@ -94,4 +94,10 @@ public class VisitorFireball implements Visitante {
         nivel.removeEnemigo(enemigo);
     }
 
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

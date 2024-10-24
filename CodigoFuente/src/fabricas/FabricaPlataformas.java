@@ -139,8 +139,16 @@ public class FabricaPlataformas {
 	
 	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
-	public BloqueSolido getBloqueSolido() {
-    	return null;
+	public BloqueSolido getBloqueSolido(Point posicion, Visitante visitor) {
+    	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
+		Ladrillo bloqueSolidoADevolver = new Ladrillo(spriteBloqueSolido, posicion, visitor);
+		return bloqueSolidoADevolver;
+    }
+    
+    public Piso getPiso(Point posicion, Visitante visitor) {
+    	Sprite spritePiso = this.fabricaSprites.getPiso();
+    	Piso pisoADevolver = new Piso(spritePiso, posicion, visitor);
+    	return pisoADevolver;
     }
 	
 }

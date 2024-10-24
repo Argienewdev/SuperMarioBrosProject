@@ -184,6 +184,12 @@ public class VisitorGoomba implements Visitante {
 		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
 		return parte1 && parte2;
 	}
+
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

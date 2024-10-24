@@ -18,6 +18,7 @@ import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
+import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
@@ -133,6 +134,7 @@ public class VisitorMarioDefault implements Visitante{
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
 		if(choquePorAbajo(bloquePregunta)){
+			miEntidad.setColisionArriba(true);
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
 			bloquePregunta.liberarPowerUp();
 		}
@@ -153,6 +155,21 @@ public class VisitorMarioDefault implements Visitante{
 		}
 	}
 
+	@Override
+	public void visitar(Piso piso) {
+		if (choquePorDerecha(piso) || choquePorIzquierda(piso)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(choquePorArriba(piso)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(choquePorAbajo(piso)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
+	}
+	
 	@Override
 	public void visitar(Vacio vacio) {
 		// TODO Auto-generated method stub
@@ -238,4 +255,5 @@ public class VisitorMarioDefault implements Visitante{
 		boolean parte3 = miEntidad.getVelocidadDireccional().y < 0;
 		return parte1 && parte2 && parte3;
 	}
+
 }

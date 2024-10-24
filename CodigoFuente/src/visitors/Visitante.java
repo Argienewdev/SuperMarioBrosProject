@@ -51,6 +51,8 @@ public interface Visitante {
 
 	public void visitar(BloqueSolido bloqueSolido);
 
+	public void visitar(Piso piso);
+	
 	public void visitar(ContextoMario contextoMario);
 	
 	public void visitar(MarioDefault marioDefault);

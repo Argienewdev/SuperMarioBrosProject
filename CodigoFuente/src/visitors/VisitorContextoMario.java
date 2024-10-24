@@ -1,6 +1,5 @@
 package visitors;
 
-import elementos.ElementoDeJuego;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
 import elementos.enemigos.Enemigo;
@@ -12,7 +11,6 @@ import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.entidades.Fireball;
 import elementos.personajes.ContextoMario;
-import elementos.personajes.EstadoMario;
 import elementos.personajes.MarioDefault;
 import elementos.personajes.MarioFuego;
 import elementos.personajes.MarioInvulnerable;
@@ -21,6 +19,7 @@ import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
+import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
@@ -181,5 +180,11 @@ public class VisitorContextoMario implements Visitante {
 		miEntidad.ganarPuntos(puntos);
 		Nivel nivel = enemigo.getNivel();
 		nivel.removeEnemigo(enemigo);
+	}
+
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
 	}
 }

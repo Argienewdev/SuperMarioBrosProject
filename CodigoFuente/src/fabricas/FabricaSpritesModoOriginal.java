@@ -351,7 +351,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBloqueSolido() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueSolido.png");
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/bloqueSolido.png");
+    }
+    
+    @Override
+    public Sprite getPiso() {
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/piso.png");
     }
 
     @Override

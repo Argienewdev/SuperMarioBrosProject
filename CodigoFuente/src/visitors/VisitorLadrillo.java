@@ -1,6 +1,5 @@
 
 package visitors;
-import java.awt.Point;
 
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
@@ -164,6 +163,12 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Piso piso) {
 		// TODO Auto-generated method stub
 		
 	}

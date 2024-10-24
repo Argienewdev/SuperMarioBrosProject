@@ -91,5 +91,8 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(KoopaDefault koopaDefault) {		
 	}
 
+	@Override
+	public void visitar(Piso piso) {
+	}
 	
 }

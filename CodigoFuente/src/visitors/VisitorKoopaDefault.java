@@ -20,6 +20,7 @@ import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
+import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
@@ -192,6 +193,12 @@ public class VisitorKoopaDefault implements Visitante{
 
 	@Override
 	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Piso piso) {
 		// TODO Auto-generated method stub
 		
 	}
