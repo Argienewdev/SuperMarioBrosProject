@@ -197,8 +197,6 @@ public class GeneradorDeNivel {
 	                case 41: {
 	                    Point velocidadDireccional = new Point(-1, 0);
 	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion, null, velocidadDireccional, null);
-	                    System.out.println(contextoKoopaTroopa.getSprite().getAltoImagen());
-	                    System.out.println(contextoKoopaTroopa.getPosicion().y);
 	                    Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(contextoKoopaTroopa);
 	                    contextoKoopaTroopa.setVisitor(visitorContextoKoopaTroopa);
 	                    ObserverGrafico observerGraficoKoopa = new ObserverGrafico(contextoKoopaTroopa);
