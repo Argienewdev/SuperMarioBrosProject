@@ -125,26 +125,15 @@ public class GeneradorDeNivel {
 	                case 4: {
 	                    Visitante visitor = new VisitorBloqueDePregunta();
 	                    int identificadorPowerUp = numeros[3];
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaSinMonedas(posicion, visitor, identificadorPowerUp,nivel);
-	                    ObserverGrafico observerGraficoBloqueDePreguntaSinMonedas = new ObserverGrafico(bloqueDePregunta);
-	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePreguntaSinMonedas);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, visitor, nivel);
+	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);
+	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
 	                    bloqueDePregunta.setNivel(nivel);
 	                    nivel.addPlataforma(bloqueDePregunta);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoBloqueDePreguntaSinMonedas);
+	                    this.pantallaDeJuego.agregarLabel(observerGraficoBloqueDePregunta);
 	                    break;
 	                }
 	                case 5: {
-	                    Visitante visitor = new VisitorBloqueDePregunta();
-	                    int cantidadMonedas = numeros[3];
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaConMonedas(posicion, visitor, cantidadMonedas, nivel);
-	                    ObserverGrafico observerGraficoBloqueDePreguntaConMonedas = new ObserverGrafico(bloqueDePregunta);
-	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePreguntaConMonedas);
-	                    bloqueDePregunta.setNivel(nivel);
-	                    nivel.addPlataforma(bloqueDePregunta);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoBloqueDePreguntaConMonedas);
-	                    break;
-	                }
-	                case 6: {
 	                    Visitante visitor = new VisitorBandera(this.controladorVistas);
 	                    Meta bandera = this.fabricaPlataformas.getBandera(posicion, visitor);
 	                    ObserverGrafico observerGraficoBandera = new ObserverGrafico(bandera);
@@ -154,7 +143,7 @@ public class GeneradorDeNivel {
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoBandera);
 	                    break;
 	                }
-	                case 7: {
+	                case 6: {
 	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas);
 	                    Meta princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, visitor);
 	                    ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeach);
@@ -164,7 +153,7 @@ public class GeneradorDeNivel {
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoPrincesaPeach);
 	                    break;
 	                }
-	                case 8: {
+	                case 7: {
 	                	Visitante visitor = new VisitorBloqueSolido();
 	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido();
 	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);
@@ -173,62 +162,19 @@ public class GeneradorDeNivel {
 	                	nivel.addPlataforma(bloqueSolido);
 	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
 	                	break;
-	                }
+	                } 
 	                case 20: {
-	                	int cantidadMonedas = 1;
+	                	Random random = new Random();
+	            		int cantidadMonedas = random.nextInt(8) + 1; // Genera un numero entre 1 y 8, ambos inclusive
 	                	Point velocidadDireccional = new Point(0,0);
 	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false, true);
-	                    Visitante visitorMonedas = new VisitorMonedas(monedas);
-	                    monedas.setVisitor(visitorMonedas);
-	                    ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);
-	                    monedas.setObserverGrafico(observerGraficoMonedas);
-	                    monedas.setNivel(nivel);
-	                    nivel.addPowerUp(monedas);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoMonedas);
-	                    break;
-	                } case 21: {
-	                	Point velocidadDireccional = new Point(0,1);
-	                	Estrella estrella = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
-	                	Visitante visitorEstrella = new VisitorEstrella(estrella);
-	                	estrella.setVisitor(visitorEstrella);
-	                	ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrella);
-	                	estrella.setObserverGrafico(observerGraficoEstrella);
-	                	estrella.setNivel(nivel);
-	                	nivel.addPowerUp(estrella);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoEstrella);
-	                } case 22: {
-	                	Point velocidadDireccional = new Point(0,1);
-	                	ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
-	                	Visitante visitorChampinionVerde = new VisitorChampinionVerde();
-	                	champinionVerde.setVisitor(visitorChampinionVerde);
-	                	ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(champinionVerde);
-	                	champinionVerde.setObserverGrafico(observerGraficoChampinionVerde);
-	                	champinionVerde.setNivel(nivel);
-	                	nivel.addPowerUp(champinionVerde);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoChampinionVerde);
-	                	break;
-	                } case 23: {
-	                	Point velocidadDireccional = new Point(0,1);
-	                	FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
-	                	Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuego);
-	                	florDeFuego.setVisitor(visitorFlorDeFuego);
-	                	ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuego);
-	                	florDeFuego.setObserverGrafico(observerGraficoFlorDeFuego);
-	                	florDeFuego.setNivel(nivel);
-	                	nivel.addPowerUp(florDeFuego);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoFlorDeFuego);
-	                	break;
-	                } case 24: {
-	                	Point velocidadDireccional = new Point(0,1);
-	                	SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion, null, velocidadDireccional, null);
-	                	Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampinion);
-	                	superChampinion.setVisitor(visitorSuperChampinion);
-	                	ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampinion);
-	                	superChampinion.setObserverGrafico(observerGraficoSuperChampinion);
-	                	superChampinion.setNivel(nivel);
-	                	nivel.addPowerUp(superChampinion);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoSuperChampinion);
-	                	System.out.println("Meti champ");
+	                	Visitante visitorMonedas = new VisitorMonedas(monedas);
+	                	monedas.setVisitor(visitorMonedas);
+	                	ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);
+	                	monedas.setObserverGrafico(observerGraficoMonedas);
+	                	monedas.setNivel(nivel);
+	                	nivel.addPowerUp(monedas);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoMonedas);
 	                	break;
 	                }
 	                case 40: {
@@ -242,7 +188,7 @@ public class GeneradorDeNivel {
 	                    nivel.addEnemigo(lakitu);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoLakitu);
 	                    break;
-	                }
+	                } 
 	                case 41: {
 	                    Point velocidadDireccional = new Point(-1, 0);
 	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion, null, velocidadDireccional, null);
@@ -254,7 +200,7 @@ public class GeneradorDeNivel {
 	                    nivel.addEnemigo(contextoKoopaTroopa);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoKoopa);
 	                    break;
-	                }
+	                } 
 	                case 42: {
 	                    Point velocidadDireccional = new Point(-1, 0);
 	                    Goomba goomba = fabricaEntidades.getGoomba(posicion, null, velocidadDireccional, null);
@@ -293,6 +239,7 @@ public class GeneradorDeNivel {
 	                }
 	                case 45:{
 	                	agregarMarioAlNivel(nivel, posicion);
+	                	break;
 	                }
                 }
 			}

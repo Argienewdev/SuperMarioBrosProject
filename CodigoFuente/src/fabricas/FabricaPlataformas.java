@@ -1,5 +1,7 @@
 package fabricas;
 import java.awt.Point;
+import java.util.Random;
+
 import elementos.enemigos.PiranhaPlant;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -71,50 +73,56 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePreguntaConMonedas(Point posicion, Visitante visitor, int cantidadMonedas, Nivel nivel){
-		Point velocidadDireccional = new Point(0,0);
+	public BloqueDePregunta getBloqueDePregunta(Point posicion, Visitante visitor, Nivel nivel){
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
-		Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, true, false);
-		Visitante visitorMonedas = new VisitorMonedas(monedasDentroBloqueDePregunta);
-		monedasDentroBloqueDePregunta.setVisitor(visitorMonedas);
-        ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasDentroBloqueDePregunta);
-        monedasDentroBloqueDePregunta.setObserverGrafico(observerGraficoMonedas);
-		nivel.addPowerUp(monedasDentroBloqueDePregunta);
-		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, monedasDentroBloqueDePregunta);
-		return bloqueDePreguntaADevolver;
-	}
-	
-	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePreguntaSinMonedas(Point posicion, Visitante visitor, int identificadorPowerUp, Nivel nivel){
-		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
-		BloqueDePregunta bloqueDePreguntaADevolver=null;
-		Point velocidadDireccional = new Point(1,0);		
+		BloqueDePregunta bloqueDePreguntaADevolver = null;
+		Random random = new Random();
+		int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
+		
 		switch(identificadorPowerUp) {
-			case 21:{
+			case 2,4,6,8: {
+				Point velocidadDireccional = new Point(0,0);
+				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, identificadorPowerUp, true, false);
+				Visitante visitorMonedas = new VisitorMonedas(monedasDentroBloqueDePregunta);
+				monedasDentroBloqueDePregunta.setVisitor(visitorMonedas);
+		        ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasDentroBloqueDePregunta);
+		        monedasDentroBloqueDePregunta.setObserverGrafico(observerGraficoMonedas);
+				nivel.addPowerUp(monedasDentroBloqueDePregunta);
+				bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, monedasDentroBloqueDePregunta);
+				break;
+			}
+			case 1: {
+				Point velocidadDireccional = new Point(0,1);
 				Estrella powerUp = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
 				Visitante visitorEstrella = new VisitorEstrella(powerUp);
 				powerUp.setVisitor(visitorEstrella);
 		        ObserverGrafico observerGraficoEstrella = new ObserverGrafico(powerUp);
 		        powerUp.setObserverGrafico(observerGraficoEstrella);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
+		        break;
 			}
-			case 22:{
+			case 3: {
+				Point velocidadDireccional = new Point(0,1);
 				ChampinionVerde powerUp = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
 				Visitante visitorChampinionVerde = new VisitorChampinionVerde(powerUp);
 				powerUp.setVisitor(visitorChampinionVerde);
 		        ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(powerUp);
 		        powerUp.setObserverGrafico(observerGraficoChampinionVerde);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
+		        break;
 			}
-			case 23:{
+			case 5: {
+				Point velocidadDireccional = new Point(0,1);
 				FlorDeFuego powerUp = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
 				Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(powerUp);
 				powerUp.setVisitor(visitorFlorDeFuego);
 		        ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(powerUp);
 		        powerUp.setObserverGrafico(observerGraficoFlorDeFuego);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
+		        break;
 			}
-			case 24:{
+			case 7: {
+				Point velocidadDireccional = new Point(0,1);
 				SuperChampinion powerUp = this.fabricaEntidades.getSuperChampinion(posicion, null, velocidadDireccional, null);
 				Visitante visitorSuperChampinion = new VisitorSuperChampinion(powerUp);
 				powerUp.setVisitor(visitorSuperChampinion);
@@ -122,8 +130,10 @@ public class FabricaPlataformas {
 		        powerUp.setObserverGrafico(observerGraficoSuperChampinion);
 		        nivel.addPowerUp(powerUp);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
+		        break;
 			}
-		}		
+		}
+		
 		return bloqueDePreguntaADevolver;
 	}
 	
