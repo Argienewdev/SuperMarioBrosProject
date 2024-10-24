@@ -49,6 +49,7 @@ public class PantallaDeJuego extends JPanel {
         setMinimumSize(size);
         hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
         add(hud);
+        hud.setVisible(true);
     }
     
     protected void establecerFondo() {
