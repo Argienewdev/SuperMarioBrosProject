@@ -65,15 +65,15 @@ public class ActualizadorDeSpriteJugador {
 	}
 	
 	private boolean spriteFrontal() {
-		return marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultFrontalCaminandoPrimeraTransicion().getRutaImagen()) ||
-				marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultFrontalQuieto().getRutaImagen()) ||
-				marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultFrontalSaltando().getRutaImagen());
+		return marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultFrontalCaminandoPrimeraTransicion()) ||
+				marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultFrontalQuieto()) ||
+				marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultFrontalSaltando());
 	}
 	
 	private boolean spriteReverso() {
-		return marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultReversoCaminandoPrimeraTransicion().getRutaImagen()) ||
-				marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultReversoQuieto().getRutaImagen()) ||
-				marioJugable.getSprite().getRutaImagen().equals(fabricaSprites.getMarioDefaultReversoSaltando().getRutaImagen());
+		return marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultReversoCaminandoPrimeraTransicion()) ||
+				marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultReversoQuieto()) ||
+				marioJugable.getSprite().equals(fabricaSprites.getMarioDefaultReversoSaltando());
 	}
 	
 }

@@ -21,11 +21,7 @@ import ventanas.PantallaDeJuego;
 public class Juego {
 	
 	protected ArrayList<Nivel> niveles;
-	
-	private static Juego juego;
-	
-	private BucleJuego bucleJuego;
-		
+				
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
@@ -42,12 +38,14 @@ public class Juego {
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
-	public static void main(String args[]) {
-		juego = new Juego();
-		juego.controladorVistas = new ControladorVistas(juego);
-		juego.bucleJuego = new BucleJuego(juego);
-		ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
-		reproductorDeMusicaFondo.playMusic("src/sonido/musica_juego.wav");
+	
+	public Juego () {
+		
+	}
+	
+	@SuppressWarnings("exports")
+	public void establecerControladorVistas (ControladorVistas controlador) {
+		controladorVistas = controlador;
 	}
 	
 	public void actualizar() {
