@@ -25,17 +25,28 @@ public abstract class ElementoDeJuego implements Visitado {
     
     protected ObserverGrafico observerGrafico;
     
+    protected int ancho;
+    
+    protected int alto;
+    
 	
 	@SuppressWarnings("exports")
 	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante) {
 		this.sprite = sprite;
-		this.posicion = posicion;
+		Point posicionConsiderandoSprite = getPosicionConsiderandoSprite(posicion, sprite);
+		this.posicion = posicionConsiderandoSprite;
 		this.visitante = visitante;
-		int x =  posicion.x;
-		int y = posicion.y;
-		int ancho = obtenerAncho();
-		int alto = obtenerAlto();
+		int ancho = sprite.getAnchoImagen();
+		int alto = sprite.getAltoImagen();
+		this.ancho = ancho;
+		this.alto = alto;
+		int x =  posicionConsiderandoSprite.x;
+		int y = posicionConsiderandoSprite.y;
 		this.hitbox = new Rectangle(x, y, ancho, alto);
+	}
+	
+	private Point getPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
+		return new Point(posicion.x, posicion.y + (50 - sprite.getAltoImagen()));
 	}
 	
 	public void setSprite(Sprite sprite) {
@@ -81,11 +92,11 @@ public abstract class ElementoDeJuego implements Visitado {
     }
 	
 	public int obtenerAncho() {
-		return 50;
+		return ancho;
 	}
 	
 	public int obtenerAlto() {
-		return 50;
+		return alto;
 	}
 	
 	public boolean huboColision(ElementoDeJuego elemento) {
