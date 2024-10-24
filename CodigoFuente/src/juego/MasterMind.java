@@ -85,7 +85,7 @@ public class MasterMind {
 	
 	private void verificarColisiones(NoJugable noJugable) {
 		boolean huboColision = false;
-		if(noJugable.obtenerHitbox().x < 0 || noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
+		if(noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) {
 			huboColision = true;
 			noJugable.eliminarDelNivel();
 		} else if (noJugable.obtenerHitbox().y < 2){
@@ -94,7 +94,7 @@ public class MasterMind {
 			noJugable.eliminarDelNivel();
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-		        if(noJugable.huboColision(elemento)) {
+		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
 		        	huboColision = true;
 		        	noJugable.aceptarVisitante(elemento.getVisitor());
 		            elemento.aceptarVisitante(noJugable.getVisitor());
