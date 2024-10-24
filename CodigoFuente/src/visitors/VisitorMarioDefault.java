@@ -125,8 +125,16 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if (choquePorDerecha(bloquePregunta) || choquePorIzquierda(bloquePregunta)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(choquePorArriba(bloquePregunta)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(choquePorAbajo(bloquePregunta)){
+			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+		}
 	}
 
 	@Override
@@ -139,7 +147,7 @@ public class VisitorMarioDefault implements Visitante{
 			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
 		}
 		if(choquePorAbajo(ladrillo)){
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
 		}
 	}
 

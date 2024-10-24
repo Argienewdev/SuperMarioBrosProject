@@ -35,16 +35,19 @@ public class Nivel {
     @SuppressWarnings("exports")
     public void addPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
+        plataforma.setNivel(this);
     }
 
     @SuppressWarnings("exports")
     public void addEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
+        enemigo.setNivel(this);
     }
 
     @SuppressWarnings("exports")
     public void addPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
+        powerUp.setNivel(this);
     }
 
     @SuppressWarnings("exports")

@@ -120,7 +120,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		
+		bloquePregunta.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override

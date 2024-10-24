@@ -120,7 +120,7 @@ public class VisitorGoomba implements Visitante {
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -172,6 +172,17 @@ public class VisitorGoomba implements Visitante {
 	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
+	}
+	private boolean choquePorDerecha(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > bloque.obtenerHitbox().x;
+		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
+		return parte1 && parte2;
+	}
+	
+	private boolean choquePorIzquierda(BloqueSolido bloque) {
+		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
+		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
+		return parte1 && parte2;
 	}
 	
 }

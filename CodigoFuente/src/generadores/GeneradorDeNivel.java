@@ -121,7 +121,7 @@ public class GeneradorDeNivel {
 	                case 4: {
 	                    Visitante visitor = new VisitorBloqueDePregunta();
 	                    int identificadorPowerUp = numeros[3];
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaSinMonedas(posicion, visitor, identificadorPowerUp);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaSinMonedas(posicion, visitor, identificadorPowerUp,nivel);
 	                    ObserverGrafico observerGraficoBloqueDePreguntaSinMonedas = new ObserverGrafico(bloqueDePregunta);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePreguntaSinMonedas);
 	                    bloqueDePregunta.setNivel(nivel);
@@ -132,7 +132,7 @@ public class GeneradorDeNivel {
 	                case 5: {
 	                    Visitante visitor = new VisitorBloqueDePregunta();
 	                    int cantidadMonedas = numeros[3];
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaSinMonedas(posicion, visitor, cantidadMonedas);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaConMonedas(posicion, visitor, cantidadMonedas, nivel);
 	                    ObserverGrafico observerGraficoBloqueDePreguntaConMonedas = new ObserverGrafico(bloqueDePregunta);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePreguntaConMonedas);
 	                    bloqueDePregunta.setNivel(nivel);

@@ -67,7 +67,7 @@ public class Juego {
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites);
+		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites,fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
 		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites);
