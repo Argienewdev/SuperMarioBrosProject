@@ -276,7 +276,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBuzzyBeetleFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalCaminando.gif");
     }
 
     @Override
@@ -286,7 +286,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBuzzyBeetleReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleReversoCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleReversoCaminando.gif");
     }
 
     @Override

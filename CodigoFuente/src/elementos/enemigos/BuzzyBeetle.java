@@ -22,8 +22,13 @@ public class BuzzyBeetle extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		// Segun su velocidad direccional actualizar el sprite
+		if(this.getVelocidadDireccional().x == 0) {
+			this.setSprite(fabricaSprites.getBuzzyBeetleReversoQuieto());
+		} else if(this.getVelocidadDireccional().x < 0) {
+			this.setSprite(fabricaSprites.getBuzzyBeetleReversoCaminando());
+		} else if(this.getVelocidadDireccional().x > 0) {
+			this.setSprite(fabricaSprites.getBuzzyBeetleFrontalCaminando());
+		}
 	}
 
 }
