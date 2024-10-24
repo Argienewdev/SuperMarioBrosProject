@@ -126,7 +126,6 @@ public class GeneradorDeNivel {
 	                }
 	                case 4: {
 	                    Visitante visitor = new VisitorBloqueDePregunta();
-	                    int identificadorPowerUp = numeros[3];
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, visitor, nivel);
 	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
