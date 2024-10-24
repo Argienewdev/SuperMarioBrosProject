@@ -95,7 +95,7 @@ public class GeneradorDeNivel {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, null);
 	                    Visitante visitor = new VisitorLadrillo(ladrillo);
 	                    ladrillo.setVisitor(visitor);
-	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	                 
+	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	   
 	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
 	                    ladrillo.setNivel(nivel);
 	                    nivel.addPlataforma(ladrillo);
@@ -157,9 +157,10 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 7: {
-	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido();
-	                	Visitante visitor = new VisitorBloqueSolido(bloqueSolido);
-	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);	               
+	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido(posicion, null);
+	                	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolido);
+	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);
+	                	bloqueSolido.setVisitor(visitorBloqueSolido);
 	                	bloqueSolido.setObserverGrafico(observerGraficoBloqueSolido);
 	                	bloqueSolido.setNivel(nivel);
 	                	nivel.addPlataforma(bloqueSolido);
@@ -167,9 +168,10 @@ public class GeneradorDeNivel {
 	                	break;
 	                } 
 	                case 8: {
-	                	Visitante visitor = new VisitorPiso();
-	                	Piso piso = this.fabricaPlataformas.getPiso(posicion, visitor);
+	                	Piso piso = this.fabricaPlataformas.getPiso(posicion, null);
+	                	Visitante visitorPiso = new VisitorPiso(piso);
 	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(piso);
+	                	piso.setVisitor(visitorPiso);
 	                	piso.setObserverGrafico(observerGraficoBloqueSolido);
 	                	piso.setNivel(nivel);
 	                	nivel.addPlataforma(piso);

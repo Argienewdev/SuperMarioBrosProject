@@ -144,6 +144,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
+		bloqueSolido.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -184,7 +185,6 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(Piso piso) {
-		// TODO Auto-generated method stub
-		
+		piso.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 }

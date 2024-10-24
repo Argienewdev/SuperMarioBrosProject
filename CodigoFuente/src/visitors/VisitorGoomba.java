@@ -89,8 +89,6 @@ public class VisitorGoomba implements Visitante {
 	}
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		
-		
 		ContextoMario contextoMario = marioDefault.getContext();
 		if (contextoMario.getVidas() == 1) {
 			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
@@ -160,7 +158,6 @@ public class VisitorGoomba implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 
 	@Override

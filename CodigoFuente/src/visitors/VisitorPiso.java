@@ -8,8 +8,10 @@ import elementos.powerUps.*;
 
 public class VisitorPiso implements Visitante{
 
-	public VisitorPiso() {
-		
+	private Piso miEntidad;
+	
+	public VisitorPiso(Piso miEntidad) {
+		this.miEntidad = miEntidad;
 	}
 	
 	public void visitar(BuzzyBeetle buzzy) {	

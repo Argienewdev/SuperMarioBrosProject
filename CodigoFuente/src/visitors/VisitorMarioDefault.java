@@ -198,8 +198,17 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
+		if (detectarDireccionColision.choquePorDerecha(bloqueSolido) || detectarDireccionColision.choquePorIzquierda(bloqueSolido)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(detectarDireccionColision.choquePorArriba(bloqueSolido)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(detectarDireccionColision.choquePorAbajo(bloqueSolido)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
 	}
 
 	@Override

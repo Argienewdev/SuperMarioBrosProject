@@ -158,7 +158,7 @@ public class FabricaPlataformas {
     @SuppressWarnings("exports")
 	public BloqueSolido getBloqueSolido(Point posicion, Visitante visitor) {
     	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
-		Ladrillo bloqueSolidoADevolver = new Ladrillo(spriteBloqueSolido, posicion, visitor);
+    	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, visitor);
 		return bloqueSolidoADevolver;
     }
     
