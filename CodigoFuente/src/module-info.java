@@ -4,7 +4,7 @@
 /**
  * 
  */
-module CodigoFuente{
+module CodigoFuente  {
 	exports elementos;
 	exports fabricas;
 	exports fuentes;
