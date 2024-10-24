@@ -1,7 +1,12 @@
 package ventanas;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import elementos.entidades.Jugable;
 import juego.*;
@@ -23,7 +28,9 @@ public class ControladorVistas {
 	private SensorDeTeclasMenu sensorDeTeclasMenu;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
-		
+	
+	private PantallaEntreNiveles pantallaEntreNiveles;
+	
 	protected Juego juego;	
 
 	
@@ -34,9 +41,10 @@ public class ControladorVistas {
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		pantallaDeJuego= new PantallaDeJuego();
 		this.juego = juego;
+		pantallaEntreNiveles= new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		
 		configurarVentana();
-		RegistrarOyenteInicial();
+		RegistrarOyenteInicial();	
 	}
 	
 	public void configurarVentana(){
@@ -55,9 +63,26 @@ public class ControladorVistas {
 	public void accionarInicioJuego(String modo) {
 		RegistrarOyenteJuego();
 		ventana.remove(pantallaInicial);
-		mostrarPantallaDeJuego();
+		mostrarPantallaEntreNiveles();
+		
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
+     	
+		Timer timer = new Timer(2000, new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	ventana.remove(pantallaEntreNiveles);
+	                mostrarPantallaDeJuego();
+	                
+	            }
+	        });
+	        timer.setRepeats(false);
+	        timer.start(); 
+	        
+	       
+	}
+	
+	public void mostrarPantallaEntreNiveles(){
+		ventana.add(pantallaEntreNiveles);
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -73,6 +98,11 @@ public class ControladorVistas {
 	
 	public void accionarPantallaPuntajes() {
 		
+	}
+	
+	public void accionarPantallaEntreNiveles(){
+		ventana.add(pantallaEntreNiveles);
+		pantallaEntreNiveles.setVisible(true);
 	}
 
 	
@@ -103,7 +133,6 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 		}else {
 			pantallaDeJuego.refrescar();
-		
 		}
 		ventana.revalidate();
 		ventana.repaint();

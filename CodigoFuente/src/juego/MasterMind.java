@@ -23,10 +23,13 @@ public class MasterMind {
 	protected FabricaSprites fabricaSprites;
 	
 	protected Nivel nivel;
-		
+	
+	private int contadorDeTicks;
+			
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
+		this.contadorDeTicks = 0;
 		crearColeccionDeEnemigos();
 		crearColeccionDePowerUps();
 	}
@@ -61,26 +64,26 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		cambiarYVerificarPosicionHitboxDeEnemigo(enemigo);
+		cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
 	}
 	
-	private void cambiarYVerificarPosicionHitboxDeEnemigo(NoJugable enemigo) {
-		cambiarPosicionXHitboxDeNoJugable(enemigo);
-		verificarColisiones(enemigo);
-		cambiarPosicionYHitboxDeNoJugable(enemigo);
-		verificarColisiones(enemigo);
+	private void cambiarYVerificarPosicionHitboxDeNoJugable(NoJugable noJugable) {
+		cambiarPosicionXHitboxDeNoJugable(noJugable);
+		verificarColisiones(noJugable);
+		cambiarPosicionYHitboxDeNoJugable(noJugable);
+		verificarColisiones(noJugable);
 	}
 	
-	private void cambiarPosicionXHitboxDeNoJugable(NoJugable enemigo) {
-		int nuevaPosicionX = enemigo.obtenerHitbox().x + enemigo.getVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, enemigo.getPosicion().y);
-		enemigo.moverHitbox(nuevaPosicion);
+	private void cambiarPosicionXHitboxDeNoJugable(NoJugable noJugable) {
+		int nuevaPosicionX = noJugable.obtenerHitbox().x + noJugable.getVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, noJugable.getPosicion().y);
+		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
-	private void cambiarPosicionYHitboxDeNoJugable(NoJugable enemigo) {
-		int nuevaPosicionY = enemigo.obtenerHitbox().y + enemigo.getVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(enemigo.getPosicion().x, nuevaPosicionY);
-		enemigo.moverHitbox(nuevaPosicion);
+	private void cambiarPosicionYHitboxDeNoJugable(NoJugable noJugable) {
+		int nuevaPosicionY = noJugable.obtenerHitbox().y + noJugable.getVelocidadDireccional().y;
+		Point nuevaPosicion = new Point(noJugable.getPosicion().x, nuevaPosicionY);
+		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void verificarColisiones(NoJugable noJugable) {
@@ -88,10 +91,7 @@ public class MasterMind {
 		if(noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) {
 			huboColision = true;
 			noJugable.eliminarDelNivel();
-		} else if (noJugable.obtenerHitbox().y < 2){
-			//TODO si cae al vacio
-			huboColision = true;
-			noJugable.eliminarDelNivel();
+			//TODO hacer que se caiga al vacio si la altura no es correcta
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
@@ -120,20 +120,20 @@ public class MasterMind {
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		//TODO se va a mover porque el visitor del bloque de preguntas, cuando es chocado por mario
-		// le tiene que decir al power up que ya no esta
-		if(!powerUp.estaDentroDeBloqueDePreguntas() && !powerUp.estaEnElNivel()) {
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks == 0) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
-		} 
-		if(powerUp.esMovible() && powerUp.estaEnElNivel()) {
-			cambiarPosicionXHitboxDeNoJugable(powerUp);
-			verificarColisiones(powerUp);
-			cambiarPosicionYHitboxDeNoJugable(powerUp);
-			verificarColisiones(powerUp);
+			contadorDeTicks++;
+		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks > 120) {
+			powerUp.setVelocidadDireccional(new Point(powerUp.getPosicion().x,powerUp.getPosicion().y-3));
+			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
+		} else if(contadorDeTicks >= 1) {
+			contadorDeTicks++;
 		}
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
+		powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getPosicion().y - powerUp.obtenerAlto()));
+		powerUp.moverHitbox(powerUp.getPosicion());
 		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 	

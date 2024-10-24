@@ -127,7 +127,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 4: {
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel,pantallaDeJuego);
 	                    Visitante visitor = new VisitorBloqueDePregunta(bloqueDePregunta);
 	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	                  
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
@@ -170,7 +170,7 @@ public class GeneradorDeNivel {
 	                	Random random = new Random();
 	            		int cantidadMonedas = random.nextInt(8) + 1; // Genera un numero entre 1 y 8, ambos inclusive
 	                	Point velocidadDireccional = new Point(0,0);
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false, true);
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false);
 	                	Visitante visitorMonedas = new VisitorMonedas(monedas);
 	                	monedas.setVisitor(visitorMonedas);
 	                	ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);

@@ -17,7 +17,6 @@ public class Estrella extends PowerUp {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
-		this.estaEnElNivel = false;
 	}
 	
 	@Override

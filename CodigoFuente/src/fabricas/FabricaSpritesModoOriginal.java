@@ -316,12 +316,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getSuperChampinionSaliendoDelBloqueDePreguntas() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinionSaliendo.gif");
     }
     
     @Override
     public Sprite getSuperChampinionQuieto() {
-    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.png");
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinionAfuera.png");
     }
 
     @Override
@@ -390,6 +390,10 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     @Override
     public Sprite getPrincesaPeach() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/princesaPeach.png");
+    }
+    
+    public Sprite getPowerUpInactivo() {
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/powerUpInactivo.png");
     }
     
 }
