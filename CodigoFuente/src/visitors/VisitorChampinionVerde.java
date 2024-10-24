@@ -114,4 +114,8 @@ public class VisitorChampinionVerde implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visitar(Piso piso) {
+	}
 }

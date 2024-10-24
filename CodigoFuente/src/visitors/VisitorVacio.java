@@ -174,5 +174,11 @@ public class VisitorVacio implements Visitante {
 		
 	}
 
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

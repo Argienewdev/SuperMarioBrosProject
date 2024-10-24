@@ -390,5 +390,15 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     public Sprite getPrincesaPeach() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.png");
     }
+
+	@Override
+	public Sprite getPiso() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piso.png");
+	}
+
+	@Override
+	public Sprite getPowerUpInactivo() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/powerUpInactivo.png");
+	}
     
 }

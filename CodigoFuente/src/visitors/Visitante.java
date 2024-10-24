@@ -35,7 +35,6 @@ public interface Visitante {
 	public void visitar(Estrella estrella);
 	
 	public void visitar(Monedas monedas);
-	
 
 	public void visitar(BloqueDePregunta bloquePregunta);
 
@@ -51,6 +50,8 @@ public interface Visitante {
 
 	public void visitar(BloqueSolido bloqueSolido);
 
+	public void visitar(Piso piso);
+	
 	public void visitar(ContextoMario contextoMario);
 	
 	public void visitar(MarioDefault marioDefault);

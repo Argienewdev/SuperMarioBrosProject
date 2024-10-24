@@ -89,8 +89,6 @@ public class VisitorGoomba implements Visitante {
 	}
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		
-		
 		ContextoMario contextoMario = marioDefault.getContext();
 		if (contextoMario.getVidas() == 1) {
 			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
@@ -160,7 +158,6 @@ public class VisitorGoomba implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 
 	@Override
@@ -190,6 +187,12 @@ public class VisitorGoomba implements Visitante {
 		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
 		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
 		return parte1 && parte2;
+	}
+
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

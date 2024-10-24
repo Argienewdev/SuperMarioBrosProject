@@ -104,6 +104,10 @@ public class VisitorBandera implements Visitante {
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {		
 	}
+
+	@Override
+	public void visitar(Piso piso) {
+	}
 	
 	
 }

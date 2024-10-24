@@ -6,14 +6,14 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorBloqueDePregunta implements Visitante {
+public class VisitorPiso implements Visitante{
+
+	private Piso miEntidad;
 	
-	private BloqueDePregunta miEntidad;
-	
-	public VisitorBloqueDePregunta(BloqueDePregunta miEntidad) {
+	public VisitorPiso(Piso miEntidad) {
 		this.miEntidad = miEntidad;
 	}
-
+	
 	public void visitar(BuzzyBeetle buzzy) {	
 	}
 
@@ -21,12 +21,6 @@ public class VisitorBloqueDePregunta implements Visitante {
 	}
 
 	public void visitar(Goomba goomba) {	
-	}
-	
-	public void visitar(ContextoMario contextoMario) {		
-	}
-	
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
 	}
 	
 	public void visitar(Lakitu lakitu) {	
@@ -50,19 +44,24 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(Estrella estrella) {	
 	}
 	
-	public void visitar(Monedas monedas) {		
+	public void visitar(Monedas monedas) {
+		
 	}
 	
-	public void visitar(MarioDefault marioNormal) {		
+	public void visitar(MarioDefault marioNormal) {	
+		
 	}
 	
 	public void visitar(MarioInvulnerable marioInv) {		
+		
 	}
 
-	public void visitar(MarioFuego marioFuego) {		
+	public void visitar(MarioFuego marioFuego) {
+		
 	}
 
-	public void visitar(SuperMario superMario) {		
+	public void visitar(SuperMario superMario) {
+		
 	}
 
 	public void visitar(BloqueDePregunta bloquePregunta) {		
@@ -86,16 +85,22 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(BloqueSolido bloqueSolido) {		
 	}
 
-	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
+	public void visitar(ContextoMario contextoMario) {		
+	}
+	
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
 	}
 
 	@Override
-	public void visitar(KoopaDefault koopaDefault) {		
+	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
+	}
+
+	@Override
+	public void visitar(KoopaDefault koopaDefault) {
 	}
 
 	@Override
 	public void visitar(Piso piso) {
 	}
-	
+
 }
