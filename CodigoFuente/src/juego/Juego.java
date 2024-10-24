@@ -2,6 +2,7 @@ package juego;
 
 import java.util.ArrayList;
 
+import elementos.Sprite;
 import elementos.entidades.Jugable;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaPlataformas;
@@ -21,7 +22,11 @@ import ventanas.PantallaDeJuego;
 public class Juego {
 	
 	protected ArrayList<Nivel> niveles;
-				
+	
+	private static Juego juego;
+	
+	private BucleJuego bucleJuego;
+		
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
@@ -38,18 +43,21 @@ public class Juego {
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
-	
-	public Juego () {
-		
-	}
-	
-	@SuppressWarnings("exports")
-	public void establecerControladorVistas (ControladorVistas controlador) {
-		controladorVistas = controlador;
+	public static void main(String args[]) {
+		juego = new Juego();
+		juego.controladorVistas = new ControladorVistas(juego);
+		juego.bucleJuego = new BucleJuego(juego);
+		ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
+		reproductorDeMusicaFondo.playMusic("src/sonido/musica_juego.wav");
 	}
 	
 	public void actualizar() {
 		controladorVistas.refrescar();
+	}
+	
+	public Sprite obtenerSpriteMario(){
+		this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+		return fabricaSprites.getMarioDefaultFrontalQuieto();
 	}
 	
 	public void render() {
@@ -65,10 +73,15 @@ public class Juego {
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites,fabricaEntidades);
+		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
 		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites);
 		return partida.obtenerJugador();
 	}
+
+	public void establecerControladorVistas(ControladorVistas controladorVistas) {
+		this.controladorVistas=controladorVistas;
+	}
+	
 }

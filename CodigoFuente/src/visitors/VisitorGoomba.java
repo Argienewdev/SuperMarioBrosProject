@@ -7,9 +7,11 @@ import elementos.powerUps.*;
 public class VisitorGoomba implements Visitante {
 	
 	protected Goomba miEntidad;
+	DetectorDireccionColision detectorDireccionColision;
 	
 	public VisitorGoomba (Goomba miEntidad) {
 		this.miEntidad = miEntidad;
+		detectorDireccionColision= new DetectorDireccionColision(miEntidad);
 	}
 
 	@Override
@@ -80,10 +82,15 @@ public class VisitorGoomba implements Visitante {
 	
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		contextoMario.getEstado().aceptarVisitante(this);
+		/*
+		if(detectorDireccionColision.choquePorDerecha(contextoMario)||detectorDireccionColision.choquePorIzquierda(contextoMario)) {
+			contextoMario.getEstado().aceptarVisitante(this);
+		}*/
 	}
 	@Override
 	public void visitar(MarioDefault marioDefault) {
+		
+		
 		ContextoMario contextoMario = marioDefault.getContext();
 		if (contextoMario.getVidas() == 1) {
 			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
