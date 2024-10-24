@@ -8,7 +8,10 @@ import elementos.powerUps.*;
 
 public class VisitorBloqueDePregunta implements Visitante {
 	
-	public VisitorBloqueDePregunta() {		
+	private BloqueDePregunta miEntidad;
+	
+	public VisitorBloqueDePregunta(BloqueDePregunta miEntidad) {
+		this.miEntidad = miEntidad;
 	}
 
 	public void visitar(BuzzyBeetle buzzy) {	

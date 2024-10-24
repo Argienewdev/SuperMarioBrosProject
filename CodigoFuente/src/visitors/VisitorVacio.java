@@ -5,7 +5,13 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import juego.Nivel;
-public class VisitorVacio implements Visitante{
+public class VisitorVacio implements Visitante {
+	
+	private Vacio miEntidad;
+
+	public VisitorVacio(Vacio miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {

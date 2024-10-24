@@ -8,8 +8,10 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 public class VisitorLadrillo implements Visitante {
 	
-	public VisitorLadrillo() {
-		
+	private Ladrillo miEntidad;
+
+	public VisitorLadrillo(Ladrillo miEntidad) {
+		this.miEntidad = miEntidad;
 	}
 
 	@Override

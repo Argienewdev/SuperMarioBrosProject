@@ -35,7 +35,6 @@ public interface Visitante {
 	public void visitar(Estrella estrella);
 	
 	public void visitar(Monedas monedas);
-	
 
 	public void visitar(BloqueDePregunta bloquePregunta);
 

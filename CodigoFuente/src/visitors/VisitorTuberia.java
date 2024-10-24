@@ -4,7 +4,13 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-public class VisitorTuberia implements Visitante{
+public class VisitorTuberia implements Visitante {
+	
+	private Tuberia miEntidad;
+
+	public VisitorTuberia(Tuberia miEntidad) {
+		this.miEntidad = miEntidad;
+	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {

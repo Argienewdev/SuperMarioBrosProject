@@ -9,12 +9,15 @@ import ventanas.ControladorVistas;
 
 
 
-public class VisitorBandera implements Visitante{
+public class VisitorBandera implements Visitante {
+	
+	private Bandera miEntidad;
 	
 	private ControladorVistas controlador;
 	
-	public VisitorBandera (ControladorVistas controlador) {
+	public VisitorBandera (ControladorVistas controlador, Bandera miEntidad) {
 		this.controlador = controlador;
+		this.miEntidad = miEntidad;
 	}
 
 	public void visitar(BuzzyBeetle buzzy) {	

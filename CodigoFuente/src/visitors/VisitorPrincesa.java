@@ -9,8 +9,11 @@ public class VisitorPrincesa implements Visitante {
 	
 	protected ControladorVistas controlador;
 	
-	public VisitorPrincesa (ControladorVistas controlador) {
+	private PrincesaPeach miEntidad;
+	
+	public VisitorPrincesa (ControladorVistas controlador, PrincesaPeach miEntidad) {
 		this.controlador = controlador;
+		this.miEntidad = miEntidad;
 	}
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
