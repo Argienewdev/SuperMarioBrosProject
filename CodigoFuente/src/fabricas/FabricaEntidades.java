@@ -37,7 +37,7 @@ public class FabricaEntidades {
 	public ContextoKoopaTroopa getContextoKoopaTroopa(Point posicion, Visitante visitor, 
 													  Point velocidadDireccional, 
 													  ObserverGrafico observerGrafico) {
-    	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoQuieto();
+    	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial= new KoopaDefault();
     	return new  ContextoKoopaTroopa(sprite, posicion, visitor, velocidadDireccional, observerGrafico, estadoInicial);
     }

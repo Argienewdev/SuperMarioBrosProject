@@ -1,6 +1,8 @@
 package elementos.enemigos;
 
 import java.awt.Point;
+
+import fabricas.FabricaSprites;
 import visitors.Visitante;
 import visitors.VisitorKoopaDefault;
 
@@ -32,6 +34,16 @@ public class KoopaDefault implements EstadoKoopa {
 	}
 	public Visitante getVisitor() {
 		return new VisitorKoopaDefault(this);
+	}
+	
+	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		if(this.contexto.getVelocidadDireccional().x == 0) {
+			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoQuieto());
+		} else if(this.contexto.getVelocidadDireccional().x < 0) {
+			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
+		} else if(this.contexto.getVelocidadDireccional().x > 0) {
+			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
+		}
 	}
 
 }
