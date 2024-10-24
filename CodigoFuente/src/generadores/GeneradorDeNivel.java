@@ -266,6 +266,7 @@ public class GeneradorDeNivel {
 		for(Enemigo enemigo : nivel.getEnemigos()) {
 			enemigo.getObserverGrafico().actualizar();
 		}
+		
 		return nivel;
 	}
 	
