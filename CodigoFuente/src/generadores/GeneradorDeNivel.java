@@ -79,10 +79,11 @@ public class GeneradorDeNivel {
                 Point posicion = parsearPosicion(numeros[1],numeros[2]);
                 
                 switch(identificadorElemento) {
-	                case 0: {
-	                    Visitante visitor = new VisitorVacio();
-	                    Vacio vacio = this.fabricaPlataformas.getVacio(posicion, visitor);
+	                case 0: {	                 
+	                    Vacio vacio = this.fabricaPlataformas.getVacio(posicion, null);
 	                    ObserverGrafico observerGraficoVacio = new ObserverGrafico(vacio);
+	                    Visitante visitor = new VisitorVacio(vacio);
+	                    vacio.setVisitor(visitor);	  
 	                    vacio.setObserverGrafico(observerGraficoVacio);
 	                    vacio.setNivel(nivel);
 	                    nivel.addPlataforma(vacio);
@@ -91,21 +92,22 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 1: {
-	                    Visitante visitor = new VisitorLadrillo();
-	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, visitor);
-	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);
+	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, null);
+	                    Visitante visitor = new VisitorLadrillo(ladrillo);
+	                    ladrillo.setVisitor(visitor);
+	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	                 
 	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
 	                    ladrillo.setNivel(nivel);
 	                    nivel.addPlataforma(ladrillo);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoLadrillo);
 	                    break;
 	                }	             
-	                case 2: {
-	                    Visitante visitor = new VisitorTuberia();
+	                case 2: {	                   
 	                    int alturaTuberia = numeros[3];
 	                    int anchoTuberia = 100;
-	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, visitor, alturaTuberia, anchoTuberia);
+	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, null, alturaTuberia, anchoTuberia);
 	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaVacia);
+	                    Visitante visitor = new VisitorTuberia(tuberiaVacia);
 	                    tuberiaVacia.setObserverGrafico(observerGraficoTuberia);
 	                    tuberiaVacia.setNivel(nivel);
 	                    nivel.addPlataforma(tuberiaVacia);
@@ -113,10 +115,10 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 3: {
-	                    Visitante visitor = new VisitorTuberia();                    
 	                    int alturaTuberia = numeros[3];
 	                    int anchoTuberia = 100;
-	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, visitor, alturaTuberia, anchoTuberia);
+	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, null, alturaTuberia, anchoTuberia);
+	                    Visitante visitor = new VisitorTuberia(tuberiaConPiranhaPlant);
 	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaConPiranhaPlant);
 	                    tuberiaConPiranhaPlant.setObserverGrafico(observerGraficoTuberia);
 	                    tuberiaConPiranhaPlant.setNivel(nivel);
@@ -125,9 +127,9 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 4: {
-	                    Visitante visitor = new VisitorBloqueDePregunta();
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, visitor, nivel);
-	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel);
+	                    Visitante visitor = new VisitorBloqueDePregunta(bloqueDePregunta);
+	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	                  
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
 	                    bloqueDePregunta.setNivel(nivel);
 	                    nivel.addPlataforma(bloqueDePregunta);
@@ -135,8 +137,8 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 5: {
-	                    Visitante visitor = new VisitorBandera(this.controladorVistas);
-	                    Meta bandera = this.fabricaPlataformas.getBandera(posicion, visitor);
+	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion, null);
+	                    Visitante visitor = new VisitorBandera(this.controladorVistas,bandera);
 	                    ObserverGrafico observerGraficoBandera = new ObserverGrafico(bandera);
 	                    bandera.setObserverGrafico(observerGraficoBandera);
 	                    bandera.setNivel(nivel);
@@ -145,8 +147,8 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 6: {
-	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas);
-	                    Meta princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, visitor);
+	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, null);
+	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas,princesaPeach);
 	                    ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeach);
 	                    princesaPeach.setObserverGrafico(observerGraficoPrincesaPeach);
 	                    princesaPeach.setNivel(nivel);
@@ -155,9 +157,9 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 7: {
-	                	Visitante visitor = new VisitorBloqueSolido();
 	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido();
-	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);
+	                	Visitante visitor = new VisitorBloqueSolido(bloqueSolido);
+	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);	               
 	                	bloqueSolido.setObserverGrafico(observerGraficoBloqueSolido);
 	                	bloqueSolido.setNivel(nivel);
 	                	nivel.addPlataforma(bloqueSolido);
