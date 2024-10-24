@@ -12,7 +12,8 @@ public class ChampinionVerde extends PowerUp {
 						   ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
-		this.estaFueraDeBloqueDePreguntas = false;
+		this.estaDentroDeBloqueDePreguntas = true;
+		this.estaEnElNivel = false;
 		
 	}
 	

@@ -12,7 +12,8 @@ public class FlorDeFuego extends PowerUp {
 					   ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, new Point (0,0), observerGrafico);
 		this.esMovible = false;
-		this.estaFueraDeBloqueDePreguntas = false;
+		this.estaDentroDeBloqueDePreguntas = true;
+		this.estaEnElNivel = false;
 	}
 	
 	@Override

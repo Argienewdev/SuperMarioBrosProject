@@ -177,7 +177,7 @@ public class GeneradorDeNivel {
 	                case 20: {
 	                	int cantidadMonedas = 1;
 	                	Point velocidadDireccional = new Point(0,0);
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, true);
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false, true);
 	                    Visitante visitorMonedas = new VisitorMonedas(monedas);
 	                    monedas.setVisitor(visitorMonedas);
 	                    ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);
@@ -228,6 +228,7 @@ public class GeneradorDeNivel {
 	                	superChampinion.setNivel(nivel);
 	                	nivel.addPowerUp(superChampinion);
 	                	this.pantallaDeJuego.agregarLabel(observerGraficoSuperChampinion);
+	                	System.out.println("Meti champ");
 	                	break;
 	                }
 	                case 40: {

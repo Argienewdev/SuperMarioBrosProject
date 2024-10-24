@@ -122,26 +122,19 @@ public class MasterMind {
 	private void moverPowerUp(PowerUp powerUp) {
 		//TODO se va a mover porque el visitor del bloque de preguntas, cuando es chocado por mario
 		// le tiene que decir al power up que ya no esta
-		if(powerUp.estaFueraDeBloqueDePreguntas()) {
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && !powerUp.estaEnElNivel()) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
-			if(powerUp.esMovible()) {
-				cambiarPosicionXHitboxDeNoJugable(powerUp);
-				verificarColisiones(powerUp);
-				cambiarPosicionYHitboxDeNoJugable(powerUp);
-				verificarColisiones(powerUp);
-			}
+		} 
+		if(powerUp.esMovible() && powerUp.estaEnElNivel()) {
+			cambiarPosicionXHitboxDeNoJugable(powerUp);
+			verificarColisiones(powerUp);
+			cambiarPosicionYHitboxDeNoJugable(powerUp);
+			verificarColisiones(powerUp);
 		}
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		//TODO revisar condicion
-		if (powerUp.getPosicion().y > powerUp.getAlturaDeseada()) {
-	        powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getPosicion().y - 1));
-	        powerUp.moverHitbox(powerUp.getPosicion());
-	        System.out.println(powerUp.getPosicionOriginal().x + " , " + powerUp.getPosicion().y);
-	        powerUp.getObserverGrafico().actualizar();
-	        System.out.println(powerUp.getObserverGrafico().getLocation().x + " , " + powerUp.getObserverGrafico().getLocation().y);
-	    }
+		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 	
 	private void actualizarSpritesEnemigos() {

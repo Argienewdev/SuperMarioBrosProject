@@ -11,17 +11,13 @@ public abstract class PowerUp extends NoJugable {
 	
 	protected boolean esMovible;
 	
-	protected boolean estaFueraDeBloqueDePreguntas;
+	protected boolean estaDentroDeBloqueDePreguntas;
 	
-	protected Point posicionOriginal; // Almacenar la posición original
-	
-    protected int alturaDeseada; // Altura que desea alcanzar
+	protected boolean estaEnElNivel;
 
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
 				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
-		this.posicionOriginal = posicion;
-		this.alturaDeseada = 596;
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -34,8 +30,8 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract int obtenerPuntosPorFuego();
 	
-	public boolean estaFueraDeBloqueDePreguntas() {
-		return this.estaFueraDeBloqueDePreguntas;
+	public boolean estaDentroDeBloqueDePreguntas() {
+		return this.estaDentroDeBloqueDePreguntas;
 	}
 
 	public boolean esMovible() {
@@ -46,20 +42,20 @@ public abstract class PowerUp extends NoJugable {
 		this.esMovible = esMovible;
 	}
 	
-	public void establecerEstaFueraDeBloqueDePreguntas(boolean estaFueraDelBloqueDePreguntas) {
-		this.estaFueraDeBloqueDePreguntas = estaFueraDelBloqueDePreguntas;
+	public void establecerEstaDentroDeBloqueDePreguntas(boolean estaDentroDeBloqueDePreguntas) {
+		this.estaDentroDeBloqueDePreguntas = estaDentroDeBloqueDePreguntas;
 	}
 
 	public void eliminarDelNivel() {
 		this.miNivel.removePowerUp(this);
 	}
 	
-	public Point getPosicionOriginal() {
-        return this.posicionOriginal;
-    }
+	public boolean estaEnElNivel() {
+		return this.estaEnElNivel;
+	}
 
-    public int getAlturaDeseada() {
-        return this.alturaDeseada;
-    }
+	public void establecerEstaEnNivel(boolean estaEnNivel) {
+		this.estaEnElNivel = estaEnNivel;
+	}
 
 }

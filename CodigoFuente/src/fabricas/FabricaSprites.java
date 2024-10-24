@@ -131,8 +131,10 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getChampinionVerde();
 
-	public abstract Sprite getSuperChampinion();
-
+	public abstract Sprite getSuperChampinionSaliendoDelBloqueDePreguntas();
+	
+	public abstract Sprite getSuperChampinionQuieto();
+	
 	public abstract Sprite getMonedaApagada();
 
 	public abstract Sprite getMonedaEncendida();

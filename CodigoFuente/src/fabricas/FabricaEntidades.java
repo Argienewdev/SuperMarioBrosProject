@@ -95,7 +95,7 @@ public class FabricaEntidades {
 	public SuperChampinion getSuperChampinion(Point posicion, Visitante visitor,
 											  Point velocidadDireccional, 
 											  ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getSuperChampinion();
+        Sprite sprite = fabricaSprites.getSuperChampinionQuieto();
         return new SuperChampinion(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     
@@ -111,9 +111,10 @@ public class FabricaEntidades {
 	public Monedas getMonedas(Point posicion, Visitante visitor,
 							  Point velocidadDireccional,
 							  ObserverGrafico observer, int cantidad, 
-							  boolean estaDentroDeBloqueDePreguntas) {
+							  boolean estaDentroDeBloqueDePreguntas,
+							  boolean estaEnElNivel) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
-        return new Monedas(sprite, posicion, visitor, velocidadDireccional, observer, cantidad, estaDentroDeBloqueDePreguntas);
+        return new Monedas(sprite, posicion, visitor, velocidadDireccional, observer, cantidad, estaDentroDeBloqueDePreguntas, estaEnElNivel);
     }
     
     @SuppressWarnings("exports")

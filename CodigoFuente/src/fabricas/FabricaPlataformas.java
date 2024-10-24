@@ -74,7 +74,7 @@ public class FabricaPlataformas {
 	public BloqueDePregunta getBloqueDePreguntaConMonedas(Point posicion, Visitante visitor, int cantidadMonedas, Nivel nivel){
 		Point velocidadDireccional = new Point(0,0);
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
-		Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false);
+		Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, true, false);
 		Visitante visitorMonedas = new VisitorMonedas(monedasDentroBloqueDePregunta);
 		monedasDentroBloqueDePregunta.setVisitor(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasDentroBloqueDePregunta);

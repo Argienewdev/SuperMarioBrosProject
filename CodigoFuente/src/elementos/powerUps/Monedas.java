@@ -11,12 +11,14 @@ public class Monedas extends PowerUp {
 	protected int cantidadMonedas;
 	
 	public Monedas(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,
-			   	   ObserverGrafico observerGrafico, int cantidadMonedas, boolean dentroDeBloqueDePreguntas) {
+			   	   ObserverGrafico observerGrafico, int cantidadMonedas, boolean dentroDeBloqueDePreguntas,
+			   	   boolean estaEnElNivel) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.cantidadMonedas = cantidadMonedas;
 		//TODO se deberian setear con los establecer al crear el elemento?
 		this.esMovible = false;
-		this.estaFueraDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
+		this.estaDentroDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
+		this.estaEnElNivel = estaEnElNivel;
 	}
 	
 	public void consumirMonedas() {

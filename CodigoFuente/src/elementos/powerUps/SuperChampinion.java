@@ -13,7 +13,8 @@ public class SuperChampinion extends PowerUp {
 						   Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
-		this.estaFueraDeBloqueDePreguntas = false;
+		this.estaDentroDeBloqueDePreguntas = true;
+		this.estaEnElNivel = false;
 	}
 	
 	@Override
@@ -39,8 +40,9 @@ public class SuperChampinion extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
+		if(this.velocidadDireccional.y > 0) {
+			setSprite(fabricaSprites.getSuperChampinionSaliendoDelBloqueDePreguntas());
+		}
 	}
 	
 	

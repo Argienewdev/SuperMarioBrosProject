@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.Vector;
 
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaSprites;
 import visitors.Visitante;
 import visitors.VisitorKoopaEnCaparazon;
 
@@ -38,12 +37,6 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	@Override
 	public Visitante getVisitor() {
 		return new VisitorKoopaEnCaparazon(this);
-	}
-
-	@Override
-	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
