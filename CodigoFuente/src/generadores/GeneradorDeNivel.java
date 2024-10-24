@@ -19,8 +19,12 @@ import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
+import elementos.powerUps.ChampinionVerde;
+import elementos.powerUps.Estrella;
+import elementos.powerUps.FlorDeFuego;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
+import elementos.powerUps.SuperChampinion;
 import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
 import ventanas.DimensionesConstantes;
@@ -172,7 +176,8 @@ public class GeneradorDeNivel {
 	                }
 	                case 20: {
 	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, cantidadMonedas, null);
+	                	Point velocidadDireccional = new Point(0,0);
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, true);
 	                    Visitante visitorMonedas = new VisitorMonedas(monedas);
 	                    monedas.setVisitor(visitorMonedas);
 	                    ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);
@@ -181,6 +186,49 @@ public class GeneradorDeNivel {
 	                    nivel.addPowerUp(monedas);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoMonedas);
 	                    break;
+	                } case 21: {
+	                	Point velocidadDireccional = new Point(0,1);
+	                	Estrella estrella = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
+	                	Visitante visitorEstrella = new VisitorEstrella(estrella);
+	                	estrella.setVisitor(visitorEstrella);
+	                	ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrella);
+	                	estrella.setObserverGrafico(observerGraficoEstrella);
+	                	estrella.setNivel(nivel);
+	                	nivel.addPowerUp(estrella);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoEstrella);
+	                } case 22: {
+	                	Point velocidadDireccional = new Point(0,1);
+	                	ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
+	                	Visitante visitorChampinionVerde = new VisitorChampinionVerde();
+	                	champinionVerde.setVisitor(visitorChampinionVerde);
+	                	ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(champinionVerde);
+	                	champinionVerde.setObserverGrafico(observerGraficoChampinionVerde);
+	                	champinionVerde.setNivel(nivel);
+	                	nivel.addPowerUp(champinionVerde);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoChampinionVerde);
+	                	break;
+	                } case 23: {
+	                	Point velocidadDireccional = new Point(0,1);
+	                	FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
+	                	Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuego);
+	                	florDeFuego.setVisitor(visitorFlorDeFuego);
+	                	ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuego);
+	                	florDeFuego.setObserverGrafico(observerGraficoFlorDeFuego);
+	                	florDeFuego.setNivel(nivel);
+	                	nivel.addPowerUp(florDeFuego);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoFlorDeFuego);
+	                	break;
+	                } case 24: {
+	                	Point velocidadDireccional = new Point(0,1);
+	                	SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion, null, velocidadDireccional, null);
+	                	Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampinion);
+	                	superChampinion.setVisitor(visitorSuperChampinion);
+	                	ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampinion);
+	                	superChampinion.setObserverGrafico(observerGraficoSuperChampinion);
+	                	superChampinion.setNivel(nivel);
+	                	nivel.addPowerUp(superChampinion);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoSuperChampinion);
+	                	break;
 	                }
 	                case 40: {
 	                    Point velocidadDireccional= new Point(-1,0);	 

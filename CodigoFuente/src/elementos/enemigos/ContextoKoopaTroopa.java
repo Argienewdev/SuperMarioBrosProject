@@ -35,8 +35,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		// Segun su velocidad direccional actualizar el sprite
+		this.estado.actualizarSprite(fabricaSprites);
 	}
     
 }

@@ -10,10 +10,13 @@ public class Monedas extends PowerUp {
 
 	protected int cantidadMonedas;
 	
-	public Monedas(Sprite sprite, Point posicion, Visitante visitor, 
-			   	   ObserverGrafico observerGrafico, int cantidadMonedas) {
-		super(sprite, posicion, visitor, new Point (0,0), observerGrafico);
+	public Monedas(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,
+			   	   ObserverGrafico observerGrafico, int cantidadMonedas, boolean dentroDeBloqueDePreguntas) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.cantidadMonedas = cantidadMonedas;
+		//TODO se deberian setear con los establecer al crear el elemento?
+		this.esMovible = false;
+		this.estaFueraDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
 	}
 	
 	public void consumirMonedas() {

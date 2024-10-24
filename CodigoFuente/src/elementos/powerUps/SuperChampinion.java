@@ -12,6 +12,8 @@ public class SuperChampinion extends PowerUp {
 	public SuperChampinion(Sprite sprite, Point posicion, Visitante visitor,
 						   Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		this.esMovible = true;
+		this.estaFueraDeBloqueDePreguntas = false;
 	}
 	
 	@Override

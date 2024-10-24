@@ -71,9 +71,10 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePreguntaConMonedas(Point posicion, Visitante visitor,int cantidadMonedas, Nivel nivel){
+	public BloqueDePregunta getBloqueDePreguntaConMonedas(Point posicion, Visitante visitor, int cantidadMonedas, Nivel nivel){
+		Point velocidadDireccional = new Point(0,0);
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
-		Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, cantidadMonedas, null);
+		Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false);
 		Visitante visitorMonedas = new VisitorMonedas(monedasDentroBloqueDePregunta);
 		monedasDentroBloqueDePregunta.setVisitor(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasDentroBloqueDePregunta);
@@ -84,12 +85,10 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePreguntaSinMonedas(Point posicion, Visitante visitor,int identificadorPowerUp, Nivel nivel){
+	public BloqueDePregunta getBloqueDePreguntaSinMonedas(Point posicion, Visitante visitor, int identificadorPowerUp, Nivel nivel){
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver=null;
-		Point velocidadDireccional = new Point(0,0);
-		//La dirección  del power up debe ser contraria a la ubicación de Mario, por lo tanto no se inicializa acá
-		
+		Point velocidadDireccional = new Point(1,0);		
 		switch(identificadorPowerUp) {
 			case 21:{
 				Estrella powerUp = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
@@ -100,7 +99,7 @@ public class FabricaPlataformas {
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
 			}
 			case 22:{
-				ChampinionVerde powerUp = this.fabricaEntidades.getChampinionVerde(posicion, null, null);
+				ChampinionVerde powerUp = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
 				Visitante visitorChampinionVerde = new VisitorChampinionVerde(powerUp);
 				powerUp.setVisitor(visitorChampinionVerde);
 		        ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(powerUp);
@@ -108,7 +107,7 @@ public class FabricaPlataformas {
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, powerUp);
 			}
 			case 23:{
-				FlorDeFuego powerUp = this.fabricaEntidades.getFlorDeFuego(posicion, null, null);
+				FlorDeFuego powerUp = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
 				Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(powerUp);
 				powerUp.setVisitor(visitorFlorDeFuego);
 		        ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(powerUp);

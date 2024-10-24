@@ -23,9 +23,7 @@ public class ControladorVistas {
 	private SensorDeTeclasMenu sensorDeTeclasMenu;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
-	
-	private Interfaz hud;
-	
+		
 	protected Juego juego;	
 
 	
@@ -35,7 +33,6 @@ public class ControladorVistas {
 		pantallaFinal= new PantallaFinal();
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		pantallaDeJuego= new PantallaDeJuego();
-		hud = new Interfaz();
 		this.juego = juego;
 		
 		configurarVentana();
@@ -52,7 +49,6 @@ public class ControladorVistas {
 		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
 		ventana.setLocationRelativeTo(null);
 		ventana.pack();
-		ventana.setGlassPane(hud);
 		ventana.setVisible(true);
 	}
 	
