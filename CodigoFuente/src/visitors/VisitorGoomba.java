@@ -7,11 +7,12 @@ import elementos.powerUps.*;
 public class VisitorGoomba implements Visitante {
 	
 	protected Goomba miEntidad;
+	
 	DetectorDireccionColision detectorDireccionColision;
 	
 	public VisitorGoomba (Goomba miEntidad) {
 		this.miEntidad = miEntidad;
-		detectorDireccionColision= new DetectorDireccionColision(miEntidad);
+		this.detectorDireccionColision = new DetectorDireccionColision(miEntidad);
 	}
 
 	@Override
@@ -176,17 +177,6 @@ public class VisitorGoomba implements Visitante {
 	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
 		
-	}
-	private boolean choquePorDerecha(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x + miEntidad.obtenerHitbox().width > bloque.obtenerHitbox().x;
-		boolean parte2 = !(miEntidad.getPosicion().x + miEntidad.obtenerAncho() > bloque.getPosicion().x);
-		return parte1 && parte2;
-	}
-	
-	private boolean choquePorIzquierda(BloqueSolido bloque) {
-		boolean parte1 = miEntidad.obtenerHitbox().x < bloque.obtenerHitbox().x + bloque.obtenerHitbox().width;
-		boolean parte2 = !(miEntidad.getPosicion().x < bloque.getPosicion().x + bloque.obtenerAncho());
-		return parte1 && parte2;
 	}
 
 	@Override

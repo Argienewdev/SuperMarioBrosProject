@@ -8,8 +8,11 @@ public class VisitorSuperChampinion implements Visitante {
 	
 	protected SuperChampinion miEntidad;
 	
+	protected DetectorDireccionColision detectarDireccionColision;
+	
 	public VisitorSuperChampinion (SuperChampinion miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectarDireccionColision= new DetectorDireccionColision(miEntidad);
 	}
 
 	@Override
@@ -111,8 +114,17 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if (detectarDireccionColision.choquePorDerecha(bloquePregunta) || detectarDireccionColision.choquePorIzquierda(bloquePregunta)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(detectarDireccionColision.choquePorArriba(bloquePregunta)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(detectarDireccionColision.choquePorAbajo(bloquePregunta)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
 	}
 
 	@Override
@@ -156,10 +168,18 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
+		if (detectarDireccionColision.choquePorDerecha(bloqueSolido) || detectarDireccionColision.choquePorIzquierda(bloqueSolido)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(detectarDireccionColision.choquePorArriba(bloqueSolido)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(detectarDireccionColision.choquePorAbajo(bloqueSolido)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
 	}
-
-
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
@@ -181,8 +201,17 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(Piso piso) {
-		// TODO Auto-generated method stub
-		
+		if (detectarDireccionColision.choquePorDerecha(piso) || detectarDireccionColision.choquePorIzquierda(piso)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(detectarDireccionColision.choquePorArriba(piso)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(detectarDireccionColision.choquePorAbajo(piso)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
 	}
 	
 }

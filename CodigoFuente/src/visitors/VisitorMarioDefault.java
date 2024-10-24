@@ -39,8 +39,8 @@ public class VisitorMarioDefault implements Visitante{
 	
 	public VisitorMarioDefault (MarioDefault miEstado) {
 		this.miEstado = miEstado;
-		miEntidad=miEstado.getContext();
-		detectarDireccionColision= new DetectorDireccionColision(miEntidad);
+		this.miEntidad = miEstado.getContext();
+		this.detectarDireccionColision = new DetectorDireccionColision(miEntidad);
 	}
 	
 	@Override
