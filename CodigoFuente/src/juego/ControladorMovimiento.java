@@ -35,9 +35,9 @@ public class ControladorMovimiento {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
 		this.marioJugable.setVelocidadDireccional(new Point(0,0));
-		velocidadHorizontal = 0;
-		velocidadVertical = 0;
-		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
+		this.velocidadHorizontal = 0;
+		this.velocidadVertical = 0;
+		this.posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
 		this.nivel = nivel;
 		this.gestorDeColisiones = gestorDeColisiones;
 	}

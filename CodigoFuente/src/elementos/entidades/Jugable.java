@@ -12,9 +12,7 @@ public abstract class Jugable extends Entidad {
 	protected int puntos;
 	
 	protected Monedas monedas;
-	
-	private boolean colisionAbajo;
-	
+		
 	private boolean colisionArriba;
 	
 	private boolean enElAire;
@@ -67,10 +65,6 @@ public abstract class Jugable extends Entidad {
 	public abstract void saltar(Point direccion);
 	
 	public abstract void aceptarVisitante(Visitante visitante);
-	
-	public void setColisionAbajo(boolean colisionAbajo) {
-		this.colisionAbajo = colisionAbajo;
-	}
 	
 	public boolean getColisionAbajo() {
 		return this.colisionAbajo;

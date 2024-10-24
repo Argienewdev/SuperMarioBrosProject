@@ -117,8 +117,17 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
+		if (detectarDireccionColision.choquePorDerecha(ladrillo) || detectarDireccionColision.choquePorIzquierda(ladrillo)) {
+			miEntidad.retrotraerMovimientoHorizontal();
+		}
+		if(detectarDireccionColision.choquePorArriba(ladrillo)) {
+			miEntidad.setColisionAbajo(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
+		}
+		if(detectarDireccionColision.choquePorAbajo(ladrillo)){
+			miEntidad.setColisionArriba(true);
+			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
+		}
 	}
 
 	@Override

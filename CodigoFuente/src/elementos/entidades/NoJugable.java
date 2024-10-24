@@ -14,6 +14,7 @@ public abstract class NoJugable extends Entidad {
 		super(sprite, posicion, visitor);
 		this.velocidadDireccional = velocidadDireccional;
 		this.observerGrafico = observerGrafico;
+		this.colisionAbajo = true;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);

@@ -25,6 +25,10 @@ public class MasterMind {
 	protected Nivel nivel;
 	
 	private int contadorDeTicks;
+	
+	private static final int GRAVEDAD = 3;
+	
+	private static final int FUERZA_SALTO = -30;
 			
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
@@ -124,7 +128,7 @@ public class MasterMind {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			contadorDeTicks++;
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks > 120) {
-			powerUp.setVelocidadDireccional(new Point(powerUp.getPosicion().x,powerUp.getPosicion().y-3));
+			aplicarGravedad(powerUp);
 			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
 		} else if(contadorDeTicks >= 1) {
 			contadorDeTicks++;
@@ -158,6 +162,12 @@ public class MasterMind {
 	private void actualizarLabelsPowerUps() {
 		for(PowerUp powerUp : this.powerUps) {
 			powerUp.getObserverGrafico().actualizar();
+		}
+	}
+	
+	private void aplicarGravedad(NoJugable noJugable) {
+		if(noJugable.getVelocidadDireccional().y >= FUERZA_SALTO){
+			noJugable.setVelocidadDireccional(new Point(noJugable.getVelocidadDireccional().x, noJugable.getVelocidadDireccional().y + GRAVEDAD));
 		}
 	}
 	

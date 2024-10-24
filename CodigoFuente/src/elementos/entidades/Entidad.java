@@ -14,6 +14,8 @@ public abstract class Entidad extends ElementoDeJuego {
     
     protected ObserverGrafico observerGrafico;
     
+	protected boolean colisionAbajo;
+    
     public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 	}
@@ -37,6 +39,10 @@ public abstract class Entidad extends ElementoDeJuego {
     public void establecerPosicion(Point pos) {
     	this.posicion = pos;
     }
+    
+    public void setColisionAbajo(boolean colisionAbajo) {
+		this.colisionAbajo = colisionAbajo;
+	}
     
 	public abstract void aceptarVisitante(Visitante visitante);
 	
