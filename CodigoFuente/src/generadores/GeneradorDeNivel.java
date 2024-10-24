@@ -33,6 +33,8 @@ import java.io.*;
 
 public class GeneradorDeNivel {
 	
+	protected static final int VELOCIDAD_HORIZONTAL_ENEMIGOS = -2;
+	
 	protected FabricaEntidades fabricaEntidades;
 	
 	protected FabricaSilueta fabricaSilueta;
@@ -120,7 +122,7 @@ public class GeneradorDeNivel {
 	                }
 	                case 4: {
 	                    Visitante visitor = new VisitorBloqueDePregunta();
-	                    int identificadorPowerUp = numeros[3];
+	                    int identificadorPowerUp = 21;
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePreguntaSinMonedas(posicion, visitor, identificadorPowerUp,nivel);
 	                    ObserverGrafico observerGraficoBloqueDePreguntaSinMonedas = new ObserverGrafico(bloqueDePregunta);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePreguntaSinMonedas);
@@ -183,7 +185,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 40: {
-	                    Point velocidadDireccional= new Point(-1,0);	 
+	                    Point velocidadDireccional= new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS,0);	 
 	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion, null, velocidadDireccional, null);
 	                    Visitante visitorLakitu = new VisitorLakitu(lakitu);
 	                    lakitu.setVisitor(visitorLakitu);
@@ -195,7 +197,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 41: {
-	                    Point velocidadDireccional = new Point(-1, 0);
+	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
 	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion, null, velocidadDireccional, null);
 	                    Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(contextoKoopaTroopa);
 	                    contextoKoopaTroopa.setVisitor(visitorContextoKoopaTroopa);
@@ -207,7 +209,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 42: {
-	                    Point velocidadDireccional = new Point(-1, 0);
+	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
 	                    Goomba goomba = fabricaEntidades.getGoomba(posicion, null, velocidadDireccional, null);
 	                    Visitante visitorGoomba = new VisitorGoomba(goomba);
 	                    goomba.setVisitor(visitorGoomba);
@@ -219,7 +221,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 43: {
-	                    Point velocidadDireccional = new Point(-1, 0);
+	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
 	                    Spiny spiny = fabricaEntidades.getSpiny(posicion, null, velocidadDireccional, null);
 	                    Visitante visitorSpiny = new VisitorSpiny(spiny);
 	                    spiny.setVisitor(visitorSpiny);
@@ -231,7 +233,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 44: {
-	                    Point velocidadDireccional = new Point(-1, 0);
+	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
 	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.getBuzzyBeetle(posicion, null, velocidadDireccional, null);
 	                    Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyBeetle);
 	                    buzzyBeetle.setVisitor(visitorBuzzy);

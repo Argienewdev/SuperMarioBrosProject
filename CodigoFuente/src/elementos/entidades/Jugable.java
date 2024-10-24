@@ -94,7 +94,9 @@ public abstract class Jugable extends Entidad {
 		this.moverHitbox(this.posicion);
 		this.setPosicion(nuevaPosicion);
 		this.setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
-		this.setEnElAire(false);
+		if(this.getColisionAbajo()) {
+			this.setEnElAire(false);
+		}
 	}
 	
 	public boolean getEnElAire() {
