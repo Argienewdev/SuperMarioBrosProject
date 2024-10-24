@@ -8,6 +8,12 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class PowerUp extends NoJugable {
+	
+	protected boolean esMovible;
+	
+	protected boolean estaDentroDeBloqueDePreguntas;
+	
+	protected boolean estaEnElNivel;
 
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
 				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
@@ -23,9 +29,33 @@ public abstract class PowerUp extends NoJugable {
 	public abstract int obtenerPuntosPorInvulnerable();
 	
 	public abstract int obtenerPuntosPorFuego();
+	
+	public boolean estaDentroDeBloqueDePreguntas() {
+		return this.estaDentroDeBloqueDePreguntas;
+	}
+
+	public boolean esMovible() {
+		return this.esMovible;
+	}
+	
+	public void establecerEsMovible(boolean esMovible) {
+		this.esMovible = esMovible;
+	}
+	
+	public void establecerEstaDentroDeBloqueDePreguntas(boolean estaDentroDeBloqueDePreguntas) {
+		this.estaDentroDeBloqueDePreguntas = estaDentroDeBloqueDePreguntas;
+	}
 
 	public void eliminarDelNivel() {
 		this.miNivel.removePowerUp(this);
+	}
+	
+	public boolean estaEnElNivel() {
+		return this.estaEnElNivel;
+	}
+
+	public void establecerEstaEnNivel(boolean estaEnNivel) {
+		this.estaEnElNivel = estaEnNivel;
 	}
 
 }

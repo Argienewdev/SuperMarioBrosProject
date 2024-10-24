@@ -50,6 +50,8 @@ public class BloqueDePregunta extends BloqueSolido {
 		if (!estaVacio) {
 			Nivel nivel = powerUp.getNivel();
 			nivel.addPowerUp(powerUp);
+			powerUp.establecerEstaDentroDeBloqueDePreguntas(false);
+			powerUp.establecerEstaEnNivel(true);
 		}
 		return this.powerUp;
 	}

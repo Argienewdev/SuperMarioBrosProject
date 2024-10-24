@@ -35,7 +35,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		estado.actualizarSprite(fabricaSprites);
+		this.estado.actualizarSprite(fabricaSprites);
 	}
     
 }

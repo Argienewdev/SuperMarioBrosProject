@@ -134,6 +134,7 @@ public class VisitorMarioDefault implements Visitante{
 		}
 		if(choquePorAbajo(bloquePregunta)){
 			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+			bloquePregunta.liberarPowerUp();
 		}
 	}
 

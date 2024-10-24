@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Point;
+import java.util.Iterator;
+import java.util.List;
 
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
@@ -120,13 +122,14 @@ public class ControladorMovimiento {
 			huboColision = true;
 			marioJugable.retrotraerMovimientoHorizontal();
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-		        if(entidad.huboColision(elemento)) {
-		        	huboColision = true;
-		            entidad.aceptarVisitante(elemento.getVisitor());
-		            elemento.aceptarVisitante(entidad.getVisitor());
-		        }
-		    }
+			for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+			    if (entidad.huboColision(elemento)) {
+			        huboColision = true;
+			        entidad.aceptarVisitante(elemento.getVisitor());
+			        elemento.aceptarVisitante(entidad.getVisitor());
+			    }
+			}
+
 		}
 	    if(!huboColision) {
 	    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());

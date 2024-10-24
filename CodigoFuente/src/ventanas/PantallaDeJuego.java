@@ -65,8 +65,6 @@ public class PantallaDeJuego extends JPanel {
         mostrarLabels();
         establecerFondo();
         
-        // Asegurar que el HUD esté en la capa superior
-        setComponentZOrder(hud, 0);
         revalidate();
         repaint();
     }

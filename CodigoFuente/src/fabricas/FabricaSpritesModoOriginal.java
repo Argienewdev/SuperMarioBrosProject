@@ -315,8 +315,13 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getSuperChampinion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.png");
+    public Sprite getSuperChampinionSaliendoDelBloqueDePreguntas() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.gif");
+    }
+    
+    @Override
+    public Sprite getSuperChampinionQuieto() {
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/superChampinion.png");
     }
 
     @Override

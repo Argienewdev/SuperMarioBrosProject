@@ -39,6 +39,7 @@ public class FabricaEntidades {
 													  ObserverGrafico observerGrafico) {
     	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial= new KoopaDefault();
+    	posicion.move(posicion.x, posicion.y - 25);
     	return new  ContextoKoopaTroopa(sprite, posicion, visitor, velocidadDireccional, observerGrafico, estadoInicial);
     }
        
@@ -83,32 +84,37 @@ public class FabricaEntidades {
     } 
     
     @SuppressWarnings("exports")
-	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor,
+	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor, 
+											  Point velocidadDireccional,
 											  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getChampinionVerde();
-        return new ChampinionVerde(sprite, posicion, visitor, observer);
+        return new ChampinionVerde(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     
     @SuppressWarnings("exports")
-	public SuperChampinion getSuperChampinion(Point posicion, Visitante visitor, 
+	public SuperChampinion getSuperChampinion(Point posicion, Visitante visitor,
 											  Point velocidadDireccional, 
 											  ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getSuperChampinion();
+        Sprite sprite = fabricaSprites.getSuperChampinionQuieto();
         return new SuperChampinion(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     
     @SuppressWarnings("exports")
 	public FlorDeFuego getFlorDeFuego(Point posicion, Visitante visitor,
+									  Point velocidadDireccional,
 									  ObserverGrafico observer) {
         Sprite sprite = fabricaSprites.getFlorDeFuegoPrimeraTransicion();
-        return new FlorDeFuego(sprite,posicion,visitor, observer);
+        return new FlorDeFuego(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     
     @SuppressWarnings("exports")
 	public Monedas getMonedas(Point posicion, Visitante visitor,
-							  int cantidad, ObserverGrafico observer ) {
+							  Point velocidadDireccional,
+							  ObserverGrafico observer, int cantidad, 
+							  boolean estaDentroDeBloqueDePreguntas,
+							  boolean estaEnElNivel) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
-        return new Monedas(sprite,posicion,visitor,observer, cantidad);
+        return new Monedas(sprite, posicion, visitor, velocidadDireccional, observer, cantidad, estaDentroDeBloqueDePreguntas, estaEnElNivel);
     }
     
     @SuppressWarnings("exports")

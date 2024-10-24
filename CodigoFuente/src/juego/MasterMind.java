@@ -64,28 +64,20 @@ public class MasterMind {
 		cambiarYVerificarPosicionHitboxDeEnemigo(enemigo);
 	}
 	
-	private void cambiarYVerificarPosicionHitboxDeEnemigo(Enemigo enemigo) {
-		cambiarPosicionHitboxDeEnemigoX(enemigo);
+	private void cambiarYVerificarPosicionHitboxDeEnemigo(NoJugable enemigo) {
+		cambiarPosicionXHitboxDeNoJugable(enemigo);
 		verificarColisiones(enemigo);
-		cambiarPosicionHitboxDeEnemigoY(enemigo);
+		cambiarPosicionYHitboxDeNoJugable(enemigo);
 		verificarColisiones(enemigo);
 	}
 	
-	private void actualizarPosicionesPowerUps() {
-		for(PowerUp powerUp : this.powerUps) {
-			powerUp.setPosicion(new Point(powerUp.getPosicion().x+1,powerUp.getPosicion().y));
-			powerUp.setVelocidadDireccional(new Point(1,0));
-		}
-		
-	}
-	
-	private void cambiarPosicionHitboxDeEnemigoX(Enemigo enemigo) {
+	private void cambiarPosicionXHitboxDeNoJugable(NoJugable enemigo) {
 		int nuevaPosicionX = enemigo.obtenerHitbox().x + enemigo.getVelocidadDireccional().x;
 		Point nuevaPosicion = new Point(nuevaPosicionX, enemigo.getPosicion().y);
 		enemigo.moverHitbox(nuevaPosicion);
 	}
 	
-	private void cambiarPosicionHitboxDeEnemigoY(Enemigo enemigo) {
+	private void cambiarPosicionYHitboxDeNoJugable(NoJugable enemigo) {
 		int nuevaPosicionY = enemigo.obtenerHitbox().y + enemigo.getVelocidadDireccional().y;
 		Point nuevaPosicion = new Point(enemigo.getPosicion().x, nuevaPosicionY);
 		enemigo.moverHitbox(nuevaPosicion);
@@ -94,6 +86,10 @@ public class MasterMind {
 	private void verificarColisiones(NoJugable noJugable) {
 		boolean huboColision = false;
 		if(noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) {
+			huboColision = true;
+			noJugable.eliminarDelNivel();
+		} else if (noJugable.obtenerHitbox().y < 2){
+			//TODO si cae al vacio
 			huboColision = true;
 			noJugable.eliminarDelNivel();
 		} else {
@@ -115,6 +111,30 @@ public class MasterMind {
 	private void invertirVelocidadDireccional(NoJugable noJugable) {
 		Point velocidadDireccionalActual = noJugable.getVelocidadDireccional();
 		noJugable.setVelocidadDireccional(new Point(-velocidadDireccionalActual.x,velocidadDireccionalActual.y));
+	}
+	
+	private void actualizarPosicionesPowerUps() {
+		for(PowerUp powerUp : this.powerUps) {
+			moverPowerUp(powerUp);
+		}
+	}
+	
+	private void moverPowerUp(PowerUp powerUp) {
+		//TODO se va a mover porque el visitor del bloque de preguntas, cuando es chocado por mario
+		// le tiene que decir al power up que ya no esta
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && !powerUp.estaEnElNivel()) {
+			sacarPowerUpDeBloqueDePreguntas(powerUp);
+		} 
+		if(powerUp.esMovible() && powerUp.estaEnElNivel()) {
+			cambiarPosicionXHitboxDeNoJugable(powerUp);
+			verificarColisiones(powerUp);
+			cambiarPosicionYHitboxDeNoJugable(powerUp);
+			verificarColisiones(powerUp);
+		}
+	}
+	
+	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
+		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 	
 	private void actualizarSpritesEnemigos() {

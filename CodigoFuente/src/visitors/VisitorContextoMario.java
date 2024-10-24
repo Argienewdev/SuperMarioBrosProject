@@ -118,13 +118,6 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
 		bloquePregunta.aceptarVisitante(miEntidad.getEstado().getVisitor());
-		/*
-		if (!bloquePregunta.estaVacio()) {
-			bloquePregunta.liberarPowerUp();
-		}
-		bloquePregunta.setVacio(true);
-		*/
-		
 	}
 
 	@Override
