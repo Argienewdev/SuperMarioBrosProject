@@ -296,7 +296,7 @@ public class GeneradorDeNivel {
 	                }
                 }
 			}
-		} catch (IOException exception) {
+		} catch (IOException | ArrayIndexOutOfBoundsException exception) {
 			exception.printStackTrace();
 		} finally {
 			try {
