@@ -4,6 +4,7 @@
 /**
  * 
  */
-module superMario  {
+module CodigoFuente  {
+	exports juego;
 	requires java.desktop;
 }
