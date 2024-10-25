@@ -93,14 +93,15 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarMonedas(Monedas moneda) {
-		Nivel nivel = moneda.getNivel();
-		this.miEntidad.ganarPuntos(5);
-		moneda.eliminarDelNivel();
+		this.miEntidad.ganarPuntos(moneda.obtenerPuntosPorDefault());
+    	moneda.eliminarDelNivel();
 	}
 
 	@Override
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		bloqueDePregunta.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+            bloqueDePregunta.liberarPowerUp();
+        }
 	}
 
 	@Override
@@ -110,57 +111,41 @@ public class VisitorContextoMario implements Visitante {
 	
 	@Override
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		//TODO
 	}
 
 	@Override
 	public void visitarBandera(Bandera bandera) {
+		//TODO
 	}
 
 	@Override
-	public void visitarTuberia(Tuberia tuberia) {
-	}
+	public void visitarTuberia(Tuberia tuberia) {}
 
 	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		bloqueSolido.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
-	}
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
 	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {
-	}
+	public void visitarContextoMario(ContextoMario contextoMario) {}
 
 	@Override
-	public void visitarMarioDefault(MarioDefault marioDefault) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarMarioDefault(MarioDefault marioDefault) {}
 
 	@Override
-	public void visitarSuperMario(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarSuperMario(SuperMario superMario) {}
 
 	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarMarioFuego(MarioFuego marioFuego) {}
 
 	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+	
+	@Override
+	public void visitarPiso(Piso piso) {}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
 		this.miEntidad.ganarPuntos(puntos);
 		enemigo.eliminarDelNivel();
-	}
-	
-	@Override
-	public void visitarPiso(Piso piso) {
-		piso.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 }

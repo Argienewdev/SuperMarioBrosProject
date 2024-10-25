@@ -22,48 +22,46 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // Implementación pendiente
+        // TODO Implementación pendiente
     }
 
     @Override
-    public void visitarFireball(Fireball fireball) {
-        // Implementación pendiente
-    }
+    public void visitarFireball(Fireball fireball) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -87,70 +85,42 @@ public class VisitorMarioDefault implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-        // Implementación pendiente
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
-        }
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {
-        // Implementación pendiente
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPiso(Piso piso) {
-        // Implementación pendiente
-    }
+    public void visitarPiso(Piso piso) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // Implementación pendiente
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-        // Implementación pendiente
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-        // Implementación pendiente
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        // Implementación pendiente
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {
-        // Implementación pendiente
-    }
+    public void visitarContextoMario(ContextoMario contextoMario) {}
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-        // Implementación pendiente
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-        // Implementación pendiente
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-        // Implementación pendiente
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // Implementación pendiente
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
 }

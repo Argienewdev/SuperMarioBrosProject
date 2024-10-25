@@ -96,7 +96,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     
     @Override
 	public Sprite getMarioFuegoCayendo() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoFrontalCayendo.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoCayendo.png");
 	}
 
     @Override
