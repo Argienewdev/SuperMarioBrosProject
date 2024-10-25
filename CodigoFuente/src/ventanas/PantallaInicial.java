@@ -126,7 +126,7 @@ public class PantallaInicial extends JPanel {
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
 			 else if(currentLabel == ranking) {
-				
+				controlador.accionarPantallaRanking();
 			 }
 		 }
 		 

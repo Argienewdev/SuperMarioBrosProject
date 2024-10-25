@@ -365,7 +365,11 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.png");
     }
 
-	@Override
+	public Sprite getPowerUpInactivo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
 	public Sprite getPiso() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piso.png");
 	}
@@ -374,4 +378,5 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	public Sprite getSpriteInvisible() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
+
 }

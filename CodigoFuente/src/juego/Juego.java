@@ -1,6 +1,14 @@
 package juego;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import elementos.Sprite;
 import elementos.entidades.Jugable;
@@ -14,6 +22,8 @@ import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
+import launcher.Jugador;
+import launcher.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import sonido.ReproductorDeMusicaFondo;
@@ -23,10 +33,6 @@ import ventanas.PantallaDeJuego;
 public class Juego {
 	
 	protected ArrayList<Nivel> niveles;
-	
-	private static Juego juego;
-	
-	private BucleJuego bucleJuego;
 		
 	private ControladorVistas controladorVistas;
 	
@@ -44,6 +50,25 @@ public class Juego {
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
+	private Ranking ranking;
+	
+	public Juego() {
+		ranking = new Ranking();
+		try {
+			FileInputStream  fileInputStream = new FileInputStream("./puntajes");
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			Jugador jugador = (Jugador) objectInputStream.readObject();
+			objectInputStream.close();
+		} catch (FileNotFoundException e) {
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void actualizar() {
 		controladorVistas.refrescar();
 	}
@@ -51,6 +76,10 @@ public class Juego {
 	public Sprite obtenerSpriteMario(){
 		this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 		return fabricaSprites.getMarioDefaultFrontalQuieto();
+	}
+	
+	public Ranking obtenerRanking() {
+		return this.ranking;
 	}
 	
 	public void render() {
@@ -72,9 +101,40 @@ public class Juego {
 		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites);
 		return partida.obtenerJugador();
 	}
+	
+	public void finalizarPartida (Jugador jugador) {
+		//TODO logica de fin de partida
+		ranking.agregarJugador(jugador);
+	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
 		this.controladorVistas=controladorVistas;
+	}
+	
+	public void cierreDeJuego() {
+		 guardarEstado();
+	     //TODO liberarRecursos(); si fuera necesario
+	     mostrarMensaje("Gracias por jugar!");
+	     System.exit(0);
+	}
+	
+	private void guardarEstado() {
+		try {
+			FileOutputStream  fileOutputStream = new FileOutputStream("./puntajes");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(ranking);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		  catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje);
 	}
 	
 }
