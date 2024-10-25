@@ -142,8 +142,7 @@ public class VisitorSuperChampinion implements Visitante {
 	}
 
 	@Override
-	public void visitar(BloqueSolido bloqueSolido) {
-	}
+	public void visitar(BloqueSolido bloqueSolido) {}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
