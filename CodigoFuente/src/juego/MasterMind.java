@@ -24,16 +24,13 @@ public class MasterMind {
 	
 	protected Nivel nivel;
 	
-	private int contadorDeTicks;
-	
 	private static final int GRAVEDAD = 3;
 	
-	private static final int FUERZA_SALTO = -30;
+	private static final int FUERZA_SALTO = -10;
 			
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		this.contadorDeTicks = 0;
 		crearColeccionDeEnemigos();
 		crearColeccionDePowerUps();
 	}
@@ -116,14 +113,14 @@ public class MasterMind {
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks == 0) {
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() == 0) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
-			contadorDeTicks++;
-		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks > 120) {
+			powerUp.incrementarContadorTicks();
+		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() > powerUp.getTicksHastaSalirDelBloque()) {
 			aplicarGravedad(powerUp);
 			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
-		} else if(contadorDeTicks >= 1) {
-			contadorDeTicks++;
+		} else if(powerUp.getContadorTicks() >= 1) {
+			powerUp.incrementarContadorTicks();
 		}
 	}
 	

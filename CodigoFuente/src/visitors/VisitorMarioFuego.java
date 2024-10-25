@@ -33,11 +33,14 @@ public class VisitorMarioFuego implements Visitante{
 
 	protected EstadoMario miEstado;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	private ContextoMario miEntidad;
 	
 	public VisitorMarioFuego(MarioFuego marioFuego) {
 		this.miEstado = miEstado;
-		miEntidad=miEstado.getContext();
+		this.miEntidad = miEstado.getContext();
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -126,8 +129,9 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if(detectorDireccionColision.choquePorAbajo(bloquePregunta, miEntidad)) {
+			bloquePregunta.liberarPowerUp();
+		}		
 	}
 
 	@Override

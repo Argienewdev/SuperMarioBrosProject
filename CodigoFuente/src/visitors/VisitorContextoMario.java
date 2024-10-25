@@ -124,8 +124,6 @@ public class VisitorContextoMario implements Visitante {
 		ladrillo.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 	
-	
-	
 	@Override
 	public void visitar(Vacio vacio) {
 	}
