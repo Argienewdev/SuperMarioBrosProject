@@ -49,5 +49,8 @@ public abstract class PowerUp extends NoJugable {
 	public int getTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
 	
 }
