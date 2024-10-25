@@ -137,6 +137,7 @@ public class GeneradorDeNivel {
 	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion, null);
 	                    Visitante visitor = new VisitorBandera(this.controladorVistas,bandera);
 	                    ObserverGrafico observerGraficoBandera = new ObserverGrafico(bandera);
+	                    bandera.setVisitor(visitor);
 	                    bandera.setObserverGrafico(observerGraficoBandera);
 	                    bandera.setNivel(nivel);
 	                    nivel.addPlataforma(bandera);
@@ -147,6 +148,7 @@ public class GeneradorDeNivel {
 	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, null);
 	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas,princesaPeach);
 	                    ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeach);
+	                    princesaPeach.setVisitor(visitor);
 	                    princesaPeach.setObserverGrafico(observerGraficoPrincesaPeach);
 	                    princesaPeach.setNivel(nivel);
 	                    nivel.addPlataforma(princesaPeach);

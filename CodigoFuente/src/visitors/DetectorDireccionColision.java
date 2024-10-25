@@ -24,8 +24,8 @@ public class DetectorDireccionColision {
 	}
 	
 	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
-		boolean parte1 = elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerHitbox().width > entidad.obtenerHitbox().x;
-		boolean parte2 = !(elementoDeJuego.getPosicion().x + elementoDeJuego.obtenerAncho() > entidad.getPosicion().x);
+		boolean parte1 = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
+		boolean parte2 = !(entidad.getPosicion().x + entidad.obtenerAncho() > elementoDeJuego.getPosicion().x);
 		return parte1 && parte2;
 	}
 	

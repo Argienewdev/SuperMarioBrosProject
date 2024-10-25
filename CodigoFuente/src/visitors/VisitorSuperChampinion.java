@@ -146,7 +146,7 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		miEntidad.retrotraerMovimientoHorizontal();
+		//miEntidad.retrotraerMovimientoHorizontal();
 	}
 
 	@Override
