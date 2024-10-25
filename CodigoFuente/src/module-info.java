@@ -4,7 +4,7 @@
 /**
  * 
  */
-module CodigoFuente  {
+module superMario  {
 	exports elementos;
 	exports fabricas;
 	exports fuentes;
@@ -16,6 +16,5 @@ module CodigoFuente  {
 	exports sonido;
 	exports ventanas;
 	exports visitors;
-	exports vista;
 	requires java.desktop;
 }
