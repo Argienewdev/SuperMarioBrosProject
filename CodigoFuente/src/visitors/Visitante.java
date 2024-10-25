@@ -7,57 +7,58 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 
 public interface Visitante {
-	
-	public void visitar(BuzzyBeetle buzzy);
+    
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle);
 
-	public void visitar(Spiny spiny);
+    public void visitarSpiny(Spiny spiny);
 
-	public void visitar(Goomba goomba);
-	
-	public void visitar(ContextoKoopaTroopa contextoKoopa);
-	
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon);
+    public void visitarGoomba(Goomba goomba);
+    
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa);
+    
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon);
 
-	public void visitar(KoopaDefault koopaDefault);
-	
-	public void visitar(Lakitu lakitu);
-	
-	public void visitar(PiranhaPlant planta);
-	
-	public void visitar(Fireball fireball);
-	
-	public void visitar(SuperChampinion superChamp);
-	
-	public void visitar(FlorDeFuego flor);
+    public void visitarKoopaDefault(KoopaDefault koopaDefault);
+    
+    public void visitarLakitu(Lakitu lakitu);
+    
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant);
+    
+    public void visitarFireball(Fireball fireball);
+    
+    public void visitarSuperChampinion(SuperChampinion superChampinion);
+    
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego);
 
-	public void visitar(ChampinionVerde champVerde);
-	
-	public void visitar(Estrella estrella);
-	
-	public void visitar(Monedas monedas);
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde);
+    
+    public void visitarEstrella(Estrella estrella);
+    
+    public void visitarMonedas(Monedas monedas);
 
-	public void visitar(BloqueDePregunta bloquePregunta);
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta);
 
-	public void visitar(Ladrillo ladrillo);
-	
-	public void visitar(PrincesaPeach princesa);
+    public void visitarLadrillo(Ladrillo ladrillo);
+    
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach);
 
-	public void visitar(Bandera bandera);
-	
-	public void visitar(Tuberia tuberia);
+    public void visitarBandera(Bandera bandera);
+    
+    public void visitarTuberia(Tuberia tuberia);
 
-	public void visitar(BloqueSolido bloqueSolido);
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido);
 
-	public void visitar(Piso piso);
-	
-	public void visitar(ContextoMario contextoMario);
-	
-	public void visitar(MarioDefault marioDefault);
-	
-	public void visitar(SuperMario superMario);
+    public void visitarPiso(Piso piso);
+    
+    public void visitarContextoMario(ContextoMario contextoMario);
+    
+    public void visitarMarioDefault(MarioDefault marioDefault);
+    
+    public void visitarSuperMario(SuperMario superMario);
 
-	public void visitar(MarioFuego marioFuego);
-	
-	public void visitar(MarioInvulnerable marioInvulnerable);
-	
+    public void visitarMarioFuego(MarioFuego marioFuego);
+    
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable);
+    
 }
+

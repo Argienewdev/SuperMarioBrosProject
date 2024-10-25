@@ -6,12 +6,8 @@ import elementos.entidades.Entidad;
 
 public class DetectorDireccionColision {
 	
-	
-	public DetectorDireccionColision() {
-	}
-	
 	public void verificarColision(ElementoDeJuego elementoDeJuego, Entidad entidad) {
-		if (choquePorDerecha(elementoDeJuego, entidad) || choquePorIzquierda(elementoDeJuego, entidad)) {
+		if(choquePorDerecha(elementoDeJuego, entidad) || choquePorIzquierda(elementoDeJuego, entidad)) {
 	    	entidad.retrotraerMovimientoHorizontal();
 		}else if(choquePorArriba(elementoDeJuego, entidad)) {
 			entidad.setColisionAbajo(true);
@@ -61,4 +57,5 @@ public class DetectorDireccionColision {
 		boolean parte3 = entidad.getVelocidadDireccional().y < 0;
 		return parte1 && parte2 && parte3;
 	}
+	
 }
