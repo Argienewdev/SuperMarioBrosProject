@@ -26,12 +26,13 @@ public class ControladorMovimiento {
 	private Nivel nivel;
 	
 	@SuppressWarnings("exports")
-	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego) {
+	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
 		this.marioJugable.setVelocidadDireccional(new Point(0,0));
 		this.velocidadHorizontal = 0;
 		this.velocidadVertical = 0;
+		this.nivel = nivel;
 	}
 	
 	public void actualizarPosicion() {
