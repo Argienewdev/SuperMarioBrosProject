@@ -12,6 +12,7 @@ public abstract class NoJugable extends Entidad {
 	
 	protected boolean removido;
 	
+	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
 					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor);
@@ -24,13 +25,17 @@ public abstract class NoJugable extends Entidad {
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public void actualizarVisual(FabricaSprites fabricaSprites) {
-		if(this.removido) {
-			this.setSprite(fabricaSprites.getSpriteInvisible());
+		if(this.removido) {		
+			this.elminarEntidadGraficamente(fabricaSprites);
 		}else {
 			this.actualizarSprite(fabricaSprites);
+
 		}
 	}
-	
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
+
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 
 	public void eliminarDelNivel() {

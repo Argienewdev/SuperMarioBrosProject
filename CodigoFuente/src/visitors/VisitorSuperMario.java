@@ -96,8 +96,8 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
         if (detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
-        }
+        	bloqueDePregunta.liberarPowerUp();
+        }   
     }
 
     @Override
