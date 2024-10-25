@@ -92,10 +92,9 @@ public class MasterMind {
 	
 	private void verificarColisiones(NoJugable noJugable) {
 		boolean huboColision = false;
-		if(noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) {
+		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
 			huboColision = true;
 			noJugable.eliminarDelNivel();
-			//TODO hacer que se caiga al vacio si la altura no es correcta
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {

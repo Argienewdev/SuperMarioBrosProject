@@ -135,36 +135,29 @@ public class VisitorSuperChampinion implements Visitante {
 	@Override
 	public void visitar(Bandera bandera) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		miEntidad.retrotraerMovimientoHorizontal();
 	}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

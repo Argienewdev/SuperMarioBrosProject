@@ -17,13 +17,16 @@ public class VisitorPiso implements Visitante{
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
-	public void visitar(BuzzyBeetle buzzy) {	
+	public void visitar(BuzzyBeetle buzzy) {
+		detectorDireccionColision.verificarColision(miEntidad, buzzy);
 	}
 
 	public void visitar(Spiny spiny) {	
+		detectorDireccionColision.verificarColision(miEntidad, spiny);
 	}
 
 	public void visitar(Goomba goomba) {	
+		detectorDireccionColision.verificarColision(miEntidad, goomba);
 	}
 	
 	public void visitar(Lakitu lakitu) {	
@@ -33,6 +36,7 @@ public class VisitorPiso implements Visitante{
 	}
 	
 	public void visitar(Fireball fireball) {	
+		detectorDireccionColision.verificarColision(miEntidad, fireball);
 	}
 	
 	public void visitar(SuperChampinion superChamp) {	
@@ -43,9 +47,11 @@ public class VisitorPiso implements Visitante{
 	}
 
 	public void visitar(ChampinionVerde champVerde) {	
+		detectorDireccionColision.verificarColision(miEntidad, champVerde);
 	}
 	
-	public void visitar(Estrella estrella) {	
+	public void visitar(Estrella estrella) {
+		detectorDireccionColision.verificarColision(miEntidad, estrella);
 	}
 	
 	public void visitar(Monedas monedas) {
@@ -94,6 +100,7 @@ public class VisitorPiso implements Visitante{
 	}
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
+		detectorDireccionColision.verificarColision(miEntidad, contextoKoopa);
 	}
 
 	@Override
