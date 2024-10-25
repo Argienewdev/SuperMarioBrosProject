@@ -24,6 +24,20 @@ public class DetectorDireccionColision {
 		}
 	}
 	
+	public void verificarColisionEntreEntidades(Entidad entidad1, Entidad entidad2) {
+		if (choquePorDerecha(entidad1, entidad2) || choquePorIzquierda(entidad1, entidad2)) {
+			entidad2.retrotraerMovimientoHorizontal();
+		}
+		if(choquePorArriba(entidad1, entidad2)) {
+			entidad2.setColisionAbajo(true);
+			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y - entidad2.obtenerHitbox().height);
+		}
+		if(choquePorAbajo(entidad1, entidad2)){
+			entidad2.setColisionArriba(true);
+			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y + entidad2.obtenerHitbox().height); 
+		}
+	}
+	
 	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean parte1 = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
 		boolean parte2 = !(entidad.getPosicion().x + entidad.obtenerAncho() > elementoDeJuego.getPosicion().x);

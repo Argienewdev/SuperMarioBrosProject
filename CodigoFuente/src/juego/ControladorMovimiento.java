@@ -13,9 +13,11 @@ import ventanas.DimensionesConstantes;
 public class ControladorMovimiento {
 	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
-	private static final int FUERZA_SALTO = -30;
+	private static final int FUERZA_SALTO = -24;
 	
-	private static final int GRAVEDAD = 3;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 25;
+	
+	private static final int GRAVEDAD = 2;
 	
 	private int velocidadHorizontal;
 	
@@ -85,7 +87,7 @@ public class ControladorMovimiento {
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(velocidadVertical >= FUERZA_SALTO && !marioJugable.getColisionAbajo()){
+		if(velocidadVertical < VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.getColisionAbajo()){
 			velocidadVertical += GRAVEDAD;
 			aplicarVelocidad();
 		}else if(!marioJugable.getColisionAbajo()){
