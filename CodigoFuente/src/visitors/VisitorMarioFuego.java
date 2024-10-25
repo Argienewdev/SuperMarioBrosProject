@@ -67,22 +67,23 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
+        superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorFuego());
+        florDeFuego.eliminarDelNivel();
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorFuego());
+        estrella.eliminarDelNivel();
     }
 
     @Override

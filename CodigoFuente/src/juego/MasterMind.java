@@ -120,7 +120,6 @@ public class MasterMind {
 	}
 	
 	private void actualizarSpritesPlataformas() {
-		// TODO Exteremadamente ineficiente necesita optimizarse
 		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
 			plataforma.actualizarVisual(this.fabricaSprites);
 		}

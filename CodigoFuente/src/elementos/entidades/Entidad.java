@@ -15,11 +15,14 @@ public abstract class Entidad extends ElementoDeJuego {
 	protected boolean colisionAbajo;
 	
 	protected boolean colisionArriba;
+	
+	protected int contadorTicks;
     
     public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
+		this.contadorTicks = 0;
 	}
 
     public void setVelocidadDireccional(Point velocidadDireccional) {
@@ -71,5 +74,13 @@ public abstract class Entidad extends ElementoDeJuego {
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
+	
+	public int getContadorTicks() {
+		return this.contadorTicks;
+	}
+	
+	public void incrementarContadorTicks() {
+		this.contadorTicks++;
+	}
 	
 }

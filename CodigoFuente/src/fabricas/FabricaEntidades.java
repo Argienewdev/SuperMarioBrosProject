@@ -93,7 +93,7 @@ public class FabricaEntidades {
 	public FlorDeFuego getFlorDeFuego(Point posicion, Visitante visitor,
 									  Point velocidadDireccional,
 									  ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getFlorDeFuegoPrimeraTransicion();
+        Sprite sprite = fabricaSprites.getSpriteInvisible();
         return new FlorDeFuego(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     

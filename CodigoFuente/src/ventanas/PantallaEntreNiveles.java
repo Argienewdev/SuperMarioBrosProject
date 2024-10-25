@@ -33,7 +33,6 @@ public class PantallaEntreNiveles extends JPanel {
         configurarFuentes();
         crearPaneles();
         
-        // Establecer color de texto
         vidasLabel.setForeground(Color.WHITE);
         puntajeLabel.setForeground(Color.WHITE);
         tiempoLabel.setForeground(Color.WHITE);
@@ -64,9 +63,8 @@ public class PantallaEntreNiveles extends JPanel {
         panelNorte.add(panelCentro, BorderLayout.CENTER);
         panelNorte.add(panelEste, BorderLayout.EAST);
 
-        // Usar BoxLayout para crear espacio vacío arriba del panelSur
         Box box = Box.createVerticalBox();
-        box.add(Box.createVerticalStrut(300)); // Ajusta la altura del espacio vacío según sea necesario
+        box.add(Box.createVerticalStrut(300));
         box.add(panelSur);
         
         panelSur.add(iconoLabel);

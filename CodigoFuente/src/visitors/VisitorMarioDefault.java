@@ -67,24 +67,22 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        this.miEntidad.ganarPuntos(10);
+    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
         superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        this.miEntidad.ganarPuntos(5);
+        this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
         florDeFuego.eliminarDelNivel();
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // Implementación pendiente
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        this.miEntidad.ganarPuntos(20);
+        this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
         estrella.eliminarDelNivel();
     }
 

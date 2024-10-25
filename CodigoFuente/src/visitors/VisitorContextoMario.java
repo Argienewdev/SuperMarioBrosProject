@@ -82,9 +82,8 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-		Nivel nivel = champinionVerde.getNivel();
-		this.miEntidad.ganarPuntos(100);
-		champinionVerde.eliminarDelNivel();
+		this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
+    	champinionVerde.eliminarDelNivel();
 	}
 
 	@Override

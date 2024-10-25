@@ -68,24 +68,23 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        Nivel nivel = superChampinion.getNivel();
-        this.miEntidad.ganarPuntos(50);
+        this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorSuper());
         superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
+        florDeFuego.eliminarDelNivel();
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorSuper());
+        estrella.eliminarDelNivel();
     }
 
     @Override
@@ -96,8 +95,8 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
         if (detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
-        }
+        	bloqueDePregunta.liberarPowerUp();
+        }   
     }
 
     @Override
