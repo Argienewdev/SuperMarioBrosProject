@@ -21,7 +21,7 @@ public class MarioFuego extends MarioDefault {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
 		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
-			//aRetornar = fabricaSprites.getMarioFuegoCayendo();
+			aRetornar = fabricaSprites.getMarioFuegoCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
 			aRetornar = fabricaSprites.getMarioFuegoFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
@@ -34,6 +34,8 @@ public class MarioFuego extends MarioDefault {
 			aRetornar = fabricaSprites.getMarioFuegoFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
 			aRetornar = fabricaSprites.getMarioFuegoReversoQuieto();
+		} else {
+			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
 		contexto.setSprite(aRetornar);
 	}

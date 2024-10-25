@@ -62,43 +62,34 @@ public class VisitorSuperMario implements Visitante {
     }
 
     @Override
-    public void visitarFireball(Fireball fireball) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarFireball(Fireball fireball) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        Nivel nivel = superChampinion.getNivel();
-        this.miEntidad.ganarPuntos(50);
+        this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorSuper());
         superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
+        florDeFuego.eliminarDelNivel();
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-        // TODO Auto-generated method stub
+    	this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorSuper());
+    	monedas.eliminarDelNivel();
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        if (detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-        	bloqueDePregunta.liberarPowerUp();
-        }   
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
@@ -108,53 +99,33 @@ public class VisitorSuperMario implements Visitante {
     }
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarContextoMario(ContextoMario contextoMario) {}
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarPiso(Piso piso) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPiso(Piso piso) {}
     
 }
