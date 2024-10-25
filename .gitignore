@@ -1,3 +1,5 @@
+*.class
 /.metadata/
+/bin/
 /CodigoFuente/bin/
-/CodigoFuente/.metadata/bin/
+/CodigoFuente/.metadata/

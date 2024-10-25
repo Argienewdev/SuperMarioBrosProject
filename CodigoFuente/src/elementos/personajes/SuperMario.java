@@ -10,7 +10,7 @@ public class SuperMario extends MarioDefault {
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarSuperMario(this);
     }
 	
 	@Override

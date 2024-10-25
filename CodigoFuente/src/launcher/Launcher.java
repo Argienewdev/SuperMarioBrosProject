@@ -2,7 +2,7 @@ package launcher;
 
 import juego.BucleJuego;
 import juego.Juego;
-import sonido.ReproductorDeMusicaFondo;
+import sonido.sonidoModoOriginal.ReproductorDeMusicaFondo;
 import ventanas.ControladorVistas;
 
 public class Launcher {
@@ -11,7 +11,7 @@ public class Launcher {
         juego.establecerControladorVistas(new ControladorVistas(juego));
         new BucleJuego(juego);
         ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
-        reproductorDeMusicaFondo.playMusic("src/sonido/musica_juego.wav");
+        reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musica_juego.wav");
         // Aquí puedes iniciar la partida o realizar otras configuraciones
     }
 }

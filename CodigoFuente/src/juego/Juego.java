@@ -26,7 +26,6 @@ import launcher.Jugador;
 import launcher.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
-import sonido.ReproductorDeMusicaFondo;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 

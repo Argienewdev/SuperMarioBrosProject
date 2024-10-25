@@ -33,7 +33,7 @@ public class PiranhaPlant extends Enemigo {
     
     @Override
     public void aceptarVisitante (Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarPiranhaPlant(this);
     }
 
 	@Override

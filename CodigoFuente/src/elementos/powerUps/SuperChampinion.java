@@ -18,7 +18,7 @@ public class SuperChampinion extends PowerUp {
 	
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitar(this);
+		visitante.visitarSuperChampinion(this);
 	}
 
 	public int obtenerPuntosPorDefault() {

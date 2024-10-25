@@ -1,152 +1,166 @@
 package visitors;
+
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+
 public class VisitorGoomba implements Visitante {
-	
-	protected Goomba miEntidad;
-	
-	DetectorDireccionColision detectorDireccionColision;
-	
-	public VisitorGoomba (Goomba miEntidad) {
-		this.miEntidad = miEntidad;
-		this.detectorDireccionColision = new DetectorDireccionColision();
-	}
 
-	@Override
-	public void visitar(BuzzyBeetle buzzy) {
-	}
+    protected Goomba miEntidad;
+    
+    DetectorDireccionColision detectorDireccionColision;
 
-	@Override
-	public void visitar(Spiny spiny) {
-	}
+    public VisitorGoomba(Goomba miEntidad) {
+        this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
+    }
 
-	@Override
-	public void visitar(Goomba goomba) {
-		detectorDireccionColision.verificarColisionEntreEntidades(miEntidad, goomba);
-	}
+    @Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void visitarSpiny(Spiny spiny) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void visitarGoomba(Goomba goomba) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
+    }
 
-	@Override
-	public void visitar(Fireball fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void visitar(SuperChampinion superChamp) {
-	}
+    @Override
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void visitar(FlorDeFuego flor) {
-	}
+    @Override
+    public void visitarFireball(Fireball fireball) {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void visitar(ChampinionVerde champVerde) {
-	}
+    @Override
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(Estrella estrella) {
-	}
+    @Override
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(Monedas moneda) {
-	}
-	
-	@Override
-	public void visitar(ContextoMario contextoMario) {
-		contextoMario.getEstado().aceptarVisitante(this);
-	}
-	@Override
-	public void visitar(MarioDefault marioDefault) {
-		if(detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), miEntidad) || detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), miEntidad)) {
-			ContextoMario contextoMario = marioDefault.getContext();
-			if (contextoMario.getVidas() == 1) {
-				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-				contextoMario.perderPuntos(perdidaPuntos);
-				//TODO hay que matar a mario...
-			}else {
-				contextoMario.perderVida();
-				contextoMario.setImpactado(true);
-			}
-		}
-	}
-	
-	@Override
-	public void visitar(SuperMario superMario) {
-		ContextoMario contextoMario = superMario.getContext();
-		EstadoMario nuevoEstado= new MarioDefault();
-		contextoMario.cambiarEstado(nuevoEstado);
-	}
+    @Override
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contextoMario = marioFuego.getContext();
-		EstadoMario nuevoEstado= new MarioDefault();
-		contextoMario.cambiarEstado(nuevoEstado);
-	}
+    @Override
+    public void visitarEstrella(Estrella estrella) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(MarioInvulnerable marioInvulnerable) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void visitarMonedas(Monedas monedas) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(BloqueDePregunta bloquePregunta) {
-	}
+    @Override
+    public void visitarContextoMario(ContextoMario contextoMario) {
+        contextoMario.getEstado().aceptarVisitante(this);
+    }
 
-	@Override
-	public void visitar(Ladrillo ladrillo) {
-	}
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+        if (this.detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), this.miEntidad) ||
+            this.detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), this.miEntidad)) {
 
-	@Override
-	public void visitar(Piso piso) {
-	}
+            ContextoMario contextoMario = marioDefault.getContext();
+            if (contextoMario.getVidas() == 1) {
+                int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+                contextoMario.perderPuntos(perdidaPuntos);
+                // TODO: Implementar la lógica para "matar" a Mario.
+            } else {
+                contextoMario.perderVida();
+                contextoMario.setImpactado(true);
+            }
+        }
+    }
 
-	@Override
-	public void visitar(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void visitarSuperMario(SuperMario superMario) {
+        ContextoMario contextoMario = superMario.getContext();
+        EstadoMario nuevoEstado = new MarioDefault();
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
 
-	@Override
-	public void visitar(Bandera bandera) {
-	}
+    @Override
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+        ContextoMario contextoMario = marioFuego.getContext();
+        EstadoMario nuevoEstado = new MarioDefault();
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
 
-	@Override
-	public void visitar(Tuberia tuberia) {
-	}
+    @Override
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public void visitar(BloqueSolido bloqueSolido) {
-	}
-	
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-	}
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
-	}
+    @Override
+    public void visitarPiso(Piso piso) {
+        // No se requiere comportamiento específico por ahora
+    }
 
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-	}
+    @Override
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+        // TODO Auto-generated method stub
+    }
 
+    @Override
+    public void visitarBandera(Bandera bandera) {
+        // No se requiere comportamiento específico por ahora
+    }
+
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {
+        // No se requiere comportamiento específico por ahora
+    }
+
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+        // No se requiere comportamiento específico por ahora
+    }
+
+    @Override
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        // No se requiere comportamiento específico por ahora
+    }
+
+    @Override
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+        // No se requiere comportamiento específico por ahora
+    }
+
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+        // No se requiere comportamiento específico por ahora
+    }
+    
 }
-

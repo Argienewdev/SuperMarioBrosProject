@@ -12,7 +12,7 @@ public class PrincesaPeach extends Meta{
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitar(this);
+		visitante.visitarPrincesaPeach(this);
 	}
 
 }

@@ -22,7 +22,7 @@ public class Tuberia extends BloqueSolido{
     }
 
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarTuberia(this);
     }
     
     public int obtenerAncho() {

@@ -7,104 +7,126 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 import ventanas.ControladorVistas;
 
-
-
 public class VisitorBandera implements Visitante {
-	
-	private Bandera miEntidad;
-	
-	private ControladorVistas controlador;
-	
-	public VisitorBandera (ControladorVistas controlador, Bandera miEntidad) {
-		this.controlador = controlador;
-		this.miEntidad = miEntidad;
-	}
+    
+    private Bandera miEntidad;
+    
+    private ControladorVistas controlador;
+    
+    public VisitorBandera(ControladorVistas controlador, Bandera miEntidad) {
+        this.controlador = controlador;
+        this.miEntidad = miEntidad;
+    }
 
-	public void visitar(BuzzyBeetle buzzy) {	
-	}
+    @Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {    
+    }
 
-	public void visitar(Spiny spiny) {	
-	}
+    @Override
+    public void visitarSpiny(Spiny spiny) {    
+    }
 
-	public void visitar(Goomba goomba) {	
-	}
-	
-	public void visitar(ContextoKoopaTroopa koopaEstatico) {	
-	}
+    @Override
+    public void visitarGoomba(Goomba goomba) {    
+    }
+    
+    @Override
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    }
 
-	public void visitar(Lakitu lakitu) {	
-	}
-	
-	public void visitar(PiranhaPlant planta) {	
-	}
-	
-	public void visitar(Fireball fireball) {	
-	}
-	
-	public void visitar(SuperChampinion superChamp) {	
-	}
-	
-	public void visitar(FlorDeFuego flor) {		
-	}
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {    
+    }
+    
+    @Override
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
+    }
+    
+    @Override
+    public void visitarFireball(Fireball fireball) {    
+    }
+    
+    @Override
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+    }
+    
+    @Override
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
+    }
 
-	public void visitar(ChampinionVerde champVerde) {	
-	}
-	
-	public void visitar(Estrella estrella) {	
-	}
-	
-	public void visitar(Monedas monedas) {
+    @Override
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+    }
+    
+    @Override
+    public void visitarEstrella(Estrella estrella) {    
+    }
+    
+    @Override
+    public void visitarMonedas(Monedas monedas) {    
+    }
+
+    @Override
+    public void visitarContextoMario(ContextoMario contextoMario) {
+        contextoMario.getEstado().aceptarVisitante(miEntidad.getVisitor());
+    }
+
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+        this.controlador.cambiarNivel();
+    }
+    
+    @Override
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {        
+        this.controlador.cambiarNivel();
+    }
+
+    @Override
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+        this.controlador.cambiarNivel();
+    }
+
+    @Override
+    public void visitarSuperMario(SuperMario superMario) {
+        this.controlador.cambiarNivel();
+    }
+
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
+    }
+
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {    
+    }
+    
+    @Override
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
+
+    @Override
+    public void visitarBandera(Bandera bandera) {
+    }
+    
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {    
+    }
+
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
+    }
+
+    @Override
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {        
+    }
+
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {        
+    }
+
+	@Override
+	public void visitarPiso(Piso piso) {
+		// TODO Auto-generated method stub
 		
 	}
-	public void visitar(ContextoMario contextoMario) {
-		contextoMario.getEstado().aceptarVisitante(this);
-	}
-	@Override
-	public void visitar(MarioDefault marioDefault) {
-		controlador.cambiarNivel();
-	}
-	
-	public void visitar(MarioInvulnerable marioInv) {		
-		controlador.cambiarNivel();
-	}
 
-	public void visitar(MarioFuego marioFuego) {
-		controlador.cambiarNivel();
-	}
-
-	public void visitar(SuperMario superMario) {
-		controlador.cambiarNivel();
-	}
-
-	public void visitar(BloqueDePregunta bloquePregunta) {		
-	}
-
-	public void visitar(Ladrillo ladrillo) {	
-	}
-	
-	public void visitar(PrincesaPeach princesa) {
-	}
-
-	public void visitar(Bandera bandera) {
-	}
-	
-	public void visitar(Tuberia tuberia) {	
-	}
-
-	public void visitar(BloqueSolido bloqueSolido) {		
-	}
-
-	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
-	}
-
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {		
-	}
-
-	@Override
-	public void visitar(Piso piso) {
-	}
-	
-	
 }

@@ -22,7 +22,7 @@ public class Fireball extends NoJugable {
 	// Metodos
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitar(this);
+		visitante.visitarFireball(this);
 	}
 	
 	public Jugable obtenerJugador() {

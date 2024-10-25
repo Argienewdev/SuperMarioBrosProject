@@ -4,7 +4,7 @@
 /**
  * 
  */
-module CodigoFuente  {
+module superMario {
 	exports elementos;
 	exports fabricas;
 	exports fuentes;
@@ -13,7 +13,6 @@ module CodigoFuente  {
 	exports juego;
 	exports launcher;
 	exports observers;
-	exports sonido;
 	exports ventanas;
 	exports visitors;
 	exports elementos.enemigos;

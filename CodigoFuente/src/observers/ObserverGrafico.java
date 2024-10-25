@@ -16,21 +16,21 @@ public class ObserverGrafico extends JLabel implements Observer {
 	}
 	
 	public void actualizar() {
-		actualizar_imagen();
-		actualizar_posicion_tamanio();
+		actualizarImagen();
+		actualizarPosicionTamanio();
 	}
 	
 	public ElementoDeJuego getEntidadObservada() {
 		return this.entidad_observada;
 	}
 	
-	protected void actualizar_imagen() {
+	protected void actualizarImagen() {
 		String ruta_imagen = entidad_observada.getSprite().getRutaImagen();
 		ImageIcon icono = new ImageIcon(ruta_imagen);
 		setIcon(icono);
 	}
 	
-	protected void actualizar_posicion_tamanio() {
+	protected void actualizarPosicionTamanio() {
 		int x = entidad_observada.getPosicion().x;
 		int y = entidad_observada.getPosicion().y;
 		int ancho = this.getIcon().getIconWidth();

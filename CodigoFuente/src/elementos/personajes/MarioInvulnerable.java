@@ -14,7 +14,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarMarioInvulnerable(this);
     }
 	
 	@Override

@@ -30,7 +30,7 @@ public class MarioDefault implements EstadoMario {
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarMarioDefault(this);
     }
 
 	@Override
