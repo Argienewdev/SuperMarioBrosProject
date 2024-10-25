@@ -41,7 +41,7 @@ public class SuperChampinion extends PowerUp {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(!this.estaDentroDeBloqueDePreguntas) {
 			this.setSprite(fabricaSprites.getSuperChampinionSaliendoDelBloqueDePreguntas());
-		}
+		} 
 	}
 	
 	
