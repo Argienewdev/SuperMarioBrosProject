@@ -78,8 +78,7 @@ public class ControladorVistas {
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
      	
-		//TODO ese 0 deberia ser 2000 pero no quiero q este tanto la pantalla
-		Timer timer = new Timer(0, new ActionListener() {
+		Timer timer = new Timer(2000, new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	ventana.remove(pantallaEntreNiveles);
 	                mostrarPantallaDeJuego();

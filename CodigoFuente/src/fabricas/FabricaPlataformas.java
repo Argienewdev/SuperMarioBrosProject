@@ -73,7 +73,7 @@ public class FabricaPlataformas {
 		BloqueDePregunta bloqueDePreguntaADevolver = null;
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 7;
+		int identificadorPowerUp = 5;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {

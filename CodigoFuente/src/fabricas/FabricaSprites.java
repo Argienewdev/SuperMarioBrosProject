@@ -115,9 +115,9 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getEstrellaEncendida();
 	
-	public abstract Sprite getFlorDeFuegoPrimeraTransicion();
+	public abstract Sprite getFlorDeFuegoSaliendoDelBloqueDePreguntas();
 	
-	public abstract Sprite getFlorDeFuegoSegundaTransicion();
+	public abstract Sprite getFlorDeFuegoQuieto();
 	
 	public abstract Sprite getChampinionVerde();
 
