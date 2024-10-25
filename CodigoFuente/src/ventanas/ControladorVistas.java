@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import elementos.entidades.Jugable;
+import elementos.personajes.ContextoMario;
 import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
@@ -17,7 +18,7 @@ public class ControladorVistas {
 	
 	private JFrame ventana;
 	
-	private Jugable marioJugable;
+	private ContextoMario marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -68,7 +69,8 @@ public class ControladorVistas {
 		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 		pantallaDeJuego.registrarJugable(marioJugable);
      	
-		Timer timer = new Timer(2000, new ActionListener() {
+		//TODO ese 0 deberia ser 2000 pero no quiero q este tanto la pantalla
+		Timer timer = new Timer(0, new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	ventana.remove(pantallaEntreNiveles);
 	                mostrarPantallaDeJuego();

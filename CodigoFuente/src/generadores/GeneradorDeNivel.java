@@ -15,16 +15,13 @@ import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
 import elementos.plataformas.Meta;
+import elementos.plataformas.Piso;
 import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
-import elementos.powerUps.ChampinionVerde;
-import elementos.powerUps.Estrella;
-import elementos.powerUps.FlorDeFuego;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
-import elementos.powerUps.SuperChampinion;
 import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
 import ventanas.DimensionesConstantes;
@@ -88,14 +85,13 @@ public class GeneradorDeNivel {
 	                    vacio.setNivel(nivel);
 	                    nivel.addPlataforma(vacio);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoVacio);
-	                    System.out.println("Agregue el vacio");
 	                    break;
 	                }
 	                case 1: {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, null);
 	                    Visitante visitor = new VisitorLadrillo(ladrillo);
 	                    ladrillo.setVisitor(visitor);
-	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	                 
+	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	   
 	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
 	                    ladrillo.setNivel(nivel);
 	                    nivel.addPlataforma(ladrillo);
@@ -129,7 +125,8 @@ public class GeneradorDeNivel {
 	                case 4: {
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel,pantallaDeJuego);
 	                    Visitante visitor = new VisitorBloqueDePregunta(bloqueDePregunta);
-	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	                  
+	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	  
+	                    bloqueDePregunta.setVisitor(visitor);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
 	                    bloqueDePregunta.setNivel(nivel);
 	                    nivel.addPlataforma(bloqueDePregunta);
@@ -140,6 +137,7 @@ public class GeneradorDeNivel {
 	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion, null);
 	                    Visitante visitor = new VisitorBandera(this.controladorVistas,bandera);
 	                    ObserverGrafico observerGraficoBandera = new ObserverGrafico(bandera);
+	                    bandera.setVisitor(visitor);
 	                    bandera.setObserverGrafico(observerGraficoBandera);
 	                    bandera.setNivel(nivel);
 	                    nivel.addPlataforma(bandera);
@@ -150,6 +148,7 @@ public class GeneradorDeNivel {
 	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, null);
 	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas,princesaPeach);
 	                    ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeach);
+	                    princesaPeach.setVisitor(visitor);
 	                    princesaPeach.setObserverGrafico(observerGraficoPrincesaPeach);
 	                    princesaPeach.setNivel(nivel);
 	                    nivel.addPlataforma(princesaPeach);
@@ -157,12 +156,24 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 7: {
-	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido();
-	                	Visitante visitor = new VisitorBloqueSolido(bloqueSolido);
-	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);	               
+	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido(posicion, null);
+	                	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolido);
+	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);
+	                	bloqueSolido.setVisitor(visitorBloqueSolido);
 	                	bloqueSolido.setObserverGrafico(observerGraficoBloqueSolido);
 	                	bloqueSolido.setNivel(nivel);
 	                	nivel.addPlataforma(bloqueSolido);
+	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
+	                	break;
+	                } 
+	                case 8: {
+	                	Piso piso = this.fabricaPlataformas.getPiso(posicion, null);
+	                	Visitante visitorPiso = new VisitorPiso(piso);
+	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(piso);
+	                	piso.setVisitor(visitorPiso);
+	                	piso.setObserverGrafico(observerGraficoBloqueSolido);
+	                	piso.setNivel(nivel);
+	                	nivel.addPlataforma(piso);
 	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
 	                	break;
 	                } 
@@ -246,7 +257,7 @@ public class GeneradorDeNivel {
 	                }
                 }
 			}
-		} catch (IOException | ArrayIndexOutOfBoundsException exception) {
+		} catch (IOException | ArrayIndexOutOfBoundsException | NullPointerException exception) {
 			exception.printStackTrace();
 		} finally {
 			try {

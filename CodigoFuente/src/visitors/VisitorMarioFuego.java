@@ -19,6 +19,7 @@ import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
+import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
@@ -32,11 +33,14 @@ public class VisitorMarioFuego implements Visitante{
 
 	protected EstadoMario miEstado;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	private ContextoMario miEntidad;
 	
 	public VisitorMarioFuego(MarioFuego marioFuego) {
 		this.miEstado = miEstado;
-		miEntidad=miEstado.getContext();
+		this.miEntidad = miEstado.getContext();
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -125,8 +129,9 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if(detectorDireccionColision.choquePorAbajo(bloquePregunta, miEntidad)) {
+			bloquePregunta.liberarPowerUp();
+		}		
 	}
 
 	@Override
@@ -191,6 +196,12 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Piso piso) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -13,9 +13,11 @@ import ventanas.DimensionesConstantes;
 public class ControladorMovimiento {
 	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
-	private static final int FUERZA_SALTO = -30;
+	private static final int FUERZA_SALTO = -24;
 	
-	private static final int GRAVEDAD = 3;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 25;
+	
+	private static final int GRAVEDAD = 2;
 	
 	private int velocidadHorizontal;
 	
@@ -35,9 +37,9 @@ public class ControladorMovimiento {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
 		this.marioJugable.setVelocidadDireccional(new Point(0,0));
-		velocidadHorizontal = 0;
-		velocidadVertical = 0;
-		posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
+		this.velocidadHorizontal = 0;
+		this.velocidadVertical = 0;
+		this.posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
 		this.nivel = nivel;
 		this.gestorDeColisiones = gestorDeColisiones;
 	}
@@ -85,7 +87,7 @@ public class ControladorMovimiento {
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(velocidadVertical >= FUERZA_SALTO && !marioJugable.getColisionAbajo()){
+		if(velocidadVertical < VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.getColisionAbajo()){
 			velocidadVertical += GRAVEDAD;
 			aplicarVelocidad();
 		}else if(!marioJugable.getColisionAbajo()){
@@ -125,8 +127,8 @@ public class ControladorMovimiento {
 			for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 			    if (entidad.huboColision(elemento)) {
 			        huboColision = true;
-			        entidad.aceptarVisitante(elemento.getVisitor());
 			        elemento.aceptarVisitante(entidad.getVisitor());
+			        entidad.aceptarVisitante(elemento.getVisitor());
 			    }
 			}
 

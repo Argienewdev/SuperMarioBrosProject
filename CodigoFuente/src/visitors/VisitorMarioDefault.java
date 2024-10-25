@@ -18,6 +18,7 @@ import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
+import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
@@ -32,62 +33,51 @@ public class VisitorMarioDefault implements Visitante{
 
 	protected MarioDefault miEstado;
 	
-	protected DetectorDireccionColision detectarDireccionColision;
+	protected DetectorDireccionColision detectorDireccionColision;
 	
 	private ContextoMario miEntidad;
 	
 	public VisitorMarioDefault (MarioDefault miEstado) {
 		this.miEstado = miEstado;
-		miEntidad=miEstado.getContext();
-		detectarDireccionColision= new DetectorDireccionColision(miEntidad);
+		this.miEntidad = miEstado.getContext();
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(Spiny spiny) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(Goomba goomba) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -98,92 +88,58 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Monedas monedas) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		if (detectarDireccionColision.choquePorDerecha(bloquePregunta) || detectarDireccionColision.choquePorIzquierda(bloquePregunta)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(bloquePregunta)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(bloquePregunta)){
-			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height);
+		if(detectorDireccionColision.choquePorAbajo(bloquePregunta, miEntidad)) {
 			bloquePregunta.liberarPowerUp();
 		}
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		if (detectarDireccionColision.choquePorDerecha(ladrillo) || detectarDireccionColision.choquePorIzquierda(ladrillo)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(ladrillo)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(ladrillo)){
-			miEntidad.setColisionArriba(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
-		}
 	}
 
 	@Override
+	public void visitar(Piso piso) {
+	}
+	
+	@Override
 	public void visitar(Vacio vacio) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitar(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Bandera bandera) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

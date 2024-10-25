@@ -11,9 +11,7 @@ public abstract class FabricaSprites {
 	}
 	public abstract Sprite getMarioDefaultFrontalQuieto();
 		
-	public abstract Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion();
-		
-	public abstract Sprite getMarioDefaultFrontalCaminandoSegundaTransicion();
+	public abstract Sprite getMarioDefaultFrontalCaminando();
 	
 	public abstract Sprite getMarioDefaultCayendo();
 
@@ -21,57 +19,49 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getMarioDefaultReversoQuieto();
 	
-	public abstract Sprite getMarioDefaultReversoCaminandoPrimeraTransicion();
-	
-	public abstract Sprite getMarioDefaultReversoCaminandoSegundaTransicion();
+	public abstract Sprite getMarioDefaultReversoCaminando();
 	
 	public abstract Sprite getMarioDefaultReversoSaltando();
 	
 	public abstract Sprite getSuperMarioFrontalQuieto();
 	
-	public abstract Sprite getSuperMarioFrontalCaminandoPrimeraTransicion();
+	public abstract Sprite getSuperMarioFrontalCaminando();
 		
-	public abstract Sprite getSuperMarioFrontalCaminandoSegundaTransicion();
-	
 	public abstract Sprite getSuperMarioFrontalSaltando();
 	
 	public abstract Sprite getSuperMarioReversoQuieto();
 	
-	public abstract Sprite getSuperMarioReversoCaminandoPrimeraTransicion();
+	public abstract Sprite getSuperMarioCayendo();
 	
-	public abstract Sprite getSuperMarioReversoCaminandoSegundaTransicion();
+	public abstract Sprite getSuperMarioReversoCaminando();
 	
 	public abstract Sprite getSuperMarioReversoSaltando();
 	
 	public abstract Sprite getMarioFuegoFrontalQuieto();
 	
-	public abstract Sprite getMarioFuegoFrontalCaminandoPrimeraTransicion();
+	public abstract Sprite getMarioFuegoFrontalCaminando();
 		
-	public abstract Sprite getMarioFuegoFrontalCaminandoSegundaTransicion();
-	
 	public abstract Sprite getMarioFuegoFrontalSaltando();
 	
 	public abstract Sprite getMarioFuegoReversoQuieto();
 	
-	public abstract Sprite getMarioFuegoReversoCaminandoPrimeraTransicion();
-	
-	public abstract Sprite getMarioFuegoReversoCaminandoSegundaTransicion();
+	public abstract Sprite getMarioFuegoReversoCaminando();
 	
 	public abstract Sprite getMarioFuegoReversoSaltando();
 	
+	public abstract Sprite getMarioFuegoCayendo();
+	
 	public abstract Sprite getMarioInvulnerableFrontalQuieto();
 	
-	public abstract Sprite getMarioInvulnerableFrontalCaminandoPrimeraTransicion();
+	public abstract Sprite getMarioInvulnerableFrontalCaminando();
 		
-	public abstract Sprite getMarioInvulnerableFrontalCaminandoSegundaTransicion();
-	
 	public abstract Sprite getMarioInvulnerableFrontalSaltando();
+	
+	public abstract Sprite getMarioInvulnerableCayendo();
 	
 	public abstract Sprite getMarioInvulnerableReversoQuieto();
 	
-	public abstract Sprite getMarioInvulnerableReversoCaminandoPrimeraTransicion();
-	
-	public abstract Sprite getMarioInvulnerableReversoCaminandoSegundaTransicion();
+	public abstract Sprite getMarioInvulnerableReversoCaminando();
 	
 	public abstract Sprite getMarioInvulnerableReversoSaltando();
 	
@@ -147,6 +137,8 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getBloqueSolido();
 	
+	public abstract Sprite getPiso();
+	
 	public abstract Sprite getTuberia(int altura);
 	
 	public abstract Sprite getBloqueDePreguntaApagado();
@@ -159,6 +151,5 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getPrincesaPeach();
 	
-	public abstract Sprite getPowerUpInactivo();
-
+	public abstract Sprite getSpriteInvisible();
 }

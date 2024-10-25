@@ -169,6 +169,11 @@ public class VisitorPrincesa implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void visitar(Piso piso) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

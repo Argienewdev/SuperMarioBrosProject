@@ -8,8 +8,11 @@ public class VisitorSuperChampinion implements Visitante {
 	
 	protected SuperChampinion miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorSuperChampinion (SuperChampinion miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -27,7 +30,6 @@ public class VisitorSuperChampinion implements Visitante {
 	@Override
 	public void visitar(Goomba goomba) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -85,21 +87,21 @@ public class VisitorSuperChampinion implements Visitante {
 	
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		ContextoMario contextoMario= marioDefault.getContext();
-		EstadoMario nuevoEstado=new SuperMario();
+		ContextoMario contextoMario = marioDefault.getContext();
+		EstadoMario nuevoEstado = new SuperMario();
 		contextoMario.cambiarEstado(nuevoEstado);
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		ContextoMario contextoMario= superMario.getContext();
+		ContextoMario contextoMario = superMario.getContext();
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorSuper());
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contextoMario= marioFuego.getContext();
+		ContextoMario contextoMario = marioFuego.getContext();
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorFuego());
 	}
 
@@ -111,14 +113,10 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -136,38 +134,32 @@ public class VisitorSuperChampinion implements Visitante {
 	@Override
 	public void visitar(Bandera bandera) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-	}
-
-
+	public void visitar(BloqueSolido bloqueSolido) {}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public void visitar(Piso piso) {
 	}
 	
 }

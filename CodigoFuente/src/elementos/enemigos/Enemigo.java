@@ -12,8 +12,6 @@ public abstract class Enemigo extends NoJugable {
 		
 	protected int puntosSustraidosPorMuerteCausada;
 	
-	private boolean colisionAbajo;
-	
 	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, 
 				   Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
@@ -29,9 +27,5 @@ public abstract class Enemigo extends NoJugable {
     }
 
     public abstract void aceptarVisitante(Visitante visitante);
-    
-    public void eliminarDelNivel() {
-    	this.miNivel.removeEnemigo(this);
-    }
     
 }

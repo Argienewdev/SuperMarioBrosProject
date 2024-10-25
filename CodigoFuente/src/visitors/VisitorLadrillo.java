@@ -1,6 +1,5 @@
 
 package visitors;
-import java.awt.Point;
 
 import elementos.enemigos.*;
 import elementos.entidades.Fireball;
@@ -10,164 +9,110 @@ import elementos.powerUps.*;
 public class VisitorLadrillo implements Visitante {
 	
 	private Ladrillo miEntidad;
+	
+	protected DetectorDireccionColision detectorDireccionColision;
 
 	public VisitorLadrillo(Ladrillo miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
-	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		// TODO Auto-generated method stub
-		
+		detectorDireccionColision.verificarColision(miEntidad, buzzy);
 	}
 
-	@Override
-	public void visitar(Spiny spiny) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(Spiny spiny) {	
+		detectorDireccionColision.verificarColision(miEntidad, spiny);
 	}
 
-	@Override
-	public void visitar(Goomba goomba) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(Goomba goomba) {	
+		detectorDireccionColision.verificarColision(miEntidad, goomba);
+	}
+	
+	public void visitar(Lakitu lakitu) {	
+	}
+	
+	public void visitar(PiranhaPlant planta) {	
+	}
+	
+	public void visitar(Fireball fireball) {	
+		detectorDireccionColision.verificarColision(miEntidad, fireball);
+	}
+	
+	public void visitar(SuperChampinion superChamp) {	
+		detectorDireccionColision.verificarColision(miEntidad, superChamp);
+	}
+	
+	public void visitar(FlorDeFuego flor) {		
 	}
 
-	@Override
-	public void visitar(Lakitu lakitu) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(ChampinionVerde champVerde) {	
+		detectorDireccionColision.verificarColision(miEntidad, champVerde);
 	}
-
-	@Override
-	public void visitar(PiranhaPlant planta) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(Fireball fireball) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(FlorDeFuego flor) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(ChampinionVerde champVerde) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	
 	public void visitar(Estrella estrella) {
-		// TODO Auto-generated method stub
+		detectorDireccionColision.verificarColision(miEntidad, estrella);
+	}
+	
+	public void visitar(Monedas monedas) {
 		
 	}
-
-	@Override
-	public void visitar(Monedas moneda) {
-		// TODO Auto-generated method stub
-		
+	
+	public void visitar(MarioDefault marioNormal) {
+		detectorDireccionColision.verificarColision(miEntidad, marioNormal.getContext());
+	}
+	
+	public void visitar(MarioInvulnerable marioInv) {
+		detectorDireccionColision.verificarColision(miEntidad, marioInv.getContext());
 	}
 
-	@Override
-	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(MarioFuego marioFuego) {
+		detectorDireccionColision.verificarColision(miEntidad, marioFuego.getContext());
 	}
 
-	@Override
-	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(SuperMario superMario) {
+		detectorDireccionColision.verificarColision(miEntidad, superMario.getContext());
 	}
 
-	@Override
-	public void visitar(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(BloqueDePregunta bloquePregunta) {		
 	}
 
-	@Override
+	public void visitar(Ladrillo ladrillo) {	
+	}
+	
+	public void visitar(Vacio vacio) {	
+	}
+	
 	public void visitar(PrincesaPeach princesa) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void visitar(Bandera bandera) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void visitar(Tuberia tuberia) {	
 	}
 
-	@Override
-	public void visitar(Tuberia tuberia) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(BloqueSolido bloqueSolido) {		
 	}
 
-	@Override
-	public void visitar(BloqueSolido bloqueSolido) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(ContextoMario contextoMario) {		
+		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
 	}
-
-	@Override
-	public void visitar(ContextoMario contextoMario) {
-		
-	}
-
-	@Override
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {
-		// TODO Auto-generated method stub
-		
+	
+	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
+		detectorDireccionColision.verificarColision(miEntidad, contextoKoopa);
 	}
 
 	@Override
 	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void visitar(MarioDefault marioDefault) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(SuperMario superMario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(MarioFuego marioFuego) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(MarioInvulnerable marioInvulnerable) {
-		// TODO Auto-generated method stub
-		
+	public void visitar(Piso piso) {
 	}
 
 }

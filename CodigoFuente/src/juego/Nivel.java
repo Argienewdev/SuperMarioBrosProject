@@ -6,6 +6,7 @@ import java.util.Collection;
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
+import elementos.entidades.NoJugable;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
@@ -61,13 +62,8 @@ public class Nivel {
     }
 
     @SuppressWarnings("exports")
-    public void removeEnemigo(Enemigo enemigo) {
-        this.enemigos.remove(enemigo);
-    }
-
-    @SuppressWarnings("exports")
-    public void removePowerUp(PowerUp powerUp) {
-        this.powerUps.remove(powerUp);
+    public void removeNoJugable(NoJugable noJugable) {
+    	
     }
 
     @SuppressWarnings("exports")

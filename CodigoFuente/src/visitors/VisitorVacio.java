@@ -16,7 +16,7 @@ public class VisitorVacio implements Visitante {
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
 		Nivel nivel = buzzy.getNivel();
-		nivel.removeEnemigo(buzzy);
+		nivel.removeNoJugable(buzzy);
 		
 	}
 
@@ -29,20 +29,20 @@ public class VisitorVacio implements Visitante {
 	@Override
 	public void visitar(Goomba goomba) {
 		Nivel nivel = goomba.getNivel();
-		nivel.removeEnemigo(goomba);
+		nivel.removeNoJugable(goomba);
 	}
 
 	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 		Nivel nivel =contextoKoopa.getNivel();
-		nivel.removeEnemigo(contextoKoopa);		
+		nivel.removeNoJugable(contextoKoopa);		
 	}
 
 
 	@Override
 	public void visitar(Lakitu lakitu) {
 		Nivel nivel = lakitu.getNivel();
-		nivel.removeEnemigo(lakitu);
+		nivel.removeNoJugable(lakitu);
 		
 	}
 
@@ -60,26 +60,26 @@ public class VisitorVacio implements Visitante {
 	@Override
 	public void visitar(SuperChampinion superChamp) {
 		Nivel nivel = superChamp.getNivel();
-		nivel.removePowerUp(superChamp);
+		nivel.removeNoJugable(superChamp);
 		
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
 		Nivel nivel = flor.getNivel();
-		nivel.removePowerUp(flor);
+		nivel.removeNoJugable(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
 		Nivel nivel = champVerde.getNivel();
-		nivel.removePowerUp(champVerde);
+		nivel.removeNoJugable(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
 		Nivel nivel = estrella.getNivel();
-		nivel.removePowerUp(estrella);
+		nivel.removeNoJugable(estrella);
 		
 	}
 
@@ -170,6 +170,12 @@ public class VisitorVacio implements Visitante {
 
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitar(Piso piso) {
 		// TODO Auto-generated method stub
 		
 	}

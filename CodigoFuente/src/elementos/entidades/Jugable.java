@@ -12,11 +12,7 @@ public abstract class Jugable extends Entidad {
 	protected int puntos;
 	
 	protected Monedas monedas;
-	
-	private boolean colisionAbajo;
-	
-	private boolean colisionArriba;
-	
+		
 	private boolean enElAire;
 	
 	private boolean retrocediendo;
@@ -64,13 +60,7 @@ public abstract class Jugable extends Entidad {
 		return this.monedas;
 	}
 	
-	public abstract void saltar(Point direccion);
-	
 	public abstract void aceptarVisitante(Visitante visitante);
-	
-	public void setColisionAbajo(boolean colisionAbajo) {
-		this.colisionAbajo = colisionAbajo;
-	}
 	
 	public boolean getColisionAbajo() {
 		return this.colisionAbajo;
@@ -82,11 +72,6 @@ public abstract class Jugable extends Entidad {
 	
 	public boolean getColisionArriba() {
 		return this.colisionArriba;
-	}
-	
-	public void retrotraerMovimientoHorizontal() {
-        this.moverHitbox(this.posicion);
-        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {

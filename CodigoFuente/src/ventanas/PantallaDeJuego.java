@@ -88,7 +88,7 @@ public class PantallaDeJuego extends JPanel {
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
         boolean fondoMovido = false; // Bandera para indicar si el fondo se ha movido
-
+        
         if (posicionMario.x >= MITAD_PANTALLA && fondo.getLocation().x + fondo.getWidth() > DimensionesConstantes.PANEL_ANCHO) {
         	int desplazamiento = posicionMario.x - MITAD_PANTALLA;
 

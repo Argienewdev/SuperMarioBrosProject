@@ -10,8 +10,11 @@ public class VisitorBloqueDePregunta implements Visitante {
 	
 	private BloqueDePregunta miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorBloqueDePregunta(BloqueDePregunta miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	public void visitar(BuzzyBeetle buzzy) {	
@@ -23,7 +26,8 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(Goomba goomba) {	
 	}
 	
-	public void visitar(ContextoMario contextoMario) {		
+	public void visitar(ContextoMario contextoMario) {
+		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
 	}
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
@@ -94,5 +98,8 @@ public class VisitorBloqueDePregunta implements Visitante {
 	public void visitar(KoopaDefault koopaDefault) {		
 	}
 
+	@Override
+	public void visitar(Piso piso) {
+	}
 	
 }

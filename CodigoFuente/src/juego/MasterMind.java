@@ -24,12 +24,13 @@ public class MasterMind {
 	
 	protected Nivel nivel;
 	
-	private int contadorDeTicks;
+	private static final int GRAVEDAD = 3;
+	
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
 			
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		this.contadorDeTicks = 0;
 		crearColeccionDeEnemigos();
 		crearColeccionDePowerUps();
 	}
@@ -88,29 +89,21 @@ public class MasterMind {
 	
 	private void verificarColisiones(NoJugable noJugable) {
 		boolean huboColision = false;
-		if(noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) {
+		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
 			huboColision = true;
 			noJugable.eliminarDelNivel();
-			//TODO hacer que se caiga al vacio si la altura no es correcta
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
 		        	huboColision = true;
-		        	noJugable.aceptarVisitante(elemento.getVisitor());
 		            elemento.aceptarVisitante(noJugable.getVisitor());
+		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
 		}
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
-	    } else {
-	    	invertirVelocidadDireccional(noJugable);
 	    }
-	}
-	
-	private void invertirVelocidadDireccional(NoJugable noJugable) {
-		Point velocidadDireccionalActual = noJugable.getVelocidadDireccional();
-		noJugable.setVelocidadDireccional(new Point(-velocidadDireccionalActual.x,velocidadDireccionalActual.y));
 	}
 	
 	private void actualizarPosicionesPowerUps() {
@@ -120,14 +113,14 @@ public class MasterMind {
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks == 0) {
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() == 0) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
-			contadorDeTicks++;
-		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && contadorDeTicks > 120) {
-			powerUp.setVelocidadDireccional(new Point(powerUp.getPosicion().x,powerUp.getPosicion().y-3));
+			powerUp.incrementarContadorTicks();
+		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() > powerUp.getTicksHastaSalirDelBloque()) {
+			aplicarGravedad(powerUp);
 			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
-		} else if(contadorDeTicks >= 1) {
-			contadorDeTicks++;
+		} else if(powerUp.getContadorTicks() >= 1) {
+			powerUp.incrementarContadorTicks();
 		}
 	}
 	
@@ -139,13 +132,13 @@ public class MasterMind {
 	
 	private void actualizarSpritesEnemigos() {
 		for(Enemigo enemigo : this.enemigos) {
-			enemigo.actualizarSprite(this.fabricaSprites);
+			enemigo.actualizarVisual(this.fabricaSprites);
 		}
 	}	
 	
 	private void actualizarSpritesPowerUps() {
 		for(PowerUp powerUp : this.powerUps) {
-			powerUp.actualizarSprite(this.fabricaSprites);
+			powerUp.actualizarVisual(this.fabricaSprites);
 		}
 	}
 	
@@ -158,6 +151,12 @@ public class MasterMind {
 	private void actualizarLabelsPowerUps() {
 		for(PowerUp powerUp : this.powerUps) {
 			powerUp.getObserverGrafico().actualizar();
+		}
+	}
+	
+	private void aplicarGravedad(NoJugable noJugable) {
+		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+			noJugable.setVelocidadDireccional(new Point(noJugable.getVelocidadDireccional().x, noJugable.getVelocidadDireccional().y + GRAVEDAD));
 		}
 	}
 	

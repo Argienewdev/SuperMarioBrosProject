@@ -18,7 +18,7 @@ import visitors.VisitorSuperChampinion;
 
 public class FabricaPlataformas {
 
-	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS = 2;
+	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
 	
 	protected FabricaSprites fabricaSprites;
 	
@@ -98,7 +98,7 @@ public class FabricaPlataformas {
 				break;
 			}
 			case 1: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS,0);
+				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
 				Estrella estrella = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
 				Visitante visitorEstrella = new VisitorEstrella(estrella);
 				estrella.setVisitor(visitorEstrella);
@@ -111,7 +111,7 @@ public class FabricaPlataformas {
 		        break;
 			}
 			case 3: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS,0);
+				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
 				ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
 				Visitante visitorChampinionVerde = new VisitorChampinionVerde(champinionVerde);
 				champinionVerde.setVisitor(visitorChampinionVerde);
@@ -124,7 +124,7 @@ public class FabricaPlataformas {
 		        break;
 			}
 			case 5: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS,0);
+				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
 				FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
 				Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuego);
 				florDeFuego.setVisitor(visitorFlorDeFuego);
@@ -137,7 +137,7 @@ public class FabricaPlataformas {
 		        break;
 			}
 			case 7: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS,0);
+				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
 				SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion, null, velocidadDireccional, null);
 				Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampinion);
 				superChampinion.setVisitor(visitorSuperChampinion);
@@ -156,8 +156,16 @@ public class FabricaPlataformas {
 	
 	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
-	public BloqueSolido getBloqueSolido() {
-    	return null;
+	public BloqueSolido getBloqueSolido(Point posicion, Visitante visitor) {
+    	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
+    	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, visitor);
+		return bloqueSolidoADevolver;
+    }
+    
+    public Piso getPiso(Point posicion, Visitante visitor) {
+    	Sprite spritePiso = this.fabricaSprites.getPiso();
+    	Piso pisoADevolver = new Piso(spritePiso, posicion, visitor);
+    	return pisoADevolver;
     }
 	
 }
