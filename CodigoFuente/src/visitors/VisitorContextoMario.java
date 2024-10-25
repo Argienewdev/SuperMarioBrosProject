@@ -67,8 +67,7 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarFireball(Fireball fireball) {
-	}
+	public void visitarFireball(Fireball fireball) {}
 
 	@Override
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {

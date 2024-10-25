@@ -81,6 +81,7 @@ public class GeneradorDeNivel {
 	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
 	                    ladrillo.setNivel(nivel);
 	                    nivel.addPlataforma(ladrillo);
+	                    nivel.addPlataformasAfectables(ladrillo);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoLadrillo);
 	                    break;
 	                }	             
@@ -118,6 +119,7 @@ public class GeneradorDeNivel {
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
 	                    bloqueDePregunta.setNivel(nivel);
 	                    nivel.addPlataforma(bloqueDePregunta);
+	                    nivel.addPlataformasAfectables(bloqueDePregunta);
 	                    this.pantallaDeJuego.agregarLabel(observerGraficoBloqueDePregunta);
 	                    break;
 	                }
