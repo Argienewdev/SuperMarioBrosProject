@@ -13,7 +13,6 @@ module superMario {
 	exports juego;
 	exports launcher;
 	exports observers;
-	exports sonido;
 	exports ventanas;
 	exports visitors;
 	exports elementos.enemigos;

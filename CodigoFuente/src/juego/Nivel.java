@@ -57,6 +57,14 @@ public class Nivel {
 	public void addEntidadesAEliminar(NoJugable entidad) {
         this.entidadesAEliminar.add(entidad);
     }
+	
+	public void addPlataformasAfectables(Plataforma plataforma) {
+        this.plataformasAfectables.add(plataforma);
+    }
+	
+	public Iterable<Plataforma> getPlataformasAfectables() {
+        return plataformasAfectables;
+    }
 
     public void setMario(ContextoMario mario) {
         this.mario = mario;

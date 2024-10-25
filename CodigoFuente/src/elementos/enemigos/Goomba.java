@@ -23,5 +23,9 @@ public class Goomba extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 	}
-    
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getGoombaAplastado());
+		//Tiene que haber un tiempo hasta pasar al sprite invisible
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
 }

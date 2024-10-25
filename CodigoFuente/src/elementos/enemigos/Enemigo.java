@@ -3,6 +3,7 @@ package elementos.enemigos;
 import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.NoJugable;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -27,5 +28,5 @@ public abstract class Enemigo extends NoJugable {
     }
 
     public abstract void aceptarVisitante(Visitante visitante);
-    
+   
 }
