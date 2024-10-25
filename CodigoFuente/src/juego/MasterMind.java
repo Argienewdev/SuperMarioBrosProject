@@ -32,7 +32,7 @@ public class MasterMind {
 		actualizarSpritesPlataformas();
 		actualizarLabelsEnemigos();
 		actualizarLabelsPowerUps();
-		actuliizarLabelsPlataformas();
+		actualizarLabelsPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 	}
 
@@ -143,7 +143,7 @@ public class MasterMind {
 		}
 	}
 	
-	private void actuliizarLabelsPlataformas() {
+	private void actualizarLabelsPlataformas() {
 		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
 			plataforma.getObserverGrafico().actualizar();
 		}
