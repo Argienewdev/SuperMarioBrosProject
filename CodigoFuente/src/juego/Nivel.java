@@ -22,7 +22,7 @@ public class Nivel {
 
     private Collection<Enemigo> enemigos;
     
-    private Collection<NoJugable> entidadesAEliminar;
+    private Collection<ElementoDeJuego> entidadesAEliminar;
     
     private Collection<Plataforma> plataformasAfectables;
 
@@ -36,7 +36,7 @@ public class Nivel {
         this.plataformasAfectables = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
-        this.entidadesAEliminar = new ArrayList<NoJugable>();
+        this.entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
 
     public void addPlataforma(Plataforma plataforma) {
@@ -54,7 +54,7 @@ public class Nivel {
         powerUp.setNivel(this);
     }
     
-	public void addEntidadesAEliminar(NoJugable entidad) {
+	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
     }
 	
@@ -77,6 +77,8 @@ public class Nivel {
     public void removerEntidadesAEliminar() {
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
+    	plataformas.removeAll(entidadesAEliminar);
+    	plataformasAfectables.removeAll(entidadesAEliminar);
     }
     
     public Iterable<Plataforma> getPlataformas() {

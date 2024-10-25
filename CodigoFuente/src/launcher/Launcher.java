@@ -12,7 +12,7 @@ public class Launcher {
         juego.establecerControladorVistas(new ControladorVistas(juego));
         new BucleJuego(juego);
         ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
-        reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musica_juego.wav");
+        reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musicaModoOriginal.wav");
         // Aquí puedes iniciar la partida o realizar otras configuraciones
     }
 }

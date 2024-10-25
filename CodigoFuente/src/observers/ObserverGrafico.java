@@ -37,5 +37,4 @@ public class ObserverGrafico extends JLabel implements Observer {
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
 	}
-	
 }

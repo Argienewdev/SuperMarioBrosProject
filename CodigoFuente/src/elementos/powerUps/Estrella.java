@@ -15,6 +15,7 @@ public class Estrella extends PowerUp {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
+		this.ticksHastaSalirDelBloque = 50;
 	}
 	
 	@Override
@@ -40,7 +41,10 @@ public class Estrella extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
+		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+			this.setSprite(fabricaSprites.getEstrellaEncendida());
+		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
+			this.setSprite(fabricaSprites.getEstrellaEncendida());
+		}		
 	}
 }

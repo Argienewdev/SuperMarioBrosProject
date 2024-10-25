@@ -73,7 +73,7 @@ public class FabricaPlataformas {
 		BloqueDePregunta bloqueDePreguntaADevolver = null;
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 7;
+		int identificadorPowerUp = 5;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
@@ -87,6 +87,7 @@ public class FabricaPlataformas {
 				nivel.addPowerUp(monedasDentroBloqueDePregunta);
 				pantallaDeJuego.agregarLabel(observerGraficoMonedas);
 				bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, monedasDentroBloqueDePregunta);
+				monedasDentroBloqueDePregunta.setBloquePregunta(bloqueDePreguntaADevolver);
 				break;
 			}
 			case 1: {
@@ -100,6 +101,7 @@ public class FabricaPlataformas {
 		        nivel.addPowerUp(estrella);
 		        pantallaDeJuego.agregarLabel(observerGraficoEstrella);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, estrella);
+		        estrella.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 3: {
@@ -113,6 +115,7 @@ public class FabricaPlataformas {
 		        nivel.addPowerUp(champinionVerde);
 		        pantallaDeJuego.agregarLabel(observerGraficoChampinionVerde);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, champinionVerde);
+		        champinionVerde.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 5: {
@@ -126,6 +129,7 @@ public class FabricaPlataformas {
 		        nivel.addPowerUp(florDeFuego);
 		        pantallaDeJuego.agregarLabel(observerGraficoFlorDeFuego);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, florDeFuego);
+		        florDeFuego.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 7: {
@@ -139,6 +143,7 @@ public class FabricaPlataformas {
 		        nivel.addPowerUp(superChampinion);
 		        pantallaDeJuego.agregarLabel(observerGraficoSuperChampinion);
 		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, superChampinion);
+		        superChampinion.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 		}

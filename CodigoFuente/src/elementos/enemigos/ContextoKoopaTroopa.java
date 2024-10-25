@@ -37,5 +37,8 @@ public class ContextoKoopaTroopa extends Enemigo {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estado.actualizarSprite(fabricaSprites);
 	}
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
     
 }

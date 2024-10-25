@@ -32,7 +32,7 @@ public class MasterMind {
 		actualizarSpritesPlataformas();
 		actualizarLabelsEnemigos();
 		actualizarLabelsPowerUps();
-		actuliizarLabelsPlataformas();
+		actualizarLabelsPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 	}
 
@@ -108,7 +108,7 @@ public class MasterMind {
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getPosicion().y - powerUp.obtenerAlto()));
+		powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getBloquePregunta().getPosicion().y - powerUp.getBloquePregunta().obtenerAlto()));
 		powerUp.moverHitbox(powerUp.getPosicion());
 		powerUp.actualizarSprite(this.fabricaSprites);
 	}
@@ -143,7 +143,7 @@ public class MasterMind {
 		}
 	}
 	
-	private void actuliizarLabelsPlataformas() {
+	private void actualizarLabelsPlataformas() {
 		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
 			plataforma.getObserverGrafico().actualizar();
 		}

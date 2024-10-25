@@ -48,12 +48,14 @@ public class BloqueDePregunta extends Plataforma {
 	public PowerUp liberarPowerUp() { 
 		if (!estaVacio) {
 			powerUp.establecerEstaDentroDeBloqueDePreguntas(false);
-			this.miNivel.addPlataformasAfectables(this);
+			this.estaVacio = true;
 		}
 		return this.powerUp;
 	}
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getBloqueDePreguntaApagado());
+		if(estaVacio) {
+			this.setSprite(fabricaSprites.getBloqueDePreguntaApagado());
+		}
 	}
 
 }

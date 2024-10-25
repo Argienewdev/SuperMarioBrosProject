@@ -38,5 +38,11 @@ public class Fireball extends NoJugable {
 	public void eliminarDelNivel() {
 		//TODO
 	}
+
+	@Override
+	public void elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

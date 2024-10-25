@@ -273,12 +273,12 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getFlorDeFuegoPrimeraTransicion() {
+    public Sprite getFlorDeFuegoSaliendoDelBloqueDePreguntas() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/florDeFuegoPrimeraTransicion.png");
     }
 
     @Override
-    public Sprite getFlorDeFuegoSegundaTransicion() {
+    public Sprite getFlorDeFuegoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/florDeFuegoSegundaTransicion.png");
     }
 
