@@ -42,6 +42,7 @@ public class VisitorEstrella implements Visitante {
     @Override
     public void visitarFireball(Fireball fireball) {
         // Lógica para visitar Fireball
+    	
     }
 
     @Override
