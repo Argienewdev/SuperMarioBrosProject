@@ -5,6 +5,7 @@ import java.awt.Point;
 import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.NoJugable;
+import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
 
@@ -28,8 +29,10 @@ public class MasterMind {
 		actualizarPosicionesPowerUps();
 		actualizarSpritesEnemigos();
 		actualizarSpritesPowerUps();
+		actualizarSpritesPlataformas();
 		actualizarLabelsEnemigos();
 		actualizarLabelsPowerUps();
+		actuliizarLabelsPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 	}
 
@@ -114,7 +117,14 @@ public class MasterMind {
 		for(Enemigo enemigo : this.nivel.getEnemigos()) {
 			enemigo.actualizarVisual(this.fabricaSprites);
 		}
-	}	
+	}
+	
+	private void actualizarSpritesPlataformas() {
+		// TODO Exteremadamente ineficiente necesita optimizarse
+		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
+			plataforma.actualizarVisual(this.fabricaSprites);
+		}
+	}
 	
 	private void actualizarSpritesPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
@@ -131,6 +141,12 @@ public class MasterMind {
 	private void actualizarLabelsPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			powerUp.getObserverGrafico().actualizar();
+		}
+	}
+	
+	private void actuliizarLabelsPlataformas() {
+		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
+			plataforma.getObserverGrafico().actualizar();
 		}
 	}
 	

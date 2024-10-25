@@ -102,7 +102,9 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-        // TODO Auto-generated method stub
+    	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miEntidad)) {
+            ladrillo.eliminarDelNivel();
+        }
     }
 
     @Override
