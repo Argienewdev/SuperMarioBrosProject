@@ -25,6 +25,7 @@ public class VisitorGoomba implements Visitante {
 
 	@Override
 	public void visitar(Goomba goomba) {
+		detectorDireccionColision.verificarColisionEntreEntidades(miEntidad, goomba);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class MasterMind {
 	
 	private static final int GRAVEDAD = 3;
 	
-	private static final int FUERZA_SALTO = -10;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
 			
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
@@ -155,7 +155,7 @@ public class MasterMind {
 	}
 	
 	private void aplicarGravedad(NoJugable noJugable) {
-		if(noJugable.getVelocidadDireccional().y >= FUERZA_SALTO){
+		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
 			noJugable.setVelocidadDireccional(new Point(noJugable.getVelocidadDireccional().x, noJugable.getVelocidadDireccional().y + GRAVEDAD));
 		}
 	}

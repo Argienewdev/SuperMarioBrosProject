@@ -30,7 +30,6 @@ public class VisitorSuperChampinion implements Visitante {
 	@Override
 	public void visitar(Goomba goomba) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
