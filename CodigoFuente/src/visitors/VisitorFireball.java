@@ -91,7 +91,7 @@ public class VisitorFireball implements Visitante {
         int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
         miEntidad.obtenerJugador().ganarPuntos(puntos);
         Nivel nivel = enemigo.getNivel();
-        nivel.removeEnemigo(enemigo);
+        nivel.removeNoJugable(enemigo);
     }
 
 	@Override

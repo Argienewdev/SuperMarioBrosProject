@@ -95,11 +95,17 @@ public class MasterMind {
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
+		        	System.out.println(elemento.getClass().getSimpleName()); 
 		        	huboColision = true;
 		            elemento.aceptarVisitante(noJugable.getVisitor());
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
+			//TODO no me gusta esto pero como mario no es parte de los elementos de juego en el nivel tuve que hacerlo
+			if(noJugable.huboColision(nivel.getMario())) {
+	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
+	            noJugable.aceptarVisitante(nivel.getMario().getVisitor());
+			}
 		}
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());

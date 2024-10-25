@@ -85,6 +85,7 @@ public class PantallaDeJuego extends JPanel {
 
     public void refrescar() {
     	hud.actualizarTiempo();
+    	hud.actualizarVidas(marioJugable.getVidas());
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
         boolean fondoMovido = false; // Bandera para indicar si el fondo se ha movido

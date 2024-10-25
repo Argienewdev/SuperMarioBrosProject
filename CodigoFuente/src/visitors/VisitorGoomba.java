@@ -68,19 +68,20 @@ public class VisitorGoomba implements Visitante {
 	
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		/*
-		if(detectorDireccionColision.choquePorDerecha(contextoMario)||detectorDireccionColision.choquePorIzquierda(contextoMario)) {
-			contextoMario.getEstado().aceptarVisitante(this);
-		}*/
+		contextoMario.getEstado().aceptarVisitante(this);
 	}
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		ContextoMario contextoMario = marioDefault.getContext();
-		if (contextoMario.getVidas() == 1) {
-			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-			contextoMario.perderPuntos(perdidaPuntos);
+		if(detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), miEntidad) || detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), miEntidad)) {
+			ContextoMario contextoMario = marioDefault.getContext();
+			if (contextoMario.getVidas() == 1) {
+				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+				contextoMario.perderPuntos(perdidaPuntos);
+				//TODO hay que matar a mario...
+			}else {
+				contextoMario.perderVida();
+			}
 		}
-		contextoMario.perderVida();
 	}
 	
 	@Override
