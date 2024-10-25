@@ -44,14 +44,6 @@ public class Juego {
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
-	public static void main(String args[]) {
-		juego = new Juego();
-		juego.controladorVistas = new ControladorVistas(juego);
-		juego.bucleJuego = new BucleJuego(juego);
-		ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
-		reproductorDeMusicaFondo.playMusic("src/sonido/musica_juego.wav");
-	}
-	
 	public void actualizar() {
 		controladorVistas.refrescar();
 	}

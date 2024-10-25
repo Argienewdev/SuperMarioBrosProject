@@ -1,12 +1,7 @@
 
 package juego;
 
-import java.awt.Point;
-
-import elementos.Sprite;
-import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -19,10 +14,10 @@ public class CoordinadorActualizacionesJugador {
 	private FabricaSprites fabricaSprites;
 	
 	@SuppressWarnings("exports")
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, ContextoMario marioJugable, FabricaSprites fabricaSprites) {
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, ContextoMario marioJugable, FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.marioJugable = marioJugable;
-		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego);
+		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel);
 	}
 	
 	public void actualizar() {
