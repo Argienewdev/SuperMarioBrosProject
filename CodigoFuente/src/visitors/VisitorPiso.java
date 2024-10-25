@@ -71,6 +71,7 @@ public class VisitorPiso implements Visitante{
 	}
 
 	public void visitar(SuperMario superMario) {
+		System.out.println("visitorPiso visitar(superMario)");
 		detectorDireccionColision.verificarColision(miEntidad, superMario.getContext());
 	}
 

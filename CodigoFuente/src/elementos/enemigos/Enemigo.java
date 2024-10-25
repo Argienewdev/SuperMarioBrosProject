@@ -28,8 +28,4 @@ public abstract class Enemigo extends NoJugable {
 
     public abstract void aceptarVisitante(Visitante visitante);
     
-    public void eliminarDelNivel() {
-    	this.miNivel.removeEnemigo(this);
-    }
-    
 }

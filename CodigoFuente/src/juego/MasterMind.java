@@ -132,13 +132,13 @@ public class MasterMind {
 	
 	private void actualizarSpritesEnemigos() {
 		for(Enemigo enemigo : this.enemigos) {
-			enemigo.actualizarSprite(this.fabricaSprites);
+			enemigo.actualizarVisual(this.fabricaSprites);
 		}
 	}	
 	
 	private void actualizarSpritesPowerUps() {
 		for(PowerUp powerUp : this.powerUps) {
-			powerUp.actualizarSprite(this.fabricaSprites);
+			powerUp.actualizarVisual(this.fabricaSprites);
 		}
 	}
 	

@@ -49,10 +49,6 @@ public abstract class PowerUp extends NoJugable {
 		this.estaDentroDeBloqueDePreguntas = estaDentroDeBloqueDePreguntas;
 	}
 
-	public void eliminarDelNivel() {
-		this.miNivel.removePowerUp(this);
-	}
-	
 	public int getTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}

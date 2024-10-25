@@ -34,13 +34,18 @@ public class VisitorContextoMario implements Visitante {
 	
 	protected ContextoMario miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorContextoMario (ContextoMario miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
 	public void visitar(BuzzyBeetle buzzy) {
-		otorgarPuntosYEliminar(buzzy);
+		if(detectorDireccionColision.choquePorArriba(buzzy, miEntidad)) {
+			otorgarPuntosYEliminar(buzzy);
+		}
 	}
 
 	@Override
@@ -50,11 +55,15 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(Goomba goomba) {
-		otorgarPuntosYEliminar(goomba);
+		if(detectorDireccionColision.choquePorArriba(goomba, miEntidad)) {
+			otorgarPuntosYEliminar(goomba);
+		}
 	}
 
 	public void visitar(ContextoKoopaTroopa ContextoKoopa) {
-		ContextoKoopa.getEstado().aceptarVisitante(this);
+		if(detectorDireccionColision.choquePorArriba(ContextoKoopa, miEntidad)) {
+			ContextoKoopa.getEstado().aceptarVisitante(this);
+		}
 	}
 	@Override
 	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
@@ -85,33 +94,31 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		Nivel nivel = superChamp.getNivel();
-		nivel.removePowerUp(superChamp);
-		
+		superChamp.eliminarDelNivel();
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
 		Nivel nivel = flor.getNivel();
-		nivel.removePowerUp(flor);
+		nivel.removeNoJugable(flor);
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
 		Nivel nivel = champVerde.getNivel();
-		nivel.removePowerUp(champVerde);
+		nivel.removeNoJugable(champVerde);
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
 		Nivel nivel = estrella.getNivel();
-		nivel.removePowerUp(estrella);
+		nivel.removeNoJugable(estrella);
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
 		Nivel nivel = moneda.getNivel();
-		nivel.removePowerUp(moneda);
+		nivel.removeNoJugable(moneda);
 	}
 
 	@Override
@@ -177,8 +184,7 @@ public class VisitorContextoMario implements Visitante {
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
 		miEntidad.ganarPuntos(puntos);
-		Nivel nivel = enemigo.getNivel();
-		nivel.removeEnemigo(enemigo);
+		enemigo.eliminarDelNivel();
 	}
 
 	@Override

@@ -62,19 +62,23 @@ public class VisitorBuzzyBeetle implements Visitante{
 	}
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		ContextoMario contextoMario = marioDefault.getContext();
-		if (contextoMario.getVidas() == 1) {
-			int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-			contextoMario.perderPuntos(perdidaPuntos);
+		if(detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), miEntidad) || detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), miEntidad)) {
+			ContextoMario contextoMario = marioDefault.getContext();
+			if (contextoMario.getVidas() == 1) {
+				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
+				contextoMario.perderPuntos(perdidaPuntos);
+			}
+			contextoMario.perderVida();
 		}
-		contextoMario.perderVida();
 	}
 	
 	@Override
 	public void visitar(SuperMario superMario) {
-		ContextoMario contextoMario = superMario.getContext();
-		EstadoMario nuevoEstado= new MarioDefault();
-		contextoMario.cambiarEstado(nuevoEstado);
+		if(detectorDireccionColision.choquePorDerecha(superMario.getContext(), miEntidad) || detectorDireccionColision.choquePorIzquierda(superMario.getContext(), miEntidad)) {
+			ContextoMario contextoMario = superMario.getContext();
+			EstadoMario nuevoEstado= new MarioDefault();
+			contextoMario.cambiarEstado(nuevoEstado);
+		}
 	}
 
 	@Override
