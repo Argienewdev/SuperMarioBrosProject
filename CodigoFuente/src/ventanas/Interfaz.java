@@ -26,7 +26,7 @@ private Fuentes tipoFuentes;
 		    
 		setOpaque(false);
 		setBackground(new Color(0, 0, 0, 0));
-		        configurarFuente();
+		configurarFuente();
 		crearPaneles();
 	
 	}
@@ -88,7 +88,7 @@ private Fuentes tipoFuentes;
 		tiempoLabel.setForeground(Color.WHITE);
 	}
 	
-	public void actualizarPuntaje() {
-	//puntaje= jugador.getPuntos();
+	public void actualizarPuntaje(int puntaje) {
+		puntajeLabel.setText("Puntaje " + puntaje);
 	}
 }

@@ -14,7 +14,7 @@ public class SuperChampinion extends PowerUp {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
-		this.ticksHastaSalirDelBloque = 60;
+		this.ticksHastaSalirDelBloque = 50;
 	}
 	
 	@Override

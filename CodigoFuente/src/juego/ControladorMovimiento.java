@@ -46,7 +46,7 @@ public class ControladorMovimiento {
 	
 	public void actualizarPosicion() {
 		determinarDireccion();
-        reiniciarVelocidadHorizontal();
+		reiniciarVelocidadHorizontal();
 	}
 	
 	private void moveMarioDerecha() {
