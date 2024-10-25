@@ -10,6 +10,7 @@ import elementos.enemigos.Lakitu;
 import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.entidades.Fireball;
+import elementos.entidades.NoJugable;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import elementos.personajes.MarioFuego;
@@ -22,7 +23,6 @@ import elementos.plataformas.Ladrillo;
 import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
-import elementos.plataformas.Vacio;
 import elementos.powerUps.ChampinionVerde;
 import elementos.powerUps.Estrella;
 import elementos.powerUps.FlorDeFuego;
@@ -95,31 +95,31 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		superChamp.eliminarDelNivel();
+		superChamp.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		Nivel nivel = flor.getNivel();
-		nivel.removeNoJugable(flor);
+		flor.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitar(ChampinionVerde champVerde) {
 		Nivel nivel = champVerde.getNivel();
-		nivel.removeNoJugable(champVerde);
+		miEntidad.ganarPuntos(100);
+		champVerde.eliminarDelNivel();
 	}
 
 	@Override
 	public void visitar(Estrella estrella) {
-		Nivel nivel = estrella.getNivel();
-		nivel.removeNoJugable(estrella);
+		estrella.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitar(Monedas moneda) {
 		Nivel nivel = moneda.getNivel();
-		nivel.removeNoJugable(moneda);
+		miEntidad.ganarPuntos(5);
+		moneda.eliminarDelNivel();
 	}
 
 	@Override
@@ -132,10 +132,6 @@ public class VisitorContextoMario implements Visitante {
 		ladrillo.aceptarVisitante(miEntidad.getEstado().getVisitor());
 	}
 	
-	@Override
-	public void visitar(Vacio vacio) {
-	}
-
 	@Override
 	public void visitar(PrincesaPeach princesa) {
 	}
@@ -187,7 +183,7 @@ public class VisitorContextoMario implements Visitante {
 		miEntidad.ganarPuntos(puntos);
 		enemigo.eliminarDelNivel();
 	}
-
+	
 	@Override
 	public void visitar(Piso piso) {
 		piso.aceptarVisitante(miEntidad.getEstado().getVisitor());

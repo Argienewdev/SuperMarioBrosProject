@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import fuentes.Fuentes;
 
+@SuppressWarnings("serial")
 public class Interfaz extends JPanel{
 
 private JLabel vidasLabel;

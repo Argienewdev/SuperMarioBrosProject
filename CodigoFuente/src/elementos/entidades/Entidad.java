@@ -1,10 +1,8 @@
 package elementos.entidades;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
-import juego.Nivel;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 

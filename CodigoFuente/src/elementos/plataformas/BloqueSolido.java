@@ -1,10 +1,7 @@
 package elementos.plataformas;
 
 import java.awt.Point;
-import java.util.Vector;
-
 import elementos.Sprite;
-import fabricas.FabricaSprites;
 import visitors.Visitante;
 
 public class BloqueSolido extends Plataforma{

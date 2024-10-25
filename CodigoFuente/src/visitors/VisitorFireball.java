@@ -73,8 +73,6 @@ public class VisitorFireball implements Visitante {
 
     public void visitar(Ladrillo ladrillo) { }
 
-    public void visitar(Vacio vacio) { }
-
     public void visitar(PrincesaPeach princesa) { }
 
     public void visitar(Bandera bandera) { }
@@ -91,7 +89,7 @@ public class VisitorFireball implements Visitante {
         int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
         miEntidad.obtenerJugador().ganarPuntos(puntos);
         Nivel nivel = enemigo.getNivel();
-        nivel.removeNoJugable(enemigo);
+        nivel.addEntidadesAEliminar(enemigo);
     }
 
 	@Override

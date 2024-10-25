@@ -1,6 +1,5 @@
 package ventanas;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;

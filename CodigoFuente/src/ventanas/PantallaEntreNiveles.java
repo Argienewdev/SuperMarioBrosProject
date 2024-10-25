@@ -7,6 +7,7 @@ import fuentes.Fuentes;
 
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class PantallaEntreNiveles extends JPanel {
     
     private JLabel vidasLabel;
@@ -86,7 +87,8 @@ public class PantallaEntreNiveles extends JPanel {
 		tiempoLabel.setForeground(Color.WHITE);
     }
     
-    public void setIcono(ImageIcon icono) {
+    @SuppressWarnings("exports")
+	public void setIcono(ImageIcon icono) {
         iconoLabel.setIcon(icono);
     }
 

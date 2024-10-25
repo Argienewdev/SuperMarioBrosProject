@@ -40,8 +40,6 @@ public interface Visitante {
 
 	public void visitar(Ladrillo ladrillo);
 	
-	public void visitar(Vacio vacio);
-	
 	public void visitar(PrincesaPeach princesa);
 
 	public void visitar(Bandera bandera);

@@ -61,6 +61,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.miNivel = nivel;
 	}
 	
+	@SuppressWarnings("exports")
 	public void setPosicion (Point posicion) {
 		this.posicion = posicion;
 	}
@@ -74,6 +75,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		return this.hitbox;
 	}
 	
+	@SuppressWarnings("exports")
 	public void moverHitbox(Point nuevaPosicion) {
 		this.hitbox.setLocation(nuevaPosicion);
 	}

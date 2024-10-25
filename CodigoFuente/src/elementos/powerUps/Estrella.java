@@ -1,8 +1,6 @@
 package elementos.powerUps;
 
 import java.awt.Point;
-import java.util.Vector;
-
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
@@ -45,5 +43,4 @@ public class Estrella extends PowerUp {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

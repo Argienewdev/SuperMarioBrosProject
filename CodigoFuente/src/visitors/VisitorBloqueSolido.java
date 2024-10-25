@@ -80,9 +80,6 @@ public class VisitorBloqueSolido implements Visitante {
 	public void visitar(Ladrillo ladrillo) {	
 	}
 	
-	public void visitar(Vacio vacio) {	
-	}
-	
 	public void visitar(PrincesaPeach princesa) {
 	}
 

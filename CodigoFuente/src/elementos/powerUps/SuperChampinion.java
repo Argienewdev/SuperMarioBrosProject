@@ -2,7 +2,6 @@ package elementos.powerUps;
 
 import java.awt.Point;
 import elementos.Sprite;
-import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -46,5 +45,4 @@ public class SuperChampinion extends PowerUp {
 			this.setSprite(fabricaSprites.getSuperChampinionQuieto());
 		}
 	}
-
 }

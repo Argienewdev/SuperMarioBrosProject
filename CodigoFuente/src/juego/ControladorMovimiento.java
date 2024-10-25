@@ -1,11 +1,7 @@
 package juego;
 
 import java.awt.Point;
-import java.util.Iterator;
-import java.util.List;
-
 import elementos.ElementoDeJuego;
-import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.DimensionesConstantes;
@@ -23,25 +19,19 @@ public class ControladorMovimiento {
 	
 	private int velocidadVertical;
 	
-	private Point posicion;
-	
 	private Jugable marioJugable;
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	private Nivel nivel;
 	
-	private GestorDeColisiones gestorDeColisiones;
-	
-	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
+	@SuppressWarnings("exports")
+	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
 		this.marioJugable.setVelocidadDireccional(new Point(0,0));
 		this.velocidadHorizontal = 0;
 		this.velocidadVertical = 0;
-		this.posicion = new Point(marioJugable.getPosicion().x, marioJugable.getPosicion().y);
-		this.nivel = nivel;
-		this.gestorDeColisiones = gestorDeColisiones;
 	}
 	
 	public void actualizarPosicion() {
@@ -118,6 +108,7 @@ public class ControladorMovimiento {
 	    cambiarYVerificarPosicionHitboxDeMario();
 	}
 	
+	@SuppressWarnings("exports")
 	public void verificarColisiones(Jugable entidad) {
 		boolean huboColision = false;
 		if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {

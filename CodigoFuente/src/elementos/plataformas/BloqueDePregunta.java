@@ -5,8 +5,6 @@ import java.awt.Point;
 
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
-import fabricas.FabricaSprites;
-import juego.Nivel;
 import visitors.Visitante;
 
 public class BloqueDePregunta extends Plataforma {

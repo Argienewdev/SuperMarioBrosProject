@@ -1,7 +1,6 @@
 package fabricas;
 import java.awt.Point;
 import java.util.Random;
-
 import elementos.enemigos.PiranhaPlant;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -34,13 +33,6 @@ public class FabricaPlataformas {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor);
 		return ladrilloADevolver;
-	}
-	
-	@SuppressWarnings("exports")
-	public Vacio getVacio(Point posicion, Visitante visitor) {
-		Sprite spriteVacio = this.fabricaSprites.getVacio();
-		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, visitor);
-		return vacioADevolver;
 	}
 	
 	@SuppressWarnings("exports")
@@ -162,7 +154,8 @@ public class FabricaPlataformas {
 		return bloqueSolidoADevolver;
     }
     
-    public Piso getPiso(Point posicion, Visitante visitor) {
+    @SuppressWarnings("exports")
+	public Piso getPiso(Point posicion, Visitante visitor) {
     	Sprite spritePiso = this.fabricaSprites.getPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, visitor);
     	return pisoADevolver;

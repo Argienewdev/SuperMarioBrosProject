@@ -18,16 +18,11 @@ public class CoordinadorActualizacionesJugador {
 	
 	private FabricaSprites fabricaSprites;
 	
-	private GestorDeColisiones gestorDeColisiones;
-	
-	private Nivel nivel;
-	
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, ContextoMario marioJugable, FabricaSprites fabricaSprites, Nivel nivel, GestorDeColisiones gestorDeColisiones) {
+	@SuppressWarnings("exports")
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, ContextoMario marioJugable, FabricaSprites fabricaSprites) {
 		this.fabricaSprites = fabricaSprites;
 		this.marioJugable = marioJugable;
-		this.gestorDeColisiones = gestorDeColisiones;
-		this.nivel = nivel;
-		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel, gestorDeColisiones);
+		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego);
 	}
 	
 	public void actualizar() {
