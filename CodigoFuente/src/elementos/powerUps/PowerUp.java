@@ -3,6 +3,7 @@ package elementos.powerUps;
 import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.NoJugable;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -48,6 +49,5 @@ public abstract class PowerUp extends NoJugable {
 	public int getTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
-	
 	
 }

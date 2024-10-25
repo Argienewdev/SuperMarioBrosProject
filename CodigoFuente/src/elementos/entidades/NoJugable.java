@@ -32,8 +32,9 @@ public abstract class NoJugable extends Entidad {
 
 		}
 	}
-	
-	protected void elminarEntidadGraficamente(FabricaSprites fabricaSprites) {}
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
 
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 
