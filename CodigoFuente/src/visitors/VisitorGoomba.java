@@ -80,6 +80,7 @@ public class VisitorGoomba implements Visitante {
 				//TODO hay que matar a mario...
 			}else {
 				contextoMario.perderVida();
+				contextoMario.setImpactado(true);
 			}
 		}
 	}

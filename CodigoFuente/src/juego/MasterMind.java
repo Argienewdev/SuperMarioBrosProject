@@ -9,6 +9,7 @@ import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.Jugable;
 import elementos.entidades.NoJugable;
+import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
 import observers.ObserverEntidades;
@@ -95,7 +96,6 @@ public class MasterMind {
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
-		        	System.out.println(elemento.getClass().getSimpleName()); 
 		        	huboColision = true;
 		            elemento.aceptarVisitante(noJugable.getVisitor());
 		            noJugable.aceptarVisitante(elemento.getVisitor());

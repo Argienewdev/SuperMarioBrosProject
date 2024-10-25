@@ -5,10 +5,11 @@ import java.awt.Point;
 
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
+import fabricas.FabricaSprites;
 import juego.Nivel;
 import visitors.Visitante;
 
-public class BloqueDePregunta extends BloqueSolido {
+public class BloqueDePregunta extends Plataforma {
 	
 	protected PowerUp powerUp;
 	
@@ -22,7 +23,6 @@ public class BloqueDePregunta extends BloqueSolido {
 			this.estaVacio = false;
 		else
 			this.estaVacio = true;
-		
 	}
 	
 	public void setPowerUp (PowerUp powerUp) {

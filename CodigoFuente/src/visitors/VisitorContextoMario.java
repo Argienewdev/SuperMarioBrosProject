@@ -56,6 +56,7 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitar(Goomba goomba) {
 		if(detectorDireccionColision.choquePorArriba(goomba, miEntidad)) {
+			//TODO esto se llama 3 veces por alguna razon
 			otorgarPuntosYEliminar(goomba);
 		}
 	}

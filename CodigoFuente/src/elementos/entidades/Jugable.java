@@ -19,6 +19,8 @@ public abstract class Jugable extends Entidad {
 	
 	private boolean avanzando;
 	
+	private boolean impactado;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
 		this.colisionAbajo = true;
@@ -26,7 +28,9 @@ public abstract class Jugable extends Entidad {
 		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 3;
+		this.vidas = 999;
+		this.puntos = 0;
+		this.impactado = false;
 	}
 	
 	public void ganarVida() {
@@ -46,7 +50,7 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public void recogerMoneda() {
-		// TODO Auto-generated method stub
+		//TODO SACAR, la moneda te da puntos cuando mario visita a la moneda
 	}
 	
 	public int getVidas() {
@@ -86,7 +90,7 @@ public abstract class Jugable extends Entidad {
 	}
 	
 	public boolean getEnElAire() {
-		return enElAire;
+		return this.enElAire;
 	}
 	
 	public void setEnElAire(boolean enElAire) {
@@ -101,11 +105,19 @@ public abstract class Jugable extends Entidad {
 		this.retrocediendo = retrocediendo;
 	}
 	public boolean getAvanzando() {
-		return avanzando;
+		return this.avanzando;
 	}
 	
 	public void setAvanzando(boolean avanzando) {
 		this.avanzando = avanzando;
 	}
-
+	
+	public void setImpactado(boolean impacto) {
+		this.impactado = impacto;
+	}
+	
+	public boolean getImpactado() {
+		//TODO hacer q me empuje para atras
+		return this.impactado;
+	}
 }
