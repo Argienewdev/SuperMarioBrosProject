@@ -1,4 +1,4 @@
-package sonido;
+package sonido.sonidoModoOriginal;
 
 import java.io.File;
 import java.io.IOException;
