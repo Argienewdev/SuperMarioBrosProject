@@ -103,8 +103,9 @@ public class Juego {
 	}
 	
 	public void finalizarPartida (Jugador jugador) {
-		//TODO logica de fin de partida
+		jugador.actualizarPuntos();
 		ranking.agregarJugador(jugador);
+		controladorVistas.mostrarPantallaFinal();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {

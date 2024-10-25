@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Ranking implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private List<Jugador> topJugadores;
 	
 	public Ranking () {
