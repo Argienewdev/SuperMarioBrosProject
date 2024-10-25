@@ -1,5 +1,6 @@
 package visitors;
 
+
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 
@@ -11,7 +12,7 @@ public class DetectorDireccionColision {
 	
 	public void verificarColision(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		if (choquePorDerecha(elementoDeJuego, entidad) || choquePorIzquierda(elementoDeJuego, entidad)) {
-			entidad.retrotraerMovimientoHorizontal();
+	    	entidad.retrotraerMovimientoHorizontal();
 		}
 		if(choquePorArriba(elementoDeJuego, entidad)) {
 			entidad.setColisionAbajo(true);
