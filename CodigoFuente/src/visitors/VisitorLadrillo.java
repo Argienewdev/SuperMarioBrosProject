@@ -1,4 +1,3 @@
-
 package visitors;
 
 import elementos.enemigos.*;
@@ -6,110 +5,146 @@ import elementos.entidades.Fireball;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+
 public class VisitorLadrillo implements Visitante {
-	
-	private Ladrillo miEntidad;
-	
-	protected DetectorDireccionColision detectorDireccionColision;
+    
+    private Ladrillo miEntidad;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
 
-	public VisitorLadrillo(Ladrillo miEntidad) {
-		this.miEntidad = miEntidad;
-		this.detectorDireccionColision = new DetectorDireccionColision();
-	}
+    public VisitorLadrillo(Ladrillo miEntidad) {
+        this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
+    }
 
-	public void visitar(BuzzyBeetle buzzy) {
-		detectorDireccionColision.verificarColision(miEntidad, buzzy);
-	}
+    @Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
+    }
 
-	public void visitar(Spiny spiny) {	
-		detectorDireccionColision.verificarColision(miEntidad, spiny);
-	}
+    @Override
+    public void visitarSpiny(Spiny spiny) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, spiny);
+    }
 
-	public void visitar(Goomba goomba) {	
-		detectorDireccionColision.verificarColision(miEntidad, goomba);
-	}
-	
-	public void visitar(Lakitu lakitu) {	
-	}
-	
-	public void visitar(PiranhaPlant planta) {	
-	}
-	
-	public void visitar(Fireball fireball) {	
-		detectorDireccionColision.verificarColision(miEntidad, fireball);
-	}
-	
-	public void visitar(SuperChampinion superChamp) {	
-		detectorDireccionColision.verificarColision(miEntidad, superChamp);
-	}
-	
-	public void visitar(FlorDeFuego flor) {		
-	}
+    @Override
+    public void visitarGoomba(Goomba goomba) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+    }
+    
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {    
+        // Implementar lógica aquí si es necesario
+    }
+    
+    @Override
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
+        // Implementar lógica aquí si es necesario
+    }
+    
+    @Override
+    public void visitarFireball(Fireball fireball) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, fireball);
+    }
+    
+    @Override
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, superChampinion);
+    }
+    
+    @Override
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
+        // Implementar lógica aquí si es necesario
+    }
 
-	public void visitar(ChampinionVerde champVerde) {	
-		detectorDireccionColision.verificarColision(miEntidad, champVerde);
-	}
-	
-	public void visitar(Estrella estrella) {
-		detectorDireccionColision.verificarColision(miEntidad, estrella);
-	}
-	
-	public void visitar(Monedas monedas) {
-		
-	}
-	
-	public void visitar(MarioDefault marioNormal) {
-		detectorDireccionColision.verificarColision(miEntidad, marioNormal.getContext());
-	}
-	
-	public void visitar(MarioInvulnerable marioInv) {
-		detectorDireccionColision.verificarColision(miEntidad, marioInv.getContext());
-	}
+    @Override
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, champinionVerde);
+    }
+    
+    @Override
+    public void visitarEstrella(Estrella estrella) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, estrella);
+    }
+    
+    @Override
+    public void visitarMonedas(Monedas monedas) {
+        // Implementar lógica aquí si es necesario
+    }
+    
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
+    }
+    
+    @Override
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, marioInvulnerable.getContext());
+    }
 
-	public void visitar(MarioFuego marioFuego) {
-		detectorDireccionColision.verificarColision(miEntidad, marioFuego.getContext());
-	}
+    @Override
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, marioFuego.getContext());
+    }
 
-	public void visitar(SuperMario superMario) {
-		detectorDireccionColision.verificarColision(miEntidad, superMario.getContext());
-	}
+    @Override
+    public void visitarSuperMario(SuperMario superMario) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
+    }
 
-	public void visitar(BloqueDePregunta bloquePregunta) {		
-	}
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
+        // Implementar lógica aquí si es necesario
+    }
 
-	public void visitar(Ladrillo ladrillo) {	
-	}
-	
-	public void visitar(PrincesaPeach princesa) {
-	}
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {    
+        // Implementar lógica aquí si es necesario
+    }
+    
+    @Override
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+        // Implementar lógica aquí si es necesario
+    }
 
-	public void visitar(Bandera bandera) {
-	}
-	
-	public void visitar(Tuberia tuberia) {	
-	}
+    @Override
+    public void visitarBandera(Bandera bandera) {
+        // Implementar lógica aquí si es necesario
+    }
+    
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {    
+        // Implementar lógica aquí si es necesario
+    }
 
-	public void visitar(BloqueSolido bloqueSolido) {		
-	}
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
+        // Implementar lógica aquí si es necesario
+    }
 
-	public void visitar(ContextoMario contextoMario) {		
-		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
-	}
-	
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
-		detectorDireccionColision.verificarColision(miEntidad, contextoKoopa);
-	}
+    @Override
+    public void visitarContextoMario(ContextoMario contextoMario) {        
+        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
+    }
+    
+    @Override
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
+    }
 
-	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {
-	}
+    @Override
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+        // Implementar lógica aquí si es necesario
+    }
 
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {
-	}
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+        // Implementar lógica aquí si es necesario
+    }
 
-	@Override
-	public void visitar(Piso piso) {
-	}
-
+    @Override
+    public void visitarPiso(Piso piso) {
+        // Implementar lógica aquí si es necesario
+    }
+    
 }

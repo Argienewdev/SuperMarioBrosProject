@@ -28,7 +28,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 
 	@Override
     public void aceptarVisitante(Visitante visitante) {
-        visitante.visitar(this);
+        visitante.visitarKoopaEnCaparazon(this);
     }
 
 	public ContextoKoopaTroopa getContext() {

@@ -7,96 +7,121 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 
 public class VisitorBloqueDePregunta implements Visitante {
-	
-	private BloqueDePregunta miEntidad;
-	
-	protected DetectorDireccionColision detectorDireccionColision;
-	
-	public VisitorBloqueDePregunta(BloqueDePregunta miEntidad) {
-		this.miEntidad = miEntidad;
-		this.detectorDireccionColision = new DetectorDireccionColision();
-	}
+    
+    private BloqueDePregunta miEntidad;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
+    
+    public VisitorBloqueDePregunta(BloqueDePregunta miEntidad) {
+        this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
+    }
 
-	public void visitar(BuzzyBeetle buzzy) {	
-	}
+    @Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {    
+    }
 
-	public void visitar(Spiny spiny) {	
-	}
+    @Override
+    public void visitarSpiny(Spiny spiny) {    
+    }
 
-	public void visitar(Goomba goomba) {	
-	}
-	
-	public void visitar(ContextoMario contextoMario) {
-		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
-	}
-	
-	public void visitar(ContextoKoopaTroopa contextoKoopa) {	
-	}
-	
-	public void visitar(Lakitu lakitu) {	
-	}
-	
-	public void visitar(PiranhaPlant planta) {	
-	}
-	
-	public void visitar(Fireball fireball) {	
-	}
-	
-	public void visitar(SuperChampinion superChamp) {	
-	}
-	
-	public void visitar(FlorDeFuego flor) {		
-	}
+    @Override
+    public void visitarGoomba(Goomba goomba) {    
+    }
+    
+    @Override
+    public void visitarContextoMario(ContextoMario contextoMario) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
+    }
+    
+    @Override
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    }
 
-	public void visitar(ChampinionVerde champVerde) {	
-	}
-	
-	public void visitar(Estrella estrella) {	
-	}
-	
-	public void visitar(Monedas monedas) {		
-	}
-	
-	public void visitar(MarioDefault marioNormal) {		
-	}
-	
-	public void visitar(MarioInvulnerable marioInv) {		
-	}
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {    
+    }
+    
+    @Override
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
+    }
+    
+    @Override
+    public void visitarFireball(Fireball fireball) {    
+    }
+    
+    @Override
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+    }
+    
+    @Override
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
+    }
 
-	public void visitar(MarioFuego marioFuego) {		
-	}
+    @Override
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+    }
+    
+    @Override
+    public void visitarEstrella(Estrella estrella) {    
+    }
+    
+    @Override
+    public void visitarMonedas(Monedas monedas) {        
+    }
 
-	public void visitar(SuperMario superMario) {		
-	}
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
 
-	public void visitar(BloqueDePregunta bloquePregunta) {		
-	}
+    @Override
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
 
-	public void visitar(Ladrillo ladrillo) {	
-	}
-	
-	public void visitar(PrincesaPeach princesa) {
-	}
+    @Override
+    public void visitarMarioFuego(MarioFuego marioFuego) {  
+    }
 
-	public void visitar(Bandera bandera) {
-	}
-	
-	public void visitar(Tuberia tuberia) {	
-	}
+    @Override
+    public void visitarSuperMario(SuperMario superMario) {        
+    }
 
-	public void visitar(BloqueSolido bloqueSolido) {		
-	}
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
+    }
+
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {    
+    }
+    
+    @Override
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
+
+    @Override
+    public void visitarBandera(Bandera bandera) {
+    }
+    
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {    
+    }
+
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
+    }
+
+    @Override
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {        
+    }
+
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {        
+    }
 
 	@Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
+	public void visitarPiso(Piso piso) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void visitar(KoopaDefault koopaDefault) {		
-	}
-
-	@Override
-	public void visitar(Piso piso) {
-	}
-	
 }

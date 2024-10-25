@@ -33,7 +33,7 @@ public class BloqueDePregunta extends Plataforma {
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitar(this);
+		visitante.visitarBloqueDePregunta(this);
 	}
 
 	public boolean estaVacio() {

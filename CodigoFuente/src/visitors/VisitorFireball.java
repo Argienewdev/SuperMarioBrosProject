@@ -1,4 +1,3 @@
-
 package visitors;
 
 import elementos.enemigos.*;
@@ -16,86 +15,141 @@ public class VisitorFireball implements Visitante {
         this.miEntidad = miEntidad;
     }
 
-    public void visitar(BuzzyBeetle buzzy) {
-        otorgarPuntosYEliminar(buzzy);
+    @Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        otorgarPuntosYEliminar(buzzyBeetle);
     }
 
-    public void visitar(Spiny spiny) {
+    @Override
+    public void visitarSpiny(Spiny spiny) {
         otorgarPuntosYEliminar(spiny);
     }
 
-    public void visitar(Goomba goomba) {
+    @Override
+    public void visitarGoomba(Goomba goomba) {
         otorgarPuntosYEliminar(goomba);
     }
 
-    public void visitar(ContextoKoopaTroopa contextoKoopa) {
-    	otorgarPuntosYEliminar(contextoKoopa);	
-    }
-
-    public void visitar(KoopaDefault koopaDefault) {
-    }
-    
     @Override
-	public void visitar(KoopaEnCaparazon koopaEnCaparazon) {		
-	}
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        otorgarPuntosYEliminar(contextoKoopaTroopa);
+    }
 
-    public void visitar(Lakitu lakitu) {
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+        // Sin lógica específica
+    }
+
+    @Override
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+        // Sin lógica específica
+    }
+
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {
         otorgarPuntosYEliminar(lakitu);
     }
 
-    public void visitar(PiranhaPlant planta) {
-        otorgarPuntosYEliminar(planta);
+    @Override
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+        otorgarPuntosYEliminar(piranhaPlant);
     }
 
-    public void visitar(Fireball fireball) {
+    @Override
+    public void visitarFireball(Fireball fireball) {
         // Sin lógica específica por ahora
     }
 
-    public void visitar(SuperChampinion superChamp) { }
+    @Override
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+        // Sin lógica específica
+    }
 
-    public void visitar(FlorDeFuego flor) { }
+    @Override
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+        // Sin lógica específica
+    }
 
-    public void visitar(ChampinionVerde champVerde) { }
+    @Override
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        // Sin lógica específica
+    }
 
-    public void visitar(Estrella estrella) { }
+    @Override
+    public void visitarEstrella(Estrella estrella) {
+        // Sin lógica específica
+    }
 
-    public void visitar(Monedas moneda) { }
+    @Override
+    public void visitarMonedas(Monedas monedas) {
+        // Sin lógica específica
+    }
 
-    public void visitar(MarioDefault marioNormal) { }
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+        // Sin lógica específica
+    }
 
-    public void visitar(MarioInvulnerable marioInv) { }
+    @Override
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+        // Sin lógica específica
+    }
 
-    public void visitar(MarioFuego marioFuego) { }
+    @Override
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+        // Sin lógica específica
+    }
 
-    public void visitar(SuperMario superMario) { }
+    @Override
+    public void visitarSuperMario(SuperMario superMario) {
+        // Sin lógica específica
+    }
 
-    public void visitar(BloqueDePregunta bloquePregunta) { }
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+        // Sin lógica específica
+    }
 
-    public void visitar(Ladrillo ladrillo) { }
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {
+        // Sin lógica específica
+    }
 
-    public void visitar(PrincesaPeach princesa) { }
+    @Override
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+        // Sin lógica específica
+    }
 
-    public void visitar(Bandera bandera) { }
+    @Override
+    public void visitarBandera(Bandera bandera) {
+        // Sin lógica específica
+    }
 
-    public void visitar(Tuberia tuberia) { }
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {
+        // Sin lógica específica
+    }
 
-    public void visitar(BloqueSolido bloqueSolido) { }
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+        // Sin lógica específica
+    }
 
-    public void visitar(ContextoMario contextoMario) { }
+    @Override
+    public void visitarContextoMario(ContextoMario contextoMario) {
+        // Sin lógica específica
+    }
 
+    @Override
+    public void visitarPiso(Piso piso) {
+        // Sin lógica específica
+    }
 
     // Método auxiliar para otorgar puntos y eliminar enemigos
     private void otorgarPuntosYEliminar(Enemigo enemigo) {
         int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
-        miEntidad.obtenerJugador().ganarPuntos(puntos);
+        this.miEntidad.obtenerJugador().ganarPuntos(puntos);
         Nivel nivel = enemigo.getNivel();
         nivel.addEntidadesAEliminar(enemigo);
     }
-
-	@Override
-	public void visitar(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

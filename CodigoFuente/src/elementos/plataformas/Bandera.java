@@ -12,7 +12,7 @@ public class Bandera extends Meta {
 
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitar(this);
+		visitante.visitarBandera(this);
 	}
 
 }

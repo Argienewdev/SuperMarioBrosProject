@@ -47,8 +47,6 @@ public interface Visitante {
     public void visitarTuberia(Tuberia tuberia);
 
     public void visitarBloqueSolido(BloqueSolido bloqueSolido);
-
-    public void visitarPiso(Piso piso);
     
     public void visitarContextoMario(ContextoMario contextoMario);
     
@@ -59,6 +57,8 @@ public interface Visitante {
     public void visitarMarioFuego(MarioFuego marioFuego);
     
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable);
+    
+    public void visitarPiso(Piso piso);
     
 }
 
