@@ -100,21 +100,14 @@ public class MasterMind {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
 		        	huboColision = true;
-		        	noJugable.aceptarVisitante(elemento.getVisitor());
 		            elemento.aceptarVisitante(noJugable.getVisitor());
+		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
 		}
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
-	    } else {
-	    	invertirVelocidadDireccional(noJugable);
 	    }
-	}
-	
-	private void invertirVelocidadDireccional(NoJugable noJugable) {
-		Point velocidadDireccionalActual = noJugable.getVelocidadDireccional();
-		noJugable.setVelocidadDireccional(new Point(-velocidadDireccionalActual.x,velocidadDireccionalActual.y));
 	}
 	
 	private void actualizarPosicionesPowerUps() {

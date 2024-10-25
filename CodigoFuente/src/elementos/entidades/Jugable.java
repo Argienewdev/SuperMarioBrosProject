@@ -60,8 +60,6 @@ public abstract class Jugable extends Entidad {
 		return this.monedas;
 	}
 	
-	public abstract void saltar(Point direccion);
-	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public boolean getColisionAbajo() {

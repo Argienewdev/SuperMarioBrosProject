@@ -8,11 +8,11 @@ public class VisitorSuperChampinion implements Visitante {
 	
 	protected SuperChampinion miEntidad;
 	
-	protected DetectorDireccionColision detectarDireccionColision;
+	protected DetectorDireccionColision detectorDireccionColision;
 	
 	public VisitorSuperChampinion (SuperChampinion miEntidad) {
 		this.miEntidad = miEntidad;
-		this.detectarDireccionColision= new DetectorDireccionColision(miEntidad);
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -114,32 +114,10 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		if (detectarDireccionColision.choquePorDerecha(bloquePregunta) || detectarDireccionColision.choquePorIzquierda(bloquePregunta)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(bloquePregunta)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(bloquePregunta)){
-			miEntidad.setColisionArriba(true);
-			miEntidad.retrotraerMovimientoVertical(bloquePregunta.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
-		}
 	}
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		if (detectarDireccionColision.choquePorDerecha(ladrillo) || detectarDireccionColision.choquePorIzquierda(ladrillo)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(ladrillo)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(ladrillo)){
-			miEntidad.setColisionArriba(true);
-			miEntidad.retrotraerMovimientoVertical(ladrillo.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
-		}
 	}
 
 	@Override
@@ -168,17 +146,7 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
-		if (detectarDireccionColision.choquePorDerecha(bloqueSolido) || detectarDireccionColision.choquePorIzquierda(bloqueSolido)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(bloqueSolido)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(bloqueSolido)){
-			miEntidad.setColisionArriba(true);
-			miEntidad.retrotraerMovimientoVertical(bloqueSolido.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
-		}
+		miEntidad.retrotraerMovimientoHorizontal();
 	}
 
 	@Override
@@ -201,17 +169,6 @@ public class VisitorSuperChampinion implements Visitante {
 
 	@Override
 	public void visitar(Piso piso) {
-		if (detectarDireccionColision.choquePorDerecha(piso) || detectarDireccionColision.choquePorIzquierda(piso)) {
-			miEntidad.retrotraerMovimientoHorizontal();
-		}
-		if(detectarDireccionColision.choquePorArriba(piso)) {
-			miEntidad.setColisionAbajo(true);
-			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y - miEntidad.obtenerHitbox().height);
-		}
-		if(detectarDireccionColision.choquePorAbajo(piso)){
-			miEntidad.setColisionArriba(true);
-			miEntidad.retrotraerMovimientoVertical(piso.obtenerHitbox().y + miEntidad.obtenerHitbox().height); 
-		}
 	}
 	
 }

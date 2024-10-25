@@ -54,7 +54,7 @@ public abstract class Entidad extends ElementoDeJuego {
     
     public void retrotraerMovimientoHorizontal() {
         this.moverHitbox(this.posicion);
-        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
+        this.setVelocidadDireccional(new Point(-getVelocidadDireccional().x, getVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {

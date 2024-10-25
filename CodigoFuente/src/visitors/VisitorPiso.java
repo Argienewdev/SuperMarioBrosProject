@@ -10,8 +10,11 @@ public class VisitorPiso implements Visitante{
 
 	private Piso miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorPiso(Piso miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	public void visitar(BuzzyBeetle buzzy) {	
@@ -33,6 +36,7 @@ public class VisitorPiso implements Visitante{
 	}
 	
 	public void visitar(SuperChampinion superChamp) {	
+		detectorDireccionColision.verificarColision(miEntidad, superChamp);
 	}
 	
 	public void visitar(FlorDeFuego flor) {		
@@ -48,20 +52,20 @@ public class VisitorPiso implements Visitante{
 		
 	}
 	
-	public void visitar(MarioDefault marioNormal) {	
-		
+	public void visitar(MarioDefault marioNormal) {
+		detectorDireccionColision.verificarColision(miEntidad, marioNormal.getContext());
 	}
 	
-	public void visitar(MarioInvulnerable marioInv) {		
-		
+	public void visitar(MarioInvulnerable marioInv) {
+		detectorDireccionColision.verificarColision(miEntidad, marioInv.getContext());
 	}
 
 	public void visitar(MarioFuego marioFuego) {
-		
+		detectorDireccionColision.verificarColision(miEntidad, marioFuego.getContext());
 	}
 
 	public void visitar(SuperMario superMario) {
-		
+		detectorDireccionColision.verificarColision(miEntidad, superMario.getContext());
 	}
 
 	public void visitar(BloqueDePregunta bloquePregunta) {		
@@ -86,6 +90,7 @@ public class VisitorPiso implements Visitante{
 	}
 
 	public void visitar(ContextoMario contextoMario) {		
+		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
 	}
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {	

@@ -10,8 +10,11 @@ public class VisitorBuzzyBeetle implements Visitante{
 	
 	protected BuzzyBeetle miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorBuzzyBeetle (BuzzyBeetle miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	public void visitar(BuzzyBeetle buzzy) {
@@ -83,43 +86,48 @@ public class VisitorBuzzyBeetle implements Visitante{
 	
 	@Override
 	public void visitar(MarioInvulnerable marioInvulnerable) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		
 	}
 
-	
+	@Override
 	public void visitar(Ladrillo ladrillo) {
-		
 	}
 
-	
+	@Override
+	public void visitar(Piso piso) {
+	}
+
+	@Override
 	public void visitar(Vacio vacio) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	
+	@Override
 	public void visitar(PrincesaPeach princesa) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	
+	@Override
 	public void visitar(Bandera bandera) {
-		
 	}
 
-	
+	@Override
 	public void visitar(Tuberia tuberia) {
-		
 	}
 
-	
+	@Override
 	public void visitar(BloqueSolido bloqueSolido) {
 	}
-
-
 	
+
+	@Override
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {
 	}
 
@@ -131,8 +139,4 @@ public class VisitorBuzzyBeetle implements Visitante{
 	public void visitar(KoopaDefault koopaDefault) {
 	}
 
-	@Override
-	public void visitar(Piso piso) {
-	}
-	
 }

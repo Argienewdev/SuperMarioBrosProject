@@ -22,4 +22,10 @@ public abstract class NoJugable extends Entidad {
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 	
 	public abstract void eliminarDelNivel();
+	
+	@Override
+	public void retrotraerMovimientoHorizontal() {
+        this.moverHitbox(this.posicion);
+        this.setVelocidadDireccional(new Point(-this.getVelocidadDireccional().x, getVelocidadDireccional().y));
+	}
 }

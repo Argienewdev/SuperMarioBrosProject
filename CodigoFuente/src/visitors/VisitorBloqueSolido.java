@@ -10,8 +10,11 @@ public class VisitorBloqueSolido implements Visitante {
 	
 	private BloqueSolido miEntidad;
 
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorBloqueSolido(BloqueSolido miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	public void visitar(BuzzyBeetle buzzy) {	
@@ -32,7 +35,8 @@ public class VisitorBloqueSolido implements Visitante {
 	public void visitar(Fireball fireball) {	
 	}
 	
-	public void visitar(SuperChampinion superChamp) {	
+	public void visitar(SuperChampinion superChamp) {
+		detectorDireccionColision.verificarColision(miEntidad, superChamp);
 	}
 	
 	public void visitar(FlorDeFuego flor) {		
@@ -86,6 +90,7 @@ public class VisitorBloqueSolido implements Visitante {
 	}
 
 	public void visitar(ContextoMario contextoMario) {		
+		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
 	}
 	
 	public void visitar(ContextoKoopaTroopa contextoKoopa) {	

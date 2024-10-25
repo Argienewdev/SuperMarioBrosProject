@@ -125,8 +125,8 @@ public class ControladorMovimiento {
 			for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 			    if (entidad.huboColision(elemento)) {
 			        huboColision = true;
-			        entidad.aceptarVisitante(elemento.getVisitor());
 			        elemento.aceptarVisitante(entidad.getVisitor());
+			        entidad.aceptarVisitante(elemento.getVisitor());
 			    }
 			}
 

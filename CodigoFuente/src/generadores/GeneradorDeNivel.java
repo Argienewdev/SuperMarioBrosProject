@@ -125,7 +125,8 @@ public class GeneradorDeNivel {
 	                case 4: {
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel,pantallaDeJuego);
 	                    Visitante visitor = new VisitorBloqueDePregunta(bloqueDePregunta);
-	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	                  
+	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	  
+	                    bloqueDePregunta.setVisitor(visitor);
 	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
 	                    bloqueDePregunta.setNivel(nivel);
 	                    nivel.addPlataforma(bloqueDePregunta);

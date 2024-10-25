@@ -21,18 +21,12 @@ public class ContextoMario extends Jugable {
 		estadoMario.setContext(this);
 	}
 	
-	@Override
-	public void saltar(Point direccion) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public EstadoMario getEstado() {
 		return estadoMario;
 	}
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-		//visitante.visitarContextoMario(this);
+		visitante.visitar(this);
 	}
 	
 }

@@ -9,9 +9,12 @@ import elementos.powerUps.*;
 public class VisitorLadrillo implements Visitante {
 	
 	private Ladrillo miEntidad;
+	
+	protected DetectorDireccionColision detectorDireccionColision;
 
 	public VisitorLadrillo(Ladrillo miEntidad) {
 		this.miEntidad = miEntidad;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -52,8 +55,7 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		// TODO Auto-generated method stub
-		
+		detectorDireccionColision.verificarColision(miEntidad, superChamp);
 	}
 
 	@Override
@@ -88,7 +90,6 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -124,7 +125,7 @@ public class VisitorLadrillo implements Visitante {
 
 	@Override
 	public void visitar(ContextoMario contextoMario) {
-		
+		detectorDireccionColision.verificarColision(miEntidad, contextoMario);
 	}
 
 	@Override
