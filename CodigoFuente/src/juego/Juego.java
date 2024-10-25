@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import elementos.Sprite;
 import elementos.entidades.Jugable;
+import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaPlataformas;
 import fabricas.FabricaSilueta;
@@ -64,7 +65,7 @@ public class Juego {
 		//TICK
 	}
 
-	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
+	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		if (modo.equals("Modo original")) {
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");

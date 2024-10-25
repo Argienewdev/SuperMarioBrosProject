@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import elementos.entidades.Jugable;
+import elementos.personajes.ContextoMario;
 import juego.*;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
@@ -17,7 +18,7 @@ public class ControladorVistas {
 	
 	private JFrame ventana;
 	
-	private Jugable marioJugable;
+	private ContextoMario marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	

@@ -87,21 +87,21 @@ public class VisitorSuperChampinion implements Visitante {
 	
 	@Override
 	public void visitar(MarioDefault marioDefault) {
-		ContextoMario contextoMario= marioDefault.getContext();
-		EstadoMario nuevoEstado=new SuperMario();
+		ContextoMario contextoMario = marioDefault.getContext();
+		EstadoMario nuevoEstado = new SuperMario();
 		contextoMario.cambiarEstado(nuevoEstado);
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorDefault());
 	}
 
 	@Override
 	public void visitar(SuperMario superMario) {
-		ContextoMario contextoMario= superMario.getContext();
+		ContextoMario contextoMario = superMario.getContext();
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorSuper());
 	}
 
 	@Override
 	public void visitar(MarioFuego marioFuego) {
-		ContextoMario contextoMario= marioFuego.getContext();
+		ContextoMario contextoMario = marioFuego.getContext();
 		contextoMario.ganarPuntos(miEntidad.obtenerPuntosPorFuego());
 	}
 

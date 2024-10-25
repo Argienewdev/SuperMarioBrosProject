@@ -1,21 +1,19 @@
 
 package juego;
 
-import java.awt.Point;
 
 import elementos.Sprite;
-import elementos.entidades.Jugable;
+import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
-import fabricas.FabricaSpritesModoOriginal;
 import ventanas.DimensionesConstantes;
 
 public class ActualizadorDeSpriteJugador {
 	
 	private FabricaSprites fabricaSprites;
 	
-	private Jugable marioJugable;
+	private ContextoMario marioJugable;
 	
-	public ActualizadorDeSpriteJugador(FabricaSprites fabricaSprites, Jugable marioJugable) {
+	public ActualizadorDeSpriteJugador(FabricaSprites fabricaSprites, ContextoMario marioJugable) {
 		this.fabricaSprites = fabricaSprites;
 		this.marioJugable = marioJugable;
 	}
