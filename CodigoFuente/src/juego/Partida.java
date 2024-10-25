@@ -42,7 +42,6 @@ public class Partida {
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	@SuppressWarnings("exports")
 	public ContextoMario obtenerJugador() {
 		return this.jugador;
 	}

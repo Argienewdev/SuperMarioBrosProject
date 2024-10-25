@@ -26,7 +26,6 @@ public abstract class NoJugable extends Entidad {
 	public void actualizarVisual(FabricaSprites fabricaSprites) {
 		if(this.removido) {
 			this.setSprite(fabricaSprites.getSpriteInvisible());
-			this.hitbox = new Rectangle(0, 0, 0, 0);
 		}else {
 			this.actualizarSprite(fabricaSprites);
 		}
@@ -36,6 +35,7 @@ public abstract class NoJugable extends Entidad {
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
+		this.hitbox = new Rectangle(0, 0, 0, 0);
 		this.removido = true;
 	}
 	

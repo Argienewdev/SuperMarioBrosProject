@@ -101,7 +101,7 @@ public class VisitorSuperMario implements Visitante{
 	public void visitar(SuperChampinion superChamp) {
 		Nivel nivel = superChamp.getNivel();
 		miEntidad.ganarPuntos(50);
-		nivel.addEntidadesAEliminar(superChamp);		
+		superChamp.eliminarDelNivel();
 	}
 
 	@Override

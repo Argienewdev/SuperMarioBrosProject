@@ -4,14 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import elementos.ElementoDeJuego;
-import elementos.entidades.Entidad;;
 
 @SuppressWarnings("serial")
 public class ObserverGrafico extends JLabel implements Observer {
 	
 	private ElementoDeJuego entidad_observada;
 	
-	@SuppressWarnings("exports")
 	public ObserverGrafico(ElementoDeJuego entidad_observada) {
 		super();
 		this.entidad_observada = entidad_observada;
