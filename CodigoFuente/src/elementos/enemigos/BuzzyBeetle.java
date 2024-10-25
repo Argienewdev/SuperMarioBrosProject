@@ -31,6 +31,10 @@ public class BuzzyBeetle extends Enemigo {
 		} else if(this.getVelocidadDireccional().x > 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleFrontalCaminando());
 		}
+		
+	}
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
 
 }

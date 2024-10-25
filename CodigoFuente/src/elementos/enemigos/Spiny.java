@@ -25,5 +25,8 @@ public class Spiny extends Enemigo {
 		// TODO Auto-generated method stub
 		// Segun su velocidad direccional actualizar el sprite
 	}
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
     
 }
