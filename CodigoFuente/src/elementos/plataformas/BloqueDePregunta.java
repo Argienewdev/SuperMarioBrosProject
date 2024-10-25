@@ -5,6 +5,7 @@ import java.awt.Point;
 
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
+import fabricas.FabricaSprites;
 import visitors.Visitante;
 
 public class BloqueDePregunta extends Plataforma {
@@ -47,8 +48,12 @@ public class BloqueDePregunta extends Plataforma {
 	public PowerUp liberarPowerUp() { 
 		if (!estaVacio) {
 			powerUp.establecerEstaDentroDeBloqueDePreguntas(false);
+			this.miNivel.addPlataformasAfectables(this);
 		}
 		return this.powerUp;
+	}
+	public  void actualizarSprite(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getBloqueDePreguntaApagado());
 	}
 
 }

@@ -23,5 +23,10 @@ public class Goomba extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 	}
-    
+	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getGoombaAplastado());
+		if(this.getContadorTicks() >= 100) {
+			this.setSprite(fabricaSprites.getSpriteInvisible());
+		}
+	}
 }
