@@ -26,7 +26,6 @@ import elementos.powerUps.Estrella;
 import elementos.powerUps.FlorDeFuego;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.SuperChampinion;
-import juego.Nivel;
 
 public class VisitorMarioDefault implements Visitante{
 
@@ -86,14 +85,12 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
-		Nivel nivel = superChamp.getNivel();
 		miEntidad.ganarPuntos(10);
 		superChamp.eliminarDelNivel();
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
-		Nivel nivel = flor.getNivel();
 		miEntidad.ganarPuntos(5);
 		flor.eliminarDelNivel();
 	}
@@ -103,7 +100,6 @@ public class VisitorMarioDefault implements Visitante{
 
 	@Override
 	public void visitar(Estrella estrella) {
-		Nivel nivel = estrella.getNivel();
 		miEntidad.ganarPuntos(20);
 		estrella.eliminarDelNivel();
 	}
