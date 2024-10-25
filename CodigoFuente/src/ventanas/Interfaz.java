@@ -74,8 +74,8 @@ private Fuentes tipoFuentes;
 	    tiempoLabel.setText(nuevoTiempoTexto);
 	}
 	
-	public void actualizarVidas(){
-	
+	public void actualizarVidas(int vidas){
+		vidasLabel.setText("Vidas: " + vidas);
 	}
 	
 	public void configurarFuente() {

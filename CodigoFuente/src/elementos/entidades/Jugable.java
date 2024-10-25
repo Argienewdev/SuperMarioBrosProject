@@ -26,6 +26,7 @@ public abstract class Jugable extends Entidad {
 		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
+		this.vidas = 3;
 	}
 	
 	public void ganarVida() {

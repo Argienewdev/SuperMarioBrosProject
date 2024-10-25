@@ -67,8 +67,10 @@ public class VisitorBuzzyBeetle implements Visitante{
 			if (contextoMario.getVidas() == 1) {
 				int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
 				contextoMario.perderPuntos(perdidaPuntos);
+				//TODO hay que matar a mario...
+			}else {
+				contextoMario.perderVida();
 			}
-			contextoMario.perderVida();
 		}
 	}
 	
@@ -142,5 +144,5 @@ public class VisitorBuzzyBeetle implements Visitante{
 	@Override
 	public void visitar(KoopaDefault koopaDefault) {
 	}
-
+	
 }
