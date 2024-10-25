@@ -95,7 +95,7 @@ public class FabricaEntidades {
 	public SuperChampinion getSuperChampinion(Point posicion, Visitante visitor,
 											  Point velocidadDireccional, 
 											  ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getPowerUpInactivo();
+        Sprite sprite = fabricaSprites.getSpriteInvisible();
         return new SuperChampinion(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     

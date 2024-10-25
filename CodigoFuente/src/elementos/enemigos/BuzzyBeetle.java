@@ -22,7 +22,9 @@ public class BuzzyBeetle extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.getVelocidadDireccional().x == 0) {
+		if(this.removido) {
+			this.setSprite(fabricaSprites.getSpriteInvisible());
+		}else if(this.getVelocidadDireccional().x == 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleReversoQuieto());
 		} else if(this.getVelocidadDireccional().x < 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleReversoCaminando());

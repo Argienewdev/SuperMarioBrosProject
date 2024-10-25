@@ -14,15 +14,10 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-	public Sprite getMarioDefaultFrontalCaminandoPrimeraTransicion() {
+	public Sprite getMarioDefaultFrontalCaminando() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCaminandoPrimeraTransicion.png");
 	}
 
-	@Override
-	public Sprite getMarioDefaultFrontalCaminandoSegundaTransicion() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCaminandoSegundaTransicion.png");
-	}
-	
 	@Override
 	public Sprite getMarioDefaultCayendo() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultCayendo.png");
@@ -39,13 +34,8 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-	public Sprite getMarioDefaultReversoCaminandoPrimeraTransicion() {
+	public Sprite getMarioDefaultReversoCaminando() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultReversoCaminandoPrimeraTransicion.png");
-	}
-
-	@Override
-	public Sprite getMarioDefaultReversoCaminandoSegundaTransicion() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultReversoCaminandoSegundaTransicion.png");
 	}
 
 	@Override
@@ -59,13 +49,8 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-	public Sprite getSuperMarioFrontalCaminandoPrimeraTransicion() {
+	public Sprite getSuperMarioFrontalCaminando() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioFrontalCaminandoPrimeraTransicion.png");
-	}
-
-	@Override
-	public Sprite getSuperMarioFrontalCaminandoSegundaTransicion() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioFrontalCaminandoSegundaTransicion.png");
 	}
 
 	@Override
@@ -79,18 +64,17 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-	public Sprite getSuperMarioReversoCaminandoPrimeraTransicion() {
+	public Sprite getSuperMarioReversoCaminando() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoCaminandoPrimeraTransicion.png");
 	}
-
-	@Override
-    public Sprite getSuperMarioReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoCaminandoSegundaTransicion.png");
-    }
 
     @Override
     public Sprite getSuperMarioReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoSaltando.png");
+    }
+    
+	public Sprite getSuperMarioCayendo() {
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoCayendo.png");
     }
 
     @Override
@@ -99,13 +83,8 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getMarioFuegoFrontalCaminandoPrimeraTransicion() {
+    public Sprite getMarioFuegoFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalCaminandoPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getMarioFuegoFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
@@ -113,19 +92,19 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalSaltando.png");
     }
 
+	@Override
+	public Sprite getMarioFuegoCayendo() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalCayendo.png");
+    }
+	
     @Override
     public Sprite getMarioFuegoReversoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoQuieto.png");
     }
 
     @Override
-    public Sprite getMarioFuegoReversoCaminandoPrimeraTransicion() {
+    public Sprite getMarioFuegoReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoCaminandoPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getMarioFuegoReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
@@ -139,19 +118,19 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getMarioInvulnerableFrontalCaminandoPrimeraTransicion() {
+    public Sprite getMarioInvulnerableFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalCaminandoPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getMarioInvulnerableFrontalCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalCaminandoSegundaTransicion.png");
     }
 
     @Override
     public Sprite getMarioInvulnerableFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalSaltando.png");
     }
+    
+	@Override
+	public Sprite getMarioInvulnerableCayendo() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalCayendo.png");
+	}
 
     @Override
     public Sprite getMarioInvulnerableReversoQuieto() {
@@ -159,13 +138,8 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getMarioInvulnerableReversoCaminandoPrimeraTransicion() {
+    public Sprite getMarioInvulnerableReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoCaminandoPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getMarioInvulnerableReversoCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoCaminandoSegundaTransicion.png");
     }
 
     @Override
@@ -397,8 +371,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-	public Sprite getPowerUpInactivo() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/powerUpInactivo.png");
+	public Sprite getSpriteInvisible() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
-    
 }

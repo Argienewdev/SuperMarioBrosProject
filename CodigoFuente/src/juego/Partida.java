@@ -1,6 +1,7 @@
 package juego;
 
 import elementos.entidades.Jugable;
+import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
@@ -13,7 +14,7 @@ public class Partida {
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	private Jugable jugador;
+	private ContextoMario jugador;
 	
 	private BucleJugador bucleJugador;
 	
@@ -48,7 +49,7 @@ public class Partida {
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	public Jugable obtenerJugador() {
+	public ContextoMario obtenerJugador() {
 		return this.jugador;
 	}
 	
