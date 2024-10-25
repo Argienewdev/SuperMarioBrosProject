@@ -88,9 +88,9 @@ public class VisitorGoomba implements Visitante {
                 contextoMario.perderPuntos(perdidaPuntos);
                 // TODO: Implementar la lógica para "matar" a Mario.
             } else {
-                contextoMario.perderVida();
                 contextoMario.setImpactado(true);
             }
+            contextoMario.perderVida();
         }
     }
 

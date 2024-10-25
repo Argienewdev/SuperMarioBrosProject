@@ -4,7 +4,7 @@
 /**
  * 
  */
-module superMario {
+module CodigoFuente {
 	exports elementos;
 	exports fabricas;
 	exports fuentes;
@@ -20,5 +20,7 @@ module superMario {
 	exports elementos.personajes;
 	exports elementos.plataformas;
 	exports elementos.entidades;
+	exports sonido.sonidoModoAlternativo;
+	exports sonido.sonidoModoOriginal;
 	requires java.desktop;
 }

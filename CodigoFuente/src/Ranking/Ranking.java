@@ -1,4 +1,4 @@
-package launcher;
+package Ranking;
 
 import java.io.Serializable;
 import java.util.ArrayList;
