@@ -9,6 +9,10 @@ import visitors.Visitante;
 
 public abstract class PowerUp extends NoJugable {
 	
+	protected int ticksHastaSalirDelBloque;
+	
+	protected int contadorTicks;
+	
 	protected boolean esMovible;
 	
 	protected boolean estaDentroDeBloqueDePreguntas;
@@ -16,6 +20,7 @@ public abstract class PowerUp extends NoJugable {
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
 				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		this.contadorTicks = 0;
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -46,6 +51,18 @@ public abstract class PowerUp extends NoJugable {
 
 	public void eliminarDelNivel() {
 		this.miNivel.removePowerUp(this);
+	}
+	
+	public int getTicksHastaSalirDelBloque() {
+		return this.ticksHastaSalirDelBloque;
+	}
+	
+	public int getContadorTicks() {
+		return this.contadorTicks;
+	}
+	
+	public void incrementarContadorTicks() {
+		this.contadorTicks++;
 	}
 	
 }

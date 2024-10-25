@@ -35,9 +35,12 @@ public class VisitorMarioInvulnerable implements Visitante{
 	
 	private ContextoMario miEntidad;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public VisitorMarioInvulnerable(MarioInvulnerable miEstado) {
 		this.miEstado = miEstado;
-		miEntidad=miEstado.getContext();
+		this.miEntidad = miEstado.getContext();
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
 	@Override
@@ -126,8 +129,9 @@ public class VisitorMarioInvulnerable implements Visitante{
 
 	@Override
 	public void visitar(BloqueDePregunta bloquePregunta) {
-		// TODO Auto-generated method stub
-		
+		if(detectorDireccionColision.choquePorAbajo(bloquePregunta, miEntidad)) {
+			bloquePregunta.liberarPowerUp();
+		}
 	}
 
 	@Override
