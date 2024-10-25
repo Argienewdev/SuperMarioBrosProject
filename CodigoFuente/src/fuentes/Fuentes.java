@@ -10,7 +10,8 @@ public class Fuentes {
     /* Font.PLAIN = 0 , Font.BOLD = 1 , Font.ITALIC = 2
  * tamanio = float
  */
-    public Font fuente( String fontName, int estilo, float tamanio)
+    @SuppressWarnings("exports")
+	public Font fuente( String fontName, int estilo, float tamanio)
     {
          try {
             //Se carga la fuente

@@ -41,5 +41,4 @@ public class FlorDeFuego extends PowerUp {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

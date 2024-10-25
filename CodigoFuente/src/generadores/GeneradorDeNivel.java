@@ -9,17 +9,14 @@ import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.Spiny;
 import elementos.personajes.ContextoMario;
-import elementos.personajes.MarioDefault;
 import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
 import elementos.plataformas.Ladrillo;
-import elementos.plataformas.Meta;
 import elementos.plataformas.Piso;
 import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
-import elementos.plataformas.Vacio;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
 import observers.ObserverGrafico;
@@ -76,17 +73,6 @@ public class GeneradorDeNivel {
                 Point posicion = parsearPosicion(numeros[1],numeros[2]);
                 
                 switch(identificadorElemento) {
-	                case 0: {	                 
-	                    Vacio vacio = this.fabricaPlataformas.getVacio(posicion, null);
-	                    ObserverGrafico observerGraficoVacio = new ObserverGrafico(vacio);
-	                    Visitante visitor = new VisitorVacio(vacio);
-	                    vacio.setVisitor(visitor);	  
-	                    vacio.setObserverGrafico(observerGraficoVacio);
-	                    vacio.setNivel(nivel);
-	                    nivel.addPlataforma(vacio);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoVacio);
-	                    break;
-	                }
 	                case 1: {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, null);
 	                    Visitante visitor = new VisitorLadrillo(ladrillo);
@@ -104,6 +90,7 @@ public class GeneradorDeNivel {
 	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, null, alturaTuberia, anchoTuberia);
 	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaVacia);
 	                    Visitante visitor = new VisitorTuberia(tuberiaVacia);
+	                    tuberiaVacia.setVisitor(visitor);
 	                    tuberiaVacia.setObserverGrafico(observerGraficoTuberia);
 	                    tuberiaVacia.setNivel(nivel);
 	                    nivel.addPlataforma(tuberiaVacia);
@@ -115,6 +102,7 @@ public class GeneradorDeNivel {
 	                    int anchoTuberia = 100;
 	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, null, alturaTuberia, anchoTuberia);
 	                    Visitante visitor = new VisitorTuberia(tuberiaConPiranhaPlant);
+	                    tuberiaConPiranhaPlant.setVisitor(visitor);
 	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaConPiranhaPlant);
 	                    tuberiaConPiranhaPlant.setObserverGrafico(observerGraficoTuberia);
 	                    tuberiaConPiranhaPlant.setNivel(nivel);
@@ -282,6 +270,7 @@ public class GeneradorDeNivel {
 		return nivel;
 	}
 	
+	@SuppressWarnings("exports")
 	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
 		Point posicionInicio = posicion;
 		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio, null, null, 3);

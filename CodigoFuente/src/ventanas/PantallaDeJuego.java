@@ -1,20 +1,16 @@
 package ventanas;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import elementos.entidades.Jugable;
 import observers.ObserverGrafico;
-import sensoresDeTeclas.SensorDeTeclasJuego;
 
+@SuppressWarnings("serial")
 public class PantallaDeJuego extends JPanel {
 
     private ArrayList<ObserverGrafico> labelsElementoDeJuego;
@@ -59,7 +55,8 @@ public class PantallaDeJuego extends JPanel {
         add(fondo);
     }
 
-    public void registrarJugable(Jugable jugable) {
+    @SuppressWarnings("exports")
+	public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
         marioLabel = new ObserverGrafico(jugable);
         agregarLabel(jugable.getObserverGrafico());

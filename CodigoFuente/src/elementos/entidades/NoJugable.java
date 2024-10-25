@@ -33,9 +33,9 @@ public abstract class NoJugable extends Entidad {
 	}
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
-	
+
 	public void eliminarDelNivel() {
-		this.miNivel.removeNoJugable(this);
+		this.miNivel.addEntidadesAEliminar(this);
 		this.removido = true;
 	}
 	

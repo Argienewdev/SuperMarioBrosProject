@@ -21,6 +21,8 @@ public class Nivel {
     private Collection<PowerUp> powerUps;
 
     private Collection<Enemigo> enemigos;
+    
+    private Collection<NoJugable> entidadesAEliminar;
 
     protected Silueta silueta;
 
@@ -31,6 +33,7 @@ public class Nivel {
         this.plataformas = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
+        this.entidadesAEliminar = new ArrayList<NoJugable>();
     }
 
     @SuppressWarnings("exports")
@@ -50,6 +53,11 @@ public class Nivel {
         this.powerUps.add(powerUp);
         powerUp.setNivel(this);
     }
+    
+    @SuppressWarnings("exports")
+	public void addEntidadesAEliminar(NoJugable entidad) {
+        this.entidadesAEliminar.add(entidad);
+    }
 
     @SuppressWarnings("exports")
     public void setMario(ContextoMario mario) {
@@ -61,11 +69,11 @@ public class Nivel {
         this.plataformas.remove(plataforma);
     }
 
-    @SuppressWarnings("exports")
-    public void removeNoJugable(NoJugable noJugable) {
-    	
+    public void removerEntidadesAEliminar() {
+    	enemigos.removeAll(entidadesAEliminar);
+    	powerUps.removeAll(entidadesAEliminar);
     }
-
+    
     @SuppressWarnings("exports")
     public Iterable<Plataforma> getPlataformas() {
         return this.plataformas;

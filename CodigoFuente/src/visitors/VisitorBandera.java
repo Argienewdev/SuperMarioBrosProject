@@ -82,9 +82,6 @@ public class VisitorBandera implements Visitante {
 	public void visitar(Ladrillo ladrillo) {	
 	}
 	
-	public void visitar(Vacio vacio) {	
-	}
-	
 	public void visitar(PrincesaPeach princesa) {
 	}
 

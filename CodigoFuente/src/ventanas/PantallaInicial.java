@@ -3,7 +3,6 @@ package ventanas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.event.WindowAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,6 +10,7 @@ import javax.swing.JPanel;
 import fuentes.Fuentes;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
+@SuppressWarnings("serial")
 public class PantallaInicial extends JPanel {
 	
 	private static final int CANTIDAD_BOTONES = 3;
@@ -35,6 +35,7 @@ public class PantallaInicial extends JPanel {
 	
 	Fuentes tipoFuentes;
 	
+	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
 		controlador= controladorVistas;
 		this.sensor = sensor;

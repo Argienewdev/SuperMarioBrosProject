@@ -1,21 +1,11 @@
 package fabricas;
 import java.awt.Point;
-import java.util.Vector;
-
 import elementos.*;
 import observers.ObserverGrafico;
-
 import visitors.Visitante;
-
-
 import elementos.enemigos.*;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
-import elementos.personajes.MarioFuego;
-import elementos.personajes.MarioInvulnerable;
-import elementos.personajes.EstadoMario;
-import elementos.personajes.SuperMario;
-import elementos.plataformas.BloqueSolido;
 import elementos.powerUps.*;
 
 public class FabricaEntidades {
