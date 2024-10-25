@@ -3,6 +3,9 @@ package ventanas;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,6 +14,7 @@ import javax.swing.Timer;
 import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import juego.*;
+import launcher.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
@@ -32,6 +36,8 @@ public class ControladorVistas {
 	
 	private PantallaEntreNiveles pantallaEntreNiveles;
 	
+	private PantallaRanking pantallaRanking;
+	
 	protected Juego juego;	
 
 	
@@ -43,7 +49,7 @@ public class ControladorVistas {
 		pantallaDeJuego= new PantallaDeJuego();
 		this.juego = juego;
 		pantallaEntreNiveles= new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
-		
+		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
 		configurarVentana();
 		RegistrarOyenteInicial();	
 	}
@@ -59,6 +65,11 @@ public class ControladorVistas {
 		ventana.setLocationRelativeTo(null);
 		ventana.pack();
 		ventana.setVisible(true);
+		ventana.addWindowListener(new WindowAdapter() { 
+			public void  WindowClosing (WindowEvent e) {
+				juego.cierreDeJuego();
+			}	
+		});
 	}
 	
 	public void accionarInicioJuego(String modo) {
@@ -98,13 +109,15 @@ public class ControladorVistas {
 	}
 
 	
-	public void accionarPantallaPuntajes() {
-		
-	}
-	
 	public void accionarPantallaEntreNiveles(){
 		ventana.add(pantallaEntreNiveles);
 		pantallaEntreNiveles.setVisible(true);
+	}
+	
+	public void accionarPantallaRanking() {
+		ventana.setContentPane(pantallaRanking);
+	    ventana.revalidate();
+	    ventana.repaint();	
 	}
 
 	
@@ -123,11 +136,15 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaFinal() {
 		ventana.setContentPane(pantallaFinal);
+	    ventana.revalidate();
+	    ventana.repaint();
 		
 	}
 
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(pantallaInicial);
+	    ventana.revalidate();
+	    ventana.repaint();
 	}
 	
 	public void refrescar(){
@@ -147,5 +164,7 @@ public class ControladorVistas {
 	public void cambiarNivel() {
 		//TODO
 	}
+
+	
 
 }
