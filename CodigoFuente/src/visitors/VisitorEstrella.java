@@ -110,7 +110,6 @@ public class VisitorEstrella implements Visitante {
         ContextoMario contextoMario = marioDefault.getContext();
         EstadoMario nuevoEstado = new MarioInvulnerable();
         contextoMario.cambiarEstado(nuevoEstado);
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
     }
 
     @Override
@@ -118,7 +117,6 @@ public class VisitorEstrella implements Visitante {
         ContextoMario contextoMario = superMario.getContext();
         EstadoMario nuevoEstado = new MarioInvulnerable();
         contextoMario.cambiarEstado(nuevoEstado);
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorSuper());
     }
 
     @Override
@@ -126,32 +124,20 @@ public class VisitorEstrella implements Visitante {
         ContextoMario contextoMario = marioFuego.getContext();
         EstadoMario nuevoEstado = new MarioInvulnerable();
         contextoMario.cambiarEstado(nuevoEstado);
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorFuego());
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        ContextoMario contextoMario = marioInvulnerable.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorInvulnerable());
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // Lógica para visitar ContextoKoopaTroopa
-    }
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {}
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // Lógica para visitar KoopaEnCaparazon
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // Lógica para visitar KoopaDefault
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
-    public void visitarPiso(Piso piso) {
-        // Lógica para visitar Piso
-    }
+    public void visitarPiso(Piso piso) {}
 }

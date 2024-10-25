@@ -114,6 +114,7 @@ public class VisitorBuzzyBeetle implements Visitante {
                 // TODO hay que matar a mario...
             } else {
                 contextoMario.perderVida();
+                contextoMario.setImpactado(true);
             }
         }
     }
@@ -125,14 +126,19 @@ public class VisitorBuzzyBeetle implements Visitante {
             ContextoMario contextoMario = superMario.getContext();
             EstadoMario nuevoEstado = new MarioDefault();
             contextoMario.cambiarEstado(nuevoEstado);
+            contextoMario.setImpactado(true);
         }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	if(this.detectorDireccionColision.choquePorDerecha(marioFuego.getContext(), this.miEntidad) ||
+    		this.detectorDireccionColision.choquePorIzquierda(marioFuego.getContext(), this.miEntidad)) {
+    		ContextoMario contextoMario = marioFuego.getContext();
+            EstadoMario nuevoEstado = new MarioDefault();
+            contextoMario.cambiarEstado(nuevoEstado);
+            contextoMario.setImpactado(true);
+        }
     }
     
     @Override

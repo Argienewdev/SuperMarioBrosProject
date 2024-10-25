@@ -12,7 +12,6 @@ public abstract class NoJugable extends Entidad {
 	
 	protected boolean removido;
 	
-	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
 					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor);

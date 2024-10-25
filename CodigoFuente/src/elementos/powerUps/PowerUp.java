@@ -3,6 +3,7 @@ package elementos.powerUps;
 import java.awt.Point;
 import elementos.Sprite;
 import elementos.entidades.NoJugable;
+import elementos.plataformas.BloqueDePregunta;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -14,6 +15,8 @@ public abstract class PowerUp extends NoJugable {
 	protected boolean esMovible;
 	
 	protected boolean estaDentroDeBloqueDePreguntas;
+	
+	protected BloqueDePregunta bloquePregunta;
 
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
 				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
@@ -49,8 +52,17 @@ public abstract class PowerUp extends NoJugable {
 	public int getTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
+	
 	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
+	}
+	
+	public BloqueDePregunta getBloquePregunta() {
+		return this.bloquePregunta;
+	}
+	
+	public void setBloquePregunta(BloqueDePregunta bloquePregunta) {
+		this.bloquePregunta = bloquePregunta;
 	}
 	
 }
