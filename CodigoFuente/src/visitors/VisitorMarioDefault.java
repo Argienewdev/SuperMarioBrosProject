@@ -21,13 +21,11 @@ import elementos.plataformas.Ladrillo;
 import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
-import elementos.plataformas.Vacio;
 import elementos.powerUps.ChampinionVerde;
 import elementos.powerUps.Estrella;
 import elementos.powerUps.FlorDeFuego;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.SuperChampinion;
-import juego.Nivel;
 
 public class VisitorMarioDefault implements Visitante{
 
@@ -83,23 +81,27 @@ public class VisitorMarioDefault implements Visitante{
 	@Override
 	public void visitar(Fireball fireball) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitar(SuperChampinion superChamp) {
+		miEntidad.ganarPuntos(10);
+		superChamp.eliminarDelNivel();
 	}
 
 	@Override
 	public void visitar(FlorDeFuego flor) {
+		miEntidad.ganarPuntos(5);
+		flor.eliminarDelNivel();
 	}
 
 	@Override
-	public void visitar(ChampinionVerde champVerde) {
-	}
+	public void visitar(ChampinionVerde champVerde) {}
 
 	@Override
 	public void visitar(Estrella estrella) {
+		miEntidad.ganarPuntos(20);
+		estrella.eliminarDelNivel();
 	}
 
 	@Override
@@ -121,11 +123,6 @@ public class VisitorMarioDefault implements Visitante{
 	public void visitar(Piso piso) {
 	}
 	
-	@Override
-	public void visitar(Vacio vacio) {
-		
-	}
-
 	@Override
 	public void visitar(PrincesaPeach princesa) {
 	}

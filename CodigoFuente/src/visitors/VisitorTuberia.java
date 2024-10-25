@@ -70,9 +70,6 @@ public class VisitorTuberia implements Visitante {
 	public void visitar(Ladrillo ladrillo) {}
 
 	@Override
-	public void visitar(Vacio vacio) {}
-
-	@Override
 	public void visitar(PrincesaPeach princesa) {}
 
 	@Override

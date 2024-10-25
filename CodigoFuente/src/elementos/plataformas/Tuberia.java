@@ -1,8 +1,6 @@
 package elementos.plataformas;
 
 import java.awt.Point;
-import java.util.Vector;
-
 import elementos.Sprite;
 import elementos.enemigos.PiranhaPlant;
 import visitors.Visitante;

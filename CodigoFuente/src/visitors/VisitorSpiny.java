@@ -123,12 +123,6 @@ public class VisitorSpiny implements Visitante {
 	}
 
 	@Override
-	public void visitar(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void visitar(PrincesaPeach princesa) {
 		// TODO Auto-generated method stub
 		

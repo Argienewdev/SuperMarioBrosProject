@@ -13,11 +13,13 @@ public class ArregloDeBotones {
 		arreglo = new JLabel[tamanho];
 	}
 	
+	@SuppressWarnings("exports")
 	public void agregar(JLabel nuevo) {
 		arreglo[cantidad] = nuevo;
 		cantidad++;
 	}
 	
+	@SuppressWarnings("exports")
 	public JLabel siguiente() {
 		JLabel aRetornar = null;
 		if(siguiente >= arreglo.length) {
@@ -31,6 +33,7 @@ public class ArregloDeBotones {
 		return aRetornar;
 	}
 	
+	@SuppressWarnings("exports")
 	public JLabel previo() {
 		JLabel aRetornar = null;
 		siguiente -= 2;

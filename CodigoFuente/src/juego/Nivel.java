@@ -21,6 +21,10 @@ public class Nivel {
     private Collection<PowerUp> powerUps;
 
     private Collection<Enemigo> enemigos;
+    
+    private Collection<NoJugable> entidadesAEliminar;
+    
+    private Collection<Plataforma> plataformasAfectables;
 
     protected Silueta silueta;
 
@@ -29,59 +33,56 @@ public class Nivel {
     public Nivel(Silueta silueta) {
         this.silueta = silueta;
         this.plataformas = new ArrayList<Plataforma>();
+        this.plataformasAfectables = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
+        this.entidadesAEliminar = new ArrayList<NoJugable>();
     }
 
-    @SuppressWarnings("exports")
     public void addPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
         plataforma.setNivel(this);
     }
 
-    @SuppressWarnings("exports")
     public void addEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
         enemigo.setNivel(this);
     }
 
-    @SuppressWarnings("exports")
     public void addPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
         powerUp.setNivel(this);
     }
+    
+	public void addEntidadesAEliminar(NoJugable entidad) {
+        this.entidadesAEliminar.add(entidad);
+    }
 
-    @SuppressWarnings("exports")
     public void setMario(ContextoMario mario) {
         this.mario = mario;
     }
 
-    @SuppressWarnings("exports")
     public void removePlataforma(Plataforma plataforma) {
         this.plataformas.remove(plataforma);
     }
 
-    @SuppressWarnings("exports")
-    public void removeNoJugable(NoJugable noJugable) {
-    	
+    public void removerEntidadesAEliminar() {
+    	enemigos.removeAll(entidadesAEliminar);
+    	powerUps.removeAll(entidadesAEliminar);
     }
-
-    @SuppressWarnings("exports")
+    
     public Iterable<Plataforma> getPlataformas() {
         return this.plataformas;
     }
 
-    @SuppressWarnings("exports")
     public Iterable<PowerUp> getPowerUps() {
         return this.powerUps;
     }
 
-    @SuppressWarnings("exports")
     public Iterable<Enemigo> getEnemigos() {
         return this.enemigos;
     }
     
-    @SuppressWarnings("exports")
     public ContextoMario getMario() {
         return this.mario;
     }

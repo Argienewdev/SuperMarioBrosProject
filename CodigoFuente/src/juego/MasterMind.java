@@ -2,23 +2,13 @@
 package juego;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collection;
-
 import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
-import elementos.entidades.Jugable;
 import elementos.entidades.NoJugable;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
-import observers.ObserverEntidades;
-import ventanas.DimensionesConstantes;
 
 public class MasterMind {
-	
-	protected Collection<Enemigo> enemigos;
-		
-	protected Collection<PowerUp> powerUps;
 	
 	protected FabricaSprites fabricaSprites;
 	
@@ -31,24 +21,8 @@ public class MasterMind {
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		crearColeccionDeEnemigos();
-		crearColeccionDePowerUps();
 	}
 
-	public void crearColeccionDeEnemigos() {
-		this.enemigos = new ArrayList<Enemigo>();
-		for(Enemigo enemigo : this.nivel.getEnemigos()) {
-			this.enemigos.add(enemigo);
-		}
-	}
-	
-	public void crearColeccionDePowerUps() {
-		this.powerUps = new ArrayList<PowerUp>();
-		for(PowerUp powerUp : this.nivel.getPowerUps()) {
-			this.powerUps.add(powerUp);
-		}
-	}
-	
 	public void actualizar() {
 		actualizarPosicionesEnemigos();
 		actualizarPosicionesPowerUps();
@@ -56,10 +30,11 @@ public class MasterMind {
 		actualizarSpritesPowerUps();
 		actualizarLabelsEnemigos();
 		actualizarLabelsPowerUps();
+		this.nivel.removerEntidadesAEliminar();
 	}
 
 	private void actualizarPosicionesEnemigos() {
-		for(Enemigo enemigo : this.enemigos) {
+		for(Enemigo enemigo : this.nivel.getEnemigos()) {
 			moverEnemigo(enemigo);
 		}
 	}
@@ -95,7 +70,6 @@ public class MasterMind {
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
-		        	System.out.println(elemento.getClass().getSimpleName()); 
 		        	huboColision = true;
 		            elemento.aceptarVisitante(noJugable.getVisitor());
 		            noJugable.aceptarVisitante(elemento.getVisitor());
@@ -113,7 +87,7 @@ public class MasterMind {
 	}
 	
 	private void actualizarPosicionesPowerUps() {
-		for(PowerUp powerUp : this.powerUps) {
+		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			moverPowerUp(powerUp);
 		}
 	}
@@ -137,25 +111,25 @@ public class MasterMind {
 	}
 	
 	private void actualizarSpritesEnemigos() {
-		for(Enemigo enemigo : this.enemigos) {
+		for(Enemigo enemigo : this.nivel.getEnemigos()) {
 			enemigo.actualizarVisual(this.fabricaSprites);
 		}
 	}	
 	
 	private void actualizarSpritesPowerUps() {
-		for(PowerUp powerUp : this.powerUps) {
+		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			powerUp.actualizarVisual(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarLabelsEnemigos() {
-		for(Enemigo enemigo : this.enemigos) {
+		for(Enemigo enemigo : this.nivel.getEnemigos()) {
 			enemigo.getObserverGrafico().actualizar();
 		}
 	}
 	
 	private void actualizarLabelsPowerUps() {
-		for(PowerUp powerUp : this.powerUps) {
+		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			powerUp.getObserverGrafico().actualizar();
 		}
 	}

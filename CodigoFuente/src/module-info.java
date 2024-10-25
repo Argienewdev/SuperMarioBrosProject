@@ -16,6 +16,10 @@ module CodigoFuente  {
 	exports sonido;
 	exports ventanas;
 	exports visitors;
-	exports vista;
+	exports elementos.enemigos;
+	exports elementos.powerUps;
+	exports elementos.personajes;
+	exports elementos.plataformas;
+	exports elementos.entidades;
 	requires java.desktop;
 }

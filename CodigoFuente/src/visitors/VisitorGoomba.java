@@ -80,6 +80,7 @@ public class VisitorGoomba implements Visitante {
 				//TODO hay que matar a mario...
 			}else {
 				contextoMario.perderVida();
+				contextoMario.setImpactado(true);
 			}
 		}
 	}
@@ -114,12 +115,6 @@ public class VisitorGoomba implements Visitante {
 
 	@Override
 	public void visitar(Piso piso) {
-	}
-
-	@Override
-	public void visitar(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -22,7 +22,6 @@ import elementos.plataformas.Ladrillo;
 import elementos.plataformas.Piso;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
-import elementos.plataformas.Vacio;
 import elementos.powerUps.ChampinionVerde;
 import elementos.powerUps.Estrella;
 import elementos.powerUps.FlorDeFuego;
@@ -136,12 +135,6 @@ public class VisitorMarioFuego implements Visitante{
 
 	@Override
 	public void visitar(Ladrillo ladrillo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void visitar(Vacio vacio) {
 		// TODO Auto-generated method stub
 		
 	}
