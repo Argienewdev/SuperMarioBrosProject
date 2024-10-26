@@ -115,6 +115,7 @@ public abstract class Jugable extends Entidad  {
 	public void setRetrocediendo(boolean retrocediendo) {
 		this.retrocediendo = retrocediendo;
 	}
+	
 	public boolean getAvanzando() {
 		return this.avanzando;
 	}
@@ -139,4 +140,7 @@ public abstract class Jugable extends Entidad  {
 	public void muerte() {
 		observerLogico.actualizar();
 	}
+
+	public abstract void realizarAccionEspecial();
+	
 }

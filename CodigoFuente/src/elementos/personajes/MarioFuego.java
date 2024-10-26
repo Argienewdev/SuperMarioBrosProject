@@ -75,4 +75,9 @@ public class MarioFuego extends MarioDefault {
 				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoQuieto()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoSaltando());
 	}
+
+	
+	public void realizarAccionEspecial() {	
+		System.out.println("Lanzo bola de fuego");
+	}
 }
