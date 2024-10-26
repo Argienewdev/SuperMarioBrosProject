@@ -1,8 +1,6 @@
 package elementos.entidades;
 
 import java.awt.Point;
-import java.io.Serializable;
-
 import elementos.Sprite;
 import elementos.powerUps.Monedas;
 import observers.ObserverLogicoJugable;

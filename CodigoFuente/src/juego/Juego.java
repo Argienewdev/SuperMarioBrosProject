@@ -123,7 +123,7 @@ public class Juego {
 	
 	private void guardarEstado() {
 		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./puntajes");
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(ranking);
 			objectOutputStream.flush();
