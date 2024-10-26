@@ -30,9 +30,12 @@ public class FabricaPlataformas {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
-	public FabricaPlataformas(FabricaSprites fabricaSprites,FabricaEntidades fabricaEntidades) {
+    protected PantallaDeJuego pantallaDeJuego;
+	
+	public FabricaPlataformas(FabricaSprites fabricaSprites,FabricaEntidades fabricaEntidades,PantallaDeJuego pantallaDeJuego) {
 		this.fabricaSprites = fabricaSprites;
 		this.fabricaEntidades = fabricaEntidades;
+		this.pantallaDeJuego = pantallaDeJuego;
 	}
 	
 	@SuppressWarnings("exports")
@@ -43,7 +46,8 @@ public class FabricaPlataformas {
 		ladrilloADevolver.setVisitor(visitor);
         ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrilloADevolver);	   
         ladrilloADevolver.setObserverGrafico(observerGraficoLadrillo);
-		return ladrilloADevolver;
+        this.pantallaDeJuego.agregarLabel(ladrilloADevolver.getObserverGrafico());
+        return ladrilloADevolver;
 	}
 	
 	@SuppressWarnings("exports")
@@ -56,6 +60,7 @@ public class FabricaPlataformas {
         tuberiaADevolver.setVisitor(visitor);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
 		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
+        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.getObserverGrafico());
 		return tuberiaADevolver;
 	}
 	
@@ -70,6 +75,7 @@ public class FabricaPlataformas {
         tuberiaADevolver.setVisitor(visitorTuberia);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
 		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
+        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.getObserverGrafico());
 		return tuberiaADevolver;
 	}
 	
@@ -81,7 +87,8 @@ public class FabricaPlataformas {
 		banderaADevolver.setVisitor(visitor);
 		ObserverGrafico observerGraficoBandera = new ObserverGrafico(banderaADevolver);
         banderaADevolver.setObserverGrafico(observerGraficoBandera);
-		return banderaADevolver;
+        this.pantallaDeJuego.agregarLabel(banderaADevolver.getObserverGrafico());
+        return banderaADevolver;
 	}
 	
 	@SuppressWarnings("exports")
@@ -92,6 +99,7 @@ public class FabricaPlataformas {
 		princesaPeachADevolver.setVisitor(visitor);
 		ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeachADevolver);
         princesaPeachADevolver.setObserverGrafico(observerGraficoPrincesaPeach);
+        this.pantallaDeJuego.agregarLabel(princesaPeachADevolver.getObserverGrafico());
 		return princesaPeachADevolver;
 	}
 	
@@ -148,7 +156,7 @@ public class FabricaPlataformas {
 		        break;
 			}
 		}
-		
+        this.pantallaDeJuego.agregarLabel(bloqueDePreguntaADevolver.getObserverGrafico());
 		return bloqueDePreguntaADevolver;
 	}
 	
@@ -161,6 +169,7 @@ public class FabricaPlataformas {
     	bloqueSolidoADevolver.setVisitor(visitorBloqueSolido);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolidoADevolver);
     	bloqueSolidoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
+    	this.pantallaDeJuego.agregarLabel(bloqueSolidoADevolver.getObserverGrafico());
     	return bloqueSolidoADevolver;
     }
     
@@ -172,6 +181,8 @@ public class FabricaPlataformas {
     	pisoADevolver.setVisitor(visitorPiso);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(pisoADevolver);
     	pisoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
+    	this.pantallaDeJuego.agregarLabel(pisoADevolver.getObserverGrafico());
+    	System.out.println("El generador agrego el label de piso");
     	return pisoADevolver;
     }
 	

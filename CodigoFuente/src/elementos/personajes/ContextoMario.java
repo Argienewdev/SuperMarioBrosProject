@@ -52,4 +52,5 @@ public class ContextoMario extends Jugable {
 	public void realizarAccionEspecial() {
 		estadoMario.realizarAccionEspecial();
 	}
+	
 }
