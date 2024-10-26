@@ -12,7 +12,7 @@ public class VisitorBandera implements Visitante {
     private Bandera miEntidad;
     
     private ControladorVistas controlador;
-    
+   
     public VisitorBandera(ControladorVistas controlador, Bandera miEntidad) {
         this.controlador = controlador;
         this.miEntidad = miEntidad;
@@ -73,22 +73,30 @@ public class VisitorBandera implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        this.controlador.cambiarNivel();
+    	this.miEntidad.getNivel().setCompletado(true);
+        this.controlador.eliminarNivelActual();
+        marioDefault.getContext().retrotraerMovimientoHorizontal();
     }
     
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {        
-        this.controlador.cambiarNivel();
+    	this.miEntidad.getNivel().setCompletado(true);
+        this.controlador.eliminarNivelActual();
+        marioInvulnerable.getContext().retrotraerMovimientoHorizontal();
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        this.controlador.cambiarNivel();
+    	this.miEntidad.getNivel().setCompletado(true);
+        this.controlador.eliminarNivelActual();
+        marioFuego.getContext().retrotraerMovimientoHorizontal();
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        this.controlador.cambiarNivel();
+    	this.miEntidad.getNivel().setCompletado(true);
+        this.controlador.eliminarNivelActual();
+        superMario.getContext().retrotraerMovimientoHorizontal();
     }
 
     @Override

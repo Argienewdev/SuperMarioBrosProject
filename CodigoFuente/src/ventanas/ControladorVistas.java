@@ -41,15 +41,14 @@ public class ControladorVistas {
 	
 	private Juego juego;
 	
-	
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal(this);
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		pantallaDeJuego= new PantallaDeJuego();
+		pantallaDeJuego = new PantallaDeJuego();
 		this.juego = juego;
-		pantallaEntreNiveles= new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
+		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
 		pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		configurarVentana();
@@ -176,13 +175,29 @@ public class ControladorVistas {
 		return this.pantallaDeJuego;
 	}
 	
+	public void eliminarNivelActual() {
+		this.pantallaDeJuego.eliminarNivelActual();
+	}
+	
 	public void cambiarNivel() {
-		//TODO
+		ventana.remove(pantallaDeJuego);
+		mostrarPantallaEntreNiveles();
+     	
+		pantallaDeJuego.cambiarDeNivel();
+		
+		Timer timer = new Timer(2000, new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	ventana.remove(pantallaEntreNiveles);
+	                mostrarPantallaDeJuego();
+	                
+	            }
+	        });
+	        timer.setRepeats(false);
+	        timer.start();  
 	}
 	
 	public String obtenerModo() {
 		return pantallaInicial.obtenerModo();
-	}
-	
+	}	
 
 }

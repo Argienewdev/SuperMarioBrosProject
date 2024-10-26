@@ -13,6 +13,7 @@ public class ChampinionVerde extends PowerUp {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
+		this.ticksHastaSalirDelBloque = 50;
 		
 	}
 	
@@ -38,7 +39,10 @@ public class ChampinionVerde extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
+		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+			this.setSprite(fabricaSprites.getChampinionVerde());
+		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
+			this.setSprite(fabricaSprites.getChampinionVerde());
+		}		
 	}
 }

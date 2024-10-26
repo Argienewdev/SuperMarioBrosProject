@@ -96,7 +96,7 @@ public class PantallaInicial extends JPanel {
 	protected void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoJuegoCielo.png");
 		 Image imagen = fondoImagen.getImage();
-		 Image imagenEscalada = imagen.getScaledInstance(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO, Image.SCALE_SMOOTH);
+		 //Image imagenEscalada = imagen.getScaledInstance(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO, Image.SCALE_SMOOTH);
 		 
 		 ImageIcon iconoCartel = new ImageIcon("src/imagenes/cartelSuperMarioBros.png");
 		 Image imagenCartel= iconoCartel.getImage();
@@ -104,7 +104,7 @@ public class PantallaInicial extends JPanel {
 		 JLabel cartelLabel= new JLabel(new ImageIcon(imagenCartelEscalada));
 		 cartelLabel.setBounds((size.width - 400) / 2, 50, 400, 300); 
 		 
-		 fondo = new JLabel(new ImageIcon(imagenEscalada));
+		 fondo = new JLabel(fondoImagen);
 		 fondo.setPreferredSize(size);
 		 fondo.setMaximumSize(size);
 		 fondo.setMinimumSize(size);

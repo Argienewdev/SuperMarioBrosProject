@@ -35,8 +35,13 @@ public class ControladorMovimiento {
 		this.nivel = nivel;
 	}
 	
+	public void actualizarNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+	
 	public void actualizarPosicion() {
 		determinarDireccion();
+	    cambiarYVerificarPosicionHitboxDeMario();
 		reiniciarVelocidadHorizontal();
 	}
 	
@@ -106,28 +111,31 @@ public class ControladorMovimiento {
 	    	moveMarioDerecha();
 	    }
 	    marioJugable.setColisionAbajo(false);
-	    cambiarYVerificarPosicionHitboxDeMario();
 	}
 	
-	@SuppressWarnings("exports")
 	public void verificarColisiones(Jugable entidad) {
-		boolean huboColision = false;
-		if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
-			huboColision = true;
-			marioJugable.retrotraerMovimientoHorizontal();
-		} else {
-			for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-			    if (entidad.huboColision(elemento)) {
-			        huboColision = true;
-			        elemento.aceptarVisitante(entidad.getVisitor());
-			        entidad.aceptarVisitante(elemento.getVisitor());
-			    }
-			}
+		if(!this.nivel.fueCompletado()) {
+			boolean huboColision = false;
+			if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
+				huboColision = true;
+				marioJugable.retrotraerMovimientoHorizontal();
+			} else {
+				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+				    if (entidad.huboColision(elemento)) {
+				    	System.out.println(elemento.getClass().getSimpleName());
+				        huboColision = true;
+				        elemento.aceptarVisitante(entidad.getVisitor());
+				        entidad.aceptarVisitante(elemento.getVisitor());
+				    }
+				}
 
+			}
+		    if(!huboColision) {
+		    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
+		    }
+		} else {
+	    	this.nivel.obtenerPartida().cambiarNivel();
 		}
-	    if(!huboColision) {
-	    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
-	    }
 	}
 	
 	private void aplicarVelocidad() {

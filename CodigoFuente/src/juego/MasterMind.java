@@ -43,6 +43,7 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
+		aplicarGravedad(enemigo);
 		cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
 	}
 	
@@ -55,13 +56,13 @@ public class MasterMind {
 	
 	private void cambiarPosicionXHitboxDeNoJugable(NoJugable noJugable) {
 		int nuevaPosicionX = noJugable.obtenerHitbox().x + noJugable.getVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, noJugable.getPosicion().y);
+		Point nuevaPosicion = new Point(nuevaPosicionX, noJugable.obtenerHitbox().y);
 		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void cambiarPosicionYHitboxDeNoJugable(NoJugable noJugable) {
 		int nuevaPosicionY = noJugable.obtenerHitbox().y + noJugable.getVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(noJugable.getPosicion().x, nuevaPosicionY);
+		Point nuevaPosicion = new Point(noJugable.obtenerHitbox().x, nuevaPosicionY);
 		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
@@ -79,10 +80,12 @@ public class MasterMind {
 		        }
 		    }
 			//TODO no me gusta esto pero como mario no es parte de los elementos de juego en el nivel tuve que hacerlo
-			if(noJugable.huboColision(nivel.getMario())) {
-	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
-	            noJugable.aceptarVisitante(nivel.getMario().getVisitor());
-			}
+			//TODO si mario se mueve entonces su gestor y mastermind ambos detectan la colision y ambos invocan a los visitors
+			//TODO hacer que mario verifique colisiones incluso quieto?
+//			if(noJugable.huboColision(nivel.getMario())) {
+//	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
+//	            noJugable.aceptarVisitante(nivel.getMario().getVisitor());
+//			}
 		}
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());

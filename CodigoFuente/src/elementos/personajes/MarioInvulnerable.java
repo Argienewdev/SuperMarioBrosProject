@@ -8,8 +8,6 @@ import visitors.VisitorMarioInvulnerable;
 
 public class MarioInvulnerable  extends MarioDefault {
 
-	protected ContextoMario contexto;
-	
 	protected static final int DURACION = 10;
 	
 	@Override
@@ -24,22 +22,28 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
-			aRetornar = fabricaSprites.getMarioInvulnerableCayendo();
-		}else if(spriteAereoFrontal(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioInvulnerableFrontalSaltando();
-		} else if(spriteAereoReverso(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioInvulnerableReversoSaltando();
-		}else if(avanzando()) {
-			aRetornar = fabricaSprites.getMarioInvulnerableFrontalCaminando();
-		} else if(retrocediendo()){
-			aRetornar = fabricaSprites.getMarioInvulnerableReversoCaminando();
-		} else if(spriteFrontal(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioInvulnerableFrontalQuieto();
-		} else if(spriteReverso(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioInvulnerableReversoQuieto();
+		try {
+			if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
+				aRetornar = fabricaSprites.getMarioInvulnerableCayendo();
+			}else if(spriteAereoFrontal(fabricaSprites)) {
+				aRetornar = fabricaSprites.getMarioInvulnerableFrontalSaltando();
+			} else if(spriteAereoReverso(fabricaSprites)) {
+				aRetornar = fabricaSprites.getMarioInvulnerableReversoSaltando();
+			}else if(avanzando()) {
+				aRetornar = fabricaSprites.getMarioInvulnerableFrontalCaminando();
+			} else if(retrocediendo()){
+				aRetornar = fabricaSprites.getMarioInvulnerableReversoCaminando();
+			} else if(spriteFrontal(fabricaSprites)){
+				aRetornar = fabricaSprites.getMarioInvulnerableFrontalQuieto();
+			} else if(spriteReverso(fabricaSprites)){
+				aRetornar = fabricaSprites.getMarioInvulnerableReversoQuieto();
+			} else {
+				aRetornar = obtenerSpriteInicial(fabricaSprites);
+			}
+			contexto.setSprite(aRetornar);
+		}catch(NullPointerException e) {
+			e.printStackTrace();
 		}
-		contexto.setSprite(aRetornar);
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {

@@ -77,7 +77,7 @@ public class FabricaEntidades {
 	public ChampinionVerde getChampinionVerde(Point posicion, Visitante visitor, 
 											  Point velocidadDireccional,
 											  ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getChampinionVerde();
+        Sprite sprite = fabricaSprites.getSpriteInvisible();
         return new ChampinionVerde(sprite, posicion, visitor, velocidadDireccional, observer);
     }
     
