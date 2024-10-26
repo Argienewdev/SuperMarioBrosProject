@@ -107,12 +107,12 @@ public class VisitorBuzzyBeetle implements Visitante {
             if (contextoMario.getVidas() == 1) {
                 int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
                 contextoMario.perderPuntos(perdidaPuntos);
-                // TODO hay que matar a mario...
             } else {
-                contextoMario.perderVida();
                 contextoMario.setImpactado(true);
             }
+            contextoMario.perderVida();
         }
+        
     }
     
     @Override
