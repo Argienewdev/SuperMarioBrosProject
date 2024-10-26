@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
 
 public class PantallaFinal extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+
 	private ControladorVistas controladorVistas;
 	
 	protected Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
