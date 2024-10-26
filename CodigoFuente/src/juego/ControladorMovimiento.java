@@ -128,6 +128,7 @@ public class ControladorMovimiento {
 				huboColision = true;
 				marioJugable.retrotraerMovimientoHorizontal();
 			} else {
+				
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
 				    	//System.out.println(elemento.getClass().getSimpleName());

@@ -40,10 +40,6 @@ public class Juego {
 
 	private FabricaSprites fabricaSprites;
 
-	private FabricaEntidades fabricaEntidades;
-	
-	private FabricaPlataformas fabricaPlataformas;
-
 	private GeneradorDeNivel generadorDeNivel;
 	
 	private FabricaSilueta fabricaSilueta;
@@ -87,10 +83,9 @@ public class Juego {
 			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
+		this.generadorDeNivel = new GeneradorDeNivel(fabricaSprites, fabricaSilueta, pantallaDeJuego, controladorVistas);
+		
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));

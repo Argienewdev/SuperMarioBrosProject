@@ -4,8 +4,10 @@ import java.awt.Point;
 
 import elementos.Sprite;
 import elementos.enemigos.BuzzyBeetle;
+import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import juego.Nivel;
 import observers.ObserverGrafico;
 import ventanas.DimensionesConstantes;
 import visitors.Visitante;
@@ -94,7 +96,14 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		System.out.println("Lanzar bola");
+		/*
+		int posX=(int)getContext().getPosicion().getX();
+		int posY=(int)getContext().getPosicion().getY()-50;
+		Point posicionInicialBolaDeFuego = new Point(posX,posY);
+		Point velocidadDireccionalBolaDeFuego = new Point(0,1);
+		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
+		*/
 	}
 	
 }
