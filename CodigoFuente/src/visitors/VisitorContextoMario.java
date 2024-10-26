@@ -1,7 +1,7 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -65,9 +65,6 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
 		//Solo es afectado por FireBall
 	}
-
-	@Override
-	public void visitarFireball(Fireball fireball) {}
 
 	@Override
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -146,5 +143,11 @@ public class VisitorContextoMario implements Visitante {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
 		this.miEntidad.ganarPuntos(puntos);
 		enemigo.eliminarDelNivel();
+	}
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,7 +1,7 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -24,7 +24,7 @@ public interface Visitante {
     
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant);
     
-    public void visitarFireball(Fireball fireball);
+    public void visitarBolaDeFuego(BolaDeFuego fireball);
     
     public void visitarSuperChampinion(SuperChampinion superChampinion);
     

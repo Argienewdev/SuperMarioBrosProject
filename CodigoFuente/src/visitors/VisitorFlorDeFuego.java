@@ -1,17 +1,21 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import fabricas.FabricaEntidades;
 
 public class VisitorFlorDeFuego implements Visitante {
 
     protected FlorDeFuego miEntidad;
+    
+    protected FabricaEntidades fabricaEntidades;
 
-    public VisitorFlorDeFuego(FlorDeFuego miEntidad) {
+    public VisitorFlorDeFuego(FlorDeFuego miEntidad, FabricaEntidades fabricaEntidades) {
         this.miEntidad = miEntidad;
+        this.fabricaEntidades=fabricaEntidades;
     }
 
     @Override
@@ -28,9 +32,6 @@ public class VisitorFlorDeFuego implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
-
-    @Override
-    public void visitarFireball(Fireball fireball) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {}
@@ -55,14 +56,14 @@ public class VisitorFlorDeFuego implements Visitante {
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
         ContextoMario contextoMario = marioDefault.getContext();
-        EstadoMario nuevoEstado = new MarioFuego();
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioFuego();
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
@@ -104,5 +105,11 @@ public class VisitorFlorDeFuego implements Visitante {
 
     @Override
     public void visitarPiso(Piso piso) {}
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
+	}
   
 }

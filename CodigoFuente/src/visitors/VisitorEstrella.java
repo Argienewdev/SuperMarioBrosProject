@@ -1,7 +1,7 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -37,12 +37,6 @@ public class VisitorEstrella implements Visitante {
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
         // Lógica para visitar PiranhaPlant
-    }
-
-    @Override
-    public void visitarFireball(Fireball fireball) {
-        // Lógica para visitar Fireball
-    	
     }
 
     @Override
@@ -141,4 +135,10 @@ public class VisitorEstrella implements Visitante {
 
     @Override
     public void visitarPiso(Piso piso) {}
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
+	}
 }

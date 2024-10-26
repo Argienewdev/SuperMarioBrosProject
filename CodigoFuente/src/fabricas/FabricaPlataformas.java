@@ -7,18 +7,25 @@ import elementos.powerUps.*;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
+import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import visitors.Visitante;
+import visitors.VisitorBandera;
+import visitors.VisitorBloqueDePregunta;
+import visitors.VisitorBloqueSolido;
 import visitors.VisitorChampinionVerde;
 import visitors.VisitorEstrella;
 import visitors.VisitorFlorDeFuego;
+import visitors.VisitorLadrillo;
 import visitors.VisitorMonedas;
+import visitors.VisitorPiranhaPlant;
+import visitors.VisitorPiso;
+import visitors.VisitorPrincesa;
 import visitors.VisitorSuperChampinion;
+import visitors.VisitorTuberia;
 
 public class FabricaPlataformas {
 
-	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
-	
 	protected FabricaSprites fabricaSprites;
 	
 	protected FabricaEntidades fabricaEntidades;
@@ -29,120 +36,114 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Ladrillo getLadrillo(Point posicion, Visitante visitor) {
+	public Ladrillo getLadrillo(Point posicion) {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
-		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, visitor);
+		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, null);
+		Visitante visitor = new VisitorLadrillo(ladrilloADevolver);
+		ladrilloADevolver.setVisitor(visitor);
+        ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrilloADevolver);	   
+        ladrilloADevolver.setObserverGrafico(observerGraficoLadrillo);
 		return ladrilloADevolver;
 	}
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaVacia(Point posicion, Visitante visitor, int altura, int ancho) {
+	public Tuberia getTuberiaVacia(Point posicion, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
+		int ancho = 100;
 		PiranhaPlant piranhaPlant = null;
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura, ancho);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, piranhaPlant, altura, ancho);
+        Visitante visitor = new VisitorTuberia(tuberiaADevolver);
+        tuberiaADevolver.setVisitor(visitor);
+		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
+		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
 		return tuberiaADevolver;
 	}
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaConPiranhaPlant(Point posicion, Visitante visitor, int altura, int ancho) {
+	public Tuberia getTuberiaConPiranhaPlant(Point posicion, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
-		Point direccionPiranhaPlant = new Point(0,1);
-		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion, visitor, direccionPiranhaPlant, null);
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, visitor, piranhaPlant, altura, ancho);
+		int ancho = 100;
+		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, piranhaPlant, altura, ancho);
+        Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
+        tuberiaADevolver.setVisitor(visitorTuberia);
+		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
+		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
 		return tuberiaADevolver;
 	}
 	
 	@SuppressWarnings("exports")
-	public Bandera getBandera(Point posicion, Visitante visitor) {
+	public Bandera getBandera(Point posicion,ControladorVistas controladorVistas) {
 		Sprite spriteBandera = this.fabricaSprites.getBandera();
-		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, visitor);
+		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null);
+		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver);
+		banderaADevolver.setVisitor(visitor);
+		ObserverGrafico observerGraficoBandera = new ObserverGrafico(banderaADevolver);
+        banderaADevolver.setObserverGrafico(observerGraficoBandera);
 		return banderaADevolver;
 	}
 	
 	@SuppressWarnings("exports")
-	public PrincesaPeach getPrincesaPeach(Point posicion, Visitante visitor) {
+	public PrincesaPeach getPrincesaPeach(Point posicion,ControladorVistas controladorVistas) {
 		Sprite spritePrincesaPeach = this.fabricaSprites.getPrincesaPeach();
-		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, visitor);
+		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null);
+		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver);
+		princesaPeachADevolver.setVisitor(visitor);
+		ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeachADevolver);
+        princesaPeachADevolver.setObserverGrafico(observerGraficoPrincesaPeach);
 		return princesaPeachADevolver;
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePregunta(Point posicion, Visitante visitor, Nivel nivel, PantallaDeJuego pantallaDeJuego){
+	public BloqueDePregunta getBloqueDePregunta(Point posicion, Nivel nivel, PantallaDeJuego pantallaDeJuego){
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
-		BloqueDePregunta bloqueDePreguntaADevolver = null;
+		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null);
+		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver);
+		bloqueDePreguntaADevolver.setVisitor(visitor);
+		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
+		bloqueDePreguntaADevolver.setObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
 		int identificadorPowerUp = 5;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
-				Point velocidadDireccional = new Point(0,0);
-				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, identificadorPowerUp, true);
-				Visitante visitorMonedas = new VisitorMonedas(monedasDentroBloqueDePregunta);
-				monedasDentroBloqueDePregunta.setVisitor(visitorMonedas);
-		        ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasDentroBloqueDePregunta);
-		        monedasDentroBloqueDePregunta.setObserverGrafico(observerGraficoMonedas);
-		        monedasDentroBloqueDePregunta.setNivel(nivel);
+				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, identificadorPowerUp, true);
 				nivel.addPowerUp(monedasDentroBloqueDePregunta);
-				pantallaDeJuego.agregarLabel(observerGraficoMonedas);
-				bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, monedasDentroBloqueDePregunta);
+				pantallaDeJuego.agregarLabel(monedasDentroBloqueDePregunta.getObserverGrafico());
+				bloqueDePreguntaADevolver.setPowerUp(monedasDentroBloqueDePregunta);
 				monedasDentroBloqueDePregunta.setBloquePregunta(bloqueDePreguntaADevolver);
 				break;
 			}
 			case 1: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
-				Estrella estrella = this.fabricaEntidades.getEstrella(posicion, null, velocidadDireccional, null);
-				Visitante visitorEstrella = new VisitorEstrella(estrella);
-				estrella.setVisitor(visitorEstrella);
-		        ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrella);
-		        estrella.setObserverGrafico(observerGraficoEstrella);
-		        estrella.setNivel(nivel);
-		        nivel.addPowerUp(estrella);
-		        pantallaDeJuego.agregarLabel(observerGraficoEstrella);
-		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, estrella);
+				Estrella estrella = this.fabricaEntidades.getEstrella(posicion);
+		        pantallaDeJuego.agregarLabel(estrella.getObserverGrafico());
+		        bloqueDePreguntaADevolver.setPowerUp(estrella);
 		        estrella.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 3: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
-				ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion, null, velocidadDireccional, null);
-				Visitante visitorChampinionVerde = new VisitorChampinionVerde(champinionVerde);
-				champinionVerde.setVisitor(visitorChampinionVerde);
-		        ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(champinionVerde);
-		        champinionVerde.setObserverGrafico(observerGraficoChampinionVerde);
-		        champinionVerde.setNivel(nivel);
+				ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion);
 		        nivel.addPowerUp(champinionVerde);
-		        pantallaDeJuego.agregarLabel(observerGraficoChampinionVerde);
-		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, champinionVerde);
+		        pantallaDeJuego.agregarLabel(champinionVerde.getObserverGrafico());
+		        bloqueDePreguntaADevolver.setPowerUp(champinionVerde);
 		        champinionVerde.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 5: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
-				FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion, null, velocidadDireccional, null);
-				Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuego);
-				florDeFuego.setVisitor(visitorFlorDeFuego);
-		        ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuego);
-		        florDeFuego.setObserverGrafico(observerGraficoFlorDeFuego);
-		        florDeFuego.setNivel(nivel);
+				FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion,fabricaEntidades);
 		        nivel.addPowerUp(florDeFuego);
-		        pantallaDeJuego.agregarLabel(observerGraficoFlorDeFuego);
-		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, florDeFuego);
+		        pantallaDeJuego.agregarLabel(florDeFuego.getObserverGrafico());
+		        bloqueDePreguntaADevolver.setPowerUp(florDeFuego);
 		        florDeFuego.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 7: {
-				Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES,0);
-				SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion, null, velocidadDireccional, null);
-				Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampinion);
-				superChampinion.setVisitor(visitorSuperChampinion);
-		        ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampinion);
-		        superChampinion.setObserverGrafico(observerGraficoSuperChampinion);
-		        superChampinion.setNivel(nivel);
+				SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion);
 		        nivel.addPowerUp(superChampinion);
-		        pantallaDeJuego.agregarLabel(observerGraficoSuperChampinion);
-		        bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, visitor, superChampinion);
+		        pantallaDeJuego.agregarLabel(superChampinion.getObserverGrafico());
+		        bloqueDePreguntaADevolver.setPowerUp(superChampinion);
 		        superChampinion.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
@@ -153,16 +154,24 @@ public class FabricaPlataformas {
 	
 	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
-	public BloqueSolido getBloqueSolido(Point posicion, Visitante visitor) {
+	public BloqueSolido getBloqueSolido(Point posicion) {
     	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
-    	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, visitor);
-		return bloqueSolidoADevolver;
+    	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null);
+    	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolidoADevolver);
+    	bloqueSolidoADevolver.setVisitor(visitorBloqueSolido);
+    	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolidoADevolver);
+    	bloqueSolidoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
+    	return bloqueSolidoADevolver;
     }
     
     @SuppressWarnings("exports")
-	public Piso getPiso(Point posicion, Visitante visitor) {
+	public Piso getPiso(Point posicion) {
     	Sprite spritePiso = this.fabricaSprites.getPiso();
-    	Piso pisoADevolver = new Piso(spritePiso, posicion, visitor);
+    	Piso pisoADevolver = new Piso(spritePiso, posicion, null);
+    	Visitante visitorPiso = new VisitorPiso(pisoADevolver);
+    	pisoADevolver.setVisitor(visitorPiso);
+    	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(pisoADevolver);
+    	pisoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
     	return pisoADevolver;
     }
 	

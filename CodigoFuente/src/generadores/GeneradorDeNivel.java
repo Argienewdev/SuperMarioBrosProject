@@ -34,8 +34,6 @@ public class GeneradorDeNivel {
 	
 	protected static final String RUTA_A_CARPETA = "src/niveles/nivel-";
 	
-	protected static final int VELOCIDAD_HORIZONTAL_ENEMIGOS = -2;
-	
 	protected FabricaEntidades fabricaEntidades;
 	
 	protected FabricaSilueta fabricaSilueta;
@@ -77,172 +75,93 @@ public class GeneradorDeNivel {
                 
                 switch(identificadorElemento) {
 	                case 1: {
-	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion, null);
-	                    Visitante visitor = new VisitorLadrillo(ladrillo);
-	                    ladrillo.setVisitor(visitor);
-	                    ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrillo);	   
-	                    ladrillo.setObserverGrafico(observerGraficoLadrillo);
-	                    ladrillo.setNivel(nivel);
+	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion);
 	                    nivel.addPlataforma(ladrillo);
 	                    nivel.addPlataformasAfectables(ladrillo);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoLadrillo);
+	                    this.pantallaDeJuego.agregarLabel(ladrillo.getObserverGrafico());
 	                    break;
 	                }	             
-	                case 2: {	                   
+	                case 2: {         
 	                    int alturaTuberia = numeros[3];
-	                    int anchoTuberia = 100;
-	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, null, alturaTuberia, anchoTuberia);
-	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaVacia);
-	                    Visitante visitor = new VisitorTuberia(tuberiaVacia);
-	                    tuberiaVacia.setVisitor(visitor);
-	                    tuberiaVacia.setObserverGrafico(observerGraficoTuberia);
-	                    tuberiaVacia.setNivel(nivel);
+	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, alturaTuberia);
 	                    nivel.addPlataforma(tuberiaVacia);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoTuberia);
+	                    this.pantallaDeJuego.agregarLabel(tuberiaVacia.getObserverGrafico());
 	                    break;
 	                }
 	                case 3: {
-	                    int alturaTuberia = numeros[3];
-	                    int anchoTuberia = 100;
-	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, null, alturaTuberia, anchoTuberia);
-	                    Visitante visitor = new VisitorTuberia(tuberiaConPiranhaPlant);
-	                    tuberiaConPiranhaPlant.setVisitor(visitor);
-	                    ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaConPiranhaPlant);
-	                    tuberiaConPiranhaPlant.setObserverGrafico(observerGraficoTuberia);
-	                    tuberiaConPiranhaPlant.setNivel(nivel);
+	                	int alturaTuberia = numeros[3];
+	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, alturaTuberia);
 	                    nivel.addPlataforma(tuberiaConPiranhaPlant);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoTuberia);
+	                    this.pantallaDeJuego.agregarLabel(tuberiaConPiranhaPlant.getObserverGrafico());
 	                    break;
 	                }
 	                case 4: {
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, null, nivel,pantallaDeJuego);
-	                    Visitante visitor = new VisitorBloqueDePregunta(bloqueDePregunta);
-	                    ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePregunta);	  
-	                    bloqueDePregunta.setVisitor(visitor);
-	                    bloqueDePregunta.setObserverGrafico(observerGraficoBloqueDePregunta);
-	                    bloqueDePregunta.setNivel(nivel);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, nivel,pantallaDeJuego);
 	                    nivel.addPlataforma(bloqueDePregunta);
 	                    nivel.addPlataformasAfectables(bloqueDePregunta);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoBloqueDePregunta);
+	                    this.pantallaDeJuego.agregarLabel(bloqueDePregunta.getObserverGrafico());
 	                    break;
 	                }
 	                case 5: {
-	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion, null);
-	                    Visitante visitor = new VisitorBandera(this.controladorVistas,bandera);
-	                    ObserverGrafico observerGraficoBandera = new ObserverGrafico(bandera);
-	                    bandera.setVisitor(visitor);
-	                    bandera.setObserverGrafico(observerGraficoBandera);
-	                    bandera.setNivel(nivel);
-	                    nivel.addPlataforma(bandera);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoBandera);
+	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion,this.controladorVistas);
+	                	nivel.addPlataforma(bandera);
+	                    this.pantallaDeJuego.agregarLabel(bandera.getObserverGrafico());
 	                    break;
 	                }
 	                case 6: {
-	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion, null);
-	                    Visitante visitor = new VisitorPrincesa(this.controladorVistas,princesaPeach);
-	                    ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeach);
-	                    princesaPeach.setVisitor(visitor);
-	                    princesaPeach.setObserverGrafico(observerGraficoPrincesaPeach);
-	                    princesaPeach.setNivel(nivel);
+	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion,this.controladorVistas);
 	                    nivel.addPlataforma(princesaPeach);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoPrincesaPeach);
+	                    this.pantallaDeJuego.agregarLabel(princesaPeach.getObserverGrafico());
 	                    break;
 	                }
 	                case 7: {
-	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido(posicion, null);
-	                	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolido);
-	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolido);
-	                	bloqueSolido.setVisitor(visitorBloqueSolido);
-	                	bloqueSolido.setObserverGrafico(observerGraficoBloqueSolido);
-	                	bloqueSolido.setNivel(nivel);
+	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido(posicion);
 	                	nivel.addPlataforma(bloqueSolido);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
+	                	this.pantallaDeJuego.agregarLabel(bloqueSolido.getObserverGrafico());
 	                	break;
 	                } 
 	                case 8: {
-	                	Piso piso = this.fabricaPlataformas.getPiso(posicion, null);
-	                	Visitante visitorPiso = new VisitorPiso(piso);
-	                	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(piso);
-	                	piso.setVisitor(visitorPiso);
-	                	piso.setObserverGrafico(observerGraficoBloqueSolido);
-	                	piso.setNivel(nivel);
+	                	Piso piso = this.fabricaPlataformas.getPiso(posicion);
 	                	nivel.addPlataforma(piso);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
+	                	this.pantallaDeJuego.agregarLabel(piso.getObserverGrafico());
 	                	System.out.println("El generador agrego el label de piso");
 	                	break;
 	                } 
 	                case 20: {
-	                	Random random = new Random();
-	            		int cantidadMonedas = random.nextInt(8) + 1; // Genera un numero entre 1 y 8, ambos inclusive
-	                	Point velocidadDireccional = new Point(0,0);
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, null, velocidadDireccional, null, cantidadMonedas, false);
-	                	Visitante visitorMonedas = new VisitorMonedas(monedas);
-	                	monedas.setVisitor(visitorMonedas);
-	                	ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedas);
-	                	monedas.setObserverGrafico(observerGraficoMonedas);
-	                	monedas.setNivel(nivel);
+	                	int cantidadMonedas = 1;
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion,cantidadMonedas, false);
 	                	nivel.addPowerUp(monedas);
-	                	this.pantallaDeJuego.agregarLabel(observerGraficoMonedas);
+	                	this.pantallaDeJuego.agregarLabel(monedas.getObserverGrafico());
 	                	break;
 	                }
 	                case 40: {
-	                    Point velocidadDireccional= new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS,0);	 
-	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion, null, velocidadDireccional, null);
-	                    Visitante visitorLakitu = new VisitorLakitu(lakitu);
-	                    lakitu.setVisitor(visitorLakitu);
-	                    ObserverGrafico observerGraficoLakitu = new ObserverGrafico(lakitu);
-	                    lakitu.setObserverGrafico(observerGraficoLakitu);
-	                    lakitu.setNivel(nivel);
+	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion);
 	                    nivel.addEnemigo(lakitu);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoLakitu);
+	                    this.pantallaDeJuego.agregarLabel(lakitu.getObserverGrafico());
 	                    break;
 	                } 
 	                case 41: {
-	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
-	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion, null, velocidadDireccional, null);
-	                    Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(contextoKoopaTroopa);
-	                    contextoKoopaTroopa.setVisitor(visitorContextoKoopaTroopa);
-	                    ObserverGrafico observerGraficoKoopa = new ObserverGrafico(contextoKoopaTroopa);
-	                    contextoKoopaTroopa.setObserverGrafico(observerGraficoKoopa);
-	                    contextoKoopaTroopa.setNivel(nivel);
+	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion);
 	                    nivel.addEnemigo(contextoKoopaTroopa);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoKoopa);
+	                    this.pantallaDeJuego.agregarLabel(contextoKoopaTroopa.getObserverGrafico());
 	                    break;
 	                } 
 	                case 42: {
-	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
-	                    Goomba goomba = fabricaEntidades.getGoomba(posicion, null, velocidadDireccional, null);
-	                    Visitante visitorGoomba = new VisitorGoomba(goomba);
-	                    goomba.setVisitor(visitorGoomba);
-	                    ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goomba);
-	                    goomba.setObserverGrafico(observerGraficoGoomba);
-	                    goomba.setNivel(nivel);
+	                    Goomba goomba = fabricaEntidades.getGoomba(posicion);
 	                    nivel.addEnemigo(goomba);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoGoomba);
+	                    this.pantallaDeJuego.agregarLabel(goomba.getObserverGrafico());
 	                    break;
 	                }
 	                case 43: {
-	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
-	                    Spiny spiny = fabricaEntidades.getSpiny(posicion, null, velocidadDireccional, null);
-	                    Visitante visitorSpiny = new VisitorSpiny(spiny);
-	                    spiny.setVisitor(visitorSpiny);
-	                    ObserverGrafico observerGraficoSpiny = new ObserverGrafico(spiny);
-	                    spiny.setObserverGrafico(observerGraficoSpiny);
-	                    spiny.setNivel(nivel);
+	                    Spiny spiny = fabricaEntidades.getSpiny(posicion);
 	                    nivel.addEnemigo(spiny);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoSpiny);
+	                    this.pantallaDeJuego.agregarLabel(spiny.getObserverGrafico());
 	                    break;
 	                }
 	                case 44: {
-	                    Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
-	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.getBuzzyBeetle(posicion, null, velocidadDireccional, null);
-	                    Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyBeetle);
-	                    buzzyBeetle.setVisitor(visitorBuzzy);
-	                    ObserverGrafico observerGraficoBuzzy = new ObserverGrafico(buzzyBeetle);
-	                    buzzyBeetle.setObserverGrafico(observerGraficoBuzzy);
-	                    buzzyBeetle.setNivel(nivel);
+	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.getBuzzyBeetle(posicion);
 	                    nivel.addEnemigo(buzzyBeetle);
-	                    this.pantallaDeJuego.agregarLabel(observerGraficoBuzzy);
+	                    this.pantallaDeJuego.agregarLabel(buzzyBeetle.getObserverGrafico());
 	                    break;
 	                }
 	                case 45:{

@@ -6,27 +6,21 @@ import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Fireball extends NoJugable {
-	
-	protected static final int DANIO = 1; // Consultar valor
+public class BolaDeFuego extends NoJugable {
 	
 	protected Jugable miJugador;
 	
-	public Fireball(Sprite sprite, Point posicion, Visitante visitor,
-					int velocidad, Point velocidadDireccional,
-					ObserverGrafico observerGrafico, Jugable miJugador) {
+	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor,
+					Point velocidadDireccional,
+					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
-		this.miJugador = miJugador;
+		this.miJugador=jugador;
 	}
 	
 	// Metodos
 	@Override
 	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarFireball(this);
-	}
-	
-	public Jugable obtenerJugador() {
-		return miJugador;
+		visitante.visitarBolaDeFuego(this);
 	}
 
 	@Override
@@ -39,6 +33,10 @@ public class Fireball extends NoJugable {
 		//TODO
 	}
 
+	public Jugable obtenerJugador() {
+		return miJugador;
+	}
+	
 	@Override
 	public void elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		// TODO Auto-generated method stub

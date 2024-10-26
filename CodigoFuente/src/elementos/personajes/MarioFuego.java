@@ -1,12 +1,24 @@
 package elementos.personajes;
 
+import java.awt.Point;
+
 import elementos.Sprite;
+import elementos.enemigos.BuzzyBeetle;
+import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import observers.ObserverGrafico;
 import ventanas.DimensionesConstantes;
 import visitors.Visitante;
+import visitors.VisitorBuzzyBeetle;
 import visitors.VisitorMarioFuego;
 
 public class MarioFuego extends MarioDefault {
+	
+	protected FabricaEntidades fabricaEntidades;
+	
+	public MarioFuego(FabricaEntidades fabricaEntidades) {
+		this.fabricaEntidades=fabricaEntidades;
+	}
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
@@ -78,6 +90,11 @@ public class MarioFuego extends MarioDefault {
 
 	
 	public void realizarAccionEspecial() {	
-		System.out.println("Lanzo bola de fuego");
+		lanzarBolaDeFuego();
 	}
+
+	private void lanzarBolaDeFuego() {
+		System.out.println("Lanzar bola");
+	}
+	
 }

@@ -1,7 +1,7 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -54,11 +54,6 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void visitarFireball(Fireball fireball) {
         // TODO Auto-generated method stub
     }
 
@@ -146,5 +141,11 @@ public class VisitorKoopaDefault implements Visitante {
     public void visitarPiso(Piso piso) {
         // TODO Auto-generated method stub
     }
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

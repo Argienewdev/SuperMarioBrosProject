@@ -306,16 +306,11 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     public Sprite getMonedaEncendida() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/monedaEncendida.png");
     }
+    
+	public Sprite getBolaDeFuego() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.gif\"");
+	}
 
-    @Override
-    public Sprite getFireballPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/fireballPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getFireballSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/fireballSegundaTransicion.png");
-    }
 
     @Override
     public Sprite getLadrillo() {
