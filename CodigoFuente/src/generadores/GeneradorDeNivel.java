@@ -34,6 +34,8 @@ public class GeneradorDeNivel {
 	
 	protected static final String RUTA_A_CARPETA = "src/niveles/nivel-";
 	
+	protected FabricaSprites fabricaSprites;
+
 	protected FabricaEntidades fabricaEntidades;
 	
 	protected FabricaSilueta fabricaSilueta;
@@ -44,8 +46,14 @@ public class GeneradorDeNivel {
 	
 	protected ControladorVistas controladorVistas;
 	
-	public GeneradorDeNivel(FabricaSprites fabricaSprites, FabricaSilueta fabricaSilueta,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
-		this.fabricaSilueta = fabricaSilueta;
+	public GeneradorDeNivel(String modoJuego,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
+		if (modoJuego.equals("Modo original")) {
+			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
+			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+		} else if (modoJuego.equals("Modo alternativo")) {
+			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
+			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
+		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego);
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
 		this.pantallaDeJuego = pantallaDeJuego;
@@ -189,6 +197,10 @@ public class GeneradorDeNivel {
 	
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
+	}
+	
+	public FabricaSprites getFabricaSprites() {
+		return fabricaSprites;
 	}
 	
 }

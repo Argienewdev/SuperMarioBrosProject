@@ -41,9 +41,7 @@ public class Juego {
 	private FabricaSprites fabricaSprites;
 
 	private GeneradorDeNivel generadorDeNivel;
-	
-	private FabricaSilueta fabricaSilueta;
-	
+		
 	private PantallaDeJuego pantallaDeJuego;
 	
 	private Ranking ranking;
@@ -76,16 +74,9 @@ public class Juego {
 	}
 
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
-		if (modo.equals("Modo original")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (modo.equals("Modo alternativo")) {
-			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-		}
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaSprites, fabricaSilueta, pantallaDeJuego, controladorVistas);
-		
+		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
+		this.fabricaSprites=generadorDeNivel.getFabricaSprites();
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
