@@ -95,8 +95,7 @@ public class Juego {
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		jugador = new Jugador();
-		//Se debe modificar, el nombre se ingresa desde una pantalla de juego por teclado
-		jugador.establecerNombre("Pepe");
+		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
 		return jugable;
 	}
 	

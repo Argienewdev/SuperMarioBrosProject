@@ -43,12 +43,9 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void perderVida() {
-		if (vidas > 1)
-			this.vidas--;
-		else {
-			vidas = 0;
+		vidas --;
+		if (vidas == 0) 
 			muerte();
-		}
 	}
 	
 	public void ganarPuntos(int puntos) {

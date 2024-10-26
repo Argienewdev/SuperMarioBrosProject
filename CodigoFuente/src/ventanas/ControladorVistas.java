@@ -199,5 +199,9 @@ public class ControladorVistas {
 	public String obtenerModo() {
 		return pantallaInicial.obtenerModo();
 	}	
+	
+	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
+		return this.pantallaIngresoNombre;
+	}
 
 }
