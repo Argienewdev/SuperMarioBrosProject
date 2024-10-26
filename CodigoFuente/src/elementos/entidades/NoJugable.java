@@ -12,6 +12,7 @@ public abstract class NoJugable extends Entidad {
 	
 	protected boolean removido;
 	
+	protected static final int TICKS_HASTA_ELIMINAR_CADAVER = 120;
 	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
 					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
@@ -38,7 +39,6 @@ public abstract class NoJugable extends Entidad {
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
-		this.hitbox = new Rectangle(0, 0, 0, 0);
 		this.removido = true;
 	}
 	

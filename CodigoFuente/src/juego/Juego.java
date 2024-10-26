@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Ranking.Jugador;
+import Ranking.Ranking;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
@@ -22,8 +24,7 @@ import fabricas.FabricaSprites;
 import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
-import launcher.Jugador;
-import launcher.Ranking;
+import observers.ObserverLogicoJugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
@@ -51,21 +52,10 @@ public class Juego {
 	
 	private Ranking ranking;
 	
+	private Jugador jugador;
+	
 	public Juego() {
 		ranking = new Ranking();
-		try {
-			FileInputStream  fileInputStream = new FileInputStream("./puntajes");
-			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-			Jugador jugador = (Jugador) objectInputStream.readObject();
-			objectInputStream.close();
-		} catch (FileNotFoundException e) {
-		
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	public void actualizar() {
@@ -101,17 +91,24 @@ public class Juego {
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
-		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites, this);
-		return this.partida.obtenerJugador();
+		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
+		ContextoMario jugable = partida.obtenerJugable();
+		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
+		jugador = new Jugador();
+		//Se debe modificar, el nombre se ingresa desde una pantalla de juego por teclado
+		jugador.establecerNombre("Pepe");
+		return jugable;
 	}
 	
 	public Partida obtenerPartida() {
 		return this.partida;
 	}
 	
-	public void finalizarPartida (Jugador jugador) {
-		//TODO logica de fin de partida
+	public void finalizarPartida () {
+		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
 		ranking.agregarJugador(jugador);
+		guardarEstado();
+		controladorVistas.mostrarPantallaFinal();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {

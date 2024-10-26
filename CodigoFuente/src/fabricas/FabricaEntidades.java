@@ -69,7 +69,7 @@ public class FabricaEntidades {
 	public Estrella getEstrella(Point posicion, Visitante visitor, 
 								Point velocidadDireccional, 
 								ObserverGrafico observer) {
-        Sprite sprite = fabricaSprites.getEstrellaEncendida();
+        Sprite sprite = fabricaSprites.getSpriteInvisible();
         return new Estrella(sprite, posicion, visitor, velocidadDireccional, observer);
     } 
     

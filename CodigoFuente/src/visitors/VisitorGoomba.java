@@ -88,30 +88,36 @@ public class VisitorGoomba implements Visitante {
                 contextoMario.perderPuntos(perdidaPuntos);
                 // TODO: Implementar la lógica para "matar" a Mario.
             } else {
-                contextoMario.perderVida();
                 contextoMario.setImpactado(true);
             }
+            contextoMario.perderVida();
         }
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	if (this.detectorDireccionColision.choquePorDerecha(superMario.getContext(), this.miEntidad) ||
+                this.detectorDireccionColision.choquePorIzquierda(superMario.getContext(), this.miEntidad)) {
+	        ContextoMario contextoMario = superMario.getContext();
+	        EstadoMario nuevoEstado = new MarioDefault();
+	        contextoMario.cambiarEstado(nuevoEstado);
+            contextoMario.setImpactado(true);
+    	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	if (this.detectorDireccionColision.choquePorDerecha(marioFuego.getContext(), this.miEntidad) ||
+                this.detectorDireccionColision.choquePorIzquierda(marioFuego.getContext(), this.miEntidad)) {
+	        ContextoMario contextoMario = marioFuego.getContext();
+	        EstadoMario nuevoEstado = new MarioDefault();
+	        contextoMario.cambiarEstado(nuevoEstado);
+            contextoMario.setImpactado(true);
+    	}
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {

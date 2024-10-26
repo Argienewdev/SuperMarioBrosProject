@@ -2,7 +2,7 @@ package ventanas;
 
 import javax.swing.*;
 
-import launcher.Jugador;
+import Ranking.Jugador;
 
 import java.awt.*;
 import java.util.List;

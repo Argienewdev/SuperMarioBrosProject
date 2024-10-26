@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import Ranking.Jugador;
 import elementos.personajes.ContextoMario;
 import juego.*;
-import launcher.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
@@ -40,8 +40,8 @@ public class ControladorVistas {
 
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
-		pantallaInicial = new PantallaInicial(sensorDeTeclasMenu, this);
-		pantallaFinal = new PantallaFinal();
+		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
+		pantallaFinal= new PantallaFinal(this);
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		pantallaDeJuego = new PantallaDeJuego();
 		this.juego = juego;

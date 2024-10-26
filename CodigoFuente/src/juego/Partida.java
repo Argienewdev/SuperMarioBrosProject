@@ -1,5 +1,6 @@
 package juego;
 
+import Ranking.Jugador;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
@@ -10,7 +11,7 @@ public class Partida {
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
-	private ContextoMario jugador;
+	private ContextoMario jugable;
 	
 	private BucleJugador bucleJugador;
 	
@@ -33,6 +34,8 @@ public class Partida {
 	private int numeroNivelActual;
 	
 	private Juego juego;
+
+	private Jugador jugador;
 	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites, Juego juego) {
@@ -41,15 +44,15 @@ public class Partida {
 		this.generadorDeNivel = generadorDeNivel;
 		this.numeroNivelActual = 1;
 		this.nivel = generarNivel(this.numeroNivelActual, this);
-		this.jugador = this.nivel.getMario();
-		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugador, fabricaSprites, nivel);
+		this.jugable = this.nivel.getMario();
+		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugable, fabricaSprites, nivel);
 		this.bucleJugador = new BucleJugador(this);
 		this.masterMind = new MasterMind(fabricaSprites, this.nivel);
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	public ContextoMario obtenerJugador() {
-		return this.jugador;
+	public ContextoMario obtenerJugable() {
+		return this.jugable;
 	}
 	
 	public void actualizar() {

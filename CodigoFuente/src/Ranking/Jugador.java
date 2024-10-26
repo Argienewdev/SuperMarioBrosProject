@@ -1,4 +1,4 @@
-package launcher;
+package Ranking;
 
 import java.io.Serializable;
 
@@ -6,28 +6,26 @@ import elementos.entidades.Jugable;
 
 public class Jugador implements Comparable<Jugador>, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private String nombre;
 	
 	private int puntaje;
 	
-	private Jugable personaje;
 	
-	public Jugador (String nombre, Jugable personaje) {
-		this.nombre = nombre;
-		this.personaje = personaje;
-		puntaje = personaje.getPuntos();
+	
+	public Jugador () {
+		nombre = null;
+		puntaje = 0;
 	}
 	
 	public void establecerNombre (String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public void establecerPersonaje (Jugable personaje) {
-		this.personaje = personaje;
-	}
 	
-	public void actualizarPuntos() {
-		personaje.getPuntos();
+	public void actualizarPuntos(int puntaje) {
+		puntaje = puntaje;
 	}
 
 	public String obtenerNombre() {
@@ -36,11 +34,6 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 
 	public int obtenerPuntaje() {
 		return puntaje;
-	}
-	
-	@SuppressWarnings("exports")
-	public Jugable obtenerPersonaje() {
-		return personaje;
 	}
 	
 	public int compareTo (Jugador jugador) {

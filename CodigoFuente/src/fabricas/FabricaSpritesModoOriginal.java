@@ -266,12 +266,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getEstrellaApagada() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrellaApagada.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrella.gif");
     }
 
     @Override
     public Sprite getEstrellaEncendida() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrellaEncendida.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/estrella.gif");
     }
 
     @Override
