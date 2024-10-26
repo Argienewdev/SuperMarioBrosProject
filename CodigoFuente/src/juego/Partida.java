@@ -30,11 +30,17 @@ public class Partida {
 	
 	private MasterMind masterMind;
 	
+	private int numeroNivelActual;
+	
+	private Juego juego;
+	
 	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites) {
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites, Juego juego) {
+		this.juego = juego;
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.generadorDeNivel = generadorDeNivel;
-		this.nivel = generadorDeNivel.generarNivel("src/niveles/nivel-1.txt");
+		this.numeroNivelActual = 1;
+		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.jugador = this.nivel.getMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugador, fabricaSprites, nivel);
 		this.bucleJugador = new BucleJugador(this);
@@ -48,5 +54,24 @@ public class Partida {
 	
 	public void actualizar() {
 		this.coordinadorActualizacionesJugador.actualizar();
+	}
+	
+	public void cambiarNivel() {
+		this.numeroNivelActual++;
+		this.nivel = generarNivel(numeroNivelActual, this);
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(nivel);
+		this.juego.obtenerControladorVistas().cambiarNivel();
+	}
+	
+	private Nivel generarNivel(int numeroNivelActual, Partida partida) {
+		return generadorDeNivel.generarNivel(numeroNivelActual, this);
+	}
+
+	public int obtenerNumeroDeNivelActual() {
+		return this.numeroNivelActual;
+	}
+	
+	public GeneradorDeNivel obtenerGeneradorDeNivel() {
+		return this.generadorDeNivel;
 	}
 }

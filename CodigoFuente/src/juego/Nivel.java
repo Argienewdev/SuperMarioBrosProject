@@ -31,8 +31,10 @@ public class Nivel {
     protected ContextoMario mario;
     
     protected boolean nivelCompletado;
+    
+    protected Partida partida;
 
-    public Nivel(Silueta silueta) {
+    public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
         this.plataformas = new ArrayList<Plataforma>();
         this.plataformasAfectables = new ArrayList<Plataforma>();
@@ -40,6 +42,7 @@ public class Nivel {
         this.enemigos = new ArrayList<Enemigo>();
         this.entidadesAEliminar = new ArrayList<ElementoDeJuego>();
         this.nivelCompletado = false;
+        this.partida = partida;
     }
 
     public void addPlataforma(Plataforma plataforma) {
@@ -98,6 +101,18 @@ public class Nivel {
     
     public ContextoMario getMario() {
         return this.mario;
+    }
+    
+    public boolean fueCompletado() {
+    	return this.nivelCompletado;
+    }
+    
+    public void setCompletado(boolean completado) {
+    	this.nivelCompletado = completado;
+    }
+    
+    public Partida obtenerPartida() {
+    	return this.partida;
     }
     
     public Iterable<ElementoDeJuego> getElementosDeJuego() {

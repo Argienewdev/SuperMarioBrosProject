@@ -33,5 +33,9 @@ public class CoordinadorActualizacionesJugador {
 	private void actualizarObserverMario() {
 		this.marioJugable.getObserverGrafico().actualizar();
 	}
+	
+	public ControladorMovimiento obtenerControladorDeMovimiento() {
+		return this.controladorMovimiento;
+	}
 
 }

@@ -84,6 +84,10 @@ public class Juego {
 	public void render() {
 		//TICK
 	}
+	
+	public ControladorVistas obtenerControladorVistas() {
+		return this.controladorVistas;
+	}
 
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		if (modo.equals("Modo original")) {
@@ -97,8 +101,12 @@ public class Juego {
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
-		partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites);
-		return partida.obtenerJugador();
+		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites, this);
+		return this.partida.obtenerJugador();
+	}
+	
+	public Partida obtenerPartida() {
+		return this.partida;
 	}
 	
 	public void finalizarPartida (Jugador jugador) {
