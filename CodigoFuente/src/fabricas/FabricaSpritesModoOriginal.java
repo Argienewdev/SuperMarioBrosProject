@@ -116,7 +116,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     
     @Override
     public Sprite getMarioInvulnerableFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalQuieto.gif");
     }
 
     @Override
@@ -126,17 +126,17 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getMarioInvulnerableFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableFrontalSaltando.gif");
     }
 
     @Override
     public Sprite getMarioInvulnerableCayendo() {
-    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioFuegoReversoCayendo.png");
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableCayendo.gif");
     }
     
     @Override
     public Sprite getMarioInvulnerableReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoQuieto.gif");
     }
 
     @Override
@@ -146,7 +146,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getMarioInvulnerableReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoSaltando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioInvulnerableReversoSaltando.gif");
     }
 
     @Override

@@ -60,33 +60,20 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.ganarVida();
-        contextoMario.getEstado().aceptarVisitante(this);
+    	contextoMario.ganarVida();
     }
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-        ContextoMario contextoMario = marioDefault.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorSuper());
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorFuego());
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        ContextoMario contextoMario = marioInvulnerable.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorInvulnerable());
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
@@ -122,14 +109,9 @@ public class VisitorChampinionVerde implements Visitante {
     }
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
 	@Override
-	public void visitarPiso(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarPiso(Piso piso) {}
 
 }

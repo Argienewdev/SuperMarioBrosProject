@@ -109,7 +109,6 @@ public class ControladorMovimiento {
 	    cambiarYVerificarPosicionHitboxDeMario();
 	}
 	
-	@SuppressWarnings("exports")
 	public void verificarColisiones(Jugable entidad) {
 		boolean huboColision = false;
 		if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
