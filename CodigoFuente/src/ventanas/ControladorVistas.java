@@ -38,15 +38,14 @@ public class ControladorVistas {
 	
 	protected Juego juego;	
 
-	
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		pantallaFinal= new PantallaFinal(this);
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		pantallaDeJuego= new PantallaDeJuego();
+		pantallaDeJuego = new PantallaDeJuego();
 		this.juego = juego;
-		pantallaEntreNiveles= new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
+		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -158,10 +157,25 @@ public class ControladorVistas {
 		return this.pantallaDeJuego;
 	}
 	
-	public void cambiarNivel() {
-		//TODO
+	public void eliminarNivelActual() {
+		this.pantallaDeJuego.eliminarNivelActual();
 	}
-
 	
+	public void cambiarNivel() {
+		ventana.remove(pantallaDeJuego);
+		mostrarPantallaEntreNiveles();
+     	
+		pantallaDeJuego.cambiarDeNivel();
+		
+		Timer timer = new Timer(2000, new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	ventana.remove(pantallaEntreNiveles);
+	                mostrarPantallaDeJuego();
+	                
+	            }
+	        });
+	        timer.setRepeats(false);
+	        timer.start();  
+	}
 
 }

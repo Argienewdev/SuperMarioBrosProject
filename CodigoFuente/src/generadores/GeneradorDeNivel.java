@@ -1,6 +1,7 @@
 package generadores;
 import fabricas.*;
 import juego.Nivel;
+import juego.Partida;
 import elementos.Silueta;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
@@ -31,6 +32,8 @@ import java.io.*;
 
 public class GeneradorDeNivel {
 	
+	protected static final String RUTA_A_CARPETA = "src/niveles/nivel-";
+	
 	protected static final int VELOCIDAD_HORIZONTAL_ENEMIGOS = -2;
 	
 	protected FabricaEntidades fabricaEntidades;
@@ -51,14 +54,14 @@ public class GeneradorDeNivel {
 		this.controladorVistas = controladorVistas;
 	}
 	
-	public Nivel generarNivel(String rutaTxtNivel) {
+	public Nivel generarNivel(int numeroNivel, Partida partida) {
 		Silueta silueta = fabricaSilueta.getSilueta();
-		Nivel nivel = new Nivel(silueta);
+		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
 		
 		try {
-			archivoDeNivel = new FileReader(rutaTxtNivel);
+			archivoDeNivel = new FileReader(RUTA_A_CARPETA + numeroNivel + ".txt");
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;
 			while((linea = lectorBuffer.readLine()) != null) {
@@ -165,6 +168,7 @@ public class GeneradorDeNivel {
 	                	piso.setNivel(nivel);
 	                	nivel.addPlataforma(piso);
 	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
+	                	System.out.println("El generador agrego el label de piso");
 	                	break;
 	                } 
 	                case 20: {
@@ -286,4 +290,5 @@ public class GeneradorDeNivel {
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
 	}
+	
 }

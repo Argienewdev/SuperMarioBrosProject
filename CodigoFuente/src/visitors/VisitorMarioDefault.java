@@ -100,7 +100,9 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {}
+    public void visitarBandera(Bandera bandera) {
+    	bandera.aceptarVisitante(miEntidad.getVisitor());
+    }
 
     @Override
     public void visitarTuberia(Tuberia tuberia) {}
