@@ -41,6 +41,7 @@ public class ControladorMovimiento {
 	
 	public void actualizarPosicion() {
 		determinarDireccion();
+	    cambiarYVerificarPosicionHitboxDeMario();
 		reiniciarVelocidadHorizontal();
 	}
 	
@@ -110,7 +111,6 @@ public class ControladorMovimiento {
 	    	moveMarioDerecha();
 	    }
 	    marioJugable.setColisionAbajo(false);
-	    cambiarYVerificarPosicionHitboxDeMario();
 	}
 	
 	public void verificarColisiones(Jugable entidad) {
@@ -122,6 +122,7 @@ public class ControladorMovimiento {
 			} else {
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
+				    	System.out.println(elemento.getClass().getSimpleName());
 				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());

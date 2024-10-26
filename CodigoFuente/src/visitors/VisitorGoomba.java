@@ -79,15 +79,7 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if(detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), this.miEntidad)) {
-    		System.out.println("Colision por derecha");
-    	}
-    	if(detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), this.miEntidad)) {
-    		System.out.println("Colision por izquierda");
-    	}
-        if (this.detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), this.miEntidad) ||
-            this.detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), this.miEntidad)) {
-        	System.out.println("in if");
+        if (!this.detectorDireccionColision.choquePorArriba(marioDefault.getContext(), miEntidad)) {
             ContextoMario contextoMario = marioDefault.getContext();
             if (contextoMario.getVidas() == 1) {
                 int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
