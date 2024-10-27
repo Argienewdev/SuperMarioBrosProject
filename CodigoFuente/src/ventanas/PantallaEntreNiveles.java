@@ -12,7 +12,11 @@ public class PantallaEntreNiveles extends JPanel {
     
     private JLabel puntajeLabel;
     private JLabel iconoLabel;
+<<<<<<< HEAD
     private JLabel numeroLabel;
+=======
+    private JLabel vidasLabel;
+>>>>>>> 70d0d9df42d5b0e3cf7c574be059b72cf3520273
     private Sprite marioSprite;
     private Fuentes tipoFuentes;
     
@@ -23,14 +27,22 @@ public class PantallaEntreNiveles extends JPanel {
         
         // Configurar los JLabel
         this.marioSprite = marioSprite;
+<<<<<<< HEAD
         this.puntajeLabel = new JLabel("Puntaje");
+=======
+        this.puntajeLabel = new JLabel("Puntaje 0");
+>>>>>>> 70d0d9df42d5b0e3cf7c574be059b72cf3520273
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
-        this.numeroLabel = new JLabel("x3");
+        this.vidasLabel = new JLabel("x3");
         configurarFuentes();
         crearPaneles();
         
         puntajeLabel.setForeground(Color.WHITE);
+<<<<<<< HEAD
         numeroLabel.setForeground(Color.WHITE);
+=======
+        vidasLabel.setForeground(Color.WHITE);
+>>>>>>> 70d0d9df42d5b0e3cf7c574be059b72cf3520273
     }
     
     protected void crearPaneles(){
@@ -60,7 +72,7 @@ public class PantallaEntreNiveles extends JPanel {
         box.add(panelSur);
         
         panelSur.add(iconoLabel);
-        panelSur.add(numeroLabel);
+        panelSur.add(vidasLabel);
 
         add(panelNorte, BorderLayout.NORTH);
         add(box, BorderLayout.CENTER);
@@ -68,9 +80,23 @@ public class PantallaEntreNiveles extends JPanel {
     
     protected void configurarFuentes(){
 		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
+<<<<<<< HEAD
 		numeroLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
 		
 		puntajeLabel.setForeground(Color.WHITE);
+=======
+		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
+		
+		puntajeLabel.setForeground(Color.WHITE);
+    }
+    
+    public void actualizarVidas(int vidas){
+		vidasLabel.setText("x" + vidas);
+    }
+    
+    public void actualizarPuntaje(int puntaje){
+    	puntajeLabel.setText("Puntaje " + puntaje);
+>>>>>>> 70d0d9df42d5b0e3cf7c574be059b72cf3520273
     }
     
     public void actualizarVidas(int vidas){

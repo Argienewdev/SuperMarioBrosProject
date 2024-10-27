@@ -121,10 +121,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     }
 
 	@Override
-	public void visitarPiso(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarPiso(Piso piso) {}
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {

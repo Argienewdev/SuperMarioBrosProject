@@ -148,12 +148,12 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
     
     @Override
-    public Sprite getkoopaTroopaDefaultFrontalCaminando() {
+    public Sprite getKoopaTroopaDefaultFrontalCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultFrontalCaminando.gif");
     }
     
     @Override
-	public Sprite getkoopaTroopaDefaultReversoCaminando() {
+	public Sprite getKoopaTroopaDefaultReversoCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultReversoCaminando.gif");
     }
 

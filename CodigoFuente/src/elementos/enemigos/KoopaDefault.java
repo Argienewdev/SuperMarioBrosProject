@@ -39,9 +39,9 @@ public class KoopaDefault implements EstadoKoopa {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.contexto.getVelocidadDireccional().x < 0) {
-			this.contexto.setSprite(fabricaSprites.getkoopaTroopaDefaultReversoCaminando());
+			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
 		} else if(this.contexto.getVelocidadDireccional().x > 0) {
-			this.contexto.setSprite(fabricaSprites.getkoopaTroopaDefaultFrontalCaminando());
+			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
 		}
 	}
 
