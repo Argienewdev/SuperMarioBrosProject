@@ -14,7 +14,7 @@ public class BolaDeFuego extends NoJugable {
 					Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
-		this.miJugador=jugador;
+		this.miJugador = jugador;
 	}
 	
 	// Metodos
