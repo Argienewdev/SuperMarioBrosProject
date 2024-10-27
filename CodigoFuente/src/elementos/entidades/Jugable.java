@@ -31,7 +31,7 @@ public abstract class Jugable extends Entidad  {
 		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 999;
+		this.vidas = 2;
 		this.puntos = 0;
 		this.impactado = false;
 	}

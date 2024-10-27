@@ -122,8 +122,8 @@ public class PantallaInicial extends JPanel {
 	 public void actualizarFoco() {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			 if(currentLabel == modo1){
-//				 controlador.accionarPantallaIngresoNombre();
-//				 guardarModo("Modo original");
+//			    controlador.accionarPantallaIngresoNombre();
+//				guardarModo("Modo original");
 				controlador.accionarInicioJuego("Modo original");
 			 }
 			 else if(currentLabel == modo2){

@@ -182,9 +182,7 @@ public class ControladorVistas {
 	public void cambiarNivel() {
 		ventana.remove(pantallaDeJuego);
 		mostrarPantallaEntreNiveles();
-     	
 		pantallaDeJuego.cambiarDeNivel();
-		
 		Timer timer = new Timer(2000, new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	ventana.remove(pantallaEntreNiveles);
