@@ -75,19 +75,16 @@ public class ControladorVistas {
 		
 	public void accionarInicioJuego(String modo) {
 	    RegistrarOyenteJuego();
-	    
-	    ventana.setContentPane(pantallaEntreNiveles);
-	    ventana.revalidate();
-	    ventana.repaint();
-	    
+	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 	    pantallaDeJuego.registrarJugable(marioJugable);
 	    
+	    mostrarPantallaEntreNiveles();
+	    pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
+	    
 	    Timer timer = new Timer(2000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            ventana.setContentPane(pantallaDeJuego);
-	            ventana.revalidate();
-	            ventana.repaint();
+	            mostrarPantallaDeJuego();
 	        }
 	    });
 	    timer.setRepeats(false);
@@ -96,7 +93,9 @@ public class ControladorVistas {
 
 	
 	public void mostrarPantallaEntreNiveles(){
-		ventana.add(pantallaEntreNiveles);
+		ventana.setContentPane(pantallaEntreNiveles);
+		ventana.revalidate();
+	    ventana.repaint();	
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -107,12 +106,6 @@ public class ControladorVistas {
 		ventana.removeKeyListener(sensorDeTeclasMenu);
 		ventana.addKeyListener(sensorDeTeclasJuego);
 		ventana.requestFocusInWindow();
-	}
-
-	
-	public void accionarPantallaEntreNiveles(){
-		ventana.add(pantallaEntreNiveles);
-		pantallaEntreNiveles.setVisible(true);
 	}
 	
 	public void accionarPantallaRanking() {
@@ -132,7 +125,9 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaDeJuego() {
-		 ventana.add(pantallaDeJuego);		
+		ventana.setContentPane(pantallaDeJuego);
+		ventana.revalidate();
+	    ventana.repaint();	
 	}
 	
 	public void mostrarPantallaFinal() {
@@ -179,17 +174,19 @@ public class ControladorVistas {
 		this.pantallaDeJuego.eliminarNivelActual();
 	}
 	
+	public void reiniciarNivel() {
+		cambiarNivel();
+	}
+	
 	public void cambiarNivel() {
-		ventana.remove(pantallaDeJuego);
 		mostrarPantallaEntreNiveles();
+		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
      	
 		pantallaDeJuego.cambiarDeNivel();
 		
 		Timer timer = new Timer(2000, new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	ventana.remove(pantallaEntreNiveles);
 	                mostrarPantallaDeJuego();
-	                
 	            }
 	        });
 	        timer.setRepeats(false);
@@ -199,9 +196,5 @@ public class ControladorVistas {
 	public String obtenerModo() {
 		return pantallaInicial.obtenerModo();
 	}	
-	
-	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
-		return this.pantallaIngresoNombre;
-	}
 
 }

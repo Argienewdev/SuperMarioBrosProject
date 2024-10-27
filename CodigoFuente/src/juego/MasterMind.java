@@ -35,6 +35,10 @@ public class MasterMind {
 		actualizarLabelsPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 	}
+	
+	public void cambiarNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
 
 	private void actualizarPosicionesEnemigos() {
 		for(Enemigo enemigo : this.nivel.getEnemigos()) {

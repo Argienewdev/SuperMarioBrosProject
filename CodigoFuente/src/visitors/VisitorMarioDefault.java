@@ -32,7 +32,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Implementación pendiente
+        goomba.eliminarDelNivel();
     }
 
     @Override

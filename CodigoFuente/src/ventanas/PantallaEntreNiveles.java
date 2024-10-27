@@ -10,9 +10,7 @@ import java.awt.*;
 @SuppressWarnings("serial")
 public class PantallaEntreNiveles extends JPanel {
     
-    private JLabel vidasLabel;
     private JLabel puntajeLabel;
-    private JLabel tiempoLabel;
     private JLabel iconoLabel;
     private JLabel numeroLabel;
     private Sprite marioSprite;
@@ -25,17 +23,13 @@ public class PantallaEntreNiveles extends JPanel {
         
         // Configurar los JLabel
         this.marioSprite = marioSprite;
-        this.vidasLabel = new JLabel("Vidas");
         this.puntajeLabel = new JLabel("Puntaje");
-        this.tiempoLabel = new JLabel("Tiempo");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
         this.numeroLabel = new JLabel("x3");
         configurarFuentes();
         crearPaneles();
         
-        vidasLabel.setForeground(Color.WHITE);
         puntajeLabel.setForeground(Color.WHITE);
-        tiempoLabel.setForeground(Color.WHITE);
         numeroLabel.setForeground(Color.WHITE);
     }
     
@@ -52,12 +46,10 @@ public class PantallaEntreNiveles extends JPanel {
         panelEste.setBackground(new Color(0, 0, 0, 0));
         panelOeste.setOpaque(false); 
         panelOeste.setBackground(new Color(0, 0, 0, 0));
-        panelOeste.add(vidasLabel);
         panelNorte.setOpaque(false); 
         panelNorte.setBackground(new Color(0, 0, 0, 0));
         panelCentro.setOpaque(false); 
         panelCentro.setBackground(new Color(0, 0, 0, 0));
-        panelCentro.add(tiempoLabel);
         panelEste.add(puntajeLabel);
         panelNorte.add(panelOeste, BorderLayout.WEST);
         panelNorte.add(panelCentro, BorderLayout.CENTER);
@@ -75,15 +67,15 @@ public class PantallaEntreNiveles extends JPanel {
 	}
     
     protected void configurarFuentes(){
-		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
 		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
-		tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
 		numeroLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
 		
-		vidasLabel.setForeground(Color.WHITE);
 		puntajeLabel.setForeground(Color.WHITE);
-		tiempoLabel.setForeground(Color.WHITE);
     }
+    
+    public void actualizarVidas(int vidas){
+		numeroLabel.setText("x" + vidas);
+	}
     
     @SuppressWarnings("exports")
 	public void setIcono(ImageIcon icono) {

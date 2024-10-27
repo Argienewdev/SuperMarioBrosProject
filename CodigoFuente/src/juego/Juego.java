@@ -31,9 +31,7 @@ import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 
 public class Juego {
-	
-	protected ArrayList<Nivel> niveles;
-		
+			
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
@@ -47,6 +45,8 @@ public class Juego {
 	private Ranking ranking;
 	
 	private Jugador jugador;
+	
+	private BucleJuego bucleJuego;
 	
 	public Juego() {
 		ranking = new Ranking();
@@ -81,7 +81,7 @@ public class Juego {
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		jugador = new Jugador();
-		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
+		//jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
 		return jugable;
 	}
 	
@@ -94,6 +94,7 @@ public class Juego {
 		ranking.agregarJugador(jugador);
 		guardarEstado();
 		controladorVistas.mostrarPantallaFinal();
+		this.partida.finalizarPartida();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
@@ -124,6 +125,14 @@ public class Juego {
 	
 	private void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje);
+	}
+
+	public void setBucleJuego(BucleJuego bucleJuego) {
+		this.bucleJuego = bucleJuego;
+	}
+	
+	public BucleJuego obtenerBucleJuego() {
+		return this.bucleJuego;
 	}
 	
 }
