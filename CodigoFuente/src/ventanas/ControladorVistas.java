@@ -82,7 +82,6 @@ public class ControladorVistas {
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
-
 	    Timer timer = new Timer(2000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();

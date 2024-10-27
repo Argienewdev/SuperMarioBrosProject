@@ -21,7 +21,7 @@ public class PantallaEntreNiveles extends JPanel {
         this.tipoFuentes= new Fuentes();
         
         // Configurar los JLabel
-        this.puntajeLabel = new JLabel("Puntaje 0");
+        this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
         this.vidasLabel = new JLabel("x3");
         configurarFuentes();
@@ -72,8 +72,8 @@ public class PantallaEntreNiveles extends JPanel {
     }
     
     public void actualizarVidas(int vidas){
-		vidasLabel.setText("x" + vidas);
-    }
+    	vidasLabel.setText("x" + vidas);
+	}
     
     public void actualizarPuntaje(int puntaje){
     	puntajeLabel.setText("Puntaje " + puntaje);

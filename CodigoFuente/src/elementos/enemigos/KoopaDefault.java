@@ -45,4 +45,8 @@ public class KoopaDefault implements EstadoKoopa {
 		}
 	}
 
+	@Override
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {		
+	}
+	
 }

@@ -29,12 +29,7 @@ public class ContextoMario extends Jugable {
 		estadoMario.setContext(this);
 		this.cambiarEstado = true;
 	}
-	
-	@SuppressWarnings("exports")
-	public void setHitbox(Rectangle hitbox) {
-		this.hitbox = hitbox;
-	}
-	
+
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(cambiarEstado) {
 			estadoMario.actualizarHitboxYPosicion(fabricaSprites);

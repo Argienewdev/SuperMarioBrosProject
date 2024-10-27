@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -40,27 +42,24 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		if (this.detectorDireccionColision.choquePorArriba(contextoKoopaTroopa, this.miEntidad)) {
-			//TODO en realidad depende de a que Koopa le pegue, asi que esto va a cambiar
-			otorgarPuntosYEliminar(contextoKoopaTroopa);
-    	}
+		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
 	}
 
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
 		if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)) {
-			//TODO que hace cuando pisa el caparazon?
-			koopaEnCaparazon.getContext().setRemovido(true);
-            this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
+			otorgarPuntosYEliminar(koopaEnCaparazon.getContext());
     	}
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
 		if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-			koopaDefault.getContext().setRemovido(true);
-            this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
-    	}
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        contextoKoopa.cambiarEstado(nuevoEstado);
+	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+		}
 	}
 
 	@Override

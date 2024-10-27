@@ -91,7 +91,7 @@ public class VisitorBuzzyBeetle implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
+        if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
             ContextoMario contextoMario = marioDefault.getContext();
             int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
