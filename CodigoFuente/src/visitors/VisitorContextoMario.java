@@ -107,7 +107,7 @@ public class VisitorContextoMario implements Visitante {
 	
 	@Override
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		//TODO
+		princesaPeach.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
