@@ -34,9 +34,10 @@ public abstract class NoJugable extends Entidad {
 		return this.ticksAnimacion;
 	}
 	
-	@Override
-	public void retrotraerMovimientoHorizontal() {
-        this.moverHitbox(this.posicion);
+	public void retrotraerMovimientoHorizontal(int posX) {
+		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
+        this.moverHitbox(nuevaPosicion);
+		this.setPosicion(nuevaPosicion);
         this.setVelocidadDireccional(new Point(-this.getVelocidadDireccional().x, getVelocidadDireccional().y));
 	}
 	

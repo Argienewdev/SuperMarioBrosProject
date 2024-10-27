@@ -12,10 +12,13 @@ public class VisitorBandera implements Visitante {
     private Bandera miEntidad;
     
     private ControladorVistas controlador;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
    
     public VisitorBandera(ControladorVistas controlador, Bandera miEntidad) {
         this.controlador = controlador;
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -68,7 +71,7 @@ public class VisitorBandera implements Visitante {
     	this.miEntidad.getNivel().setCompletado(true);
         this.controlador.eliminarNivelActual();
         contextoMario.reiniciarEstado();
-        contextoMario.retrotraerMovimientoHorizontal();
+        this.detectorDireccionColision.verificarColision(miEntidad, contextoMario);
     }
 
     @Override
