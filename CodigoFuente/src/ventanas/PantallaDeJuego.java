@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import elementos.entidades.Jugable;
-import juego.Juego;
-import juego.Nivel;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
@@ -26,8 +23,6 @@ public class PantallaDeJuego extends JPanel {
     private Interfaz hud;
     
     private JLabel fondo;
-    
-    private ObserverGrafico observerGrafico;
     
     private Point posicionOriginalJugable;
     

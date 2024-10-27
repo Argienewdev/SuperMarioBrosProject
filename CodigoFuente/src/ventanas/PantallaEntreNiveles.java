@@ -13,16 +13,12 @@ public class PantallaEntreNiveles extends JPanel {
     private JLabel puntajeLabel;
     private JLabel iconoLabel;
     private JLabel numeroLabel;
-    private Sprite marioSprite;
     private Fuentes tipoFuentes;
     
     public PantallaEntreNiveles(Sprite marioSprite) {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         this.tipoFuentes= new Fuentes();
-        
-        // Configurar los JLabel
-        this.marioSprite = marioSprite;
         this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
         this.numeroLabel = new JLabel("x3");

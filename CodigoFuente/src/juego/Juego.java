@@ -1,32 +1,16 @@
 package juego;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import elementos.Sprite;
-import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaEntidades;
-import fabricas.FabricaPlataformas;
-import fabricas.FabricaSilueta;
-import fabricas.FabricaSiluetaModoAlternativo;
-import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
-import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
 import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 
@@ -50,6 +34,7 @@ public class Juego {
 	
 	public Juego() {
 		ranking = new Ranking();
+		ranking.cargarEstado();
 	}
 	
 	public void actualizar() {
@@ -92,7 +77,7 @@ public class Juego {
 	public void finalizarPartida () {
 		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
 		ranking.agregarJugador(jugador);
-		guardarEstado();
+		ranking.guardarEstado();
 		controladorVistas.mostrarPantallaFinal();
 		this.partida.finalizarPartida();
 	}
@@ -102,25 +87,10 @@ public class Juego {
 	}
 	
 	public void cierreDeJuego() {
-		 guardarEstado();
+		 ranking.guardarEstado();
 	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
-	}
-	
-	private void guardarEstado() {
-		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			objectOutputStream.writeObject(ranking);
-			objectOutputStream.flush();
-			objectOutputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		  catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void mostrarMensaje(String mensaje) {

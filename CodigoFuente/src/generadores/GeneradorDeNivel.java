@@ -20,13 +20,9 @@ import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
-import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
 import ventanas.DimensionesConstantes;
 import ventanas.PantallaDeJuego;
-import visitors.*;
-
-import java.util.*;
 import java.awt.Point;
 import java.io.*;
 
