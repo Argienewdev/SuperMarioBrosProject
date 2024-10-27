@@ -53,7 +53,8 @@ public class Monedas extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
+		if(removido) {
+			eliminarEntidadGraficamente(fabricaSprites);
+		}
 	}
 }

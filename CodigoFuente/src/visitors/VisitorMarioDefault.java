@@ -88,7 +88,8 @@ public class VisitorMarioDefault implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMonedas(Monedas monedas) {
+    }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
