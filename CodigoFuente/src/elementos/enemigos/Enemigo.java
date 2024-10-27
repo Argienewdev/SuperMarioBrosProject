@@ -17,7 +17,7 @@ public abstract class Enemigo extends NoJugable {
 				   Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.colisionAbajo = true;
-		this.ticksAnimacion = 2;
+		this.ticksAnimacion = 60;
 	}
     
     public int getPuntosOtorgadosPorEliminacion() {
@@ -28,7 +28,12 @@ public abstract class Enemigo extends NoJugable {
         return this.puntosSustraidosPorMuerteCausada;
     }
     
-    public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+    public void actualizarSprite(FabricaSprites fabricaSprites) {
+    	if(this.removido) {
+			eliminarEntidadGraficamente(fabricaSprites);
+			this.setVelocidadDireccional(new Point(0, 0));
+		}
+    }
     
     public abstract void eliminarEntidadGraficamente(FabricaSprites fabricaSprites);
 

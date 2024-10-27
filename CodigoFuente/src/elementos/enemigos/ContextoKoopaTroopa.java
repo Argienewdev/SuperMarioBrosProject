@@ -30,13 +30,14 @@ public class ContextoKoopaTroopa extends Enemigo {
     
     @Override
     public void aceptarVisitante(Visitante visitante) {
-        this.estado.aceptarVisitante(visitante);
+        visitante.visitarContextoKoopaTroopa(this);
     }
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estado.actualizarSprite(fabricaSprites);
 	}
+	
 	public void  eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}

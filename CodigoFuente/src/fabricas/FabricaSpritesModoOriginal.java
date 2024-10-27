@@ -23,7 +23,6 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     	return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultCayendo.png");
     }
     
-    
     @Override
     public Sprite getMarioDefaultFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalSaltando.png");
@@ -246,7 +245,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBuzzyBeetleFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleCaparazonEstatico.png");
     }
 
     @Override

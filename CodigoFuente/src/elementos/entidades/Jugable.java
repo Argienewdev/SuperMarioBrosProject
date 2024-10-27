@@ -53,7 +53,11 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void perderPuntos(int puntos) {
-		this.puntos -= puntos;
+		if(puntos > this.puntos) {
+			this.puntos = 0;
+		}else {
+			this.puntos -= puntos;
+		}
 	}
 	
 	public void recogerMoneda() {
@@ -75,6 +79,8 @@ public abstract class Jugable extends Entidad  {
 	public boolean getColisionAbajo() {
 		return this.colisionAbajo;
 	}
+	
+	public abstract void reiniciarEstado();
 	
 	public void setColisionArriba(boolean colisionArriba) {
 		this.colisionArriba = colisionArriba;

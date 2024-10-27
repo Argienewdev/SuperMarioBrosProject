@@ -85,28 +85,22 @@ public class VisitorBloqueSolido implements Visitante {
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {        
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {        }
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {    
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {    }
     
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesa) {
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesa) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    }
+    public void visitarBandera(Bandera bandera) {}
     
     @Override
-    public void visitarTuberia(Tuberia tuberia) {    
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {        
@@ -119,23 +113,17 @@ public class VisitorBloqueSolido implements Visitante {
     }
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
 	@Override
-	public void visitarPiso(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarPiso(Piso piso) {}
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

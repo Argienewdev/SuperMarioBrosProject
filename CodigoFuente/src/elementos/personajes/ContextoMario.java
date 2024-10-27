@@ -30,6 +30,7 @@ public class ContextoMario extends Jugable {
 		this.cambiarEstado = true;
 	}
 	
+	@SuppressWarnings("exports")
 	public void setHitbox(Rectangle hitbox) {
 		this.hitbox = hitbox;
 	}
@@ -45,6 +46,12 @@ public class ContextoMario extends Jugable {
 	public EstadoMario getEstado() {
 		return estadoMario;
 	}
+	
+	public void reiniciarEstado() {
+		EstadoMario nuevoEstado = new MarioDefault();
+        this.cambiarEstado(nuevoEstado);
+	}
+	
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarContextoMario(this);

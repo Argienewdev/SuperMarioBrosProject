@@ -11,14 +11,9 @@ import java.util.List;
 
 public class PantallaRanking extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Fuentes tipoFuentes;
-	
+    private Fuentes tipoFuentes;
     private List<JLabel> rankingLabel;
-    
     private JLabel fondo;
-    
     private Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
 
     public PantallaRanking(List<Jugador> topJugadores) {

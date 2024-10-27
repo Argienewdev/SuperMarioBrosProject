@@ -55,6 +55,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public ContextoKoopaTroopa getContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
+    	posicion.move(posicion.x, posicion.y + (50 - sprite.getAltoImagen()));
     	KoopaDefault estadoInicial= new KoopaDefault();
         Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
         ContextoKoopaTroopa koopaADevolver = new  ContextoKoopaTroopa(sprite, posicion, null, velocidadDireccional, null, estadoInicial);
@@ -62,7 +63,6 @@ public class FabricaEntidades {
         koopaADevolver.setVisitor(visitorContextoKoopaTroopa);
         ObserverGrafico observerGraficoKoopa = new ObserverGrafico(koopaADevolver);
         koopaADevolver.setObserverGrafico(observerGraficoKoopa);
-    	posicion.move(posicion.x, posicion.y - 25);
         this.pantallaDeJuego.agregarLabel(koopaADevolver.getObserverGrafico());
     	return koopaADevolver;
     }

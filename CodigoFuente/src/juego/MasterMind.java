@@ -96,8 +96,7 @@ public class MasterMind {
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			if(noJugable.fueRemovido()) {
-				System.out.println(noJugable.fueRemovido());
+			if(noJugable.getRemovido()) {
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
 			}

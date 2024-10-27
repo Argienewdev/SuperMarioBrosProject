@@ -4,12 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+
 import elementos.personajes.ContextoMario;
 import juego.*;
+import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
@@ -77,7 +81,8 @@ public class ControladorVistas {
 	    
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
-	    
+	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
+
 	    Timer timer = new Timer(2000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
@@ -177,7 +182,10 @@ public class ControladorVistas {
 	public void cambiarNivel() {
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
+	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
+     	
 		pantallaDeJuego.cambiarDeNivel();
+		
 		Timer timer = new Timer(2000, new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                mostrarPantallaDeJuego();

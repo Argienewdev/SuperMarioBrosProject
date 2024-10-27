@@ -12,21 +12,25 @@ public class PantallaEntreNiveles extends JPanel {
     
     private JLabel puntajeLabel;
     private JLabel iconoLabel;
-    private JLabel numeroLabel;
+    private JLabel vidasLabel;
+    private Sprite marioSprite;
     private Fuentes tipoFuentes;
     
     public PantallaEntreNiveles(Sprite marioSprite) {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         this.tipoFuentes= new Fuentes();
-        this.puntajeLabel = new JLabel("Puntaje");
+        
+        // Configurar los JLabel
+        this.marioSprite = marioSprite;
+        this.puntajeLabel = new JLabel("Puntaje 0");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
-        this.numeroLabel = new JLabel("x3");
+        this.vidasLabel = new JLabel("x3");
         configurarFuentes();
         crearPaneles();
         
         puntajeLabel.setForeground(Color.WHITE);
-        numeroLabel.setForeground(Color.WHITE);
+        vidasLabel.setForeground(Color.WHITE);
     }
     
     protected void crearPaneles(){
@@ -56,7 +60,7 @@ public class PantallaEntreNiveles extends JPanel {
         box.add(panelSur);
         
         panelSur.add(iconoLabel);
-        panelSur.add(numeroLabel);
+        panelSur.add(vidasLabel);
 
         add(panelNorte, BorderLayout.NORTH);
         add(box, BorderLayout.CENTER);
@@ -64,14 +68,18 @@ public class PantallaEntreNiveles extends JPanel {
     
     protected void configurarFuentes(){
 		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
-		numeroLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
+		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
 		
 		puntajeLabel.setForeground(Color.WHITE);
     }
     
     public void actualizarVidas(int vidas){
-		numeroLabel.setText("x" + vidas);
-	}
+		vidasLabel.setText("x" + vidas);
+    }
+    
+    public void actualizarPuntaje(int puntaje){
+    	puntajeLabel.setText("Puntaje " + puntaje);
+    }
     
     @SuppressWarnings("exports")
 	public void setIcono(ImageIcon icono) {

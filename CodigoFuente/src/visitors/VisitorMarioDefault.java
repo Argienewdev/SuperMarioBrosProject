@@ -32,8 +32,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad) &&
-    		!goomba.fueRemovido()) {
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
             goomba.setRemovido(true);
             this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
     	}
@@ -66,45 +65,33 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	if(!superChampinion.fueRemovido()) {
-    		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
-            superChampinion.setRemovido(true);
-    	}
+		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
+        superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        if(!florDeFuego.fueRemovido()) {
-        	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-            florDeFuego.eliminarDelNivel();
-        }
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+        florDeFuego.eliminarDelNivel();
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        if(!champinionVerde.fueRemovido()) {
-        	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
-        	champinionVerde.setRemovido(true);
-        }
+    	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
+    	champinionVerde.setRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        if(!estrella.fueRemovido()) {
-        	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
-            estrella.setRemovido(true);
-        }
+    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
+        estrella.setRemovido(true);
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    	if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
-        }
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {}

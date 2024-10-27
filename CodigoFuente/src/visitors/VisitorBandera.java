@@ -64,37 +64,24 @@ public class VisitorBandera implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.getEstado().aceptarVisitante(miEntidad.getVisitor());
-    }
-
-    @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
     	//TODO el visitor de mario visita a la bandera y termina el nivel, es al reves 
     	this.miEntidad.getNivel().setCompletado(true);
         this.controlador.eliminarNivelActual();
-        marioDefault.getContext().retrotraerMovimientoHorizontal();
+        contextoMario.reiniciarEstado();
+        contextoMario.retrotraerMovimientoHorizontal();
     }
+
+    @Override
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
     
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {        
-    	this.miEntidad.getNivel().setCompletado(true);
-        this.controlador.eliminarNivelActual();
-        marioInvulnerable.getContext().retrotraerMovimientoHorizontal();
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-    	this.miEntidad.getNivel().setCompletado(true);
-        this.controlador.eliminarNivelActual();
-        marioFuego.getContext().retrotraerMovimientoHorizontal();
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-    	this.miEntidad.getNivel().setCompletado(true);
-        this.controlador.eliminarNivelActual();
-        superMario.getContext().retrotraerMovimientoHorizontal();
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        

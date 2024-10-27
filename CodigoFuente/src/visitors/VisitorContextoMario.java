@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import juego.Nivel;
 
 public class VisitorContextoMario implements Visitante {
 	
@@ -19,42 +20,60 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-		buzzyBeetle.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+			otorgarPuntosYEliminar(buzzyBeetle);
+    	}
 	}
 
 	@Override
 	public void visitarSpiny(Spiny spiny) {
+		//TODO no se si puedo matar al spiny asi que no lo toco
 		spiny.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		goomba.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
+			otorgarPuntosYEliminar(goomba);
+    	}
 	}
 
 	@Override
 	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(contextoKoopaTroopa, this.miEntidad)) {
+			//TODO en realidad depende de a que Koopa le pegue, asi que esto va a cambiar
+			otorgarPuntosYEliminar(contextoKoopaTroopa);
+    	}
 	}
 
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-		koopaEnCaparazon.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)) {
+			//TODO que hace cuando pisa el caparazon?
+			koopaEnCaparazon.getContext().setRemovido(true);
+            this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
+    	}
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		koopaDefault.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
+			koopaDefault.getContext().setRemovido(true);
+            this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+    	}
 	}
 
 	@Override
 	public void visitarLakitu(Lakitu lakitu) {
-		lakitu.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miEntidad)) {
+			otorgarPuntosYEliminar(lakitu);
+    	}
 	}
 
 	@Override
 	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-		piranhaPlant.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		//TODO Tengo entendido que la planta no se muere si mario le pega
+		//muere con bolas de fuego?
 	}
 
 	@Override
@@ -84,7 +103,9 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		bloqueDePregunta.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+            bloqueDePregunta.liberarPowerUp();
+        }
 	}
 
 	@Override
@@ -99,7 +120,6 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBandera(Bandera bandera) {
-		bandera.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -108,45 +128,33 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		bloqueSolido.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
-	}
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
 	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {
-	}
+	public void visitarContextoMario(ContextoMario contextoMario) {}
 
 	@Override
-	public void visitarMarioDefault(MarioDefault marioDefault) {
-	}
+	public void visitarMarioDefault(MarioDefault marioDefault) {}
 
 	@Override
-	public void visitarSuperMario(SuperMario superMario) {
-	}
+	public void visitarSuperMario(SuperMario superMario) {}
 
 	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {
-	}
+	public void visitarMarioFuego(MarioFuego marioFuego) {}
 
 	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-	}
+	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 	
 	@Override
-	public void visitarPiso(Piso piso) {
-		piso.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
-	}
+	public void visitarPiso(Piso piso) {}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
 		this.miEntidad.ganarPuntos(puntos);
-		enemigo.eliminarDelNivel();
+		enemigo.setRemovido(true);
 	}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 	
 }

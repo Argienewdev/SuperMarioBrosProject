@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import elementos.entidades.Jugable;
+import juego.Juego;
+import juego.Nivel;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
@@ -23,6 +26,8 @@ public class PantallaDeJuego extends JPanel {
     private Interfaz hud;
     
     private JLabel fondo;
+    
+    private ObserverGrafico observerGrafico;
     
     private Point posicionOriginalJugable;
     
@@ -96,6 +101,9 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
+    	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
+    	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
+    	//y es visible para el jugador
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.getVidas());
         hud.actualizarPuntaje(marioJugable.getPuntos());

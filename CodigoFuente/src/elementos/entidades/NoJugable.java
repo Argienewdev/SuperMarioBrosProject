@@ -10,15 +10,12 @@ import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
 	
-	protected boolean removido;
-	
 	protected int ticksAnimacion;
 	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
 					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.colisionAbajo = true;
-		this.removido = false;
 		this.ticksAnimacion = 60;
 	}
 
@@ -30,15 +27,7 @@ public abstract class NoJugable extends Entidad {
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
-		//this.removido = true;
-	}
-	
-	public boolean fueRemovido() {
-		return this.removido;
-	}
-	
-	public void setRemovido(boolean removido) {
-		this.removido = removido;
+		this.removido = true;
 	}
 	
 	public int obtenerTicksAnimacion() {
@@ -50,4 +39,5 @@ public abstract class NoJugable extends Entidad {
         this.moverHitbox(this.posicion);
         this.setVelocidadDireccional(new Point(-this.getVelocidadDireccional().x, getVelocidadDireccional().y));
 	}
+	
 }

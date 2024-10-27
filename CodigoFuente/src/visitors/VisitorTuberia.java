@@ -92,14 +92,10 @@ public class VisitorTuberia implements Visitante {
     }
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	//TODO
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	//TODO
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {}
@@ -117,8 +113,5 @@ public class VisitorTuberia implements Visitante {
     public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 }

@@ -24,12 +24,12 @@ public class Goomba extends Enemigo {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
 			eliminarEntidadGraficamente(fabricaSprites);
+			this.setVelocidadDireccional(new Point(0, 0));
 		}
 	}
 	
 	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		if(getContadorTicks() < ticksAnimacion) {
-			this.setRemovido(true);
 			this.setSprite(fabricaSprites.getGoombaAplastado());
 		} else if(getContadorTicks() == ticksAnimacion) {
 			this.setSprite(fabricaSprites.getSpriteInvisible());
