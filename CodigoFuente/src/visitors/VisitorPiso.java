@@ -33,12 +33,10 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {    
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant planta) {    
-    }
+    public void visitarPiranhaPlant(PiranhaPlant planta) {}
 
     @Override
     public void visitarFireball(Fireball fireball) {    
@@ -51,8 +49,7 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego flor) {        
-    }
+    public void visitarFlorDeFuego(FlorDeFuego flor) {}
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
@@ -65,56 +62,40 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-        detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        detectorDireccionColision.verificarColision(this.miEntidad, marioInvulnerable.getContext());
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-        detectorDireccionColision.verificarColision(this.miEntidad, marioFuego.getContext());
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-        System.out.println("visitorPiso visitar(superMario)");
-        detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {    
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {    
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {        
+    public void visitarContextoMario(ContextoMario contextoMario) {   
         detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
     }
 
@@ -132,7 +113,6 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarPiso(Piso piso) {
-    }
+    public void visitarPiso(Piso piso) {}
     
 }

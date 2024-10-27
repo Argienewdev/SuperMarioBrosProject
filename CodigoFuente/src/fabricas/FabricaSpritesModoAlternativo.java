@@ -288,6 +288,11 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
+    public Sprite getChampinionVerdeSaliendoDelBloqueDePreguntas() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/champinionVerdeSaliendo.png");
+    }
+    
+    @Override
     public Sprite getSuperChampinionSaliendoDelBloqueDePreguntas() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superChampinion.gif");
     }
@@ -378,5 +383,6 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	public Sprite getSpriteInvisible() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
+
 
 }

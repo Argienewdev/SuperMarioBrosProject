@@ -105,7 +105,6 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Auto-generated method stub
     }
 
     @Override

@@ -6,13 +6,17 @@ import java.util.Collection;
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
+import elementos.entidades.Entidad;
 import elementos.entidades.NoJugable;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
+import ventanas.DimensionesConstantes;
 
 public class Nivel {
+	
+	protected static final int ANCHO_ALTO_BLOQUES_PLATAFORMA = 50;
 
     protected GeneradorDeNivel generadorDeNivel;
 
@@ -25,7 +29,7 @@ public class Nivel {
     protected Collection<ElementoDeJuego> entidadesAEliminar;
     
     protected Collection<Plataforma> plataformasAfectables;
-
+    
     protected Silueta silueta;
 
     protected ContextoMario mario;
@@ -44,7 +48,7 @@ public class Nivel {
         this.nivelCompletado = false;
         this.partida = partida;
     }
-
+    
     public void addPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
         plataforma.setNivel(this);

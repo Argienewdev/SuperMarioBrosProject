@@ -40,7 +40,7 @@ public class ChampinionVerde extends PowerUp {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getChampinionVerde());
+			this.setSprite(fabricaSprites.getChampinionVerdeSaliendoDelBloqueDePreguntas());
 		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
 			this.setSprite(fabricaSprites.getChampinionVerde());
 		}		

@@ -168,7 +168,6 @@ public class GeneradorDeNivel {
 	                	piso.setNivel(nivel);
 	                	nivel.addPlataforma(piso);
 	                	this.pantallaDeJuego.agregarLabel(observerGraficoBloqueSolido);
-	                	System.out.println("El generador agrego el label de piso");
 	                	break;
 	                } 
 	                case 20: {
