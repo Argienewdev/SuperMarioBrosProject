@@ -42,7 +42,8 @@ public class MasterMind {
 		this.nivel.removerEntidadesAEliminar();
 		if(hayNoJugableParaRemover) {
 			noJugableARemover.incrementarContadorTicks();
-			if(noJugableARemover.getContadorTicks() > noJugableARemover.obtenerTicksHastaEliminarCadaver()) {
+			if(noJugableARemover.getContadorTicks() > noJugableARemover.obtenerTicksAnimacion()) {
+				noJugableARemover = null;
 				hayNoJugableParaRemover = false;
 			}
 		}
@@ -96,6 +97,7 @@ public class MasterMind {
 		        }
 		    }
 			if(noJugable.fueRemovido()) {
+				System.out.println(noJugable.fueRemovido());
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
 			}

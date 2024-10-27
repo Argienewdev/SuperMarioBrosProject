@@ -28,10 +28,10 @@ public class Goomba extends Enemigo {
 	}
 	
 	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
-		if(getContadorTicks() < TICKS_HASTA_ELIMINAR_CADAVER) {
+		if(getContadorTicks() < ticksAnimacion) {
 			this.setRemovido(true);
 			this.setSprite(fabricaSprites.getGoombaAplastado());
-		} else if(getContadorTicks() == TICKS_HASTA_ELIMINAR_CADAVER) {
+		} else if(getContadorTicks() == ticksAnimacion) {
 			this.setSprite(fabricaSprites.getSpriteInvisible());
 		} else {
 			this.eliminarDelNivel();

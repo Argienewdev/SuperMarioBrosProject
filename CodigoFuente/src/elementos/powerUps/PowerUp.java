@@ -40,6 +40,10 @@ public abstract class PowerUp extends NoJugable {
 	public boolean estaDentroDeBloqueDePreguntas() {
 		return this.estaDentroDeBloqueDePreguntas;
 	}
+	
+	public int getTicksHastaSalirDelBloque() {
+		return this.ticksHastaSalirDelBloque;
+	}
 
 	public boolean esMovible() {
 		return this.esMovible;
@@ -51,10 +55,6 @@ public abstract class PowerUp extends NoJugable {
 	
 	public void establecerEstaDentroDeBloqueDePreguntas(boolean estaDentroDeBloqueDePreguntas) {
 		this.estaDentroDeBloqueDePreguntas = estaDentroDeBloqueDePreguntas;
-	}
-
-	public int getTicksHastaSalirDelBloque() {
-		return this.ticksHastaSalirDelBloque;
 	}
 	
 	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {

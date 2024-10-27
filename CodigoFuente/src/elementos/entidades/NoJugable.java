@@ -12,13 +12,14 @@ public abstract class NoJugable extends Entidad {
 	
 	protected boolean removido;
 	
-	protected static final int TICKS_HASTA_ELIMINAR_CADAVER = 2;
+	protected int ticksAnimacion;
 	
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
 					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.colisionAbajo = true;
 		this.removido = false;
+		this.ticksAnimacion = 60;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -40,8 +41,8 @@ public abstract class NoJugable extends Entidad {
 		this.removido = removido;
 	}
 	
-	public int obtenerTicksHastaEliminarCadaver() {
-		return TICKS_HASTA_ELIMINAR_CADAVER;
+	public int obtenerTicksAnimacion() {
+		return this.ticksAnimacion;
 	}
 	
 	@Override

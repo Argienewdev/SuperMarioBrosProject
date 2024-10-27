@@ -85,9 +85,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
-        }
+		bloqueDePregunta.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override

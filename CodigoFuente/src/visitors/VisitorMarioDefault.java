@@ -66,30 +66,45 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
-        superChampinion.eliminarDelNivel();
+    	if(!superChampinion.fueRemovido()) {
+    		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
+            superChampinion.setRemovido(true);
+    	}
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-        florDeFuego.eliminarDelNivel();
+        if(!florDeFuego.fueRemovido()) {
+        	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+            florDeFuego.eliminarDelNivel();
+        }
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        if(!champinionVerde.fueRemovido()) {
+        	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
+        	champinionVerde.setRemovido(true);
+        }
+    }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
-        estrella.eliminarDelNivel();
+        if(!estrella.fueRemovido()) {
+        	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
+            estrella.setRemovido(true);
+        }
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+            bloqueDePregunta.liberarPowerUp();
+        }
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {}
