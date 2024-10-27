@@ -29,7 +29,7 @@ public class BucleJuego implements Runnable{
 		running = true;
 	}
 	
-	private synchronized void stop() {
+	public synchronized void stop() {
 		try {
 			thread.join();
 			running = false;
@@ -78,6 +78,7 @@ public class BucleJuego implements Runnable{
 	        }
 	    }
 	    
+	    System.out.println("Ejecuto stop");
 	    stop();
 	}
 

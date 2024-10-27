@@ -32,7 +32,10 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Implementación pendiente
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
+            goomba.setRemovido(true);
+            this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
@@ -62,23 +65,26 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
-        superChampinion.eliminarDelNivel();
+		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
+        superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
         florDeFuego.eliminarDelNivel();
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
+    	champinionVerde.setRemovido(true);
+    }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
-        estrella.eliminarDelNivel();
+    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
+        estrella.setRemovido(true);
     }
 
     @Override
@@ -94,7 +100,9 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarPiso(Piso piso) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    	miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
+    }
 
     @Override
     public void visitarBandera(Bandera bandera) {

@@ -14,7 +14,7 @@ public class BolaDeFuego extends NoJugable {
 					Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
-		this.miJugador=jugador;
+		this.miJugador = jugador;
 	}
 	
 	// Metodos
@@ -37,8 +37,7 @@ public class BolaDeFuego extends NoJugable {
 		return miJugador;
 	}
 	
-	@Override
-	public void elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		// TODO Auto-generated method stub
 		
 	}

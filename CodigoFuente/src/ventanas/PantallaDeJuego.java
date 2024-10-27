@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import elementos.entidades.Jugable;
+import juego.Juego;
+import juego.Nivel;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
@@ -24,6 +27,8 @@ public class PantallaDeJuego extends JPanel {
     
     private JLabel fondo;
     
+    private ObserverGrafico observerGrafico;
+    
     private Point posicionOriginalJugable;
     
     private Point posicionOriginalLabelJugable;
@@ -32,7 +37,6 @@ public class PantallaDeJuego extends JPanel {
 
     public PantallaDeJuego() {
         this.fondo = new JLabel();
-        hud = new Interfaz();
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
@@ -44,12 +48,17 @@ public class PantallaDeJuego extends JPanel {
         setPreferredSize(size);
         setMaximumSize(size);
         setMinimumSize(size);
-        hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
-        add(hud);
-        hud.setVisible(true);
+        crearHUD();
     }
     
-    protected void establecerFondo() {
+    private void crearHUD() {
+    	hud = new Interfaz();
+    	hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        add(hud);
+        hud.setVisible(true);
+	}
+
+	protected void establecerFondo() {
         ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
         fondo = new JLabel(fondoImagen);
         fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
@@ -92,6 +101,9 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
+    	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
+    	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
+    	//y es visible para el jugador
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.getVidas());
         hud.actualizarPuntaje(marioJugable.getPuntos());
@@ -150,11 +162,13 @@ public class PantallaDeJuego extends JPanel {
     
     public void eliminarNivelActual() {
     	remove(fondo);
+    	remove(hud);
     	removerElementos();
     	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
     
     public void cambiarDeNivel() {
+    	crearHUD();
     	this.marioJugable.establecerPosicion(this.posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable);
     	agregarLabel(marioLabel);

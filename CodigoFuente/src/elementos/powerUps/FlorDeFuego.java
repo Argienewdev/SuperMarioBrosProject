@@ -13,6 +13,7 @@ public class FlorDeFuego extends PowerUp {
 		super(sprite, posicion, visitor, new Point (0,0), observerGrafico);
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = true;
+		this.ticksAnimacion = 0;
 		this.ticksHastaSalirDelBloque = 40;
 	}
 	
@@ -39,10 +40,15 @@ public class FlorDeFuego extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());
-		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getFlorDeFuegoQuieto());
-		}		
+		if(removido) {
+			eliminarEntidadGraficamente(fabricaSprites);
+		}else {
+			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());
+			} else if(getContadorTicks() == ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getFlorDeFuegoQuieto());
+			} 
+		}
 	}
+
 }

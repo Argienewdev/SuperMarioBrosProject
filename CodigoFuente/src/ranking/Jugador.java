@@ -2,6 +2,8 @@ package ranking;
 
 import java.io.Serializable;
 
+import elementos.entidades.Jugable;
+
 public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -9,6 +11,8 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	private String nombre;
 	
 	private int puntaje;
+	
+	
 	
 	public Jugador () {
 		nombre = null;
@@ -21,7 +25,7 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	
 	public void actualizarPuntos(int puntaje) {
-		this.puntaje = puntaje;
+		puntaje = puntaje;
 	}
 
 	public String obtenerNombre() {

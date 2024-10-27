@@ -81,16 +81,12 @@ public class VisitorLakitu implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	superMario.getContext().reiniciarEstado();
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	marioFuego.getContext().reiniciarEstado();
     }
 
     @Override

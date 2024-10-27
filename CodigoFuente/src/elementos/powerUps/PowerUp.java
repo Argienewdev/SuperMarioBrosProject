@@ -33,8 +33,14 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract int obtenerPuntosPorFuego();
 	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+	
 	public boolean estaDentroDeBloqueDePreguntas() {
 		return this.estaDentroDeBloqueDePreguntas;
+	}
+	
+	public int getTicksHastaSalirDelBloque() {
+		return this.ticksHastaSalirDelBloque;
 	}
 
 	public boolean esMovible() {
@@ -48,12 +54,8 @@ public abstract class PowerUp extends NoJugable {
 	public void establecerEstaDentroDeBloqueDePreguntas(boolean estaDentroDeBloqueDePreguntas) {
 		this.estaDentroDeBloqueDePreguntas = estaDentroDeBloqueDePreguntas;
 	}
-
-	public int getTicksHastaSalirDelBloque() {
-		return this.ticksHastaSalirDelBloque;
-	}
 	
-	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	public void  eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
 	

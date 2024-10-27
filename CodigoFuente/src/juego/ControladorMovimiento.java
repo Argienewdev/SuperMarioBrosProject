@@ -126,10 +126,17 @@ public class ControladorMovimiento {
 			boolean huboColision = false;
 			if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
 				huboColision = true;
-				marioJugable.retrotraerMovimientoHorizontal();
-			} else {
+				this.marioJugable.retrotraerMovimientoHorizontal();
+			} else if(marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO){
+		        huboColision = true;
+		        marioJugable.reiniciarEstado();
+		        marioJugable.perderVida();
+		        //TODO El nivel se debe reiniciar pero si lo llamamos aca,
+		        //y mario esta en otro modo con una hitbox mas grande, el nivel lo posiciona
+		        //en la posicion inicial y traspasa el piso
+			}else {
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
-				    if (entidad.huboColision(elemento) && !this.nivel.entidadesAEliminar.contains(elemento)) {
+				    if (entidad.huboColision(elemento) && !elemento.getRemovido()) {
 				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
