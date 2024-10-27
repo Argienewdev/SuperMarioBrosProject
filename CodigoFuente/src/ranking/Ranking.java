@@ -1,5 +1,11 @@
 package ranking;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,13 +39,33 @@ public class Ranking implements Serializable {
 		return top5;
 	}
 	
-    public void obtenerTopRan() {
-		//Ordena la lista en forma descendente
-		Collections.sort(topJugadores,Collections.reverseOrder());
-		int i = 0;
-		for (Jugador jug: topJugadores) {
-			System.out.println(jug.obtenerNombre()+" "+jug.obtenerPuntaje());
+    public void guardarEstado() {
+		try {
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(this);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		  catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
+    
+    public boolean esTop(int puntaje) {
+        boolean esTop = false;
+        List<Jugador> ranking = obtenerTopRanking();
+        if (ranking.size() < 5) {
+            esTop =true;
+        }
+        else {
+	        int quintoPuntaje = ranking.get(4).obtenerPuntaje();
+	        esTop = puntaje > quintoPuntaje;
+        }
+    	return esTop;
+    }
+	
 
 }

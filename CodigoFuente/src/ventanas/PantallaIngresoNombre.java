@@ -2,6 +2,8 @@ package ventanas;
 
 import javax.swing.*;
 import fuentes.Fuentes;
+import ranking.Jugador;
+
 import java.awt.*;
 
 public class PantallaIngresoNombre extends JPanel {
@@ -14,7 +16,7 @@ public class PantallaIngresoNombre extends JPanel {
     private JTextField campoNombre;
     private JButton botonConfirmar;
     private ControladorVistas controlador;
-    private String nombreJugador;
+    private Jugador jugador;
 
     public PantallaIngresoNombre(ControladorVistas controlador) {
         this.controlador = controlador;
@@ -28,13 +30,17 @@ public class PantallaIngresoNombre extends JPanel {
         establecerContenido(layeredPane);
         add(layeredPane, BorderLayout.CENTER); 
     }
+    
+    public void establecerJugador(Jugador jugador) {
+    	this.jugador = jugador;
+    }
 
     public void guardarNombre(String nombreJugador) {
-        this.nombreJugador = nombreJugador;
+        jugador.establecerNombre(nombreJugador);
     }
 
     public String obtenerNombreJugador() {
-        return nombreJugador;
+        return jugador.obtenerNombre();
     }
 
     public void solicitarFocoCampoTexto() {
@@ -91,7 +97,7 @@ public class PantallaIngresoNombre extends JPanel {
             if (!nombre.isEmpty()) {
                 guardarNombre(nombre);
                 System.out.println("Nombre: " + nombre); // Para testing (borrar)
-                controlador.accionarInicioJuego(controlador.obtenerModo());
+                controlador.mostrarPantallaFinal();
             } else {
                 JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
             }

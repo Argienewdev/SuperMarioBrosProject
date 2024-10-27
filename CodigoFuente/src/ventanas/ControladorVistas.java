@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import elementos.personajes.ContextoMario;
 import juego.*;
 import ranking.Jugador;
+import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
@@ -44,12 +45,12 @@ public class ControladorVistas {
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
-		pantallaFinal= new PantallaFinal(this);
 		sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		pantallaDeJuego = new PantallaDeJuego();
 		this.juego = juego;
 		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
+		pantallaFinal= new PantallaFinal(this);
 		pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -194,8 +195,25 @@ public class ControladorVistas {
 	        timer.start();  
 	}
 	
-	public String obtenerModo() {
-		return pantallaInicial.obtenerModo();
-	}	
+	public void cerrarJuego() {
+		juego.cierreDeJuego();
+	}
+	
+	public Ranking obtenerRanking() {
+		return juego.obtenerRanking();
+	}
+
+	public void mostrarPantallaIngresoNombre(int puntaje) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void establecerJugador (Jugador jugador) {
+		pantallaIngresoNombre.establecerJugador(jugador);
+	}
+	
+	public PantallaFinal obtenerPantallaFinal() {
+		return pantallaFinal;
+	}
 
 }

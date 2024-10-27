@@ -49,7 +49,7 @@ public class Juego {
 	private BucleJuego bucleJuego;
 	
 	public Juego() {
-		ranking = new Ranking();
+		ranking = cargarEstadoRanking();
 	}
 	
 	public void actualizar() {
@@ -80,8 +80,6 @@ public class Juego {
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
-		jugador = new Jugador();
-		//jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
 		return jugable;
 	}
 	
@@ -90,10 +88,16 @@ public class Juego {
 	}
 	
 	public void finalizarPartida () {
+		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
-		ranking.agregarJugador(jugador);
-		guardarEstado();
-		controladorVistas.mostrarPantallaFinal();
+		if (ranking.esTop(jugador.obtenerPuntaje())) {
+			controladorVistas.establecerJugador(jugador);
+			controladorVistas.accionarPantallaIngresoNombre();
+			ranking.agregarJugador(jugador);
+			ranking.guardarEstado();
+		}
+		controladorVistas.obtenerPantallaFinal().establecerPuntaje(jugador.obtenerPuntaje());
+//		controladorVistas.mostrarPantallaFinal();
 		this.partida.finalizarPartida();
 	}
 
@@ -102,26 +106,28 @@ public class Juego {
 	}
 	
 	public void cierreDeJuego() {
-		 guardarEstado();
+		 ranking.guardarEstado();
 	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}
 	
-	private void guardarEstado() {
-		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			objectOutputStream.writeObject(ranking);
-			objectOutputStream.flush();
-			objectOutputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		  catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	public Ranking cargarEstadoRanking() {
+    	Ranking ranking = null;
+    	try {
+    		FileInputStream fileInputStream = new FileInputStream ("./src/puntajes");
+    		ObjectInputStream objectInputStream = new ObjectInputStream (fileInputStream);
+    		ranking = (Ranking) objectInputStream.readObject();
+    		objectInputStream.close();
+    	} catch (FileNotFoundException e) {
+    		//No hacer nada
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} catch (ClassNotFoundException e) {
+    		e.printStackTrace();
+    	}
+    	return ranking;
+    }
 	
 	private void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje);
@@ -133,6 +139,10 @@ public class Juego {
 	
 	public BucleJuego obtenerBucleJuego() {
 		return this.bucleJuego;
+	}
+
+	public Jugador obtenerJugador() {
+		return jugador;
 	}
 	
 }
