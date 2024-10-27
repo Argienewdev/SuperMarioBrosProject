@@ -37,7 +37,6 @@ public class PantallaDeJuego extends JPanel {
 
     public PantallaDeJuego() {
         this.fondo = new JLabel();
-        hud = new Interfaz();
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
@@ -49,12 +48,17 @@ public class PantallaDeJuego extends JPanel {
         setPreferredSize(size);
         setMaximumSize(size);
         setMinimumSize(size);
-        hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
-        add(hud);
-        hud.setVisible(true);
+        crearHUD();
     }
     
-    protected void establecerFondo() {
+    private void crearHUD() {
+    	hud = new Interfaz();
+    	hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        add(hud);
+        hud.setVisible(true);
+	}
+
+	protected void establecerFondo() {
         ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
         fondo = new JLabel(fondoImagen);
         fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
@@ -155,11 +159,13 @@ public class PantallaDeJuego extends JPanel {
     
     public void eliminarNivelActual() {
     	remove(fondo);
+    	remove(hud);
     	removerElementos();
     	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
     
     public void cambiarDeNivel() {
+    	crearHUD();
     	this.marioJugable.establecerPosicion(this.posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable);
     	agregarLabel(marioLabel);
