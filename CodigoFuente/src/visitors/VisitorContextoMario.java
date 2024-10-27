@@ -48,7 +48,8 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
 		if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)) {
-			otorgarPuntosYEliminar(koopaEnCaparazon.getContext());
+			//otorgarPuntosYEliminar(koopaEnCaparazon.getContext());
+			//TODO si hacemos eso, el caparazon se elimina al instante porque mario sigue arriba del koopa
     	}
 	}
 
@@ -113,18 +114,13 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	@Override
-	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		princesaPeach.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
-	}
+	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {
-	}
+	public void visitarBandera(Bandera bandera) {}
 
 	@Override
-	public void visitarTuberia(Tuberia tuberia) {
-		tuberia.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
-	}
+	public void visitarTuberia(Tuberia tuberia) {}
 
 	@Override
 	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
