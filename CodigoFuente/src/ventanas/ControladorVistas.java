@@ -75,6 +75,8 @@ public class ControladorVistas {
 	}
 		
 	public void accionarInicioJuego(String modo) {
+		int duracionDePantallaEntreNiveles = 0;
+		
 	    RegistrarOyenteJuego();
 	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
@@ -83,7 +85,7 @@ public class ControladorVistas {
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
-	    Timer timer = new Timer(2000, new ActionListener() {
+	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
 	        }

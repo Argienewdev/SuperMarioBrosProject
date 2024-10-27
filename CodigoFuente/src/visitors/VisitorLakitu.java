@@ -71,12 +71,6 @@ public class VisitorLakitu implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        ContextoMario contextoMario = marioDefault.getContext();
-        if (contextoMario.getVidas() == 1) {
-            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
-            contextoMario.perderPuntos(perdidaPuntos);
-        }
-        contextoMario.perderVida();
     }
 
     @Override

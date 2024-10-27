@@ -20,6 +20,24 @@ public class DetectorDireccionColision {
 		}
 	}
 	
+	public void verificarColisionEntreEntidades(Entidad entidad1, Entidad entidad2) {
+		boolean entidad2ChocaAEntidad1PorDerecha = choquePorDerecha(entidad1, entidad2);
+		boolean entidad2ChocaAEntidad1PorIzquierda = choquePorIzquierda(entidad1, entidad2);
+		if(entidad2ChocaAEntidad1PorDerecha) {
+			entidad2.retrotraerMovimientoHorizontal(entidad1.obtenerHitbox().x - entidad2.obtenerAncho());
+			entidad1.retrotraerMovimientoHorizontal(entidad2.obtenerHitbox().x + entidad2.obtenerAncho());
+		}else if(entidad2ChocaAEntidad1PorIzquierda) {
+			entidad2.retrotraerMovimientoHorizontal(entidad1.obtenerHitbox().x + entidad2.obtenerAncho());
+			entidad1.retrotraerMovimientoHorizontal(entidad2.obtenerHitbox().x - entidad1.obtenerAncho());
+		}else if(choquePorArriba(entidad1, entidad2)) {
+			entidad2.setColisionAbajo(true);
+			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y - entidad2.obtenerAlto());
+		}else if(choquePorAbajo(entidad1, entidad2)){
+			entidad2.setColisionArriba(true);
+			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y + entidad1.obtenerAlto()); 
+		}
+	}
+	
 	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
 		boolean posicionTodaviaNoActualizada = !(entidad.getPosicion().x + entidad.obtenerAncho() > elementoDeJuego.getPosicion().x);
