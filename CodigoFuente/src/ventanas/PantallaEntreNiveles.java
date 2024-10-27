@@ -13,7 +13,6 @@ public class PantallaEntreNiveles extends JPanel {
     private JLabel puntajeLabel;
     private JLabel iconoLabel;
     private JLabel vidasLabel;
-    private Sprite marioSprite;
     private Fuentes tipoFuentes;
     
     public PantallaEntreNiveles(Sprite marioSprite) {
@@ -22,7 +21,6 @@ public class PantallaEntreNiveles extends JPanel {
         this.tipoFuentes= new Fuentes();
         
         // Configurar los JLabel
-        this.marioSprite = marioSprite;
         this.puntajeLabel = new JLabel("Puntaje 0");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.getRutaImagen()));
         this.vidasLabel = new JLabel("x3");

@@ -122,6 +122,7 @@ public class ControladorMovimiento {
 	}
 
 	public void verificarColisiones(Jugable entidad) {
+		
 		if(!this.nivel.fueCompletado()) {
 			boolean huboColision = false;
 			if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
@@ -129,7 +130,6 @@ public class ControladorMovimiento {
 				this.marioJugable.retrotraerMovimientoHorizontal();
 			} else if(marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO){
 		        huboColision = true;
-		        marioJugable.reiniciarEstado();
 		        marioJugable.perderVida();
 		        //TODO El nivel se debe reiniciar pero si lo llamamos aca,
 		        //y mario esta en otro modo con una hitbox mas grande, el nivel lo posiciona

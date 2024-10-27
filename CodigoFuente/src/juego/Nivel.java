@@ -92,10 +92,15 @@ public class Nivel {
     }
 
     public void removerEntidadesAEliminar() {
+    	for(ElementoDeJuego elemento : entidadesAEliminar) {
+    		//System.out.print(elemento.getClass().getSimpleName() + " ");
+    	}
+    	//System.out.println();
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
     	plataformas.removeAll(entidadesAEliminar);
     	plataformasAfectables.removeAll(entidadesAEliminar);
+    	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     
     public Iterable<Plataforma> getPlataformas() {
