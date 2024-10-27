@@ -90,14 +90,10 @@ public class Juego {
 	public void finalizarPartida () {
 		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
-		if (ranking.esTop(jugador.obtenerPuntaje())) {
-			controladorVistas.establecerJugador(jugador);
-			controladorVistas.accionarPantallaIngresoNombre();
-			ranking.agregarJugador(jugador);
-			ranking.guardarEstado();
-		}
-		controladorVistas.obtenerPantallaFinal().establecerPuntaje(jugador.obtenerPuntaje());
-		controladorVistas.mostrarPantallaFinal();
+		controladorVistas.establecerJugador(jugador);
+		controladorVistas.accionarPantallaIngresoNombre();
+		ranking.agregarJugador(jugador);
+		ranking.guardarEstado();
 		this.partida.finalizarPartida();
 	}
 

@@ -50,7 +50,7 @@ public class ControladorVistas {
 		this.juego = juego;
 		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
-		pantallaFinal= new PantallaFinal(this);
+//		pantallaFinal= new PantallaFinal(this);
 		pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -132,6 +132,8 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaFinal() {
+		pantallaFinal= new PantallaFinal(this);
+		pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
 		ventana.setContentPane(pantallaFinal);
 	    ventana.revalidate();
 	    ventana.repaint();
