@@ -108,7 +108,7 @@ public class VisitorBuzzyBeetle implements Visitante {
                 int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
                 contextoMario.perderPuntos(perdidaPuntos);
             } else {
-                contextoMario.setImpactado(true);
+                contextoMario.perderVida();
             }
             contextoMario.perderVida();
         }
@@ -122,7 +122,6 @@ public class VisitorBuzzyBeetle implements Visitante {
             ContextoMario contextoMario = superMario.getContext();
             EstadoMario nuevoEstado = new MarioDefault();
             contextoMario.cambiarEstado(nuevoEstado);
-            contextoMario.setImpactado(true);
         }
     }
 
@@ -133,7 +132,6 @@ public class VisitorBuzzyBeetle implements Visitante {
     		ContextoMario contextoMario = marioFuego.getContext();
             EstadoMario nuevoEstado = new MarioDefault();
             contextoMario.cambiarEstado(nuevoEstado);
-            contextoMario.setImpactado(true);
         }
     }
     

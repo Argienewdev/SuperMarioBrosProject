@@ -200,7 +200,7 @@ public class FabricaEntidades {
     		ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
     		bolaDeFuegoADevolver.setObserverGrafico(observer);
             this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.getObserverGrafico());
-    return bolaDeFuegoADevolver;
-} 
+            return bolaDeFuegoADevolver;
+    } 
     
 }

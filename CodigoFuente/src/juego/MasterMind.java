@@ -79,9 +79,7 @@ public class MasterMind {
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			//TODO no me gusta esto pero como mario no es parte de los elementos de juego en el nivel tuve que hacerlo
-			//TODO si mario se mueve entonces su gestor y mastermind ambos detectan la colision y ambos invocan a los visitors
-			//TODO hacer que mario verifique colisiones incluso quieto?
+			//TODO Lo arregle haciendo que mario chequee incluso quieto
 //			if(noJugable.huboColision(nivel.getMario())) {
 //	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
 //	            noJugable.aceptarVisitante(nivel.getMario().getVisitor());
@@ -99,13 +97,15 @@ public class MasterMind {
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() == 0) {
+		boolean ticksEnCero = powerUp.getContadorTicks() == 0;
+		boolean ticksAlcanzaronMarca = powerUp.getContadorTicks() == powerUp.getTicksHastaSalirDelBloque();
+		if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
-		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && powerUp.getContadorTicks() > powerUp.getTicksHastaSalirDelBloque()) {
+		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
 			aplicarGravedad(powerUp);
 			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
-		} else if(powerUp.getContadorTicks() >= 1) {
+		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
 		}
 	}

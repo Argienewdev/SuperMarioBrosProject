@@ -1,6 +1,7 @@
 
 package juego;
 
+import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
@@ -9,7 +10,7 @@ public class CoordinadorActualizacionesJugador {
 	
 	private ControladorMovimiento controladorMovimiento;
 	
-	private ContextoMario marioJugable;
+	private Jugable marioJugable;
 	
 	private FabricaSprites fabricaSprites;
 	
@@ -22,6 +23,7 @@ public class CoordinadorActualizacionesJugador {
 	
 	public void actualizar() {
 		actualizarPosicion();
+		System.out.println(marioJugable.getPosicion().y);
 		marioJugable.actualizarSprite(fabricaSprites);
 		actualizarObserverMario();
 	}

@@ -72,7 +72,7 @@ public class BucleJuego implements Runnable{
 	        
 	        if (System.currentTimeMillis() - timer > MILISEGUNDOS_POR_SEGUNDO) {
 	            timer += MILISEGUNDOS_POR_SEGUNDO;
-	            System.out.println("FPS: " + frames + " TPS: " + updates);
+	            //System.out.println("FPS: " + frames + " TPS: " + updates);
 	            updates = 0;
 	            frames = 0;
 	        }

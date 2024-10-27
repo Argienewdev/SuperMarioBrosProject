@@ -3,6 +3,7 @@ package elementos.entidades;
 import java.awt.Point;
 import elementos.Sprite;
 import elementos.powerUps.Monedas;
+import fabricas.FabricaSprites;
 import observers.ObserverLogicoJugable;
 import visitors.Visitante;
 
@@ -20,8 +21,6 @@ public abstract class Jugable extends Entidad  {
 	
 	private boolean avanzando;
 	
-	private boolean impactado;
-	
 	private ObserverLogicoJugable observerLogico;
 	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
@@ -33,7 +32,6 @@ public abstract class Jugable extends Entidad  {
 		this.avanzando = false;
 		this.vidas = 2;
 		this.puntos = 0;
-		this.impactado = false;
 	}
 	
 	public void ganarVida() {
@@ -88,7 +86,6 @@ public abstract class Jugable extends Entidad  {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(this.posicion);
 		this.setPosicion(nuevaPosicion);
-		this.setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
 		if(this.getColisionAbajo()) {
 			this.setEnElAire(false);
 		}
@@ -122,15 +119,6 @@ public abstract class Jugable extends Entidad  {
 		this.avanzando = avanzando;
 	}
 	
-	public void setImpactado(boolean impacto) {
-		this.impactado = impacto;
-	}
-	
-	public boolean getImpactado() {
-		//TODO hacer q me empuje para atras
-		return this.impactado;
-	}
-	
 	public void establecerObserverLogico (ObserverLogicoJugable observerLogico) {
 		this.observerLogico = observerLogico;
 	}
@@ -138,6 +126,8 @@ public abstract class Jugable extends Entidad  {
 	public void muerte() {
 		observerLogico.actualizar();
 	}
+	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 
 	public abstract void realizarAccionEspecial();
 	

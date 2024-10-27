@@ -120,6 +120,8 @@ public abstract class FabricaSprites {
 	public abstract Sprite getFlorDeFuegoQuieto();
 	
 	public abstract Sprite getChampinionVerde();
+	
+    public abstract Sprite getChampinionVerdeSaliendoDelBloqueDePreguntas();
 
 	public abstract Sprite getSuperChampinionSaliendoDelBloqueDePreguntas();
 	

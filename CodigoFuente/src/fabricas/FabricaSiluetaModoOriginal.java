@@ -10,7 +10,6 @@ public class FabricaSiluetaModoOriginal extends FabricaSilueta {
 
 	@Override
 	public Silueta getSilueta() {
-		System.out.println("Entre a la fabrica siluetas modo original");
 		return new Silueta(rutaACarpeta + "/siluetaModoOriginal/silueta.png");
 	}
 
