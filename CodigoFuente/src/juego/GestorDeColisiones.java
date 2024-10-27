@@ -5,28 +5,27 @@ import elementos.entidades.Entidad;
 import ventanas.ControladorVistas;
 
 public class GestorDeColisiones {
-	
+	/*
 	protected Nivel nivel;
 	
 	public GestorDeColisiones(Nivel nivel) {
 		this.nivel = nivel;
 	}
 
-	public boolean verificarColisiones(Entidad entidad) {
-		return huboColisiones(entidad);
-	}
+//	public boolean verificarColisiones(Entidad entidad) {
+//		return huboColisiones(entidad);
+//	}
 	
-	private boolean huboColisiones(Entidad entidad) {
-		return verificarColisionArriba(entidad) ||
-			   verificarColisionAbajo(entidad) ||
-			   verificarColisionDerecha(entidad) ||
-			   verificarColisionIzquierda(entidad) ||
-			   verificarColisionDiagonalSuperiorDerecha(entidad) ||
-			   verificarColisionDiagonalSuperiorIzquierda(entidad) ||
-			   verificarColisionDiagonalInferiorDerecha(entidad) ||
-			   verificarColisionDiagonalInferiorIzquierda(entidad);
-	}
-	
+//	private boolean huboColisiones(Entidad entidad) {
+//		return verificarColisionArriba(entidad) ||
+//			   verificarColisionAbajo(entidad) ||
+//			   verificarColisionDerecha(entidad) ||
+//			   verificarColisionIzquierda(entidad) ||
+//			   verificarColisionDiagonalSuperiorDerecha(entidad) ||
+//			   verificarColisionDiagonalSuperiorIzquierda(entidad) ||
+//			   verificarColisionDiagonalInferiorDerecha(entidad) ||
+//			   verificarColisionDiagonalInferiorIzquierda(entidad);
+//	}
 	public boolean verificarColisionArriba(Entidad entidad, int posX, int posY) {
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
@@ -174,6 +173,5 @@ public class GestorDeColisiones {
 		//entidad.aceptarVisitante(elementoDeJuego.getVisitor());
 		//elementoDeJuego.aceptarVisitante(entidad.getVisitor());
 		//TODO los visitantes rompen todo
-	}
-
+	}*/
 }

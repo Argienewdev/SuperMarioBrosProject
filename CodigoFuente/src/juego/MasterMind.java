@@ -18,10 +18,16 @@ public class MasterMind {
 	private static final int GRAVEDAD = 3;
 	
 	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
+	
+	private boolean hayNoJugableParaRemover;
 			
+	private NoJugable noJugableARemover;
+	
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
+		this.hayNoJugableParaRemover = false;
+		this.noJugableARemover = null;
 	}
 
 	public void actualizar() {
@@ -34,6 +40,17 @@ public class MasterMind {
 		actualizarLabelsPowerUps();
 		actualizarLabelsPlataformas();
 		this.nivel.removerEntidadesAEliminar();
+		if(hayNoJugableParaRemover) {
+			noJugableARemover.incrementarContadorTicks();
+			if(noJugableARemover.getContadorTicks() > noJugableARemover.obtenerTicksAnimacion()) {
+				noJugableARemover = null;
+				hayNoJugableParaRemover = false;
+			}
+		}
+	}
+	
+	public void cambiarNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 
 	private void actualizarPosicionesEnemigos() {
@@ -79,6 +96,10 @@ public class MasterMind {
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
+			if(noJugable.getRemovido()) {
+				hayNoJugableParaRemover = true;
+				noJugableARemover = noJugable;
+			}
 			//TODO Lo arregle haciendo que mario chequee incluso quieto
 //			if(noJugable.huboColision(nivel.getMario())) {
 //	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
@@ -118,19 +139,19 @@ public class MasterMind {
 	
 	private void actualizarSpritesEnemigos() {
 		for(Enemigo enemigo : this.nivel.getEnemigos()) {
-			enemigo.actualizarVisual(this.fabricaSprites);
+			enemigo.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesPlataformas() {
 		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
-			plataforma.actualizarVisual(this.fabricaSprites);
+			plataforma.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
-			powerUp.actualizarVisual(this.fabricaSprites);
+			powerUp.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	

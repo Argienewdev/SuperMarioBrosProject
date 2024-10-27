@@ -1,23 +1,37 @@
 package juego;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import elementos.Sprite;
+import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
+import fabricas.FabricaEntidades;
+import fabricas.FabricaPlataformas;
+import fabricas.FabricaSilueta;
+import fabricas.FabricaSiluetaModoAlternativo;
+import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
+import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
 import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
+import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 
 public class Juego {
-	
-	protected ArrayList<Nivel> niveles;
-		
+			
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
@@ -32,9 +46,10 @@ public class Juego {
 	
 	private Jugador jugador;
 	
+	private BucleJuego bucleJuego;
+	
 	public Juego() {
 		ranking = new Ranking();
-		ranking.cargarEstado();
 	}
 	
 	public void actualizar() {
@@ -66,7 +81,7 @@ public class Juego {
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		jugador = new Jugador();
-		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
+		//jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
 		return jugable;
 	}
 	
@@ -77,8 +92,9 @@ public class Juego {
 	public void finalizarPartida () {
 		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
 		ranking.agregarJugador(jugador);
-		ranking.guardarEstado();
+		guardarEstado();
 		controladorVistas.mostrarPantallaFinal();
+		this.partida.finalizarPartida();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
@@ -86,14 +102,37 @@ public class Juego {
 	}
 	
 	public void cierreDeJuego() {
-		 ranking.guardarEstado();
+		 guardarEstado();
 	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}
 	
+	private void guardarEstado() {
+		try {
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(ranking);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		  catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje);
+	}
+
+	public void setBucleJuego(BucleJuego bucleJuego) {
+		this.bucleJuego = bucleJuego;
+	}
+	
+	public BucleJuego obtenerBucleJuego() {
+		return this.bucleJuego;
 	}
 	
 }

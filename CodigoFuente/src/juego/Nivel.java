@@ -92,10 +92,15 @@ public class Nivel {
     }
 
     public void removerEntidadesAEliminar() {
+    	for(ElementoDeJuego elemento : entidadesAEliminar) {
+    		//System.out.print(elemento.getClass().getSimpleName() + " ");
+    	}
+    	//System.out.println();
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
     	plataformas.removeAll(entidadesAEliminar);
     	plataformasAfectables.removeAll(entidadesAEliminar);
+    	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     
     public Iterable<Plataforma> getPlataformas() {
@@ -120,6 +125,10 @@ public class Nivel {
     
     public boolean fueCompletado() {
     	return this.nivelCompletado;
+    }
+    
+    public void reiniciarNivel() {
+    	this.partida.reiniciarNivel();
     }
     
     public void setCompletado(boolean completado) {

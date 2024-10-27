@@ -1,6 +1,8 @@
 package elementos.entidades;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
 import observers.ObserverGrafico;
@@ -9,19 +11,19 @@ import visitors.Visitante;
 public abstract class Entidad extends ElementoDeJuego {
     
     protected Point velocidadDireccional;
-    
-    protected ObserverGrafico observerGrafico;
-    
+        
 	protected boolean colisionAbajo;
 	
 	protected boolean colisionArriba;
 	
 	protected int contadorTicks;
     
-    public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
+    public Entidad(Sprite sprite, Point posicion, Visitante visitor,
+    			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
+		this.velocidadDireccional = velocidadDireccional;
 		this.contadorTicks = 0;
 	}
 
@@ -81,6 +83,11 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	public void incrementarContadorTicks() {
 		this.contadorTicks++;
+	}
+	
+	@SuppressWarnings("exports")
+	public void setHitbox(Rectangle hitbox) {
+		this.hitbox = hitbox;
 	}
 	
 }

@@ -25,12 +25,16 @@ public abstract class ElementoDeJuego implements Visitado {
     
     protected ObserverGrafico observerGrafico;
     
+    protected boolean removido;
+    
 	@SuppressWarnings("exports")
-	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante) {
+	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
 		Point posicionConsiderandoSprite = getPosicionConsiderandoSprite(posicion, sprite);
 		this.posicion = posicionConsiderandoSprite;
 		this.visitante = visitante;
+		this.observerGrafico = observerGrafico;
+		this.removido = false;
 		int ancho = sprite.getAnchoImagen();
 		int alto = sprite.getAltoImagen();
 		int x =  posicionConsiderandoSprite.x;
@@ -108,4 +112,11 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
+	public void setRemovido(boolean removido) {
+		this.removido = removido;
+	}
+	
+	public boolean getRemovido() {
+		return this.removido;
+	}
 }

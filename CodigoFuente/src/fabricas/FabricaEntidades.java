@@ -41,7 +41,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Spiny getSpiny(Point posicion) {
-    	Sprite sprite = fabricaSprites.getSpinyReversoQuieto();
+    	Sprite sprite = fabricaSprites.getSpinyReversoCaminando();
     	Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, velocidadDireccional,null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
@@ -62,7 +62,6 @@ public class FabricaEntidades {
         koopaADevolver.setVisitor(visitorContextoKoopaTroopa);
         ObserverGrafico observerGraficoKoopa = new ObserverGrafico(koopaADevolver);
         koopaADevolver.setObserverGrafico(observerGraficoKoopa);
-    	posicion.move(posicion.x, posicion.y - 25);
         this.pantallaDeJuego.agregarLabel(koopaADevolver.getObserverGrafico());
     	return koopaADevolver;
     }
@@ -76,6 +75,7 @@ public class FabricaEntidades {
         piranhaADevolver.setVisitor(visitorPiranha);
 		ObserverGrafico observerGraficoPiranha = new ObserverGrafico(piranhaADevolver);
 		piranhaADevolver.setObserverGrafico(observerGraficoPiranha);
+		this.pantallaDeJuego.agregarLabel(piranhaADevolver.getObserverGrafico());
         return piranhaADevolver;
     }
     
@@ -107,7 +107,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Goomba getGoomba(Point posicion){
-        Sprite sprite = fabricaSprites.getGoombaCaminandoPrimeraTransicion();
+        Sprite sprite = fabricaSprites.getGoombaCaminando();
         Point velocidadDireccional = new Point(VELOCIDAD_HORIZONTAL_ENEMIGOS, 0);
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, velocidadDireccional, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
@@ -152,6 +152,7 @@ public class FabricaEntidades {
         ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampionADevolver);
         superChampionADevolver.setObserverGrafico(observerGraficoSuperChampinion);
         return superChampionADevolver;
+        
     }
     
     @SuppressWarnings("exports")
@@ -184,7 +185,7 @@ public class FabricaEntidades {
     public ContextoMario getContextoMario(Point posicion) {
     	Sprite sprite = fabricaSprites.getMarioDefaultFrontalQuieto();
     	MarioDefault estadoInicial = new MarioDefault();
-		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, 3, estadoInicial);
+		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, null, 3, estadoInicial);
 		Visitante visitorContextoMario = new VisitorContextoMario(marioADevolver);
 		marioADevolver.setVisitor(visitorContextoMario);
 		ObserverGrafico observerGraficoMario = new ObserverGrafico(marioADevolver);
@@ -193,14 +194,14 @@ public class FabricaEntidades {
     } 
     
     public BolaDeFuego getBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
-    		Sprite sprite = fabricaSprites.getBolaDeFuego();
-    		BolaDeFuego bolaDeFuegoADevolver= new BolaDeFuego(sprite, posicion,null,velocidadDireccional,null,jugador);
-    		Visitante visitor=new VisitorBolaDeFuego(bolaDeFuegoADevolver);
-    		bolaDeFuegoADevolver.setVisitor(visitor);
-    		ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
-    		bolaDeFuegoADevolver.setObserverGrafico(observer);
-            this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.getObserverGrafico());
-            return bolaDeFuegoADevolver;
+    	Sprite sprite = fabricaSprites.getBolaDeFuego();
+    	BolaDeFuego bolaDeFuegoADevolver= new BolaDeFuego(sprite, posicion,null,velocidadDireccional,null,jugador);
+    	Visitante visitor=new VisitorBolaDeFuego(bolaDeFuegoADevolver);
+    	bolaDeFuegoADevolver.setVisitor(visitor);
+    	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
+    	bolaDeFuegoADevolver.setObserverGrafico(observer);
+        this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.getObserverGrafico());
+        return bolaDeFuegoADevolver;
     } 
     
 }

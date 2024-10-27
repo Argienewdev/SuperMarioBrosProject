@@ -19,80 +19,70 @@ public class VisitorBuzzyBeetle implements Visitante {
     
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
     }
     
     @Override
-    public void visitarSpiny(Spiny spiny) {
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
     public void visitarGoomba(Goomba goomba) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
     }
     
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    	//TODO
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+    	//TODO
     }
     
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
     
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    }
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    }
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
     
     @Override
-    public void visitarEstrella(Estrella estrella) {
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
     
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
     
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
@@ -101,55 +91,36 @@ public class VisitorBuzzyBeetle implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if(this.detectorDireccionColision.choquePorDerecha(marioDefault.getContext(), this.miEntidad) ||
-           this.detectorDireccionColision.choquePorIzquierda(marioDefault.getContext(), this.miEntidad)) {
+        if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
             ContextoMario contextoMario = marioDefault.getContext();
-            if (contextoMario.getVidas() == 1) {
-                int perdidaPuntos = miEntidad.getPuntosSustraidosPorMuerteCausada();
-                contextoMario.perderPuntos(perdidaPuntos);
-            } else {
-                contextoMario.perderVida();
-            }
+            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+            contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
+            miEntidad.getNivel().reiniciarNivel();
         }
-        
     }
     
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        if(this.detectorDireccionColision.choquePorDerecha(superMario.getContext(), this.miEntidad) ||
-           this.detectorDireccionColision.choquePorIzquierda(superMario.getContext(), this.miEntidad)) {
-            ContextoMario contextoMario = superMario.getContext();
-            EstadoMario nuevoEstado = new MarioDefault();
-            contextoMario.cambiarEstado(nuevoEstado);
+        if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+        	superMario.getContext().reiniciarEstado();
         }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if(this.detectorDireccionColision.choquePorDerecha(marioFuego.getContext(), this.miEntidad) ||
-    		this.detectorDireccionColision.choquePorIzquierda(marioFuego.getContext(), this.miEntidad)) {
-    		ContextoMario contextoMario = marioFuego.getContext();
-            EstadoMario nuevoEstado = new MarioDefault();
-            contextoMario.cambiarEstado(nuevoEstado);
+    	if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    		marioFuego.getContext().reiniciarEstado();
         }
     }
     
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
 	@Override
-	public void visitarPiso(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
     
 }

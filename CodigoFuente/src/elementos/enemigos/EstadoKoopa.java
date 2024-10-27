@@ -16,4 +16,8 @@ public interface EstadoKoopa{
 	public void actualizarSprite(FabricaSprites fabricaSprites);
 	
 	public Visitante getVisitor();
+
+	public void setContext(ContextoKoopaTroopa contextoKoopaTroopa);
+
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
 }

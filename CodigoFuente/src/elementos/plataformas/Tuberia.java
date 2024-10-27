@@ -3,6 +3,7 @@ package elementos.plataformas;
 import java.awt.Point;
 import elementos.Sprite;
 import elementos.enemigos.PiranhaPlant;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Tuberia extends BloqueSolido{
@@ -13,9 +14,9 @@ public class Tuberia extends BloqueSolido{
     
     protected final int ancho;
 
-    public Tuberia (Sprite sprite, Point pos, Visitante visitor, 
+    public Tuberia (Sprite sprite, Point pos, Visitante visitor, ObserverGrafico observerGrafico, 
     				PiranhaPlant miPiranhaPlant, int altura, int ancho) {
-        super(sprite,pos,visitor);
+        super(sprite,pos,visitor,observerGrafico);
         this.altura = altura;
         this.ancho = ancho;
         this.miPiranhaPlant = miPiranhaPlant;

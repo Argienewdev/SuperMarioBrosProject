@@ -19,13 +19,11 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // No se requiere comportamiento específico por ahora
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
     }
 
     @Override
-    public void visitarSpiny(Spiny spiny) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
     public void visitarGoomba(Goomba goomba) {
@@ -33,39 +31,25 @@ public class VisitorGoomba implements Visitante {
     }
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
@@ -74,34 +58,26 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if (!this.detectorDireccionColision.choquePorArriba(marioDefault.getContext(), miEntidad)) {
+        if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
             ContextoMario contextoMario = marioDefault.getContext();
-            if (contextoMario.getVidas() == 1) {
-                int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
-                contextoMario.perderPuntos(perdidaPuntos);
-                // TODO: Implementar la lógica para "matar" a Mario.
-            }
+            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+            contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
+            miEntidad.getNivel().reiniciarNivel();
         }
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.choquePorDerecha(superMario.getContext(), this.miEntidad) ||
-                this.detectorDireccionColision.choquePorIzquierda(superMario.getContext(), this.miEntidad)) {
-	        ContextoMario contextoMario = superMario.getContext();
-	        EstadoMario nuevoEstado = new MarioDefault();
-	        contextoMario.cambiarEstado(nuevoEstado);
+    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+	        superMario.getContext().reiniciarEstado();
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.choquePorDerecha(marioFuego.getContext(), this.miEntidad) ||
-                this.detectorDireccionColision.choquePorIzquierda(marioFuego.getContext(), this.miEntidad)) {
-	        ContextoMario contextoMario = marioFuego.getContext();
-	        EstadoMario nuevoEstado = new MarioDefault();
-	        contextoMario.cambiarEstado(nuevoEstado);
+    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    		marioFuego.getContext().reiniciarEstado();
     	}
     }
 
@@ -109,43 +85,29 @@ public class VisitorGoomba implements Visitante {
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPiso(Piso piso) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarPiso(Piso piso) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        // No se requiere comportamiento específico por ahora
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // No se requiere comportamiento específico por ahora
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -159,9 +121,6 @@ public class VisitorGoomba implements Visitante {
     }
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
     
 }

@@ -23,7 +23,6 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     	return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultCayendo.png");
     }
     
-    
     @Override
     public Sprite getMarioDefaultFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalSaltando.png");
@@ -150,23 +149,13 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getKoopaTroopaDefaultFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultFrontalQuieto.png");
-    }
-
-    @Override
     public Sprite getKoopaTroopaDefaultFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultFrontalCaminando.gif");
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultFrontalCaminando.gif");
     }
-
+    
     @Override
-    public Sprite getKoopaTroopaDefaultReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultReversoQuieto.png");
-    }
-
-    @Override
-    public Sprite getKoopaTroopaDefaultReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultReversoCaminando.gif");
+	public Sprite getKoopaTroopaDefaultReversoCaminando() {
+    	return new Sprite(rutaACarpeta + "/spritesModoOriginal/koopaTroopaDefaultReversoCaminando.gif");
     }
 
     @Override
@@ -175,15 +164,9 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getGoombaCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaQuieto.gif");
+    public Sprite getGoombaCaminando() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaCaminando.gif");
     }
-
-    @Override
-    public Sprite getGoombaCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaCaminando.png");
-    }
-
     @Override
     public Sprite getGoombaAplastado() {
         return new Sprite(rutaACarpeta + "/spritesModoOriginal/goombaAplastado.png");
@@ -246,7 +229,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBuzzyBeetleFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleFrontalQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/buzzyBeetleCaparazonEstatico.png");
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.awt.Point;
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class BloqueDePregunta extends Plataforma {
@@ -15,8 +16,9 @@ public class BloqueDePregunta extends Plataforma {
 	protected boolean estaVacio;
 	
 	public BloqueDePregunta (Sprite sprite, Point pos, 
-							 Visitante visitor, PowerUp powerUp) {
-		super(sprite,pos,visitor);
+							 Visitante visitor, PowerUp powerUp,
+							 ObserverGrafico observerGrafico) {
+		super(sprite,pos,visitor,observerGrafico);
 		this.powerUp = powerUp;
 		if (powerUp != null)
 			this.estaVacio = false;

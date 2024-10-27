@@ -41,10 +41,15 @@ public class Estrella extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getEstrellaEncendida());
-		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getEstrellaEncendida());
-		}		
+		if(removido) {
+			eliminarEntidadGraficamente(fabricaSprites);
+		}else {
+			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getEstrellaEncendida());
+			}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getEstrellaEncendida());
+			}		
+		}
 	}
+
 }

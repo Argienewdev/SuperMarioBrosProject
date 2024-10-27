@@ -4,12 +4,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import elementos.Sprite;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Ladrillo extends BloqueSolido {
 	
-	public Ladrillo(Sprite sprite, Point posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
+	public Ladrillo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 	}
 
 	@Override

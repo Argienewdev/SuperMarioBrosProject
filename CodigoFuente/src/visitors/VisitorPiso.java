@@ -100,12 +100,10 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
     public void visitarPiso(Piso piso) {}

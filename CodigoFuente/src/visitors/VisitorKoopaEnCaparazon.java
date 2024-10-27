@@ -11,10 +11,13 @@ public class VisitorKoopaEnCaparazon implements Visitante {
     protected EstadoKoopa miEstado;
     
     private ContextoKoopaTroopa miEntidad;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
 
     public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado) {
         this.miEstado = miEstado;
         this.miEntidad = miEstado.getContext();
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -114,27 +117,27 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        // TODO Auto-generated method stub
+        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        // TODO Auto-generated method stub
+        detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad, marioFuego.getContext());
     }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad, marioInvulnerable.getContext());
     }
 
     @Override
