@@ -131,6 +131,8 @@ public class ControladorMovimiento {
 			} else if(marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO){
 		        huboColision = true;
 		        marioJugable.perderVida();
+		        marioJugable.reiniciarEstado();
+		        nivel.reiniciarNivel();
 		        //TODO El nivel se debe reiniciar pero si lo llamamos aca,
 		        //y mario esta en otro modo con una hitbox mas grande, el nivel lo posiciona
 		        //en la posicion inicial y traspasa el piso
