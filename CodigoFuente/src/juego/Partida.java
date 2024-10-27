@@ -82,6 +82,7 @@ public class Partida {
 	}
 	
 	private Nivel generarNivel(int numeroNivelActual, Partida partida) {
+		
 		return generadorDeNivel.generarNivel(numeroNivelActual, this);
 	}
 

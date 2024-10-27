@@ -146,25 +146,15 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     public Sprite getMarioInvulnerableReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoSaltando.png");
     }
-
+    
     @Override
-    public Sprite getKoopaTroopaDefaultFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultFrontalQuieto.png");
+    public Sprite getkoopaTroopaDefaultFrontalCaminando() {
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultFrontalCaminando.gif");
     }
-
+    
     @Override
-    public Sprite getKoopaTroopaDefaultFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultFrontalCaminando.png");
-    }
-
-    @Override
-    public Sprite getKoopaTroopaDefaultReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultReversoQuieto.png");
-    }
-
-    @Override
-    public Sprite getKoopaTroopaDefaultReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultReversoCaminando.png");
+	public Sprite getkoopaTroopaDefaultReversoCaminando() {
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultReversoCaminando.gif");
     }
 
     @Override
@@ -173,13 +163,8 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getGoombaCaminandoPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminandoPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getGoombaCaminandoSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminandoSegundaTransicion.png");
+    public Sprite getGoombaCaminando() {
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.gif");
     }
 
     @Override

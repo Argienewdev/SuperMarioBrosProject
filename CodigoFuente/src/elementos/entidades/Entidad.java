@@ -1,6 +1,8 @@
 package elementos.entidades;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
 import observers.ObserverGrafico;
@@ -81,6 +83,11 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	public void incrementarContadorTicks() {
 		this.contadorTicks++;
+	}
+	
+	@SuppressWarnings("exports")
+	public void setHitbox(Rectangle hitbox) {
+		this.hitbox = hitbox;
 	}
 	
 }

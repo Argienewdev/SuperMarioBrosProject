@@ -38,13 +38,15 @@ public class KoopaDefault implements EstadoKoopa {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.contexto.getVelocidadDireccional().x == 0) {
-			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoQuieto());
-		} else if(this.contexto.getVelocidadDireccional().x < 0) {
-			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
+		if(this.contexto.getVelocidadDireccional().x < 0) {
+			this.contexto.setSprite(fabricaSprites.getkoopaTroopaDefaultReversoCaminando());
 		} else if(this.contexto.getVelocidadDireccional().x > 0) {
-			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
+			this.contexto.setSprite(fabricaSprites.getkoopaTroopaDefaultFrontalCaminando());
 		}
 	}
 
+	@Override
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {		
+	}
+	
 }

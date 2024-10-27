@@ -10,12 +10,16 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     
     protected ContextoKoopaTroopa miEntidad;
     
+    protected DetectorDireccionColision detectorDireccionColision;
+    
     public VisitorContextoKoopaTroopa(ContextoKoopaTroopa miEntidad) {
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
     }
 
     @Override
@@ -24,6 +28,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
     }
 
     @Override
@@ -68,12 +73,10 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        bloqueDePregunta.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-        ladrillo.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
@@ -99,26 +102,17 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        ContextoMario contextoMario = marioDefault.getContext();
-        if (contextoMario.getVidas() == 1) {
-            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
-            contextoMario.perderPuntos(perdidaPuntos);
-        }
-        contextoMario.perderVida();
+    	marioDefault.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    public void visitarSuperMario(SuperMario superMario) {  
+    	superMario.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	marioFuego.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override

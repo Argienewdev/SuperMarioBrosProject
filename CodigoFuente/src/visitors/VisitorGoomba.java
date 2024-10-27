@@ -107,7 +107,7 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // No se requiere comportamiento específico por ahora
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override

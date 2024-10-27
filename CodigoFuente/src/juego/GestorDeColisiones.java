@@ -5,7 +5,7 @@ import elementos.entidades.Entidad;
 import ventanas.ControladorVistas;
 
 public class GestorDeColisiones {
-	
+	/*
 	protected Nivel nivel;
 	
 	public GestorDeColisiones(Nivel nivel) {
@@ -174,6 +174,6 @@ public class GestorDeColisiones {
 		//entidad.aceptarVisitante(elementoDeJuego.getVisitor());
 		//elementoDeJuego.aceptarVisitante(entidad.getVisitor());
 		//TODO los visitantes rompen todo
-	}
+	}*/
 
 }

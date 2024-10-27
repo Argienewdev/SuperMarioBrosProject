@@ -123,18 +123,16 @@ public class VisitorLadrillo implements Visitante {
     }
     
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) { 
         this.detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // Implementar lógica aquí si es necesario
     }
 
     @Override

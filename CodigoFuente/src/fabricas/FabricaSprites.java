@@ -65,19 +65,13 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getMarioInvulnerableReversoSaltando();
 	
-	public abstract Sprite getKoopaTroopaDefaultFrontalQuieto();
+	public abstract Sprite getkoopaTroopaDefaultFrontalCaminando();
 	
-	public abstract Sprite getKoopaTroopaDefaultFrontalCaminando();
-	
-	public abstract Sprite getKoopaTroopaDefaultReversoQuieto();
-	
-	public abstract Sprite getKoopaTroopaDefaultReversoCaminando();
+	public abstract Sprite getkoopaTroopaDefaultReversoCaminando();
 	
 	public abstract Sprite getKoopaTroopaCaparazonEstático();
 	
-	public abstract Sprite getGoombaCaminandoPrimeraTransicion();
-	
-	public abstract Sprite getGoombaCaminandoSegundaTransicion();
+	public abstract Sprite getGoombaCaminando();
 	
 	public abstract Sprite getGoombaAplastado();
 

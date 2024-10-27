@@ -11,10 +11,13 @@ public class VisitorKoopaDefault implements Visitante {
     protected EstadoKoopa miEstado;
     
     private ContextoKoopaTroopa miEntidad;
+    
+    private DetectorDireccionColision detectorDireccionColision;
 
     public VisitorKoopaDefault(KoopaDefault miEstado) {
         this.miEstado = miEstado;
         this.miEntidad = miEstado.getContext();
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -114,24 +117,33 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        // TODO Auto-generated method stub
+        contextoMario.getEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        // TODO Auto-generated method stub
+        if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
+            ContextoMario contextoMario = marioDefault.getContext();
+            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+            contextoMario.perderPuntos(perdidaPuntos);
+            contextoMario.perderVida();
+            miEntidad.getNivel().reiniciarNivel();
+        }
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+	        superMario.getContext().reiniciarEstado();
+    	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    		marioFuego.getContext().reiniciarEstado();
+    	}
     }
-
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
         // TODO Auto-generated method stub
