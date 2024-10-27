@@ -97,7 +97,7 @@ public class Juego {
 			ranking.guardarEstado();
 		}
 		controladorVistas.obtenerPantallaFinal().establecerPuntaje(jugador.obtenerPuntaje());
-//		controladorVistas.mostrarPantallaFinal();
+		controladorVistas.mostrarPantallaFinal();
 		this.partida.finalizarPartida();
 	}
 

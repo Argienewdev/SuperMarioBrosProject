@@ -122,12 +122,16 @@ public class ControladorMovimiento {
 	}
 
 	public void verificarColisiones(Jugable entidad) {
-		
 		if(!this.nivel.fueCompletado()) {
 			boolean huboColision = false;
-			if(marioJugable.obtenerHitbox().x < 0 || marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO) {
+			boolean marioChocoBordeIzquierdo = marioJugable.obtenerHitbox().x < 0;
+			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO;
+			if(marioChocoBordeIzquierdo) {
 				huboColision = true;
-				this.marioJugable.retrotraerMovimientoHorizontal();
+				this.marioJugable.retrotraerMovimientoHorizontal(0);
+			}else if(marioChocoBordeDerecho) {
+				huboColision = true;
+				this.marioJugable.retrotraerMovimientoHorizontal(DimensionesConstantes.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
 			} else if(marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO){
 		        huboColision = true;
 		        marioJugable.perderVida();
