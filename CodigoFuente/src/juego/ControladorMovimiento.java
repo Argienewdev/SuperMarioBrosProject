@@ -11,7 +11,7 @@ public class ControladorMovimiento {
 	
 	private static final int FUERZA_SALTO = -24;
 	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 25;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
 	
 	private static final int GRAVEDAD = 2;
 	
@@ -128,16 +128,13 @@ public class ControladorMovimiento {
 				huboColision = true;
 				marioJugable.retrotraerMovimientoHorizontal();
 			} else {
-				
-				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-				    if (entidad.huboColision(elemento)) {
-				    	//System.out.println(elemento.getClass().getSimpleName());
+				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
+				    if (entidad.huboColision(elemento) && !this.nivel.entidadesAEliminar.contains(elemento)) {
 				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
 				    }
 				}
-
 			}
 		    if(!huboColision) {
 		    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());

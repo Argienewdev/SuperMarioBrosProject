@@ -80,8 +80,6 @@ public class VisitorGoomba implements Visitante {
                 int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
                 contextoMario.perderPuntos(perdidaPuntos);
                 // TODO: Implementar la lógica para "matar" a Mario.
-            } else {
-                contextoMario.setImpactado(true);
             }
             contextoMario.perderVida();
         }
@@ -94,7 +92,6 @@ public class VisitorGoomba implements Visitante {
 	        ContextoMario contextoMario = superMario.getContext();
 	        EstadoMario nuevoEstado = new MarioDefault();
 	        contextoMario.cambiarEstado(nuevoEstado);
-            contextoMario.setImpactado(true);
     	}
     }
 
@@ -105,7 +102,6 @@ public class VisitorGoomba implements Visitante {
 	        ContextoMario contextoMario = marioFuego.getContext();
 	        EstadoMario nuevoEstado = new MarioDefault();
 	        contextoMario.cambiarEstado(nuevoEstado);
-            contextoMario.setImpactado(true);
     	}
     }
 

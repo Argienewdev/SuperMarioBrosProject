@@ -31,6 +31,9 @@ public class ObserverGrafico extends JLabel implements Observer {
 	}
 	
 	protected void actualizarPosicionTamanio() {
+		if(entidad_observada.getClass().getSimpleName().equals("ContextoMario")) {
+			//System.out.println(entidad_observada.getPosicion().y);
+		}
 		int x = entidad_observada.getPosicion().x;
 		int y = entidad_observada.getPosicion().y;
 		int ancho = this.getIcon().getIconWidth();
