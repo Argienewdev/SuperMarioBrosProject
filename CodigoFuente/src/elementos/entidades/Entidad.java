@@ -55,14 +55,11 @@ public abstract class Entidad extends ElementoDeJuego {
     	this.colisionArriba = colisionArriba;
     }
     
-    public void retrotraerMovimientoHorizontal() {
-        this.moverHitbox(this.posicion);
-        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
-	}
+    public abstract void retrotraerMovimientoHorizontal(int posX);
 	
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
-		this.moverHitbox(this.posicion);
+		this.moverHitbox(nuevaPosicion);
 		this.setPosicion(nuevaPosicion);
 		this.setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
 	}

@@ -90,9 +90,16 @@ public abstract class Jugable extends Entidad  {
 		return this.colisionArriba;
 	}
 	
+	public void retrotraerMovimientoHorizontal(int posX) {
+		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
+        this.moverHitbox(nuevaPosicion);
+		this.setPosicion(nuevaPosicion);
+        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
+	}
+	
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
-		this.moverHitbox(this.posicion);
+		this.moverHitbox(nuevaPosicion);
 		this.setPosicion(nuevaPosicion);
 		if(this.getColisionAbajo()) {
 			this.setEnElAire(false);

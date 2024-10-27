@@ -19,7 +19,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
+        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
+        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
     }
 
     @Override

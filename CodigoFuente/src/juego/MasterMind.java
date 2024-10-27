@@ -100,11 +100,6 @@ public class MasterMind {
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
 			}
-			//TODO Lo arregle haciendo que mario chequee incluso quieto
-//			if(noJugable.huboColision(nivel.getMario())) {
-//	        	nivel.getMario().aceptarVisitante(noJugable.getVisitor());
-//	            noJugable.aceptarVisitante(nivel.getMario().getVisitor());
-//			}
 		}
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
