@@ -167,7 +167,6 @@ public class PantallaDeJuego extends JPanel {
     	establecerFondo();
     	revalidate();
     	repaint();
-    	System.out.println("ERROR: Mostrar labels se ejecuta unicamente cuando la lista tiene a mario unicamente");
     }
 
 	private void removerElementos() {

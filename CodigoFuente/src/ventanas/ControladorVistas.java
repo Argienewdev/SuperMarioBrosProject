@@ -11,9 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import Ranking.Jugador;
 import elementos.personajes.ContextoMario;
 import juego.*;
+import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 

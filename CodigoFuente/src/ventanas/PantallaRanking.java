@@ -1,8 +1,10 @@
 package ventanas;
 
 import javax.swing.*;
-import Ranking.Jugador;
+
 import fuentes.Fuentes;
+import ranking.Jugador;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

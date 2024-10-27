@@ -1,10 +1,10 @@
 package juego;
 
-import Ranking.Jugador;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
+import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
 public class Partida {

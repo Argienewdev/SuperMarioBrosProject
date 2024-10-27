@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import Ranking.Jugador;
-import Ranking.Ranking;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
@@ -25,6 +23,8 @@ import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
+import ranking.Jugador;
+import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;

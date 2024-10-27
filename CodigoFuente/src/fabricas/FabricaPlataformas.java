@@ -182,7 +182,6 @@ public class FabricaPlataformas {
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(pisoADevolver);
     	pisoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
     	this.pantallaDeJuego.agregarLabel(pisoADevolver.getObserverGrafico());
-    	System.out.println("El generador agrego el label de piso");
     	return pisoADevolver;
     }
 	
