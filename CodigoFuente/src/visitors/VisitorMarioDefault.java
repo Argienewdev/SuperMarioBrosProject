@@ -94,7 +94,9 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarPiso(Piso piso) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    	miEntidad.getNivel().obtenerPartida().finalizarPartida();
+    }
 
     @Override
     public void visitarBandera(Bandera bandera) {

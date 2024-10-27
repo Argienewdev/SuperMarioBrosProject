@@ -128,13 +128,13 @@ public class MasterMind {
 	
 	private void actualizarSpritesPlataformas() {
 		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
-			plataforma.actualizarVisual(this.fabricaSprites);
+			plataforma.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
-			powerUp.actualizarVisual(this.fabricaSprites);
+			powerUp.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	

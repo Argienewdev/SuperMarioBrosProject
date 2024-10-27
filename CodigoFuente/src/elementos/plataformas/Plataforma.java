@@ -10,11 +10,12 @@ import visitors.Visitante;
 public abstract class Plataforma extends ElementoDeJuego{
 	
 	protected boolean solido;
+	
 	protected boolean removido;
 	
 	public Plataforma(Sprite sprite, Point posicion, Visitante visitor) {
 		super(sprite, posicion, visitor);
-		removido=false;
+		removido = false;
 	}
 	
 	public void setSolido(boolean solido) {
@@ -25,15 +26,9 @@ public abstract class Plataforma extends ElementoDeJuego{
 		return this.solido;
 	}
 	
-	public void actualizarVisual(FabricaSprites fabricaSprites) {
+	public  void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
 			this.setSprite(fabricaSprites.getSpriteInvisible());
 		}
-		else {
-			this.actualizarSprite(fabricaSprites);
-		}
-	}
-	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		
 	}
 }

@@ -69,6 +69,7 @@ public class VisitorBandera implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
+    	//TODO el visitor de mario visita a la bandera y termina el nivel, es al reves 
     	this.miEntidad.getNivel().setCompletado(true);
         this.controlador.eliminarNivelActual();
         marioDefault.getContext().retrotraerMovimientoHorizontal();
