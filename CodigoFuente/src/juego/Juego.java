@@ -40,14 +40,8 @@ public class Juego {
 
 	private FabricaSprites fabricaSprites;
 
-	private FabricaEntidades fabricaEntidades;
-	
-	private FabricaPlataformas fabricaPlataformas;
-
 	private GeneradorDeNivel generadorDeNivel;
-	
-	private FabricaSilueta fabricaSilueta;
-	
+		
 	private PantallaDeJuego pantallaDeJuego;
 	
 	private Ranking ranking;
@@ -80,23 +74,14 @@ public class Juego {
 	}
 
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
-		if (modo.equals("Modo original")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		} else if (modo.equals("Modo alternativo")) {
-			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades);
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
-		this.generadorDeNivel = new GeneradorDeNivel(fabricaEntidades, fabricaSilueta, fabricaPlataformas, pantallaDeJuego, controladorVistas);
+		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
+		this.fabricaSprites=generadorDeNivel.getFabricaSprites();
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		jugador = new Jugador();
-		//Se debe modificar, el nombre se ingresa desde una pantalla de juego por teclado
-		jugador.establecerNombre("Pepe");
+		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
 		return jugable;
 	}
 	
@@ -124,7 +109,7 @@ public class Juego {
 	
 	private void guardarEstado() {
 		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./puntajes");
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(ranking);
 			objectOutputStream.flush();

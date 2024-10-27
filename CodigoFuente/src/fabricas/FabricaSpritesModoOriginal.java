@@ -315,14 +315,9 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getFireballPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/fireballPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getFireballSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/fireballSegundaTransicion.png");
-    }
+    public Sprite getBolaDeFuego() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/bolaDeFuego.gif\"");
+	}
 
     @Override
     public Sprite getLadrillo() {

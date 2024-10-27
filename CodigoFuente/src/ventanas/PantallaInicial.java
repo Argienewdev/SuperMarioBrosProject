@@ -35,6 +35,8 @@ public class PantallaInicial extends JPanel {
 	
 	Fuentes tipoFuentes;
 	
+	private String modo;
+	
 	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
 		controlador= controladorVistas;
@@ -120,13 +122,15 @@ public class PantallaInicial extends JPanel {
 	 public void actualizarFoco() {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			 if(currentLabel == modo1){
-				 controlador.accionarInicioJuego("Modo original");
+//				 controlador.accionarPantallaIngresoNombre();
+//				 guardarModo("Modo original");
+				controlador.accionarInicioJuego("Modo original");
 			 }
 			 else if(currentLabel == modo2){
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
 			 else if(currentLabel == ranking) {
-				controlador.accionarPantallaRanking();
+				controlador.mostrarPantallaRanking();
 			 }
 		 }
 		 
@@ -145,5 +149,12 @@ public class PantallaInicial extends JPanel {
 	       
     }
 	 
+	public void guardarModo (String modo) {
+		this.modo = modo;
+	}
+	
+	public String obtenerModo() {
+		return modo;
+	}
 	
 }

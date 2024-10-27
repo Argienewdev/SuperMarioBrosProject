@@ -6,13 +6,11 @@ import java.util.Collection;
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
-import elementos.entidades.Entidad;
-import elementos.entidades.NoJugable;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
-import ventanas.DimensionesConstantes;
 
 public class Nivel {
 	
@@ -25,6 +23,8 @@ public class Nivel {
     protected Collection<PowerUp> powerUps;
 
     protected Collection<Enemigo> enemigos;
+    
+    protected Collection<BolaDeFuego> bolasDeFuego;
     
     protected Collection<ElementoDeJuego> entidadesAEliminar;
     
@@ -44,6 +44,7 @@ public class Nivel {
         this.plataformasAfectables = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
+        this.bolasDeFuego=new ArrayList<BolaDeFuego>();
         this.entidadesAEliminar = new ArrayList<ElementoDeJuego>();
         this.nivelCompletado = false;
         this.partida = partida;
@@ -64,6 +65,11 @@ public class Nivel {
         powerUp.setNivel(this);
     }
     
+    public void addBolaDeFuego(BolaDeFuego bolaDefuego) {
+        this.bolasDeFuego.add(bolaDefuego);
+        bolaDefuego.setNivel(this);
+    }
+    
 	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
     }
@@ -78,6 +84,7 @@ public class Nivel {
 
     public void setMario(ContextoMario mario) {
         this.mario = mario;
+        mario.setNivel(this);
     }
 
     public void removePlataforma(Plataforma plataforma) {
@@ -101,6 +108,10 @@ public class Nivel {
 
     public Iterable<Enemigo> getEnemigos() {
         return this.enemigos;
+    }
+    
+    public Iterable<BolaDeFuego> getBolasDeFuego() {
+        return this.bolasDeFuego;
     }
     
     public ContextoMario getMario() {
@@ -129,6 +140,9 @@ public class Nivel {
         }
         for(Enemigo enemigo : getEnemigos()) {
             elementosDeJuego.add(enemigo);
+        }
+        for(BolaDeFuego bolaDeFuego: getBolasDeFuego() ){
+            elementosDeJuego.add(bolaDeFuego);
         }
         return elementosDeJuego;
     }

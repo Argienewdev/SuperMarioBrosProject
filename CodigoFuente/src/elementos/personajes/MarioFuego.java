@@ -1,12 +1,26 @@
 package elementos.personajes;
 
+import java.awt.Point;
+
 import elementos.Sprite;
+import elementos.enemigos.BuzzyBeetle;
+import elementos.entidades.BolaDeFuego;
+import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import juego.Nivel;
+import observers.ObserverGrafico;
 import ventanas.DimensionesConstantes;
 import visitors.Visitante;
+import visitors.VisitorBuzzyBeetle;
 import visitors.VisitorMarioFuego;
 
 public class MarioFuego extends MarioDefault {
+	
+	protected FabricaEntidades fabricaEntidades;
+	
+	public MarioFuego(FabricaEntidades fabricaEntidades) {
+		this.fabricaEntidades=fabricaEntidades;
+	}
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
@@ -75,4 +89,21 @@ public class MarioFuego extends MarioDefault {
 				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoQuieto()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoSaltando());
 	}
+
+	
+	public void realizarAccionEspecial() {	
+		lanzarBolaDeFuego();
+	}
+
+	private void lanzarBolaDeFuego() {
+		/*
+		int posX=(int)getContext().getPosicion().getX();
+		int posY=(int)getContext().getPosicion().getY()-50;
+		Point posicionInicialBolaDeFuego = new Point(posX,posY);
+		Point velocidadDireccionalBolaDeFuego = new Point(0,1);
+		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
+		*/
+	}
+	
 }

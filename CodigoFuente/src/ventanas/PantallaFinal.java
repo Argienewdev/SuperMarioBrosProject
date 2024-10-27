@@ -3,12 +3,21 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fuentes.Fuentes;
+
 public class PantallaFinal extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+	
+	private Fuentes tipoFuentes;
+	
+    private JLabel fondo;
 
 	private ControladorVistas controladorVistas;
 	
@@ -18,8 +27,6 @@ public class PantallaFinal extends JPanel{
 		this.controladorVistas = controladorVistas;
 		setLayout(new BorderLayout()); 
         setPreferredSize(new Dimension(size));
-
-        
         JLabel mensajeFinal = new JLabel("¡Fin de la Partida!", SwingConstants.CENTER);
         mensajeFinal.setFont(new Font("Arial", Font.BOLD, 24));
         add(mensajeFinal, BorderLayout.CENTER);

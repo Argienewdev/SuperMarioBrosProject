@@ -16,4 +16,7 @@ public interface EstadoMario{
 	public Visitante getVisitor();
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
+	
+	public void realizarAccionEspecial();		
+	
 }

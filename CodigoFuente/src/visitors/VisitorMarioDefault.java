@@ -1,7 +1,7 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
@@ -59,9 +59,6 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
         // TODO Implementación pendiente
     }
-
-    @Override
-    public void visitarFireball(Fireball fireball) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -124,5 +121,11 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

@@ -1,17 +1,17 @@
 package visitors;
 
 import elementos.enemigos.*;
-import elementos.entidades.Fireball;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import juego.Nivel;
 
-public class VisitorFireball implements Visitante {
+public class VisitorBolaDeFuego implements Visitante {
 
-    protected Fireball miEntidad;
+    protected BolaDeFuego miEntidad;
 
-    public VisitorFireball(Fireball miEntidad) {
+    public VisitorBolaDeFuego(BolaDeFuego miEntidad) {
         this.miEntidad = miEntidad;
     }
 
@@ -53,11 +53,6 @@ public class VisitorFireball implements Visitante {
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
         otorgarPuntosYEliminar(piranhaPlant);
-    }
-
-    @Override
-    public void visitarFireball(Fireball fireball) {
-        // Sin lógica específica por ahora
     }
 
     @Override
@@ -152,4 +147,10 @@ public class VisitorFireball implements Visitante {
         Nivel nivel = enemigo.getNivel();
         nivel.addEntidadesAEliminar(enemigo);
     }
+
+	@Override
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
+	}
 }

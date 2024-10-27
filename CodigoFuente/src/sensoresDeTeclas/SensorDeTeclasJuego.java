@@ -8,27 +8,32 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
-	private boolean Apresionada;
+	private boolean aPresionada;
 	
-	private boolean Dpresionada;
+	private boolean dPresionada;
 	
-	private boolean Wpresionada;
+	private boolean wPresionada;
+	
+	private boolean spacePresionada;
 	
 	public SensorDeTeclasJuego() {
-		Apresionada = false;
-		Dpresionada = false;
-		Wpresionada = false;
+		aPresionada = false;
+		dPresionada = false;
+		wPresionada = false;
+		spacePresionada= false;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_A) {
-    		Apresionada = true;
+    		aPresionada = true;
         }else if (keyCode == KeyEvent.VK_D) {
-    		Dpresionada = true;
+    		dPresionada = true;
         }else if (keyCode == KeyEvent.VK_W) {
-        	Wpresionada = true;
+        	wPresionada = true;
+        }else if (keyCode == KeyEvent.VK_SPACE) {
+        	spacePresionada= true;
         }
     }
 
@@ -37,11 +42,13 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_A) {
-            Apresionada = false;
+            aPresionada = false;
         } else if (keyCode == KeyEvent.VK_D) {
-            Dpresionada = false;
+            dPresionada = false;
         }else if (keyCode == KeyEvent.VK_W) {
-        	Wpresionada = false;
+        	wPresionada = false;
+        }else if (keyCode == KeyEvent.VK_SPACE) {
+        	spacePresionada= false;
         }
     }
 
@@ -50,14 +57,18 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
     }
 
 	public boolean obtenerAPresionada() {
-		return Apresionada;
+		return aPresionada;
 	}
 
 	public boolean obtenerDPresionada() {
-		return Dpresionada;
+		return dPresionada;
 	}
 	
 	public boolean obtenerWPresionada() {
-		return Wpresionada;
+		return wPresionada;
+	}
+	
+	public boolean obtenerSpacePresionada() {
+		return spacePresionada;
 	}
 }

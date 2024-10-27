@@ -47,4 +47,10 @@ public class ContextoMario extends Jugable {
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarContextoMario(this);
 	}
+
+	@Override
+	public void realizarAccionEspecial() {
+		estadoMario.realizarAccionEspecial();
+	}
+	
 }

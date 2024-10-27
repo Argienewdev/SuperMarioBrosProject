@@ -95,5 +95,9 @@ public class MarioDefault implements EstadoMario {
 				contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoQuieto()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoSaltando());
 	}
+
+	@Override
+	public void realizarAccionEspecial() {		
+	}
 	
 }

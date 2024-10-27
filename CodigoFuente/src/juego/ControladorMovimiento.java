@@ -40,7 +40,7 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		determinarDireccion();
+		determinarAccion();
 	    cambiarYVerificarPosicionHitboxDeMario();
 		reiniciarVelocidadHorizontal();
 	}
@@ -91,7 +91,12 @@ public class ControladorMovimiento {
 		}
 	}
 	
-	private void determinarDireccion() {
+	private void accionEspecial() {
+		marioJugable.realizarAccionEspecial();
+		
+	}
+	
+	private void determinarAccion() {
 		this.marioJugable.setAvanzando(false);
 		this.marioJugable.setRetrocediendo(false);
 		if(marioJugable.getColisionArriba()) {
@@ -110,6 +115,9 @@ public class ControladorMovimiento {
 	    if (movimientoADerecha()) {
 	    	moveMarioDerecha();
 	    }
+	    if (realizarAccionEspecial()) {
+	    	accionEspecial();
+	    }
 	    marioJugable.setColisionAbajo(false);
 	}
 
@@ -122,6 +130,7 @@ public class ControladorMovimiento {
 			} else {
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
 				    if (entidad.huboColision(elemento) && !this.nivel.entidadesAEliminar.contains(elemento)) {
+				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
 				    }
@@ -156,5 +165,9 @@ public class ControladorMovimiento {
 	
 	private boolean movimientoAIzquierda() {
 		return sensorDeTeclasJuego.obtenerAPresionada() && !sensorDeTeclasJuego.obtenerDPresionada();
+	}
+	
+	private boolean realizarAccionEspecial() {
+		return sensorDeTeclasJuego.obtenerSpacePresionada() ;
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import Ranking.Jugador;
@@ -36,8 +37,10 @@ public class ControladorVistas {
 	
 	private PantallaRanking pantallaRanking;
 	
-	protected Juego juego;	
-
+	private PantallaIngresoNombre pantallaIngresoNombre;
+	
+	private Juego juego;
+	
 	public ControladorVistas(Juego juego){
 		sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
@@ -47,6 +50,7 @@ public class ControladorVistas {
 		this.juego = juego;
 		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
+		pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		configurarVentana();
 		RegistrarOyenteInicial();	
 	}
@@ -68,27 +72,28 @@ public class ControladorVistas {
 			}	
 		});
 	}
-	
-	public void accionarInicioJuego(String modo) {
-		RegistrarOyenteJuego();
-		ventana.remove(pantallaInicial);
-		mostrarPantallaEntreNiveles();
 		
-		marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
-		pantallaDeJuego.registrarJugable(marioJugable);
-     	
-		Timer timer = new Timer(2000, new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	            	ventana.remove(pantallaEntreNiveles);
-	                mostrarPantallaDeJuego();
-	                
-	            }
-	        });
-	        timer.setRepeats(false);
-	        timer.start(); 
-	        
-	       
+	public void accionarInicioJuego(String modo) {
+	    RegistrarOyenteJuego();
+	    
+	    ventana.setContentPane(pantallaEntreNiveles);
+	    ventana.revalidate();
+	    ventana.repaint();
+	    
+	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+	    pantallaDeJuego.registrarJugable(marioJugable);
+	    
+	    Timer timer = new Timer(2000, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            ventana.setContentPane(pantallaDeJuego);
+	            ventana.revalidate();
+	            ventana.repaint();
+	        }
+	    });
+	    timer.setRepeats(false);
+	    timer.start();
 	}
+
 	
 	public void mostrarPantallaEntreNiveles(){
 		ventana.add(pantallaEntreNiveles);
@@ -143,6 +148,19 @@ public class ControladorVistas {
 	    ventana.repaint();
 	}
 	
+	public void mostrarPantallaRanking() {
+		ventana.setContentPane(pantallaRanking);
+		ventana.revalidate();
+		ventana.repaint();
+	}
+	
+	public void accionarPantallaIngresoNombre() {
+		ventana.setContentPane(pantallaIngresoNombre);
+		ventana.revalidate();
+		ventana.repaint();
+		SwingUtilities.invokeLater(() -> pantallaIngresoNombre.solicitarFocoCampoTexto());
+	}
+	
 	public void refrescar(){
 		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
 			pantallaInicial.actualizarFoco();
@@ -176,6 +194,14 @@ public class ControladorVistas {
 	        });
 	        timer.setRepeats(false);
 	        timer.start();  
+	}
+	
+	public String obtenerModo() {
+		return pantallaInicial.obtenerModo();
+	}	
+	
+	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
+		return this.pantallaIngresoNombre;
 	}
 
 }

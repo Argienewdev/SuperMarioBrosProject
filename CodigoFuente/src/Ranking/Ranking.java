@@ -20,7 +20,7 @@ public class Ranking implements Serializable {
 		topJugadores.add(jugador);
 	}
 	
-	public List<Jugador> obtenerTopRanking() {
+    public List<Jugador> obtenerTopRanking() {
 		//Ordena la lista en forma descendente
 		Collections.sort(topJugadores,Collections.reverseOrder());
 		List<Jugador> top5 = new ArrayList<>();
@@ -33,5 +33,13 @@ public class Ranking implements Serializable {
 		return top5;
 	}
 	
+    public void obtenerTopRan() {
+		//Ordena la lista en forma descendente
+		Collections.sort(topJugadores,Collections.reverseOrder());
+		int i = 0;
+		for (Jugador jug: topJugadores) {
+			System.out.println(jug.obtenerNombre()+" "+jug.obtenerPuntaje());
+		}
+	}
 
 }

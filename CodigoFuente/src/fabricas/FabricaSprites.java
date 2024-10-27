@@ -131,9 +131,7 @@ public abstract class FabricaSprites {
 
 	public abstract Sprite getMonedaEncendida();
 	
-	public abstract Sprite getFireballPrimeraTransicion();
-	
-	public abstract Sprite getFireballSegundaTransicion();
+	public abstract Sprite getBolaDeFuego();
 	
 	public abstract Sprite getLadrillo();
 	

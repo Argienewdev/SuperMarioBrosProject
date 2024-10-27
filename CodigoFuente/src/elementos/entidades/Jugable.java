@@ -1,8 +1,6 @@
 package elementos.entidades;
 
 import java.awt.Point;
-import java.io.Serializable;
-
 import elementos.Sprite;
 import elementos.powerUps.Monedas;
 import fabricas.FabricaSprites;
@@ -41,12 +39,9 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void perderVida() {
-		if (vidas > 1)
-			this.vidas--;
-		else {
-			vidas = 0;
+		vidas --;
+		if (vidas == 0) 
 			muerte();
-		}
 	}
 	
 	public void ganarPuntos(int puntos) {
@@ -115,6 +110,7 @@ public abstract class Jugable extends Entidad  {
 	public void setRetrocediendo(boolean retrocediendo) {
 		this.retrocediendo = retrocediendo;
 	}
+	
 	public boolean getAvanzando() {
 		return this.avanzando;
 	}
@@ -132,4 +128,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+
+	public abstract void realizarAccionEspecial();
+	
 }
