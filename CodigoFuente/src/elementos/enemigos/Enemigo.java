@@ -26,6 +26,10 @@ public abstract class Enemigo extends NoJugable {
     public int getPuntosSustraidosPorMuerteCausada() {
         return this.puntosSustraidosPorMuerteCausada;
     }
+    
+    public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+    
+    public abstract void eliminarEntidadGraficamente(FabricaSprites fabricaSprites);
 
     public abstract void aceptarVisitante(Visitante visitante);
    

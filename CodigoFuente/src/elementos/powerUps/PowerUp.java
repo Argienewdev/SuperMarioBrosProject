@@ -33,6 +33,10 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract int obtenerPuntosPorFuego();
 	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+	
+    public abstract void eliminarEntidadGraficamente(FabricaSprites fabricaSprites);
+	
 	public boolean estaDentroDeBloqueDePreguntas() {
 		return this.estaDentroDeBloqueDePreguntas;
 	}

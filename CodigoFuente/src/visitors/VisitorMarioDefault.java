@@ -32,7 +32,11 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        goomba.eliminarDelNivel();
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad) &&
+    		!goomba.fueRemovido()) {
+            goomba.setRemovido(true);
+            this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
@@ -95,7 +99,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	System.out.println("Visite a la princesa");
     	miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
     }
 

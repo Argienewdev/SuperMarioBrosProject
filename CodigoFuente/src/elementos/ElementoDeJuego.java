@@ -26,11 +26,12 @@ public abstract class ElementoDeJuego implements Visitado {
     protected ObserverGrafico observerGrafico;
     
 	@SuppressWarnings("exports")
-	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante) {
+	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
 		Point posicionConsiderandoSprite = getPosicionConsiderandoSprite(posicion, sprite);
 		this.posicion = posicionConsiderandoSprite;
 		this.visitante = visitante;
+		this.observerGrafico = observerGrafico;
 		int ancho = sprite.getAnchoImagen();
 		int alto = sprite.getAltoImagen();
 		int x =  posicionConsiderandoSprite.x;

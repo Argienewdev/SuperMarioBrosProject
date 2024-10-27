@@ -4,6 +4,7 @@ import java.awt.Point;
 import elementos.Sprite;
 import elementos.powerUps.Monedas;
 import fabricas.FabricaSprites;
+import observers.ObserverGrafico;
 import observers.ObserverLogicoJugable;
 import visitors.Visitante;
 
@@ -23,8 +24,9 @@ public abstract class Jugable extends Entidad  {
 	
 	private ObserverLogicoJugable observerLogico;
 	
-	public Jugable(Sprite sprite, Point posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
+	public Jugable(Sprite sprite, Point posicion, Visitante visitor, 
+				   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
 		this.enElAire = false;
@@ -35,13 +37,15 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void ganarVida() {
-		this.vidas += 1;
+		this.vidas++;
 	}
 	
 	public void perderVida() {
-		vidas --;
-		if (vidas == 0) 
+		this.vidas--;
+		if (vidas == 0) { 
+			//TODO revisar si es necesario
 			muerte();
+		}
 	}
 	
 	public void ganarPuntos(int puntos) {
@@ -67,9 +71,7 @@ public abstract class Jugable extends Entidad  {
 	public Monedas getMonedas() {
 		return this.monedas;
 	}
-	
-	public abstract void aceptarVisitante(Visitante visitante);
-	
+		
 	public boolean getColisionAbajo() {
 		return this.colisionAbajo;
 	}
@@ -126,6 +128,8 @@ public abstract class Jugable extends Entidad  {
 	public void muerte() {
 		observerLogico.actualizar();
 	}
+	
+	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 

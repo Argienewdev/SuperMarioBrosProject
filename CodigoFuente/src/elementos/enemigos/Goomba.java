@@ -22,10 +22,19 @@ public class Goomba extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		if(this.removido) {
+			eliminarEntidadGraficamente(fabricaSprites);
+		}
 	}
-	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
-		//this.setSprite(fabricaSprites.getGoombaAplastado());
-		this.setSprite(fabricaSprites.getSpriteInvisible());
-
+	
+	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+		if(getContadorTicks() < TICKS_HASTA_ELIMINAR_CADAVER) {
+			this.setRemovido(true);
+			this.setSprite(fabricaSprites.getGoombaAplastado());
+		} else if(getContadorTicks() == TICKS_HASTA_ELIMINAR_CADAVER) {
+			this.setSprite(fabricaSprites.getSpriteInvisible());
+		} else {
+			this.eliminarDelNivel();
+		}
 	}
 } 

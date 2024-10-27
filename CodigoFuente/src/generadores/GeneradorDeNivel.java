@@ -124,7 +124,6 @@ public class GeneradorDeNivel {
 	                case 8: {
 	                	Piso piso = this.fabricaPlataformas.getPiso(posicion);
 	                	nivel.addPlataforma(piso);
-	                	System.out.println("Genere el piso");
 	                	break;
 	                } 
 	                case 20: {

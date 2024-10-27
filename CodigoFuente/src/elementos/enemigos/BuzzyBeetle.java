@@ -23,7 +23,7 @@ public class BuzzyBeetle extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
-			this.setSprite(fabricaSprites.getSpriteInvisible());
+			eliminarEntidadGraficamente(fabricaSprites);
 		}else if(this.getVelocidadDireccional().x == 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleReversoQuieto());
 		} else if(this.getVelocidadDireccional().x < 0) {
@@ -33,7 +33,8 @@ public class BuzzyBeetle extends Enemigo {
 		}
 		
 	}
-	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	
+	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
 

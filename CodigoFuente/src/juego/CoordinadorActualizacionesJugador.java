@@ -23,7 +23,6 @@ public class CoordinadorActualizacionesJugador {
 	
 	public void actualizar() {
 		actualizarPosicion();
-		System.out.println(marioJugable.getPosicion().y);
 		marioJugable.actualizarSprite(fabricaSprites);
 		actualizarObserverMario();
 	}

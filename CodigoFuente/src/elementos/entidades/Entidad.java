@@ -9,19 +9,19 @@ import visitors.Visitante;
 public abstract class Entidad extends ElementoDeJuego {
     
     protected Point velocidadDireccional;
-    
-    protected ObserverGrafico observerGrafico;
-    
+        
 	protected boolean colisionAbajo;
 	
 	protected boolean colisionArriba;
 	
 	protected int contadorTicks;
     
-    public Entidad(Sprite sprite, Point posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
+    public Entidad(Sprite sprite, Point posicion, Visitante visitor,
+    			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
+		this.velocidadDireccional = velocidadDireccional;
 		this.contadorTicks = 0;
 	}
 

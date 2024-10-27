@@ -37,8 +37,7 @@ public class BolaDeFuego extends NoJugable {
 		return miJugador;
 	}
 	
-	@Override
-	public void elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		// TODO Auto-generated method stub
 		
 	}

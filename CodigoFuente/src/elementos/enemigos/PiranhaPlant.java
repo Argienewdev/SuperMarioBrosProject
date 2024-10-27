@@ -41,7 +41,7 @@ public class PiranhaPlant extends Enemigo {
 		// TODO Auto-generated method stub
 		// Segun su velocidad direccional actualizar el sprite
 	}
-	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	public void  eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
 

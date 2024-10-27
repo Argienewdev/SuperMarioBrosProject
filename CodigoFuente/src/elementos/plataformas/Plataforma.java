@@ -5,16 +5,17 @@ import java.awt.Point;
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public abstract class Plataforma extends ElementoDeJuego{
+public abstract class Plataforma extends ElementoDeJuego {
 	
 	protected boolean solido;
 	
 	protected boolean removido;
 	
-	public Plataforma(Sprite sprite, Point posicion, Visitante visitor) {
-		super(sprite, posicion, visitor);
+	public Plataforma(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		removido = false;
 	}
 	

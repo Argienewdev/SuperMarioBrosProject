@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
 import fabricas.FabricaSprites;
+import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class ContextoMario extends Jugable {
@@ -14,9 +15,10 @@ public class ContextoMario extends Jugable {
 	
 	private boolean cambiarEstado;
 	
-	public ContextoMario(Sprite sprite, Point posicion,
-						 Visitante visitor, int vidas, MarioDefault estadoMario) {
-		super(sprite, posicion, visitor);
+	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, 
+						 Point velocidadDireccional, ObserverGrafico observerGrafico,
+						 int vidas, MarioDefault estadoMario) {
+		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
 		this.estadoMario = estadoMario;
 		this.cambiarEstado = false;
 		estadoMario.setContext(this);

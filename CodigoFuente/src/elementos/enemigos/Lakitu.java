@@ -26,10 +26,10 @@ public class Lakitu extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		// Segun su velocidad direccional actualizar el sprite
+		//TODO
 	}
-	public void  elminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	
+	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
     
