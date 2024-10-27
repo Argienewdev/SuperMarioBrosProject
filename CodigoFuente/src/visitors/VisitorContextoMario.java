@@ -5,7 +5,6 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
-import juego.Nivel;
 
 public class VisitorContextoMario implements Visitante {
 	
