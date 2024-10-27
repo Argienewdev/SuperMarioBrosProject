@@ -81,8 +81,6 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-    	this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorSuper());
-    	monedas.eliminarDelNivel();
     }
 
     @Override

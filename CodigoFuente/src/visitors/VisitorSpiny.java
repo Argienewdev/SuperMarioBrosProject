@@ -22,7 +22,6 @@ public class VisitorSpiny implements Visitante {
 
 	@Override
 	public void visitarSpiny(Spiny spiny) {
-		// TODO Auto-generated method stub
 		
 	}
 

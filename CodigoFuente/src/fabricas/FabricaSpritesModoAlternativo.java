@@ -315,12 +315,12 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     @Override
     public Sprite getTuberia(int altura) {
     	String rutaAux = rutaACarpeta;
-    	if (altura >= 0 && altura <= 5) {
-    		rutaAux += "/spritesModoAlternativo/tuberiaPequenia.png";
-    	} else if (altura > 5 && altura <= 10) {
+    	if (altura== 1) {
+    		rutaAux += "/spritesModoAlternativo/tuberiaBaja.png";
+    	} else if (altura== 2) {
     		rutaAux += "/spritesModoAlternativo/tuberiaMediana.png";
-    	} else if (altura > 10) {
-    		rutaAux += "/spritesModoAlternativo/tuberiaMediana.png";
+    	} else if (altura== 3) {
+    		rutaAux += "/spritesModoAlternativo/tuberiaAlta.png";
     	}
         return new Sprite(rutaAux);
     }

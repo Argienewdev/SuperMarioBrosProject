@@ -98,7 +98,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarMonedas(Monedas monedas) {
-		monedas.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		monedas.eliminarDelNivel();
 	}
 
 	@Override
@@ -117,7 +117,8 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {}
+	public void visitarBandera(Bandera bandera) {
+	}
 
 	@Override
 	public void visitarTuberia(Tuberia tuberia) {}

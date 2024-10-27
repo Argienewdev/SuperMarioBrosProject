@@ -19,20 +19,22 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -116,9 +118,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // Implementar la lógica para Mario Invulnerable si es necesario
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
 	@Override
 	public void visitarPiso(Piso piso) {}
