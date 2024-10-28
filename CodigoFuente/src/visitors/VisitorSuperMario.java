@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -48,7 +50,13 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        contextoKoopa.cambiarEstado(nuevoEstado);
+	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+		}
     }
 
     @Override

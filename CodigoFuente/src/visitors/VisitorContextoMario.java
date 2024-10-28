@@ -22,9 +22,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-			otorgarPuntosYEliminar(buzzyBeetle);
-    	}
+		buzzyBeetle.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -35,9 +33,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-			otorgarPuntosYEliminar(goomba);
-    	}
+		goomba.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
