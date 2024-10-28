@@ -357,5 +357,40 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     public Sprite getSpriteInvisible() {
     	return new Sprite(rutaACarpeta + "/spritesModoOriginal/spriteInvisible.png");
     }
+    
+    @Override
+	public Sprite getMarioRecuperacionFrontalQuieto() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionFrontalQuieto.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionFrontalCaminando() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionFrontalCaminando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionCayendo() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioDefaultFrontalCayendo.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionFrontalSaltando() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionFrontalSaltando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoQuieto() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionReversoQuieto.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoCaminando() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionReversoCaminando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoSaltando() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/marioRecuperacionReversoSaltando.png");
+	}
 
 }

@@ -40,8 +40,8 @@ public class FlorDeFuego extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(removido) {
-			eliminarEntidadGraficamente(fabricaSprites);
+		if(this.getRemovido()) {
+			this.eliminarEntidadGraficaYLogicamente(fabricaSprites);
 		}else {
 			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
 				this.setSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());

@@ -25,7 +25,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+			buzzyBeetle.setRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
@@ -35,17 +38,19 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
+    		goomba.setRemovido(true);
+			this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Auto-generated method stub
+		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Auto-generated method stub
     }
 
     @Override
