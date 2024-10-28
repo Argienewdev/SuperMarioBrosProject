@@ -9,89 +9,79 @@ import elementos.powerUps.*;
 public class VisitorPiranhaPlant implements Visitante {
     
     protected PiranhaPlant miEntidad;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
 
     public VisitorPiranhaPlant(PiranhaPlant miEntidad) {
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // TODO Auto-generated method stub
+        detectorDireccionColision.verificarColision(this.miEntidad,buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Auto-generated method stub
+    	 detectorDireccionColision.verificarColision(this.miEntidad,spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad,goomba);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad,lakitu);
     }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant planta) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPiranhaPlant(PiranhaPlant planta) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarBandera(Bandera bandera) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarTuberia(Tuberia tuberia) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -112,48 +102,40 @@ public class VisitorPiranhaPlant implements Visitante {
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+        contextoMario.cambiarEstado(new MarioRecuperacion());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
         ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioDefault();
-        contextoMario.cambiarEstado(nuevoEstado);
+        contextoMario.cambiarEstado(new MarioRecuperacion());
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Auto-generated method stub
+    	detectorDireccionColision.verificarColision(this.miEntidad,contextoKoopaTroopa);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPiso(Piso piso) {
-        // TODO Auto-generated method stub
     }
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
+	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
+		bolaDeFuego.eliminarDelNivel();
 	}
     
 }

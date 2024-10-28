@@ -69,7 +69,7 @@ public class ControladorVistas {
 		ventana.setVisible(true);
 		ventana.addWindowListener(new WindowAdapter() { 
 			public void  windowClosing (WindowEvent e) {
-				juego.cierreDeJuego();
+				//juego.cierreDeJuego();
 			}	
 		});
 	}

@@ -71,25 +71,21 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
         superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
     	florDeFuego.setRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
     	champinionVerde.setRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
         estrella.setRemovido(true);
     }
 

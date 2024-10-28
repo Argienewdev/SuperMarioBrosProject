@@ -41,7 +41,7 @@ public class Estrella extends PowerUp {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.getRemovido()) {
-			this.eliminarEntidadGraficaYLogicamente(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 		}else {
 			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
 				this.setSprite(fabricaSprites.getEstrellaEncendida());

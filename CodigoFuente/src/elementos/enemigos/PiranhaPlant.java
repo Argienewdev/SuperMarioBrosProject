@@ -37,10 +37,10 @@ public class PiranhaPlant extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
+		// TODO actualizarSprite piranhaPlant
 		// Segun su velocidad direccional actualizar el sprite
 	}
-	public void  eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites) {
+	public void  eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
 

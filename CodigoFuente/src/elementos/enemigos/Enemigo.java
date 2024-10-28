@@ -31,23 +31,38 @@ public abstract class Enemigo extends NoJugable {
     }
 
     public void moverDerecha() {
-    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.setVelocidadDireccional(velocidad);
+    	}else {
+    		Point velocidad = new Point(VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
+    		this.setVelocidadDireccional(velocidad);
+    	}
     }
     
     public void moverIzquierda() {
-    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.setVelocidadDireccional(velocidad);
+    	}else {
+    		Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
+    		this.setVelocidadDireccional(velocidad);
+    	}
     }
     
     public void invertirDireccion() {
-    	Point velocidad = new Point(-this.getVelocidadDireccional().x, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.setVelocidadDireccional(velocidad);
+    	}else {
+    		Point velocidad = new Point(-this.getVelocidadDireccional().x, this.getVelocidadDireccional().y);
+    		this.setVelocidadDireccional(velocidad);
+    	}
     }
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if(this.removido) {
-			eliminarEntidadGraficaYLogicamente(fabricaSprites);
+			eliminarEntidadGrafica(fabricaSprites);
 			this.setVelocidadDireccional(new Point(0, 0));
 		}
     }
@@ -56,7 +71,7 @@ public abstract class Enemigo extends NoJugable {
     	return VELOCIDAD_HORIZONTAL_ENEMIGO;
     }
     
-    public abstract void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites);
+    public abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
 
     public abstract void aceptarVisitante(Visitante visitante);
    

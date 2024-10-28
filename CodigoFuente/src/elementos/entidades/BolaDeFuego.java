@@ -29,14 +29,14 @@ public class BolaDeFuego extends NoJugable {
 	}
 
 	public void eliminarDelNivel() {
-		//TODO
+		//TODO eliminarDelNivel();
 	}
 
 	public Jugable obtenerJugador() {
 		return miJugador;
 	}
 	
-	public void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites) {
+	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		// TODO Auto-generated method stub
 		
 	}
