@@ -12,7 +12,7 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	public void actualizarTiempo (int tiempoDelta) {
-		tiempoEnRecuperacion -= tiempoDelta;
+		tiempoEnRecuperacion--;
 		if (tiempoEnRecuperacion <= 0)
 			contexto.cambiarEstado(new MarioDefault());
 	}
