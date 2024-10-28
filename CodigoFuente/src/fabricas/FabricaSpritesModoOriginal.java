@@ -317,14 +317,13 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     	return new Sprite(rutaACarpeta + "/spritesModoOriginal/piso.png");
     }
 
-    @Override
     public Sprite getTuberia(int altura) {
     	String rutaAux = rutaACarpeta;
-    	if (altura == 1) {
-    		rutaAux += "/spritesModoOriginal/tuberiaPequenia.png";
-    	} else if (altura == 2) {
+    	if (altura== 1) {
+    		rutaAux += "/spritesModoOriginal/tuberiaBaja.png";
+    	} else if (altura== 2) {
     		rutaAux += "/spritesModoOriginal/tuberiaMediana.png";
-    	} else if (altura == 3) {
+    	} else if (altura== 3) {
     		rutaAux += "/spritesModoOriginal/tuberiaAlta.png";
     	}
         return new Sprite(rutaAux);

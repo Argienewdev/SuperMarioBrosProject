@@ -15,7 +15,7 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	
 	public Jugador () {
-		nombre = null;
+		nombre = "---";
 		puntaje = 0;
 	}
 	
@@ -25,7 +25,7 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	
 	public void actualizarPuntos(int puntaje) {
-		puntaje = puntaje;
+		this.puntaje = puntaje;
 	}
 
 	public String obtenerNombre() {

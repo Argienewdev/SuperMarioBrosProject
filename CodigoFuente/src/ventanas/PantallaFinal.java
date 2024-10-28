@@ -37,7 +37,7 @@ public class PantallaFinal extends JLayeredPane {
 
         mensajeFinal();
         configurarBotones();
-        puntajeJugador();
+//        puntajeJugador();
         asignarAccesosTeclado();
     }
 
@@ -72,7 +72,7 @@ public class PantallaFinal extends JLayeredPane {
         }
     }
     
-    private void puntajeJugador() {
+    public void puntajeJugador(int puntaje) {
         puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
         puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
         puntajeLabel.setForeground(Color.WHITE);

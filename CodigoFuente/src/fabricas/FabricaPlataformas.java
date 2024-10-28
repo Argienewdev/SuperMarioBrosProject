@@ -54,8 +54,9 @@ public class FabricaPlataformas {
 	public Tuberia getTuberiaVacia(Point posicion, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		int ancho = 100;
+		int alturaEscalada=altura*50;
 		PiranhaPlant piranhaPlant = null;
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, altura, ancho);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitor = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.setVisitor(visitor);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
@@ -69,8 +70,9 @@ public class FabricaPlataformas {
 	public Tuberia getTuberiaConPiranhaPlant(Point posicion, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		int ancho = 100;
+		int alturaEscalada=altura*50;
 		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion);
-		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, altura, ancho);
+		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.setVisitor(visitorTuberia);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
