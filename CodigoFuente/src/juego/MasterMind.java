@@ -44,6 +44,7 @@ public class MasterMind {
 		if(hayNoJugableParaRemover) {
 			noJugableARemover.incrementarContadorTicks();
 			if(noJugableARemover.getContadorTicks() > noJugableARemover.obtenerTicksAnimacion()) {
+				noJugableARemover.eliminarDelNivel();
 				noJugableARemover = null;
 				hayNoJugableParaRemover = false;
 			}

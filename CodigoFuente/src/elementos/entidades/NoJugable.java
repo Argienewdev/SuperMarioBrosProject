@@ -22,11 +22,10 @@ public abstract class NoJugable extends Entidad {
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 	
-    public abstract void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites);
+    public abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
-		this.removido = true;
 	}
 	
 	public int obtenerTicksAnimacion() {
