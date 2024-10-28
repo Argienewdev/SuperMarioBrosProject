@@ -145,8 +145,10 @@ public class MasterMind {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
+			if(powerUp.getVelocidadDireccional().x == 0) {
+				powerUp.moverDerecha();
+			}
 			aplicarGravedad(powerUp);
-			powerUp.moverDerecha();
 			cambiarYVerificarPosicionHitboxDePowerUp(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
