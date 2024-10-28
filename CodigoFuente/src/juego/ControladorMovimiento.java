@@ -9,9 +9,9 @@ import ventanas.DimensionesConstantes;
 public class ControladorMovimiento {
 	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 7;
 	
-	private static final int FUERZA_SALTO = -24;
+	private static final int FUERZA_SALTO = -30;
 	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 30;
 	
 	private static final int GRAVEDAD = 2;
 	

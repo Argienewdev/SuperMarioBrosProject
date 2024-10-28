@@ -182,19 +182,21 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
+		int duracionPantallaEntreNiveles = 1000;
+		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
      	
 		pantallaDeJuego.cambiarDeNivel();
-		
-		Timer timer = new Timer(2000, new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                mostrarPantallaDeJuego();
-	            }
-	        });
-	        timer.setRepeats(false);
-	        timer.start();  
+		ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mostrarPantallaDeJuego();
+            }
+		};
+		Timer timer = new Timer(duracionPantallaEntreNiveles, listener);
+        timer.setRepeats(false);
+        timer.start();  
 	}
 	
 	public void cerrarJuego() {
