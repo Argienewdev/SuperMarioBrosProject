@@ -68,6 +68,7 @@ public class ControladorVistas {
 		ventana.pack();
 		ventana.setVisible(true);
 		ventana.addWindowListener(new WindowAdapter() { 
+			@SuppressWarnings("unused")
 			public void  WindowClosing (WindowEvent e) {
 				juego.cierreDeJuego();
 			}	
@@ -148,9 +149,12 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
-		ventana.setContentPane(pantallaRanking);
-		ventana.revalidate();
-		ventana.repaint();
+	    SwingUtilities.invokeLater(() -> {
+	        ventana.getContentPane().setVisible(false);
+	        ventana.setContentPane(pantallaRanking);
+	        ventana.getContentPane().setVisible(true);   
+	        ventana.validate(); 
+	    });
 	}
 	
 	public void accionarPantallaIngresoNombre() {
@@ -161,10 +165,12 @@ public class ControladorVistas {
 	}
 	
 	public void refrescar(){
+
 		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
 			pantallaInicial.actualizarFoco();
 		}else {
 			pantallaDeJuego.refrescar();
+		
 		}
 		ventana.revalidate();
 		ventana.repaint();
@@ -204,10 +210,12 @@ public class ControladorVistas {
 		juego.cierreDeJuego();
 	}
 	
+	@SuppressWarnings("exports")
 	public Ranking obtenerRanking() {
 		return juego.obtenerRanking();
 	}
 
+	@SuppressWarnings("exports")
 	public void establecerJugador (Jugador jugador) {
 		pantallaIngresoNombre.establecerJugador(jugador);
 	}
