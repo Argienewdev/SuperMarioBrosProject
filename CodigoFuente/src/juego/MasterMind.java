@@ -73,16 +73,16 @@ public class MasterMind {
 	
 	private void cambiarYVerificarPosicionHitboxDePowerUp(NoJugable noJugable) {
 		cambiarPosicionXHitboxDeNoJugable(noJugable);
-		verificarColisionesPowerUps(noJugable);
+		verificarColisiones(noJugable);
 		cambiarPosicionYHitboxDeNoJugable(noJugable);
-		verificarColisionesPowerUps(noJugable);
+		verificarColisiones(noJugable);
 	}
 	
 	private void cambiarYVerificarPosicionHitboxDeNoJugable(NoJugable noJugable) {
 		cambiarPosicionXHitboxDeNoJugable(noJugable);
-		verificarColisionesEnemigos(noJugable);
+		verificarColisiones(noJugable);
 		cambiarPosicionYHitboxDeNoJugable(noJugable);
-		verificarColisionesEnemigos(noJugable);
+		verificarColisiones(noJugable);
 	}
 	
 	private void cambiarPosicionXHitboxDeNoJugable(NoJugable noJugable) {
@@ -97,7 +97,7 @@ public class MasterMind {
 		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
-	private void verificarColisionesEnemigos(NoJugable noJugable) {
+	private void verificarColisiones(NoJugable noJugable) {
 		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
 			noJugable.eliminarDelNivel();
 		} else {
@@ -110,24 +110,6 @@ public class MasterMind {
 			if(noJugable.getRemovido()) {
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
-			}
-		}
-		noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
-	}
-	
-	private void verificarColisionesPowerUps(NoJugable noJugable) {
-		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
-			noJugable.eliminarDelNivel();
-		} else {
-			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-				if(noJugable.huboColision(elemento) && noJugable != elemento) {
-					elemento.aceptarVisitante(noJugable.getVisitor());
-					noJugable.aceptarVisitante(elemento.getVisitor());
-				}
-				if(noJugable.getRemovido()) {
-					hayNoJugableParaRemover = true;
-					noJugableARemover = noJugable;
-				}
 			}
 		}
 		noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());

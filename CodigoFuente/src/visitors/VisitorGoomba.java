@@ -33,25 +33,39 @@ public class VisitorGoomba implements Visitante {
     }
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {}
+    public void visitarLakitu(Lakitu lakitu) {
+    	
+    }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+    	
+    }
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+    	
+    }
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+    	
+    }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    	
+    }
 
     @Override
-    public void visitarEstrella(Estrella estrella) {}
+    public void visitarEstrella(Estrella estrella) {
+    	
+    }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMonedas(Monedas monedas) {
+    	
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
@@ -60,12 +74,14 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
+        if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad) && !this.miEntidad.getRemovido()) {
             ContextoMario contextoMario = marioDefault.getContext();
             int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miEntidad.getNivel().reiniciarNivel();
+        }else {
+            detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
         }
     }
 
@@ -86,30 +102,48 @@ public class VisitorGoomba implements Visitante {
     }
     
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    	
+    }
 
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
-
-    @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
-
-    @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	
+    }
 
     @Override
-    public void visitarPiso(Piso piso) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	
+    }
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    	
+    }
 
     @Override
-    public void visitarBandera(Bandera bandera) {}
+    public void visitarPiso(Piso piso) {
+    	
+    }
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    	
+    }
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBandera(Bandera bandera) {
+    	
+    }
+
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {
+    	
+    }
+
+    @Override
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    	
+    }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
@@ -118,15 +152,15 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // No se requiere comportamiento específico por ahora
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // No se requiere comportamiento específico por ahora
     }
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		
+	}
     
 }

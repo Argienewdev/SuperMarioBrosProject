@@ -143,7 +143,7 @@ public class ControladorMovimiento {
 		        //en la posicion inicial y traspasa el piso
 			}else {
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
-				    if (entidad.huboColision(elemento) && !elemento.getRemovido()) {
+				    if (entidad.huboColision(elemento)) {
 				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());

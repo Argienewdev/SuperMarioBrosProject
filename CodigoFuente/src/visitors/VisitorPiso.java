@@ -28,15 +28,17 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarGoomba(Goomba goomba) {    
+    public void visitarGoomba(Goomba goomba) {
         detectorDireccionColision.verificarColision(this.miEntidad, goomba);
     }
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {}
+    public void visitarLakitu(Lakitu lakitu) {
+    }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant planta) {}
+    public void visitarPiranhaPlant(PiranhaPlant planta) {
+    }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
@@ -44,7 +46,8 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego flor) {}
+    public void visitarFlorDeFuego(FlorDeFuego flor) {
+    }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
@@ -57,39 +60,51 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMonedas(Monedas monedas) {
+    }
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {}
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    }
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {}
+    public void visitarSuperMario(SuperMario superMario) {
+    }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    }
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {}
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    }
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
 
     @Override
-    public void visitarBandera(Bandera bandera) {}
+    public void visitarBandera(Bandera bandera) {
+    }
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {}
+    public void visitarTuberia(Tuberia tuberia) {
+    }
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
