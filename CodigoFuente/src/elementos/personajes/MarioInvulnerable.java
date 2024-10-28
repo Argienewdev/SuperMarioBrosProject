@@ -1,5 +1,8 @@
 package elementos.personajes;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import ventanas.DimensionesConstantes;
@@ -8,12 +11,26 @@ import visitors.VisitorMarioInvulnerable;
 
 public class MarioInvulnerable  extends MarioDefault {
 
-	protected static final int DURACION = 10;
+	protected int duracion;
+	
+	private EstadoMario estadoPrevio;
+	
+	public MarioInvulnerable (EstadoMario estadoPrevio) {
+		this.estadoPrevio = estadoPrevio;
+		this.duracion = 600;
+	}
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarMarioInvulnerable(this);
     }
+	
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+		Rectangle nuevaHitbox = new Rectangle(this.getContext().getPosicion().x, this.getContext().getPosicion().y + (this.getContext().getSprite().getAltoImagen() - obtenerSpriteInicial(fabricaSprites).getAltoImagen()), obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
+		this.getContext().setPosicion(nuevaPosicion);
+		this.getContext().setHitbox(nuevaHitbox);
+	}
 	
 	@Override
 	public Visitante getVisitor() {
@@ -21,6 +38,8 @@ public class MarioInvulnerable  extends MarioDefault {
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		//TODO esta llamada no va aca
+		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
 			if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
@@ -80,5 +99,11 @@ public class MarioInvulnerable  extends MarioDefault {
 		return contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoCaminando()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoQuieto()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoSaltando());
+	}
+	
+	public void actualizarTiempo () {
+		duracion--;
+		if (duracion <= 0)
+			contexto.cambiarEstado(estadoPrevio);
 	}
 }

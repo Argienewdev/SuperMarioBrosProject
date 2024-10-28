@@ -99,6 +99,10 @@ public class VisitorBolaDeFuego implements Visitante {
     public void visitarSuperMario(SuperMario superMario) {
         // Sin lógica específica
     }
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	// Sin logica especifica
+    }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {

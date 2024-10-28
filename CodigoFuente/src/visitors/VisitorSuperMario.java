@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -23,7 +25,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+			buzzyBeetle.setRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
@@ -33,22 +38,30 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
+    		goomba.setRemovido(true);
+			this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Auto-generated method stub
+		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        contextoKoopa.cambiarEstado(nuevoEstado);
+	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+		}
     }
 
     @Override
@@ -119,6 +132,8 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarPiso(Piso piso) {}

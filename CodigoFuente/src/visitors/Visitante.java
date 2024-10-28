@@ -58,6 +58,8 @@ public interface Visitante {
     
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable);
     
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion);
+    
     public void visitarPiso(Piso piso);
     
 }

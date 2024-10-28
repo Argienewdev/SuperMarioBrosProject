@@ -22,9 +22,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-			otorgarPuntosYEliminar(buzzyBeetle);
-    	}
+		buzzyBeetle.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -35,9 +33,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-			otorgarPuntosYEliminar(goomba);
-    	}
+		goomba.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -47,34 +43,21 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-		if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)) {
-			//otorgarPuntosYEliminar(koopaEnCaparazon.getContext());
-			//TODO si hacemos eso, el caparazon se elimina al instante porque mario sigue arriba del koopa
-    	}
+		koopaEnCaparazon.getContext().aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
-	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
-		}
+		koopaDefault.getContext().aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
 	public void visitarLakitu(Lakitu lakitu) {
-		if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miEntidad)) {
-			otorgarPuntosYEliminar(lakitu);
-    	}
+		lakitu.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
-	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-		//TODO Tengo entendido que la planta no se muere si mario le pega
-		//muere con bolas de fuego?
-	}
+	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
 	@Override
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -98,7 +81,8 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarMonedas(Monedas monedas) {
-		monedas.eliminarDelNivel();
+		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
+    	monedas.setRemovido(true);
 	}
 
 	@Override
@@ -114,11 +98,12 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	@Override
-	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
+	}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {
-	}
+	public void visitarBandera(Bandera bandera) {}
 
 	@Override
 	public void visitarTuberia(Tuberia tuberia) {}
@@ -140,6 +125,8 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+	
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 	
 	@Override
 	public void visitarPiso(Piso piso) {}

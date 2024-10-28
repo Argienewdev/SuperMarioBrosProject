@@ -10,7 +10,7 @@ public class VisitorGoomba implements Visitante {
 
     protected Goomba miEntidad;
     
-    DetectorDireccionColision detectorDireccionColision;
+    protected DetectorDireccionColision detectorDireccionColision;
 
     public VisitorGoomba(Goomba miEntidad) {
         this.miEntidad = miEntidad;
@@ -72,19 +72,23 @@ public class VisitorGoomba implements Visitante {
     @Override
     public void visitarSuperMario(SuperMario superMario) {
     	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
-	        superMario.getContext().reiniciarEstado();
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+	        superMario.getContext().cambiarEstado(marioRecuperacion);
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
-    		marioFuego.getContext().reiniciarEstado();
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+    		marioFuego.getContext().cambiarEstado(marioRecuperacion);
     	}
     }
-
+    
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}

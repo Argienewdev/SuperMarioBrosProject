@@ -7,11 +7,11 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.DimensionesConstantes;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 7;
+	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
 	
-	private static final int FUERZA_SALTO = -24;
+	private static final int FUERZA_SALTO = -30;
 	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 30;
 	
 	private static final int GRAVEDAD = 2;
 	
@@ -126,13 +126,14 @@ public class ControladorMovimiento {
 			boolean huboColision = false;
 			boolean marioChocoBordeIzquierdo = marioJugable.obtenerHitbox().x < 0;
 			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO;
+			boolean marioSeCayoDelMundo = marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO;
 			if(marioChocoBordeIzquierdo) {
 				huboColision = true;
 				this.marioJugable.retrotraerMovimientoHorizontal(0);
 			}else if(marioChocoBordeDerecho) {
 				huboColision = true;
 				this.marioJugable.retrotraerMovimientoHorizontal(DimensionesConstantes.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
-			} else if(marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO){
+			} else if(marioSeCayoDelMundo){
 		        huboColision = true;
 		        marioJugable.perderVida();
 		        marioJugable.reiniciarEstado();
@@ -149,9 +150,7 @@ public class ControladorMovimiento {
 				    }
 				}
 			}
-		    if(!huboColision) {
-		    	entidad.setPosicion(entidad.obtenerHitbox().getLocation());
-		    }
+			entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 		} else {
 	    	this.nivel.obtenerPartida().cambiarNivel();
 		}

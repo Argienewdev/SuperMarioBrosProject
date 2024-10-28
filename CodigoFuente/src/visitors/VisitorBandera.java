@@ -85,6 +85,8 @@ public class VisitorBandera implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        

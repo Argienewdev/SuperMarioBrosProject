@@ -10,8 +10,11 @@ public class VisitorChampinionVerde implements Visitante {
     
     protected ChampinionVerde miEntidad;
     
+    protected DetectorDireccionColision detectorDireccionColision;
+    
     public VisitorChampinionVerde(ChampinionVerde miEntidad) {
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -31,11 +34,11 @@ public class VisitorChampinionVerde implements Visitante {
     }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
+    	
     }
 
     @Override
@@ -44,6 +47,7 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, champinionVerde);
     }
 
     @Override
@@ -70,30 +74,26 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {

@@ -8,6 +8,7 @@ import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
+import ventanas.DimensionesConstantes;
 
 public class MasterMind {
 	
@@ -59,16 +60,32 @@ public class MasterMind {
 		}
 	}
 	
+	//TODO rudimentario, esto hace que los koopas se muevan en su caparazon
 	private void moverEnemigo(Enemigo enemigo) {
-		aplicarGravedad(enemigo);
-		cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
+		if(enemigo.getPosicion().x > (DimensionesConstantes.PANEL_ANCHO + 100)) {
+			enemigo.setVelocidadDireccional(new Point(0,0));
+		}else {
+			if(enemigo.getVelocidadDireccional().x == 0) {
+				enemigo.setVelocidadDireccional(new Point(-2, enemigo.getVelocidadDireccional().y));
+			}else {
+				aplicarGravedad(enemigo);
+				cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
+			}
+		}
+	}
+	
+	private void cambiarYVerificarPosicionHitboxDePowerUp(NoJugable noJugable) {
+		cambiarPosicionXHitboxDeNoJugable(noJugable);
+		verificarColisionesPowerUps(noJugable);
+		cambiarPosicionYHitboxDeNoJugable(noJugable);
+		verificarColisionesPowerUps(noJugable);
 	}
 	
 	private void cambiarYVerificarPosicionHitboxDeNoJugable(NoJugable noJugable) {
 		cambiarPosicionXHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
+		verificarColisionesEnemigos(noJugable);
 		cambiarPosicionYHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
+		verificarColisionesEnemigos(noJugable);
 	}
 	
 	private void cambiarPosicionXHitboxDeNoJugable(NoJugable noJugable) {
@@ -83,19 +100,26 @@ public class MasterMind {
 		noJugable.moverHitbox(nuevaPosicion);
 	}
 	
-	private void verificarColisiones(NoJugable noJugable) {
+	private void verificarColisionesEnemigos(NoJugable noJugable) {
 		boolean huboColision = false;
 		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
 			huboColision = true;
 			noJugable.eliminarDelNivel();
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+			for(ElementoDeJuego elemento : this.nivel.getPlataformas()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
 		        	huboColision = true;
 		            elemento.aceptarVisitante(noJugable.getVisitor());
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
+			for(ElementoDeJuego elemento : this.nivel.getEnemigos()) {
+				if(noJugable.huboColision(elemento) && noJugable != elemento) {
+					huboColision = true;
+					elemento.aceptarVisitante(noJugable.getVisitor());
+					noJugable.aceptarVisitante(elemento.getVisitor());
+				}
+			}
 			if(noJugable.getRemovido()) {
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
@@ -104,6 +128,36 @@ public class MasterMind {
 	    if(!huboColision) {
 	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
 	    }
+	}
+	
+	private void verificarColisionesPowerUps(NoJugable noJugable) {
+		boolean huboColision = false;
+		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
+			huboColision = true;
+			noJugable.eliminarDelNivel();
+		} else {
+			for(ElementoDeJuego elemento : this.nivel.getPlataformas()) {
+				if(noJugable.huboColision(elemento) && noJugable != elemento) {
+					huboColision = true;
+					elemento.aceptarVisitante(noJugable.getVisitor());
+					noJugable.aceptarVisitante(elemento.getVisitor());
+				}
+			}
+			for(ElementoDeJuego elemento : this.nivel.getPowerUps()) {
+				if(noJugable.huboColision(elemento) && noJugable != elemento) {
+					huboColision = true;
+					elemento.aceptarVisitante(noJugable.getVisitor());
+					noJugable.aceptarVisitante(elemento.getVisitor());
+				}
+			}
+			if(noJugable.getRemovido()) {
+				hayNoJugableParaRemover = true;
+				noJugableARemover = noJugable;
+			}
+		}
+		if(!huboColision) {
+			noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
+		}
 	}
 	
 	private void actualizarPosicionesPowerUps() {
@@ -120,7 +174,7 @@ public class MasterMind {
 			powerUp.incrementarContadorTicks();
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
 			aplicarGravedad(powerUp);
-			cambiarYVerificarPosicionHitboxDeNoJugable(powerUp);
+			cambiarYVerificarPosicionHitboxDePowerUp(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
 		}

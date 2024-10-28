@@ -1,33 +1,30 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorMarioDefault implements Visitante {
-
-    protected MarioDefault miEstado;
-    
-    protected DetectorDireccionColision detectorDireccionColision;
-    
-    protected ContextoMario miEntidad;
-
-    public VisitorMarioDefault(MarioDefault miEstado) {
-        this.miEstado = miEstado;
-        this.miEntidad = miEstado.getContext();
-        this.detectorDireccionColision = new DetectorDireccionColision();
-    }
-
-    @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-    		buzzyBeetle.setRemovido(true);
-            this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
-    	}
+public class VisitorMarioRecuperacion implements Visitante{
+	
+	private MarioRecuperacion miEstado;
+	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
+	private ContextoMario miEntidad;
+	 
+	public VisitorMarioRecuperacion (MarioRecuperacion miEstado) {
+		this.miEstado = miEstado;
+		this.miEntidad = miEstado.getContext();
+		this.detectorDireccionColision = new DetectorDireccionColision();
+	}
+	
+	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+			buzzyBeetle.setRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
@@ -45,7 +42,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+        // TODO Implementación pendiente
     }
 
     @Override
@@ -56,23 +53,21 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
-	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
-	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
-		}
+    		koopaDefault.getContext().setRemovido(true);
+            this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Implementación pendiente
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miEntidad)) {
+    		lakitu.setRemovido(true);
+            this.miEntidad.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Implementación pendiente
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -83,7 +78,7 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-        florDeFuego.setRemovido(true);
+    	florDeFuego.setRemovido(true);
     }
 
     @Override
@@ -99,10 +94,7 @@ public class VisitorMarioDefault implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-    	this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
-    	monedas.setRemovido(true);
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
@@ -137,19 +129,17 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {}
-    
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {}
+    
+	@Override
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
-    
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+
 }

@@ -50,7 +50,7 @@ public class ControladorVistas {
 		this.juego = juego;
 		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
-//		pantallaFinal= new PantallaFinal(this);
+		pantallaFinal= new PantallaFinal(this);
 		pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -134,7 +134,6 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaFinal() {
-		pantallaFinal= new PantallaFinal(this);
 		pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
 		ventana.setContentPane(pantallaFinal);
 	    ventana.revalidate();
@@ -184,19 +183,21 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
+		int duracionPantallaEntreNiveles = 1000;
+		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
      	
 		pantallaDeJuego.cambiarDeNivel();
-		
-		Timer timer = new Timer(2000, new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                mostrarPantallaDeJuego();
-	            }
-	        });
-	        timer.setRepeats(false);
-	        timer.start();  
+		ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mostrarPantallaDeJuego();
+            }
+		};
+		Timer timer = new Timer(duracionPantallaEntreNiveles, listener);
+        timer.setRepeats(false);
+        timer.start();  
 	}
 	
 	public void cerrarJuego() {
@@ -207,11 +208,6 @@ public class ControladorVistas {
 		return juego.obtenerRanking();
 	}
 
-	public void mostrarPantallaIngresoNombre(int puntaje) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public void establecerJugador (Jugador jugador) {
 		pantallaIngresoNombre.establecerJugador(jugador);
 	}

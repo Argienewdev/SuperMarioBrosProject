@@ -22,32 +22,36 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // TODO Auto-generated method stub
+    	buzzyBeetle.setRemovido(true);
+        this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Auto-generated method stub
+    	spiny.setRemovido(true);
+    	this.miEntidad.ganarPuntos(spiny.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        // TODO Auto-generated method stub
+    	goomba.setRemovido(true);
+    	this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Auto-generated method stub
+    	contextoKoopaTroopa.setRemovido(true);
+    	this.miEntidad.ganarPuntos(contextoKoopaTroopa.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        // TODO Auto-generated method stub
+    	koopaDefault.getContext().setRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
@@ -120,6 +124,8 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarPiso(Piso piso) {}

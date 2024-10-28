@@ -18,15 +18,18 @@ public class VisitorBloqueDePregunta implements Visitante {
     }
 
     @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {    
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
     }
 
     @Override
-    public void visitarSpiny(Spiny spiny) {    
+    public void visitarSpiny(Spiny spiny) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, spiny);
     }
 
     @Override
-    public void visitarGoomba(Goomba goomba) {    
+    public void visitarGoomba(Goomba goomba) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
     }
     
     @Override
@@ -35,96 +38,86 @@ public class VisitorBloqueDePregunta implements Visitante {
     }
     
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, lakitu);
     }
     
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
     
     
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {   
+        this.detectorDireccionColision.verificarColision(this.miEntidad, superChampinion);
     }
     
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
-    }
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        this.detectorDireccionColision.verificarColision(this.miEntidad, champinionVerde);
+
     }
     
     @Override
     public void visitarEstrella(Estrella estrella) {    
+        this.detectorDireccionColision.verificarColision(this.miEntidad, estrella);
     }
     
     @Override
-    public void visitarMonedas(Monedas monedas) {        
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {  
-    }
-
-    @Override
-    public void visitarSuperMario(SuperMario superMario) {        
-    }
-
-    @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
-    }
-
-    @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {    
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {  }
     
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    }
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
+
+    @Override
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+
+    @Override
+    public void visitarLadrillo(Ladrillo ladrillo) {}
     
     @Override
-    public void visitarTuberia(Tuberia tuberia) {    
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
-    }
+    public void visitarBandera(Bandera bandera) {}
+    
+    @Override
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {        
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {        
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
+
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
 	@Override
-	public void visitarPiso(Piso piso) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarPiso(Piso piso) {}
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
+		//TODO Si la bola de fuego choca de costado a este bloque, es eliminada
 	}
 
 }

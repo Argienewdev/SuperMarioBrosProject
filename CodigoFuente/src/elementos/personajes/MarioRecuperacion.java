@@ -4,28 +4,32 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import elementos.Sprite;
-import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import ventanas.DimensionesConstantes;
 import visitors.Visitante;
-import visitors.VisitorMarioFuego;
+import visitors.VisitorMarioRecuperacion;
 
-public class MarioFuego extends MarioDefault {
+public class MarioRecuperacion extends MarioDefault {
 	
-	protected FabricaEntidades fabricaEntidades;
+	private int tiempoEnRecuperacion;
 	
-	public MarioFuego(FabricaEntidades fabricaEntidades) {
-		this.fabricaEntidades = fabricaEntidades;
+	public MarioRecuperacion () {
+		this.tiempoEnRecuperacion = 300;
 	}
 	
-	@Override
-    public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarMarioFuego(this);
+	public void actualizarTiempo (int tiempoDelta) {
+		tiempoEnRecuperacion--;
+		if (tiempoEnRecuperacion <= 0)
+			contexto.cambiarEstado(new MarioDefault());
+	}
+	
+	 public void aceptarVisitante(Visitante visitante) {
+	        visitante.visitarMarioRecuperacion(this);
     }
 	
 	@Override
 	public Visitante getVisitor() {
-		return new VisitorMarioFuego(this);
+		 return new VisitorMarioRecuperacion(this);
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
@@ -36,21 +40,23 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		System.out.println("Actualizar Sprite");
+		actualizarTiempo();
 		Sprite aRetornar = null;
 		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
-			aRetornar = fabricaSprites.getMarioFuegoCayendo();
+			aRetornar = fabricaSprites.getMarioRecuperacionCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioFuegoFrontalSaltando();
+			aRetornar = fabricaSprites.getMarioRecuperacionFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioFuegoReversoSaltando();
+			aRetornar = fabricaSprites.getMarioRecuperacionReversoSaltando();
 		}else if(avanzando()) {
-			aRetornar = fabricaSprites.getMarioFuegoFrontalCaminando();
+			aRetornar = fabricaSprites.getMarioRecuperacionFrontalCaminando();
 		} else if(retrocediendo()){
-			aRetornar = fabricaSprites.getMarioFuegoReversoCaminando();
+			aRetornar = fabricaSprites.getMarioRecuperacionReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioFuegoFrontalQuieto();
+			aRetornar = fabricaSprites.getMarioRecuperacionFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioFuegoReversoQuieto();
+			aRetornar = fabricaSprites.getMarioRecuperacionReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
@@ -58,7 +64,7 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getMarioFuegoFrontalQuieto();
+		return fabricaSprites.getMarioRecuperacionFrontalQuieto();
 	}
 	
 	private boolean enElAire() {
@@ -82,35 +88,15 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.getSprite().equals(fabricaSprites.getMarioFuegoFrontalCaminando()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioFuegoFrontalQuieto()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioFuegoFrontalSaltando());
+		return contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionFrontalCaminando()) ||
+				contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionFrontalQuieto()) ||
+				contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionFrontalSaltando());
 	}
 	
 	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoCaminando()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoQuieto()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioFuegoReversoSaltando());
+		return contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionReversoCaminando()) ||
+				contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionReversoQuieto()) ||
+				contexto.getSprite().equals(fabricaSprites.getMarioRecuperacionReversoSaltando());
 	}
 
-	
-	public void realizarAccionEspecial() {	
-		lanzarBolaDeFuego();
-	}
-
-	private void lanzarBolaDeFuego() {
-		/*
-		int posX=(int)getContext().getPosicion().getX();
-		int posY=(int)getContext().getPosicion().getY()-50;
-		Point posicionInicialBolaDeFuego = new Point(posX,posY);
-		Point velocidadDireccionalBolaDeFuego = new Point(0,1);
-		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
-		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
-		*/
-	}
-	
-	public void actualizarTiempoDelta(int tiempoDelta) {
-		
-	}
-	
 }

@@ -137,6 +137,8 @@ public class VisitorPrincesa implements Visitante {
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
         // TODO Auto-generated method stub
     }
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarPiso(Piso piso) {

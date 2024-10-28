@@ -54,7 +54,7 @@ public class FabricaPlataformas {
 	public Tuberia getTuberiaVacia(Point posicion, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		int ancho = 100;
-		int alturaEscalada=altura*50;
+		int alturaEscalada = altura * 50;
 		PiranhaPlant piranhaPlant = null;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitor = new VisitorTuberia(tuberiaADevolver);
@@ -115,7 +115,7 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.setObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 5;
+		int identificadorPowerUp = 3;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
@@ -128,6 +128,7 @@ public class FabricaPlataformas {
 			}
 			case 1: {
 				Estrella estrella = this.fabricaEntidades.getEstrella(posicion);
+				nivel.addPowerUp(estrella);
 		        pantallaDeJuego.agregarLabel(estrella.getObserverGrafico());
 		        bloqueDePreguntaADevolver.setPowerUp(estrella);
 		        estrella.setBloquePregunta(bloqueDePreguntaADevolver);

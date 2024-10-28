@@ -38,9 +38,7 @@ public class VisitorTuberia implements Visitante {
     }
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant planta) {
-    	//TODO
-    }
+    public void visitarPiranhaPlant(PiranhaPlant planta) {}
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -108,10 +106,14 @@ public class VisitorTuberia implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		//TODO Si la bola de fuego choca de costado a este bloque, es eliminada
+	}
 }
