@@ -58,6 +58,7 @@ public class VisitorContextoMario implements Visitante {
 		if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
 		}
