@@ -96,8 +96,15 @@ public class MarioDefault implements EstadoMario {
 				contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoSaltando());
 	}
 
-	@Override
 	public void realizarAccionEspecial() {		
+	}
+	
+	public void actualizarTiempoDelta(int tiempoDelta) {
+		
+	}
+
+	public void actualizarTiempo(int tiempoDelta) {
+		//Implementado por estados que lo requieren
 	}
 	
 }

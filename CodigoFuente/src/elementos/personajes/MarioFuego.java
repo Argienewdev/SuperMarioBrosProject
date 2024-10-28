@@ -106,4 +106,8 @@ public class MarioFuego extends MarioDefault {
 		*/
 	}
 	
+	public void actualizarTiempoDelta(int tiempoDelta) {
+		
+	}
+	
 }

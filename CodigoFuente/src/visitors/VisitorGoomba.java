@@ -82,9 +82,11 @@ public class VisitorGoomba implements Visitante {
     		marioFuego.getContext().reiniciarEstado();
     	}
     }
-
+    
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}

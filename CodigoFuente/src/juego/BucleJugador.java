@@ -87,6 +87,7 @@ public class BucleJugador implements Runnable{
 	
 	private void tick() {
 		partida.actualizar();
+		partida.obtenerJugable().getEstado().actualizarTiempo((int)(NANOSEGUNDOS_POR_SEGUNDO / CANTIDAD_TICKS));
 	}
 	
 	private void render() {

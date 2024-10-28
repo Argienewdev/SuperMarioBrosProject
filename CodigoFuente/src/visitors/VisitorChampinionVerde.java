@@ -70,6 +70,8 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {

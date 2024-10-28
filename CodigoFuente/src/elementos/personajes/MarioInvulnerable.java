@@ -8,7 +8,13 @@ import visitors.VisitorMarioInvulnerable;
 
 public class MarioInvulnerable  extends MarioDefault {
 
-	protected static final int DURACION = 10;
+	protected int duracion = 10000;
+	
+	private EstadoMario estadoPrevio;
+	
+	public MarioInvulnerable (EstadoMario estadoPrevio) {
+		this.estadoPrevio = estadoPrevio;
+	}
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
@@ -80,5 +86,11 @@ public class MarioInvulnerable  extends MarioDefault {
 		return contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoCaminando()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoQuieto()) ||
 				contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoSaltando());
+	}
+	
+	public void actualizarTiempo (int tiempoDelta) {
+		duracion -= tiempoDelta;
+		if (duracion <= 0)
+			contexto.cambiarEstado(estadoPrevio);
 	}
 }

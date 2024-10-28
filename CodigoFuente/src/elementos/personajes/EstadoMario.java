@@ -17,6 +17,8 @@ public interface EstadoMario{
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
 	
-	public void realizarAccionEspecial();		
+	public void realizarAccionEspecial();
 	
+	public void actualizarTiempo(int tiempoDelta);
+		
 }
