@@ -43,15 +43,19 @@ public class ControladorVistas {
 	private Juego juego;
 	
 	public ControladorVistas(Juego juego){
-		sensorDeTeclasMenu = new SensorDeTeclasMenu();
-		pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
-		sensorDeTeclasJuego = new SensorDeTeclasJuego();
-		pantallaDeJuego = new PantallaDeJuego();
+		//TODO cuando apretas enter en la pantalla de ranking se sigue actualizando la pantalla inicial y escucha el
+		//enter. La solucion seria ponerle una bandera a todas las pantallas que se llame enfocada y que sea verdadera
+		//o falsa según sea necesario. Modificar esas banderas es responsabilidad del controlador de vistas. 
+		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
+		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
+		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		this.pantallaDeJuego = new PantallaDeJuego();
 		this.juego = juego;
-		pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
-		pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking());
-		pantallaFinal= new PantallaFinal(this);
-		pantallaIngresoNombre = new PantallaIngresoNombre(this);
+		this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
+		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
+		this.pantallaFinal= new PantallaFinal(this);
+		this.pantallaIngresoNombre = new PantallaIngresoNombre(this);
+		
 		configurarVentana();
 		RegistrarOyenteInicial();	
 	}
@@ -60,7 +64,7 @@ public class ControladorVistas {
 		ventana = new JFrame("Super Mario Bros");
 		ventana.setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.png")).getImage());
 		ventana.setVisible(true);
-		ventana.add(pantallaInicial);
+		accionarPantallaInicial();
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
 		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
@@ -117,16 +121,6 @@ public class ControladorVistas {
 	    ventana.revalidate();
 	    ventana.repaint();	
 	}
-
-	
-	public void accionarPantallaModoDeJuego() {
-		
-	}
-
-
-	public void cambiarModoDeJuego() {
-		
-	}
 	
 	public void mostrarPantallaDeJuego() {
 		ventana.setContentPane(pantallaDeJuego);
@@ -143,18 +137,38 @@ public class ControladorVistas {
 	}
 
 	public void mostrarPantallaInicial() {
-		ventana.setContentPane(pantallaInicial);
+		pantallaInicial.setVisible(true);
 	    ventana.revalidate();
 	    ventana.repaint();
 	}
 	
+	public void accionarPantallaInicial(){
+		ventana.add(pantallaInicial);
+		ventana.setContentPane(pantallaInicial);
+	}
+	
+	public void ocultarPantallaInicial(){
+		ventana.remove(pantallaInicial);
+		ventana.revalidate();
+		ventana.repaint();
+	}
+	
 	public void mostrarPantallaRanking() {
-	    SwingUtilities.invokeLater(() -> {
-	        ventana.getContentPane().setVisible(false);
-	        ventana.setContentPane(pantallaRanking);
-	        ventana.getContentPane().setVisible(true);   
-	        ventana.validate(); 
-	    });
+		ventana.setContentPane(pantallaRanking); 
+		ventana.repaint();
+		ventana.revalidate();
+	}
+	
+	public void hacerCambio(){
+		ventana.setContentPane(pantallaInicial);
+		ventana.revalidate();
+		ventana.repaint();
+	}
+	
+	public void ocultarPantallaRanking(){
+		ventana.remove(pantallaRanking);
+		ventana.revalidate();
+		ventana.repaint();
 	}
 	
 	public void accionarPantallaIngresoNombre() {
@@ -165,12 +179,14 @@ public class ControladorVistas {
 	}
 	
 	public void refrescar(){
-
 		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
 			pantallaInicial.actualizarFoco();
+			if(ventana.isAncestorOf(pantallaRanking)) {
+				pantallaRanking.refrescar();
+				ventana.requestFocusInWindow();
+			}
 		}else {
 			pantallaDeJuego.refrescar();
-		
 		}
 		ventana.revalidate();
 		ventana.repaint();
