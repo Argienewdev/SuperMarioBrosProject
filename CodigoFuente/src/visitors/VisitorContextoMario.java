@@ -71,7 +71,11 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-		champinionVerde.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		if(!champinionVerde.getRemovido()) {
+			this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
+			this.miEntidad.ganarVida();
+			champinionVerde.setRemovido(true);
+		}
 	}
 
 	@Override

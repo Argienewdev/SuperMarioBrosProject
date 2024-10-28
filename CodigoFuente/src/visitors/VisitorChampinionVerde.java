@@ -49,7 +49,6 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	contextoMario.ganarVida();
     }
 
     @Override
@@ -64,6 +63,7 @@ public class VisitorChampinionVerde implements Visitante {
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
@@ -99,7 +99,6 @@ public class VisitorChampinionVerde implements Visitante {
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
