@@ -88,7 +88,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	champinionVerde.aceptarVisitante(this.miEntidad.getVisitor());
     }
 
     @Override
