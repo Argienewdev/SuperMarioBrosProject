@@ -49,7 +49,6 @@ public class VisitorLadrillo implements Visitante {
     
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
@@ -64,7 +63,6 @@ public class VisitorLadrillo implements Visitante {
     
     @Override
     public void visitarMonedas(Monedas monedas) {
-        // Implementar lógica aquí si es necesario
     }
     
     @Override
@@ -92,34 +90,23 @@ public class VisitorLadrillo implements Visitante {
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
-        // Implementar lógica aquí si es necesario
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {    
-        // Implementar lógica aquí si es necesario
     }
     
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // Implementar lógica aquí si es necesario
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-        // Implementar lógica aquí si es necesario
-    }
+    public void visitarBandera(Bandera bandera) {}
     
     @Override
-    public void visitarTuberia(Tuberia tuberia) {    
-        // Implementar lógica aquí si es necesario
-    }
+    public void visitarTuberia(Tuberia tuberia) {}   
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
-        // Implementar lógica aquí si es necesario
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {        
@@ -147,7 +134,6 @@ public class VisitorLadrillo implements Visitante {
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		// TODO Auto-generated method stub
-		
 	}
     
 }

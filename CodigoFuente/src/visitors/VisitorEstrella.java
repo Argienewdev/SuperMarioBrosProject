@@ -13,7 +13,7 @@ public class VisitorEstrella implements Visitante {
     public VisitorEstrella(Estrella miEntidad) {
         this.miEntidad = miEntidad;
     }
-
+    
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}
 

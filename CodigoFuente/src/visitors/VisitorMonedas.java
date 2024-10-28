@@ -124,24 +124,17 @@ public class VisitorMonedas implements Visitante {
     }
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
-    public void visitarPiso(Piso piso) {
-        // TODO Auto-generated method stub
-    }
+    public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
     
 }
