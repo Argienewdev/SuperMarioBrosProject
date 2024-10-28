@@ -54,19 +54,27 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, superChampinion);
+    }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, champinionVerde);
+    }
 
     @Override
-    public void visitarEstrella(Estrella estrella) {}
+    public void visitarEstrella(Estrella estrella) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, estrella);
+    }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMonedas(Monedas monedas) {
+        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, monedas);
+    }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}

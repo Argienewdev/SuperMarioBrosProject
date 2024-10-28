@@ -7,7 +7,7 @@ import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.DimensionesConstantes;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 7;
+	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 20;
 	
 	private static final int FUERZA_SALTO = -30;
 	

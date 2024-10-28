@@ -10,7 +10,7 @@ public class DetectorDireccionColision {
 		if(choquePorDerecha(elementoDeJuego, entidad)) {
 	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x - entidad.obtenerAncho());
 		}else if(choquePorIzquierda(elementoDeJuego, entidad)) {
-	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x + entidad.obtenerAncho());
+	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerAncho());
 		}else if(choquePorArriba(elementoDeJuego, entidad)) {
 			entidad.setColisionAbajo(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y - entidad.obtenerAlto());

@@ -15,24 +15,16 @@ public class VisitorEstrella implements Visitante {
     }
 
     @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // Lógica para visitar BuzzyBeetle
-    }
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}
 
     @Override
-    public void visitarSpiny(Spiny spiny) {
-        // Lógica para visitar Spiny
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
-    public void visitarGoomba(Goomba goomba) {
-        // Lógica para visitar Goomba
-    }
+    public void visitarGoomba(Goomba goomba) {}
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-        // Lógica para visitar Lakitu
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
