@@ -180,6 +180,11 @@ public class ControladorMovimiento {
 	}
 	
 	private boolean realizarAccionEspecial() {
-		return sensorDeTeclasJuego.obtenerSpacePresionada() ;
+		boolean retornar = false;
+		if(sensorDeTeclasJuego.obtenerSpacePresionada()) {
+			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
+			sensorDeTeclasJuego.setSpaceAccionada(true);
+		}
+		return retornar;
 	}
 }
