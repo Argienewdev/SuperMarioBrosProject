@@ -66,7 +66,6 @@ public class VisitorMonedas implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
     }
 
     @Override

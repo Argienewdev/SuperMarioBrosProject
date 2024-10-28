@@ -23,6 +23,20 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getMarioDefaultReversoSaltando();
 	
+	public abstract Sprite getMarioRecuperacionFrontalQuieto();
+	
+	public abstract Sprite getMarioRecuperacionFrontalCaminando();
+	
+	public abstract Sprite getMarioRecuperacionCayendo();
+	
+	public abstract Sprite getMarioRecuperacionFrontalSaltando();
+	
+	public abstract Sprite getMarioRecuperacionReversoQuieto();
+	
+	public abstract Sprite getMarioRecuperacionReversoCaminando();
+	
+	public abstract Sprite getMarioRecuperacionReversoSaltando();
+	
 	public abstract Sprite getSuperMarioFrontalQuieto();
 	
 	public abstract Sprite getSuperMarioFrontalCaminando();

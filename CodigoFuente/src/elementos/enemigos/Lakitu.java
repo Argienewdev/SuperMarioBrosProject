@@ -29,7 +29,7 @@ public class Lakitu extends Enemigo {
 		//TODO
 	}
 	
-	public void eliminarEntidadGraficamente(FabricaSprites fabricaSprites) {
+	public void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
     

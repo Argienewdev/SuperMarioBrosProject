@@ -22,7 +22,9 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.getContext().getPosicion().x, this.getContext().getPosicion().y + (this.getContext().getSprite().getAltoImagen() - obtenerSpriteInicial(fabricaSprites).getAltoImagen()), obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		int nuevaPosicionX = this.getContext().getPosicion().x;
+		int nuevaPosicionY = this.getContext().getPosicion().y + (this.getContext().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.getContext().setPosicion(nuevaPosicion);
 		this.getContext().setHitbox(nuevaHitbox);

@@ -364,5 +364,40 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
 
+	@Override
+	public Sprite getMarioRecuperacionFrontalQuieto() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalQuieto.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionFrontalCaminando() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalCaminando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionCayendo() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCayendo.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionFrontalSaltando() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalSaltando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoQuieto() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoQuieto.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoCaminando() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoCaminando.png");
+	}
+
+	@Override
+	public Sprite getMarioRecuperacionReversoSaltando() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoSaltando.png");
+	}
+
 
 }

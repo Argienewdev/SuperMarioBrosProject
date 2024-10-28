@@ -30,12 +30,12 @@ public abstract class Enemigo extends NoJugable {
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if(this.removido) {
-			eliminarEntidadGraficamente(fabricaSprites);
+			eliminarEntidadGraficaYLogicamente(fabricaSprites);
 			this.setVelocidadDireccional(new Point(0, 0));
 		}
     }
     
-    public abstract void eliminarEntidadGraficamente(FabricaSprites fabricaSprites);
+    public abstract void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites);
 
     public abstract void aceptarVisitante(Visitante visitante);
    

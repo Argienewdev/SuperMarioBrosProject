@@ -24,7 +24,10 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        // TODO Implementación pendiente
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+    		buzzyBeetle.setRemovido(true);
+            this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
@@ -42,7 +45,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Implementación pendiente
+		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
     }
 
     @Override
@@ -80,7 +83,7 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-        florDeFuego.eliminarDelNivel();
+        florDeFuego.setRemovido(true);
     }
 
     @Override
@@ -97,6 +100,8 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarMonedas(Monedas monedas) {
+    	this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
+    	monedas.setRemovido(true);
     }
 
     @Override

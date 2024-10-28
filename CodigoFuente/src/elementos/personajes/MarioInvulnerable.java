@@ -1,5 +1,8 @@
 package elementos.personajes;
 
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import ventanas.DimensionesConstantes;
@@ -21,6 +24,13 @@ public class MarioInvulnerable  extends MarioDefault {
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarMarioInvulnerable(this);
     }
+	
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+		Rectangle nuevaHitbox = new Rectangle(this.getContext().getPosicion().x, this.getContext().getPosicion().y + (this.getContext().getSprite().getAltoImagen() - obtenerSpriteInicial(fabricaSprites).getAltoImagen()), obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
+		this.getContext().setPosicion(nuevaPosicion);
+		this.getContext().setHitbox(nuevaHitbox);
+	}
 	
 	@Override
 	public Visitante getVisitor() {

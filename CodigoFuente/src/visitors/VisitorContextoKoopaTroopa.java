@@ -54,27 +54,19 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, superChampinion);
-    }
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, champinionVerde);
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, estrella);
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, monedas);
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
@@ -83,9 +75,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
     public void visitarBandera(Bandera bandera) {}
@@ -125,8 +115,5 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 	public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 }

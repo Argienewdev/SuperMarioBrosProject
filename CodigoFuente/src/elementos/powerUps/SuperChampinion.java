@@ -39,10 +39,14 @@ public class SuperChampinion extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getSuperChampinionSaliendoDelBloqueDePreguntas());
-		}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
-			this.setSprite(fabricaSprites.getSuperChampinionQuieto());
+		if(this.getRemovido()) {
+			this.eliminarEntidadGraficaYLogicamente(fabricaSprites);
+		}else{
+			if (!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getSuperChampinionSaliendoDelBloqueDePreguntas());
+			} else if (getContadorTicks() >= ticksHastaSalirDelBloque) {
+				this.setSprite(fabricaSprites.getSuperChampinionQuieto());
+			} 
 		}
 	}
 }

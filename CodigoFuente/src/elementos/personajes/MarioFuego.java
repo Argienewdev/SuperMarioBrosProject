@@ -1,17 +1,13 @@
 package elementos.personajes;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import elementos.Sprite;
-import elementos.enemigos.BuzzyBeetle;
-import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
-import juego.Nivel;
-import observers.ObserverGrafico;
 import ventanas.DimensionesConstantes;
 import visitors.Visitante;
-import visitors.VisitorBuzzyBeetle;
 import visitors.VisitorMarioFuego;
 
 public class MarioFuego extends MarioDefault {
@@ -19,7 +15,7 @@ public class MarioFuego extends MarioDefault {
 	protected FabricaEntidades fabricaEntidades;
 	
 	public MarioFuego(FabricaEntidades fabricaEntidades) {
-		this.fabricaEntidades=fabricaEntidades;
+		this.fabricaEntidades = fabricaEntidades;
 	}
 	
 	@Override
@@ -30,6 +26,13 @@ public class MarioFuego extends MarioDefault {
 	@Override
 	public Visitante getVisitor() {
 		return new VisitorMarioFuego(this);
+	}
+	
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+		Rectangle nuevaHitbox = new Rectangle(this.getContext().getPosicion().x, this.getContext().getPosicion().y + (this.getContext().getSprite().getAltoImagen() - obtenerSpriteInicial(fabricaSprites).getAltoImagen()), obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
+		this.getContext().setPosicion(nuevaPosicion);
+		this.getContext().setHitbox(nuevaHitbox);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
