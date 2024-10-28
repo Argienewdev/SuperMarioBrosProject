@@ -4,6 +4,8 @@ package juego;
 import java.awt.Point;
 import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
+import elementos.entidades.BolaDeFuego;
+import elementos.entidades.Entidad;
 import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
@@ -22,30 +24,33 @@ public class MasterMind {
 	
 	private boolean hayNoJugableParaRemover;
 			
-	private NoJugable noJugableARemover;
+	private Entidad entidadARemover;
 	
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
 		this.hayNoJugableParaRemover = false;
-		this.noJugableARemover = null;
+		this.entidadARemover = null;
 	}
 
 	public void actualizar() {
 		actualizarPosicionesEnemigos();
 		actualizarPosicionesPowerUps();
+		actualizarPosicionesBolasDeFuego();
 		actualizarSpritesEnemigos();
 		actualizarSpritesPowerUps();
 		actualizarSpritesPlataformas();
+		actualizarSpritesBolasDeFuego();
 		actualizarLabelsEnemigos();
 		actualizarLabelsPowerUps();
 		actualizarLabelsPlataformas();
+		actualizarLabelsBolasDeFuego();
 		this.nivel.removerEntidadesAEliminar();
 		if(hayNoJugableParaRemover) {
-			noJugableARemover.incrementarContadorTicks();
-			if(noJugableARemover.getContadorTicks() > noJugableARemover.obtenerTicksAnimacion()) {
-				noJugableARemover.eliminarDelNivel();
-				noJugableARemover = null;
+			entidadARemover.incrementarContadorTicks();
+			if(entidadARemover.getContadorTicks() > entidadARemover.obtenerTicksAnimacion()) {
+				entidadARemover.eliminarDelNivel();
+				entidadARemover = null;
 				hayNoJugableParaRemover = false;
 			}
 		}
@@ -53,12 +58,6 @@ public class MasterMind {
 	
 	public void cambiarNivel(Nivel nivel) {
 		this.nivel = nivel;
-	}
-
-	private void actualizarPosicionesEnemigos() {
-		for(Enemigo enemigo : this.nivel.getEnemigos()) {
-			moverEnemigo(enemigo);
-		}
 	}
 	
 	//TODO rudimentario, mejorar expresiones
@@ -68,56 +67,59 @@ public class MasterMind {
 			enemigo.moverIzquierda();
 		}
 		aplicarGravedad(enemigo);
-		cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
+		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
+	}
+	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
+		cambiarPosicionXHitboxDeEntidad(entidad);
+		verificarColisionesEntidades(entidad);
+		cambiarPosicionYHitboxDeEntidad(entidad);
+		verificarColisionesEntidades(entidad);
 	}
 	
-	private void cambiarYVerificarPosicionHitboxDePowerUp(NoJugable noJugable) {
-		cambiarPosicionXHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
-		cambiarPosicionYHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
+	private void cambiarPosicionXHitboxDeEntidad(Entidad entidad) {
+		int nuevaPosicionX = entidad.obtenerHitbox().x + entidad.getVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, entidad.obtenerHitbox().y);
+		entidad.moverHitbox(nuevaPosicion);
 	}
 	
-	private void cambiarYVerificarPosicionHitboxDeNoJugable(NoJugable noJugable) {
-		cambiarPosicionXHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
-		cambiarPosicionYHitboxDeNoJugable(noJugable);
-		verificarColisiones(noJugable);
+	private void cambiarPosicionYHitboxDeEntidad(Entidad entidad) {
+		int nuevaPosicionY = entidad.obtenerHitbox().y + entidad.getVelocidadDireccional().y;
+		Point nuevaPosicion = new Point(entidad.obtenerHitbox().x, nuevaPosicionY);
+		entidad.moverHitbox(nuevaPosicion);
 	}
 	
-	private void cambiarPosicionXHitboxDeNoJugable(NoJugable noJugable) {
-		int nuevaPosicionX = noJugable.obtenerHitbox().x + noJugable.getVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, noJugable.obtenerHitbox().y);
-		noJugable.moverHitbox(nuevaPosicion);
-	}
-	
-	private void cambiarPosicionYHitboxDeNoJugable(NoJugable noJugable) {
-		int nuevaPosicionY = noJugable.obtenerHitbox().y + noJugable.getVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(noJugable.obtenerHitbox().x, nuevaPosicionY);
-		noJugable.moverHitbox(nuevaPosicion);
-	}
-	
-	private void verificarColisiones(NoJugable noJugable) {
-		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
-			noJugable.eliminarDelNivel();
+	private void verificarColisionesEntidades(Entidad entidad) {
+		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < 0) || entidad.obtenerHitbox().y < 0) {
+			entidad.eliminarDelNivel();
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
-		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
-		            elemento.aceptarVisitante(noJugable.getVisitor());
-		            noJugable.aceptarVisitante(elemento.getVisitor());
+		        if(entidad.huboColision(elemento) && entidad != elemento) {
+		            elemento.aceptarVisitante(entidad.getVisitor());
+		            entidad.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			if(noJugable.getRemovido()) {
+			if(entidad.getRemovido()) {
 				hayNoJugableParaRemover = true;
-				noJugableARemover = noJugable;
+				entidadARemover = entidad;
 			}
 		}
-		noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
+		entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	}
 	
+	private void actualizarPosicionesEnemigos() {
+		for(Enemigo enemigo : this.nivel.getEnemigos()) {
+			moverEnemigo(enemigo);
+		}
+	}
 	private void actualizarPosicionesPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			moverPowerUp(powerUp);
+		}
+	}
+	
+	private void actualizarPosicionesBolasDeFuego() {
+		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()) {
+			moverBolaDeFuego(bola);
 		}
 	}
 	
@@ -132,14 +134,19 @@ public class MasterMind {
 				powerUp.moverDerecha();
 			}
 			aplicarGravedad(powerUp);
-			cambiarYVerificarPosicionHitboxDePowerUp(powerUp);
+			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
 		}
 	}
 	
+	private void moverBolaDeFuego(BolaDeFuego bolaFuego) {
+		aplicarGravedad(bolaFuego);
+		cambiarYVerificarPosicionHitboxDeEntidad(bolaFuego);
+	}
+	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getBloquePregunta().getPosicion().y - powerUp.getBloquePregunta().obtenerAlto()));
+		powerUp.setPosicion(new Point(powerUp.getPosicion().x, powerUp.getBloquePregunta().getPosicion().y - powerUp.obtenerAlto()));
 		powerUp.moverHitbox(powerUp.getPosicion());
 		powerUp.actualizarSprite(this.fabricaSprites);
 	}
@@ -162,6 +169,12 @@ public class MasterMind {
 		}
 	}
 	
+	private void actualizarSpritesBolasDeFuego() {
+		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()) {
+			bola.actualizarSprite(this.fabricaSprites);
+		}
+	}
+	
 	private void actualizarLabelsEnemigos() {
 		for(Enemigo enemigo : this.nivel.getEnemigos()) {
 			enemigo.getObserverGrafico().actualizar();
@@ -179,6 +192,12 @@ public class MasterMind {
 			plataforma.getObserverGrafico().actualizar();
 		}
 	}
+	private void actualizarLabelsBolasDeFuego() {
+		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()){
+			bola.getObserverGrafico().actualizar();
+		}
+	}
+	
 	
 	private void aplicarGravedad(NoJugable noJugable) {
 		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
@@ -187,3 +206,4 @@ public class MasterMind {
 	}
 	
 }
+

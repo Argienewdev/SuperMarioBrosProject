@@ -17,6 +17,9 @@ public abstract class Entidad extends ElementoDeJuego {
 	protected boolean colisionArriba;
 	
 	protected int contadorTicks;
+	
+	protected int ticksAnimacion;
+
     
     public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
@@ -24,6 +27,8 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.colisionArriba = false;
 		this.velocidadDireccional = new Point(0,0);
 		this.contadorTicks = 0;
+		this.ticksAnimacion = 60;
+
 	}
 
     public void setVelocidadDireccional(Point velocidadDireccional) {
@@ -78,4 +83,11 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.hitbox = hitbox;
 	}
 	
+	public void eliminarDelNivel() {
+		this.miNivel.addEntidadesAEliminar(this);
+	}
+	
+	public int obtenerTicksAnimacion() {
+		return this.ticksAnimacion;
+	}
 }

@@ -9,6 +9,7 @@ import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.Spiny;
+import elementos.entidades.BolaDeFuego;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
@@ -184,7 +185,6 @@ public class GeneradorDeNivel {
 		for(Enemigo enemigo : nivel.getEnemigos()) {
 			enemigo.getObserverGrafico().actualizar();
 		}
-		
 		return nivel;
 	}
 	

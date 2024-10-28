@@ -299,7 +299,7 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getBolaDeFuego() {
-		return new Sprite(rutaACarpeta + "/spritesModoOriginal/bolaDeFuego.gif\"");
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/bolaDeFuego.gif");
 	}
 
     @Override

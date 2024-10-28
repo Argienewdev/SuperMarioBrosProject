@@ -9,14 +9,11 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
-	
-	protected int ticksAnimacion;
-	
+		
 	@SuppressWarnings("exports")
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
-		this.ticksAnimacion = 60;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -27,6 +24,7 @@ public abstract class NoJugable extends Entidad {
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
+		this.setRemovido(true);
 	}
 	
 	public int obtenerTicksAnimacion() {
