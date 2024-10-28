@@ -34,12 +34,12 @@ public class VisitorLadrillo implements Visitante {
     
     @Override
     public void visitarLakitu(Lakitu lakitu) {    
-        // Implementar lógica aquí si es necesario
+    	this.detectorDireccionColision.verificarColision(this.miEntidad, lakitu);
     }
     
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
-        // Implementar lógica aquí si es necesario
+        // Ambos estaticos
     }
     
     @Override
@@ -128,12 +128,11 @@ public class VisitorLadrillo implements Visitante {
 
     @Override
     public void visitarPiso(Piso piso) {
-        // Implementar lógica aquí si es necesario
     }
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
+	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
+		bolaDeFuego.eliminarDelNivel();
 	}
     
 }

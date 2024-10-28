@@ -29,7 +29,7 @@ public class BolaDeFuego extends NoJugable {
 	}
 
 	public void eliminarDelNivel() {
-		//TODO
+		//TODO eliminarDelNivel();
 	}
 
 	public Jugable obtenerJugador() {

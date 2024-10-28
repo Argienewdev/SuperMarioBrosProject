@@ -76,31 +76,26 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
         superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
         florDeFuego.setRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
     	champinionVerde.setRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
         estrella.setRemovido(true);
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-    	this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
     	monedas.setRemovido(true);
     }
 
@@ -148,7 +143,6 @@ public class VisitorMarioDefault implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
 		
 	}
     

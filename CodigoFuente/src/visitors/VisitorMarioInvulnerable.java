@@ -66,13 +66,11 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
         superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorInvulnerable());
         florDeFuego.eliminarDelNivel();
     }
 
@@ -81,7 +79,6 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
         estrella.eliminarDelNivel();
     }
 
