@@ -103,33 +103,47 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {}
+	public void visitarBandera(Bandera bandera) {
+		this.miEntidad.getNivel().setCompletado(true);
+		this.miEntidad.getNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().eliminarNivelActual();
+	    this.miEntidad.reiniciarEstado();
+	    this.detectorDireccionColision.verificarColision(bandera, this.miEntidad);
+	}
 
 	@Override
-	public void visitarTuberia(Tuberia tuberia) {}
+	public void visitarTuberia(Tuberia tuberia) {
+	}
 
 	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+	}
 
 	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {}
+	public void visitarContextoMario(ContextoMario contextoMario) {
+	}
 
 	@Override
-	public void visitarMarioDefault(MarioDefault marioDefault) {}
+	public void visitarMarioDefault(MarioDefault marioDefault) {
+	}
 
 	@Override
-	public void visitarSuperMario(SuperMario superMario) {}
+	public void visitarSuperMario(SuperMario superMario) {
+	}
 
 	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {}
+	public void visitarMarioFuego(MarioFuego marioFuego) {
+	}
 
 	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+	}
 	
-	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+	}
 	
 	@Override
-	public void visitarPiso(Piso piso) {}
+	public void visitarPiso(Piso piso) {
+	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
@@ -138,6 +152,7 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+	}
 	
 }
