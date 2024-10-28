@@ -8,12 +8,13 @@ import visitors.VisitorMarioInvulnerable;
 
 public class MarioInvulnerable  extends MarioDefault {
 
-	protected int duracion = 10000;
+	protected int duracion;
 	
 	private EstadoMario estadoPrevio;
 	
 	public MarioInvulnerable (EstadoMario estadoPrevio) {
 		this.estadoPrevio = estadoPrevio;
+		this.duracion = 600;
 	}
 	
 	@Override
@@ -27,6 +28,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
 			if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
@@ -88,8 +90,8 @@ public class MarioInvulnerable  extends MarioDefault {
 				contexto.getSprite().equals(fabricaSprites.getMarioInvulnerableReversoSaltando());
 	}
 	
-	public void actualizarTiempo (int tiempoDelta) {
-		duracion -= tiempoDelta;
+	public void actualizarTiempo () {
+		duracion--;
 		if (duracion <= 0)
 			contexto.cambiarEstado(estadoPrevio);
 	}

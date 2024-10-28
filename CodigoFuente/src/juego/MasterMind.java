@@ -113,7 +113,6 @@ public class MasterMind {
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		System.out.println("Moverpowerup");
 		boolean ticksEnCero = powerUp.getContadorTicks() == 0;
 		boolean ticksAlcanzaronMarca = powerUp.getContadorTicks() == powerUp.getTicksHastaSalirDelBloque();
 		if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {

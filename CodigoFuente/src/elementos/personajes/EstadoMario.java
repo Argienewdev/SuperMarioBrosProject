@@ -19,6 +19,6 @@ public interface EstadoMario{
 	
 	public void realizarAccionEspecial();
 	
-	public void actualizarTiempo(int tiempoDelta);
+	public void actualizarTiempo();
 		
 }
