@@ -12,6 +12,7 @@ public class Goomba extends Enemigo {
         super(sprite, posicion, visitor, observerGrafico);
         this.puntosOtorgadosPorEliminacion = 60;
         this.puntosSustraidosPorMuerteCausada = 30;
+        this.ticksAnimacion = 5;
     }
     
     @Override

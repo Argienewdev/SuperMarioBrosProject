@@ -182,6 +182,8 @@ public class PantallaDeJuego extends JPanel {
     	//debido a que primero cambia de nivel y despues revierte su estado
     	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
+    	//this.marioJugable.establecerPosicion(this.posicionOriginalJugable);
+    	//this.marioLabel.setLocation(this.posicionOriginalLabelJugable);
     	agregarLabel(marioLabel);
     	mostrarLabels();
     	establecerFondo();
