@@ -24,9 +24,8 @@ public abstract class Jugable extends Entidad  {
 	
 	private ObserverLogicoJugable observerLogico;
 	
-	public Jugable(Sprite sprite, Point posicion, Visitante visitor, 
-				   Point velocidadDireccional, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+	public Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
 		this.enElAire = false;

@@ -10,9 +10,8 @@ public class Estrella extends PowerUp {
 	
 	public static final int TIEMPO_DURACION = 10;
 	
-	public Estrella(Sprite sprite,Point posicion, Visitante visitor,
-					Point velocidadDireccional, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+	public Estrella(Sprite sprite,Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
 		this.ticksHastaSalirDelBloque = 50;

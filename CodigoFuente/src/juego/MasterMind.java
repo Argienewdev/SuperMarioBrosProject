@@ -60,18 +60,14 @@ public class MasterMind {
 		}
 	}
 	
-	//TODO rudimentario, esto hace que los koopas se muevan en su caparazon
+	//TODO rudimentario, mejorar expresiones
 	private void moverEnemigo(Enemigo enemigo) {
-		if(enemigo.getPosicion().x > (DimensionesConstantes.PANEL_ANCHO + 100)) {
-			enemigo.setVelocidadDireccional(new Point(0,0));
-		}else {
-			if(enemigo.getVelocidadDireccional().x == 0) {
-				enemigo.setVelocidadDireccional(new Point(-2, enemigo.getVelocidadDireccional().y));
-			}else {
-				aplicarGravedad(enemigo);
-				cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
-			}
+		//No los mueve hasta que esten cerca de entrar a la pantalla
+		if(enemigo.getPosicion().x < (DimensionesConstantes.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
+			enemigo.moverIzquierda();
 		}
+		aplicarGravedad(enemigo);
+		cambiarYVerificarPosicionHitboxDeNoJugable(enemigo);
 	}
 	
 	private void cambiarYVerificarPosicionHitboxDePowerUp(NoJugable noJugable) {
@@ -101,63 +97,39 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEnemigos(NoJugable noJugable) {
-		boolean huboColision = false;
 		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
-			huboColision = true;
 			noJugable.eliminarDelNivel();
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.getPlataformas()) {
+			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(noJugable.huboColision(elemento) && noJugable != elemento) {
-		        	huboColision = true;
 		            elemento.aceptarVisitante(noJugable.getVisitor());
 		            noJugable.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			for(ElementoDeJuego elemento : this.nivel.getEnemigos()) {
-				if(noJugable.huboColision(elemento) && noJugable != elemento) {
-					huboColision = true;
-					elemento.aceptarVisitante(noJugable.getVisitor());
-					noJugable.aceptarVisitante(elemento.getVisitor());
-				}
-			}
 			if(noJugable.getRemovido()) {
 				hayNoJugableParaRemover = true;
 				noJugableARemover = noJugable;
 			}
 		}
-	    if(!huboColision) {
-	    	noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
-	    }
+		noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
 	}
 	
 	private void verificarColisionesPowerUps(NoJugable noJugable) {
-		boolean huboColision = false;
 		if((noJugable.obtenerHitbox().x + noJugable.obtenerHitbox().width < 0) || noJugable.obtenerHitbox().y < 0) {
-			huboColision = true;
 			noJugable.eliminarDelNivel();
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.getPlataformas()) {
+			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				if(noJugable.huboColision(elemento) && noJugable != elemento) {
-					huboColision = true;
 					elemento.aceptarVisitante(noJugable.getVisitor());
 					noJugable.aceptarVisitante(elemento.getVisitor());
 				}
-			}
-			for(ElementoDeJuego elemento : this.nivel.getPowerUps()) {
-				if(noJugable.huboColision(elemento) && noJugable != elemento) {
-					huboColision = true;
-					elemento.aceptarVisitante(noJugable.getVisitor());
-					noJugable.aceptarVisitante(elemento.getVisitor());
+				if(noJugable.getRemovido()) {
+					hayNoJugableParaRemover = true;
+					noJugableARemover = noJugable;
 				}
 			}
-			if(noJugable.getRemovido()) {
-				hayNoJugableParaRemover = true;
-				noJugableARemover = noJugable;
-			}
 		}
-		if(!huboColision) {
-			noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
-		}
+		noJugable.setPosicion(noJugable.obtenerHitbox().getLocation());
 	}
 	
 	private void actualizarPosicionesPowerUps() {
@@ -174,6 +146,7 @@ public class MasterMind {
 			powerUp.incrementarContadorTicks();
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
 			aplicarGravedad(powerUp);
+			powerUp.moverDerecha();
 			cambiarYVerificarPosicionHitboxDePowerUp(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();

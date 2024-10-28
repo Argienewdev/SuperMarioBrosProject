@@ -18,12 +18,11 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	protected int contadorTicks;
     
-    public Entidad(Sprite sprite, Point posicion, Visitante visitor,
-    			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
+    public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
-		this.velocidadDireccional = velocidadDireccional;
+		this.velocidadDireccional = new Point(0,0);
 		this.contadorTicks = 0;
 	}
 
@@ -33,14 +32,6 @@ public abstract class Entidad extends ElementoDeJuego {
     
     public Point getVelocidadDireccional() {
         return this.velocidadDireccional;
-    }
-    
-    public void moverADerecha(Point dir) {
-    	setVelocidadDireccional(dir);
-    }
-    
-    public void moverAIzquierda(Point dir) {
-    	setVelocidadDireccional(dir);
     }
     
     public void establecerPosicion(Point pos) {

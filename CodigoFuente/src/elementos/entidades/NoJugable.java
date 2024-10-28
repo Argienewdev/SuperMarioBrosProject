@@ -1,7 +1,6 @@
 package elementos.entidades;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
@@ -12,9 +11,9 @@ public abstract class NoJugable extends Entidad {
 	
 	protected int ticksAnimacion;
 	
-	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, 
-					 Point velocidadDireccional, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+	@SuppressWarnings("exports")
+	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.ticksAnimacion = 60;
 	}
@@ -33,12 +32,18 @@ public abstract class NoJugable extends Entidad {
 	public int obtenerTicksAnimacion() {
 		return this.ticksAnimacion;
 	}
+
+    public abstract void moverDerecha();
+    
+    public abstract void moverIzquierda();
+    
+    public abstract void invertirDireccion();
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
         this.moverHitbox(nuevaPosicion);
 		this.setPosicion(nuevaPosicion);
-        this.setVelocidadDireccional(new Point(-this.getVelocidadDireccional().x, getVelocidadDireccional().y));
+		this.invertirDireccion();
 	}
 	
 }

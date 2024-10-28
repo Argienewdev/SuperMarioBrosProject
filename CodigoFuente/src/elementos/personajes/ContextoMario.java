@@ -1,7 +1,6 @@
 package elementos.personajes;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import elementos.Sprite;
 import elementos.entidades.Jugable;
@@ -15,10 +14,9 @@ public class ContextoMario extends Jugable {
 	
 	private boolean cambiarEstado;
 	
-	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, 
-						 Point velocidadDireccional, ObserverGrafico observerGrafico,
+	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico,
 						 int vidas, MarioDefault estadoMario) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		super(sprite, posicion, visitor, observerGrafico);
 		this.estadoMario = estadoMario;
 		this.cambiarEstado = false;
 		estadoMario.setContext(this);

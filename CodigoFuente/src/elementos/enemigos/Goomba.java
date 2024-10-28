@@ -8,9 +8,8 @@ import visitors.Visitante;
 
 public class Goomba extends Enemigo {
 	
-    public Goomba(Sprite sprite, Point posicion, Visitante visitor,
-    			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
-        super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+    public Goomba(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+        super(sprite, posicion, visitor, observerGrafico);
         this.puntosOtorgadosPorEliminacion = 60;
         this.puntosSustraidosPorMuerteCausada = 30;
     }

@@ -15,15 +15,14 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	}
 	
 	@Override
-	public void moverAIzquierda(Point direccion) {
-		// TODO Auto-generated method stub
-	}
-
+	public void invertirDireccion() {}
+	
 	@Override
-	public void moverADerecha(Point direccion) {
-		// TODO Auto-generated method stub
-	}
-
+	public void moverDerecha() {}
+    
+	@Override
+    public void moverIzquierda() {}
+	
 	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarKoopaEnCaparazon(this);
@@ -45,6 +44,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+		this.contexto.setVelocidadDireccional(new Point(0,0));
 		int x = this.getContext().getPosicion().x;
 		int y = this.getContext().getPosicion().y + (this.getContext().getSprite().getAltoImagen() - this.getContext().obtenerHitbox().height);
 		int ancho = this.getContext().getSprite().getAnchoImagen();
