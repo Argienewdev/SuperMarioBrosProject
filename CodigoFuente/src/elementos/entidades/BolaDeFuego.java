@@ -11,9 +11,8 @@ public class BolaDeFuego extends NoJugable {
 	protected Jugable miJugador;
 	
 	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor,
-					Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		super(sprite, posicion, visitor, observerGrafico);
 		this.miJugador = jugador;
 	}
 	
@@ -38,6 +37,24 @@ public class BolaDeFuego extends NoJugable {
 	}
 	
 	public void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moverDerecha() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moverIzquierda() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void invertirDireccion() {
 		// TODO Auto-generated method stub
 		
 	}

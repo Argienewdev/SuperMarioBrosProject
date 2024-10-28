@@ -12,10 +12,9 @@ public class ContextoKoopaTroopa extends Enemigo {
 	
 	private boolean cambiarEstado;
 
-    public ContextoKoopaTroopa(Sprite sprite,Point posicion, Visitante visitor,
-							   Point velocidadDireccional, 
+    public ContextoKoopaTroopa(Sprite sprite,Point posicion, Visitante visitor, 
 							   ObserverGrafico observerGrafico, KoopaDefault estado) {
-    	super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+    	super(sprite, posicion, visitor, observerGrafico);
     	this.estadoKoopa = estado;
     	this.puntosOtorgadosPorEliminacion = 90;
     	this.puntosSustraidosPorMuerteCausada = 45;
@@ -37,7 +36,19 @@ public class ContextoKoopaTroopa extends Enemigo {
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarContextoKoopaTroopa(this);
     }
-
+    
+    public void moverDerecha() {
+    	this.estadoKoopa.moverDerecha();
+    }
+    
+    public void moverIzquierda() {
+    	this.estadoKoopa.moverIzquierda();
+    }
+    
+    public void invertirDireccion() {
+    	this.estadoKoopa.invertirDireccion();
+    }
+    
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estadoKoopa.actualizarSprite(fabricaSprites);

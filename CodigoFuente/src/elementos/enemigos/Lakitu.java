@@ -8,9 +8,8 @@ import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
-    public Lakitu(Sprite sprite, Point posicion, Visitante visitor, 
-    			   Point velocidadDireccional, ObserverGrafico observerGrafico) {
-    	super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+    public Lakitu(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+    	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 60;
     	this.puntosSustraidosPorMuerteCausada = 0;
     }

@@ -11,10 +11,9 @@ public class PiranhaPlant extends Enemigo {
     protected boolean dentroTuberia;
     
 
-    public PiranhaPlant(Sprite sprite, Point posicion, Visitante visitor, 
-    					 Point velocidadDireccional,
+    public PiranhaPlant(Sprite sprite, Point posicion, Visitante visitor,
     					ObserverGrafico observerGrafico) {
-    	super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+    	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 30;
     	this.puntosSustraidosPorMuerteCausada = 30;
     }

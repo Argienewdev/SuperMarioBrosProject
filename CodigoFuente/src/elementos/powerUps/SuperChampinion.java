@@ -8,9 +8,8 @@ import visitors.Visitante;
 
 public class SuperChampinion extends PowerUp {
 	
-	public SuperChampinion(Sprite sprite, Point posicion, Visitante visitor,
-						   Point velocidadDireccional, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+	public SuperChampinion(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
 		this.ticksHastaSalirDelBloque = 50;
