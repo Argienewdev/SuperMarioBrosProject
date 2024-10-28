@@ -13,15 +13,9 @@ import visitors.Visitante;
 import visitors.VisitorBandera;
 import visitors.VisitorBloqueDePregunta;
 import visitors.VisitorBloqueSolido;
-import visitors.VisitorChampinionVerde;
-import visitors.VisitorEstrella;
-import visitors.VisitorFlorDeFuego;
 import visitors.VisitorLadrillo;
-import visitors.VisitorMonedas;
-import visitors.VisitorPiranhaPlant;
 import visitors.VisitorPiso;
 import visitors.VisitorPrincesa;
-import visitors.VisitorSuperChampinion;
 import visitors.VisitorTuberia;
 
 public class FabricaPlataformas {
