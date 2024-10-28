@@ -99,10 +99,6 @@ public class MarioDefault implements EstadoMario {
 	public void realizarAccionEspecial() {		
 	}
 	
-	public void actualizarTiempoDelta(int tiempoDelta) {
-		
-	}
-
 	public void actualizarTiempo() {
 		//Implementado por estados que lo requieren
 	}

@@ -83,7 +83,9 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    	
+    }
 
     @Override
     public void visitarBandera(Bandera bandera) {}

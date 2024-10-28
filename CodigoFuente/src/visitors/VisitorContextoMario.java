@@ -115,7 +115,9 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	@Override
-	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
+	}
 
 	@Override
 	public void visitarBandera(Bandera bandera) {
