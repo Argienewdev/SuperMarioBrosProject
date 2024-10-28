@@ -34,49 +34,37 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-
-    	this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, lakitu);
-
+    	
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-
-    	//Se encarga visitor de piranhaPlant
-
+    	
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-
-    	//Se atraviesan
-
+    	
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-
-    	//Se atraviesan
-
+    	
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-
-    	//Se atraviesan
-
+    	
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	//Se atraviesan
+    	
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-
-    	//Se atraviesan
-
+    	
     }
 
     @Override

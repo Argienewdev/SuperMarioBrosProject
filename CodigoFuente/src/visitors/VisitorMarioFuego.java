@@ -76,11 +76,13 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
+    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
         superChampinion.eliminarDelNivel();
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorFuego());
         florDeFuego.eliminarDelNivel();
     }
 
@@ -89,6 +91,7 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
+    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorFuego());
         estrella.eliminarDelNivel();
     }
 

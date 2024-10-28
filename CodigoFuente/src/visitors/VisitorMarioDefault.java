@@ -37,10 +37,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-            goomba.setRemovido(true);
-            this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
-    	}
     }
 
     @Override
@@ -76,27 +72,39 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        superChampinion.setRemovido(true);
+		if(!superChampinion.getRemovido()) {
+			this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
+	        superChampinion.setRemovido(true);
+		}
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        florDeFuego.setRemovido(true);
+    	if(!florDeFuego.getRemovido()) {
+    		this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+            florDeFuego.setRemovido(true);
+    	}
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	champinionVerde.setRemovido(true);
+    	champinionVerde.aceptarVisitante(this.miEntidad.getVisitor());
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        estrella.setRemovido(true);
+    	if(!estrella.getRemovido()) {
+    		this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
+            estrella.setRemovido(true);
+    	}
     }
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-    	monedas.setRemovido(true);
+    	if(!monedas.getRemovido()) {
+    		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
+        	monedas.setRemovido(true);
+    	}
     }
 
     @Override
@@ -143,6 +151,7 @@ public class VisitorMarioDefault implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
 		
 	}
     

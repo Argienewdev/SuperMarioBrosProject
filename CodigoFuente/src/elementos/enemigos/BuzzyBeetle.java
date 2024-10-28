@@ -12,7 +12,6 @@ public class BuzzyBeetle extends Enemigo {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.puntosOtorgadosPorEliminacion = 30;
 		this.puntosSustraidosPorMuerteCausada = 15;
-		this.ticksAnimacion = 10;
 	}
 	
 	@Override
@@ -25,7 +24,7 @@ public class BuzzyBeetle extends Enemigo {
 		if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
 			this.setVelocidadDireccional(new Point(0,0));
-		} else if(this.getVelocidadDireccional().x == 0) {
+		}else if(this.getVelocidadDireccional().x == 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleFrontalCaminando());
 		} else if(this.getVelocidadDireccional().x < 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleReversoCaminando());

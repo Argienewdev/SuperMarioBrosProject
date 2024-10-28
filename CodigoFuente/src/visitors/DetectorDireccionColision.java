@@ -1,5 +1,6 @@
 package visitors;
 
+
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 

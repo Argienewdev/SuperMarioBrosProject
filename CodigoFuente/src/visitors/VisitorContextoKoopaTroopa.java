@@ -88,18 +88,22 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
+        contextoMario.getEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
+    	marioDefault.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {  
+    	superMario.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
+    	marioFuego.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
     }
 
     @Override
