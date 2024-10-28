@@ -18,45 +18,34 @@ public class VisitorChampinionVerde implements Visitante {
     }
 
     @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    }
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}
 
     @Override
-    public void visitarSpiny(Spiny spiny) {
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
-    public void visitarGoomba(Goomba goomba) {
-    }
+    public void visitarGoomba(Goomba goomba) {}
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	
-    }
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    }
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, champinionVerde);
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas moneda) {
-    }
+    public void visitarMonedas(Monedas moneda) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
@@ -96,12 +85,10 @@ public class VisitorChampinionVerde implements Visitante {
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-    }
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {}
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
