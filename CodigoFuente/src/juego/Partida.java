@@ -61,6 +61,7 @@ public class Partida {
 	
 	public void cambiarNivel() {
 		this.numeroNivelActual++;
+		System.out.println("GENERO NIVEL " + numeroNivelActual);
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(nivel);
 		this.juego.obtenerControladorVistas().cambiarNivel();
@@ -68,11 +69,14 @@ public class Partida {
 	}
 	
 	public void reiniciarNivel() {
+		System.out.println("REINICIE NIVEL");
+		System.out.println(this.nivel.plataformas.size());
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(nivel);
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.masterMind.cambiarNivel(nivel);
+		System.out.println(this.nivel.plataformas.size());
 	}
 	
 	public void finalizarPartida() {
