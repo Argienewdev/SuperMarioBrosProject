@@ -43,8 +43,7 @@ public class ContextoMario extends Jugable {
 	}
 	
 	public void reiniciarEstado() {
-		EstadoMario nuevoEstado = new MarioDefault();
-        this.cambiarEstado(nuevoEstado);
+        this.cambiarEstado(new MarioRecuperacion());
 	}
 	
 	@Override
