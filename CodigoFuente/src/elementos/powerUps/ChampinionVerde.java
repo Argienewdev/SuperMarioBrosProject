@@ -8,9 +8,9 @@ import visitors.Visitante;
 
 public class ChampinionVerde extends PowerUp {
 	
-	public ChampinionVerde(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional, 					 
+	public ChampinionVerde(Sprite sprite, Point posicion, Visitante visitor, 					 
 						   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
 		this.ticksHastaSalirDelBloque = 50;

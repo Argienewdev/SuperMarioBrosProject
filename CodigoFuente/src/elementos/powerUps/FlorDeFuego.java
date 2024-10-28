@@ -8,9 +8,9 @@ import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
-	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,					   
+	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor,					   
 					   ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, new Point (0,0), observerGrafico);
+		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = true;
 		this.ticksAnimacion = 0;

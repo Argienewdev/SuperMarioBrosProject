@@ -15,14 +15,10 @@ public class KoopaDefault implements EstadoKoopa {
 	}
 	
 	@Override
-	public void moverAIzquierda(Point direccion) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void moverADerecha(Point direccion) {
-		// TODO Auto-generated method stub
-	}
+	public void invertirDireccion() {
+    	Point velocidad = new Point(-this.contexto.getVelocidadDireccional().x, this.contexto.getVelocidadDireccional().y);
+    	this.contexto.setVelocidadDireccional(velocidad);
+    }
 
 	@Override
     public void aceptarVisitante(Visitante visitante) {
@@ -48,5 +44,17 @@ public class KoopaDefault implements EstadoKoopa {
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {		
 	}
-	
+
+	@Override
+	public void moverDerecha() {
+		Point velocidad = new Point(this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
+    	this.contexto.setVelocidadDireccional(velocidad);
+    }
+    
+	@Override
+    public void moverIzquierda() {
+    	Point velocidad = new Point(-this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
+    	this.contexto.setVelocidadDireccional(velocidad);
+    }
+
 }

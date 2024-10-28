@@ -10,6 +10,8 @@ import visitors.Visitante;
 
 public abstract class PowerUp extends NoJugable {
 	
+	protected static final int VELOCIDAD_HORIZONTAL_POWERUP = 4;
+
 	protected int ticksHastaSalirDelBloque;
 	
 	protected boolean esMovible;
@@ -18,9 +20,8 @@ public abstract class PowerUp extends NoJugable {
 	
 	protected BloqueDePregunta bloquePregunta;
 
-	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, 
-				    Point velocidadDireccional, ObserverGrafico observerGrafico) {
-		super(sprite, posicion, visitor, velocidadDireccional, observerGrafico);
+	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+		super(sprite, posicion, visitor, observerGrafico);
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -43,6 +44,22 @@ public abstract class PowerUp extends NoJugable {
 		return this.ticksHastaSalirDelBloque;
 	}
 
+
+    public void moverDerecha() {
+    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
+    	this.setVelocidadDireccional(velocidad);
+    }
+    
+    public void moverIzquierda() {
+    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
+    	this.setVelocidadDireccional(velocidad);
+    }
+    
+    public void invertirDireccion() {
+    	Point velocidad = new Point(-this.getVelocidadDireccional().x, this.getVelocidadDireccional().y);
+    	this.setVelocidadDireccional(velocidad);
+    }
+	
 	public boolean esMovible() {
 		return this.esMovible;
 	}
