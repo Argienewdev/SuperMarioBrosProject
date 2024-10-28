@@ -40,7 +40,6 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		System.out.println("Actualizar Sprite");
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){

@@ -5,7 +5,7 @@ import java.awt.Point;
 import fabricas.FabricaSprites;
 import visitors.Visitante;
 
-public interface EstadoKoopa{
+public interface EstadoKoopa {
 
 	public void aceptarVisitante(Visitante visitante);
 	

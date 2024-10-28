@@ -79,8 +79,8 @@ public class PantallaDeJuego extends JPanel {
     }
 
     private void setPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.marioLabel.getLocation();
-		
+    	//EN REGISTRAR JUGABLE AUN NO SE SINCRONIZARON AMBAS POSICIONES (LA DEL LABEL Y LA DEL JUGABLE)
+		this.posicionOriginalLabelJugable = this.marioJugable.getPosicion();
 	}
 
 	private void setPosicionOriginalJugable () {
@@ -181,6 +181,7 @@ public class PantallaDeJuego extends JPanel {
     	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
     	//debido a que primero cambia de nivel y despues revierte su estado
     	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
+    	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	agregarLabel(marioLabel);
     	mostrarLabels();

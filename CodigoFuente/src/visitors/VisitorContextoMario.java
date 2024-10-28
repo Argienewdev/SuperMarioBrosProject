@@ -33,11 +33,7 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad) &&
-			!goomba.getRemovido()) {
-            goomba.setRemovido(true);
-            this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
-    	}
+		goomba.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
 	@Override
@@ -89,13 +85,15 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarMonedas(Monedas monedas) {
-		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
-    	monedas.setRemovido(true);
+		if(!monedas.getRemovido()) {
+    		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
+        	monedas.setRemovido(true);
+    	}
 	}
 
 	@Override
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+		if(this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
             bloqueDePregunta.liberarPowerUp();
         }
 	}
@@ -111,7 +109,12 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarBandera(Bandera bandera) {}
+	public void visitarBandera(Bandera bandera) {
+        this.detectorDireccionColision.verificarColision(miEntidad, this.miEntidad);
+        this.miEntidad.reiniciarEstado();
+		this.miEntidad.getNivel().setCompletado(true);
+        this.miEntidad.getNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().eliminarNivelActual();
+	}
 
 	@Override
 	public void visitarTuberia(Tuberia tuberia) {}

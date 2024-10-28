@@ -183,7 +183,7 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		int duracionPantallaEntreNiveles = 1000;
+		int duracionPantallaEntreNiveles = 2000;
 		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
