@@ -141,6 +141,8 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
 	
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+	
 	@Override
 	public void visitarPiso(Piso piso) {}
 	

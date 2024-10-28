@@ -24,7 +24,6 @@ public class PantallaFinal extends JLayeredPane {
     private JButton botonCerrar;
     private JPanel panelBotones;
     private JLabel puntajeLabel;
-    private int puntaje;
 
     public PantallaFinal(ControladorVistas controladorVistas) {
         this.controladorVistas = controladorVistas;
@@ -37,7 +36,6 @@ public class PantallaFinal extends JLayeredPane {
 
         mensajeFinal();
         configurarBotones();
-//        puntajeJugador();
         asignarAccesosTeclado();
     }
 
@@ -65,12 +63,6 @@ public class PantallaFinal extends JLayeredPane {
         add(mensajeFinal, BorderLayout.NORTH);
     }
     
-    public void establecerPuntaje(int puntaje) {
-        this.puntaje = puntaje;
-        if (puntajeLabel != null) {
-            puntajeLabel.setText("Puntaje: " + puntaje);
-        }
-    }
     
     public void puntajeJugador(int puntaje) {
         puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);

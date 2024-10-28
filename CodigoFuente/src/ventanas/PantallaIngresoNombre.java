@@ -24,7 +24,7 @@ public class PantallaIngresoNombre extends JPanel {
         setLayout(new BorderLayout());  
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(size);
-        layeredPane.setLayout(null); // Layout nulo para posición manual de panelContenido
+        layeredPane.setLayout(null); 
 
         establecerFondo(layeredPane);
         establecerContenido(layeredPane);
@@ -50,7 +50,7 @@ public class PantallaIngresoNombre extends JPanel {
     private void establecerFondo(JLayeredPane layeredPane) {
         fondo = new JLabel(new ImageIcon("src/imagenes/fondoJuegoCielo.png"));
         fondo.setBounds(0, 0, size.width, size.height);
-        layeredPane.add(fondo, Integer.valueOf(0)); // Añade fondo en la capa inferior
+        layeredPane.add(fondo, Integer.valueOf(0)); 
     }
 
     private void establecerContenido(JLayeredPane layeredPane) {
@@ -58,7 +58,6 @@ public class PantallaIngresoNombre extends JPanel {
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         panelContenido.setOpaque(false);  
 
-        // Ajustamos las dimensiones y posición de panelContenido para centrarlo
         int panelWidth = 300;
         int panelHeight = 200;
         panelContenido.setBounds((size.width - panelWidth) / 2, (size.height - panelHeight) / 2, panelWidth, panelHeight);
@@ -67,7 +66,7 @@ public class PantallaIngresoNombre extends JPanel {
         ajustarCampoNombre(panelContenido);
         configurarBotonConfirmar(panelContenido);
 
-        layeredPane.add(panelContenido, Integer.valueOf(1)); // Añade contenido en la capa superior
+        layeredPane.add(panelContenido, Integer.valueOf(1)); 
     }
 
     private void establecerTitulo(JPanel panelContenido) {
@@ -76,16 +75,16 @@ public class PantallaIngresoNombre extends JPanel {
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
         panelContenido.add(etiqueta);
-        panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio debajo del título
+        panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
 
     private void ajustarCampoNombre(JPanel panelContenido) {
         campoNombre = new JTextField(15);
-        campoNombre.setMaximumSize(new Dimension(200, 30)); // Ajustamos el ancho del campo de texto
+        campoNombre.setMaximumSize(new Dimension(200, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
         campoNombre.requestFocusInWindow();
         panelContenido.add(campoNombre);
-        panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio debajo del campo de texto
+        panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
 
     private void configurarBotonConfirmar(JPanel panelContenido) {
@@ -96,7 +95,6 @@ public class PantallaIngresoNombre extends JPanel {
             String nombre = campoNombre.getText().trim();
             if (!nombre.isEmpty()) {
                 guardarNombre(nombre);
-                System.out.println("Nombre: " + nombre); // Para testing (borrar)
                 controlador.mostrarPantallaFinal();
             } else {
                 JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -126,13 +126,13 @@ public class VisitorMonedas implements Visitante {
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        // TODO Auto-generated method stub
     }
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarPiso(Piso piso) {

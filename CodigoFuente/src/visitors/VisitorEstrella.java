@@ -103,26 +103,32 @@ public class VisitorEstrella implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	System.out.println("Visitando a mario");
         ContextoMario contextoMario = marioDefault.getContext();
-        EstadoMario nuevoEstado = new MarioInvulnerable();
+        EstadoMario nuevoEstado = new MarioInvulnerable(marioDefault);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.getContext();
-        EstadoMario nuevoEstado = new MarioInvulnerable();
+        EstadoMario nuevoEstado = new MarioInvulnerable(superMario);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
         ContextoMario contextoMario = marioFuego.getContext();
-        EstadoMario nuevoEstado = new MarioInvulnerable();
+        EstadoMario nuevoEstado = new MarioInvulnerable(marioFuego);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	ContextoMario contextoMario = marioRecuperacion.getContext();
+        EstadoMario nuevoEstado = new MarioInvulnerable(new MarioDefault());
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {}

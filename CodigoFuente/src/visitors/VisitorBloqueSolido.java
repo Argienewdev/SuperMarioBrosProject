@@ -83,6 +83,9 @@ public class VisitorBloqueSolido implements Visitante {
     public void visitarSuperMario(SuperMario superMario) {
         this.detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
     }
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	this.detectorDireccionColision.verificarColision(this.miEntidad, marioRecuperacion.getContext());
+    }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {        }

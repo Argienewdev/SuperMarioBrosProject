@@ -75,6 +75,12 @@ public class VisitorFlorDeFuego implements Visitante {
         ContextoMario contextoMario = marioInvulnerable.getContext();
         contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorInvulnerable());
     }
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	ContextoMario contextoMario = marioRecuperacion.getContext();
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}

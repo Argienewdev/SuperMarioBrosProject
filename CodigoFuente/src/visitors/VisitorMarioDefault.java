@@ -124,6 +124,8 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {}
+    
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {}
