@@ -140,6 +140,15 @@ public class PantallaDeJuego extends JPanel {
         	}
 
          // Si el fondo se movió, mover los labels
+        	/*TODO 
+        	Thread Suspended (uncaught exception ConcurrentModificationException))	
+        	PantallaDeJuego.refrescar() line: 153	
+        	ControladorVistas.refrescar() line: 167	
+        	Juego.actualizar() line: 56	
+        	BucleJuego.tick() line: 87	
+        	BucleJuego.run() line: 63	
+        	Thread.run() line: 1589	
+        	*/
         	if (fondoMovido) {
         		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
         			Point posicionLabel = observerGrafico.getLocation();

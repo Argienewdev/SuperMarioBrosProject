@@ -28,6 +28,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		//TODO esta llamada no va aca
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {

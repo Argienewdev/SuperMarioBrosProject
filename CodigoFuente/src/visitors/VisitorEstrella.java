@@ -93,7 +93,6 @@ public class VisitorEstrella implements Visitante {
     
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	System.out.println("Visitando a mario");
         ContextoMario contextoMario = marioDefault.getContext();
         EstadoMario nuevoEstado = new MarioInvulnerable(marioDefault);
         contextoMario.cambiarEstado(nuevoEstado);
