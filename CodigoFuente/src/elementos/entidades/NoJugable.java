@@ -1,6 +1,7 @@
 package elementos.entidades;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
@@ -22,11 +23,10 @@ public abstract class NoJugable extends Entidad {
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 	
-    public abstract void eliminarEntidadGraficaYLogicamente(FabricaSprites fabricaSprites);
+    public abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
 
 	public void eliminarDelNivel() {
 		this.miNivel.addEntidadesAEliminar(this);
-		this.removido = true;
 	}
 	
 	public int obtenerTicksAnimacion() {
@@ -46,4 +46,8 @@ public abstract class NoJugable extends Entidad {
 		this.invertirDireccion();
 	}
 	
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+		this.setHitbox(new Rectangle(this.getPosicion().x, this.getPosicion().y + this.getSprite().getAltoImagen(), this.getSprite().getAnchoImagen(), this.getSprite().getAltoImagen()));
+		this.setPosicion(this.obtenerHitbox().getLocation());
+	}
 }

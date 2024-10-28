@@ -54,7 +54,7 @@ public class Monedas extends PowerUp {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.getRemovido()) {
-			this.eliminarEntidadGraficaYLogicamente(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 		}
 	}
 }
