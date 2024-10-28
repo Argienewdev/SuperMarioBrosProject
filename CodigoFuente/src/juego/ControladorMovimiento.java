@@ -130,18 +130,10 @@ public class ControladorMovimiento {
 			if(marioChocoBordeIzquierdo) {
 				huboColision = true;
 				this.marioJugable.retrotraerMovimientoHorizontal(0);
-			}else if(marioChocoBordeDerecho) {
+			} else if(marioChocoBordeDerecho) {
 				huboColision = true;
 				this.marioJugable.retrotraerMovimientoHorizontal(DimensionesConstantes.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
-			} else if(marioSeCayoDelMundo){
-		        huboColision = true;
-		        marioJugable.perderVida();
-		        marioJugable.reiniciarEstado();
-		        nivel.reiniciarNivel();
-		        //TODO El nivel se debe reiniciar pero si lo llamamos aca,
-		        //y mario esta en otro modo con una hitbox mas grande, el nivel lo posiciona
-		        //en la posicion inicial y traspasa el piso
-			}else {
+			} else {
 				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
 				    if (entidad.huboColision(elemento)) {
 				        huboColision = true;
@@ -180,6 +172,11 @@ public class ControladorMovimiento {
 	}
 	
 	private boolean realizarAccionEspecial() {
-		return sensorDeTeclasJuego.obtenerSpacePresionada() ;
+		boolean retornar = false;
+		if(sensorDeTeclasJuego.obtenerSpacePresionada()) {
+			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
+			sensorDeTeclasJuego.setSpaceAccionada(true);
+		}
+		return retornar;
 	}
 }

@@ -49,38 +49,22 @@ public class VisitorChampinionVerde implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	contextoMario.ganarVida();
-    	contextoMario.aceptarVisitante(this.miEntidad.getVisitor());
     }
 
     @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {
-    	ContextoMario contextoMario = marioDefault.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
-    }
+    public void visitarMarioDefault(MarioDefault marioDefault) {}
 
     @Override
-    public void visitarSuperMario(SuperMario superMario) {
-    	ContextoMario contextoMario = superMario.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorSuper());
-    }
+    public void visitarSuperMario(SuperMario superMario) {}
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-    	ContextoMario contextoMario = marioFuego.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorFuego());
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    	ContextoMario contextoMario = marioInvulnerable.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorInvulnerable());
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	ContextoMario contextoMario = marioRecuperacion.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
-    }
+    @Override
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {}
@@ -115,7 +99,6 @@ public class VisitorChampinionVerde implements Visitante {
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

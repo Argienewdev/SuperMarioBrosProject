@@ -19,54 +19,34 @@ public class VisitorFlorDeFuego implements Visitante {
     }
 
     @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	//Se traspasan
-    }
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}
 
     @Override
-    public void visitarSpiny(Spiny spiny) {
-    	//Se traspasan
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
-    public void visitarGoomba(Goomba goomba) {
-    	//Se traspasan
-    }
+    public void visitarGoomba(Goomba goomba) {}
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-    	//Se traspasan
-    }
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    	//Se traspasan
-    }
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
 
     @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	//Se traspasan
-    }
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
 
     @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	//Se traspasan
-    }
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	//Se traspasan
-    }
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {
-    	//Se traspasan
-    }
+    public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
-    	//Se traspasan
-    }
+    public void visitarMonedas(Monedas monedas) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
@@ -76,22 +56,19 @@ public class VisitorFlorDeFuego implements Visitante {
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
         ContextoMario contextoMario = marioDefault.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
-        contextoMario.cambiarEstado(new MarioFuego(fabricaEntidades));
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorSuper());
-        contextoMario.cambiarEstado(new MarioFuego(fabricaEntidades));
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {
-    	ContextoMario contextoMario = marioFuego.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorFuego());
-    }
+    public void visitarMarioFuego(MarioFuego marioFuego) {}
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
@@ -101,61 +78,44 @@ public class VisitorFlorDeFuego implements Visitante {
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     	ContextoMario contextoMario = marioRecuperacion.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
-        contextoMario.cambiarEstado(new MarioFuego(fabricaEntidades));
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    	//Se encarga el bloque
-    }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {
-    	//Se encarga el bloque
-    }
+    public void visitarLadrillo(Ladrillo ladrillo) {}
 
     @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	//Se encarga la princesa
-    }
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
     @Override
-    public void visitarBandera(Bandera bandera) {
-    	//Se encarga la bandera
-    }
+    public void visitarBandera(Bandera bandera) {}
 
     @Override
-    public void visitarTuberia(Tuberia tuberia) {
-    	//Se enncarga el bloque
-    }
+    public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-    	//Se enncarga el bloque
-    }
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-    	//Se atraviesan
-    }
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {}
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	//Se atraviesan
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	//Se atraviesan
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
     public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
-		bolaDeFuego.eliminarDelNivel();
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
 	}
   
 }

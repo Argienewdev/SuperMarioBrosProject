@@ -182,7 +182,7 @@ public class FabricaEntidades {
     
     public BolaDeFuego getBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
     	Sprite sprite = fabricaSprites.getBolaDeFuego();
-    	BolaDeFuego bolaDeFuegoADevolver= new BolaDeFuego(sprite, posicion, null, null, jugador);
+    	BolaDeFuego bolaDeFuegoADevolver= new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
     	Visitante visitor=new VisitorBolaDeFuego(bolaDeFuegoADevolver);
     	bolaDeFuegoADevolver.setVisitor(visitor);
     	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);

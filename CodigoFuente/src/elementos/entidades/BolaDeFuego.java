@@ -10,9 +10,10 @@ public class BolaDeFuego extends NoJugable {
 	
 	protected Jugable miJugador;
 	
-	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor,
+	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, observerGrafico);
+		this.velocidadDireccional=velocidadDireccional;
 		this.miJugador = jugador;
 	}
 	
@@ -29,7 +30,7 @@ public class BolaDeFuego extends NoJugable {
 	}
 
 	public void eliminarDelNivel() {
-		//TODO eliminarDelNivel();
+		//TODO
 	}
 
 	public Jugable obtenerJugador() {

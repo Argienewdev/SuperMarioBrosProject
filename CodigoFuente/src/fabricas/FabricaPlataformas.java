@@ -13,9 +13,15 @@ import visitors.Visitante;
 import visitors.VisitorBandera;
 import visitors.VisitorBloqueDePregunta;
 import visitors.VisitorBloqueSolido;
+import visitors.VisitorChampinionVerde;
+import visitors.VisitorEstrella;
+import visitors.VisitorFlorDeFuego;
 import visitors.VisitorLadrillo;
+import visitors.VisitorMonedas;
+import visitors.VisitorPiranhaPlant;
 import visitors.VisitorPiso;
 import visitors.VisitorPrincesa;
+import visitors.VisitorSuperChampinion;
 import visitors.VisitorTuberia;
 
 public class FabricaPlataformas {
@@ -109,7 +115,7 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.setObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 3;
+		int identificadorPowerUp = 5;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {

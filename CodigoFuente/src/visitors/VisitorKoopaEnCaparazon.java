@@ -122,10 +122,13 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarPiso(Piso piso) {
+        // TODO Auto-generated method stub
     }
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
 	}
     
 }

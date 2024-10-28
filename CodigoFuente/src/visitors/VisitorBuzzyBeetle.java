@@ -91,25 +91,27 @@ public class VisitorBuzzyBeetle implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
+        if(this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad) && !this.miEntidad.getRemovido()) {
             ContextoMario contextoMario = marioDefault.getContext();
             int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miEntidad.getNivel().reiniciarNivel();
+        }else {
+            detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
         }
     }
     
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+        if(this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
         	superMario.getContext().reiniciarEstado();
         }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if(this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    	if(this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
     		marioFuego.getContext().reiniciarEstado();
         }
     }

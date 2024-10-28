@@ -10,51 +10,58 @@ public class VisitorLakitu implements Visitante {
     
     protected Lakitu miEntidad;
     
-    protected DetectorDireccionColision detectorDireccionColision;
-    
     public VisitorLakitu(Lakitu miEntidad) {
         this.miEntidad = miEntidad;
-        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarMonedas(Monedas moneda) {
+        // TODO Auto-generated method stub
     }
 
     @Override
@@ -64,13 +71,6 @@ public class VisitorLakitu implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verficiarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
-            ContextoMario contextoMario = marioDefault.getContext();
-            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
-            contextoMario.perderPuntos(perdidaPuntos);
-            contextoMario.perderVida();
-            miEntidad.getNivel().reiniciarNivel();
-        }
     }
 
     @Override
@@ -84,59 +84,66 @@ public class VisitorLakitu implements Visitante {
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+        // TODO Auto-generated method stub
+    }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    	//Se encarga el bloque
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-        //Se encarga el bloque
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        //Se encarga la princesa
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarBandera(Bandera bandera) {
-        //Se encarga la bandera
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarTuberia(Tuberia tuberia) {
-        //Se encarga el bloque
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        //Se encarga el bloque
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPiso(Piso piso) {
+        // TODO Auto-generated method stub
     }
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
-		bolaDeFuego.eliminarDelNivel();
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		// TODO Auto-generated method stub
+		
 	}
     
 }

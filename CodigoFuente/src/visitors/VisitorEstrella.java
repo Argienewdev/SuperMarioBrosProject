@@ -13,83 +13,77 @@ public class VisitorEstrella implements Visitante {
     public VisitorEstrella(Estrella miEntidad) {
         this.miEntidad = miEntidad;
     }
-    
-    @Override
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	//Es atravesado
-    }
 
     @Override
-    public void visitarSpiny(Spiny spiny) {
-    	//Es atravesado
-    }
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}
 
     @Override
-    public void visitarGoomba(Goomba goomba) {
-    	//Es atravesado
-    }
+    public void visitarSpiny(Spiny spiny) {}
 
     @Override
-    public void visitarLakitu(Lakitu lakitu) {
-    	//Es atravesado
-    }
+    public void visitarGoomba(Goomba goomba) {}
+
+    @Override
+    public void visitarLakitu(Lakitu lakitu) {}
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    	//Es atravesado
+        // Lógica para visitar PiranhaPlant
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	//Es atravesado
+        // Lógica para visitar SuperChampinion
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	//Es atravesado
+        // Lógica para visitar FlorDeFuego
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-    	//Es atravesado
+        // Lógica para visitar ChampinionVerde
     }
 
     @Override
-    public void visitarEstrella(Estrella estrella) {}
+    public void visitarEstrella(Estrella estrella) {
+        // Lógica para visitar Estrella
+    }
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-    	//Es atravesado
+        // Lógica para visitar Monedas
     }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        // No lo afecta
+        // Lógica para visitar BloqueDePregunta
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-    	// No lo afecta
+        // Lógica para visitar Ladrillo
     }
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	//No lo afecta
+        // Lógica para visitar PrincesaPeach
     }
 
     @Override
     public void visitarBandera(Bandera bandera) {
-    	//No lo afecta
+        // Lógica para visitar Bandera
     }
 
     @Override
     public void visitarTuberia(Tuberia tuberia) {
-    	//No lo afecta
+        // Lógica para visitar Tuberia
     }
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-    	//No lo afecta
+        // Lógica para visitar BloqueSolido
     }
 
     @Override
@@ -100,7 +94,6 @@ public class VisitorEstrella implements Visitante {
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
         ContextoMario contextoMario = marioDefault.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
         EstadoMario nuevoEstado = new MarioInvulnerable(marioDefault);
         contextoMario.cambiarEstado(nuevoEstado);
     }
@@ -108,7 +101,6 @@ public class VisitorEstrella implements Visitante {
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorSuper());
         EstadoMario nuevoEstado = new MarioInvulnerable(superMario);
         contextoMario.cambiarEstado(nuevoEstado);
     }
@@ -116,44 +108,34 @@ public class VisitorEstrella implements Visitante {
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
         ContextoMario contextoMario = marioFuego.getContext();
-        contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorFuego());
         EstadoMario nuevoEstado = new MarioInvulnerable(marioFuego);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    	ContextoMario contextoMario = marioInvulnerable.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorInvulnerable());
-    }
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     	ContextoMario contextoMario = marioRecuperacion.getContext();
-    	contextoMario.ganarPuntos(this.miEntidad.obtenerPuntosPorDefault());
         EstadoMario nuevoEstado = new MarioInvulnerable(new MarioDefault());
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-    	//Es atravesado
-    }
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {}
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	//Es atravesado
-    }
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	//Es atravesado
-    }
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
     public void visitarPiso(Piso piso) {}
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		//Es atravesado
+		// TODO Auto-generated method stub
+		
 	}
 }
