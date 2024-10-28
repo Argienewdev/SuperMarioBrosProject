@@ -8,10 +8,13 @@ import visitors.Visitante;
 
 public class BuzzyBeetle extends Enemigo {
 	
+	private static final int TICKS_PARA_ELIMINAR = 10;
+	
 	public BuzzyBeetle(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.puntosOtorgadosPorEliminacion = 30;
 		this.puntosSustraidosPorMuerteCausada = 15;
+        this.ticksAnimacion = TICKS_PARA_ELIMINAR;
 	}
 	
 	@Override
@@ -22,10 +25,8 @@ public class BuzzyBeetle extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
-			eliminarEntidadGrafica(fabricaSprites);
 			this.setVelocidadDireccional(new Point(0,0));
-		}else if(this.getVelocidadDireccional().x == 0) {
-			this.setSprite(fabricaSprites.getBuzzyBeetleFrontalCaminando());
+			eliminarEntidadGrafica(fabricaSprites);
 		} else if(this.getVelocidadDireccional().x < 0) {
 			this.setSprite(fabricaSprites.getBuzzyBeetleReversoCaminando());
 		} else if(this.getVelocidadDireccional().x > 0) {
@@ -34,11 +35,11 @@ public class BuzzyBeetle extends Enemigo {
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		if(getContadorTicks() < ticksAnimacion) {
+		if(getContadorTicks() == 1){
 			this.setSprite(fabricaSprites.getBuzzyBeetleFrontalQuieto());
+			this.actualizarHitboxYPosicion(fabricaSprites);
 		} else if(getContadorTicks() == ticksAnimacion) {
 			this.setSprite(fabricaSprites.getSpriteInvisible());
-		} else {
 			this.eliminarDelNivel();
 		}
 	}

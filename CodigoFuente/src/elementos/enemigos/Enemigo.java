@@ -19,7 +19,6 @@ public abstract class Enemigo extends NoJugable {
 	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
-		this.ticksAnimacion = 60;
 	}
     
     public int getPuntosOtorgadosPorEliminacion() {

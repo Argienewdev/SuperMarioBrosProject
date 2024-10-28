@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import elementos.entidades.Jugable;
@@ -32,11 +33,13 @@ public class PantallaDeJuego extends JPanel {
     private Point posicionOriginalJugable;
     
     private Point posicionOriginalLabelJugable;
+    
+    private JLayeredPane layeredPane;
    
     private static final int MITAD_PANTALLA = (DimensionesConstantes.PANEL_ANCHO / 2) - 100;
 
     public PantallaDeJuego() {
-        this.fondo = new JLabel();
+    	this.fondo = new JLabel();
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
@@ -48,13 +51,22 @@ public class PantallaDeJuego extends JPanel {
         setPreferredSize(size);
         setMaximumSize(size);
         setMinimumSize(size);
+        
+        // Crear el JLayeredPane para gestionar las capas
+        layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(size);
+        layeredPane.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        add(layeredPane);
+
+        
         crearHUD();
     }
     
     private void crearHUD() {
     	hud = new Interfaz();
     	hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
-        add(hud);
+    	layeredPane.add(hud, JLayeredPane.PALETTE_LAYER);
+    	//add(hud);
         hud.setVisible(true);
 	}
 
@@ -62,7 +74,8 @@ public class PantallaDeJuego extends JPanel {
         ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
         fondo = new JLabel(fondoImagen);
         fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
-        add(fondo);
+        layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
+        //add(fondo);
     }
 
     @SuppressWarnings("exports")
@@ -72,7 +85,7 @@ public class PantallaDeJuego extends JPanel {
         setPosicionOriginalJugable();
         setPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
-        mostrarLabels();
+       // mostrarLabels();
         establecerFondo();
         revalidate();
         repaint();
@@ -88,17 +101,27 @@ public class PantallaDeJuego extends JPanel {
 	}
 
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
+		labelsElementoDeJuego.add(labelElementoDeJuego);
+		layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
+    	//add(label);
+		labelElementoDeJuego.setVisible(true);
+        revalidate();
+        repaint();
+    }
+	
+	public void agregarbola(ObserverGrafico labelElementoDeJuego) {
         labelsElementoDeJuego.add(labelElementoDeJuego);
     }
 
-    public void mostrarLabels() {
+   /* public void mostrarLabels() {
         for(JLabel label : labelsElementoDeJuego) {
-            add(label);
+        	layeredPane.add(label, JLayeredPane.MODAL_LAYER);
+        	//add(label);
             label.setVisible(true);
             revalidate();
             repaint();
         }
-    }
+    }*/
 
     public void refrescar() {
     	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
@@ -184,7 +207,7 @@ public class PantallaDeJuego extends JPanel {
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	agregarLabel(marioLabel);
-    	mostrarLabels();
+    	//mostrarLabels();
     	establecerFondo();
     	revalidate();
     	repaint();

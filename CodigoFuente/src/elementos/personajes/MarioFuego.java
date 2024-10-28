@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import elementos.Sprite;
+import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import ventanas.DimensionesConstantes;
@@ -14,8 +15,11 @@ public class MarioFuego extends MarioDefault {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
+	protected boolean frente;
+	
 	public MarioFuego(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
+		frente=true;
 	}
 	
 	@Override
@@ -40,16 +44,22 @@ public class MarioFuego extends MarioDefault {
 		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
 			aRetornar = fabricaSprites.getMarioFuegoCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
+			frente = true;
 			aRetornar = fabricaSprites.getMarioFuegoFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
+			frente = false;
 			aRetornar = fabricaSprites.getMarioFuegoReversoSaltando();
 		}else if(avanzando()) {
+			frente = true;
 			aRetornar = fabricaSprites.getMarioFuegoFrontalCaminando();
 		} else if(retrocediendo()){
+			frente = false;
 			aRetornar = fabricaSprites.getMarioFuegoReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
+			frente = true;
 			aRetornar = fabricaSprites.getMarioFuegoFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
+			frente = false;
 			aRetornar = fabricaSprites.getMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -99,14 +109,19 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		/*
+		
 		int posX=(int)getContext().getPosicion().getX();
-		int posY=(int)getContext().getPosicion().getY()-50;
+		int posY=(int)getContext().getPosicion().getY();
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
-		Point velocidadDireccionalBolaDeFuego = new Point(0,1);
+		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
+		if(frente) {
+			velocidadDireccionalBolaDeFuego = new Point(15,0);
+		}else {
+			velocidadDireccionalBolaDeFuego = new Point(-15,0);
+		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
 		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
-		*/
+		
 	}
 	
 	public void actualizarTiempoDelta(int tiempoDelta) {
