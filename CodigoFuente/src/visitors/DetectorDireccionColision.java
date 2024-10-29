@@ -6,7 +6,7 @@ import elementos.entidades.Entidad;
 
 public class DetectorDireccionColision {
 	
-	public void verificarColision(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public void verificarColisionElementoDeJuegoYEntidad(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		if(choquePorDerecha(elementoDeJuego, entidad)) {
 	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x - entidad.obtenerAncho());
 		}else if(choquePorIzquierda(elementoDeJuego, entidad)) {

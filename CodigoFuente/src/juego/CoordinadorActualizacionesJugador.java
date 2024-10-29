@@ -5,7 +5,7 @@ import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 
 public class CoordinadorActualizacionesJugador {
 	

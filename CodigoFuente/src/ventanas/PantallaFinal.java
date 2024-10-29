@@ -19,7 +19,7 @@ public class PantallaFinal extends JLayeredPane {
     private static final long serialVersionUID = 1L;
     private Fuentes tipoFuentes;
     private ControladorVistas controladorVistas;
-    private Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+    private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     private JButton botonVolver;
     private JButton botonCerrar;
     private JPanel panelBotones;
@@ -58,7 +58,7 @@ public class PantallaFinal extends JLayeredPane {
 
     private void mensajeFinal() {
         JLabel mensajeFinal = new JLabel("¡Fin de la Partida!", SwingConstants.CENTER);
-        mensajeFinal.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+        mensajeFinal.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
         mensajeFinal.setForeground(Color.WHITE);
         add(mensajeFinal, BorderLayout.NORTH);
     }
@@ -66,7 +66,7 @@ public class PantallaFinal extends JLayeredPane {
     
     public void puntajeJugador(int puntaje) {
         puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
-        puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+        puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
         puntajeLabel.setForeground(Color.WHITE);
         add(puntajeLabel, BorderLayout.CENTER);
     }

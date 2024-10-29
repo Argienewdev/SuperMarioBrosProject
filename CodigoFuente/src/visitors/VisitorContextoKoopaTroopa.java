@@ -39,7 +39,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        this.detectorDireccionColision.verificarColision(koopaEnCaparazon.getContext() ,this.miEntidad);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.getContext() ,this.miEntidad);
     }
 
     @Override

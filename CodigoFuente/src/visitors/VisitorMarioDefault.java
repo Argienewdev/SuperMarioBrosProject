@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import ventanas.ConstantesGlobales;
 
 public class VisitorMarioDefault implements Visitante {
 
@@ -51,17 +52,17 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	if(this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto) &&
-    	   !koopaEnCaparazon.getContext().getRemovido()) {
+    	System.out.println(this.miContexto.getVelocidadDireccional().y);
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)  
+    		&& !koopaEnCaparazon.getContext().getRemovido()
+    		&& this.miContexto.getVelocidadDireccional().y > 10) {
     	   koopaEnCaparazon.getContext().setRemovido(true);
-           this.miContexto.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
         }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto) &&
-    		!koopaDefault.getContext().getRemovido()) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());

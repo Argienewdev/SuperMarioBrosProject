@@ -19,7 +19,7 @@ private Fuentes tipoFuentes;
 
 
 	public Interfaz(){
-		setPreferredSize(new Dimension(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.PANEL_ALTO));
+		setPreferredSize(new Dimension(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.PANEL_ALTO));
 		setLayout(new BorderLayout());
 		vidasLabel= new JLabel("Vidas: 3");
 		puntajeLabel= new JLabel("Puntaje 0");
@@ -81,9 +81,9 @@ private Fuentes tipoFuentes;
 	
 	public void configurarFuente() {
 		tipoFuentes= new Fuentes();
-		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
-		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
-		tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
+		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		vidasLabel.setForeground(Color.WHITE);
 		puntajeLabel.setForeground(Color.WHITE);
 		tiempoLabel.setForeground(Color.WHITE);

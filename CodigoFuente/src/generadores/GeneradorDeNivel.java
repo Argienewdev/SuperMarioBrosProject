@@ -23,7 +23,7 @@ import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
 import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import ventanas.PantallaDeJuego;
 import visitors.*;
 
@@ -196,7 +196,7 @@ public class GeneradorDeNivel {
 	}
 	
 	private Point parsearPosicion(int x, int y) {
-		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
+		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
 	public FabricaSprites getFabricaSprites() {

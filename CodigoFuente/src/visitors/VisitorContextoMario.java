@@ -106,49 +106,56 @@ public class VisitorContextoMario implements Visitante {
 	
 	@Override
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		this.miEntidad.getNivel().finalizarPartida();
+		this.miEntidad.getNivel().obtenerPartida().finalizarPartida();
 	}
 
 	@Override
 	public void visitarBandera(Bandera bandera) {
-        this.detectorDireccionColision.verificarColision(miEntidad, this.miEntidad);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
         this.miEntidad.reiniciarEstado();
 		this.miEntidad.getNivel().setCompletado(true);
 	}
 
 	@Override
 	public void visitarTuberia(Tuberia tuberia) {
-		this.detectorDireccionColision.verificarColision(tuberia, this.miEntidad);
+		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(tuberia, this.miEntidad);
 	}
 
 	@Override
 	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-		this.detectorDireccionColision.verificarColision(bloqueSolido, this.miEntidad);
+		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(bloqueSolido, this.miEntidad);
 	}
 
 	@Override
-	public void visitarContextoMario(ContextoMario contextoMario) {}
+	public void visitarContextoMario(ContextoMario contextoMario) {
+	}
 
 	@Override
-	public void visitarMarioDefault(MarioDefault marioDefault) {}
+	public void visitarMarioDefault(MarioDefault marioDefault) {
+	}
 
 	@Override
-	public void visitarSuperMario(SuperMario superMario) {}
+	public void visitarSuperMario(SuperMario superMario) {
+	}
 
 	@Override
-	public void visitarMarioFuego(MarioFuego marioFuego) {}
+	public void visitarMarioFuego(MarioFuego marioFuego) {
+	}
 
 	@Override
-	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+	public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+	}
 	
-	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+	}
 	
 	@Override
 	public void visitarPiso(Piso piso) {
-		this.detectorDireccionColision.verificarColision(piso, this.miEntidad);
+		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(piso, this.miEntidad);
 	}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+	}
 	
 }

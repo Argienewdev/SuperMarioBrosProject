@@ -7,7 +7,7 @@ import elementos.Sprite;
 import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
 
@@ -41,7 +41,7 @@ public class MarioFuego extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
+		if(contexto.getPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.getMarioFuegoCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
 			frente = true;

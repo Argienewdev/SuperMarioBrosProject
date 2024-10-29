@@ -125,10 +125,6 @@ public class Nivel {
     	return this.nivelCompletado;
     }
     
-    public void reiniciarNivel() {
-    	this.partida.reiniciarNivel();
-    }
-    
     public void setCompletado(boolean completado) {
     	this.nivelCompletado = completado;
     }
@@ -153,9 +149,6 @@ public class Nivel {
         }
         return elementosDeJuego;
     }
-    
-    public void finalizarPartida() {
-    	this.partida.finalizarPartida();
-    }
+
 
 }
