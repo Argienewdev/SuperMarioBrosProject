@@ -115,7 +115,7 @@ public class VisitorVacio implements Visitante {
     	contextoMario.perderPuntos(puntajeASustraer);
     	contextoMario.perderVida();
     	contextoMario.reiniciarEstado();
-        miEntidad.getNivel().reiniciarNivel();
+        miEntidad.getNivel().obtenerPartida().reiniciarNivel();
     }
 
     @Override

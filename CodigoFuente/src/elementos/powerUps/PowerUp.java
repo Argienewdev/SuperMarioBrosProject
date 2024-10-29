@@ -45,12 +45,12 @@ public abstract class PowerUp extends NoJugable {
 	}
 
 
-    public void moverDerecha() {
+    private void moverDerecha() {
     	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
     	this.setVelocidadDireccional(velocidad);
     }
     
-    public void moverIzquierda() {
+    private void moverIzquierda() {
     	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
     	this.setVelocidadDireccional(velocidad);
     }
@@ -83,6 +83,20 @@ public abstract class PowerUp extends NoJugable {
 	
 	public void setBloquePregunta(BloqueDePregunta bloquePregunta) {
 		this.bloquePregunta = bloquePregunta;
+	}
+	
+	@Override
+	public void mover() {
+		if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.setVelocidadDireccional(velocidad);
+    	}else {
+    		if (this.getVelocidadDireccional().x <= 0) {
+    			moverIzquierda();
+    		} else if (this.getVelocidadDireccional().x > 0){
+    			moverDerecha();
+    		}
+    	}
 	}
 	
 }

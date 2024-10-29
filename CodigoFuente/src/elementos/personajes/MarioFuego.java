@@ -7,7 +7,7 @@ import elementos.Sprite;
 import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
 
@@ -19,7 +19,7 @@ public class MarioFuego extends MarioDefault {
 	
 	public MarioFuego(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
-		frente=true;
+		frente = true;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class MarioFuego extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
+		if(contexto.getPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.getMarioFuegoCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
 			frente = true;
@@ -109,9 +109,8 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		
-		int posX=(int)getContext().getPosicion().getX();
-		int posY=(int)getContext().getPosicion().getY();
+		int posX = getContext().getPosicion().x + getContext().obtenerAncho();
+		int posY = getContext().getPosicion().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
 		if(frente) {
@@ -120,12 +119,7 @@ public class MarioFuego extends MarioDefault {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
-		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
-		
-	}
-	
-	public void actualizarTiempoDelta(int tiempoDelta) {
-		
+		contexto.getNivel().addBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	
 }

@@ -99,15 +99,9 @@ public abstract class FabricaSprites {
 
 	public abstract Sprite getLakituReversoFueraDeLaNube();
 	
-	public abstract Sprite getSpinyAntesDeCaerPrimeraTransicion();
-	
-	public abstract Sprite getSpinyAntesDeCaerSegundaTransicion();
-	
-	public abstract Sprite getSpinyFrontalQuieto();
+	public abstract Sprite getSpinyCayendo();
 	
 	public abstract Sprite getSpinyFrontalCaminando();
-	
-	public abstract Sprite getSpinyReversoQuieto();
 	
 	public abstract Sprite getSpinyReversoCaminando();
 

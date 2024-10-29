@@ -21,21 +21,22 @@ public class VisitorBloqueSolido implements Visitante {
     
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzy) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzy);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzy);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
-        this.detectorDireccionColision.verificarColision(this.miEntidad, spiny);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {    
-        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
     }
     
     @Override
-    public void visitarLakitu(Lakitu lakitu) {    
+    public void visitarLakitu(Lakitu lakitu) {
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, lakitu);
     }
     
     @Override
@@ -44,7 +45,7 @@ public class VisitorBloqueSolido implements Visitante {
     
     @Override
     public void visitarSuperChampinion(SuperChampinion superChamp) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, superChamp);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChamp);
     }
     
     @Override
@@ -53,12 +54,12 @@ public class VisitorBloqueSolido implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champVerde) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, champVerde);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champVerde);
     }
     
     @Override
     public void visitarEstrella(Estrella estrella) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, estrella);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
     }
     
     @Override
@@ -111,7 +112,7 @@ public class VisitorBloqueSolido implements Visitante {
     
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopa) {    
-        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopa);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopa);
     }
 
     @Override
@@ -137,8 +138,6 @@ public class VisitorBloqueSolido implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

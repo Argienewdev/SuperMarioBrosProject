@@ -10,17 +10,13 @@ import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 
 public class MasterMind {
 	
 	protected FabricaSprites fabricaSprites;
 	
 	protected Nivel nivel;
-	
-	private static final int GRAVEDAD = 3;
-	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
 	
 	private boolean hayNoJugableParaRemover;
 			
@@ -34,6 +30,8 @@ public class MasterMind {
 	}
 
 	public void actualizar() {
+		//TODO podemos hacer que actualizar la posicion llame a actualizar sprite todo dentro de 
+		//enemigo para que solo tenga que llamar a "actualizar()"?
 		actualizarPosicionesEnemigos();
 		actualizarPosicionesPowerUps();
 		actualizarPosicionesBolasDeFuego();
@@ -46,6 +44,8 @@ public class MasterMind {
 		actualizarLabelsPlataformas();
 		actualizarLabelsBolasDeFuego();
 		this.nivel.removerEntidadesAEliminar();
+		this.nivel.agregarBolaDeFuegoAAgregar();
+		this.nivel.agregarSpinysAAgregar();
 		if(hayNoJugableParaRemover) {
 			entidadARemover.incrementarContadorTicks();
 			if(entidadARemover.getContadorTicks() > entidadARemover.obtenerTicksAnimacion()) {
@@ -61,12 +61,20 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		if(enemigo.getPosicion().x < (DimensionesConstantes.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
-			enemigo.moverIzquierda();
+		if (enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100)) {
+			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
+				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 
+				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().getWidth() >= ConstantesGlobales.PANEL_ANCHO;
+				if (chocoBordeIzquierdo || chocoBordeDerecho) {
+					enemigo.invertirDireccion();
+				}
+			}
+			enemigo.mover();
+			enemigo.aplicarGravedad();
 		}
-		aplicarGravedad(enemigo);
 		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
+	
 	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
 		cambiarPosicionXHitboxDeEntidad(entidad);
 		verificarColisionesEntidades(entidad);
@@ -88,7 +96,7 @@ public class MasterMind {
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
 		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < 0) || entidad.obtenerHitbox().y < 0) {
-			entidad.eliminarDelNivel();
+			entidad.setRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(entidad.huboColision(elemento) && entidad != elemento) {
@@ -130,9 +138,9 @@ public class MasterMind {
 			powerUp.incrementarContadorTicks();
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
 			if(powerUp.getVelocidadDireccional().x == 0) {
-				powerUp.moverDerecha();
+				powerUp.mover();
 			}
-			aplicarGravedad(powerUp);
+			powerUp.aplicarGravedad();
 			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
@@ -140,7 +148,7 @@ public class MasterMind {
 	}
 	
 	private void moverBolaDeFuego(BolaDeFuego bolaFuego) {
-		aplicarGravedad(bolaFuego);
+		bolaFuego.aplicarGravedad();
 		cambiarYVerificarPosicionHitboxDeEntidad(bolaFuego);
 	}
 	
@@ -195,12 +203,6 @@ public class MasterMind {
 	private void actualizarLabelsBolasDeFuego() {
 		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()){
 			bola.getObserverGrafico().actualizar();
-		}
-	}
-	
-	private void aplicarGravedad(NoJugable noJugable) {
-		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
-			noJugable.setVelocidadDireccional(new Point(noJugable.getVelocidadDireccional().x, noJugable.getVelocidadDireccional().y + GRAVEDAD));
 		}
 	}
 	

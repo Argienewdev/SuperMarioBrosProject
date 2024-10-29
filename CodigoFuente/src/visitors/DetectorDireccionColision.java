@@ -6,7 +6,7 @@ import elementos.entidades.Entidad;
 
 public class DetectorDireccionColision {
 	
-	public void verificarColision(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public void verificarColisionElementoDeJuegoYEntidad(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		if(choquePorDerecha(elementoDeJuego, entidad)) {
 	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x - entidad.obtenerAncho());
 		}else if(choquePorIzquierda(elementoDeJuego, entidad)) {
@@ -44,7 +44,7 @@ public class DetectorDireccionColision {
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
-	public boolean verificarImpactoLateralEntreEnemigoYMario(Entidad mario, Entidad enemigo) {
+	public boolean verificarImpactoLateralEntreMarioYEnemigo(Entidad mario, Entidad enemigo) {
 		boolean enemigoImpactaPorDerecha= enemigo.obtenerHitbox().x < mario.obtenerHitbox().x + mario.obtenerHitbox().width;
 		boolean enemigoImpactaPorIzquierda = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().width > mario.obtenerHitbox().x;
 		boolean marioNoGolpeoPorArriba = !choquePorArriba(enemigo, mario);

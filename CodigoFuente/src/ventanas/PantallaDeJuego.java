@@ -38,7 +38,7 @@ public class PantallaDeJuego extends JPanel {
     
     private JLayeredPane layeredPane;
    
-    private static final int MITAD_PANTALLA = (DimensionesConstantes.PANEL_ANCHO / 2) - 100;
+    private static final int MITAD_PANTALLA = (ConstantesGlobales.PANEL_ANCHO / 2) - 100;
 
     public PantallaDeJuego() {
         configurarVentana();
@@ -49,7 +49,7 @@ public class PantallaDeJuego extends JPanel {
     protected void configurarVentana(){
         setVisible(true);
         setLayout(null);
-        this.size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        this.size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
         setPreferredSize(size);
         setMaximumSize(size);
         setMinimumSize(size);
@@ -57,7 +57,7 @@ public class PantallaDeJuego extends JPanel {
         // Crear el JLayeredPane para gestionar las capas
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(size);
-        layeredPane.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+        layeredPane.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
         add(layeredPane);
         
         revalidate();
@@ -68,7 +68,7 @@ public class PantallaDeJuego extends JPanel {
     
     private void crearHUD() {
     	hud = new Interfaz();
-    	hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+    	hud.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     	layeredPane.add(hud, JLayeredPane.PALETTE_LAYER);
         hud.setVisible(true);
         revalidate();
@@ -142,8 +142,8 @@ public class PantallaDeJuego extends JPanel {
             int anchoFondo = fondo.getWidth();
 
             // Asegúrate de que el fondo no se desplace más allá de su posición inicial
-            if (nuevaPosicionFondoX < -anchoFondo + DimensionesConstantes.PANEL_ANCHO) {
-                nuevaPosicionFondoX = -anchoFondo + DimensionesConstantes.PANEL_ANCHO; // Limitar movimiento del fondo
+            if (nuevaPosicionFondoX < -anchoFondo + ConstantesGlobales.PANEL_ANCHO) {
+                nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO; // Limitar movimiento del fondo
             }
             
          // Solo mueve el fondo si su posición ha cambiado
@@ -176,11 +176,6 @@ public class PantallaDeJuego extends JPanel {
         		}
         	}
         }
-
-        // Asegurarse de que Mario siempre esté actualizado
-        marioLabel.actualizar();
-        revalidate();
-        repaint();
     }
 
     

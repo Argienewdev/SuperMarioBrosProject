@@ -6,16 +6,9 @@ import java.awt.Rectangle;
 import elementos.ElementoDeJuego;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 
 public class ControladorMovimiento {
-	private static final int VELOCIDAD_MOVIMIENTO_HORIZONTAL = 10;
-	
-	private static final int FUERZA_SALTO = -30;
-	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 30;
-	
-	private static final int GRAVEDAD = 2;
 	
 	private int velocidadHorizontal;
 	
@@ -48,13 +41,13 @@ public class ControladorMovimiento {
 	}
 	
 	private void moveMarioDerecha() {
-		this.velocidadHorizontal = VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		this.velocidadHorizontal = ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.setAvanzando(true);
 		aplicarVelocidad();
 	}
 	
 	private void moveMarioIzquierda() {
-		this.velocidadHorizontal = -VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		this.velocidadHorizontal = -ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.setRetrocediendo(true);
 		aplicarVelocidad();
 	}
@@ -79,14 +72,14 @@ public class ControladorMovimiento {
 	}
 	
 	private void iniciarSalto() {
-		velocidadVertical = FUERZA_SALTO;
+		velocidadVertical = ConstantesGlobales.FUERZA_SALTO;
 		marioJugable.setEnElAire(true);
 		aplicarVelocidad();
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(velocidadVertical < VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.getColisionAbajo()){
-			velocidadVertical += GRAVEDAD;
+		if(velocidadVertical < ConstantesGlobales.VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.getColisionAbajo()){
+			velocidadVertical += ConstantesGlobales.GRAVEDAD;
 			aplicarVelocidad();
 		}else if(!marioJugable.getColisionAbajo()){
 			aplicarVelocidad();
@@ -130,13 +123,14 @@ public class ControladorMovimiento {
 	public void verificarColisiones(Jugable entidad) {
 		if(!this.nivel.fueCompletado()) {
 			boolean marioChocoBordeIzquierdo = marioJugable.obtenerHitbox().x < 0;
-			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO;
-			boolean marioSeCayoDelMundo = marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO;
+			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
 			if(marioChocoBordeIzquierdo) {
 				this.marioJugable.retrotraerMovimientoHorizontal(0);
 			} else if(marioChocoBordeDerecho) {
-				this.marioJugable.retrotraerMovimientoHorizontal(DimensionesConstantes.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
+				this.marioJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
 			} else {
+				//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
+				//de juego aca tira error porque esta siendo eliminado
 				for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
 				        elemento.aceptarVisitante(entidad.getVisitor());

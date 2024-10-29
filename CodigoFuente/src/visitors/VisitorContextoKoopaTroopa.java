@@ -39,7 +39,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        this.detectorDireccionColision.verificarColision(koopaEnCaparazon.getContext() ,this.miEntidad);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.getContext() ,this.miEntidad);
     }
 
     @Override
@@ -116,11 +116,11 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 	public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		fireball.setRemovido(true);
+	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 }

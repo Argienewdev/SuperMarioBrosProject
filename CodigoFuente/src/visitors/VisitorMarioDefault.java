@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import ventanas.ConstantesGlobales;
 
 public class VisitorMarioDefault implements Visitante {
 
@@ -37,8 +38,8 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if(this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) &&
-    		!goomba.getRemovido()) {
+    	if(this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.getRemovido()) {
             goomba.setRemovido(true);
             this.miContexto.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
         }
@@ -51,17 +52,15 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	if(this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto) &&
-    	   !koopaEnCaparazon.getContext().getRemovido()) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)
+    		&& this.miContexto.getVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
     	   koopaEnCaparazon.getContext().setRemovido(true);
-           this.miContexto.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
         }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto) &&
-    		!koopaDefault.getContext().getRemovido()) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
@@ -71,7 +70,11 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Implementación pendiente
+    	if(this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
+    	   && !lakitu.getRemovido()) {
+    		lakitu.setRemovido(true);
+            this.miContexto.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+        }
     }
 
     @Override

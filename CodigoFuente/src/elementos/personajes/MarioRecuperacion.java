@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioRecuperacion;
 
@@ -14,13 +14,13 @@ public class MarioRecuperacion extends MarioDefault {
 	private int tiempoEnRecuperacion;
 	
 	public MarioRecuperacion () {
-		this.tiempoEnRecuperacion = 300;
+		this.tiempoEnRecuperacion = 180;
 	}
 	
-	public void actualizarTiempo (int tiempoDelta) {
+	public void actualizarTiempo() {
 		tiempoEnRecuperacion--;
 		if (tiempoEnRecuperacion <= 0)
-			contexto.cambiarEstado(new MarioDefault());
+			contexto.reiniciarEstado();
 	}
 	
 	 public void aceptarVisitante(Visitante visitante) {
@@ -42,7 +42,7 @@ public class MarioRecuperacion extends MarioDefault {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		actualizarTiempo();
 		Sprite aRetornar = null;
-		if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
+		if(contexto.getPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.getMarioRecuperacionCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
 			aRetornar = fabricaSprites.getMarioRecuperacionFrontalSaltando();

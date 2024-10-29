@@ -39,7 +39,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Spiny getSpiny(Point posicion) {
-    	Sprite sprite = fabricaSprites.getSpinyReversoCaminando();
+    	Sprite sprite = fabricaSprites.getSpinyCayendo();
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
         spinyADevolver.setVisitor(visitorSpiny);
@@ -75,13 +75,14 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Lakitu getLakitu(Point posicion) {
-        Sprite sprite = fabricaSprites.getLakituDentroDeLaNube();
-        Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null);
+	public Lakitu getLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
+        Sprite sprite = fabricaSprites.getLakituReversoFueraDeLaNube();
+        Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null, fabricaEntidades);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
         lakituADevolver.setVisitor(visitorLakitu);
         ObserverGrafico observerGraficoLakitu = new ObserverGrafico(lakituADevolver);
         lakituADevolver.setObserverGrafico(observerGraficoLakitu);
+        lakituADevolver.establecerDebeMantenerseSiempreEnPantalla(true);
         this.pantallaDeJuego.agregarLabel(lakituADevolver.getObserverGrafico());
         return lakituADevolver;
     }
@@ -145,10 +146,10 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public FlorDeFuego getFlorDeFuego(Point posicion,FabricaEntidades fabricaEntidades) {
+	public FlorDeFuego getFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
-        FlorDeFuego florDeFuegoADevolver= new FlorDeFuego(sprite, posicion, null, null);
-		Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuegoADevolver,fabricaEntidades);
+        FlorDeFuego florDeFuegoADevolver = new FlorDeFuego(sprite, posicion, null, null);
+		Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuegoADevolver, fabricaEntidades);
 		florDeFuegoADevolver.setVisitor(visitorFlorDeFuego);
         ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuegoADevolver);
         florDeFuegoADevolver.setObserverGrafico(observerGraficoFlorDeFuego);
@@ -182,8 +183,8 @@ public class FabricaEntidades {
     
     public BolaDeFuego getBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
     	Sprite sprite = fabricaSprites.getBolaDeFuego();
-    	BolaDeFuego bolaDeFuegoADevolver= new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
-    	Visitante visitor=new VisitorBolaDeFuego(bolaDeFuegoADevolver);
+    	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
+    	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver);
     	bolaDeFuegoADevolver.setVisitor(visitor);
     	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
     	bolaDeFuegoADevolver.setObserverGrafico(observer);

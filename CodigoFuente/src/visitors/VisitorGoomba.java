@@ -74,20 +74,21 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad) && !this.miEntidad.getRemovido()) {
+        if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.getContext(), this.miEntidad) 
+        	&& !this.miEntidad.getRemovido()) {
             ContextoMario contextoMario = marioDefault.getContext();
             int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
-            miEntidad.getNivel().reiniciarNivel();
-        }else {
-            detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
+            miEntidad.getNivel().obtenerPartida().reiniciarNivel();
+        } else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.getContext());
         }
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.getContext(), this.miEntidad)) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
 	        superMario.getContext().cambiarEstado(marioRecuperacion);
     	}
@@ -95,7 +96,7 @@ public class VisitorGoomba implements Visitante {
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.getContext(), this.miEntidad)) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.getContext().cambiarEstado(marioRecuperacion);
     	}
@@ -160,13 +161,11 @@ public class VisitorGoomba implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		
+		fireball.setRemovido(true);
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

@@ -26,7 +26,11 @@ public class Nivel {
     
     protected Collection<BolaDeFuego> bolasDeFuego;
     
+    protected Collection<BolaDeFuego> bolasDeFuegoAAgregar;
+    
     protected Collection<ElementoDeJuego> entidadesAEliminar;
+    
+    protected Collection<Enemigo> spinysAAgregar;
     
     protected Collection<Plataforma> plataformasAfectables;
     
@@ -44,8 +48,10 @@ public class Nivel {
         this.plataformasAfectables = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
-        this.bolasDeFuego=new ArrayList<BolaDeFuego>();
+        this.bolasDeFuego = new ArrayList<BolaDeFuego>();
+        this.bolasDeFuegoAAgregar = new ArrayList<BolaDeFuego>();
         this.entidadesAEliminar = new ArrayList<ElementoDeJuego>();
+        this.spinysAAgregar = new ArrayList<Enemigo>();
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
@@ -67,14 +73,17 @@ public class Nivel {
         powerUp.setNivel(this);
     }
     
-    public void addBolaDeFuego(BolaDeFuego bolaDefuego) {
-        this.bolasDeFuego.add(bolaDefuego);
-        bolaDefuego.setNivel(this);
-    }
-    
 	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
     }
+	
+	public void addBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
+		this.bolasDeFuegoAAgregar.add(bolaDeFuego);
+	}
+	
+	public void addSpinyAAgregar(Enemigo spiny) {
+		this.spinysAAgregar.add(spiny);
+	}
 	
 	public void addPlataformasAfectables(Plataforma plataforma) {
         this.plataformasAfectables.add(plataforma);
@@ -93,6 +102,22 @@ public class Nivel {
         this.plataformas.remove(plataforma);
     }
 
+    public void agregarBolaDeFuegoAAgregar() {
+    	for(BolaDeFuego bolaDeFuego : bolasDeFuegoAAgregar) {
+    		bolaDeFuego.setNivel(this);
+    	}
+    	bolasDeFuego.addAll(bolasDeFuegoAAgregar);
+    	bolasDeFuegoAAgregar = new ArrayList<BolaDeFuego>();
+    }
+    
+    public void agregarSpinysAAgregar() {
+    	for(Enemigo spiny : spinysAAgregar) {
+    		spiny.setNivel(this);
+    	}
+    	enemigos.addAll(spinysAAgregar);
+    	spinysAAgregar = new ArrayList<Enemigo>();
+    }
+    
     public void removerEntidadesAEliminar() {
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
@@ -125,10 +150,6 @@ public class Nivel {
     	return this.nivelCompletado;
     }
     
-    public void reiniciarNivel() {
-    	this.partida.reiniciarNivel();
-    }
-    
     public void setCompletado(boolean completado) {
     	this.nivelCompletado = completado;
     }
@@ -153,9 +174,6 @@ public class Nivel {
         }
         return elementosDeJuego;
     }
-    
-    public void finalizarPartida() {
-    	this.partida.finalizarPartida();
-    }
+
 
 }

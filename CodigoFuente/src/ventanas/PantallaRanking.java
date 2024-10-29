@@ -24,7 +24,7 @@ public class PantallaRanking extends JPanel {
     
 	private JLabel fondo;
     
-	private Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+	private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     
 	protected ControladorVistas controlador;
     
@@ -73,8 +73,8 @@ public class PantallaRanking extends JPanel {
     
     private void agregarBotonRegresar(){
     	JLabel botonRegresar= new JLabel("Regresar");
-    	botonRegresar.setBounds(570 , DimensionesConstantes.PANEL_ALTO/4, size.width, size.height - 100);
-    	Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30);
+    	botonRegresar.setBounds(570 , ConstantesGlobales.PANEL_ALTO/4, size.width, size.height - 100);
+    	Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
     	botonRegresar.setFont(font);
     	add(botonRegresar);
     }
@@ -87,7 +87,7 @@ public class PantallaRanking extends JPanel {
     }
 
     public void configurarFuenteJugadores() {
-        Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30);
+        Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
         for (JLabel top : rankingLabel) {
             top.setFont(font);
             top.setForeground(Color.WHITE);
@@ -102,7 +102,7 @@ public class PantallaRanking extends JPanel {
 
     private void establecerTitulo(JLayeredPane layeredPane) {
         JLabel titulo = new JLabel("Ranking mejores 5 jugadores");
-        titulo.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+        titulo.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
         titulo.setForeground(Color.WHITE);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         

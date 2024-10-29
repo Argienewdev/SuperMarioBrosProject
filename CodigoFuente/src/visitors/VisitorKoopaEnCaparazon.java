@@ -12,34 +12,34 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     protected EstadoKoopa miEstado;
     
-    private ContextoKoopaTroopa miEntidad;
+    private ContextoKoopaTroopa miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
 
     public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado) {
         this.miEstado = miEstado;
-        this.miEntidad = miEstado.getContext();
+        this.miContexto = miEstado.getContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        detectorDireccionColision.verificarColision(this.miEntidad, spiny);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, goomba);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, contextoKoopaTroopa);
     }
 
     @Override
@@ -47,12 +47,12 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        detectorDireccionColision.verificarColision(this.miEntidad, koopaDefault.getContext());
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, koopaDefault.getContext());
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        detectorDireccionColision.verificarColision(this.miEntidad, lakitu);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, lakitu);
     }
 
     @Override
@@ -93,31 +93,30 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioDefault.getContext());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, superMario.getContext());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	detectorDireccionColision.verificarColision(this.miEntidad, marioFuego.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioFuego.getContext());
     }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    	detectorDireccionColision.verificarColision(this.miEntidad, marioInvulnerable.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioInvulnerable.getContext());
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	detectorDireccionColision.verificarColision(this.miEntidad, marioRecuperacion.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioRecuperacion.getContext());
     }
 
     @Override

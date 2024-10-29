@@ -1,4 +1,5 @@
 package generadores;
+
 import fabricas.*;
 import juego.Nivel;
 import juego.Partida;
@@ -9,7 +10,6 @@ import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.Spiny;
-import elementos.entidades.BolaDeFuego;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
@@ -22,13 +22,10 @@ import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
-import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import ventanas.PantallaDeJuego;
-import visitors.*;
 
-import java.util.*;
 import java.awt.Point;
 import java.io.*;
 
@@ -136,12 +133,12 @@ public class GeneradorDeNivel {
 	                } 
 	                case 20: {
 	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion,cantidadMonedas, false);
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, cantidadMonedas, false);
 	                	nivel.addPowerUp(monedas);
 	                	break;
 	                }
 	                case 40: {
-	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion);
+	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion, this.fabricaEntidades);
 	                    nivel.addEnemigo(lakitu);
 	                    break;
 	                } 
@@ -203,7 +200,7 @@ public class GeneradorDeNivel {
 	}
 	
 	private Point parsearPosicion(int x, int y) {
-		return new Point(x * 50, DimensionesConstantes.PANEL_ALTO - (y * 50));
+		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
 	public FabricaSprites getFabricaSprites() {

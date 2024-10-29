@@ -12,7 +12,7 @@ public class PantallaIngresoNombre extends JPanel {
 
     private Fuentes tipoFuentes;
     private JLabel fondo;
-    private Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+    private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     private JTextField campoNombre;
     private JButton botonConfirmar;
     private ControladorVistas controlador;
@@ -71,7 +71,7 @@ public class PantallaIngresoNombre extends JPanel {
 
     private void establecerTitulo(JPanel panelContenido) {
         JLabel etiqueta = new JLabel("Ingresa tu nombre:");
-        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 80));
+        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 80));
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
         panelContenido.add(etiqueta);
@@ -90,7 +90,7 @@ public class PantallaIngresoNombre extends JPanel {
     private void configurarBotonConfirmar(JPanel panelContenido) {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 50));
+        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
         botonConfirmar.addActionListener(e -> {
             String nombre = campoNombre.getText().trim();
             if (!nombre.isEmpty()) {

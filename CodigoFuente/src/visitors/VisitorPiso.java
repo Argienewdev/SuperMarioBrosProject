@@ -21,17 +21,20 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, spiny);
+    	if(!spiny.getAterrizo()) {
+    		spiny.setAterrizo(true);
+    	}
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, superChampinion);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
     }
 
     @Override
@@ -53,12 +56,12 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, champinionVerde);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        detectorDireccionColision.verificarColision(this.miEntidad, estrella);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
     }
 
     @Override
@@ -110,13 +113,12 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
-        contextoMario.setColisionAbajo(true);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -143,8 +145,6 @@ public class VisitorPiso implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
     

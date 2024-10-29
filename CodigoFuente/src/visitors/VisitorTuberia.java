@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -19,22 +21,22 @@ public class VisitorTuberia implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, spiny);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, goomba);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, lakitu);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, lakitu);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class VisitorTuberia implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, superChampinion);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
     }
 
     @Override
@@ -50,12 +52,12 @@ public class VisitorTuberia implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, champinionVerde);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, estrella);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
     }
 
     @Override
@@ -81,12 +83,12 @@ public class VisitorTuberia implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -112,9 +114,15 @@ public class VisitorTuberia implements Visitante {
     @Override
     public void visitarPiso(Piso piso) {}
 
-	@Override
-	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
-		bolaDeFuego.eliminarDelNivel();
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		if(detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
+   			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
+   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			Point salto = new Point(velocidadActualEnX, -30);
+   			fireball.setVelocidadDireccional(salto);
+   		} else {
+   			fireball.setRemovido(true);
+   		}	
 	}
 
 	@Override
