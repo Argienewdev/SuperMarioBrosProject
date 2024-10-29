@@ -205,7 +205,7 @@ public class ControladorVistas {
 	
 	public void cambiarNivel() {
 		ActionListener listener;
-		int duracionAnimacionBandera = 2000;
+		int duracionAnimacionBandera = 0;
 		listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
@@ -216,7 +216,7 @@ public class ControladorVistas {
 		
 		
 		
-		int duracionPantallaEntreNiveles = 2000;
+		int duracionPantallaEntreNiveles = 0;
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());

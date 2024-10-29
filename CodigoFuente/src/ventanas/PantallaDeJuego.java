@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -114,8 +115,6 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
-    	System.out.println(marioJugable.getPosicion().x + " " + marioJugable.getPosicion().y);
-    	System.out.println(marioLabel.getLocation().x + " " + marioLabel.getLocation().y);
     	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
     	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
     	//y es visible para el jugador
@@ -194,10 +193,8 @@ public class PantallaDeJuego extends JPanel {
     public void cambiarDeNivel() {
     	establecerFondo();
     	crearHUD();
-    	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
-    	//debido a que primero cambia de nivel y despues revierte su estado
-    	this.marioJugable.establecerPosicion(new Point(250,600));
-    	this.marioJugable.moverHitbox(new Point(250,600));
+    	this.marioJugable.establecerPosicion(new Point(250, 600));
+    	this.marioJugable.moverHitbox(marioJugable.getPosicion());
     	this.marioLabel.setLocation(250,600);
     	agregarLabel(marioLabel);
     	revalidate();

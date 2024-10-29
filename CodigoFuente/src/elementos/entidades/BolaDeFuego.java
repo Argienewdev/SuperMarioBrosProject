@@ -25,39 +25,30 @@ public class BolaDeFuego extends NoJugable {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		// Segun su velocidad direccional actualizar el sprite
-	}
-
-	public void eliminarDelNivel() {
-		//TODO
+		if(this.getRemovido()) {
+			this.eliminarEntidadGrafica(fabricaSprites);
+		}
 	}
 
 	public Jugable obtenerJugador() {
 		return miJugador;
 	}
 	
-	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void moverDerecha() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void moverIzquierda() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void invertirDireccion() {
-		// TODO Auto-generated method stub
-		
 	}
-	
+
+	@Override
+	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
+		this.setSprite(fabricaSprites.getSpriteInvisible());
+		this.getNivel().addEntidadesAEliminar(this);
+	}	
 }
