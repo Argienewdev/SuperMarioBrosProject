@@ -133,12 +133,12 @@ public class GeneradorDeNivel {
 	                } 
 	                case 20: {
 	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion,cantidadMonedas, false);
+	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, cantidadMonedas, false);
 	                	nivel.addPowerUp(monedas);
 	                	break;
 	                }
 	                case 40: {
-	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion);
+	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion, this.fabricaEntidades);
 	                    nivel.addEnemigo(lakitu);
 	                    break;
 	                } 

@@ -42,6 +42,8 @@ public class MasterMind {
 		actualizarLabelsPlataformas();
 		actualizarLabelsBolasDeFuego();
 		this.nivel.removerEntidadesAEliminar();
+		this.nivel.agregarBolaDeFuegoAAgregar();
+		this.nivel.agregarSpinysAAgregar();
 		if(hayNoJugableParaRemover) {
 			entidadARemover.incrementarContadorTicks();
 			if(entidadARemover.getContadorTicks() > entidadARemover.obtenerTicksAnimacion()) {
@@ -63,6 +65,7 @@ public class MasterMind {
 		enemigo.aplicarGravedad();
 		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
+	
 	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
 		cambiarPosicionXHitboxDeEntidad(entidad);
 		verificarColisionesEntidades(entidad);

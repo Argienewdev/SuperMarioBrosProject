@@ -19,7 +19,7 @@ public class MarioFuego extends MarioDefault {
 	
 	public MarioFuego(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
-		frente=true;
+		frente = true;
 	}
 	
 	@Override
@@ -109,7 +109,7 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posX = getContext().getPosicion().x;
+		int posX = getContext().getPosicion().x + getContext().obtenerAncho();
 		int posY = getContext().getPosicion().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
@@ -119,7 +119,7 @@ public class MarioFuego extends MarioDefault {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
-		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
+		contexto.getNivel().addBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	
 }
