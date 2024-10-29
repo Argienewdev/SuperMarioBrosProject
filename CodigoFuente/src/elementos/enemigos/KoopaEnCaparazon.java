@@ -10,6 +10,8 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
 	
+	protected static final int VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO = 20;
+	
 	public void setContext(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
@@ -63,4 +65,9 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 		this.getContext().setHitbox(nuevaHitbox);
 		this.getContext().setPosicion(nuevaPosicion);
 	}
+	
+	public int obtenerVelocidadNecesariaParaMatarKoopa() {
+		return VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO;
+	}
+	
 }

@@ -110,8 +110,8 @@ public class MarioFuego extends MarioDefault {
 
 	private void lanzarBolaDeFuego() {
 		
-		int posX=(int)getContext().getPosicion().getX();
-		int posY=(int)getContext().getPosicion().getY();
+		int posX = getContext().getPosicion().x;
+		int posY = getContext().getPosicion().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
 		if(frente) {

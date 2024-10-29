@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -117,7 +119,14 @@ public class VisitorBloqueDePregunta implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		//TODO Si la bola de fuego choca de costado a este bloque, es eliminada
+		if(this.detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
+   			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
+   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			Point salto = new Point(velocidadActualEnX, -30);
+   			fireball.setVelocidadDireccional(salto);
+   		} else {
+   			fireball.setRemovido(true);
+   		}
 	}
 
 	@Override
