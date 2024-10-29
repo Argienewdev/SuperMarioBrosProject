@@ -16,11 +16,14 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	private boolean spacePresionada;
 	
+	private boolean spaceAccionado;
+	
 	public SensorDeTeclasJuego() {
 		aPresionada = false;
 		dPresionada = false;
 		wPresionada = false;
-		spacePresionada= false;
+		spacePresionada = false;
+		spaceAccionado = false;
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
         }else if (keyCode == KeyEvent.VK_W) {
         	wPresionada = true;
         }else if (keyCode == KeyEvent.VK_SPACE) {
-        	spacePresionada= true;
+        	spacePresionada = true;
         }
     }
 
@@ -48,7 +51,8 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
         }else if (keyCode == KeyEvent.VK_W) {
         	wPresionada = false;
         }else if (keyCode == KeyEvent.VK_SPACE) {
-        	spacePresionada= false;
+        	spaceAccionado = false;
+        	spacePresionada = false;
         }
     }
 
@@ -70,5 +74,13 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	public boolean obtenerSpacePresionada() {
 		return spacePresionada;
+	}
+	
+	public boolean obtenerSpaceAccionada() {
+		return spaceAccionado;
+	}
+	
+	public void setSpaceAccionada(boolean accionada) {
+		this.spaceAccionado = accionada;
 	}
 }

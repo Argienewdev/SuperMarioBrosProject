@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -128,7 +130,16 @@ public class VisitorBloqueSolido implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
+		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
+   			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
+   			//TODO se puede hacer sin casteo?
+   			int velocidadActualEnX= (int) fireball.getVelocidadDireccional().getX();
+   			Point salto=new Point(velocidadActualEnX,-30);
+   			fireball.setVelocidadDireccional(salto);
+   		}
+   		else {
+   			fireball.setRemovido(true);
+   		}
 	}
 
 }

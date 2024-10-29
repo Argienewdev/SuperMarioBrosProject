@@ -27,7 +27,7 @@ public class VisitorBolaDeFuego implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        otorgarPuntosYEliminar(goomba);
+        goomba.setRemovido(true);
     }
 
     @Override

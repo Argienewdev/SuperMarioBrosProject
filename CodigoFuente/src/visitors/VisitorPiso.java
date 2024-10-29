@@ -136,6 +136,9 @@ public class VisitorPiso implements Visitante {
    			Point salto=new Point(velocidadActualEnX,-30);
    			fireball.setVelocidadDireccional(salto);
    		}
+   		else {
+   			fireball.setRemovido(true);
+   		}
    	}
 
     

@@ -62,17 +62,17 @@ public class Partida {
 	public void cambiarNivel() {
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(nivel);
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().cambiarNivel();
-		this.masterMind.cambiarNivel(nivel);
+		this.masterMind.cambiarNivel(this.nivel);
 	}
 	
 	public void reiniciarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(nivel);
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().reiniciarNivel();
-		this.masterMind.cambiarNivel(nivel);
+		this.masterMind.cambiarNivel(this.nivel);
 	}
 	
 	public void finalizarPartida() {
