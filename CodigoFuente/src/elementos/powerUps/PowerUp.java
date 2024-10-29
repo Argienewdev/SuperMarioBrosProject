@@ -91,9 +91,9 @@ public abstract class PowerUp extends NoJugable {
     		Point velocidad = new Point(0, 0);
     		this.setVelocidadDireccional(velocidad);
     	}else {
-    		if (this.getVelocidadDireccional().x <= 0) {
+    		if (this.getVelocidadDireccional().x < 0) {
     			moverIzquierda();
-    		} else if (this.getVelocidadDireccional().x > 0){
+    		} else if (this.getVelocidadDireccional().x >= 0){
     			moverDerecha();
     		}
     	}

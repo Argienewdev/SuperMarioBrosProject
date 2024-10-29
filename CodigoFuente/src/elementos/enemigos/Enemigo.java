@@ -72,7 +72,7 @@ public abstract class Enemigo extends NoJugable {
     	} else {
     		if (this.getVelocidadDireccional().x <= 0) {
     			moverIzquierda();
-    		} else if (this.getVelocidadDireccional().x > 0){
+    		} else if (this.getVelocidadDireccional().x > 0) {
     			moverDerecha();
     		}
     	}
