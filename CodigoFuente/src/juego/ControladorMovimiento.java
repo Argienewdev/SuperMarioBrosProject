@@ -104,7 +104,6 @@ public class ControladorMovimiento {
 			reiniciarVelocidadVertical();
 			marioJugable.setColisionArriba(false);
 		}else if (!marioJugable.getColisionAbajo()) {
-			System.out.println("No detecte piso");
 	        aplicarGravedadSalto();
 	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
 	        iniciarSalto();
