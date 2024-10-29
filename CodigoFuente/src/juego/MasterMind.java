@@ -84,7 +84,7 @@ public class MasterMind {
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
 		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < 0) || entidad.obtenerHitbox().y < 0) {
-			entidad.eliminarDelNivel();
+			entidad.setRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 		        if(entidad.huboColision(elemento) && entidad != elemento) {

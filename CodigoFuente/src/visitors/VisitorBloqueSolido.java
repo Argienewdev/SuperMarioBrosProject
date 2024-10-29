@@ -35,7 +35,8 @@ public class VisitorBloqueSolido implements Visitante {
     }
     
     @Override
-    public void visitarLakitu(Lakitu lakitu) {    
+    public void visitarLakitu(Lakitu lakitu) {
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, lakitu);
     }
     
     @Override
@@ -137,8 +138,6 @@ public class VisitorBloqueSolido implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

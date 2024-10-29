@@ -15,7 +15,10 @@ public class Lakitu extends Enemigo {
     	this.puntosOtorgadosPorEliminacion = 60;
     	this.puntosSustraidosPorMuerteCausada = 0;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
-
+    }
+    
+    @Override
+    public void aplicarGravedad() {
     }
 
     public void lanzarSpiny () {

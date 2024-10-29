@@ -76,7 +76,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Lakitu getLakitu(Point posicion) {
-        Sprite sprite = fabricaSprites.getLakituDentroDeLaNube();
+        Sprite sprite = fabricaSprites.getLakituReversoFueraDeLaNube();
         Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
         lakituADevolver.setVisitor(visitorLakitu);
