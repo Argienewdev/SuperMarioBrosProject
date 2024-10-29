@@ -26,6 +26,9 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
+    	if(!spiny.getAterrizo()) {
+    		spiny.setAterrizo(true);
+    	}
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 

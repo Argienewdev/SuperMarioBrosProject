@@ -116,11 +116,11 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 	public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		fireball.setRemovido(true);
+	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 }

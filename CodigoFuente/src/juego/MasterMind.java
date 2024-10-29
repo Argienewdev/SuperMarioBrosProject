@@ -30,6 +30,8 @@ public class MasterMind {
 	}
 
 	public void actualizar() {
+		//TODO podemos hacer que actualizar la posicion llame a actualizar sprite todo dentro de 
+		//enemigo para que solo tenga que llamar a "actualizar()"?
 		actualizarPosicionesEnemigos();
 		actualizarPosicionesPowerUps();
 		actualizarPosicionesBolasDeFuego();

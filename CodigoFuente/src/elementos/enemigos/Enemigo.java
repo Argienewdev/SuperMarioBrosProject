@@ -60,8 +60,6 @@ public abstract class Enemigo extends NoJugable {
     	return VELOCIDAD_HORIZONTAL_ENEMIGO;
     }
     
-    public abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
-
     public abstract void aceptarVisitante(Visitante visitante);
 
     @Override

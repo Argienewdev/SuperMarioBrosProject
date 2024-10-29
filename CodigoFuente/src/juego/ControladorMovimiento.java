@@ -124,12 +124,13 @@ public class ControladorMovimiento {
 		if(!this.nivel.fueCompletado()) {
 			boolean marioChocoBordeIzquierdo = marioJugable.obtenerHitbox().x < 0;
 			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
-			boolean marioSeCayoDelMundo = marioJugable.obtenerHitbox().y > ConstantesGlobales.PANEL_ALTO;
 			if(marioChocoBordeIzquierdo) {
 				this.marioJugable.retrotraerMovimientoHorizontal(0);
 			} else if(marioChocoBordeDerecho) {
 				this.marioJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
 			} else {
+				//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
+				//de juego aca tira error porque esta siendo eliminado
 				for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
 				        elemento.aceptarVisitante(entidad.getVisitor());
