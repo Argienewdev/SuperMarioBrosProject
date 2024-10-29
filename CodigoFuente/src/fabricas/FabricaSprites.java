@@ -107,8 +107,6 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite getSpinyFrontalCaminando();
 	
-	public abstract Sprite getSpinyReversoQuieto();
-	
 	public abstract Sprite getSpinyReversoCaminando();
 
 	public abstract Sprite getBuzzyBeetleFrontalQuieto();

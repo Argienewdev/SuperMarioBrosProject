@@ -6,9 +6,12 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
+import ventanas.DimensionesConstantes;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
+	
+	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
 		
 	@SuppressWarnings("exports")
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
@@ -36,6 +39,13 @@ public abstract class NoJugable extends Entidad {
     public abstract void moverIzquierda();
     
     public abstract void invertirDireccion();
+    
+    public void aplicarGravedad() {
+		if(this.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+			Point nuevaVelocidad = new Point(this.getVelocidadDireccional().x, this.getVelocidadDireccional().y + DimensionesConstantes.GRAVEDAD);
+			this.setVelocidadDireccional(nuevaVelocidad);
+		}
+	}
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
@@ -45,7 +55,11 @@ public abstract class NoJugable extends Entidad {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		this.setHitbox(new Rectangle(this.getPosicion().x, this.getPosicion().y + (this.obtenerAlto() - this.getSprite().getAltoImagen()), this.getSprite().getAnchoImagen(), this.getSprite().getAltoImagen()));
+		int nuevaPosX = this.getPosicion().x;
+		int nuevaPosY = this.getPosicion().y + (this.obtenerAlto() - this.getSprite().getAltoImagen());
+		int nuevoAncho = this.getSprite().getAnchoImagen();
+		int nuevoAlto = this.getSprite().getAltoImagen();
+		this.setHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));
 		this.setPosicion(this.obtenerHitbox().getLocation());
 	}
 }

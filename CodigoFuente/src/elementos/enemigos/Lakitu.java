@@ -8,14 +8,18 @@ import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
+	private static final int TICKS_PARA_ELIMINAR = 1;
+	
     public Lakitu(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 60;
     	this.puntosSustraidosPorMuerteCausada = 0;
+    	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
+
     }
 
     public void lanzarSpiny () {
-    	// TODO   
+    	//TODO
     }
     
     @Override
@@ -23,13 +27,18 @@ public class Lakitu extends Enemigo {
         visitante.visitarLakitu(this);
     }
 
-	@Override
+    @Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		//TODO
+		if(this.removido) {
+			eliminarEntidadGrafica(fabricaSprites);
+		} else {
+			this.setSprite(fabricaSprites.getLakituFrontalFueraDeLaNube());
+		}
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
+		this.eliminarDelNivel();
 	}
     
 }
