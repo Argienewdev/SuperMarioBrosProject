@@ -39,8 +39,8 @@ public class PantallaDeJuego extends JPanel {
     private static final int MITAD_PANTALLA = (DimensionesConstantes.PANEL_ANCHO / 2) - 100;
 
     public PantallaDeJuego() {
-    	this.fondo = new JLabel();
         configurarVentana();
+        establecerFondo();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
 
@@ -57,7 +57,9 @@ public class PantallaDeJuego extends JPanel {
         layeredPane.setPreferredSize(size);
         layeredPane.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
         add(layeredPane);
-
+        
+        revalidate();
+        repaint();
         
         crearHUD();
     }
@@ -66,8 +68,9 @@ public class PantallaDeJuego extends JPanel {
     	hud = new Interfaz();
     	hud.setBounds(0, 0, DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
     	layeredPane.add(hud, JLayeredPane.PALETTE_LAYER);
-    	//add(hud);
         hud.setVisible(true);
+        revalidate();
+        repaint();
 	}
 
 	protected void establecerFondo() {
@@ -75,7 +78,8 @@ public class PantallaDeJuego extends JPanel {
         fondo = new JLabel(fondoImagen);
         fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
         layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
-        //add(fondo);
+        revalidate();
+        repaint();
     }
 
     @SuppressWarnings("exports")
@@ -85,14 +89,11 @@ public class PantallaDeJuego extends JPanel {
         setPosicionOriginalJugable();
         setPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
-       // mostrarLabels();
-        establecerFondo();
         revalidate();
         repaint();
     }
 
     private void setPosicionOriginalLabelJugable() {
-    	//EN REGISTRAR JUGABLE AUN NO SE SINCRONIZARON AMBAS POSICIONES (LA DEL LABEL Y LA DEL JUGABLE)
 		this.posicionOriginalLabelJugable = this.marioJugable.getPosicion();
 	}
 
@@ -103,7 +104,6 @@ public class PantallaDeJuego extends JPanel {
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
 		labelsElementoDeJuego.add(labelElementoDeJuego);
 		layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
-    	//add(label);
 		labelElementoDeJuego.setVisible(true);
         revalidate();
         repaint();
@@ -113,17 +113,9 @@ public class PantallaDeJuego extends JPanel {
         labelsElementoDeJuego.add(labelElementoDeJuego);
     }
 
-   /* public void mostrarLabels() {
-        for(JLabel label : labelsElementoDeJuego) {
-        	layeredPane.add(label, JLayeredPane.MODAL_LAYER);
-        	//add(label);
-            label.setVisible(true);
-            revalidate();
-            repaint();
-        }
-    }*/
-
     public void refrescar() {
+    	System.out.println(marioJugable.getPosicion().x + " " + marioJugable.getPosicion().y);
+    	System.out.println(marioLabel.getLocation().x + " " + marioLabel.getLocation().y);
     	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
     	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
     	//y es visible para el jugador
@@ -193,13 +185,14 @@ public class PantallaDeJuego extends JPanel {
 
     
     public void eliminarNivelActual() {
-    	remove(fondo);
-    	remove(hud);
+    	layeredPane.remove(fondo);
+    	layeredPane.remove(hud);
     	removerElementos();
     	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
     
     public void cambiarDeNivel() {
+    	establecerFondo();
     	crearHUD();
     	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
     	//debido a que primero cambia de nivel y despues revierte su estado
@@ -207,15 +200,13 @@ public class PantallaDeJuego extends JPanel {
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	agregarLabel(marioLabel);
-    	//mostrarLabels();
-    	establecerFondo();
     	revalidate();
     	repaint();
     }
 
 	private void removerElementos() {
 		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-			remove(observerGrafico);
+			layeredPane.remove(observerGrafico);
 		}
 	}
     

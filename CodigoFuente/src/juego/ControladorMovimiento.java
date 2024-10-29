@@ -99,22 +99,27 @@ public class ControladorMovimiento {
 	private void determinarAccion() {
 		this.marioJugable.setAvanzando(false);
 		this.marioJugable.setRetrocediendo(false);
+		
 		if(marioJugable.getColisionArriba()) {
 			reiniciarVelocidadVertical();
 			marioJugable.setColisionArriba(false);
 		}else if (!marioJugable.getColisionAbajo()) {
+			System.out.println("No detecte piso");
 	        aplicarGravedadSalto();
 	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
 	        iniciarSalto();
 	    } else {
 	        reiniciarVelocidadVertical();
 	    }
+		
 	    if (movimientoAIzquierda()) {
 	    	moveMarioIzquierda();
 	    }
+	    
 	    if (movimientoADerecha()) {
 	    	moveMarioDerecha();
 	    }
+	    
 	    if (realizarAccionEspecial()) {
 	    	accionEspecial();
 	    }

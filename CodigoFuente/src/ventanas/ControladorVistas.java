@@ -68,8 +68,8 @@ public class ControladorVistas {
 		ventana.pack();
 		ventana.setVisible(true);
 		ventana.addWindowListener(new WindowAdapter() { 
-			public void  WindowClosing (WindowEvent e) {
-				juego.cierreDeJuego();
+			public void  windowClosing (WindowEvent e) {
+				//juego.cierreDeJuego();
 			}	
 		});
 	}
@@ -160,7 +160,7 @@ public class ControladorVistas {
 		SwingUtilities.invokeLater(() -> pantallaIngresoNombre.solicitarFocoCampoTexto());
 	}
 	
-	public void refrescar(){
+	public void refrescar() {
 		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
 			pantallaInicial.actualizarFoco();
 		}else {
@@ -183,14 +183,24 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		int duracionPantallaEntreNiveles = 2000;
+		ActionListener listener;
+		int duracionAnimacionBandera = 2000;
+		listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+		};
+		Timer timerAnimacionFinDeNivel = new Timer(duracionAnimacionBandera, listener);
+		timerAnimacionFinDeNivel.setRepeats(false);
+		timerAnimacionFinDeNivel.start();
 		
+		
+		
+		int duracionPantallaEntreNiveles = 2000;
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
-     	
 		pantallaDeJuego.cambiarDeNivel();
-		ActionListener listener = new ActionListener() {
+		listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mostrarPantallaDeJuego();
             }

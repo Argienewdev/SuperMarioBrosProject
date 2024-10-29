@@ -20,7 +20,7 @@ public abstract class Plataforma extends ElementoDeJuego {
 	}
 	
 	public void setSolido(boolean solido) {
-		this.solido =solido;
+		this.solido = solido;
 	}
 
 	public boolean esSolido() {
