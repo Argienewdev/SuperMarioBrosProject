@@ -110,12 +110,7 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
-<<<<<<< HEAD
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
-=======
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
->>>>>>> refs/remotes/origin/main
-        contextoMario.setColisionAbajo(true);
     }
 
     @Override
@@ -147,8 +142,6 @@ public class VisitorPiso implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
     

@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
@@ -42,7 +42,7 @@ public abstract class NoJugable extends Entidad {
     
     public void aplicarGravedad() {
 		if(this.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
-			Point nuevaVelocidad = new Point(this.getVelocidadDireccional().x, this.getVelocidadDireccional().y + DimensionesConstantes.GRAVEDAD);
+			Point nuevaVelocidad = new Point(this.getVelocidadDireccional().x, this.getVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
 			this.setVelocidadDireccional(nuevaVelocidad);
 		}
 	}
