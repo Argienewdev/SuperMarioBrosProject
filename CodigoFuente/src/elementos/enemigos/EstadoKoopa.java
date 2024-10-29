@@ -1,7 +1,5 @@
 package elementos.enemigos;
 
-import java.awt.Point;
-
 import fabricas.FabricaSprites;
 import visitors.Visitante;
 

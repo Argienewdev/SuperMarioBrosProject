@@ -166,8 +166,6 @@ public class VisitorGoomba implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

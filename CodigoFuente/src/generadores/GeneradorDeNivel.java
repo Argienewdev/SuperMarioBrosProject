@@ -1,4 +1,5 @@
 package generadores;
+
 import fabricas.*;
 import juego.Nivel;
 import juego.Partida;
@@ -9,7 +10,6 @@ import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.Spiny;
-import elementos.entidades.BolaDeFuego;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
@@ -22,13 +22,10 @@ import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
-import observers.ObserverGrafico;
 import ventanas.ControladorVistas;
 import ventanas.ConstantesGlobales;
 import ventanas.PantallaDeJuego;
-import visitors.*;
 
-import java.util.*;
 import java.awt.Point;
 import java.io.*;
 

@@ -35,13 +35,12 @@ public class VisitorLadrillo implements Visitante {
     }
     
     @Override
-    public void visitarLakitu(Lakitu lakitu) {    
-        // Implementar lógica aquí si es necesario
+    public void visitarLakitu(Lakitu lakitu) {
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, lakitu);
     }
     
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {    
-        // Implementar lógica aquí si es necesario
     }
     
     @Override
