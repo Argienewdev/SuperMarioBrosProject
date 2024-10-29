@@ -59,10 +59,17 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		if(enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
-			enemigo.moverIzquierda();
+		if (enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100)) {
+			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
+				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 
+				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().getWidth() >= ConstantesGlobales.PANEL_ANCHO;
+				if (chocoBordeIzquierdo || chocoBordeDerecho) {
+					enemigo.invertirDireccion();
+				}
+			}
+			enemigo.mover();
+			enemigo.aplicarGravedad();
 		}
-		enemigo.aplicarGravedad();
 		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
 	
@@ -129,7 +136,7 @@ public class MasterMind {
 			powerUp.incrementarContadorTicks();
 		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
 			if(powerUp.getVelocidadDireccional().x == 0) {
-				powerUp.moverDerecha();
+				powerUp.mover();
 			}
 			powerUp.aplicarGravedad();
 			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);

@@ -82,6 +82,7 @@ public class FabricaEntidades {
         lakituADevolver.setVisitor(visitorLakitu);
         ObserverGrafico observerGraficoLakitu = new ObserverGrafico(lakituADevolver);
         lakituADevolver.setObserverGrafico(observerGraficoLakitu);
+        lakituADevolver.establecerDebeMantenerseSiempreEnPantalla(true);
         this.pantallaDeJuego.agregarLabel(lakituADevolver.getObserverGrafico());
         return lakituADevolver;
     }

@@ -38,8 +38,8 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if(this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) &&
-    		!goomba.getRemovido()) {
+    	if(this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.getRemovido()) {
             goomba.setRemovido(true);
             this.miContexto.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
         }
@@ -70,7 +70,11 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Implementación pendiente
+    	if(this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
+    	   && !lakitu.getRemovido()) {
+    		lakitu.setRemovido(true);
+            this.miContexto.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+        }
     }
 
     @Override
