@@ -113,7 +113,7 @@ public class VisitorTuberia implements Visitante {
     public void visitarPiso(Piso piso) {}
 
 	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		//TODO Si la bola de fuego choca de costado a este bloque, es eliminada
+	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
+		bolaDeFuego.eliminarDelNivel();
 	}
 }
