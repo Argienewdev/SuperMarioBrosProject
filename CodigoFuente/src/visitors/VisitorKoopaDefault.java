@@ -134,14 +134,16 @@ public class VisitorKoopaDefault implements Visitante {
     @Override
     public void visitarSuperMario(SuperMario superMario) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.getContext(), this.miContexto)) {
-	        superMario.getContext().reiniciarEstado();
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+	        superMario.getContext().cambiarEstado(marioRecuperacion);
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.getContext(), this.miContexto)) {
-    		marioFuego.getContext().reiniciarEstado();
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+    		marioFuego.getContext().cambiarEstado(marioRecuperacion);
     	}
     }
     @Override
