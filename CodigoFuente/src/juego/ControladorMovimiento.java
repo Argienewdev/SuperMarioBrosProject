@@ -140,7 +140,6 @@ public class ControladorMovimiento {
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
 				    }
-				    System.out.println("HITBOX ENTIDAD: " + entidad.obtenerAncho() + " " + entidad.obtenerAlto());
 				}
 			}
 			entidad.setPosicion(entidad.obtenerHitbox().getLocation());
