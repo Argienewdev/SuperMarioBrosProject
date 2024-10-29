@@ -110,7 +110,6 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
-    	System.out.println("DETECTE PISO EN VISITOR PISO");
         detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
         contextoMario.setColisionAbajo(true);
     }

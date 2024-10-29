@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -21,18 +19,22 @@ public class VisitorVacio implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+    	buzzyBeetle.setRemovido(true);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
+    	spiny.setRemovido(true);
     }
-
+    
     @Override
     public void visitarGoomba(Goomba goomba) {
+    	goomba.setRemovido(true);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
+    	lakitu.setRemovido(true);
     }
 
     @Override
@@ -41,18 +43,22 @@ public class VisitorVacio implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+    	superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego flor) {
+    	flor.setRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+    	champinionVerde.setRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
+    	estrella.setRemovido(true);
     }
 
     @Override
@@ -75,6 +81,7 @@ public class VisitorVacio implements Visitante {
     public void visitarSuperMario(SuperMario superMario) {
     }
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     }
 
@@ -103,18 +110,25 @@ public class VisitorVacio implements Visitante {
     }
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {   
+    public void visitarContextoMario(ContextoMario contextoMario) {  
+    	contextoMario.perderPuntos(15);
+    	contextoMario.perderVida();
+    	contextoMario.reiniciarEstado();
+        miEntidad.getNivel().reiniciarNivel();
     }
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) { 
+    	contextoKoopaTroopa.setRemovido(true);
     }
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    }
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+    }
 
     @Override
     public void visitarPiso(Piso piso) {
@@ -122,12 +136,11 @@ public class VisitorVacio implements Visitante {
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+    	fireball.setRemovido(true);
    	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
     
