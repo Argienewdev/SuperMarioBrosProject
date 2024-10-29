@@ -60,6 +60,7 @@ public class Partida {
 	}
 	
 	public void cambiarNivel() {
+		System.err.println("Cambie de nivel");
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
@@ -79,11 +80,23 @@ public class Partida {
 	}
 	
 	public void finalizarPartida() {
-		this.juego.obtenerBucleJuego().stop();
-		this.bucleEntidadesNoJugables.stop();
-		this.bucleJugador.stop();
+		detenerBucleEntidadesNoJugables();
+		detenerBucleJugador();
+		detenerBucleJuego();
 	}
 	
+	private void detenerBucleJuego() {
+		this.juego.finalizarJuego();		
+	}
+
+	private void detenerBucleJugador() {
+		this.bucleJugador.detenerBucleJugador();
+	}
+
+	private void detenerBucleEntidadesNoJugables() {
+		this.bucleEntidadesNoJugables.detenerBucleEntidadesNoJugables();
+	}
+
 	private Nivel generarNivel(int numeroNivelActual, Partida partida) {
 		
 		return generadorDeNivel.generarNivel(numeroNivelActual, this);

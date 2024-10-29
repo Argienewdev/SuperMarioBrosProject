@@ -64,10 +64,6 @@ public abstract class Entidad extends ElementoDeJuego {
 		return this.colisionAbajo;
 	}
 	
-	public void setColisionAbajo(Boolean colisionAbajo) {
-		this.colisionAbajo = colisionAbajo;
-	}
-	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public int getContadorTicks() {

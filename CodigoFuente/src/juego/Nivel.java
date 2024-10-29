@@ -157,5 +157,9 @@ public class Nivel {
         }
         return elementosDeJuego;
     }
+    
+    public void finalizarPartida() {
+    	this.partida.finalizarPartida();
+    }
 
 }

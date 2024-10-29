@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
 import elementos.ElementoDeJuego;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
@@ -127,6 +129,7 @@ public class ControladorMovimiento {
 
 	public void verificarColisiones(Jugable entidad) {
 		if(!this.nivel.fueCompletado()) {
+			entidad.setHitbox(new Rectangle(250,600,50,50));
 			boolean marioChocoBordeIzquierdo = marioJugable.obtenerHitbox().x < 0;
 			boolean marioChocoBordeDerecho = marioJugable.obtenerHitbox().x + marioJugable.obtenerHitbox().width > DimensionesConstantes.PANEL_ANCHO;
 			boolean marioSeCayoDelMundo = marioJugable.obtenerHitbox().y > DimensionesConstantes.PANEL_ALTO;
@@ -140,7 +143,6 @@ public class ControladorMovimiento {
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
 				    }
-				    System.out.println("HITBOX ENTIDAD: " + entidad.obtenerAncho() + " " + entidad.obtenerAlto());
 				}
 			}
 			entidad.setPosicion(entidad.obtenerHitbox().getLocation());

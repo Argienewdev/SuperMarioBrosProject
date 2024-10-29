@@ -110,7 +110,9 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
+    	System.out.println("DETECTE PISO EN VISITOR PISO");
         detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
+        contextoMario.setColisionAbajo(true);
     }
 
     @Override
@@ -125,7 +127,8 @@ public class VisitorPiso implements Visitante {
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
-    public void visitarPiso(Piso piso) {}
+    public void visitarPiso(Piso piso) {
+    }
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {

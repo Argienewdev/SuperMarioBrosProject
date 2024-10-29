@@ -87,14 +87,14 @@ public class Juego {
 		return this.partida;
 	}
 	
-	public void finalizarPartida () {
+	public void finalizarJuego () {
 		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
 		ranking.agregarJugador(jugador);
 		ranking.guardarEstado();
-		this.partida.finalizarPartida();
+		this.bucleJuego.detenerBucleJuego();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {

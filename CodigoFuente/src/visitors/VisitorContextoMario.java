@@ -27,7 +27,6 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarSpiny(Spiny spiny) {
-		//TODO no se si puedo matar al spiny asi que no lo toco
 		spiny.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
 	}
 
@@ -57,7 +56,9 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
+	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+		piranhaPlant.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+	}
 
 	@Override
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
@@ -105,7 +106,7 @@ public class VisitorContextoMario implements Visitante {
 	
 	@Override
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
+		this.miEntidad.getNivel().finalizarPartida();
 	}
 
 	@Override
@@ -140,6 +141,8 @@ public class VisitorContextoMario implements Visitante {
 	
 	@Override
 	public void visitarPiso(Piso piso) {
+		this.detectorDireccionColision.verificarColision(piso, this.miEntidad);
+		this.miEntidad.setColisionAbajo(true);
 	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
