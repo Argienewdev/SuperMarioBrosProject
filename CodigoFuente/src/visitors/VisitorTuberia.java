@@ -116,4 +116,10 @@ public class VisitorTuberia implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego bolaDeFuego) {
 		bolaDeFuego.eliminarDelNivel();
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
 }

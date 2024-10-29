@@ -150,5 +150,11 @@ public class VisitorMarioFuego implements Visitante {
 		this.miEntidad.ganarPuntos(puntos);
 		enemigo.setRemovido(true);
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

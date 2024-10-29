@@ -157,5 +157,11 @@ public class VisitorLadrillo implements Visitante {
    			fireball.setRemovido(true);
    		}
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
