@@ -90,7 +90,6 @@ public class GestorDeColisiones {
 				//huboColision = entidad.huboColision(elementoDeJuego);
 				//huboColision = posX < (elementoDeJuego.getPosicion().x + 50);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
-				System.out.println(columna);
 			}
 		}
 		if(huboColision) {
