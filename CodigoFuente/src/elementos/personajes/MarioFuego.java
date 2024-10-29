@@ -109,7 +109,6 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		
 		int posX = getContext().getPosicion().x;
 		int posY = getContext().getPosicion().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
@@ -121,11 +120,6 @@ public class MarioFuego extends MarioDefault {
 		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
 		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
-		
-	}
-	
-	public void actualizarTiempoDelta(int tiempoDelta) {
-		
 	}
 	
 }
