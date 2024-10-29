@@ -14,13 +14,13 @@ public class MarioRecuperacion extends MarioDefault {
 	private int tiempoEnRecuperacion;
 	
 	public MarioRecuperacion () {
-		this.tiempoEnRecuperacion = 300;
+		this.tiempoEnRecuperacion = 180;
 	}
 	
-	public void actualizarTiempo (int tiempoDelta) {
+	public void actualizarTiempo() {
 		tiempoEnRecuperacion--;
 		if (tiempoEnRecuperacion <= 0)
-			contexto.cambiarEstado(new MarioDefault());
+			contexto.reiniciarEstado();
 	}
 	
 	 public void aceptarVisitante(Visitante visitante) {

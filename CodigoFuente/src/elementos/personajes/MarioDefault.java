@@ -102,7 +102,6 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	public void actualizarTiempo() {
-		//Implementado por estados que lo requieren
 	}
 	
 }
