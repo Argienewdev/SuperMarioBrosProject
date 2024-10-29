@@ -37,11 +37,14 @@ public class PantallaInicial extends JPanel {
 	
 	private String modo;
 	
+	private boolean enFoco;
+	
 	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
-		controlador= controladorVistas;
+		this.enFoco = false;
+		this.controlador= controladorVistas;
 		this.sensor = sensor;
-		fondo = new JLabel();
+		this.fondo = new JLabel();
 		modo1 = new JLabel("MODO DE JUEGO 1");
 		modo2 = new JLabel("MODO DE JUEGO 2"); 
 		ranking= new JLabel("RANKING");
@@ -96,7 +99,6 @@ public class PantallaInicial extends JPanel {
 	protected void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoJuegoCielo.png");
 		 Image imagen = fondoImagen.getImage();
-		 //Image imagenEscalada = imagen.getScaledInstance(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO, Image.SCALE_SMOOTH);
 		 
 		 ImageIcon iconoCartel = new ImageIcon("src/imagenes/cartelSuperMarioBros.png");
 		 Image imagenCartel= iconoCartel.getImage();
@@ -121,6 +123,7 @@ public class PantallaInicial extends JPanel {
 	
 	 public void actualizarFoco() {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
+			
 			 if(currentLabel == modo1){
 				controlador.accionarInicioJuego("Modo original");
 			 }
@@ -128,8 +131,10 @@ public class PantallaInicial extends JPanel {
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
 			 else if(currentLabel == ranking) {
-				controlador.mostrarPantallaRanking();
+				 controlador.mostrarPantallaRanking();
+				 sensor.accionarEnter();
 			 }
+			 
 		 }
 		 
 	        if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
