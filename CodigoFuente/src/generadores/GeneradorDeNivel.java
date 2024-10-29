@@ -19,6 +19,7 @@ import elementos.plataformas.Piso;
 import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
+import elementos.plataformas.Vacio;
 import elementos.powerUps.Monedas;
 import elementos.powerUps.PowerUp;
 import observers.ObserverGrafico;
@@ -83,6 +84,12 @@ public class GeneradorDeNivel {
                 Point posicion = parsearPosicion(numeros[1],numeros[2]);
                 
                 switch(identificadorElemento) {
+	                case 0: {
+	                	Vacio vacio = this.fabricaPlataformas.getVacio(posicion);
+	                	nivel.addPlataforma(vacio);
+	                	nivel.addPlataformasAfectables(vacio);
+	                	break;
+	                }	             
 	                case 1: {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion);
 	                    nivel.addPlataforma(ladrillo);

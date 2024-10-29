@@ -155,7 +155,16 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+=======
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+>>>>>>> refs/remotes/origin/main
 	}
 	
 }

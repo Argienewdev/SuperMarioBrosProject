@@ -62,5 +62,7 @@ public interface Visitante {
     
     public void visitarPiso(Piso piso);
     
+    public void visitarVacio(Vacio vacio);
+    
 }
 

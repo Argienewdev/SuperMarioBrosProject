@@ -1,41 +1,40 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorPiso implements Visitante {
+public class VisitorVacio implements Visitante {
 
-    protected Piso miEntidad;
+    protected Vacio miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
 
-    public VisitorPiso(Piso miEntidad) {
+    public VisitorVacio(Vacio miEntidad) {
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
+    	buzzyBeetle.setRemovido(true);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+    	spiny.setRemovido(true);
     }
-
+    
     @Override
     public void visitarGoomba(Goomba goomba) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
+    	goomba.setRemovido(true);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
+    	lakitu.setRemovido(true);
     }
 
     @Override
@@ -44,21 +43,22 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
+    	superChampinion.setRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego flor) {
+    	flor.setRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
+    	champinionVerde.setRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
+    	estrella.setRemovido(true);
     }
 
     @Override
@@ -81,6 +81,7 @@ public class VisitorPiso implements Visitante {
     public void visitarSuperMario(SuperMario superMario) {
     }
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     }
 
@@ -109,25 +110,26 @@ public class VisitorPiso implements Visitante {
     }
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {   
-<<<<<<< HEAD
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
-=======
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
->>>>>>> refs/remotes/origin/main
-        contextoMario.setColisionAbajo(true);
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    	int puntajeASustraer = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+    	contextoMario.perderPuntos(puntajeASustraer);
+    	contextoMario.perderVida();
+    	contextoMario.reiniciarEstado();
+        miEntidad.getNivel().reiniciarNivel();
     }
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopaTroopa);
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) { 
+    	contextoKoopaTroopa.setRemovido(true);
     }
 
     @Override
-    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {}
+    public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    }
 
     @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+    }
 
     @Override
     public void visitarPiso(Piso piso) {
@@ -135,20 +137,11 @@ public class VisitorPiso implements Visitante {
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-   		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
-   			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
-   			Point salto = new Point(velocidadActualEnX, -20);
-   			fireball.setVelocidadDireccional(salto);
-   		} else {
-   			fireball.setRemovido(true);
-   		}
+    	fireball.setRemovido(true);
    	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
     

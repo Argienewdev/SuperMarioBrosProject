@@ -120,4 +120,10 @@ public class VisitorBloqueDePregunta implements Visitante {
 		//TODO Si la bola de fuego choca de costado a este bloque, es eliminada
 	}
 
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
