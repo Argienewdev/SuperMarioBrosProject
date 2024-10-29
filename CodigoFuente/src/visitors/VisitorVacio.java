@@ -110,8 +110,9 @@ public class VisitorVacio implements Visitante {
     }
 
     @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {  
-    	contextoMario.perderPuntos(15);
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    	int puntajeASustraer = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+    	contextoMario.perderPuntos(puntajeASustraer);
     	contextoMario.perderVida();
     	contextoMario.reiniciarEstado();
         miEntidad.getNivel().reiniciarNivel();
