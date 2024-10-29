@@ -138,12 +138,13 @@ public class ControladorMovimiento {
 				huboColision = true;
 				this.marioJugable.retrotraerMovimientoHorizontal(DimensionesConstantes.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
 			} else {
-				for (ElementoDeJuego elemento : this.nivel.getElementosDeJuego()){
+				for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
 				        huboColision = true;
 				        elemento.aceptarVisitante(entidad.getVisitor());
 				        entidad.aceptarVisitante(elemento.getVisitor());
 				    }
+				    System.out.println("HITBOX ENTIDAD: " + entidad.obtenerAncho() + " " + entidad.obtenerAlto());
 				}
 			}
 			entidad.setPosicion(entidad.obtenerHitbox().getLocation());

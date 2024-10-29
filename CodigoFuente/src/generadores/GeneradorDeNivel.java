@@ -68,7 +68,6 @@ public class GeneradorDeNivel {
 		BufferedReader lectorBuffer = null;
 		
 		try {
-			System.err.println("ENTRE AL GENERADOR DE NIVEL");
 			archivoDeNivel = new FileReader(RUTA_A_CARPETA + numeroNivel + ".txt");
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;

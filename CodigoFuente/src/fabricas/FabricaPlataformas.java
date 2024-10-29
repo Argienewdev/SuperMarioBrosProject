@@ -178,7 +178,6 @@ public class FabricaPlataformas {
     
     @SuppressWarnings("exports")
 	public Piso getPiso(Point posicion) {
-    	System.out.println("LO LLAME AL PISO");
     	Sprite spritePiso = this.fabricaSprites.getPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver);
