@@ -34,12 +34,14 @@ public class BolaDeFuego extends NoJugable {
 		return miJugador;
 	}
 	
-	@Override
-	public void moverDerecha() {
+	private void moverDerecha() {
 	}
 
+	private void moverIzquierda() {
+	}
+	
 	@Override
-	public void moverIzquierda() {
+	public void mover() {
 	}
 
 	@Override
