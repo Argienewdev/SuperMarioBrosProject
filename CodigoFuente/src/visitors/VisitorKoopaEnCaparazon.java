@@ -93,26 +93,30 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, contextoMario);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioDefault.getContext());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, superMario.getContext());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioFuego.getContext());
     }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioInvulnerable.getContext());
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioRecuperacion.getContext());
     }
 
     @Override

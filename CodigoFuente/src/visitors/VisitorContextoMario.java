@@ -153,18 +153,13 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarPiso(Piso piso) {
 		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(piso, this.miEntidad);
 	}
-
+	
 	@Override
-<<<<<<< HEAD
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-=======
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
 		// TODO Auto-generated method stub
-		
->>>>>>> refs/remotes/origin/main
 	}
 	
 }
