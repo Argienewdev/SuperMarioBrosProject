@@ -21,7 +21,14 @@ public class Ranking implements Serializable {
 	}
 	
 	public void agregarJugador (Jugador jugador) {
-		topJugadores.add(jugador);
+		if (topJugadores.size() > 5) {
+			if (jugador.obtenerPuntaje() > topJugadores.get(4).obtenerPuntaje()) {
+				topJugadores.remove(topJugadores.get(4));
+				topJugadores.add(jugador);
+			}			
+		}
+		else
+			topJugadores.add(jugador);
 	}
 	
     public List<Jugador> obtenerTopRanking() {

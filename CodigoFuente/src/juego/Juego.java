@@ -103,7 +103,6 @@ public class Juego {
 	
 	public void cierreDeJuego() {
 		 ranking.guardarEstado();
-	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}
