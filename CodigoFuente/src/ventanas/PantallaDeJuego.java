@@ -176,11 +176,6 @@ public class PantallaDeJuego extends JPanel {
         		}
         	}
         }
-
-        // Asegurarse de que Mario siempre esté actualizado
-        marioLabel.actualizar();
-        revalidate();
-        repaint();
     }
 
     

@@ -122,7 +122,7 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.getContext(), this.miContexto)) {
     		System.out.println("KOOPA VISITO A MARIO");
             ContextoMario contextoMario = marioDefault.getContext();
             int perdidaPuntos = this.miContexto.getPuntosSustraidosPorMuerteCausada();
@@ -134,14 +134,14 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.getContext(), this.miContexto)) {
 	        superMario.getContext().reiniciarEstado();
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.getContext(), this.miContexto)) {
     		marioFuego.getContext().reiniciarEstado();
     	}
     }
