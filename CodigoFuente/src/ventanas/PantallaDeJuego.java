@@ -2,12 +2,14 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import elementos.ElementoDeJuego;
 import elementos.entidades.Jugable;
 import juego.Juego;
 import juego.Nivel;
@@ -114,8 +116,6 @@ public class PantallaDeJuego extends JPanel {
     }
 
     public void refrescar() {
-    	System.out.println(marioJugable.getPosicion().x + " " + marioJugable.getPosicion().y);
-    	System.out.println(marioLabel.getLocation().x + " " + marioLabel.getLocation().y);
     	//TODO El warpeo de mario se debe a que para cuando este metodo se da cuenta que mario supero la mitad de la pantalla
     	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
     	//y es visible para el jugador
@@ -196,16 +196,25 @@ public class PantallaDeJuego extends JPanel {
     	crearHUD();
     	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
     	//debido a que primero cambia de nivel y despues revierte su estado
-    	this.marioJugable.establecerPosicion(new Point(250,600));
-    	this.marioJugable.moverHitbox(new Point(250,600));
-    	this.marioLabel.setLocation(250,600);
+    	/*for(ElementoDeJuego e : this.marioJugable.getNivel().getElementosDeJuego()) {
+    		System.out.println(e.getClass().getName());
+    	}*/
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioJugable.moverHitbox(posicionOriginalJugable);
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	agregarLabel(marioLabel);
     	revalidate();
     	repaint();
     }
 
 	private void removerElementos() {
-		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+		for(ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
 			layeredPane.remove(observerGrafico);
 		}
 	}

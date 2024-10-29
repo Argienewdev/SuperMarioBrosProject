@@ -60,11 +60,11 @@ public class Partida {
 	}
 	
 	public void cambiarNivel() {
-		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		System.err.println("Cambie de nivel");
+		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.jugable.setNivel(this.nivel);
+		this.nivel.setMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().cambiarNivel();
@@ -73,18 +73,30 @@ public class Partida {
 	public void reiniciarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.jugable.setNivel(this.nivel);
+		this.nivel.setMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.masterMind.cambiarNivel(this.nivel);
 	}
 	
 	public void finalizarPartida() {
-		this.juego.obtenerBucleJuego().stop();
-		this.bucleEntidadesNoJugables.stop();
-		this.bucleJugador.stop();
+		detenerBucleJuego();
+		detenerBucleEntidadesNoJugables();
+		detenerBucleJugador();
 	}
 	
+	private void detenerBucleJuego() {
+		this.juego.finalizarJuego();		
+	}
+
+	private void detenerBucleJugador() {
+		this.bucleJugador.detenerBucleJugador();
+	}
+
+	private void detenerBucleEntidadesNoJugables() {
+		this.bucleEntidadesNoJugables.detenerBucleEntidadesNoJugables();
+	}
+
 	private Nivel generarNivel(int numeroNivelActual, Partida partida) {
 		
 		return generadorDeNivel.generarNivel(numeroNivelActual, this);

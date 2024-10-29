@@ -48,6 +48,8 @@ public class Nivel {
         this.entidadesAEliminar = new ArrayList<ElementoDeJuego>();
         this.nivelCompletado = false;
         this.partida = partida;
+        this.mario = null;
+        this.generadorDeNivel = null;
     }
     
     public void addPlataforma(Plataforma plataforma) {
@@ -84,7 +86,7 @@ public class Nivel {
 
     public void setMario(ContextoMario mario) {
         this.mario = mario;
-        mario.setNivel(this);
+        this.mario.setNivel(this);
     }
 
     public void removePlataforma(Plataforma plataforma) {
@@ -92,10 +94,6 @@ public class Nivel {
     }
 
     public void removerEntidadesAEliminar() {
-    	for(ElementoDeJuego elemento : entidadesAEliminar) {
-    		//System.out.print(elemento.getClass().getSimpleName() + " ");
-    	}
-    	//System.out.println();
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
     	plataformas.removeAll(entidadesAEliminar);
@@ -154,6 +152,10 @@ public class Nivel {
             elementosDeJuego.add(bolaDeFuego);
         }
         return elementosDeJuego;
+    }
+    
+    public void finalizarPartida() {
+    	this.partida.finalizarPartida();
     }
 
 }

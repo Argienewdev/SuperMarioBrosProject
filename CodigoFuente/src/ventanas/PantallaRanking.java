@@ -82,7 +82,6 @@ public class PantallaRanking extends JPanel {
     public void refrescar(){
     	if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
     		sensor.accionarEnter();
-    		System.out.println("algo");
     		controlador.hacerCambio();
     	}
     }
@@ -116,5 +115,13 @@ public class PantallaRanking extends JPanel {
         tituloPanel.add(titulo);
         
         layeredPane.add(tituloPanel, Integer.valueOf(1));
+    }
+    
+    public void setEnFocus(boolean condicion){
+    	this.enFoco= condicion;
+    }
+    
+    public boolean getEnFocus(){
+    	return this.enFoco;
     }
 }

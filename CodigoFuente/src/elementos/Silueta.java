@@ -30,9 +30,9 @@ public class Silueta {
 		try {
             this.imagenCargada = ImageIO.read(new File(getRutaSilueta()));
         } catch (IOException exception) {
-        	System.out.println("El error está en Silueta.java");
-            System.out.println("Error al cargar la imagen desde la ruta: " + getRutaSilueta());
-            System.out.println("Detalles del error: " + exception.getMessage());
+        	System.err.println("El error está en Silueta.java");
+            System.err.println("Error al cargar la imagen desde la ruta: " + getRutaSilueta());
+            System.err.println("Detalles del error: " + exception.getMessage());
             this.imagenCargada = null;  // Si hay error, se asegura de que sea null
         }
 	}
@@ -42,7 +42,7 @@ public class Silueta {
 		if (imagenCargada != null) {
             return imagenCargada.getWidth();
         } else {
-            System.out.println("Imagen no cargada.");
+            System.err.println("Imagen no cargada.");
             return 0;
         }
 	}
@@ -52,7 +52,7 @@ public class Silueta {
 		if (imagenCargada != null) {
             return imagenCargada.getHeight();
         } else {
-            System.out.println("Imagen no cargada.");
+            System.err.println("Imagen no cargada.");
             return 0;
         }
 	}

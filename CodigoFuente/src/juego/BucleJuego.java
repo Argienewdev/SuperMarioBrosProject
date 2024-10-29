@@ -4,90 +4,91 @@ public class BucleJuego implements Runnable{
 	
 	private static final int MILISEGUNDOS_POR_SEGUNDO = 1000;
 	
-	private static final int NANOSEGUNDOS_POR_SEGUNDO = 1000000000;
+	private static final int NANOSEGUNDOS_POR_SEGUNDO = 1_000_000_000;
 	
 	private static final double CANTIDAD_TICKS = 60.0;
 	
-	private boolean running;
+	private volatile boolean bucleJuegoEnEjecucion;
 	
 	private Juego juego;
 	
-	private Thread thread;
+	private Thread hilo;
 	
 	public BucleJuego(Juego juego) {
-		initialize(juego);
-	}
-	
-	private void initialize(Juego juego) {
 		this.juego = juego;
-		start();
+		iniciarBucleJuego();
 	}
 	
-	private synchronized void start() {
-		thread = new Thread(this);
-		thread.start();
-		running = true;
+	private synchronized void iniciarBucleJuego() {
+		this.bucleJuegoEnEjecucion = true;
+		this.hilo = new Thread(this);
+		this.hilo.start();	
 	}
 	
-	public synchronized void stop() {
-		try {
-			thread.join();
-			running = false;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public synchronized void detenerBucleJuego() {
+		if (!this.bucleJuegoEnEjecucion) {
+			return;
 		}
+		this.bucleJuegoEnEjecucion = false;
+        try {
+            if (this.hilo != null && this.hilo.isAlive()) {
+                this.hilo.join();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            e.printStackTrace();
+        }
 	}
 
 	@Override
 	public void run() {
-	    long lastTime = System.nanoTime();
+	    long ultimoTiempoCapturado = System.nanoTime();
 	    
 	    double cantidadTicks = CANTIDAD_TICKS;
 	    double nanoSegundosPorTick = NANOSEGUNDOS_POR_SEGUNDO / cantidadTicks;
 	    
 	    double delta = 0;
 	    
-	    long timer = System.currentTimeMillis();
+	    long cronometro = System.currentTimeMillis();
 	    
 	    int frames = 0;
-	    int updates = 0;
+	    int actualizaciones = 0;
 
-	    while (running) {
-	        long now = System.nanoTime();
+	    while (this.bucleJuegoEnEjecucion) {
+	        long tiempoActual = System.nanoTime();
 	        
-	        delta += (now - lastTime);
+	        delta += (tiempoActual - ultimoTiempoCapturado);
 	        
-	        lastTime = now;
+	        ultimoTiempoCapturado = tiempoActual;
 	        
 	        while (delta >= nanoSegundosPorTick) {
-	            tick();
-	            updates++;
+	            actualizarJuego();
+	            actualizaciones++;
 	            delta -= nanoSegundosPorTick;
 	        }
 	        
-	        if (running) {
-	            render();
+	        if (this.bucleJuegoEnEjecucion) {
+	            renderizarBucleJuego();
 	            frames++;
 	        }
 	        
-	        if (System.currentTimeMillis() - timer > MILISEGUNDOS_POR_SEGUNDO) {
-	            timer += MILISEGUNDOS_POR_SEGUNDO;
+	        if (System.currentTimeMillis() - cronometro > MILISEGUNDOS_POR_SEGUNDO) {
+	            cronometro += MILISEGUNDOS_POR_SEGUNDO;
 	            //System.out.println("FPS: " + frames + " TPS: " + updates);
-	            updates = 0;
+	            actualizaciones = 0;
 	            frames = 0;
 	        }
 	    }
 	    
-	    System.out.println("Ejecuto stop");
-	    stop();
+	    detenerBucleJuego();
 	}
 
 	
-	private void tick() {
-		juego.actualizar();
+	private void actualizarJuego() {
+		this.juego.actualizar();
 	}
 	
-	private void render() {
-		
+	private void renderizarBucleJuego() {
 	}
+	
 }

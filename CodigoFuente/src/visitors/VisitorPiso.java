@@ -110,7 +110,9 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
+    	System.out.println("DETECTE PISO EN VISITOR PISO");
         detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
+        contextoMario.setColisionAbajo(true);
     }
 
     @Override
@@ -125,18 +127,17 @@ public class VisitorPiso implements Visitante {
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {}
 
     @Override
-    public void visitarPiso(Piso piso) {}
+    public void visitarPiso(Piso piso) {
+    }
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
    		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			//TODO se puede hacer sin casteo?
-   			int velocidadActualEnX= (int) fireball.getVelocidadDireccional().getX();
-   			Point salto=new Point(velocidadActualEnX,-30);
+   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			Point salto = new Point(velocidadActualEnX, -20);
    			fireball.setVelocidadDireccional(salto);
-   		}
-   		else {
+   		} else {
    			fireball.setRemovido(true);
    		}
    	}

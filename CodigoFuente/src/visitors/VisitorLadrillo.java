@@ -150,12 +150,10 @@ public class VisitorLadrillo implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			//TODO se puede hacer sin casteo?
-   			int velocidadActualEnX= (int) fireball.getVelocidadDireccional().getX();
-   			Point salto=new Point(velocidadActualEnX,-30);
+   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			Point salto = new Point(velocidadActualEnX,-20);
    			fireball.setVelocidadDireccional(salto);
-   		}
-   		else {
+   		}else {
    			fireball.setRemovido(true);
    		}
 	}

@@ -115,7 +115,7 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.setObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 5;
+		int identificadorPowerUp = 1;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
@@ -178,7 +178,6 @@ public class FabricaPlataformas {
     
     @SuppressWarnings("exports")
 	public Piso getPiso(Point posicion) {
-    	System.out.println("LO LLAME AL PISO");
     	Sprite spritePiso = this.fabricaSprites.getPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver);
