@@ -18,10 +18,6 @@ public class MasterMind {
 	
 	protected Nivel nivel;
 	
-	private static final int GRAVEDAD = 3;
-	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
-	
 	private boolean hayNoJugableParaRemover;
 			
 	private Entidad entidadARemover;
@@ -64,7 +60,7 @@ public class MasterMind {
 		if(enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
 			enemigo.moverIzquierda();
 		}
-		aplicarGravedad(enemigo);
+		enemigo.aplicarGravedad();
 		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
 	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
@@ -132,7 +128,7 @@ public class MasterMind {
 			if(powerUp.getVelocidadDireccional().x == 0) {
 				powerUp.moverDerecha();
 			}
-			aplicarGravedad(powerUp);
+			powerUp.aplicarGravedad();
 			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
 		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
@@ -140,7 +136,7 @@ public class MasterMind {
 	}
 	
 	private void moverBolaDeFuego(BolaDeFuego bolaFuego) {
-		aplicarGravedad(bolaFuego);
+		bolaFuego.aplicarGravedad();
 		cambiarYVerificarPosicionHitboxDeEntidad(bolaFuego);
 	}
 	
@@ -195,12 +191,6 @@ public class MasterMind {
 	private void actualizarLabelsBolasDeFuego() {
 		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()){
 			bola.getObserverGrafico().actualizar();
-		}
-	}
-	
-	private void aplicarGravedad(NoJugable noJugable) {
-		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
-			noJugable.setVelocidadDireccional(new Point(noJugable.getVelocidadDireccional().x, noJugable.getVelocidadDireccional().y + GRAVEDAD));
 		}
 	}
 	

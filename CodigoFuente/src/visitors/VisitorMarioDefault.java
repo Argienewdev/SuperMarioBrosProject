@@ -52,9 +52,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	System.out.println(this.miContexto.getVelocidadDireccional().y);
-    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)  
-    		&& !koopaEnCaparazon.getContext().getRemovido()
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)
     		&& this.miContexto.getVelocidadDireccional().y > 10) {
     	   koopaEnCaparazon.getContext().setRemovido(true);
         }

@@ -214,17 +214,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     @Override
     public Sprite getSpinyFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyFrontalCaminando.png");
-    }
-
-    @Override
-    public Sprite getSpinyReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyReversoQuieto.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyFrontalCaminando.gif");
     }
 
     @Override
     public Sprite getSpinyReversoCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyReversoCaminando.png");
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyReversoCaminando.gif");
     }
 
     @Override

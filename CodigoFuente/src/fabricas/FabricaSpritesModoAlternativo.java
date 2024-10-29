@@ -218,11 +218,6 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getSpinyReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyReversoQuieto.png");
-    }
-
-    @Override
     public Sprite getSpinyReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyReversoCaminando.png");
     }
