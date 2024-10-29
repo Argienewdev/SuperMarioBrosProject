@@ -10,7 +10,7 @@ import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 
 public class MasterMind {
 	
@@ -57,7 +57,7 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		if(enemigo.getPosicion().x < (DimensionesConstantes.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
+		if(enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
 			enemigo.moverIzquierda();
 		}
 		enemigo.aplicarGravedad();

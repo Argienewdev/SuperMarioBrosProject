@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import ventanas.DimensionesConstantes;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;
 
@@ -42,7 +42,7 @@ public class MarioInvulnerable  extends MarioDefault {
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
-			if(contexto.getPosicion().y > (DimensionesConstantes.NIVEL_PISO)){
+			if(contexto.getPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
 				aRetornar = fabricaSprites.getMarioInvulnerableCayendo();
 			}else if(spriteAereoFrontal(fabricaSprites)) {
 				aRetornar = fabricaSprites.getMarioInvulnerableFrontalSaltando();

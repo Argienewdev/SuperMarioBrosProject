@@ -96,9 +96,9 @@ public class VisitorBuzzyBeetle implements Visitante {
             int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
-            miEntidad.getNivel().reiniciarNivel();
+            miEntidad.getNivel().obtenerPartida().reiniciarNivel();
         }else {
-            detectorDireccionColision.verificarColision(this.miEntidad, marioDefault.getContext());
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.getContext());
         }
     }
     

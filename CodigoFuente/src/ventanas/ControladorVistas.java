@@ -67,7 +67,7 @@ public class ControladorVistas {
 		accionarPantallaInicial();
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
-		ventana.setSize(DimensionesConstantes.VENTANA_ANCHO, DimensionesConstantes.VENTANA_ALTO);
+		ventana.setSize(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.VENTANA_ALTO);
 		ventana.setLocationRelativeTo(null);
 		ventana.pack();
 		ventana.setVisible(true);

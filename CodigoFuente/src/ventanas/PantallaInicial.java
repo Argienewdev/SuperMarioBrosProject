@@ -29,7 +29,7 @@ public class PantallaInicial extends JPanel {
 	
 	private ArregloDeBotones arregloDeBotones;
 	
-	protected Dimension size = new Dimension(DimensionesConstantes.PANEL_ANCHO, DimensionesConstantes.PANEL_ALTO);
+	protected Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
 	
 	protected ControladorVistas controlador;
 	
@@ -75,9 +75,9 @@ public class PantallaInicial extends JPanel {
 	
 	public void configurarFuente() {
 		tipoFuentes= new Fuentes();
-	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
-	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
-	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, DimensionesConstantes.PANEL_ANCHO / 30));
+	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    modo1.setForeground(Color.WHITE);
 	    modo2.setForeground(Color.WHITE);
 	    ranking.setForeground(Color.WHITE);
