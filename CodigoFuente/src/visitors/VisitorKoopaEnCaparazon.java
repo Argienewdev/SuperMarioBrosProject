@@ -130,5 +130,11 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

@@ -162,5 +162,11 @@ public class VisitorGoomba implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

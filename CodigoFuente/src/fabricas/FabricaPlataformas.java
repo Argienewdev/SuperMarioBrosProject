@@ -23,6 +23,7 @@ import visitors.VisitorPiso;
 import visitors.VisitorPrincesa;
 import visitors.VisitorSuperChampinion;
 import visitors.VisitorTuberia;
+import visitors.VisitorVacio;
 
 public class FabricaPlataformas {
 
@@ -36,6 +37,18 @@ public class FabricaPlataformas {
 		this.fabricaSprites = fabricaSprites;
 		this.fabricaEntidades = fabricaEntidades;
 		this.pantallaDeJuego = pantallaDeJuego;
+	}
+	
+	@SuppressWarnings("exports")
+	public Vacio getVacio(Point posicion) {
+		Sprite spriteVacio = this.fabricaSprites.getVacio();
+		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, null, null);
+		Visitante visitor = new VisitorVacio(vacioADevolver);
+		vacioADevolver.setVisitor(visitor);
+		ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(vacioADevolver);	   
+		vacioADevolver.setObserverGrafico(observerGraficoLadrillo);
+		this.pantallaDeJuego.agregarLabel(vacioADevolver.getObserverGrafico());
+		return vacioADevolver;
 	}
 	
 	@SuppressWarnings("exports")

@@ -8,30 +8,27 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 
-public class VisitorPiso implements Visitante {
+public class VisitorVacio implements Visitante {
 
-    protected Piso miEntidad;
+    protected Vacio miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
 
-    public VisitorPiso(Piso miEntidad) {
+    public VisitorVacio(Vacio miEntidad) {
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        detectorDireccionColision.verificarColision(this.miEntidad, buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        detectorDireccionColision.verificarColision(this.miEntidad, goomba);
     }
 
     @Override
@@ -44,7 +41,6 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, superChampinion);
     }
 
     @Override
@@ -53,12 +49,10 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, champinionVerde);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        detectorDireccionColision.verificarColision(this.miEntidad, estrella);
     }
 
     @Override
@@ -110,14 +104,10 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
-    	System.out.println("DETECTE PISO EN VISITOR PISO");
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
-        contextoMario.setColisionAbajo(true);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
-        detectorDireccionColision.verificarColision(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -132,14 +122,6 @@ public class VisitorPiso implements Visitante {
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-   		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
-   			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
-   			Point salto = new Point(velocidadActualEnX, -20);
-   			fireball.setVelocidadDireccional(salto);
-   		} else {
-   			fireball.setRemovido(true);
-   		}
    	}
 
 	@Override
