@@ -132,7 +132,7 @@ public class VisitorPiso implements Visitante {
    		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
-   			Point salto = new Point(velocidadActualEnX, -30);
+   			Point salto = new Point(velocidadActualEnX, -20);
    			fireball.setVelocidadDireccional(salto);
    		} else {
    			fireball.setRemovido(true);

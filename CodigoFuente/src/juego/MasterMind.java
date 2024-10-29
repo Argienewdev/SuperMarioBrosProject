@@ -60,9 +60,7 @@ public class MasterMind {
 		this.nivel = nivel;
 	}
 	
-	//TODO rudimentario, mejorar expresiones
 	private void moverEnemigo(Enemigo enemigo) {
-		//No los mueve hasta que esten cerca de entrar a la pantalla
 		if(enemigo.getPosicion().x < (DimensionesConstantes.PANEL_ANCHO + 100) && enemigo.getVelocidadDireccional().x == 0) {
 			enemigo.moverIzquierda();
 		}
@@ -111,6 +109,7 @@ public class MasterMind {
 			moverEnemigo(enemigo);
 		}
 	}
+	
 	private void actualizarPosicionesPowerUps() {
 		for(PowerUp powerUp : this.nivel.getPowerUps()) {
 			moverPowerUp(powerUp);
@@ -192,12 +191,12 @@ public class MasterMind {
 			plataforma.getObserverGrafico().actualizar();
 		}
 	}
+	
 	private void actualizarLabelsBolasDeFuego() {
 		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()){
 			bola.getObserverGrafico().actualizar();
 		}
 	}
-	
 	
 	private void aplicarGravedad(NoJugable noJugable) {
 		if(noJugable.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
