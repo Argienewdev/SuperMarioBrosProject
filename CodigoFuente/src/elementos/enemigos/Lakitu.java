@@ -2,6 +2,7 @@ package elementos.enemigos;
 
 import java.awt.Point;
 import elementos.Sprite;
+import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
@@ -22,7 +23,12 @@ public class Lakitu extends Enemigo {
     }
 
     public void lanzarSpiny () {
-    	//TODO
+//    	int posX = getContext().getPosicion().x;
+//		int posY = getContext().getPosicion().y;
+//		Point posicionInicialBolaDeFuego = new Point(posX,posY);
+//		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
+//		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+//		contexto.getNivel().addBolaDeFuego(bolaDeFuego);
     }
     
     @Override
