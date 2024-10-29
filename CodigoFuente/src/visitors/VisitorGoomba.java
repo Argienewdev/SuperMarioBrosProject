@@ -81,7 +81,7 @@ public class VisitorGoomba implements Visitante {
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miEntidad.getNivel().obtenerPartida().reiniciarNivel();
-        }else {
+        } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.getContext());
         }
     }

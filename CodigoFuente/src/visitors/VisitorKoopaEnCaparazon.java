@@ -112,9 +112,11 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioInvulnerable.getContext());
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioRecuperacion.getContext());
     }
 
     @Override

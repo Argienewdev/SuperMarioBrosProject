@@ -123,8 +123,7 @@ public class VisitorBandera implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
+		fireball.setRemovido(true);
 	}
 
 	@Override

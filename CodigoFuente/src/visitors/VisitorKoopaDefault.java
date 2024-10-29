@@ -10,13 +10,13 @@ public class VisitorKoopaDefault implements Visitante {
 
     protected EstadoKoopa miEstado;
     
-    private ContextoKoopaTroopa miEntidad;
+    private ContextoKoopaTroopa miContexto;
     
     private DetectorDireccionColision detectorDireccionColision;
 
     public VisitorKoopaDefault(KoopaDefault miEstado) {
         this.miEstado = miEstado;
-        this.miEntidad = miEstado.getContext();
+        this.miContexto = miEstado.getContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
@@ -122,25 +122,26 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioDefault.getContext(), this.miContexto)) {
+    		System.out.println("KOOPA VISITO A MARIO");
             ContextoMario contextoMario = marioDefault.getContext();
-            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+            int perdidaPuntos = this.miContexto.getPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
-            miEntidad.getNivel().obtenerPartida().reiniciarNivel();
-        }
+            miContexto.getNivel().obtenerPartida().reiniciarNivel();
+        } 
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(superMario.getContext(), this.miContexto)) {
 	        superMario.getContext().reiniciarEstado();
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreEnemigoYMario(marioFuego.getContext(), this.miContexto)) {
     		marioFuego.getContext().reiniciarEstado();
     	}
     }
