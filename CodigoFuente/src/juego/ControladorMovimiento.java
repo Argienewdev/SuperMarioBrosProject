@@ -99,6 +99,7 @@ public class ControladorMovimiento {
 	private void determinarAccion() {
 		this.marioJugable.setAvanzando(false);
 		this.marioJugable.setRetrocediendo(false);
+		
 		if(marioJugable.getColisionArriba()) {
 			reiniciarVelocidadVertical();
 			marioJugable.setColisionArriba(false);
@@ -109,12 +110,15 @@ public class ControladorMovimiento {
 	    } else {
 	        reiniciarVelocidadVertical();
 	    }
+		
 	    if (movimientoAIzquierda()) {
 	    	moveMarioIzquierda();
 	    }
+	    
 	    if (movimientoADerecha()) {
 	    	moveMarioDerecha();
 	    }
+	    
 	    if (realizarAccionEspecial()) {
 	    	accionEspecial();
 	    }

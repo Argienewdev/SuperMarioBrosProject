@@ -113,7 +113,6 @@ public class VisitorContextoMario implements Visitante {
         this.detectorDireccionColision.verificarColision(miEntidad, this.miEntidad);
         this.miEntidad.reiniciarEstado();
 		this.miEntidad.getNivel().setCompletado(true);
-        this.miEntidad.getNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().eliminarNivelActual();
 	}
 
 	@Override
@@ -140,7 +139,8 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 	
 	@Override
-	public void visitarPiso(Piso piso) {}
+	public void visitarPiso(Piso piso) {
+	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
