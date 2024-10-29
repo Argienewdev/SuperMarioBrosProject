@@ -80,9 +80,9 @@ public class Partida {
 	}
 	
 	public void finalizarPartida() {
+		detenerBucleJuego();
 		detenerBucleEntidadesNoJugables();
 		detenerBucleJugador();
-		detenerBucleJuego();
 	}
 	
 	private void detenerBucleJuego() {

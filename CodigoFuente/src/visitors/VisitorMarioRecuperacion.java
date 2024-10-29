@@ -107,7 +107,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	miEntidad.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
     }
 
     @Override

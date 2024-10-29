@@ -124,7 +124,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	miContexto.getNivel().obtenerPartida().obtenerJuego().finalizarPartida();
     }
 
     @Override
