@@ -39,7 +39,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Spiny getSpiny(Point posicion) {
-    	Sprite sprite = fabricaSprites.getSpinyReversoCaminando();
+    	Sprite sprite = fabricaSprites.getSpinyCayendo();
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
         spinyADevolver.setVisitor(visitorSpiny);

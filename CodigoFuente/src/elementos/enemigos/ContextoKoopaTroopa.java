@@ -37,14 +37,6 @@ public class ContextoKoopaTroopa extends Enemigo {
         visitante.visitarContextoKoopaTroopa(this);
     }
     
-    public void moverDerecha() {
-    	this.estadoKoopa.moverDerecha();
-    }
-    
-    public void moverIzquierda() {
-    	this.estadoKoopa.moverIzquierda();
-    }
-    
     public void invertirDireccion() {
     	this.estadoKoopa.invertirDireccion();
     }
@@ -62,4 +54,14 @@ public class ContextoKoopaTroopa extends Enemigo {
 		this.setSprite(fabricaSprites.getSpriteInvisible());
 	}
     
+	@Override
+	public void mover() {
+		if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.setVelocidadDireccional(velocidad);
+    	} else {
+    		this.estadoKoopa.mover();
+    	}
+	}
+	
 }

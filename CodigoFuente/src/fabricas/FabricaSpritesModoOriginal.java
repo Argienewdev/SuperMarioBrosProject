@@ -198,18 +198,8 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
     }
 
     @Override
-    public Sprite getSpinyAntesDeCaerPrimeraTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyAntesDeCaerPrimeraTransicion.png");
-    }
-
-    @Override
-    public Sprite getSpinyAntesDeCaerSegundaTransicion() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyAntesDeCaerSegundaTransicion.png");
-    }
-
-    @Override
-    public Sprite getSpinyFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyFrontalQuieto.png");
+    public Sprite getSpinyCayendo() {
+        return new Sprite(rutaACarpeta + "/spritesModoOriginal/spinyCayendo.gif");
     }
 
     @Override

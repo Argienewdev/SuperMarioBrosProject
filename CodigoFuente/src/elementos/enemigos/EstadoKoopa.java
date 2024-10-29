@@ -15,9 +15,7 @@ public interface EstadoKoopa {
 
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
 
-	public void moverIzquierda();
+	public void mover();
 	
 	public void invertirDireccion();
-
-	public void moverDerecha();
 }

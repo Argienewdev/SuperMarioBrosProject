@@ -40,12 +40,12 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-    	contextoKoopaTroopa.setRemovido(true);
-    	this.miEntidad.ganarPuntos(contextoKoopaTroopa.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    	koopaEnCaparazon.getContext().setRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
@@ -56,12 +56,14 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
+    	lakitu.setRemovido(true);
+    	this.miEntidad.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
+    	piranhaPlant.setRemovido(true);
+    	this.miEntidad.ganarPuntos(piranhaPlant.getPuntosOtorgadosPorEliminacion());
     }
 
     @Override
@@ -77,7 +79,8 @@ public class VisitorMarioInvulnerable implements Visitante {
     }
 
     @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
