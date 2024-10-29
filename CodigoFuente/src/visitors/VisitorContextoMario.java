@@ -117,10 +117,14 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	@Override
-	public void visitarTuberia(Tuberia tuberia) {}
+	public void visitarTuberia(Tuberia tuberia) {
+		this.detectorDireccionColision.verificarColision(tuberia, this.miEntidad);
+	}
 
 	@Override
-	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+		this.detectorDireccionColision.verificarColision(bloqueSolido, this.miEntidad);
+	}
 
 	@Override
 	public void visitarContextoMario(ContextoMario contextoMario) {}
@@ -142,13 +146,6 @@ public class VisitorContextoMario implements Visitante {
 	@Override
 	public void visitarPiso(Piso piso) {
 		this.detectorDireccionColision.verificarColision(piso, this.miEntidad);
-		this.miEntidad.setColisionAbajo(true);
-	}
-	
-	private void otorgarPuntosYEliminar(Enemigo enemigo) {
-		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
-		this.miEntidad.ganarPuntos(puntos);
-		enemigo.setRemovido(true);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class ObserverLogicoJugable implements Observer {
 	}
 	
 	public void actualizar() { 
-		juego.finalizarPartida();
+		juego.finalizarJuego();
 	}
 
 }

@@ -68,31 +68,27 @@ public class VisitorBloqueSolido implements Visitante {
     
     @Override
     public void visitarMarioDefault(MarioDefault marioNormal) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, marioNormal.getContext());
     }
     
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInv) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, marioInv.getContext());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, marioFuego.getContext());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        this.detectorDireccionColision.verificarColision(this.miEntidad, superMario.getContext());
     }
     
     @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	this.detectorDireccionColision.verificarColision(this.miEntidad, marioRecuperacion.getContext());
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {        }
+    public void visitarBloqueDePregunta(BloqueDePregunta bloquePregunta) {        
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {    }
@@ -111,7 +107,6 @@ public class VisitorBloqueSolido implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {        
-        this.detectorDireccionColision.verificarColision(this.miEntidad, contextoMario);
     }
     
     @Override
