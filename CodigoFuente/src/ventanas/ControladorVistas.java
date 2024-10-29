@@ -72,9 +72,10 @@ public class ControladorVistas {
 		ventana.pack();
 		ventana.setVisible(true);
 		ventana.addWindowListener(new WindowAdapter() { 
-			public void  windowClosing (WindowEvent e) {
-				//juego.cierreDeJuego();
-			}
+			@SuppressWarnings("unused")
+			public void  WindowClosing (WindowEvent e) {
+				juego.cierreDeJuego();
+			}	
 		});
 	}
 		
@@ -153,12 +154,15 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
+		pantallaInicial.setEnFocus(false);
 		ventana.setContentPane(pantallaRanking); 
 		ventana.repaint();
 		ventana.revalidate();
 	}
 	
 	public void hacerCambio(){
+		pantallaRanking.setEnFocus(false);
+		pantallaInicial.setEnFocus(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
 		ventana.repaint();
@@ -177,7 +181,7 @@ public class ControladorVistas {
 		SwingUtilities.invokeLater(() -> pantallaIngresoNombre.solicitarFocoCampoTexto());
 	}
 	
-	public void refrescar() {
+	public void refrescar(){
 		if(ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
 			pantallaInicial.actualizarFoco();
 			if(ventana.isAncestorOf(pantallaRanking)) {
@@ -204,24 +208,14 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		ActionListener listener;
-		int duracionAnimacionBandera = 0;
-		listener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-		};
-		Timer timerAnimacionFinDeNivel = new Timer(duracionAnimacionBandera, listener);
-		timerAnimacionFinDeNivel.setRepeats(false);
-		timerAnimacionFinDeNivel.start();
+		int duracionPantallaEntreNiveles = 2000;
 		
-		
-		
-		int duracionPantallaEntreNiveles = 0;
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
+     	
 		pantallaDeJuego.cambiarDeNivel();
-		listener = new ActionListener() {
+		ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mostrarPantallaDeJuego();
             }

@@ -41,7 +41,7 @@ public class PantallaInicial extends JPanel {
 	
 	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
-		this.enFoco = false;
+		this.enFoco = true;
 		this.controlador= controladorVistas;
 		this.sensor = sensor;
 		this.fondo = new JLabel();
@@ -122,6 +122,7 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	 public void actualizarFoco() {
+		 if(enFoco) {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			
 			 if(currentLabel == modo1){
@@ -148,9 +149,17 @@ public class PantallaInicial extends JPanel {
 	            currentLabel.setForeground(Color.DARK_GRAY);
 	            sensor.accionarW();
 	        }
-	       
+		 }
 	       
     }
+	 
+	 public void setEnFocus(boolean condicion){
+	    	this.enFoco= condicion;
+	    }
+	    
+	 public boolean getEnFocus(){
+	    	return this.enFoco;
+	 }
 	 
 	public void guardarModo (String modo) {
 		this.modo = modo;
