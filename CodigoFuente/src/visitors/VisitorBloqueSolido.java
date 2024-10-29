@@ -133,9 +133,15 @@ public class VisitorBloqueSolido implements Visitante {
 		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+<<<<<<< HEAD
    			Point salto = new Point(velocidadActualEnX,-30);
    			fireball.setVelocidadDireccional(salto);
    		}else {
+=======
+   			Point salto = new Point(velocidadActualEnX, -30);
+   			fireball.setVelocidadDireccional(salto);
+   		} else {
+>>>>>>> b6e4322f0440070f4dd7ce603aad81fe1c19caef
    			fireball.setRemovido(true);
    		}
 	}

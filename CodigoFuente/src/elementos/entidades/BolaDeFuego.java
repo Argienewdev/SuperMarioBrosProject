@@ -13,7 +13,7 @@ public class BolaDeFuego extends NoJugable {
 	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.velocidadDireccional=velocidadDireccional;
+		this.velocidadDireccional = velocidadDireccional;
 		this.miJugador = jugador;
 	}
 	

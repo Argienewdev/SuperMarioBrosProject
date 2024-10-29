@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import elementos.ElementoDeJuego;
 import elementos.entidades.Jugable;
 import juego.Juego;
 import juego.Nivel;
@@ -193,16 +194,27 @@ public class PantallaDeJuego extends JPanel {
     public void cambiarDeNivel() {
     	establecerFondo();
     	crearHUD();
-    	this.marioJugable.establecerPosicion(new Point(250, 600));
-    	this.marioJugable.moverHitbox(marioJugable.getPosicion());
-    	this.marioLabel.setLocation(250,600);
+    	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
+    	//debido a que primero cambia de nivel y despues revierte su estado
+    	/*for(ElementoDeJuego e : this.marioJugable.getNivel().getElementosDeJuego()) {
+    		System.out.println(e.getClass().getName());
+    	}*/
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioJugable.moverHitbox(posicionOriginalJugable);
+    	System.out.println("HITBOX MARIO: " + marioJugable.obtenerHitbox().x + " " + marioJugable.obtenerHitbox().y);
+    	System.out.println(marioJugable.obtenerAlto() + " " + marioJugable.obtenerAncho());
+    	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	agregarLabel(marioLabel);
     	revalidate();
     	repaint();
     }
 
 	private void removerElementos() {
-		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+		for(ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
 			layeredPane.remove(observerGrafico);
 		}
 	}
