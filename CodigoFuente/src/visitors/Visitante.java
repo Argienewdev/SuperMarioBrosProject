@@ -8,6 +8,7 @@ import elementos.powerUps.*;
 
 public interface Visitante {
     
+	
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle);
 
     public void visitarSpiny(Spiny spiny);
