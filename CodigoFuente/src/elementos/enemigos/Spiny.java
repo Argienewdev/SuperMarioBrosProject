@@ -45,11 +45,6 @@ public class Spiny extends Enemigo {
 		}
 	}
 	
-	protected void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpriteInvisible());
-		this.eliminarDelNivel();
-	}
-	
 	private void aterrizar(FabricaSprites fabricaSprites) {
 		this.setSprite(fabricaSprites.getSpinyReversoCaminando());
 		actualizarHitboxYPosicion(fabricaSprites);
@@ -75,4 +70,8 @@ public class Spiny extends Enemigo {
 		this.setPosicion(nuevaPosicion);
 	}
 	
+	@Override
+	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.getSpinyMuerto();
+	}
 }

@@ -64,7 +64,7 @@ public class FabricaEntidades {
        
 	@SuppressWarnings("exports")
 	public PiranhaPlant getPiranhaPlant(Point posicion) {
-        Sprite sprite = fabricaSprites.getPiranhaPlantCerrada();
+        Sprite sprite = fabricaSprites.getPiranhaPlant();
         PiranhaPlant piranhaADevolver=new PiranhaPlant(sprite,posicion, null, null);
         Visitante visitorPiranha = new VisitorPiranhaPlant(piranhaADevolver);
         piranhaADevolver.setVisitor(visitorPiranha);
@@ -89,7 +89,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public BuzzyBeetle getBuzzyBeetle(Point posicion) {
-    	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoQuieto();
+    	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoCaminando();
         BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
         Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver);
         buzzyADevolver.setVisitor(visitorBuzzy);
@@ -101,7 +101,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Goomba getGoomba(Point posicion){
-        Sprite sprite = fabricaSprites.getGoombaCaminando();
+        Sprite sprite = fabricaSprites.getGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
         goombaADevolver.setVisitor(visitorGoomba);

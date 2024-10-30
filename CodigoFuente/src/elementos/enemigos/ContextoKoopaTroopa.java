@@ -63,5 +63,10 @@ public class ContextoKoopaTroopa extends Enemigo {
     		this.estadoKoopa.mover();
     	}
 	}
+
+	@Override
+	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.getKoopaTroopaMuerto();
+	}
 	
 }

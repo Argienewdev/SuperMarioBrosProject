@@ -25,8 +25,6 @@ public class MasterMind {
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		this.hayNoJugableParaRemover = false;
-		this.entidadARemover = null;
 	}
 
 	public void actualizar() {
@@ -44,14 +42,6 @@ public class MasterMind {
 		this.nivel.removerEntidadesAEliminar();
 		this.nivel.agregarBolaDeFuegoAAgregar();
 		this.nivel.agregarSpinysAAgregar();
-		if(hayNoJugableParaRemover) {
-			entidadARemover.incrementarContadorTicks();
-			if(entidadARemover.getContadorTicks() > entidadARemover.obtenerTicksAnimacion()) {
-				entidadARemover.eliminarDelNivel();
-				entidadARemover = null;
-				hayNoJugableParaRemover = false;
-			}
-		}
 	}
 	
 	public void cambiarNivel(Nivel nivel) {
@@ -104,10 +94,6 @@ public class MasterMind {
 		            entidad.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			if(entidad.getRemovido()) {
-				hayNoJugableParaRemover = true;
-				entidadARemover = entidad;
-			}
 		}
 		entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	}
