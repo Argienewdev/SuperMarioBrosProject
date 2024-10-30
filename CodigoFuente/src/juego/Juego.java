@@ -119,7 +119,7 @@ public class Juego {
 		JOptionPane.showMessageDialog(null,mensaje);
 	}
 
-	public void setBucleJuego(BucleJuego bucleJuego) {
+	public void establecerBucleJuego(BucleJuego bucleJuego) {
 		this.bucleJuego = bucleJuego;
 	}
 	

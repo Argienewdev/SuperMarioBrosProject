@@ -42,7 +42,7 @@ public class Lakitu extends Enemigo {
     		int posY = obtenerPosicion().y + this.obtenerAlto();
     		Point posicionInicialSpiny = new Point(posX, posY);
     		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionInicialSpiny);
-    		obtenerNivel().addSpinyAAgregar(spiny);
+    		obtenerNivel().agregarSpinyAAgregar(spiny);
     	}
     }
     

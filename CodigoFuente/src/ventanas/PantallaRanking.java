@@ -114,11 +114,11 @@ public class PantallaRanking extends JPanel {
         layeredPane.add(tituloPanel, Integer.valueOf(1));
     }
     
-    public void setEnFocus(boolean condicion){
+    public void establecerEnFoco(boolean condicion){
     	this.enFoco = condicion;
     }
     
-    public boolean obtenerEnFocus(){
+    public boolean obtenerEnFoco(){
     	return this.enFoco;
     }
 }

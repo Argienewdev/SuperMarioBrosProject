@@ -90,7 +90,7 @@ public class FabricaPlataformas {
 		int posicionPiranhaY = posicion.y +altura;
 		Point posicionPiranha = parsearPosicion(posicionPiranhaX, posicionPiranhaY);
 		PiranhaPlant piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicionPiranha);
-		nivel.addEnemigo(piranhaPlant);
+		nivel.agregarEnemigo(piranhaPlant);
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.establecerVisitor(visitorTuberia);

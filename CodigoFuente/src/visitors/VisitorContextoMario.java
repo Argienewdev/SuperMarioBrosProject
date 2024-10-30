@@ -113,7 +113,7 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarBandera(Bandera bandera) {
         this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
         this.miEntidad.reiniciarEstado();
-		this.miEntidad.obtenerNivel().setCompletado(true);
+		this.miEntidad.obtenerNivel().establecerCompletado(true);
 	}
 
 	@Override

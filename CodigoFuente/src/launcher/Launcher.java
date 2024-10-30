@@ -13,7 +13,7 @@ public class Launcher {
     	Juego juego = new Juego();
         juego.establecerControladorVistas(new ControladorVistas(juego));
         bucleJuego = new BucleJuego(juego);
-        juego.setBucleJuego(bucleJuego);
+        juego.establecerBucleJuego(bucleJuego);
         ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
         reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musicaModoOriginal.wav");   
     }

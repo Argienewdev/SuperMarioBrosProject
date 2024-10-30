@@ -40,13 +40,13 @@ public class ControladorMovimiento {
 		reiniciarVelocidadHorizontal();
 	}
 	
-	private void moveMarioDerecha() {
+	private void moverMarioDerecha() {
 		this.velocidadHorizontal = ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.establecerAvanzando(true);
 		aplicarVelocidad();
 	}
 	
-	private void moveMarioIzquierda() {
+	private void moverMarioIzquierda() {
 		this.velocidadHorizontal = -ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.establecerRetrocediendo(true);
 		aplicarVelocidad();
@@ -107,11 +107,11 @@ public class ControladorMovimiento {
 	    }
 		
 	    if (movimientoAIzquierda()) {
-	    	moveMarioIzquierda();
+	    	moverMarioIzquierda();
 	    }
 	    
 	    if (movimientoADerecha()) {
-	    	moveMarioDerecha();
+	    	moverMarioDerecha();
 	    }
 	    
 	    if (realizarAccionEspecial()) {
@@ -172,7 +172,7 @@ public class ControladorMovimiento {
 		boolean retornar = false;
 		if(sensorDeTeclasJuego.obtenerSpacePresionada()) {
 			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
-			sensorDeTeclasJuego.setSpaceAccionada(true);
+			sensorDeTeclasJuego.establecerSpaceAccionada(true);
 		}
 		return retornar;
 	}

@@ -17,8 +17,6 @@ public class SensorDeTeclasMenu implements KeyListener{
 	
 	private boolean enterAccionado;
 	
-	private boolean enFoco;
-	
 	public SensorDeTeclasMenu() {
 		SPresionado = false;
 		WPresionado = false;
