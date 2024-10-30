@@ -9,9 +9,12 @@ import elementos.powerUps.*;
 public class VisitorPiranhaPlant implements Visitante {
     
     protected PiranhaPlant miEntidad;
+    
+    protected DetectorDireccionColision detectorDireccionColision;
 
     public VisitorPiranhaPlant(PiranhaPlant miEntidad) {
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -86,33 +89,47 @@ public class VisitorPiranhaPlant implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        ContextoMario contextoMario = marioDefault.obtenerContexto();
-        if (contextoMario.obtenerVidas() == 1) {
+    	
+        if (!this.miEntidad.obtenerRemovido()) {
+            ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
+            contextoMario.perderVida();
+            miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
+        } else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.obtenerContexto());
         }
-        contextoMario.perderVida();
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.obtenerContexto();
-        EstadoMario nuevoEstado = new MarioRecuperacion();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	if (!this.miEntidad.obtenerRemovido()) {
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
+    	} else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.obtenerContexto());
+        }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.obtenerContexto();
-        EstadoMario nuevoEstado = new MarioRecuperacion();
-        contextoMario.cambiarEstado(nuevoEstado);
+    	if (!this.miEntidad.obtenerRemovido()) {
+    		EstadoMario marioRecuperacion = new MarioRecuperacion();
+    		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
+    	} else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.obtenerContexto());
+        }
     }
-
+    
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     }
-    
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	if(this.miEntidad.obtenerRemovido()) {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.obtenerContexto());
+    	}
+    }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {

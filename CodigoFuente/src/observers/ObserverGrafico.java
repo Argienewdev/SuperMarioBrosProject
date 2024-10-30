@@ -41,7 +41,7 @@ public class ObserverGrafico extends JLabel implements Observer {
 		setBounds(x, y, ancho, alto);
 	}
 
-	public void setDebeMoverseConElFondo(boolean debeMoverseConElFondo) {
+	public void establecerDebeMoverseConElFondo(boolean debeMoverseConElFondo) {
 		this.debeMoverseConElFondo = debeMoverseConElFondo;
 	}
 	

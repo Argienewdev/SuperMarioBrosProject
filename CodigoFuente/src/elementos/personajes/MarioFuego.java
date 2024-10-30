@@ -119,7 +119,7 @@ public class MarioFuego extends MarioDefault {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.obtenerBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
-		contexto.obtenerNivel().addBolaDeFuegoAAgregar(bolaDeFuego);
+		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	
 }

@@ -80,7 +80,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	}
 	
 	public void eliminarDelNivel() {
-		this.miNivel.addEntidadesAEliminar(this);
+		this.miNivel.agregarEntidadesAEliminar(this);
 	}
 	
 	public int obtenerTicksAnimacion() {

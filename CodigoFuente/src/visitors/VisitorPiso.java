@@ -43,7 +43,6 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant planta) {
-    	 detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, planta);
     }
 
     @Override

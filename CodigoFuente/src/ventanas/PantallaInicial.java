@@ -144,11 +144,11 @@ public class PantallaInicial extends JPanel {
 	       
     }
 	 
-	 public void setEnFocus(boolean condicion){
+	 public void establecerEnFoco(boolean condicion){
 	    	this.enFoco= condicion;
 	    }
 	    
-	 public boolean obtenerEnFocus(){
+	 public boolean obtenerEnFoco(){
 	    	return this.enFoco;
 	 }
 	 

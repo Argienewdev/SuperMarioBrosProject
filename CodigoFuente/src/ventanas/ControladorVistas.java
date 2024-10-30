@@ -155,15 +155,15 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
-		pantallaInicial.setEnFocus(false);
+		pantallaInicial.establecerEnFoco(false);
 		ventana.setContentPane(pantallaRanking); 
 		ventana.repaint();
 		ventana.revalidate();
 	}
 	
 	public void dePantallaRankingAPantallaInicial(){
-		pantallaRanking.setEnFocus(false);
-		pantallaInicial.setEnFocus(true);
+		pantallaRanking.establecerEnFoco(false);
+		pantallaInicial.establecerEnFoco(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
 		ventana.repaint();
@@ -171,7 +171,7 @@ public class ControladorVistas {
 	
 	public void dePantallaFinalAPantallaInicial() {
 		pantallaFinal.desactivarFoco();
-		pantallaInicial.setEnFocus(true);
+		pantallaInicial.establecerEnFoco(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
 		ventana.repaint();

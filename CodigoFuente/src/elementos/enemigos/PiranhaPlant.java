@@ -20,7 +20,7 @@ public class PiranhaPlant extends Enemigo {
     	this.puntosOtorgadosPorEliminacion = 30;
     	this.puntosSustraidosPorMuerteCausada = 30;
     	limiteInferior = this.obtenerPosicion().y;
-    	limiteSuperior = this.obtenerPosicion().y-this.sprite.obtenerAltoImagen();
+    	limiteSuperior = this.obtenerPosicion().y-150 ;
     }
 
     public void establecerDentroTuberia() {

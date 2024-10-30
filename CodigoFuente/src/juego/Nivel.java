@@ -58,12 +58,12 @@ public class Nivel {
         this.generadorDeNivel = null;
     }
     
-    public void addPlataforma(Plataforma plataforma) {
+    public void agregarPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
         plataforma.establecerNivel(this);
     }
 
-    public void addEnemigo(Enemigo enemigo) {
+    public void agregarEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
         enemigo.establecerNivel(this);
     }
@@ -73,19 +73,19 @@ public class Nivel {
         powerUp.establecerNivel(this);
     }
     
-	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
+	public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
     }
 	
-	public void addBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
+	public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
 		this.bolasDeFuegoAAgregar.add(bolaDeFuego);
 	}
 	
-	public void addSpinyAAgregar(Enemigo spiny) {
+	public void agregarSpinyAAgregar(Enemigo spiny) {
 		this.spinysAAgregar.add(spiny);
 	}
 	
-	public void addPlataformasAfectables(Plataforma plataforma) {
+	public void agregarPlataformasAfectables(Plataforma plataforma) {
         this.plataformasAfectables.add(plataforma);
     }
 	
@@ -93,12 +93,12 @@ public class Nivel {
         return plataformasAfectables;
     }
 
-    public void setMario(ContextoMario mario) {
+    public void establecerMario(ContextoMario mario) {
         this.mario = mario;
         this.mario.establecerNivel(this);
     }
 
-    public void removePlataforma(Plataforma plataforma) {
+    public void removerPlataforma(Plataforma plataforma) {
         this.plataformas.remove(plataforma);
     }
 
@@ -151,7 +151,7 @@ public class Nivel {
     	return this.nivelCompletado;
     }
     
-    public void setCompletado(boolean completado) {
+    public void establecerCompletado(boolean completado) {
     	this.nivelCompletado = completado;
     }
     

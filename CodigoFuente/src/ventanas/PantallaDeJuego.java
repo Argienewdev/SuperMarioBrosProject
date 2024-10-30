@@ -2,19 +2,15 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.entidades.Jugable;
 import fabricas.FabricaSilueta;
-import juego.Juego;
-import juego.Nivel;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
@@ -94,18 +90,18 @@ public class PantallaDeJuego extends JPanel {
 	public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
         marioLabel = jugable.obtenerObserverGrafico();
-        setPosicionOriginalJugable();
-        setPosicionOriginalLabelJugable();
+        establecerPosicionOriginalJugable();
+        establecerPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
         revalidate();
         repaint();
     }
 
-    private void setPosicionOriginalLabelJugable() {
+    private void establecerPosicionOriginalLabelJugable() {
 		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicion();
 	}
 
-	private void setPosicionOriginalJugable () {
+	private void establecerPosicionOriginalJugable () {
 		this.posicionOriginalJugable = this.marioJugable.obtenerPosicion();	
 	}
 
