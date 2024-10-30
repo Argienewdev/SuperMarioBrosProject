@@ -100,7 +100,7 @@ public class VisitorMarioRecuperacion implements Visitante{
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMoneda(Moneda monedas) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}

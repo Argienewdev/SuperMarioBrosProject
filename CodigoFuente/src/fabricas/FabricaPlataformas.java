@@ -135,22 +135,23 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 5;
+		int identificadorPowerUp = 8;
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
-				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.obtenerMonedas(posicion, identificadorPowerUp, true);
-				nivel.agregarPowerUp(monedasDentroBloqueDePregunta);
-				pantallaDeJuego.agregarLabel(monedasDentroBloqueDePregunta.obtenerObserverGrafico());
-				bloqueDePreguntaADevolver.establecerPowerUp(monedasDentroBloqueDePregunta);
-				monedasDentroBloqueDePregunta.establecerBloquePregunta(bloqueDePreguntaADevolver);
+				for(int contador = 1; contador <= identificadorPowerUp; contador++) {
+					Moneda monedas = this.fabricaEntidades.obtenerMonedas(posicion, true);
+					nivel.agregarPowerUp(monedas);
+					bloqueDePreguntaADevolver.agregarPowerUp(monedas);
+					monedas.establecerBloquePregunta(bloqueDePreguntaADevolver);
+				}
 				break;
 			}
 			case 1: {
 				Estrella estrella = this.fabricaEntidades.obtenerEstrella(posicion);
 				nivel.agregarPowerUp(estrella);
 		        pantallaDeJuego.agregarLabel(estrella.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.establecerPowerUp(estrella);
+		        bloqueDePreguntaADevolver.agregarPowerUp(estrella);
 		        estrella.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
@@ -158,7 +159,7 @@ public class FabricaPlataformas {
 				ChampinionVerde champinionVerde = this.fabricaEntidades.obtenerChampinionVerde(posicion);
 		        nivel.agregarPowerUp(champinionVerde);
 		        pantallaDeJuego.agregarLabel(champinionVerde.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.establecerPowerUp(champinionVerde);
+		        bloqueDePreguntaADevolver.agregarPowerUp(champinionVerde);
 		        champinionVerde.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
@@ -166,7 +167,7 @@ public class FabricaPlataformas {
 				FlorDeFuego florDeFuego = this.fabricaEntidades.obtenerFlorDeFuego(posicion,fabricaEntidades);
 		        nivel.agregarPowerUp(florDeFuego);
 		        pantallaDeJuego.agregarLabel(florDeFuego.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.establecerPowerUp(florDeFuego);
+		        bloqueDePreguntaADevolver.agregarPowerUp(florDeFuego);
 		        florDeFuego.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
@@ -174,7 +175,7 @@ public class FabricaPlataformas {
 				SuperChampinion superChampinion = this.fabricaEntidades.obtenerSuperChampinion(posicion);
 		        nivel.agregarPowerUp(superChampinion);
 		        pantallaDeJuego.agregarLabel(superChampinion.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.establecerPowerUp(superChampinion);
+		        bloqueDePreguntaADevolver.agregarPowerUp(superChampinion);
 		        superChampinion.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}

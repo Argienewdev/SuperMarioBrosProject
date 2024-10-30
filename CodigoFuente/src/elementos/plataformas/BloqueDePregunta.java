@@ -1,8 +1,7 @@
 package elementos.plataformas;
 
 import java.awt.Point;
-
-
+import java.util.ArrayList;
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
@@ -11,28 +10,28 @@ import visitors.Visitante;
 
 public class BloqueDePregunta extends Plataforma {
 	
-	protected PowerUp powerUp;
-	
-	protected boolean estaVacio;
+	protected ArrayList<PowerUp> coleccionPowerUps;
 	
 	public BloqueDePregunta (Sprite sprite, Point pos, 
 							 Visitante visitor, PowerUp powerUp,
 							 ObserverGrafico observerGrafico) {
 		super(sprite,pos,visitor,observerGrafico);
-		this.powerUp = powerUp;
-		if (powerUp != null)
-			this.estaVacio = false;
-		else
-			this.estaVacio = true;
+		this.coleccionPowerUps = new ArrayList<PowerUp>();
+		if (powerUp != null) {
+			this.coleccionPowerUps.add(powerUp);
+		}
 	}
 	
-	public void establecerPowerUp (PowerUp powerUp) {
-		this.powerUp = powerUp;
-		this.estaVacio = false;
+	public void agregarPowerUp (PowerUp powerUp) {
+		this.coleccionPowerUps.add(powerUp);
 	}
 	
 	public PowerUp obtenerPowerUp() {
-		return this.powerUp;
+		return this.coleccionPowerUps.getLast();
+	}
+	
+	public PowerUp removerPowerUp() {
+		return this.coleccionPowerUps.removeLast();
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
@@ -40,22 +39,19 @@ public class BloqueDePregunta extends Plataforma {
 	}
 
 	public boolean estaVacio() {
-		return this.estaVacio;
+		return coleccionPowerUps.isEmpty();
 	}
 	
-	public void setVacio (boolean vacio) {
-		this.estaVacio = vacio;
-	}
-	
-	public PowerUp liberarPowerUp() { 
-		if (!estaVacio) {
-			powerUp.establecerEstaDentroDeBloqueDePreguntas(false);
-			this.estaVacio = true;
+	public PowerUp liberarPowerUp() {
+		PowerUp powerUpARemover = null;
+		if (!estaVacio()) {
+			powerUpARemover = this.coleccionPowerUps.removeLast();
+			powerUpARemover.establecerEstaDentroDeBloqueDePreguntas(false);
 		}
-		return this.powerUp;
+		return powerUpARemover;
 	}
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(estaVacio) {
+		if(estaVacio()) {
 			this.establecerSprite(fabricaSprites.obtenerBloqueDePreguntaApagado());
 		}
 	}

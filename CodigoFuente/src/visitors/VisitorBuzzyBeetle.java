@@ -64,7 +64,7 @@ public class VisitorBuzzyBeetle implements Visitante {
     public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {}
+    public void visitarMoneda(Moneda monedas) {}
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
