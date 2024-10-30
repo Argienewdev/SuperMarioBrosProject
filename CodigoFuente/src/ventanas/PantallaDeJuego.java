@@ -139,7 +139,7 @@ public class PantallaDeJuego extends JPanel {
             Point posicionFondo = fondo.getLocation();
 
             // Mueve el fondo hacia la izquierda
-            int nuevaPosicionFondoX = posicionFondo.x - desplazamiento;
+            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
 
             // Obtener el ancho del fondo para limitar el desplazamiento
             int anchoFondo = fondo.getWidth();
@@ -170,15 +170,15 @@ public class PantallaDeJuego extends JPanel {
         	if (fondoMovido) {
                 for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
                     Point posicionLabel = observerGrafico.getLocation();
-                    posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Desplazar los labels
+                    posicionLabel.x -= desplazamiento; // Desplazar los labels
                     observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
                     observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
                     observerGrafico.actualizar();
+                    revalidate();
+                    repaint();
                     if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
                     	// TODO: Eliminar label del nivel 
                     }
-                    revalidate();
-                    repaint();
                 }
             }
         }
