@@ -10,12 +10,9 @@ public class ObserverGrafico extends JLabel implements Observer {
 	
 	private ElementoDeJuego entidad_observada;
 	
-	private boolean debeMoverseConElFondo;
-	
 	public ObserverGrafico(ElementoDeJuego entidad_observada) {
 		super();
 		this.entidad_observada = entidad_observada;
-		this.debeMoverseConElFondo = true;
 	}
 	
 	public void actualizar() {
@@ -41,11 +38,4 @@ public class ObserverGrafico extends JLabel implements Observer {
 		setBounds(x, y, ancho, alto);
 	}
 
-	public void setDebeMoverseConElFondo(boolean debeMoverseConElFondo) {
-		this.debeMoverseConElFondo = debeMoverseConElFondo;
-	}
-	
-	public boolean obtenerDebeMoverseConElFondo() {
-		return this.debeMoverseConElFondo;
-	}
 }

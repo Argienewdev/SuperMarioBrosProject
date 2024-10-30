@@ -6,13 +6,12 @@ import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
 	private static final int TICKS_PARA_ELIMINAR = 1;
-
-	private static final int VELOCIDAD_HORIZONTAL_ENEMIGO = 1;
 	
 	private static final int INTERVALO_PARA_DISPARAR = 300;
 	
@@ -27,6 +26,7 @@ public class Lakitu extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 0;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
     	this.contadorTicksDisparo = 0;
+		this.velocidad_horizontal_enemigo = 7;
     }
     
     @Override
@@ -62,6 +62,25 @@ public class Lakitu extends Enemigo {
 			this.establecerSprite(fabricaSprites.getLakituReversoFueraDeLaNube());
 		}
 	}
+    
+    @Override
+    public void invertirDireccion() {
+    	if(removido) {
+    		Point velocidad = new Point(0, 0);
+    		this.establecerVelocidadDireccional(velocidad);
+    	}else {
+    		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <= 0; 
+			if (chocoBordeIzquierdo) {
+				if(this.velocidadDireccional.x < 0) {
+					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+					this.establecerVelocidadDireccional(velocidad);
+				}
+			} else {
+				Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+				this.establecerVelocidadDireccional(velocidad);
+			}
+    	}
+    }
     
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
