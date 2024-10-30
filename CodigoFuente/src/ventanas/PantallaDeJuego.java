@@ -128,6 +128,7 @@ public class PantallaDeJuego extends JPanel {
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.obtenerVidas());
         hud.actualizarPuntaje(marioJugable.obtenerPuntos());
+        hud.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();

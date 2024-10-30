@@ -23,7 +23,7 @@ public class Sprite {
 		return imagen.getIconWidth();
 	}
 	
-	public int establecerAltoImagen() {
+	public int obtenerAltoImagen() {
 		ImageIcon imagen = new ImageIcon(this.obtenerRutaImagen());
 		return imagen.getIconHeight();
 	}

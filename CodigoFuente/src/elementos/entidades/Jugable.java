@@ -31,7 +31,7 @@ public abstract class Jugable extends Entidad  {
 		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 1;
+		this.vidas = 3;
 		this.puntos = 0;
 	}
 	
@@ -42,7 +42,6 @@ public abstract class Jugable extends Entidad  {
 	public void perderVida() {
 		this.vidas--;
 		if (vidas == 0) { 
-			//TODO revisar si es necesario
 			muerte();
 		}
 	}

@@ -34,6 +34,7 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+<<<<<<< HEAD
 		if(this.getContext().obtenerRemovido()) {
 			this.getContext().establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
@@ -52,6 +53,12 @@ public class KoopaDefault implements EstadoKoopa {
 		} else if(this.getContext().getContadorTicks() == this.getContext().getTicksAnimacion()) {
 			this.getContext().establecerSprite(fabricaSprites.getSpriteInvisible());
 			this.getContext().eliminarDelNivel();
+=======
+		if(this.contexto.obtenerVelocidadDireccional().x < 0) {
+			this.contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
+		} else if(this.contexto.obtenerVelocidadDireccional().x > 0) {
+			this.contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
+>>>>>>> f5445ae5b60ed4951b202a4e547b7803378805c8
 		}
 	}
 

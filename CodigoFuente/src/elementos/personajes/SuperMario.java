@@ -21,27 +21,27 @@ public class SuperMario extends MarioDefault {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
 		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
-			aRetornar = fabricaSprites.getSuperMarioCayendo();
+			aRetornar = fabricaSprites.obtenerSuperMarioCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
-			aRetornar = fabricaSprites.getSuperMarioFrontalSaltando();
+			aRetornar = fabricaSprites.obtenerSuperMarioFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
-			aRetornar = fabricaSprites.getSuperMarioReversoSaltando();
+			aRetornar = fabricaSprites.obtenerSuperMarioReversoSaltando();
 		}else if(avanzando()) {
-			aRetornar = fabricaSprites.getSuperMarioFrontalCaminando();
+			aRetornar = fabricaSprites.obtenerSuperMarioFrontalCaminando();
 		} else if(retrocediendo()){
-			aRetornar = fabricaSprites.getSuperMarioReversoCaminando();
+			aRetornar = fabricaSprites.obtenerSuperMarioReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
-			aRetornar = fabricaSprites.getSuperMarioFrontalQuieto();
+			aRetornar = fabricaSprites.obtenerSuperMarioFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
-			aRetornar = fabricaSprites.getSuperMarioReversoQuieto();
+			aRetornar = fabricaSprites.obtenerSuperMarioReversoQuieto();
 		} else {
-			aRetornar = fabricaSprites.getSuperMarioFrontalQuieto();
+			aRetornar = fabricaSprites.obtenerSuperMarioFrontalQuieto();
 		}
 		contexto.establecerSprite(aRetornar);
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getSuperMarioFrontalQuieto();
+		return fabricaSprites.obtenerSuperMarioFrontalQuieto();
 	}
 	
 	private boolean enElAire() {
@@ -65,14 +65,14 @@ public class SuperMario extends MarioDefault {
 	}
 	
 	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioFrontalCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioFrontalQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioFrontalSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioFrontalCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioFrontalQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioFrontalSaltando());
 	}
 	
 	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioReversoCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioReversoQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getSuperMarioReversoSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioReversoCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioReversoQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerSuperMarioReversoSaltando());
 	}
 }

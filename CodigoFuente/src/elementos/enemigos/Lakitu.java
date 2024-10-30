@@ -57,14 +57,14 @@ public class Lakitu extends Enemigo {
 		if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
 		} else if(this.obtenerVelocidadDireccional().x < 0) {
-			this.establecerSprite(fabricaSprites.getLakituFrontalFueraDeLaNube());
+			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
 		} else if(this.obtenerVelocidadDireccional().x > 0) {
-			this.establecerSprite(fabricaSprites.getLakituReversoFueraDeLaNube());
+			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
     
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getLakituMuerto();
+		return fabricaSprites.obtenerLakituMuerto();
 	}
 }

@@ -39,7 +39,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Spiny obtenerSpiny(Point posicion) {
-    	Sprite sprite = fabricaSprites.getSpinyCayendo();
+    	Sprite sprite = fabricaSprites.obtenerSpinyCayendo();
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
         spinyADevolver.establecerVisitor(visitorSpiny);
@@ -51,7 +51,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
-    	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
+    	Sprite sprite = fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial= new KoopaDefault();
         ContextoKoopaTroopa koopaADevolver = new ContextoKoopaTroopa(sprite, posicion, null, null, estadoInicial);
         Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(koopaADevolver);
@@ -64,7 +64,7 @@ public class FabricaEntidades {
        
 	@SuppressWarnings("exports")
 	public PiranhaPlant obtenerPiranhaPlant(Point posicion) {
-        Sprite sprite = fabricaSprites.getPiranhaPlant();
+        Sprite sprite = fabricaSprites.obtenerPiranhaPlant();
         PiranhaPlant piranhaADevolver=new PiranhaPlant(sprite,posicion, null, null);
         Visitante visitorPiranha = new VisitorPiranhaPlant(piranhaADevolver);
         piranhaADevolver.establecerVisitor(visitorPiranha);
@@ -76,7 +76,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Lakitu obtenerLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
-        Sprite sprite = fabricaSprites.getLakituReversoFueraDeLaNube();
+        Sprite sprite = fabricaSprites.obtenerLakituReversoFueraDeLaNube();
         Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null, fabricaEntidades);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
         lakituADevolver.establecerVisitor(visitorLakitu);
@@ -90,7 +90,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public BuzzyBeetle obtenerBuzzyBeetle(Point posicion) {
-    	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoCaminando();
+    	Sprite sprite = fabricaSprites.obtenerBuzzyBeetleReversoCaminando();
         BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
         Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver);
         buzzyADevolver.establecerVisitor(visitorBuzzy);
@@ -102,7 +102,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Goomba obtenerGoomba(Point posicion){
-        Sprite sprite = fabricaSprites.getGoombaReversoCaminando();
+        Sprite sprite = fabricaSprites.obtenerGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
         goombaADevolver.establecerVisitor(visitorGoomba);
@@ -114,7 +114,7 @@ public class FabricaEntidades {
    
     @SuppressWarnings("exports")
 	public Estrella obtenerEstrella(Point posicion) {
-        Sprite sprite = fabricaSprites.getSpriteInvisible();
+        Sprite sprite = fabricaSprites.obtenerSpriteInvisible();
         Estrella estrellaADevolver=new Estrella(sprite, posicion, null, null);
 		Visitante visitorEstrella = new VisitorEstrella(estrellaADevolver);
 		estrellaADevolver.establecerVisitor(visitorEstrella);
@@ -125,7 +125,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public ChampinionVerde obtenerChampinionVerde(Point posicion) {
-        Sprite sprite = fabricaSprites.getSpriteInvisible();
+        Sprite sprite = fabricaSprites.obtenerSpriteInvisible();
         ChampinionVerde champinionVerdeADevolver = new ChampinionVerde(sprite, posicion, null, null);
 		Visitante visitorChampinionVerde = new VisitorChampinionVerde(champinionVerdeADevolver);
 		champinionVerdeADevolver.establecerVisitor(visitorChampinionVerde);
@@ -136,7 +136,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public SuperChampinion obtenerSuperChampinion(Point posicion) {
-        Sprite sprite = fabricaSprites.getSpriteInvisible();
+        Sprite sprite = fabricaSprites.obtenerSpriteInvisible();
 		SuperChampinion superChampionADevolver = new SuperChampinion(sprite, posicion, null, null);
 		Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampionADevolver);
 		superChampionADevolver.establecerVisitor(visitorSuperChampinion);
@@ -148,7 +148,7 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public FlorDeFuego obtenerFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
-        Sprite sprite = fabricaSprites.getSpriteInvisible();
+        Sprite sprite = fabricaSprites.obtenerSpriteInvisible();
         FlorDeFuego florDeFuegoADevolver = new FlorDeFuego(sprite, posicion, null, null);
 		Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuegoADevolver, fabricaEntidades);
 		florDeFuegoADevolver.establecerVisitor(visitorFlorDeFuego);
@@ -160,7 +160,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Monedas obtenerMonedas(Point posicion,int cantidad, 
 							  boolean estaDentroDeBloqueDePreguntas) {
-        Sprite sprite = fabricaSprites.getMonedaEncendida();
+        Sprite sprite = fabricaSprites.obtenerMonedaEncendida();
 		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, cantidad, true);
 		Visitante visitorMonedas = new VisitorMonedas(monedasADevolver);
 		monedasADevolver.establecerVisitor(visitorMonedas);
@@ -183,7 +183,7 @@ public class FabricaEntidades {
     } 
     
     public BolaDeFuego obtenerBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
-    	Sprite sprite = fabricaSprites.getBolaDeFuego();
+    	Sprite sprite = fabricaSprites.obtenerBolaDeFuego();
     	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
     	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver);
     	bolaDeFuegoADevolver.establecerVisitor(visitor);
