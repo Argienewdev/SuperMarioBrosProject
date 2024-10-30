@@ -63,9 +63,11 @@ public class FabricaEntidades {
     }
        
 	@SuppressWarnings("exports")
-	public PiranhaPlant obtenerPiranhaPlant(Point posicion) {
+	public PiranhaPlant obtenerPiranhaPlant(Point posicion, Sprite spriteTuberia) {
         Sprite sprite = fabricaSprites.obtenerPiranhaPlant();
-        PiranhaPlant piranhaADevolver=new PiranhaPlant(sprite,posicion, null, null);
+        int posicionXConsiderandoSprite = posicion.x + ((spriteTuberia.obtenerAnchoImagen() / 2) - (sprite.obtenerAnchoImagen() / 2));
+        posicion = new Point(posicionXConsiderandoSprite, posicion.y);
+        PiranhaPlant piranhaADevolver = new PiranhaPlant(sprite, posicion, null, null);
         Visitante visitorPiranha = new VisitorPiranhaPlant(piranhaADevolver);
         piranhaADevolver.establecerVisitor(visitorPiranha);
 		ObserverGrafico observerGraficoPiranha = new ObserverGrafico(piranhaADevolver);
