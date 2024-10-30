@@ -48,14 +48,8 @@ public class Juego {
 	
 	private Jugador jugador;
 	
-	private BucleJuego bucleJuego;
-	
 	public Juego() {
 		ranking = cargarEstadoRanking();
-	}
-	
-	public void actualizar() {
-		controladorVistas.refrescar();
 	}
 	
 	public Sprite obtenerSpriteMario(){
@@ -91,14 +85,15 @@ public class Juego {
 		return this.partida;
 	}
 	
-	public void finalizarJuego () {
+	public void finalizarJuego (){
 		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
 		ranking.agregarJugador(jugador);
 		ranking.guardarEstado();
-		this.bucleJuego.detenerBucleJuego();
+		BucleJugador bucle= partida.obtenerBucleJugador();
+		bucle.detenerBucleJugador();
 	}
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
@@ -130,14 +125,6 @@ public class Juego {
 	
 	private void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje);
-	}
-
-	public void setBucleJuego(BucleJuego bucleJuego) {
-		this.bucleJuego = bucleJuego;
-	}
-	
-	public BucleJuego obtenerBucleJuego() {
-		return this.bucleJuego;
 	}
 
 	public Jugador obtenerJugador() {

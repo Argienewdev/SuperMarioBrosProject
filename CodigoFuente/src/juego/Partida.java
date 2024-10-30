@@ -59,6 +59,10 @@ public class Partida {
 		this.coordinadorActualizacionesJugador.actualizar();
 	}
 	
+	public BucleJugador obtenerBucleJugador(){
+		return this.bucleJugador;
+	}
+	
 	public void cambiarNivel() {
 		System.err.println("Cambie de nivel");
 		this.juego.obtenerControladorVistas().eliminarNivelActual();

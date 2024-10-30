@@ -80,7 +80,7 @@ public class PantallaIngresoNombre extends JPanel {
 
     private void ajustarCampoNombre(JPanel panelContenido) {
         campoNombre = new JTextField(15);
-        campoNombre.setMaximumSize(new Dimension(200, 30)); 
+        campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
         campoNombre.requestFocusInWindow();
         panelContenido.add(campoNombre);
@@ -95,7 +95,7 @@ public class PantallaIngresoNombre extends JPanel {
             String nombre = campoNombre.getText().trim();
             if (!nombre.isEmpty()) {
                 guardarNombre(nombre);
-                controlador.mostrarPantallaFinal();
+                controlador.accionarPantallaFinal();
             } else {
                 JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
             }

@@ -45,8 +45,8 @@ public class PantallaInicial extends JPanel {
 		this.controlador= controladorVistas;
 		this.sensor = sensor;
 		this.fondo = new JLabel();
-		modo1 = new JLabel("MODO DE JUEGO 1");
-		modo2 = new JLabel("MODO DE JUEGO 2"); 
+		modo1 = new JLabel("MODO DE ORIGINAL");
+		modo2 = new JLabel("MODO DE ALTERNATIVO"); 
 		ranking= new JLabel("RANKING");
 		inicializarArregloDeBotones();
 		configurarFuente();
