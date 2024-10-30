@@ -157,15 +157,24 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Monedas obtenerMonedas(Point posicion,int cantidad, 
+	public Monedas obtenerMonedas(Point posicion, 
 							  boolean estaDentroDeBloqueDePreguntas) {
-        Sprite sprite = fabricaSprites.obtenerMonedaEncendida();
-		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, cantidad, true);
+        Sprite sprite;
+        if(!estaDentroDeBloqueDePreguntas) {
+        	sprite = fabricaSprites.obtenerMonedaEncendida();
+        }else {
+        	sprite = fabricaSprites.obtenerSpriteInvisible();
+        }
+		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, true);
 		Visitante visitorMonedas = new VisitorMonedas(monedasADevolver);
 		monedasADevolver.establecerVisitor(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasADevolver);
         monedasADevolver.establecerObserverGrafico(observerGraficoMonedas);
-    	this.pantallaDeJuego.agregarLabel(monedasADevolver.obtenerObserverGrafico());
+        if(!estaDentroDeBloqueDePreguntas) {
+        	this.pantallaDeJuego.agregarLabel(monedasADevolver.obtenerObserverGrafico());
+           //Si esta en el bloque el label se agrega ahí
+           //TODO no se como hacer para que quede claro sin el comentario
+    	}
         return monedasADevolver;
     }
     

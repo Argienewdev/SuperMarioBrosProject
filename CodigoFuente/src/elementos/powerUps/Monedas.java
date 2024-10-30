@@ -7,28 +7,13 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Monedas extends PowerUp {
-
-	protected int cantidadMonedas;
 	
 	public Monedas(Sprite sprite, Point posicion, Visitante visitor,
-			   	   ObserverGrafico observerGrafico, int cantidadMonedas, boolean dentroDeBloqueDePreguntas) {
+			   	   ObserverGrafico observerGrafico, boolean dentroDeBloqueDePreguntas) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.cantidadMonedas = cantidadMonedas;
 		//TODO se deberian setear con los establecer al crear el elemento?
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
-	}
-	
-	public void consumirMonedas() {
-		this.cantidadMonedas--;
-	}
-	
-	public void aumentarMonedas() {
-		this.cantidadMonedas++;
-	}
-	
-	public int obtenerCantidadMonedas() {
-		return this.cantidadMonedas;
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
@@ -55,6 +40,10 @@ public class Monedas extends PowerUp {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
+		}else {
+			if(!this.estaDentroDeBloqueDePreguntas ) {
+				this.establecerSprite(fabricaSprites.obtenerMonedaEncendida());
+			} 
 		}
 	}
 }
