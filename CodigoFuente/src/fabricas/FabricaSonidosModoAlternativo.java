@@ -1,9 +1,9 @@
 package fabricas;
 import elementos.Sonido;
 
-public class FabricaSonidoModoAlternativo extends FabricaSonidos{
+public class FabricaSonidosModoAlternativo extends FabricaSonidos{
 
-    public FabricaSonidoModoAlternativo(String rutaACarpeta) {
+    public FabricaSonidosModoAlternativo(String rutaACarpeta) {
         super(rutaACarpeta);
     }
 

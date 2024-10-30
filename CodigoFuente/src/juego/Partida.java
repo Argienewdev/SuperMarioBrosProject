@@ -85,15 +85,10 @@ public class Partida {
 	public void finalizarPartida() {
 		detenerBucleJuego();
 		detenerBucleEntidadesNoJugables();
-		detenerBucleJugador();
 	}
 	
 	private void detenerBucleJuego() {
 		this.juego.finalizarJuego();		
-	}
-
-	private void detenerBucleJugador() {
-		this.bucleJugador.detenerBucleJugador();
 	}
 
 	private void detenerBucleEntidadesNoJugables() {

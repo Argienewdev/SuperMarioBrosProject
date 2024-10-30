@@ -45,7 +45,7 @@ public class VisitorChampinionVerde implements Visitante {
     public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas moneda) {}
+    public void visitarMoneda(Moneda moneda) {}
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {

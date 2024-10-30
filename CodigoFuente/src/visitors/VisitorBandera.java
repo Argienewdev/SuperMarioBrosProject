@@ -62,7 +62,7 @@ public class VisitorBandera implements Visitante {
     }
     
     @Override
-    public void visitarMonedas(Monedas monedas) {    
+    public void visitarMoneda(Moneda monedas) {    
     }
 
     @Override

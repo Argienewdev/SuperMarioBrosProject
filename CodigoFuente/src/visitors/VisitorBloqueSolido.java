@@ -66,7 +66,7 @@ public class VisitorBloqueSolido implements Visitante {
     }
     
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
         
     }
     

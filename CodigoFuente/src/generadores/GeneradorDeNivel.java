@@ -21,7 +21,7 @@ import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
-import elementos.powerUps.Monedas;
+import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
 import ventanas.ControladorVistas;
 import ventanas.ConstantesGlobales;
@@ -39,8 +39,10 @@ public class GeneradorDeNivel {
 	protected FabricaEntidades fabricaEntidades;
 	
 	protected FabricaSilueta fabricaSilueta;
-	
+		
 	protected FabricaPlataformas fabricaPlataformas;
+	
+	protected FabricaSonidos fabricaSonidos;
 	
 	protected PantallaDeJuego pantallaDeJuego;
 	
@@ -50,11 +52,13 @@ public class GeneradorDeNivel {
 		if (modoJuego.equals("Modo original")) {
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+			this.fabricaSonidos = new FabricaSonidosModoOriginal("src/sonido/sonidoModoOriginal");
 		} else if (modoJuego.equals("Modo alternativo")) {
 			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
+			this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido/sonidoModoAlternativo");
 		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego);
+		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
@@ -75,7 +79,7 @@ public class GeneradorDeNivel {
 				int[] numeros = new int[partes.length];
 				
                 for (int i = 0; i < partes.length; i++) {
-                    numeros[i] = Integer.parseInt(partes[i]);
+                	numeros[i] = Integer.parseInt(partes[i]);
                 }
                 
                 int identificadorElemento = numeros[0];
@@ -133,9 +137,8 @@ public class GeneradorDeNivel {
 	                	break;
 	                } 
 	                case 20: {
-	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.obtenerMonedas(posicion, cantidadMonedas, false);
-	                	nivel.agregarPowerUp(monedas);
+	                	Moneda moneda = this.fabricaEntidades.obtenerMonedas(posicion, false);
+	                	nivel.agregarPowerUp(moneda);
 	                	break;
 	                }
 	                case 40: {
@@ -149,8 +152,6 @@ public class GeneradorDeNivel {
 	                    break;
 	                } 
 	                case 42: {
-	                    //PiranhaPlant dev = fabricaEntidades.obtenerPiranhaPlant(posicion);
-	                    //nivel.addEnemigo(dev);
 	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
 	                    nivel.agregarEnemigo(goomba);
 	                    break;

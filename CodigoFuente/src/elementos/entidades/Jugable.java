@@ -2,7 +2,7 @@ package elementos.entidades;
 
 import java.awt.Point;
 import elementos.Sprite;
-import elementos.powerUps.Monedas;
+import elementos.powerUps.Moneda;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import observers.ObserverLogicoJugable;
@@ -14,7 +14,7 @@ public abstract class Jugable extends Entidad  {
 	
 	protected int puntos;
 	
-	protected Monedas monedas;
+	protected Moneda monedas;
 		
 	private boolean enElAire;
 	
@@ -33,7 +33,7 @@ public abstract class Jugable extends Entidad  {
 		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 3;
+		this.vidas = 100;
 		this.puntos = 0;
 		this.mirandoAlFrente=true;
 	}
@@ -69,7 +69,7 @@ public abstract class Jugable extends Entidad  {
 		return this.puntos;
 	}
 	
-	public Monedas obtenerMonedas() {
+	public Moneda obtenerMonedas() {
 		//TODO es necesario?
 		return this.monedas;
 	}

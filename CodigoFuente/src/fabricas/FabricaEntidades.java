@@ -23,16 +23,20 @@ import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class FabricaEntidades {
     
     protected FabricaSprites fabricaSprites;
     
     protected PantallaDeJuego pantallaDeJuego;
+    
+    protected GeneradorSonidos generadorSonidos;
 
 	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
     
-    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego) {
+    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos) {
+    	this.generadorSonidos= new GeneradorSonidos(fabricaSonidos);
         this.fabricaSprites = fabricaSprites;
         this.pantallaDeJuego = pantallaDeJuego;
     }
@@ -103,7 +107,7 @@ public class FabricaEntidades {
 	public Goomba obtenerGoomba(Point posicion){
         Sprite sprite = fabricaSprites.obtenerGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
-        Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
+        Visitante visitorGoomba = new VisitorGoomba(goombaADevolver, this.generadorSonidos);
         goombaADevolver.establecerVisitor(visitorGoomba);
         ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goombaADevolver);
         goombaADevolver.establecerObserverGrafico(observerGraficoGoomba);
@@ -157,15 +161,20 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Monedas obtenerMonedas(Point posicion,int cantidad, 
+	public Moneda obtenerMonedas(Point posicion, 
 							  boolean estaDentroDeBloqueDePreguntas) {
-        Sprite sprite = fabricaSprites.obtenerMonedaEncendida();
-		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, cantidad, true);
+        Sprite sprite;
+        if(!estaDentroDeBloqueDePreguntas) {
+        	sprite = fabricaSprites.obtenerMonedaEncendida();
+        }else {
+        	sprite = fabricaSprites.obtenerSpriteInvisible();
+        }
+		Moneda monedasADevolver = new Moneda(sprite, posicion, null, null, true);
 		Visitante visitorMonedas = new VisitorMonedas(monedasADevolver);
 		monedasADevolver.establecerVisitor(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasADevolver);
         monedasADevolver.establecerObserverGrafico(observerGraficoMonedas);
-    	this.pantallaDeJuego.agregarLabel(monedasADevolver.obtenerObserverGrafico());
+        this.pantallaDeJuego.agregarLabel(monedasADevolver.obtenerObserverGrafico());
         return monedasADevolver;
     }
     

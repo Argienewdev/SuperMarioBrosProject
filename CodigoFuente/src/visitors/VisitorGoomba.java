@@ -5,14 +5,18 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorGoomba implements Visitante {
 
     protected Goomba miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonido;
 
-    public VisitorGoomba(Goomba miEntidad) {
+    public VisitorGoomba(Goomba miEntidad,GeneradorSonidos generadorSonido) {
+    	this.generadorSonido = generadorSonido;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -63,7 +67,7 @@ public class VisitorGoomba implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
     	
     }
 
@@ -76,6 +80,7 @@ public class VisitorGoomba implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
         if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) 
         	&& !this.miEntidad.obtenerRemovido()) {
+        	generadorSonido.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);

@@ -67,7 +67,7 @@ public class VisitorLadrillo implements Visitante {
     }
     
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
         // Implementar lógica aquí si es necesario
     }
     

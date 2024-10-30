@@ -59,7 +59,7 @@ public class VisitorSpiny implements Visitante {
 	}
 
 	@Override
-	public void visitarMonedas(Monedas monedas) {
+	public void visitarMoneda(Moneda monedas) {
 	}
 
 	@Override

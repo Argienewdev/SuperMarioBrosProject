@@ -8,6 +8,7 @@ import elementos.powerUps.*;
 
 public interface Visitante {
     
+	
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle);
 
     public void visitarSpiny(Spiny spiny);
@@ -34,7 +35,7 @@ public interface Visitante {
     
     public void visitarEstrella(Estrella estrella);
     
-    public void visitarMonedas(Monedas monedas);
+    public void visitarMoneda(Moneda monedas);
 
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta);
 

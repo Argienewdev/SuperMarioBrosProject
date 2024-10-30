@@ -82,6 +82,7 @@ public class Juego {
 		BucleJugador bucle = partida.obtenerBucleJugador();
 		bucle.detenerBucleJugador();
 	}
+	
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
 		this.controladorVistas=controladorVistas;

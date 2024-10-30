@@ -64,7 +64,7 @@ public class VisitorPrincesa implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas moneda) {
+    public void visitarMoneda(Moneda moneda) {
         // TODO Auto-generated method stub
     }
 
@@ -100,11 +100,11 @@ public class VisitorPrincesa implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        // TODO Auto-generated method stub
+    	this.controlador.accionarPantallaFinal();
     }
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {       
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
     }
 
     @Override

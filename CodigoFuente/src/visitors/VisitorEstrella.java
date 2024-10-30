@@ -52,7 +52,7 @@ public class VisitorEstrella implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
         // Lógica para visitar Monedas
     }
 
