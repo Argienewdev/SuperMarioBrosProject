@@ -26,17 +26,17 @@ public class Goomba extends Enemigo {
     @Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
-			this.setVelocidadDireccional(new Point(0,0));
+			this.establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.getVelocidadDireccional().x < 0) {
-			this.setSprite(fabricaSprites.getGoombaReversoCaminando());
-		} else if(this.getVelocidadDireccional().x > 0) {
-			this.setSprite(fabricaSprites.getGoombaFrontalCaminando());
+		} else if(this.obtenerVelocidadDireccional().x < 0) {
+			this.establecerSprite(fabricaSprites.getGoombaReversoCaminando());
+		} else if(this.obtenerVelocidadDireccional().x > 0) {
+			this.establecerSprite(fabricaSprites.getGoombaFrontalCaminando());
 		}
 	}
 	
 	@Override
-	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.getGoombaMuerto();
 	}
 } 

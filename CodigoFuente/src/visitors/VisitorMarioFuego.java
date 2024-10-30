@@ -18,15 +18,15 @@ public class VisitorMarioFuego implements Visitante {
 
     public VisitorMarioFuego(MarioFuego marioFuego) {
         this.miEstado = marioFuego;  // Cambié a marioFuego
-        this.miEntidad = this.miEstado.getContext();
+        this.miEntidad = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-			buzzyBeetle.setRemovido(true);
-			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+			buzzyBeetle.establecerRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -37,8 +37,8 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-    		goomba.setRemovido(true);
-			this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    		goomba.establecerRemovido(true);
+			this.miEntidad.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -50,8 +50,8 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)
-        		&& this.miEntidad.getVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-        	   koopaEnCaparazon.getContext().setRemovido(true);
+        		&& this.miEntidad.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.getContext().establecerRemovido(true);
             }
     }
 
@@ -60,9 +60,9 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 
@@ -82,9 +82,9 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	if(!florDeFuego.getRemovido()) {
+    	if(!florDeFuego.obtenerRemovido()) {
     		this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-            florDeFuego.setRemovido(true);
+            florDeFuego.establecerRemovido(true);
     	}
     }
 
@@ -147,9 +147,9 @@ public class VisitorMarioFuego implements Visitante {
 	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
-		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
+		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
 		this.miEntidad.ganarPuntos(puntos);
-		enemigo.setRemovido(true);
+		enemigo.establecerRemovido(true);
 	}
 
 	@Override

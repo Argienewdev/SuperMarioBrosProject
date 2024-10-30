@@ -12,10 +12,10 @@ public class DetectorDireccionColision {
 		}else if(choquePorIzquierda(elementoDeJuego, entidad)) {
 	    	entidad.retrotraerMovimientoHorizontal(elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerAncho());
 		}else if(choquePorArriba(elementoDeJuego, entidad)) {
-			entidad.setColisionAbajo(true);
+			entidad.establecerColisionAbajo(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y - entidad.obtenerAlto());
 		}else if(choquePorAbajo(elementoDeJuego, entidad)){
-			entidad.setColisionArriba(true);
+			entidad.establecerColisionArriba(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto()); 
 		}
 	}
@@ -30,17 +30,17 @@ public class DetectorDireccionColision {
 			entidad2.retrotraerMovimientoHorizontal(entidad1.obtenerHitbox().x + entidad2.obtenerAncho());
 			entidad1.retrotraerMovimientoHorizontal(entidad2.obtenerHitbox().x - entidad1.obtenerAncho());
 		}else if(choquePorArriba(entidad1, entidad2)) {
-			entidad2.setColisionAbajo(true);
+			entidad2.establecerColisionAbajo(true);
 			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y - entidad2.obtenerAlto());
 		}else if(choquePorAbajo(entidad1, entidad2)){
-			entidad2.setColisionArriba(true);
+			entidad2.establecerColisionArriba(true);
 			entidad2.retrotraerMovimientoVertical(entidad1.obtenerHitbox().y + entidad1.obtenerAlto()); 
 		}
 	}
 	
 	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
-		boolean posicionTodaviaNoActualizada = !(entidad.getPosicion().x + entidad.obtenerAncho() > elementoDeJuego.getPosicion().x);
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicion().x + entidad.obtenerAncho() > elementoDeJuego.obtenerPosicion().x);
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
@@ -53,21 +53,21 @@ public class DetectorDireccionColision {
 	
 	public boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x < elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerAncho();
-		boolean posicionTodaviaNoActualizada = !(entidad.getPosicion().x < elementoDeJuego.getPosicion().x + elementoDeJuego.obtenerAncho());
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicion().x < elementoDeJuego.obtenerPosicion().x + elementoDeJuego.obtenerAncho());
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
 	public boolean choquePorArriba(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y + entidad.obtenerAlto() > elementoDeJuego.obtenerHitbox().y;
-		boolean posicionTodaviaNoActualizada = !(entidad.getPosicion().y + entidad.obtenerAlto() > elementoDeJuego.getPosicion().y);
-		boolean cayendo = entidad.getVelocidadDireccional().y > 0;
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicion().y + entidad.obtenerAlto() > elementoDeJuego.obtenerPosicion().y);
+		boolean cayendo = entidad.obtenerVelocidadDireccional().y > 0;
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada && cayendo;
 	}
 	
 	public boolean choquePorAbajo(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y < elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto();
-		boolean posicionTodaviaNoActualizada = !(entidad.getPosicion().y < elementoDeJuego.getPosicion().y + elementoDeJuego.obtenerAlto());
-		boolean subiendo = entidad.getVelocidadDireccional().y < 0;
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicion().y < elementoDeJuego.obtenerPosicion().y + elementoDeJuego.obtenerAlto());
+		boolean subiendo = entidad.obtenerVelocidadDireccional().y < 0;
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada && subiendo;
 	}
 	

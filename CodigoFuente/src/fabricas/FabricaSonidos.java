@@ -9,37 +9,37 @@ public abstract class FabricaSonidos {
 	public FabricaSonidos(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
-	public abstract Sonido getAplastarEnemigo();
+	public abstract Sonido obtenerAplastarEnemigo();
 	
-	public abstract Sonido getChoqueFireball();
+	public abstract Sonido obtenerChoqueFireball();
 	
-	public abstract Sonido getDisparoBolaFuego();
+	public abstract Sonido obtenerDisparoBolaFuego();
 	
-	public abstract Sonido getGolpeBloque();
+	public abstract Sonido obtenerGolpeBloque();
 	
-	public abstract Sonido getPowerUpEmerge();
+	public abstract Sonido obtenerPowerUpEmerge();
 	
-	public abstract Sonido getMarioPequenioDeNuevo();
+	public abstract Sonido obtenerMarioPequenioDeNuevo();
 	
-	public abstract Sonido getMatarBolaDeFuego();
+	public abstract Sonido obtenerMatarBolaDeFuego();
 	
-	public abstract Sonido getModoInvencible();
+	public abstract Sonido obtenerModoInvencible();
 	
-	public abstract Sonido getSonidoMoneda();
+	public abstract Sonido obtenerSonidoMoneda();
 	
-	public abstract Sonido getPierdeJuego();
+	public abstract Sonido obtenerPierdeJuego();
 	
-	public abstract Sonido getPierdeVida();
+	public abstract Sonido obtenerPierdeVida();
 	
-	public abstract Sonido getPowerUpAgarrado();
+	public abstract Sonido obtenerPowerUpAgarrado();
 	
-	public abstract Sonido getRomperLadrillo();
+	public abstract Sonido obtenerRomperLadrillo();
 	
-	public abstract Sonido getSalto();
+	public abstract Sonido obtenerSalto();
 	
-	public abstract Sonido getTocarBanderaFinNivel();
+	public abstract Sonido obtenerTocarBanderaFinNivel();
 	
-	public abstract Sonido getRecuperarVida();
+	public abstract Sonido obtenerRecuperarVida();
 	
 	
 }

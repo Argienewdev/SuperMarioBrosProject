@@ -1,5 +1,6 @@
 package ventanas;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -51,7 +53,7 @@ public class ControladorVistas {
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.juego = juego;
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
-		this.pantallaFinal= new PantallaFinal(this);
+		this.pantallaFinal= new PantallaFinal(this,sensorDeTeclasMenu);
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		
 		configurarVentana();
@@ -88,8 +90,8 @@ public class ControladorVistas {
 	    pantallaDeJuego.registrarJugable(marioJugable);
 	    
 	    mostrarPantallaEntreNiveles();
-	    pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
-	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
+	    pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
+	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
 	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
@@ -160,8 +162,16 @@ public class ControladorVistas {
 		ventana.revalidate();
 	}
 	
-	public void hacerCambio(){
+	public void dePantallaRankingAPantallaInicial(){
 		pantallaRanking.setEnFocus(false);
+		pantallaInicial.setEnFocus(true);
+		ventana.setContentPane(pantallaInicial);
+		ventana.revalidate();
+		ventana.repaint();
+	}
+	
+	public void dePantallaFinalAPantallaInicial() {
+		pantallaFinal.desactivarFoco();
 		pantallaInicial.setEnFocus(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
@@ -186,8 +196,12 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 			if(ventana.isAncestorOf(pantallaRanking)) {
 				pantallaRanking.refrescar();
-				ventana.requestFocusInWindow();
+				
 			}
+			else if (ventana.isAncestorOf(pantallaFinal)) {
+				pantallaFinal.actualizarFoco(); 
+			}
+			ventana.requestFocusInWindow();
 		}else {
 			pantallaDeJuego.refrescar();
 		}
@@ -211,8 +225,8 @@ public class ControladorVistas {
 		int duracionPantallaEntreNiveles = 2000;
 		
 		mostrarPantallaEntreNiveles();
-		pantallaEntreNiveles.actualizarVidas(marioJugable.getVidas());
-	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.getPuntos());
+		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
+	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
      	
 		pantallaDeJuego.cambiarDeNivel();
 		ActionListener listener = new ActionListener() {

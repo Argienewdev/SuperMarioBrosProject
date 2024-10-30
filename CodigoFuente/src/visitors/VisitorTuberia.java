@@ -114,15 +114,14 @@ public class VisitorTuberia implements Visitante {
     @Override
     public void visitarPiso(Piso piso) {}
 
-	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		if(detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			int velocidadActualEnX = fireball.obtenerVelocidadDireccional().x;
    			Point salto = new Point(velocidadActualEnX, -30);
-   			fireball.setVelocidadDireccional(salto);
+   			fireball.establecerVelocidadDireccional(salto);
    		} else {
-   			fireball.setRemovido(true);
+   			fireball.establecerRemovido(true);
    		}	
 	}
 

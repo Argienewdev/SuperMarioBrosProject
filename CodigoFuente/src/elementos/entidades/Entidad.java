@@ -31,11 +31,11 @@ public abstract class Entidad extends ElementoDeJuego {
 
 	}
 
-    public void setVelocidadDireccional(Point velocidadDireccional) {
+    public void establecerVelocidadDireccional(Point velocidadDireccional) {
         this.velocidadDireccional = velocidadDireccional;
     }
     
-    public Point getVelocidadDireccional() {
+    public Point obtenerVelocidadDireccional() {
         return this.velocidadDireccional;
     }
     
@@ -43,11 +43,11 @@ public abstract class Entidad extends ElementoDeJuego {
     	this.posicion = pos;
     }
     
-    public void setColisionAbajo(boolean colisionAbajo) {
+    public void establecerColisionAbajo(boolean colisionAbajo) {
 		this.colisionAbajo = colisionAbajo;
 	}
     
-    public void setColisionArriba(boolean colisionArriba) {
+    public void establecerColisionArriba(boolean colisionArriba) {
     	this.colisionArriba = colisionArriba;
     }
     
@@ -56,11 +56,11 @@ public abstract class Entidad extends ElementoDeJuego {
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(nuevaPosicion);
-		this.setPosicion(nuevaPosicion);
-		this.setVelocidadDireccional(new Point(getVelocidadDireccional().x, 0));
+		this.establecerPosicion(nuevaPosicion);
+		this.establecerVelocidadDireccional(new Point(obtenerVelocidadDireccional().x, 0));
 	}
     
-	public boolean getColisionAbajo() {
+	public boolean obtenerColisionAbajo() {
 		return this.colisionAbajo;
 	}
 	

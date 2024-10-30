@@ -88,22 +88,22 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.getEstado().aceptarVisitante(this);
+        contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	marioDefault.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+    	marioDefault.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {  
-    	superMario.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+    	superMario.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	marioFuego.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+    	marioFuego.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
     }
 
     @Override
@@ -111,7 +111,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     
     @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	marioRecuperacion.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+    	marioRecuperacion.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
     }
     
 	@Override
@@ -119,7 +119,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		fireball.setRemovido(true);
+		fireball.establecerRemovido(true);
 	}
 
 	@Override

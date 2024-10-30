@@ -13,21 +13,21 @@ public class MarioDefault implements EstadoMario {
 	
 	protected ContextoMario contexto;
 	
-	public void setContext(ContextoMario contexto) {
+	public void establecerContexto(ContextoMario contexto) {
 		this.contexto = contexto;
 	}
 	
-	public ContextoMario getContext() {
+	public ContextoMario obtenerContexto() {
 		return this.contexto;
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int nuevaPosicionX = this.getContext().getPosicion().x;
-		int nuevaPosicionY = this.getContext().getPosicion().y + (this.getContext().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).getAltoImagen());
-		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		int nuevaPosicionX = this.obtenerContexto().obtenerPosicion().x;
+		int nuevaPosicionY = this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).establecerAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).establecerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
-		this.getContext().setPosicion(nuevaPosicion);
-		this.getContext().setHitbox(nuevaHitbox);
+		this.obtenerContexto().establecerPosicion(nuevaPosicion);
+		this.obtenerContexto().setHitbox(nuevaHitbox);
 	}
 	
 	@Override
@@ -36,46 +36,46 @@ public class MarioDefault implements EstadoMario {
     }
 
 	@Override
-	public Visitante getVisitor() {
+	public Visitante obtenerVisitante() {
 		return new VisitorMarioDefault(this);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.getPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
-			aRetornar = fabricaSprites.getMarioDefaultCayendo();
+		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
+			aRetornar = fabricaSprites.obtenerMarioDefaultCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioDefaultFrontalSaltando();
+			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioDefaultReversoSaltando();
+			aRetornar = fabricaSprites.obtenerMarioDefaultReversoSaltando();
 		}else if(avanzando()) {
-			aRetornar = fabricaSprites.getMarioDefaultFrontalCaminando();
+			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalCaminando();
 		} else if(retrocediendo()){
-			aRetornar = fabricaSprites.getMarioDefaultReversoCaminando();
+			aRetornar = fabricaSprites.obtenerMarioDefaultReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioDefaultFrontalQuieto();
+			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioDefaultReversoQuieto();
+			aRetornar = fabricaSprites.obtenerMarioDefaultReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
-		contexto.setSprite(aRetornar);
+		contexto.establecerSprite(aRetornar);
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getMarioDefaultFrontalQuieto();
+		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 	
 	private boolean enElAire() {
-		return contexto.getEnElAire();
+		return contexto.obtenerEnElAire();
 	}
 	
 	private boolean avanzando() {
-		return contexto.getAvanzando();
+		return contexto.obtenerAvanzando();
 	}
 	
 	private boolean retrocediendo() {
-		return contexto.getRetrocediendo();
+		return contexto.obtenerRetrocediendo();
 	}
 	
 	private boolean spriteAereoFrontal(FabricaSprites fabricaSprites) {
@@ -87,15 +87,15 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.getSprite().equals(fabricaSprites.getMarioDefaultFrontalCaminando()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioDefaultFrontalQuieto()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioDefaultFrontalSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultFrontalCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultFrontalQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultFrontalSaltando());
 	}
 	
 	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoCaminando()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoQuieto()) ||
-				contexto.getSprite().equals(fabricaSprites.getMarioDefaultReversoSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultReversoCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultReversoQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioDefaultReversoSaltando());
 	}
 
 	public void realizarAccionEspecial() {		

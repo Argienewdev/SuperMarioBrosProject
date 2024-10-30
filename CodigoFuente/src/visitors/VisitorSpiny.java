@@ -88,7 +88,7 @@ public class VisitorSpiny implements Visitante {
 
 	@Override
 	public void visitarContextoMario(ContextoMario contextoMario) {
-		contextoMario.getEstado().aceptarVisitante(this);
+		contextoMario.obtenerEstado().aceptarVisitante(this);
 	}
 
 	@Override
@@ -101,23 +101,23 @@ public class VisitorSpiny implements Visitante {
 
 	@Override
 	public void visitarMarioDefault(MarioDefault marioDefault) {
-		ContextoMario contextoMario = marioDefault.getContext();
-        int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+		ContextoMario contextoMario = marioDefault.obtenerContexto();
+        int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
         contextoMario.perderPuntos(perdidaPuntos);
         contextoMario.perderVida();
-        miEntidad.getNivel().obtenerPartida().reiniciarNivel();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
 	}
 	
 	@Override
 	public void visitarSuperMario(SuperMario superMario) {
 		EstadoMario marioRecuperacion = new MarioRecuperacion();
-        superMario.getContext().cambiarEstado(marioRecuperacion);
+        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
 	}
 
 	@Override
 	public void visitarMarioFuego(MarioFuego marioFuego) {
 		EstadoMario marioRecuperacion = new MarioRecuperacion();
-		marioFuego.getContext().cambiarEstado(marioRecuperacion);
+		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
 	}
 	
 	@Override
@@ -137,7 +137,7 @@ public class VisitorSpiny implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		fireball.setRemovido(true);
+		fireball.establecerRemovido(true);
 	}
 
 	@Override

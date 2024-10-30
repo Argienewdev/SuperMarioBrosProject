@@ -12,7 +12,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	
 	protected static final int VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO = 20;
 	
-	public void setContext(ContextoKoopaTroopa contexto) {
+	public void establecerContexto(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
 	
@@ -22,7 +22,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	@Override
 	public void mover() {
 		Point velocidad = new Point(0, 0);
-		this.contexto.setVelocidadDireccional(velocidad);
+		this.contexto.establecerVelocidadDireccional(velocidad);
 	}
 	
 	@Override
@@ -35,35 +35,35 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	}
 
 	@Override
-	public Visitante getVisitor() {
+	public Visitante obtenerVisitante() {
 		return new VisitorKoopaEnCaparazon(this);
 	}
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.getContext().getRemovido()) {
-			contexto.setSprite(fabricaSprites.getSpriteInvisible());
+		if(this.getContext().obtenerRemovido()) {
+			contexto.establecerSprite(fabricaSprites.getSpriteInvisible());
 			eliminarEntidadGrafica(fabricaSprites);
 		}else {
-			contexto.setSprite(fabricaSprites.getKoopaTroopaCaparazonEstático()); 
+			contexto.establecerSprite(fabricaSprites.getKoopaTroopaCaparazonEstático()); 
 		}
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.getContext().setSprite(fabricaSprites.getSpriteInvisible());
+		this.getContext().establecerSprite(fabricaSprites.getSpriteInvisible());
 		this.getContext().eliminarDelNivel();
 	}
 	
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int x = this.getContext().getPosicion().x;
-		int y = this.getContext().getPosicion().y + (this.getContext().obtenerAlto() - this.getContext().getSprite().getAltoImagen());
-		int ancho = this.getContext().getSprite().getAnchoImagen();
-		int alto = this.getContext().getSprite().getAltoImagen();
+		int x = this.getContext().obtenerPosicion().x;
+		int y = this.getContext().obtenerPosicion().y + (this.getContext().obtenerAlto() - this.getContext().obtenerSprite().establecerAltoImagen());
+		int ancho = this.getContext().obtenerSprite().obtenerAnchoImagen();
+		int alto = this.getContext().obtenerSprite().establecerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.getContext().setHitbox(nuevaHitbox);
-		this.getContext().setPosicion(nuevaPosicion);
+		this.getContext().establecerPosicion(nuevaPosicion);
 	}
 	
 	public int obtenerVelocidadNecesariaParaMatarKoopa() {

@@ -77,8 +77,8 @@ public class PantallaDeJuego extends JPanel {
 	}
 
     public void registrarFondo(FabricaSilueta fabricaSilueta) {
-    	Silueta siluetaFondo = fabricaSilueta.getSilueta();
-    	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.getRutaSilueta());
+    	Silueta siluetaFondo = fabricaSilueta.obtenerSilueta();
+    	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.obtenerRutaSilueta());
         this.fondo = new JLabel(fondoImagen);
         establecerFondo();
     }
@@ -93,7 +93,7 @@ public class PantallaDeJuego extends JPanel {
     @SuppressWarnings("exports")
 	public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
-        marioLabel = jugable.getObserverGrafico();
+        marioLabel = jugable.obtenerObserverGrafico();
         setPosicionOriginalJugable();
         setPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
@@ -102,11 +102,11 @@ public class PantallaDeJuego extends JPanel {
     }
 
     private void setPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.marioJugable.getPosicion();
+		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicion();
 	}
 
 	private void setPosicionOriginalJugable () {
-		this.posicionOriginalJugable = this.marioJugable.getPosicion();	
+		this.posicionOriginalJugable = this.marioJugable.obtenerPosicion();	
 	}
 
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
@@ -126,8 +126,8 @@ public class PantallaDeJuego extends JPanel {
     	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
     	//y es visible para el jugador
         hud.actualizarTiempo();
-        hud.actualizarVidas(marioJugable.getVidas());
-        hud.actualizarPuntaje(marioJugable.getPuntos());
+        hud.actualizarVidas(marioJugable.obtenerVidas());
+        hud.actualizarPuntaje(marioJugable.obtenerPuntos());
 
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
@@ -172,13 +172,15 @@ public class PantallaDeJuego extends JPanel {
         	*/
         	if (fondoMovido) {
         		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-        			Point posicionLabel = observerGrafico.getLocation();
-        			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
-        			observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
-        			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
-        			observerGrafico.actualizar();
-        			revalidate();
-        			repaint();
+        			if (observerGrafico.obtenerDebeMoverseConElFondo()) {
+        				Point posicionLabel = observerGrafico.getLocation();
+            			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
+            			observerGrafico.getEntidadObservada().establecerPosicion(posicionLabel);
+            			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
+            			observerGrafico.actualizar();
+            			revalidate();
+            			repaint();
+        			}
         		}
         	}
         }

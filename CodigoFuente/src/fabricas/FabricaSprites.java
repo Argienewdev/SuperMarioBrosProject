@@ -9,19 +9,19 @@ public abstract class FabricaSprites {
 	public FabricaSprites(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
-	public abstract Sprite getMarioDefaultFrontalQuieto();
+	public abstract Sprite obtenerMarioDefaultFrontalQuieto();
 		
-	public abstract Sprite getMarioDefaultFrontalCaminando();
+	public abstract Sprite obtenerMarioDefaultFrontalCaminando();
 	
-	public abstract Sprite getMarioDefaultCayendo();
+	public abstract Sprite obtenerMarioDefaultCayendo();
 
-	public abstract Sprite getMarioDefaultFrontalSaltando();
+	public abstract Sprite obtenerMarioDefaultFrontalSaltando();
 	
-	public abstract Sprite getMarioDefaultReversoQuieto();
+	public abstract Sprite obtenerMarioDefaultReversoQuieto();
 	
-	public abstract Sprite getMarioDefaultReversoCaminando();
+	public abstract Sprite obtenerMarioDefaultReversoCaminando();
 	
-	public abstract Sprite getMarioDefaultReversoSaltando();
+	public abstract Sprite obtenerMarioDefaultReversoSaltando();
 	
 	public abstract Sprite getMarioRecuperacionFrontalQuieto();
 	

@@ -81,14 +81,14 @@ public class VisitorPiranhaPlant implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.getEstado().aceptarVisitante(this);
+        contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        ContextoMario contextoMario = marioDefault.getContext();
-        if (contextoMario.getVidas() == 1) {
-            int perdidaPuntos = this.miEntidad.getPuntosSustraidosPorMuerteCausada();
+        ContextoMario contextoMario = marioDefault.obtenerContexto();
+        if (contextoMario.obtenerVidas() == 1) {
+            int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
         }
         contextoMario.perderVida();
@@ -96,14 +96,14 @@ public class VisitorPiranhaPlant implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        ContextoMario contextoMario = superMario.getContext();
+        ContextoMario contextoMario = superMario.obtenerContexto();
         EstadoMario nuevoEstado = new MarioRecuperacion();
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        ContextoMario contextoMario = marioFuego.getContext();
+        ContextoMario contextoMario = marioFuego.obtenerContexto();
         EstadoMario nuevoEstado = new MarioRecuperacion();
         contextoMario.cambiarEstado(nuevoEstado);
     }

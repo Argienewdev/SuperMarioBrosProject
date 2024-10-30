@@ -9,9 +9,9 @@ public interface EstadoKoopa {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites);
 	
-	public Visitante getVisitor();
+	public Visitante obtenerVisitante();
 
-	public void setContext(ContextoKoopaTroopa contextoKoopaTroopa);
+	public void establecerContexto(ContextoKoopaTroopa contextoKoopaTroopa);
 
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
 

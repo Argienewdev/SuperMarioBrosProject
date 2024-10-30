@@ -22,17 +22,17 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-		buzzyBeetle.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		buzzyBeetle.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarSpiny(Spiny spiny) {
-		spiny.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		spiny.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarGoomba(Goomba goomba) {
-		goomba.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		goomba.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
@@ -42,53 +42,53 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-		koopaEnCaparazon.getContext().aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		koopaEnCaparazon.getContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		koopaDefault.getContext().aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		koopaDefault.getContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarLakitu(Lakitu lakitu) {
-		lakitu.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		lakitu.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-		piranhaPlant.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		piranhaPlant.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
-		superChampinion.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		superChampinion.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-		florDeFuego.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		florDeFuego.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-		if(!champinionVerde.getRemovido()) {
+		if(!champinionVerde.obtenerRemovido()) {
 			this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
 			this.miEntidad.ganarVida();
-			champinionVerde.setRemovido(true);
+			champinionVerde.establecerRemovido(true);
 		}
 	}
 
 	@Override
 	public void visitarEstrella(Estrella estrella) {
-		estrella.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		estrella.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarMonedas(Monedas monedas) {
-		if(!monedas.getRemovido()) {
+		if(!monedas.obtenerRemovido()) {
     		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
-        	monedas.setRemovido(true);
+        	monedas.establecerRemovido(true);
     	}
 	}
 
@@ -101,19 +101,19 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarLadrillo(Ladrillo ladrillo) {
-		ladrillo.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+		ladrillo.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 	
 	@Override
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		this.miEntidad.getNivel().obtenerPartida().finalizarPartida();
+		this.miEntidad.obtenerNivel().obtenerPartida().finalizarPartida();
 	}
 
 	@Override
 	public void visitarBandera(Bandera bandera) {
         this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
         this.miEntidad.reiniciarEstado();
-		this.miEntidad.getNivel().setCompletado(true);
+		this.miEntidad.obtenerNivel().setCompletado(true);
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class Juego {
 	}
 	
 	public Sprite obtenerSpriteMario(){
-		return fabricaSprites.getMarioDefaultFrontalQuieto();
+		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 	
 	public Ranking obtenerRanking() {
@@ -92,7 +92,7 @@ public class Juego {
 	
 	public void finalizarJuego () {
 		jugador = new Jugador();
-		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
+		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
 		ranking.agregarJugador(jugador);
@@ -106,7 +106,6 @@ public class Juego {
 	
 	public void cierreDeJuego() {
 		 ranking.guardarEstado();
-	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}
