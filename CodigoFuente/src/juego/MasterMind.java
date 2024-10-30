@@ -59,6 +59,7 @@ public class MasterMind {
 					enemigo.invertirDireccion();
 				}
 			}
+			//System.out.println(enemigo.getClass().getSimpleName().toString()+"|"+enemigo.obtenerPosicion().y);
 			enemigo.mover();
 			enemigo.aplicarGravedad();
 		}

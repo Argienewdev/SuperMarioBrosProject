@@ -57,9 +57,9 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		int x = this.getContext().obtenerPosicion().x;
-		int y = this.getContext().obtenerPosicion().y + (this.getContext().obtenerAlto() - this.getContext().obtenerSprite().establecerAltoImagen());
+		int y = this.getContext().obtenerPosicion().y + (this.getContext().obtenerAlto() - this.getContext().obtenerSprite().obtenerAltoImagen());
 		int ancho = this.getContext().obtenerSprite().obtenerAnchoImagen();
-		int alto = this.getContext().obtenerSprite().establecerAltoImagen();
+		int alto = this.getContext().obtenerSprite().obtenerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.getContext().setHitbox(nuevaHitbox);

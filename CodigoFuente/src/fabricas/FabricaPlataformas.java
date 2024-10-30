@@ -7,6 +7,7 @@ import elementos.powerUps.*;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
+import ventanas.ConstantesGlobales;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import visitors.Visitante;
@@ -80,11 +81,16 @@ public class FabricaPlataformas {
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion, int altura){
+	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion,Nivel nivel, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
+		//Sprite spriteTuberia = this.fabricaSprites.getSpriteInvisible();
 		int ancho = 100;
-		int alturaEscalada=altura*50;
-		PiranhaPlant piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicion);
+		int alturaEscalada = altura*50;
+		int posicionPiranhaX = posicion.x;
+		int posicionPiranhaY = posicion.y +altura;
+		Point posicionPiranha = parsearPosicion(posicionPiranhaX, posicionPiranhaY);
+		PiranhaPlant piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicionPiranha);
+		nivel.addEnemigo(piranhaPlant);
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.establecerVisitor(visitorTuberia);
@@ -200,5 +206,8 @@ public class FabricaPlataformas {
     	this.pantallaDeJuego.agregarLabel(pisoADevolver.obtenerObserverGrafico());
     	return pisoADevolver;
     }
-	
+    
+    private Point parsearPosicion(int x, int y) {
+		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
+	}
 }

@@ -9,6 +9,7 @@ import elementos.enemigos.ContextoKoopaTroopa;
 import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
+import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
@@ -101,7 +102,7 @@ public class GeneradorDeNivel {
 	                }
 	                case 3: {
 	                	int alturaTuberia = numeros[3];
-	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.obtenerTuberiaConPiranhaPlant(posicion, alturaTuberia);
+	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.obtenerTuberiaConPiranhaPlant(posicion,nivel, alturaTuberia);
 	                    nivel.addPlataforma(tuberiaConPiranhaPlant);
 	                    break;
 	                }
@@ -148,6 +149,8 @@ public class GeneradorDeNivel {
 	                    break;
 	                } 
 	                case 42: {
+	                    //PiranhaPlant dev = fabricaEntidades.obtenerPiranhaPlant(posicion);
+	                    //nivel.addEnemigo(dev);
 	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
 	                    nivel.addEnemigo(goomba);
 	                    break;
