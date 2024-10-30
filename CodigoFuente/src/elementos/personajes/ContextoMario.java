@@ -13,13 +13,13 @@ public class ContextoMario extends Jugable {
 	private EstadoMario estadoMario;
 	
 	private boolean cambiarEstado;
-	
+		
 	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico,
 						 int vidas, MarioDefault estadoMario) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.estadoMario = estadoMario;
 		this.cambiarEstado = false;
-		estadoMario.establecerContexto(this);
+		this.estadoMario.establecerContexto(this);
 	}
 	
 	public void cambiarEstado(EstadoMario estadoMario) {
