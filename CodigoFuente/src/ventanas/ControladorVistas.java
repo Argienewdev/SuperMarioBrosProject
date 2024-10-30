@@ -89,6 +89,7 @@ public class ControladorVistas {
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
+	    pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
@@ -224,7 +225,7 @@ public class ControladorVistas {
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
-     	
+     	pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 		pantallaDeJuego.cambiarDeNivel();
 		ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
