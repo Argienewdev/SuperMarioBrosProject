@@ -129,7 +129,6 @@ public class ControladorMovimiento {
 			} else if(marioChocoBordeDerecho) {
 				this.marioJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + marioJugable.obtenerHitbox().width);
 			} else {
-				System.out.println(entidad.obtenerPosicion().x+"|"+entidad.obtenerPosicion().y);
 				//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
 				//de juego aca tira error porque esta siendo eliminado
 				for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
