@@ -200,27 +200,27 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite getKoopaTroopaMuerto() {
-    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaMuerto.png");
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaMuerto.gif");
     }
     
     @Override
     public Sprite getGoombaFrontalCaminando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaFrontalCaminando.gif");
     }
     
     @Override
     public Sprite getGoombaReversoCaminando() {
-    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.gif");
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaReversoCaminando.gif");
     }
     
     @Override
 	public Sprite getGoombaMuerto() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaMuerto.png");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaMuerto.gif");
 	}
 
     @Override
     public Sprite getLakituFrontalFueraDeLaNube() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituFrontalFueraDeLaNube.png");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituFrontalFueraDeLaNube.gif");
     }
 
     @Override
@@ -230,17 +230,17 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite getLakituReversoFueraDeLaNube() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituReversoFueraDeLaNube.png");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituReversoFueraDeLaNube.gif");
     }
 
     @Override
 	public Sprite getLakituMuerto() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituMuerto.png");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituMuerto.gif");
 	}
     
     @Override
     public Sprite getSpinyCayendo() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyCayendo.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyCayendo.png");
     }
 
     @Override
@@ -335,7 +335,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite getBolaDeFuego() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.gif");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.png");
 	}
 
     @Override
@@ -372,12 +372,12 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite getBloqueDePreguntaEncendido() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bloqueDePreguntaEncendido.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bloqueDePreguntaEncendido.png");
     }
 
     @Override
     public Sprite getBandera() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bandera.png");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bandera.gif");
     }
 
     @Override

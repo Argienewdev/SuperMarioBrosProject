@@ -50,7 +50,6 @@ public class ControladorVistas {
 		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.juego = juego;
-		this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
 		this.pantallaFinal= new PantallaFinal(this);
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this);
@@ -85,6 +84,7 @@ public class ControladorVistas {
 	    RegistrarOyenteJuego();
 	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+	    this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 	    pantallaDeJuego.registrarJugable(marioJugable);
 	    
 	    mostrarPantallaEntreNiveles();

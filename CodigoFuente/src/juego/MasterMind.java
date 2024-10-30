@@ -18,10 +18,6 @@ public class MasterMind {
 	
 	protected Nivel nivel;
 	
-	private boolean hayNoJugableParaRemover;
-			
-	private Entidad entidadARemover;
-	
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
@@ -49,8 +45,8 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		boolean esVisibleEnLaPantalla = enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 75)
-										&& enemigo.getPosicion().x > 0;
+		boolean esVisibleEnLaPantalla = enemigo.getPosicion().x <= (ConstantesGlobales.PANEL_ANCHO + 75)
+										&& enemigo.getPosicion().x >= 0;
 		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
 				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 

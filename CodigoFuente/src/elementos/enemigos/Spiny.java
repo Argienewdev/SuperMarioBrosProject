@@ -10,7 +10,7 @@ import visitors.Visitante;
 
 public class Spiny extends Enemigo {
 	
-	private static final int TICKS_PARA_ELIMINAR = 1;
+	private static final int TICKS_PARA_ELIMINAR = 10;
 	
 	private boolean aterrizo;
 	

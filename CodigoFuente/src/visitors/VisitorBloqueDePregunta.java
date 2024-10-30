@@ -26,7 +26,10 @@ public class VisitorBloqueDePregunta implements Visitante {
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+    	if(!spiny.getAterrizo()) {
+    		spiny.setAterrizo(true);
+    	}
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override

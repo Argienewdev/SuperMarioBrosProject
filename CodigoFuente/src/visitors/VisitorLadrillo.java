@@ -25,8 +25,11 @@ public class VisitorLadrillo implements Visitante {
     }
 
     @Override
-    public void visitarSpiny(Spiny spiny) {    
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+    public void visitarSpiny(Spiny spiny) {
+    	if(!spiny.getAterrizo()) {
+    		spiny.setAterrizo(true);
+    	}
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
