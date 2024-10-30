@@ -42,12 +42,14 @@ public class ControladorMovimiento {
 	
 	private void moverMarioDerecha() {
 		this.velocidadHorizontal = ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.establecerMirandoAlFrente(true);
 		marioJugable.establecerAvanzando(true);
 		aplicarVelocidad();
 	}
 	
 	private void moverMarioIzquierda() {
 		this.velocidadHorizontal = -ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
+		marioJugable.establecerMirandoAlFrente(false);
 		marioJugable.establecerRetrocediendo(true);
 		aplicarVelocidad();
 	}
