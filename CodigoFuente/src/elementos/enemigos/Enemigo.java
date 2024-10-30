@@ -64,7 +64,7 @@ public abstract class Enemigo extends NoJugable {
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
 		} else if(getContadorTicks() == ticksAnimacion) {
-			this.establecerSprite(fabricaSprites.getSpriteInvisible());
+			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.eliminarDelNivel();
 		}
 	}

@@ -51,7 +51,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 	}
 	
 	public void  eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 	}
     
 	@Override
@@ -66,7 +66,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getKoopaTroopaMuerto();
+		return fabricaSprites.obtenerKoopaTroopaMuerto();
 	}
 	
 }

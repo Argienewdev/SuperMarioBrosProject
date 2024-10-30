@@ -23,141 +23,141 @@ public abstract class FabricaSprites {
 	
 	public abstract Sprite obtenerMarioDefaultReversoSaltando();
 	
-	public abstract Sprite getMarioRecuperacionFrontalQuieto();
+	public abstract Sprite obtenerMarioRecuperacionFrontalQuieto();
 	
-	public abstract Sprite getMarioRecuperacionFrontalCaminando();
+	public abstract Sprite obtenerMarioRecuperacionFrontalCaminando();
 	
-	public abstract Sprite getMarioRecuperacionCayendo();
+	public abstract Sprite obtenerMarioRecuperacionCayendo();
 	
-	public abstract Sprite getMarioRecuperacionFrontalSaltando();
+	public abstract Sprite obtenerMarioRecuperacionFrontalSaltando();
 	
-	public abstract Sprite getMarioRecuperacionReversoQuieto();
+	public abstract Sprite obtenerMarioRecuperacionReversoQuieto();
 	
-	public abstract Sprite getMarioRecuperacionReversoCaminando();
+	public abstract Sprite obtenerMarioRecuperacionReversoCaminando();
 	
-	public abstract Sprite getMarioRecuperacionReversoSaltando();
+	public abstract Sprite obtenerMarioRecuperacionReversoSaltando();
 	
-	public abstract Sprite getSuperMarioFrontalQuieto();
+	public abstract Sprite obtenerSuperMarioFrontalQuieto();
 	
-	public abstract Sprite getSuperMarioFrontalCaminando();
+	public abstract Sprite obtenerSuperMarioFrontalCaminando();
 		
-	public abstract Sprite getSuperMarioFrontalSaltando();
+	public abstract Sprite obtenerSuperMarioFrontalSaltando();
 	
-	public abstract Sprite getSuperMarioReversoQuieto();
+	public abstract Sprite obtenerSuperMarioReversoQuieto();
 	
-	public abstract Sprite getSuperMarioCayendo();
+	public abstract Sprite obtenerSuperMarioCayendo();
 	
-	public abstract Sprite getSuperMarioReversoCaminando();
+	public abstract Sprite obtenerSuperMarioReversoCaminando();
 	
-	public abstract Sprite getSuperMarioReversoSaltando();
+	public abstract Sprite obtenerSuperMarioReversoSaltando();
 	
-	public abstract Sprite getMarioFuegoFrontalQuieto();
+	public abstract Sprite obtenerMarioFuegoFrontalQuieto();
 	
-	public abstract Sprite getMarioFuegoFrontalCaminando();
+	public abstract Sprite obtenerMarioFuegoFrontalCaminando();
 		
-	public abstract Sprite getMarioFuegoFrontalSaltando();
+	public abstract Sprite obtenerMarioFuegoFrontalSaltando();
 	
-	public abstract Sprite getMarioFuegoReversoQuieto();
+	public abstract Sprite obtenerMarioFuegoReversoQuieto();
 	
-	public abstract Sprite getMarioFuegoReversoCaminando();
+	public abstract Sprite obtenerMarioFuegoReversoCaminando();
 	
-	public abstract Sprite getMarioFuegoReversoSaltando();
+	public abstract Sprite obtenerMarioFuegoReversoSaltando();
 	
-	public abstract Sprite getMarioFuegoCayendo();
+	public abstract Sprite obtenerMarioFuegoCayendo();
 	
-	public abstract Sprite getMarioInvulnerableFrontalQuieto();
+	public abstract Sprite obtenerMarioInvulnerableFrontalQuieto();
 	
-	public abstract Sprite getMarioInvulnerableFrontalCaminando();
+	public abstract Sprite obtenerMarioInvulnerableFrontalCaminando();
 		
-	public abstract Sprite getMarioInvulnerableFrontalSaltando();
+	public abstract Sprite obtenerMarioInvulnerableFrontalSaltando();
 	
-	public abstract Sprite getMarioInvulnerableCayendo();
+	public abstract Sprite obtenerMarioInvulnerableCayendo();
 	
-	public abstract Sprite getMarioInvulnerableReversoQuieto();
+	public abstract Sprite obtenerMarioInvulnerableReversoQuieto();
 	
-	public abstract Sprite getMarioInvulnerableReversoCaminando();
+	public abstract Sprite obtenerMarioInvulnerableReversoCaminando();
 	
-	public abstract Sprite getMarioInvulnerableReversoSaltando();
+	public abstract Sprite obtenerMarioInvulnerableReversoSaltando();
 	
-	public abstract Sprite getKoopaTroopaDefaultFrontalCaminando();
+	public abstract Sprite obtenerKoopaTroopaDefaultFrontalCaminando();
 	
-	public abstract Sprite getKoopaTroopaDefaultReversoCaminando();
+	public abstract Sprite obtenerKoopaTroopaDefaultReversoCaminando();
 	
-	public abstract Sprite getKoopaTroopaCaparazonEstático();
+	public abstract Sprite obtenerKoopaTroopaCaparazonEstático();
 
-	public abstract Sprite getKoopaTroopaMuerto();
+	public abstract Sprite obtenerKoopaTroopaMuerto();
 	
-	public abstract Sprite getGoombaFrontalCaminando();
+	public abstract Sprite obtenerGoombaFrontalCaminando();
 
-	public abstract Sprite getGoombaReversoCaminando();
+	public abstract Sprite obtenerGoombaReversoCaminando();
 	
-	public abstract Sprite getGoombaMuerto();
+	public abstract Sprite obtenerGoombaMuerto();
 
-	public abstract Sprite getPiranhaPlant();
+	public abstract Sprite obtenerPiranhaPlant();
 	
-	public abstract Sprite getPiranhaPlantMuerto();
+	public abstract Sprite obtenerPiranhaPlantMuerto();
 
-	public abstract Sprite getLakituFrontalFueraDeLaNube();
+	public abstract Sprite obtenerLakituFrontalFueraDeLaNube();
 	
-	public abstract Sprite getLakituReversoFueraDeLaNube();
+	public abstract Sprite obtenerLakituReversoFueraDeLaNube();
 
-	public abstract Sprite getLakituDentroDeLaNube();
+	public abstract Sprite obtenerLakituDentroDeLaNube();
 	
-	public abstract Sprite getLakituMuerto();
+	public abstract Sprite obtenerLakituMuerto();
 	
-	public abstract Sprite getSpinyCayendo();
+	public abstract Sprite obtenerSpinyCayendo();
 
-	public abstract Sprite getSpinyFrontalCaminando();
+	public abstract Sprite obtenerSpinyFrontalCaminando();
 	
-	public abstract Sprite getSpinyMuerto();
+	public abstract Sprite obtenerSpinyMuerto();
 	
-	public abstract Sprite getSpinyReversoCaminando();
+	public abstract Sprite obtenerSpinyReversoCaminando();
 
-	public abstract Sprite getBuzzyBeetleFrontalCaminando();
+	public abstract Sprite obtenerBuzzyBeetleFrontalCaminando();
 	
-	public abstract Sprite getBuzzyBeetleReversoCaminando();
+	public abstract Sprite obtenerBuzzyBeetleReversoCaminando();
 	
-	public abstract Sprite getBuzzyBeetleMuerto();
+	public abstract Sprite obtenerBuzzyBeetleMuerto();
 
-	public abstract Sprite getEstrellaApagada();
+	public abstract Sprite obtenerEstrellaApagada();
 	
-	public abstract Sprite getEstrellaEncendida();
+	public abstract Sprite obtenerEstrellaEncendida();
 	
-	public abstract Sprite getFlorDeFuegoSaliendoDelBloqueDePreguntas();
+	public abstract Sprite obtenerFlorDeFuegoSaliendoDelBloqueDePreguntas();
 	
-	public abstract Sprite getFlorDeFuegoQuieto();
+	public abstract Sprite obtenerFlorDeFuegoQuieto();
 	
-	public abstract Sprite getChampinionVerde();
+	public abstract Sprite obtenerChampinionVerde();
 	
-    public abstract Sprite getChampinionVerdeSaliendoDelBloqueDePreguntas();
+    public abstract Sprite obtenerChampinionVerdeSaliendoDelBloqueDePreguntas();
 
-	public abstract Sprite getSuperChampinionSaliendoDelBloqueDePreguntas();
+	public abstract Sprite obtenerSuperChampinionSaliendoDelBloqueDePreguntas();
 	
-	public abstract Sprite getSuperChampinionQuieto();
+	public abstract Sprite obtenerSuperChampinionQuieto();
 	
-	public abstract Sprite getMonedaApagada();
+	public abstract Sprite obtenerMonedaApagada();
 
-	public abstract Sprite getMonedaEncendida();
+	public abstract Sprite obtenerMonedaEncendida();
 	
-	public abstract Sprite getBolaDeFuego();
+	public abstract Sprite obtenerBolaDeFuego();
 	
-	public abstract Sprite getLadrillo();
+	public abstract Sprite obtenerLadrillo();
 	
-	public abstract Sprite getBloqueSolido();
+	public abstract Sprite obtenerBloqueSolido();
 	
-	public abstract Sprite getPiso();
+	public abstract Sprite obtenerPiso();
 	
-	public abstract Sprite getTuberia(int altura);
+	public abstract Sprite obtenerTuberia(int altura);
 	
-	public abstract Sprite getBloqueDePreguntaApagado();
+	public abstract Sprite obtenerBloqueDePreguntaApagado();
 	
-	public abstract Sprite getBloqueDePreguntaEncendido();
+	public abstract Sprite obtenerBloqueDePreguntaEncendido();
 	
-	public abstract Sprite getBandera();
+	public abstract Sprite obtenerBandera();
 	
-	public abstract Sprite getVacio();
+	public abstract Sprite obtenerVacio();
 	
-	public abstract Sprite getPrincesaPeach();
+	public abstract Sprite obtenerPrincesaPeach();
 	
-	public abstract Sprite getSpriteInvisible();
+	public abstract Sprite obtenerSpriteInvisible();
 }

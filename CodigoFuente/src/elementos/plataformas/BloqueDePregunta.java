@@ -56,7 +56,7 @@ public class BloqueDePregunta extends Plataforma {
 	}
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(estaVacio) {
-			this.establecerSprite(fabricaSprites.getBloqueDePreguntaApagado());
+			this.establecerSprite(fabricaSprites.obtenerBloqueDePreguntaApagado());
 		}
 	}
 

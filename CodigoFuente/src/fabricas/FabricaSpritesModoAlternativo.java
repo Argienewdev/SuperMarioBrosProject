@@ -44,316 +44,316 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getSuperMarioFrontalQuieto() {
+    public Sprite obtenerSuperMarioFrontalQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioFrontalQuieto.png");
     }
 
     @Override
-    public Sprite getSuperMarioFrontalCaminando() {
+    public Sprite obtenerSuperMarioFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getSuperMarioFrontalSaltando() {
+    public Sprite obtenerSuperMarioFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioFrontalSaltando.png");
     }
     
     @Override
-    public Sprite getSuperMarioCayendo() {
+    public Sprite obtenerSuperMarioCayendo() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioCayendo.png");
     }
 
     @Override
-    public Sprite getSuperMarioReversoQuieto() {
+    public Sprite obtenerSuperMarioReversoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoQuieto.png");
     }
 
     @Override
-    public Sprite getSuperMarioReversoCaminando() {
+    public Sprite obtenerSuperMarioReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoCaminando.gif");
     }
 
     @Override
-    public Sprite getSuperMarioReversoSaltando() {
+    public Sprite obtenerSuperMarioReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superMarioReversoSaltando.png");
     }
 
     @Override
-    public Sprite getMarioFuegoFrontalQuieto() {
+    public Sprite obtenerMarioFuegoFrontalQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalQuieto.png");
     }
 
     @Override
-    public Sprite getMarioFuegoFrontalCaminando() {
+    public Sprite obtenerMarioFuegoFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioFuegoFrontalSaltando() {
+    public Sprite obtenerMarioFuegoFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoFrontalSaltando.png");
     }
     
     @Override
-	public Sprite getMarioFuegoCayendo() {
+	public Sprite obtenerMarioFuegoCayendo() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoCayendo.png");
 	}
 
     @Override
-    public Sprite getMarioFuegoReversoQuieto() {
+    public Sprite obtenerMarioFuegoReversoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoQuieto.png");
     }
 
     @Override
-    public Sprite getMarioFuegoReversoCaminando() {
+    public Sprite obtenerMarioFuegoReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioFuegoReversoSaltando() {
+    public Sprite obtenerMarioFuegoReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioFuegoReversoSaltando.png");
     }
     
     @Override
-    public Sprite getMarioInvulnerableFrontalQuieto() {
+    public Sprite obtenerMarioInvulnerableFrontalQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalQuieto.gif");
     }
 
     @Override
-    public Sprite getMarioInvulnerableFrontalCaminando() {
+    public Sprite obtenerMarioInvulnerableFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioInvulnerableFrontalSaltando() {
+    public Sprite obtenerMarioInvulnerableFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalSaltando.gif");
     }
 
     @Override
-    public Sprite getMarioInvulnerableCayendo() {
+    public Sprite obtenerMarioInvulnerableCayendo() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableCayendo.gif");
     }
     
     @Override
-    public Sprite getMarioInvulnerableReversoQuieto() {
+    public Sprite obtenerMarioInvulnerableReversoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoQuieto.gif");
     }
 
     @Override
-    public Sprite getMarioInvulnerableReversoCaminando() {
+    public Sprite obtenerMarioInvulnerableReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioInvulnerableReversoSaltando() {
+    public Sprite obtenerMarioInvulnerableReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoSaltando.gif");
     }
 
     @Override
-    public Sprite getMarioRecuperacionFrontalQuieto() {
+    public Sprite obtenerMarioRecuperacionFrontalQuieto() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalQuieto.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionFrontalCaminando() {
+    public Sprite obtenerMarioRecuperacionFrontalCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalCaminando.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionCayendo() {
+    public Sprite obtenerMarioRecuperacionCayendo() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCayendo.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionFrontalSaltando() {
+    public Sprite obtenerMarioRecuperacionFrontalSaltando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionFrontalSaltando.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionReversoQuieto() {
+    public Sprite obtenerMarioRecuperacionReversoQuieto() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoQuieto.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionReversoCaminando() {
+    public Sprite obtenerMarioRecuperacionReversoCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoCaminando.gif");
     }
     
     @Override
-    public Sprite getMarioRecuperacionReversoSaltando() {
+    public Sprite obtenerMarioRecuperacionReversoSaltando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioRecuperacionReversoSaltando.gif");
     }
     
     @Override
-    public Sprite getKoopaTroopaDefaultFrontalCaminando() {
+    public Sprite obtenerKoopaTroopaDefaultFrontalCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultFrontalCaminando.gif");
     }
     
     @Override
-	public Sprite getKoopaTroopaDefaultReversoCaminando() {
+	public Sprite obtenerKoopaTroopaDefaultReversoCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaDefaultReversoCaminando.gif");
     }
     
     @Override
-    public Sprite getKoopaTroopaCaparazonEstático() {
+    public Sprite obtenerKoopaTroopaCaparazonEstático() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaCaparazonEstatico.png");
     }
 
     @Override
-    public Sprite getKoopaTroopaMuerto() {
+    public Sprite obtenerKoopaTroopaMuerto() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaMuerto.png");
     }
     
     @Override
-    public Sprite getGoombaFrontalCaminando() {
+    public Sprite obtenerGoombaFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.gif");
     }
     
     @Override
-    public Sprite getGoombaReversoCaminando() {
+    public Sprite obtenerGoombaReversoCaminando() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaCaminando.gif");
     }
     
     @Override
-	public Sprite getGoombaMuerto() {
+	public Sprite obtenerGoombaMuerto() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/goombaMuerto.png");
 	}
 
     @Override
-    public Sprite getLakituFrontalFueraDeLaNube() {
+    public Sprite obtenerLakituFrontalFueraDeLaNube() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituFrontalFueraDeLaNube.png");
     }
 
     @Override
-    public Sprite getLakituDentroDeLaNube() {
+    public Sprite obtenerLakituDentroDeLaNube() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituFrontalDentroDeLaNube.png");
     }
 
     @Override
-    public Sprite getLakituReversoFueraDeLaNube() {
+    public Sprite obtenerLakituReversoFueraDeLaNube() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituReversoFueraDeLaNube.png");
     }
 
     @Override
-	public Sprite getLakituMuerto() {
+	public Sprite obtenerLakituMuerto() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/lakituMuerto.png");
 	}
     
     @Override
-    public Sprite getSpinyCayendo() {
+    public Sprite obtenerSpinyCayendo() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyCayendo.gif");
     }
 
     @Override
-    public Sprite getSpinyFrontalCaminando() {
+    public Sprite obtenerSpinyFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getSpinyReversoCaminando() {
+    public Sprite obtenerSpinyReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyReversoCaminando.gif");
     }
     
     @Override
-	public Sprite getSpinyMuerto() {
+	public Sprite obtenerSpinyMuerto() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyMuerto.png");
 	}
 
     @Override
-    public Sprite getBuzzyBeetleFrontalCaminando() {
+    public Sprite obtenerBuzzyBeetleFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/buzzyBeetleFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getBuzzyBeetleReversoCaminando() {
+    public Sprite obtenerBuzzyBeetleReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/buzzyBeetleReversoCaminando.gif");
     }
     
     @Override
-	public Sprite getBuzzyBeetleMuerto() {
+	public Sprite obtenerBuzzyBeetleMuerto() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/buzzyBeetleMuerto.gif");
 	}
 
 	@Override
-	public Sprite getPiranhaPlant() {
+	public Sprite obtenerPiranhaPlant() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piranhaPlant.gif");
 	}
 
 	@Override
-	public Sprite getPiranhaPlantMuerto() {
+	public Sprite obtenerPiranhaPlantMuerto() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaMuerto.png");
 	}
 
     @Override
-    public Sprite getEstrellaApagada() {
+    public Sprite obtenerEstrellaApagada() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/estrella.gif");
     }
 
     @Override
-    public Sprite getEstrellaEncendida() {
+    public Sprite obtenerEstrellaEncendida() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/estrella.gif");
     }
 
     @Override
-    public Sprite getFlorDeFuegoSaliendoDelBloqueDePreguntas() {
+    public Sprite obtenerFlorDeFuegoSaliendoDelBloqueDePreguntas() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/florDeFuegoSaliendo.gif");
     }
 
     @Override
-    public Sprite getFlorDeFuegoQuieto() {
+    public Sprite obtenerFlorDeFuegoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/florDeFuegoAfuera.gif");
     }
 
     @Override
-    public Sprite getChampinionVerde() {
+    public Sprite obtenerChampinionVerde() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/champinionVerde.png");
     }
 
     @Override
-    public Sprite getChampinionVerdeSaliendoDelBloqueDePreguntas() {
+    public Sprite obtenerChampinionVerdeSaliendoDelBloqueDePreguntas() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/champinionVerdeSaliendo.gif");
     }
     
     @Override
-    public Sprite getSuperChampinionSaliendoDelBloqueDePreguntas() {
+    public Sprite obtenerSuperChampinionSaliendoDelBloqueDePreguntas() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superChampinionSaliendo.gif");
     }
     
     @Override
-    public Sprite getSuperChampinionQuieto() {
+    public Sprite obtenerSuperChampinionQuieto() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/superChampinionAfuera.png");
     }
 
     @Override
-    public Sprite getMonedaApagada() {
+    public Sprite obtenerMonedaApagada() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/monedaApagada.png");
     }
 
     @Override
-    public Sprite getMonedaEncendida() {
+    public Sprite obtenerMonedaEncendida() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/monedaEncendida.gif");
     }
 
     @Override
-    public Sprite getBolaDeFuego() {
+    public Sprite obtenerBolaDeFuego() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.gif");
 	}
 
     @Override
-    public Sprite getLadrillo() {
+    public Sprite obtenerLadrillo() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/ladrillo.png");
     }
 
     @Override
-    public Sprite getBloqueSolido() {
+    public Sprite obtenerBloqueSolido() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bloqueSolido.png");
     }
     
     @Override
-    public Sprite getPiso() {
+    public Sprite obtenerPiso() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piso.png");
     }
 
-    public Sprite getTuberia(int altura) {
+    public Sprite obtenerTuberia(int altura) {
     	String rutaAux = rutaACarpeta;
     	if (altura== 1) {
     		rutaAux += "/spritesModoAlternativo/tuberiaBaja.png";
@@ -366,32 +366,32 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     }
 
     @Override
-    public Sprite getBloqueDePreguntaApagado() {
+    public Sprite obtenerBloqueDePreguntaApagado() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bloqueDePreguntaApagado.png");
     }
 
     @Override
-    public Sprite getBloqueDePreguntaEncendido() {
+    public Sprite obtenerBloqueDePreguntaEncendido() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bloqueDePreguntaEncendido.gif");
     }
 
     @Override
-    public Sprite getBandera() {
+    public Sprite obtenerBandera() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bandera.png");
     }
 
     @Override
-    public Sprite getVacio() {
+    public Sprite obtenerVacio() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/vacio.png");
     }
 
     @Override
-    public Sprite getPrincesaPeach() {
+    public Sprite obtenerPrincesaPeach() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.png");
     }
 	
 	@Override
-	public Sprite getSpriteInvisible() {
+	public Sprite obtenerSpriteInvisible() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
 }

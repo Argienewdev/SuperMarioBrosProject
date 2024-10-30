@@ -46,7 +46,7 @@ public class BolaDeFuego extends NoJugable {
 
 	@Override
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 		this.obtenerNivel().addEntidadesAEliminar(this);
 	}	
 }

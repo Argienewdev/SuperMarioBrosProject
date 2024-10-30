@@ -52,7 +52,7 @@ public class PiranhaPlant extends Enemigo {
 	
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getPiranhaPlantMuerto();
+		return fabricaSprites.obtenerPiranhaPlantMuerto();
 	}
 	public void mover() {
 		if(this.obtenerPosicion().y==limiteInferior) {

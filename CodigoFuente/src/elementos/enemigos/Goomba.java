@@ -33,6 +33,6 @@ public class Goomba extends Enemigo {
 	
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getGoombaMuerto();
+		return fabricaSprites.obtenerGoombaMuerto();
 	}
 } 

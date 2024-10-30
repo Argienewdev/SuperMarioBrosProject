@@ -38,15 +38,15 @@ public class Spiny extends Enemigo {
 			if(!this.salioDelHuevo) {
 				aterrizar(fabricaSprites);
 			}else if(this.obtenerVelocidadDireccional().x < 0) {
-				this.establecerSprite(fabricaSprites.getSpinyReversoCaminando());
+				this.establecerSprite(fabricaSprites.obtenerSpinyReversoCaminando());
 			} else if(this.obtenerVelocidadDireccional().x > 0) {
-				this.establecerSprite(fabricaSprites.getSpinyFrontalCaminando());
+				this.establecerSprite(fabricaSprites.obtenerSpinyFrontalCaminando());
 			}
 		}
 	}
 	
 	private void aterrizar(FabricaSprites fabricaSprites) {
-		this.establecerSprite(fabricaSprites.getSpinyReversoCaminando());
+		this.establecerSprite(fabricaSprites.obtenerSpinyReversoCaminando());
 		actualizarHitboxYPosicion(fabricaSprites);
 		this.salioDelHuevo = true;
 	}
@@ -72,6 +72,6 @@ public class Spiny extends Enemigo {
 	
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getSpinyMuerto();
+		return fabricaSprites.obtenerSpinyMuerto();
 	}
 }

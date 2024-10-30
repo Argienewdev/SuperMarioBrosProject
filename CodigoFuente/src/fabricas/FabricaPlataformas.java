@@ -42,7 +42,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public Vacio obtenerVacio(Point posicion) {
-		Sprite spriteVacio = this.fabricaSprites.getVacio();
+		Sprite spriteVacio = this.fabricaSprites.obtenerVacio();
 		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, null, null);
 		Visitante visitor = new VisitorVacio(vacioADevolver);
 		vacioADevolver.establecerVisitor(visitor);
@@ -54,7 +54,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public Ladrillo obtenerLadrillo(Point posicion) {
-		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
+		Sprite spriteLadrillo = this.fabricaSprites.obtenerLadrillo();
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, null, null);
 		Visitante visitor = new VisitorLadrillo(ladrilloADevolver);
 		ladrilloADevolver.establecerVisitor(visitor);
@@ -66,7 +66,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public Tuberia obtenerTuberiaVacia(Point posicion, int altura) {
-		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
+		Sprite spriteTuberia = this.fabricaSprites.obtenerTuberia(altura);
 		int ancho = 100;
 		int alturaEscalada = altura * 50;
 		PiranhaPlant piranhaPlant = null;
@@ -82,7 +82,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion,Nivel nivel, int altura){
-		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
+		Sprite spriteTuberia = this.fabricaSprites.obtenerTuberia(altura);
 		//Sprite spriteTuberia = this.fabricaSprites.getSpriteInvisible();
 		int ancho = 100;
 		int alturaEscalada = altura*50;
@@ -102,7 +102,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public Bandera obtenerBandera(Point posicion,ControladorVistas controladorVistas) {
-		Sprite spriteBandera = this.fabricaSprites.getBandera();
+		Sprite spriteBandera = this.fabricaSprites.obtenerBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
 		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver);
 		banderaADevolver.establecerVisitor(visitor);
@@ -114,7 +114,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public PrincesaPeach obtenerPrincesaPeach(Point posicion,ControladorVistas controladorVistas) {
-		Sprite spritePrincesaPeach = this.fabricaSprites.getPrincesaPeach();
+		Sprite spritePrincesaPeach = this.fabricaSprites.obtenerPrincesaPeach();
 		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null, null);
 		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver);
 		princesaPeachADevolver.establecerVisitor(visitor);
@@ -126,7 +126,7 @@ public class FabricaPlataformas {
 	
 	@SuppressWarnings("exports")
 	public BloqueDePregunta obtenerBloqueDePregunta(Point posicion, Nivel nivel, PantallaDeJuego pantallaDeJuego){
-		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
+		Sprite spriteBloqueDePregunta = this.fabricaSprites.obtenerBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null, null);
 		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver);
 		bloqueDePreguntaADevolver.establecerVisitor(visitor);
@@ -185,7 +185,7 @@ public class FabricaPlataformas {
 	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
 	public BloqueSolido obtenerBloqueSolido(Point posicion) {
-    	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
+    	Sprite spriteBloqueSolido = this.fabricaSprites.obtenerBloqueSolido();
     	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null, null);
     	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolidoADevolver);
     	bloqueSolidoADevolver.establecerVisitor(visitorBloqueSolido);
@@ -197,7 +197,7 @@ public class FabricaPlataformas {
     
     @SuppressWarnings("exports")
 	public Piso obtenerPiso(Point posicion) {
-    	Sprite spritePiso = this.fabricaSprites.getPiso();
+    	Sprite spritePiso = this.fabricaSprites.obtenerPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver);
     	pisoADevolver.establecerVisitor(visitorPiso);
