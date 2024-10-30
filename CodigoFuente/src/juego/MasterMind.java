@@ -45,15 +45,13 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicion().x <= (ConstantesGlobales.PANEL_ANCHO + 75)
-										&& enemigo.obtenerPosicion().x >= 0;
+		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicion().x + enemigo.obtenerAncho() <= (ConstantesGlobales.PANEL_ANCHO + 75)
+										&& enemigo.obtenerPosicion().x + enemigo.obtenerAncho() >= -100;
+		boolean chocoBordeIzquierdo = enemigo.obtenerPosicion().x <= 0; 
+		boolean chocoBordeDerecho = enemigo.obtenerPosicion().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
-			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
-				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 
-				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;
-				if (chocoBordeIzquierdo || chocoBordeDerecho) {
-					enemigo.invertirDireccion();
-				}
+			if (chocoBordeIzquierdo || chocoBordeDerecho) {
+				enemigo.invertirDireccion();
 			}
 			enemigo.mover();
 			enemigo.aplicarGravedad();
@@ -81,7 +79,7 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
-		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < 0) || entidad.obtenerHitbox().y < 0) {
+		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < -100) || entidad.obtenerHitbox().y < 0) {
 			entidad.establecerRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {

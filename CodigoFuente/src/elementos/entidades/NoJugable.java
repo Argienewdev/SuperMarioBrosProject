@@ -12,14 +12,11 @@ import visitors.Visitante;
 public abstract class NoJugable extends Entidad {
 	
 	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
-
-	protected boolean debeMantenerseSiempreEnPantalla;
 		
 	@SuppressWarnings("exports")
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
-		this.debeMantenerseSiempreEnPantalla = false;
 	}
 
 	public abstract void aceptarVisitante(Visitante visitante);
@@ -61,14 +58,6 @@ public abstract class NoJugable extends Entidad {
 		int nuevoAlto = this.obtenerSprite().obtenerAltoImagen();
 		this.setHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));
 		this.establecerPosicion(this.obtenerHitbox().getLocation());
-	}
-	
-	public boolean obtenerDebeMantenerseSiempreEnPantalla() {
-		return this.debeMantenerseSiempreEnPantalla;
-	}
-
-	public void establecerDebeMantenerseSiempreEnPantalla(boolean debeMantenerseSiempreEnPantalla) {
-		this.debeMantenerseSiempreEnPantalla = debeMantenerseSiempreEnPantalla;
 	}
 	
 }
