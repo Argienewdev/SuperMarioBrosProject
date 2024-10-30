@@ -42,7 +42,6 @@ public abstract class Jugable extends Entidad  {
 	public void perderVida() {
 		this.vidas--;
 		if (vidas == 0) { 
-			//TODO revisar si es necesario
 			muerte();
 		}
 	}

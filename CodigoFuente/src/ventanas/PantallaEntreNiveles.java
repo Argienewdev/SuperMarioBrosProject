@@ -15,6 +15,7 @@ public class PantallaEntreNiveles extends JPanel {
     private JLabel vidasLabel;
     private Fuentes tipoFuentes;
     
+    
     public PantallaEntreNiveles(Sprite marioSprite) {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);

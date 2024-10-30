@@ -2,31 +2,19 @@ package juego;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import elementos.Sprite;
-import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaEntidades;
-import fabricas.FabricaPlataformas;
 import fabricas.FabricaSilueta;
-import fabricas.FabricaSiluetaModoAlternativo;
-import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
-import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
 import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 

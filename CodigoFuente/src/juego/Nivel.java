@@ -175,6 +175,10 @@ public class Nivel {
         }
         return elementosDeJuego;
     }
+    
+    public int obtenerNumeroNivel() {
+    	return partida.obtenerNumeroDeNivelActual();
+    }
 
 
 }

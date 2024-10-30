@@ -1,15 +1,12 @@
 package ventanas;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -133,6 +130,7 @@ public class ControladorVistas {
 	public void mostrarPantallaFinal() {
 		pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
 		ventana.setContentPane(pantallaFinal);
+		pantallaFinal.activarFoco();
 	    ventana.revalidate();
 	    ventana.repaint();
 		
@@ -196,7 +194,6 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 			if(ventana.isAncestorOf(pantallaRanking)) {
 				pantallaRanking.refrescar();
-				
 			}
 			else if (ventana.isAncestorOf(pantallaFinal)) {
 				pantallaFinal.actualizarFoco(); 
