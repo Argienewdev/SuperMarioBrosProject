@@ -38,6 +38,8 @@ public class Juego {
 
 	private FabricaSprites fabricaSprites;
 
+	private FabricaSilueta fabricaSilueta;
+
 	private GeneradorDeNivel generadorDeNivel;
 		
 	private PantallaDeJuego pantallaDeJuego;
@@ -76,7 +78,9 @@ public class Juego {
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
-		this.fabricaSprites=generadorDeNivel.getFabricaSprites();
+		this.fabricaSprites = generadorDeNivel.getFabricaSprites();
+		this.fabricaSilueta = generadorDeNivel.getFabricaSilueta();
+		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));

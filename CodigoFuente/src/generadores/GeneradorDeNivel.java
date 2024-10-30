@@ -207,4 +207,8 @@ public class GeneradorDeNivel {
 		return fabricaSprites;
 	}
 	
+	public FabricaSilueta getFabricaSilueta() {
+		return fabricaSilueta;
+	}
+	
 }
