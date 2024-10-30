@@ -2,8 +2,6 @@ package ranking;
 
 import java.io.Serializable;
 
-import elementos.entidades.Jugable;
-
 public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	private static final long serialVersionUID = 1L;

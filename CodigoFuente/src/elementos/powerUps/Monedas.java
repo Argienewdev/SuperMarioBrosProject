@@ -27,7 +27,7 @@ public class Monedas extends PowerUp {
 		this.cantidadMonedas++;
 	}
 	
-	public int getCantidadMonedas() {
+	public int obtenerCantidadMonedas() {
 		return this.cantidadMonedas;
 	}
 	

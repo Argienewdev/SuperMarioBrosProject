@@ -11,7 +11,9 @@ import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
     
-	private static final int TICKS_PARA_ELIMINAR = 1;
+	private static final int TICKS_PARA_ELIMINAR = 20;
+
+	private static final int VELOCIDAD_HORIZONTAL_ENEMIGO = 1;
 	
 	private static final int INTERVALO_PARA_DISPARAR = 300;
 	
@@ -42,7 +44,7 @@ public class Lakitu extends Enemigo {
     		int posY = obtenerPosicion().y + this.obtenerAlto();
     		Point posicionInicialSpiny = new Point(posX, posY);
     		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionInicialSpiny);
-    		obtenerNivel().addSpinyAAgregar(spiny);
+    		obtenerNivel().agregarSpinyAAgregar(spiny);
     	}
     }
     
@@ -57,9 +59,9 @@ public class Lakitu extends Enemigo {
 		if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
 		} else if(this.obtenerVelocidadDireccional().x < 0) {
-			this.establecerSprite(fabricaSprites.getLakituFrontalFueraDeLaNube());
+			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
 		} else if(this.obtenerVelocidadDireccional().x > 0) {
-			this.establecerSprite(fabricaSprites.getLakituReversoFueraDeLaNube());
+			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
     
@@ -84,6 +86,6 @@ public class Lakitu extends Enemigo {
     
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getLakituMuerto();
+		return fabricaSprites.obtenerLakituMuerto();
 	}
 }

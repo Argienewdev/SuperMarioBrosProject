@@ -40,13 +40,13 @@ public class ControladorMovimiento {
 		reiniciarVelocidadHorizontal();
 	}
 	
-	private void moveMarioDerecha() {
+	private void moverMarioDerecha() {
 		this.velocidadHorizontal = ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.establecerAvanzando(true);
 		aplicarVelocidad();
 	}
 	
-	private void moveMarioIzquierda() {
+	private void moverMarioIzquierda() {
 		this.velocidadHorizontal = -ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
 		marioJugable.establecerRetrocediendo(true);
 		aplicarVelocidad();
@@ -95,7 +95,7 @@ public class ControladorMovimiento {
 		this.marioJugable.establecerAvanzando(false);
 		this.marioJugable.establecerRetrocediendo(false);
 		
-		if(marioJugable.getColisionArriba()) {
+		if(marioJugable.obtenerColisionArriba()) {
 			reiniciarVelocidadVertical();
 			marioJugable.establecerColisionArriba(false);
 		}else if (!marioJugable.obtenerColisionAbajo()) {
@@ -107,11 +107,11 @@ public class ControladorMovimiento {
 	    }
 		
 	    if (movimientoAIzquierda()) {
-	    	moveMarioIzquierda();
+	    	moverMarioIzquierda();
 	    }
 	    
 	    if (movimientoADerecha()) {
-	    	moveMarioDerecha();
+	    	moverMarioDerecha();
 	    }
 	    
 	    if (realizarAccionEspecial()) {
@@ -131,7 +131,7 @@ public class ControladorMovimiento {
 			} else {
 				//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
 				//de juego aca tira error porque esta siendo eliminado
-				for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+				for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
 				        elemento.aceptarVisitante(entidad.obtenerVisitante());
 				        entidad.aceptarVisitante(elemento.obtenerVisitante());
@@ -171,7 +171,7 @@ public class ControladorMovimiento {
 		boolean retornar = false;
 		if(sensorDeTeclasJuego.obtenerSpacePresionada()) {
 			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
-			sensorDeTeclasJuego.setSpaceAccionada(true);
+			sensorDeTeclasJuego.establecerSpaceAccionada(true);
 		}
 		return retornar;
 	}

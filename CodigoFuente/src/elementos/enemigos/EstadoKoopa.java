@@ -18,4 +18,5 @@ public interface EstadoKoopa {
 	public void mover();
 	
 	public void invertirDireccion();
+	
 }

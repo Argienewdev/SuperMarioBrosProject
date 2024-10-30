@@ -62,11 +62,11 @@ public abstract class Enemigo extends NoJugable {
     
     public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.incrementarContadorTicks();
-		if(getContadorTicks() == 1){
+		if(obtenerContadorTicks() == 1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(getContadorTicks() == ticksAnimacion) {
-			this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		} else if(obtenerContadorTicks() == ticksAnimacion) {
+			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.eliminarDelNivel();
 		}
 	}

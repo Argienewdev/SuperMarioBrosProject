@@ -58,12 +58,12 @@ public class Nivel {
         this.generadorDeNivel = null;
     }
     
-    public void addPlataforma(Plataforma plataforma) {
+    public void agregarPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
         plataforma.establecerNivel(this);
     }
 
-    public void addEnemigo(Enemigo enemigo) {
+    public void agregarEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
         enemigo.establecerNivel(this);
     }
@@ -73,32 +73,32 @@ public class Nivel {
         powerUp.establecerNivel(this);
     }
     
-	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
+	public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
     }
 	
-	public void addBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
+	public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
 		this.bolasDeFuegoAAgregar.add(bolaDeFuego);
 	}
 	
-	public void addSpinyAAgregar(Enemigo spiny) {
+	public void agregarSpinyAAgregar(Enemigo spiny) {
 		this.spinysAAgregar.add(spiny);
 	}
 	
-	public void addPlataformasAfectables(Plataforma plataforma) {
+	public void agregarPlataformasAfectables(Plataforma plataforma) {
         this.plataformasAfectables.add(plataforma);
     }
 	
-	public Iterable<Plataforma> getPlataformasAfectables() {
+	public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return plataformasAfectables;
     }
 
-    public void setMario(ContextoMario mario) {
+    public void establecerMario(ContextoMario mario) {
         this.mario = mario;
         this.mario.establecerNivel(this);
     }
 
-    public void removePlataforma(Plataforma plataforma) {
+    public void removerPlataforma(Plataforma plataforma) {
         this.plataformas.remove(plataforma);
     }
 
@@ -127,23 +127,23 @@ public class Nivel {
     	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     
-    public Iterable<Plataforma> getPlataformas() {
+    public Iterable<Plataforma> obtenerPlataformas() {
         return this.plataformas;
     }
 
-    public Iterable<PowerUp> getPowerUps() {
+    public Iterable<PowerUp> obtenerPowerUps() {
         return this.powerUps;
     }
 
-    public Iterable<Enemigo> getEnemigos() {
+    public Iterable<Enemigo> obtenerEnemigos() {
         return this.enemigos;
     }
     
-    public Iterable<BolaDeFuego> getBolasDeFuego() {
+    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
         return this.bolasDeFuego;
     }
     
-    public ContextoMario getMario() {
+    public ContextoMario obtenerMario() {
         return this.mario;
     }
     
@@ -151,7 +151,7 @@ public class Nivel {
     	return this.nivelCompletado;
     }
     
-    public void setCompletado(boolean completado) {
+    public void establecerCompletado(boolean completado) {
     	this.nivelCompletado = completado;
     }
     
@@ -159,21 +159,25 @@ public class Nivel {
     	return this.partida;
     }
     
-    public Iterable<ElementoDeJuego> getElementosDeJuego() {
+    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
         ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<ElementoDeJuego>();
-        for(Plataforma plataforma : getPlataformas()) {
+        for(Plataforma plataforma : obtenerPlataformas()) {
             elementosDeJuego.add(plataforma);
         }
-        for(PowerUp powerup : getPowerUps()) {
+        for(PowerUp powerup : obtenerPowerUps()) {
             elementosDeJuego.add(powerup);
         }
-        for(Enemigo enemigo : getEnemigos()) {
+        for(Enemigo enemigo : obtenerEnemigos()) {
             elementosDeJuego.add(enemigo);
         }
-        for(BolaDeFuego bolaDeFuego: getBolasDeFuego() ){
+        for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego() ){
             elementosDeJuego.add(bolaDeFuego);
         }
         return elementosDeJuego;
+    }
+    
+    public int obtenerNumeroNivel() {
+    	return partida.obtenerNumeroDeNivelActual();
     }
 
 

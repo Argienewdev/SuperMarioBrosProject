@@ -20,7 +20,7 @@ public class ObserverGrafico extends JLabel implements Observer {
 		actualizarPosicionTamanio();
 	}
 	
-	public ElementoDeJuego getEntidadObservada() {
+	public ElementoDeJuego obtenerEntidadObservada() {
 		return this.entidad_observada;
 	}
 	
@@ -37,5 +37,5 @@ public class ObserverGrafico extends JLabel implements Observer {
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
 	}
-
+	
 }

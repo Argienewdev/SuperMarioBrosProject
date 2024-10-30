@@ -44,7 +44,7 @@ public class Partida {
 		this.generadorDeNivel = generadorDeNivel;
 		this.numeroNivelActual = 1;
 		this.nivel = generarNivel(this.numeroNivelActual, this);
-		this.jugable = this.nivel.getMario();
+		this.jugable = this.nivel.obtenerMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugable, fabricaSprites, nivel);
 		this.bucleJugador = new BucleJugador(this);
 		this.masterMind = new MasterMind(fabricaSprites, this.nivel);
@@ -60,11 +60,10 @@ public class Partida {
 	}
 	
 	public void cambiarNivel() {
-		System.err.println("Cambie de nivel");
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.nivel.setMario(jugable);
+		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().cambiarNivel();
@@ -73,7 +72,7 @@ public class Partida {
 	public void reiniciarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.nivel = generarNivel(numeroNivelActual, this);
-		this.nivel.setMario(jugable);
+		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.masterMind.cambiarNivel(this.nivel);

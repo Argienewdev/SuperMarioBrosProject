@@ -38,7 +38,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.observerGrafico = observerGrafico;
 		this.removido = false;
 		int ancho = sprite.obtenerAnchoImagen();
-		int alto = sprite.establecerAltoImagen();
+		int alto = sprite.obtenerAltoImagen();
 		int x =  posicionConsiderandoSprite.x;
 		int y = posicionConsiderandoSprite.y;
 		this.hitbox = new Rectangle(x, y, ancho, alto);
@@ -46,7 +46,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	private Point obtenerPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
-		return new Point(posicion.x, posicion.y + (50 - sprite.establecerAltoImagen()));
+		return new Point(posicion.x, posicion.y + (50 - sprite.obtenerAltoImagen()));
 	}
 	
 	public void establecerSprite(Sprite sprite) {

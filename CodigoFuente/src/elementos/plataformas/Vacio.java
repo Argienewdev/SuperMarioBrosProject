@@ -14,7 +14,7 @@ public class Vacio extends Plataforma{
 		this.setSolido(true);
 	}
 	
-	public int getPuntosSustraidosPorMuerteCausada() {
+	public int obtenerPuntosSustraidosPorMuerteCausada() {
 		return PUNTOS_SUSTRAIDOS_POR_MUERTE_CAUSADA;
 	}
 	

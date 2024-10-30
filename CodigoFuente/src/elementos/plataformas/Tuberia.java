@@ -34,4 +34,12 @@ public class Tuberia extends BloqueSolido{
     	return altura;
     }
 
+	public void establecerPiranha(PiranhaPlant piranhaPlant) {
+		this.miPiranhaPlant=piranhaPlant;
+	}
+	
+	public PiranhaPlant obtenerPiranha( ) {
+		return this.miPiranhaPlant;
+	}
+
 }
