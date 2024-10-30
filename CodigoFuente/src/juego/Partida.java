@@ -59,6 +59,10 @@ public class Partida {
 		this.coordinadorActualizacionesJugador.actualizar();
 	}
 	
+	public BucleJugador obtenerBucleJugador(){
+		return this.bucleJugador;
+	}
+	
 	public void cambiarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;

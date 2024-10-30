@@ -104,8 +104,7 @@ public class VisitorPrincesa implements Visitante {
     }
 
     @Override
-    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        this.controlador.mostrarPantallaFinal();        
+    public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {       
     }
 
     @Override
