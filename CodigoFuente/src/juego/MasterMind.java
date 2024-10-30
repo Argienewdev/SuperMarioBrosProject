@@ -50,7 +50,8 @@ public class MasterMind {
 		boolean chocoBordeIzquierdo = enemigo.obtenerPosicion().x <= 0; 
 		boolean chocoBordeDerecho = enemigo.obtenerPosicion().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
-			if (chocoBordeIzquierdo || chocoBordeDerecho) {
+			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla() 
+				&& (chocoBordeIzquierdo || chocoBordeDerecho)) {
 				enemigo.invertirDireccion();
 			}
 			enemigo.mover();

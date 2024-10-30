@@ -79,7 +79,7 @@ public class GeneradorDeNivel {
 				int[] numeros = new int[partes.length];
 				
                 for (int i = 0; i < partes.length; i++) {
-                    numeros[i] = Integer.parseInt(partes[i]);
+                	numeros[i] = Integer.parseInt(partes[i]);
                 }
                 
                 int identificadorElemento = numeros[0];
