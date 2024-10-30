@@ -10,26 +10,26 @@ public class Sprite {
 		this.rutaImagen = rutaImagen;
 	}
 	
-	public String getRutaImagen() {
+	public String obtenerRutaImagen() {
 		return this.rutaImagen;
 	}
 	
-	public void setRutaImagen(String rutaImagen) {
+	public void establecerRutaImagen(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
 	}
 	
-	public int getAnchoImagen() {
-		ImageIcon imagen = new ImageIcon(this.getRutaImagen());
+	public int obtenerAnchoImagen() {
+		ImageIcon imagen = new ImageIcon(this.obtenerRutaImagen());
 		return imagen.getIconWidth();
 	}
 	
-	public int getAltoImagen() {
-		ImageIcon imagen = new ImageIcon(this.getRutaImagen());
+	public int establecerAltoImagen() {
+		ImageIcon imagen = new ImageIcon(this.obtenerRutaImagen());
 		return imagen.getIconHeight();
 	}
 	
 	public boolean equals(Sprite sprite) {
-		return this.getRutaImagen().equals(sprite.getRutaImagen());
+		return this.obtenerRutaImagen().equals(sprite.obtenerRutaImagen());
 	}
 
 }

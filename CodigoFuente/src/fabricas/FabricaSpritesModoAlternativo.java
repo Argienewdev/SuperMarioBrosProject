@@ -9,37 +9,37 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	}
 
 	@Override
-    public Sprite getMarioDefaultFrontalQuieto() {
+    public Sprite obtenerMarioDefaultFrontalQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalQuieto.png");
     }
 
     @Override
-    public Sprite getMarioDefaultFrontalCaminando() {
+    public Sprite obtenerMarioDefaultFrontalCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioDefaultCayendo() {
+    public Sprite obtenerMarioDefaultCayendo() {
     	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultCayendo.png");
     }
     
     @Override
-    public Sprite getMarioDefaultFrontalSaltando() {
+    public Sprite obtenerMarioDefaultFrontalSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalSaltando.png");
     }
 
     @Override
-    public Sprite getMarioDefaultReversoQuieto() {
+    public Sprite obtenerMarioDefaultReversoQuieto() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultReversoQuieto.png");
     }
 
     @Override
-    public Sprite getMarioDefaultReversoCaminando() {
+    public Sprite obtenerMarioDefaultReversoCaminando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultReversoCaminando.gif");
     }
 
     @Override
-    public Sprite getMarioDefaultReversoSaltando() {
+    public Sprite obtenerMarioDefaultReversoSaltando() {
         return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultReversoSaltando.png");
     }
 

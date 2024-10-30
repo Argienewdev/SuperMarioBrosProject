@@ -60,7 +60,7 @@ public class Juego {
 	
 	public Sprite obtenerSpriteMario(){
 		this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		return fabricaSprites.getMarioDefaultFrontalQuieto();
+		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 	
 	public Ranking obtenerRanking() {

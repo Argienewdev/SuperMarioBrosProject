@@ -26,7 +26,7 @@ public class BloqueDePregunta extends Plataforma {
 			this.estaVacio = true;
 	}
 	
-	public void setPowerUp (PowerUp powerUp) {
+	public void establecerPowerUp (PowerUp powerUp) {
 		this.powerUp = powerUp;
 		this.estaVacio = false;
 	}

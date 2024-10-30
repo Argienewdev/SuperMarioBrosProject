@@ -38,7 +38,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Spiny getSpiny(Point posicion) {
+	public Spiny obtenerSpiny(Point posicion) {
     	Sprite sprite = fabricaSprites.getSpinyCayendo();
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
@@ -50,7 +50,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public ContextoKoopaTroopa getContextoKoopaTroopa(Point posicion) {
+	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial= new KoopaDefault();
         ContextoKoopaTroopa koopaADevolver = new ContextoKoopaTroopa(sprite, posicion, null, null, estadoInicial);
@@ -63,7 +63,7 @@ public class FabricaEntidades {
     }
        
 	@SuppressWarnings("exports")
-	public PiranhaPlant getPiranhaPlant(Point posicion) {
+	public PiranhaPlant obtenerPiranhaPlant(Point posicion) {
         Sprite sprite = fabricaSprites.getPiranhaPlant();
         PiranhaPlant piranhaADevolver=new PiranhaPlant(sprite,posicion, null, null);
         Visitante visitorPiranha = new VisitorPiranhaPlant(piranhaADevolver);
@@ -75,7 +75,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Lakitu getLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
+	public Lakitu obtenerLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.getLakituReversoFueraDeLaNube();
         Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null, fabricaEntidades);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
@@ -88,7 +88,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public BuzzyBeetle getBuzzyBeetle(Point posicion) {
+	public BuzzyBeetle obtenerBuzzyBeetle(Point posicion) {
     	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoCaminando();
         BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
         Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver);
@@ -100,7 +100,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Goomba getGoomba(Point posicion){
+	public Goomba obtenerGoomba(Point posicion){
         Sprite sprite = fabricaSprites.getGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
@@ -112,7 +112,7 @@ public class FabricaEntidades {
     }
    
     @SuppressWarnings("exports")
-	public Estrella getEstrella(Point posicion) {
+	public Estrella obtenerEstrella(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         Estrella estrellaADevolver=new Estrella(sprite, posicion, null, null);
 		Visitante visitorEstrella = new VisitorEstrella(estrellaADevolver);
@@ -123,7 +123,7 @@ public class FabricaEntidades {
     } 
     
     @SuppressWarnings("exports")
-	public ChampinionVerde getChampinionVerde(Point posicion) {
+	public ChampinionVerde obtenerChampinionVerde(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         ChampinionVerde champinionVerdeADevolver = new ChampinionVerde(sprite, posicion, null, null);
 		Visitante visitorChampinionVerde = new VisitorChampinionVerde(champinionVerdeADevolver);
@@ -134,7 +134,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public SuperChampinion getSuperChampinion(Point posicion) {
+	public SuperChampinion obtenerSuperChampinion(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
 		SuperChampinion superChampionADevolver = new SuperChampinion(sprite, posicion, null, null);
 		Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampionADevolver);
@@ -146,7 +146,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public FlorDeFuego getFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
+	public FlorDeFuego obtenerFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         FlorDeFuego florDeFuegoADevolver = new FlorDeFuego(sprite, posicion, null, null);
 		Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuegoADevolver, fabricaEntidades);
@@ -157,7 +157,7 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Monedas getMonedas(Point posicion,int cantidad, 
+	public Monedas obtenerMonedas(Point posicion,int cantidad, 
 							  boolean estaDentroDeBloqueDePreguntas) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
 		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, cantidad, true);
@@ -170,8 +170,8 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-    public ContextoMario getContextoMario(Point posicion) {
-    	Sprite sprite = fabricaSprites.getMarioDefaultFrontalQuieto();
+    public ContextoMario obtenerContextoMario(Point posicion) {
+    	Sprite sprite = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
     	MarioDefault estadoInicial = new MarioDefault();
 		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, 3, estadoInicial);
 		Visitante visitorContextoMario = new VisitorContextoMario(marioADevolver);
@@ -181,7 +181,7 @@ public class FabricaEntidades {
     	return marioADevolver;
     } 
     
-    public BolaDeFuego getBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
+    public BolaDeFuego obtenerBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
     	Sprite sprite = fabricaSprites.getBolaDeFuego();
     	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
     	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver);

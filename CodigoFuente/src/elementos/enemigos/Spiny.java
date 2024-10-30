@@ -61,9 +61,9 @@ public class Spiny extends Enemigo {
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		int x = this.obtenerPosicion().x;
-		int y = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().getAltoImagen());
-		int ancho = this.obtenerSprite().getAnchoImagen();
-		int alto = this.obtenerSprite().getAltoImagen();
+		int y = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().establecerAltoImagen());
+		int ancho = this.obtenerSprite().obtenerAnchoImagen();
+		int alto = this.obtenerSprite().establecerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.setHitbox(nuevaHitbox);

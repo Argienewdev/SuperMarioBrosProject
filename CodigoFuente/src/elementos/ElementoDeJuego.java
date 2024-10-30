@@ -35,15 +35,15 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.visitante = visitante;
 		this.observerGrafico = observerGrafico;
 		this.removido = false;
-		int ancho = sprite.getAnchoImagen();
-		int alto = sprite.getAltoImagen();
+		int ancho = sprite.obtenerAnchoImagen();
+		int alto = sprite.establecerAltoImagen();
 		int x =  posicionConsiderandoSprite.x;
 		int y = posicionConsiderandoSprite.y;
 		this.hitbox = new Rectangle(x, y, ancho, alto);
 	}
 	
 	private Point obtenerPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
-		return new Point(posicion.x, posicion.y + (50 - sprite.getAltoImagen()));
+		return new Point(posicion.x, posicion.y + (50 - sprite.establecerAltoImagen()));
 	}
 	
 	public void establecerSprite(Sprite sprite) {

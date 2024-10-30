@@ -40,7 +40,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Vacio getVacio(Point posicion) {
+	public Vacio obtenerVacio(Point posicion) {
 		Sprite spriteVacio = this.fabricaSprites.getVacio();
 		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, null, null);
 		Visitante visitor = new VisitorVacio(vacioADevolver);
@@ -52,7 +52,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Ladrillo getLadrillo(Point posicion) {
+	public Ladrillo obtenerLadrillo(Point posicion) {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, null, null);
 		Visitante visitor = new VisitorLadrillo(ladrilloADevolver);
@@ -64,7 +64,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaVacia(Point posicion, int altura) {
+	public Tuberia obtenerTuberiaVacia(Point posicion, int altura) {
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		int ancho = 100;
 		int alturaEscalada = altura * 50;
@@ -80,11 +80,11 @@ public class FabricaPlataformas {
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia getTuberiaConPiranhaPlant(Point posicion, int altura){
+	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.getTuberia(altura);
 		int ancho = 100;
 		int alturaEscalada=altura*50;
-		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion);
+		PiranhaPlant piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicion);
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.establecerVisitor(visitorTuberia);
@@ -95,7 +95,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Bandera getBandera(Point posicion,ControladorVistas controladorVistas) {
+	public Bandera obtenerBandera(Point posicion,ControladorVistas controladorVistas) {
 		Sprite spriteBandera = this.fabricaSprites.getBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
 		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver);
@@ -107,7 +107,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public PrincesaPeach getPrincesaPeach(Point posicion,ControladorVistas controladorVistas) {
+	public PrincesaPeach obtenerPrincesaPeach(Point posicion,ControladorVistas controladorVistas) {
 		Sprite spritePrincesaPeach = this.fabricaSprites.getPrincesaPeach();
 		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null, null);
 		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver);
@@ -119,7 +119,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta getBloqueDePregunta(Point posicion, Nivel nivel, PantallaDeJuego pantallaDeJuego){
+	public BloqueDePregunta obtenerBloqueDePregunta(Point posicion, Nivel nivel, PantallaDeJuego pantallaDeJuego){
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null, null);
 		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver);
@@ -132,43 +132,43 @@ public class FabricaPlataformas {
 		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
-				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, identificadorPowerUp, true);
-				nivel.addPowerUp(monedasDentroBloqueDePregunta);
+				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.obtenerMonedas(posicion, identificadorPowerUp, true);
+				nivel.agregarPowerUp(monedasDentroBloqueDePregunta);
 				pantallaDeJuego.agregarLabel(monedasDentroBloqueDePregunta.obtenerObserverGrafico());
-				bloqueDePreguntaADevolver.setPowerUp(monedasDentroBloqueDePregunta);
-				monedasDentroBloqueDePregunta.setBloquePregunta(bloqueDePreguntaADevolver);
+				bloqueDePreguntaADevolver.establecerPowerUp(monedasDentroBloqueDePregunta);
+				monedasDentroBloqueDePregunta.establecerBloquePregunta(bloqueDePreguntaADevolver);
 				break;
 			}
 			case 1: {
-				Estrella estrella = this.fabricaEntidades.getEstrella(posicion);
-				nivel.addPowerUp(estrella);
+				Estrella estrella = this.fabricaEntidades.obtenerEstrella(posicion);
+				nivel.agregarPowerUp(estrella);
 		        pantallaDeJuego.agregarLabel(estrella.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.setPowerUp(estrella);
-		        estrella.setBloquePregunta(bloqueDePreguntaADevolver);
+		        bloqueDePreguntaADevolver.establecerPowerUp(estrella);
+		        estrella.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 3: {
-				ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion);
-		        nivel.addPowerUp(champinionVerde);
+				ChampinionVerde champinionVerde = this.fabricaEntidades.obtenerChampinionVerde(posicion);
+		        nivel.agregarPowerUp(champinionVerde);
 		        pantallaDeJuego.agregarLabel(champinionVerde.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.setPowerUp(champinionVerde);
-		        champinionVerde.setBloquePregunta(bloqueDePreguntaADevolver);
+		        bloqueDePreguntaADevolver.establecerPowerUp(champinionVerde);
+		        champinionVerde.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 5: {
-				FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion,fabricaEntidades);
-		        nivel.addPowerUp(florDeFuego);
+				FlorDeFuego florDeFuego = this.fabricaEntidades.obtenerFlorDeFuego(posicion,fabricaEntidades);
+		        nivel.agregarPowerUp(florDeFuego);
 		        pantallaDeJuego.agregarLabel(florDeFuego.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.setPowerUp(florDeFuego);
-		        florDeFuego.setBloquePregunta(bloqueDePreguntaADevolver);
+		        bloqueDePreguntaADevolver.establecerPowerUp(florDeFuego);
+		        florDeFuego.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 			case 7: {
-				SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion);
-		        nivel.addPowerUp(superChampinion);
+				SuperChampinion superChampinion = this.fabricaEntidades.obtenerSuperChampinion(posicion);
+		        nivel.agregarPowerUp(superChampinion);
 		        pantallaDeJuego.agregarLabel(superChampinion.obtenerObserverGrafico());
-		        bloqueDePreguntaADevolver.setPowerUp(superChampinion);
-		        superChampinion.setBloquePregunta(bloqueDePreguntaADevolver);
+		        bloqueDePreguntaADevolver.establecerPowerUp(superChampinion);
+		        superChampinion.establecerBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 		}
@@ -178,7 +178,7 @@ public class FabricaPlataformas {
 	
 	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
-	public BloqueSolido getBloqueSolido(Point posicion) {
+	public BloqueSolido obtenerBloqueSolido(Point posicion) {
     	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
     	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null, null);
     	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolidoADevolver);
@@ -190,7 +190,7 @@ public class FabricaPlataformas {
     }
     
     @SuppressWarnings("exports")
-	public Piso getPiso(Point posicion) {
+	public Piso obtenerPiso(Point posicion) {
     	Sprite spritePiso = this.fabricaSprites.getPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver);

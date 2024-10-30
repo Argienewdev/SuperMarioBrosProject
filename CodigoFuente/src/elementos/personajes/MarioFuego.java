@@ -33,7 +33,7 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().getAltoImagen() - obtenerSpriteInicial(fabricaSprites).getAltoImagen()), obtenerSpriteInicial(fabricaSprites).getAnchoImagen(), obtenerSpriteInicial(fabricaSprites).getAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().establecerAltoImagen() - obtenerSpriteInicial(fabricaSprites).establecerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).establecerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
 		this.obtenerContexto().setHitbox(nuevaHitbox);
@@ -118,7 +118,7 @@ public class MarioFuego extends MarioDefault {
 		}else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
-		BolaDeFuego bolaDeFuego= fabricaEntidades.getBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		BolaDeFuego bolaDeFuego= fabricaEntidades.obtenerBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
 		contexto.obtenerNivel().addBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	

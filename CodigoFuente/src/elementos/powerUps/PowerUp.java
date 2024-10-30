@@ -81,7 +81,7 @@ public abstract class PowerUp extends NoJugable {
 		return this.bloquePregunta;
 	}
 	
-	public void setBloquePregunta(BloqueDePregunta bloquePregunta) {
+	public void establecerBloquePregunta(BloqueDePregunta bloquePregunta) {
 		this.bloquePregunta = bloquePregunta;
 	}
 	

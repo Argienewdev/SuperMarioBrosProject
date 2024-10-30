@@ -68,7 +68,7 @@ public class Nivel {
         enemigo.establecerNivel(this);
     }
 
-    public void addPowerUp(PowerUp powerUp) {
+    public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
         powerUp.establecerNivel(this);
     }
