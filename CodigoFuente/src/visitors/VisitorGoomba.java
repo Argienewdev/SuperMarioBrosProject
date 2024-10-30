@@ -5,14 +5,19 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import fabricas.FabricaSonidos;
+import generadores.GeneradorSonidos;
 
 public class VisitorGoomba implements Visitante {
 
     protected Goomba miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generador;
 
-    public VisitorGoomba(Goomba miEntidad) {
+    public VisitorGoomba(Goomba miEntidad,FabricaSonidos fabricaSonidos) {
+    	this.generador = new GeneradorSonidos(fabricaSonidos);
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

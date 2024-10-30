@@ -1,5 +1,6 @@
 package ventanas;
 
+
 import javax.swing.JLabel;
 
 public class ArregloDeBotones {

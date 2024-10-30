@@ -29,10 +29,13 @@ public class FabricaEntidades {
     protected FabricaSprites fabricaSprites;
     
     protected PantallaDeJuego pantallaDeJuego;
+    
+    protected FabricaSonidos fabricaSonidos;
 
 	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
     
-    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego) {
+    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos) {
+    	this.fabricaSonidos= fabricaSonidos;
         this.fabricaSprites = fabricaSprites;
         this.pantallaDeJuego = pantallaDeJuego;
     }
@@ -105,7 +108,7 @@ public class FabricaEntidades {
 	public Goomba obtenerGoomba(Point posicion){
         Sprite sprite = fabricaSprites.obtenerGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
-        Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
+        Visitante visitorGoomba = new VisitorGoomba(goombaADevolver, this.fabricaSonidos);
         goombaADevolver.establecerVisitor(visitorGoomba);
         ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goombaADevolver);
         goombaADevolver.establecerObserverGrafico(observerGraficoGoomba);

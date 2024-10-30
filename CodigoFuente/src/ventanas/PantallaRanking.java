@@ -4,7 +4,6 @@ import javax.swing.*;
 import fuentes.Fuentes;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasMenu;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,4 +120,6 @@ public class PantallaRanking extends JPanel {
     public boolean obtenerEnFoco(){
     	return this.enFoco;
     }
+    
+    
 }
