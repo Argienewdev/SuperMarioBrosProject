@@ -9,83 +9,83 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 	}
 
 	@Override
-	public Sonido getAplastarEnemigo() {
+	public Sonido obtenerAplastarEnemigo() {
 		return new Sonido(rutaACarpeta + "/sonido/aplastarEnemigo.wav");
 
 	}
 
 	@Override
-	public Sonido getChoqueFireball() {
+	public Sonido obtenerChoqueFireball() {
 		return new Sonido(rutaACarpeta + "/sonido/choqueFireball.wav");
 	}
 
 	@Override
-	public Sonido getDisparoBolaFuego() {
+	public Sonido obtenerDisparoBolaFuego() {
 		return new Sonido(rutaACarpeta + "/sonido/disparoBolaFuego.wav");
 	}
 
 	@Override
-	public Sonido getGolpeBloque() {
+	public Sonido obtenerGolpeBloque() {
 		return new Sonido(rutaACarpeta + "/sonido/golpeBloque.wav");
 	}
 
 	@Override
-	public Sonido getPowerUpEmerge() {
+	public Sonido obtenerPowerUpEmerge() {
 		return new Sonido(rutaACarpeta + "/sonido/itemEmerge.wav");
 	}
 
 	@Override
-	public Sonido getMarioPequenioDeNuevo() {
+	public Sonido obtenerMarioPequenioDeNuevo() {
 		return new Sonido(rutaACarpeta + "/sonido/marioPequenioDeNuevo.wav");
 	}
 
 	@Override
-	public Sonido getMatarBolaDeFuego() {
+	public Sonido obtenerMatarBolaDeFuego() {
 		return new Sonido(rutaACarpeta + "/sonido/matarBolaDeFuego.wav");
 	}
 
 	@Override
-	public Sonido getModoInvencible() {
+	public Sonido obtenerModoInvencible() {
 		return new Sonido(rutaACarpeta + "/sonido/modoInvencible.wav");
 	}
 
 	@Override
-	public Sonido getSonidoMoneda() {
+	public Sonido obtenerSonidoMoneda() {
 		return new Sonido(rutaACarpeta + "/sonido/sonidoMoneda.wav");
 	}
 
 	@Override
-	public Sonido getPierdeJuego() {
+	public Sonido obtenerPierdeJuego() {
 		return new Sonido(rutaACarpeta + "/sonido/pierdeJuego.wav");
 	}
 
 	@Override
-	public Sonido getPierdeVida() {
+	public Sonido obtenerPierdeVida() {
 		return new Sonido(rutaACarpeta + "/sonido/pierdeVida.wav");
 	}
 
 	@Override
-	public Sonido getPowerUpAgarrado() {
+	public Sonido obtenerPowerUpAgarrado() {
 		return new Sonido(rutaACarpeta + "/sonido/powerUpAgarrado.wav");
 	}
 
 	@Override
-	public Sonido getRomperLadrillo() {
+	public Sonido obtenerRomperLadrillo() {
 		return new Sonido(rutaACarpeta + "/sonido/romperLadrillo.wav");
 	}
 
 	@Override
-	public Sonido getSalto() {
+	public Sonido obtenerSalto() {
 		return new Sonido(rutaACarpeta + "/sonido/salto.wav");
 	}
 
 	@Override
-	public Sonido getTocarBanderaFinNivel() {
+	public Sonido obtenerTocarBanderaFinNivel() {
 		return new Sonido(rutaACarpeta + "/sonido/tocarBanderaFinalNivel.wav");
 	}
 
 	@Override
-	public Sonido getRecuperarVida() {
+	public Sonido obtenerRecuperarVida() {
 		return new Sonido(rutaACarpeta + "/sonido/recuperarVida.wav");
 	}
 	

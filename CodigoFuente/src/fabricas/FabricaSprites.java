@@ -9,19 +9,19 @@ public abstract class FabricaSprites {
 	public FabricaSprites(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
-	public abstract Sprite getMarioDefaultFrontalQuieto();
+	public abstract Sprite obtenerMarioDefaultFrontalQuieto();
 		
-	public abstract Sprite getMarioDefaultFrontalCaminando();
+	public abstract Sprite obtenerMarioDefaultFrontalCaminando();
 	
-	public abstract Sprite getMarioDefaultCayendo();
+	public abstract Sprite obtenerMarioDefaultCayendo();
 
-	public abstract Sprite getMarioDefaultFrontalSaltando();
+	public abstract Sprite obtenerMarioDefaultFrontalSaltando();
 	
-	public abstract Sprite getMarioDefaultReversoQuieto();
+	public abstract Sprite obtenerMarioDefaultReversoQuieto();
 	
-	public abstract Sprite getMarioDefaultReversoCaminando();
+	public abstract Sprite obtenerMarioDefaultReversoCaminando();
 	
-	public abstract Sprite getMarioDefaultReversoSaltando();
+	public abstract Sprite obtenerMarioDefaultReversoSaltando();
 	
 	public abstract Sprite getMarioRecuperacionFrontalQuieto();
 	
@@ -84,34 +84,40 @@ public abstract class FabricaSprites {
 	public abstract Sprite getKoopaTroopaDefaultReversoCaminando();
 	
 	public abstract Sprite getKoopaTroopaCaparazonEstático();
-	
-	public abstract Sprite getGoombaCaminando();
-	
-	public abstract Sprite getGoombaAplastado();
 
-	public abstract Sprite getPiranhaPlantCerrada();
+	public abstract Sprite getKoopaTroopaMuerto();
 	
-	public abstract Sprite getPiranhaPlantAbierta();
+	public abstract Sprite getGoombaFrontalCaminando();
+
+	public abstract Sprite getGoombaReversoCaminando();
+	
+	public abstract Sprite getGoombaMuerto();
+
+	public abstract Sprite getPiranhaPlant();
+	
+	public abstract Sprite getPiranhaPlantMuerto();
 
 	public abstract Sprite getLakituFrontalFueraDeLaNube();
 	
-	public abstract Sprite getLakituDentroDeLaNube();
-
 	public abstract Sprite getLakituReversoFueraDeLaNube();
+
+	public abstract Sprite getLakituDentroDeLaNube();
+	
+	public abstract Sprite getLakituMuerto();
 	
 	public abstract Sprite getSpinyCayendo();
-	
+
 	public abstract Sprite getSpinyFrontalCaminando();
+	
+	public abstract Sprite getSpinyMuerto();
 	
 	public abstract Sprite getSpinyReversoCaminando();
 
-	public abstract Sprite getBuzzyBeetleFrontalQuieto();
-	
 	public abstract Sprite getBuzzyBeetleFrontalCaminando();
 	
-	public abstract Sprite getBuzzyBeetleReversoQuieto();
-	
 	public abstract Sprite getBuzzyBeetleReversoCaminando();
+	
+	public abstract Sprite getBuzzyBeetleMuerto();
 
 	public abstract Sprite getEstrellaApagada();
 	

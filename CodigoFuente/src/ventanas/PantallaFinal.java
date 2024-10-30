@@ -1,90 +1,163 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import fuentes.Fuentes;
+import sensoresDeTeclas.SensorDeTeclasMenu;
 
-public class PantallaFinal extends JLayeredPane {
+public class PantallaFinal extends JPanel {
+	
+	private static final long serialVersionUID = 893955111831369738L;
 
-    private static final long serialVersionUID = 1L;
-    private Fuentes tipoFuentes;
-    private ControladorVistas controladorVistas;
-    private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-    private JButton botonVolver;
-    private JButton botonCerrar;
-    private JPanel panelBotones;
-    private JLabel puntajeLabel;
-
-    public PantallaFinal(ControladorVistas controladorVistas) {
-        this.controladorVistas = controladorVistas;
-        tipoFuentes = new Fuentes();
-        
+	private static final int CANTIDAD_BOTONES = 2;
+	
+	protected JLabel botonVolver;
+	
+	protected JLabel botonCerrar;
+	
+	protected JLabel currentLabel;
+	
+	private JLabel puntajeLabel;
+	
+	private JLayeredPane panelCapas;
+	
+	protected SensorDeTeclasMenu sensor;
+	
+	protected ArregloDeBotones arregloDeBotones;
+	
+	protected Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+	
+	protected ControladorVistas controlador;
+	
+	protected Fuentes tipoFuentes;
+	
+	protected boolean enFoco;
+	
+	public PantallaFinal (ControladorVistas controlador, SensorDeTeclasMenu sensor) {
+		this.controlador = controlador;
+		this.sensor = sensor;
+		this.enFoco = false;
+		setLayout(null);
         setPreferredSize(size);
-        setLayout(new BorderLayout());
-        setOpaque(true);
-        setBackground(Color.BLACK);
+        panelCapas = new JLayeredPane();
+        panelCapas.setLayout(null);
+        panelCapas.setBounds(0, 0, size.width, size.height);
+        botonVolver = new JLabel("Pantalla inicial");
+        botonCerrar = new JLabel("Cerrar juego");
+        inicializarArregloBotones();
+        configurarFuente();
+        establecerFondo();
+        establecerMensaje();
+		configurarBotones();
+		add(panelCapas);
+	}
+	
+	
+	private void establecerFondo() {
+	       JLabel fondo = new JLabel();
+	       fondo.setBackground(Color.BLACK);
+	       fondo.setOpaque(true);
+	       fondo.setBounds(0, 0, size.width, size.height);
+	       panelCapas.add(fondo, Integer.valueOf(0));
+	    }
+	
+	private void inicializarArregloBotones() {
+		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
+		arregloDeBotones.agregar(botonVolver);
+		arregloDeBotones.agregar(botonCerrar);
+	}
+	
+	private void configurarFuente() {
+		tipoFuentes= new Fuentes();
+	    botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
+	    botonCerrar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
+	    botonVolver.setForeground(Color.WHITE);
+	    botonCerrar.setForeground(Color.WHITE);
+	    currentLabel = botonVolver;
+	    arregloDeBotones.siguiente();
+	    currentLabel.setForeground(Color.DARK_GRAY);
+	}
+	
+	private void establecerMensaje() {
+	    JLabel titulo = new JLabel("¡Fin de la partida!");
+	    titulo.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    titulo.setForeground(Color.WHITE);
+	    titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	    int posicionTituloY = size.height / 6;
+	    titulo.setBounds(0, posicionTituloY, size.width, 50);
+	    panelCapas.add(titulo, Integer.valueOf(1));
+	}
 
-        mensajeFinal();
-        configurarBotones();
-        asignarAccesosTeclado();
+	public void puntajeJugador(int puntaje) {
+	    puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
+	    puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    puntajeLabel.setForeground(Color.WHITE);
+	    puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    
+	    int posicionPuntajeY = size.height / 3;
+	    puntajeLabel.setBounds(0, posicionPuntajeY, size.width, 50);
+	    panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
+	}
+
+	private void configurarBotones() {
+	    int alturaPantalla = size.height;
+	    int espaciadoBotones = 60; 
+	    int posicionPrimerBotonY = (2 * alturaPantalla / 3) + 50; 
+	    
+	    botonVolver.setBounds(
+	        (size.width - botonVolver.getPreferredSize().width) / 2, 
+	        posicionPrimerBotonY,
+	        botonVolver.getPreferredSize().width + 20, 
+	        botonVolver.getPreferredSize().height
+	    );
+	    
+	    botonCerrar.setBounds(
+	        (size.width - botonCerrar.getPreferredSize().width) / 2, 
+	        posicionPrimerBotonY + espaciadoBotones,
+	        botonCerrar.getPreferredSize().width + 20, 
+	        botonCerrar.getPreferredSize().height
+	    );
+	    
+	    panelCapas.add(botonVolver, Integer.valueOf(1));
+	    panelCapas.add(botonCerrar, Integer.valueOf(1));
+	}
+	
+	 public void actualizarFoco() {
+		 if(enFoco) {
+			 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
+				 if(currentLabel == botonVolver){
+					controlador.dePantallaFinalAPantallaInicial();
+				 }
+				 else if(currentLabel == botonCerrar){
+					 controlador.cerrarJuego();
+				 } 
+		 }
+	        if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
+	            currentLabel.setForeground(Color.WHITE);
+	            currentLabel = arregloDeBotones.siguiente();
+	            currentLabel.setForeground(Color.DARK_GRAY);
+	            sensor.accionarS();
+	        } else if (sensor.obtenerWPresionado()  && !sensor.obtenerWAccionada()) {
+	            currentLabel.setForeground(Color.WHITE);
+	            currentLabel = arregloDeBotones.previo();
+	            currentLabel.setForeground(Color.DARK_GRAY);
+	            sensor.accionarW();
+	        }
+		 }
     }
+	 
+	public void activarFoco() {
+	    this.enFoco = true;
+	}
 
-    private void asignarAccesosTeclado() {
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ENTER"), "volverInicio");
-        getActionMap().put("volverInicio", new AbstractAction() {
-            public void actionPerformed(ActionEvent e) {
-                controladorVistas.mostrarPantallaInicial();
-            }
-        });
+	public void desactivarFoco() {
+	    this.enFoco = false;
+	}
 
-        // Asigna la tecla "Esc" al botón "Cerrar"
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "cerrarJuego");
-        getActionMap().put("cerrarJuego", new AbstractAction() {
-            public void actionPerformed(ActionEvent e) {
-                controladorVistas.cerrarJuego();
-            }
-        });
-    }
-
-    private void mensajeFinal() {
-        JLabel mensajeFinal = new JLabel("¡Fin de la Partida!", SwingConstants.CENTER);
-        mensajeFinal.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-        mensajeFinal.setForeground(Color.WHITE);
-        add(mensajeFinal, BorderLayout.NORTH);
-    }
-    
-    
-    public void puntajeJugador(int puntaje) {
-        puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
-        puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-        puntajeLabel.setForeground(Color.WHITE);
-        add(puntajeLabel, BorderLayout.CENTER);
-    }
-    
-    private void configurarBotones() {
-        botonVolver = new JButton("Volver a la Pantalla Inicial");
-        botonVolver.setFocusable(false);
-        botonVolver.addActionListener(e -> controladorVistas.mostrarPantallaInicial());
-
-        botonCerrar = new JButton("Cerrar Juego");
-        botonCerrar.setFocusable(false);
-        botonCerrar.addActionListener(e -> controladorVistas.cerrarJuego());
-
-        panelBotones = new JPanel();
-        panelBotones.setBackground(Color.BLACK);
-        panelBotones.add(botonVolver);
-        panelBotones.add(botonCerrar);
-        
-        add(panelBotones, BorderLayout.SOUTH);
-    }
 }

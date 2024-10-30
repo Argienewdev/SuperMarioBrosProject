@@ -117,33 +117,33 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        contextoMario.getEstado().aceptarVisitante(this);
+        contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.getContext(), this.miContexto)) {
-            ContextoMario contextoMario = marioDefault.getContext();
-            int perdidaPuntos = this.miContexto.getPuntosSustraidosPorMuerteCausada();
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)) {
+            ContextoMario contextoMario = marioDefault.obtenerContexto();
+            int perdidaPuntos = this.miContexto.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
-            miContexto.getNivel().obtenerPartida().reiniciarNivel();
-        } 
+            miContexto.obtenerNivel().obtenerPartida().reiniciarNivel();
+        }
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miContexto)) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
-	        superMario.getContext().cambiarEstado(marioRecuperacion);
+	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miContexto)) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
-    		marioFuego.getContext().cambiarEstado(marioRecuperacion);
+    		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
     	}
     }
     @Override

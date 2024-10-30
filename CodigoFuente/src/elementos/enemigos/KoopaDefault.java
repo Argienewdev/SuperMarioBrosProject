@@ -10,14 +10,14 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	protected ContextoKoopaTroopa contexto;
 	
-	public void setContext(ContextoKoopaTroopa contexto) {
+	public void establecerContexto(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
 	
 	@Override
 	public void invertirDireccion() {
-    	Point velocidad = new Point(-this.contexto.getVelocidadDireccional().x, this.contexto.getVelocidadDireccional().y);
-    	this.contexto.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(-this.contexto.obtenerVelocidadDireccional().x, this.contexto.obtenerVelocidadDireccional().y);
+    	this.contexto.establecerVelocidadDireccional(velocidad);
     }
 
 	@Override
@@ -28,16 +28,16 @@ public class KoopaDefault implements EstadoKoopa {
 	public ContextoKoopaTroopa getContext() {
 		return this.contexto;
 	}
-	public Visitante getVisitor() {
+	public Visitante obtenerVisitante() {
 		return new VisitorKoopaDefault(this);
 	}
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.contexto.getVelocidadDireccional().x < 0) {
-			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
-		} else if(this.contexto.getVelocidadDireccional().x > 0) {
-			this.contexto.setSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
+		if(this.contexto.obtenerVelocidadDireccional().x < 0) {
+			this.contexto.establecerSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
+		} else if(this.contexto.obtenerVelocidadDireccional().x > 0) {
+			this.contexto.establecerSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
 		}
 	}
 
@@ -47,22 +47,22 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	@Override
 	public void mover() {
-		if (this.contexto.getVelocidadDireccional().x <= 0) {
+		if (this.contexto.obtenerVelocidadDireccional().x <= 0) {
 			moverIzquierda();
-		} else if (this.contexto.getVelocidadDireccional().x > 0) {
+		} else if (this.contexto.obtenerVelocidadDireccional().x > 0) {
 			moverDerecha();
 		}
 	}
 	
 	
 	private void moverDerecha() {
-		Point velocidad = new Point(this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
-    	this.contexto.setVelocidadDireccional(velocidad);
+		Point velocidad = new Point(this.contexto.obtenerVelocidadHorizontalEnemigo(), this.contexto.obtenerVelocidadDireccional().y);
+    	this.contexto.establecerVelocidadDireccional(velocidad);
     }
     
     private void moverIzquierda() {
-    	Point velocidad = new Point(-this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
-    	this.contexto.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(-this.contexto.obtenerVelocidadHorizontalEnemigo(), this.contexto.obtenerVelocidadDireccional().y);
+    	this.contexto.establecerVelocidadDireccional(velocidad);
     }
 
 }

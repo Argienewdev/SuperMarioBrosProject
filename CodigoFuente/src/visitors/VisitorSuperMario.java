@@ -19,15 +19,15 @@ public class VisitorSuperMario implements Visitante {
     
     public VisitorSuperMario(SuperMario miEstado) {
         this.miEstado = miEstado;
-        this.miContexto = this.miEstado.getContext();
+        this.miContexto = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
-			buzzyBeetle.setRemovido(true);
-			this.miContexto.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+			buzzyBeetle.establecerRemovido(true);
+			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -39,8 +39,8 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
-    		goomba.setRemovido(true);
-			this.miContexto.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    		goomba.establecerRemovido(true);
+			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -58,9 +58,9 @@ public class VisitorSuperMario implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miContexto.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        this.miContexto.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 
@@ -76,9 +76,9 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	if(!superChampinion.getRemovido()) {
+    	if(!superChampinion.obtenerRemovido()) {
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorSuper());
-	        superChampinion.setRemovido(true);
+	        superChampinion.establecerRemovido(true);
 		}
     }
 
@@ -96,9 +96,9 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarMonedas(Monedas monedas) {
-    	if(!monedas.getRemovido()) {
+    	if(!monedas.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(monedas.obtenerPuntosPorSuper());
-        	monedas.setRemovido(true);
+        	monedas.establecerRemovido(true);
     	}
     }
 

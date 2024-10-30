@@ -18,28 +18,27 @@ public class VisitorMarioFuego implements Visitante {
 
     public VisitorMarioFuego(MarioFuego marioFuego) {
         this.miEstado = marioFuego;  // Cambié a marioFuego
-        this.miEntidad = this.miEstado.getContext();
+        this.miEntidad = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-			buzzyBeetle.setRemovido(true);
-			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+			buzzyBeetle.establecerRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-    		goomba.setRemovido(true);
-			this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    		goomba.establecerRemovido(true);
+			this.miEntidad.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -50,6 +49,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)
+        		&& this.miEntidad.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.getContext().establecerRemovido(true);
+            }
     }
 
     @Override
@@ -57,21 +60,18 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
-    
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -82,8 +82,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorFuego());
-        florDeFuego.eliminarDelNivel();
+    	if(!florDeFuego.obtenerRemovido()) {
+    		this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+            florDeFuego.establecerRemovido(true);
+    	}
     }
 
     @Override
@@ -142,19 +144,16 @@ public class VisitorMarioFuego implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
 	}
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
-		int puntos = enemigo.getPuntosOtorgadosPorEliminacion();
+		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
 		this.miEntidad.ganarPuntos(puntos);
-		enemigo.setRemovido(true);
+		enemigo.establecerRemovido(true);
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

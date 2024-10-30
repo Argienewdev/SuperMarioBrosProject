@@ -34,45 +34,44 @@ public class Spiny extends Enemigo {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.getAterrizo()) {
+		} else if(this.obtenerAterrizo()) {
 			if(!this.salioDelHuevo) {
 				aterrizar(fabricaSprites);
-			}else if(this.getVelocidadDireccional().x < 0) {
-				this.setSprite(fabricaSprites.getSpinyReversoCaminando());
-			} else if(this.getVelocidadDireccional().x > 0) {
-				this.setSprite(fabricaSprites.getSpinyFrontalCaminando());
+			}else if(this.obtenerVelocidadDireccional().x < 0) {
+				this.establecerSprite(fabricaSprites.getSpinyReversoCaminando());
+			} else if(this.obtenerVelocidadDireccional().x > 0) {
+				this.establecerSprite(fabricaSprites.getSpinyFrontalCaminando());
 			}
 		}
 	}
 	
-	protected void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpriteInvisible());
-		this.eliminarDelNivel();
-	}
-	
 	private void aterrizar(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpinyReversoCaminando());
+		this.establecerSprite(fabricaSprites.getSpinyReversoCaminando());
 		actualizarHitboxYPosicion(fabricaSprites);
 		this.salioDelHuevo = true;
 	}
 	
-	public void setAterrizo(Boolean aterrizo) {
+	public void establecerAterrizo(Boolean aterrizo) {
 		this.aterrizo = aterrizo;
 	}
 	
-	public boolean getAterrizo() {
+	public boolean obtenerAterrizo() {
 		return this.aterrizo;
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int x = this.getPosicion().x;
-		int y = this.getPosicion().y + (this.obtenerAlto() - this.getSprite().getAltoImagen());
-		int ancho = this.getSprite().getAnchoImagen();
-		int alto = this.getSprite().getAltoImagen();
+		int x = this.obtenerPosicion().x;
+		int y = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().establecerAltoImagen());
+		int ancho = this.obtenerSprite().obtenerAnchoImagen();
+		int alto = this.obtenerSprite().establecerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.setHitbox(nuevaHitbox);
-		this.setPosicion(nuevaPosicion);
+		this.establecerPosicion(nuevaPosicion);
 	}
 	
+	@Override
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.getSpinyMuerto();
+	}
 }

@@ -70,26 +70,26 @@ public class VisitorLadrillo implements Visitante {
     
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.getContext());
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.obtenerContexto());
     }
     
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioInvulnerable.getContext());
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioInvulnerable.obtenerContexto());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.getContext());
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.obtenerContexto());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.getContext());
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.obtenerContexto());
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.getContext());
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.obtenerContexto());
     }
 
     @Override
@@ -149,11 +149,11 @@ public class VisitorLadrillo implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			int velocidadActualEnX = fireball.getVelocidadDireccional().x;
+   			int velocidadActualEnX = fireball.obtenerVelocidadDireccional().x;
    			Point salto = new Point(velocidadActualEnX,-20);
-   			fireball.setVelocidadDireccional(salto);
+   			fireball.establecerVelocidadDireccional(salto);
    		}else {
-   			fireball.setRemovido(true);
+   			fireball.establecerRemovido(true);
    		}
 	}
 

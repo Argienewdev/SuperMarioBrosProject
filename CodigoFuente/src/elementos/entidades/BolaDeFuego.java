@@ -25,20 +25,16 @@ public class BolaDeFuego extends NoJugable {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.getRemovido()) {
+		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarDelNivel();
 		}
 	}
 
 	public Jugable obtenerJugador() {
 		return miJugador;
 	}
-	
-	private void moverDerecha() {
-	}
 
-	private void moverIzquierda() {
-	}
 	
 	@Override
 	public void mover() {
@@ -50,7 +46,7 @@ public class BolaDeFuego extends NoJugable {
 
 	@Override
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpriteInvisible());
-		this.getNivel().addEntidadesAEliminar(this);
+		this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		this.obtenerNivel().addEntidadesAEliminar(this);
 	}	
 }

@@ -46,18 +46,18 @@ public abstract class PowerUp extends NoJugable {
 
 
     private void moverDerecha() {
-    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
+    	this.establecerVelocidadDireccional(velocidad);
     }
     
     private void moverIzquierda() {
-    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_POWERUP, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
+    	this.establecerVelocidadDireccional(velocidad);
     }
     
     public void invertirDireccion() {
-    	Point velocidad = new Point(-this.getVelocidadDireccional().x, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+    	this.establecerVelocidadDireccional(velocidad);
     }
 	
 	public boolean esMovible() {
@@ -73,15 +73,15 @@ public abstract class PowerUp extends NoJugable {
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpriteInvisible());
-		this.getNivel().addEntidadesAEliminar(this);
+		this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		this.obtenerNivel().addEntidadesAEliminar(this);
 	}
 	
 	public BloqueDePregunta getBloquePregunta() {
 		return this.bloquePregunta;
 	}
 	
-	public void setBloquePregunta(BloqueDePregunta bloquePregunta) {
+	public void establecerBloquePregunta(BloqueDePregunta bloquePregunta) {
 		this.bloquePregunta = bloquePregunta;
 	}
 	
@@ -89,11 +89,11 @@ public abstract class PowerUp extends NoJugable {
 	public void mover() {
 		if(removido) {
     		Point velocidad = new Point(0, 0);
-    		this.setVelocidadDireccional(velocidad);
+    		this.establecerVelocidadDireccional(velocidad);
     	}else {
-    		if (this.getVelocidadDireccional().x < 0) {
+    		if (this.obtenerVelocidadDireccional().x < 0) {
     			moverIzquierda();
-    		} else if (this.getVelocidadDireccional().x >= 0){
+    		} else if (this.obtenerVelocidadDireccional().x >= 0){
     			moverDerecha();
     		}
     	}

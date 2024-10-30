@@ -26,18 +26,13 @@ public class Goomba extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.removido) {
-			this.setVelocidadDireccional(new Point(0, 0));
+			this.establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
 		}
 	}
 	
-	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		if(getContadorTicks() == 1){
-			this.setSprite(fabricaSprites.getGoombaAplastado());
-			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(getContadorTicks() == ticksAnimacion) {
-			this.setSprite(fabricaSprites.getSpriteInvisible());
-			this.eliminarDelNivel();
-		}
+	@Override
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.getGoombaMuerto();
 	}
 } 

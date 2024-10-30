@@ -40,13 +40,13 @@ public class FlorDeFuego extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.getRemovido()) {
+		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
 		}else {
 			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-				this.setSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());
+				this.establecerSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());
 			} else if(getContadorTicks() == ticksHastaSalirDelBloque) {
-				this.setSprite(fabricaSprites.getFlorDeFuegoQuieto());
+				this.establecerSprite(fabricaSprites.getFlorDeFuegoQuieto());
 			} 
 		}
 	}

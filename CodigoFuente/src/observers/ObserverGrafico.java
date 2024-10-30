@@ -28,14 +28,14 @@ public class ObserverGrafico extends JLabel implements Observer {
 	}
 	
 	protected void actualizarImagen() {
-		String ruta_imagen = entidad_observada.getSprite().getRutaImagen();
+		String ruta_imagen = entidad_observada.obtenerSprite().obtenerRutaImagen();
 		ImageIcon icono = new ImageIcon(ruta_imagen);
 		setIcon(icono);
 	}
 	
 	protected void actualizarPosicionTamanio() {
-		int x = entidad_observada.getPosicion().x;
-		int y = entidad_observada.getPosicion().y;
+		int x = entidad_observada.obtenerPosicion().x;
+		int y = entidad_observada.obtenerPosicion().y;
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);

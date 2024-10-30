@@ -21,42 +21,55 @@ public abstract class Enemigo extends NoJugable {
 		this.colisionAbajo = true;
 	}
     
-    public int getPuntosOtorgadosPorEliminacion() {
+    public int obtenerPuntosOtorgadosPorEliminacion() {
         return this.puntosOtorgadosPorEliminacion;
     }
     
-    public int getPuntosSustraidosPorMuerteCausada() {
+    public int obtenerPuntosSustraidosPorMuerteCausada() {
         return this.puntosSustraidosPorMuerteCausada;
     }
 
     private void moverDerecha() {
-    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
+    	this.establecerVelocidadDireccional(velocidad);
     }
     
     private void moverIzquierda() {
-    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_ENEMIGO, this.getVelocidadDireccional().y);
-    	this.setVelocidadDireccional(velocidad);
+    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
+    	this.establecerVelocidadDireccional(velocidad);
     }
     
     public void invertirDireccion() {
     	if(removido) {
     		Point velocidad = new Point(0, 0);
-    		this.setVelocidadDireccional(velocidad);
+    		this.establecerVelocidadDireccional(velocidad);
     	}else {
-    		Point velocidad = new Point(-this.getVelocidadDireccional().x, this.getVelocidadDireccional().y);
-    		this.setVelocidadDireccional(velocidad);
+    		Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+    		this.establecerVelocidadDireccional(velocidad);
     	}
     }
+    
+    protected abstract Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites);
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-			this.setVelocidadDireccional(new Point(0, 0));
+			this.establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
     
-    public int getVelocidadHorizontalEnemigo() {
+    public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
+    	this.incrementarContadorTicks();
+		if(getContadorTicks() == 1){
+			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
+			this.actualizarHitboxYPosicion(fabricaSprites);
+		} else if(getContadorTicks() == ticksAnimacion) {
+			this.establecerSprite(fabricaSprites.getSpriteInvisible());
+			this.eliminarDelNivel();
+		}
+	}
+    
+    public int obtenerVelocidadHorizontalEnemigo() {
     	return VELOCIDAD_HORIZONTAL_ENEMIGO;
     }
     
@@ -66,14 +79,15 @@ public abstract class Enemigo extends NoJugable {
 	public void mover() {
     	if(removido) {
     		Point velocidad = new Point(0, 0);
-    		this.setVelocidadDireccional(velocidad);
+    		this.establecerVelocidadDireccional(velocidad);
     	} else {
-    		if (this.getVelocidadDireccional().x <= 0) {
+    		if (this.obtenerVelocidadDireccional().x <= 0) {
     			moverIzquierda();
-    		} else if (this.getVelocidadDireccional().x > 0) {
+    		} else if (this.obtenerVelocidadDireccional().x > 0) {
     			moverDerecha();
     		}
     	}
 	}
+    
    
 }

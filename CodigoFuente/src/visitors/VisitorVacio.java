@@ -19,22 +19,22 @@ public class VisitorVacio implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	buzzyBeetle.setRemovido(true);
+    	buzzyBeetle.establecerRemovido(true);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {    
-    	spiny.setRemovido(true);
+    	spiny.establecerRemovido(true);
     }
     
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	goomba.setRemovido(true);
+    	goomba.establecerRemovido(true);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	lakitu.setRemovido(true);
+    	lakitu.establecerRemovido(true);
     }
 
     @Override
@@ -43,22 +43,22 @@ public class VisitorVacio implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
-    	superChampinion.setRemovido(true);
+    	superChampinion.establecerRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego flor) {
-    	flor.setRemovido(true);
+    	flor.establecerRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
-    	champinionVerde.setRemovido(true);
+    	champinionVerde.establecerRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	estrella.setRemovido(true);
+    	estrella.establecerRemovido(true);
     }
 
     @Override
@@ -115,12 +115,12 @@ public class VisitorVacio implements Visitante {
     	contextoMario.perderPuntos(puntajeASustraer);
     	contextoMario.perderVida();
     	contextoMario.reiniciarEstado();
-        miEntidad.getNivel().obtenerPartida().reiniciarNivel();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) { 
-    	contextoKoopaTroopa.setRemovido(true);
+    	contextoKoopaTroopa.establecerRemovido(true);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class VisitorVacio implements Visitante {
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-    	fireball.setRemovido(true);
+    	fireball.establecerRemovido(true);
    	}
 
 	@Override

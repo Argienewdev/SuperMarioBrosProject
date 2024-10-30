@@ -19,12 +19,12 @@ public class ContextoMario extends Jugable {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.estadoMario = estadoMario;
 		this.cambiarEstado = false;
-		estadoMario.setContext(this);
+		estadoMario.establecerContexto(this);
 	}
 	
 	public void cambiarEstado(EstadoMario estadoMario) {
 		this.estadoMario = estadoMario;
-		estadoMario.setContext(this);
+		estadoMario.establecerContexto(this);
 		this.cambiarEstado = true;
 	}
 
@@ -36,7 +36,7 @@ public class ContextoMario extends Jugable {
 		estadoMario.actualizarSprite(fabricaSprites);
 	}
 	
-	public EstadoMario getEstado() {
+	public EstadoMario obtenerEstado() {
 		return estadoMario;
 	}
 	

@@ -24,7 +24,7 @@ public class ControladorMovimiento {
 	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.marioJugable = marioJugable; 
-		this.marioJugable.setVelocidadDireccional(new Point(0,0));
+		this.marioJugable.establecerVelocidadDireccional(new Point(0,0));
 		this.velocidadHorizontal = 0;
 		this.velocidadVertical = 0;
 		this.nivel = nivel;
@@ -42,13 +42,13 @@ public class ControladorMovimiento {
 	
 	private void moveMarioDerecha() {
 		this.velocidadHorizontal = ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
-		marioJugable.setAvanzando(true);
+		marioJugable.establecerAvanzando(true);
 		aplicarVelocidad();
 	}
 	
 	private void moveMarioIzquierda() {
 		this.velocidadHorizontal = -ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL;
-		marioJugable.setRetrocediendo(true);
+		marioJugable.establecerRetrocediendo(true);
 		aplicarVelocidad();
 	}
 	
@@ -60,28 +60,28 @@ public class ControladorMovimiento {
 	}
 	
 	private void cambiarPosicionHitboxDeMarioX() {
-		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.getVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, marioJugable.getPosicion().y);
+		int nuevaPosicionX = marioJugable.obtenerHitbox().x + marioJugable.obtenerVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, marioJugable.obtenerPosicion().y);
 		marioJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void cambiarPosicionHitboxDeMarioY() {
-		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.getVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(marioJugable.getPosicion().x, nuevaPosicionY);
+		int nuevaPosicionY = marioJugable.obtenerHitbox().y + marioJugable.obtenerVelocidadDireccional().y;
+		Point nuevaPosicion = new Point(marioJugable.obtenerPosicion().x, nuevaPosicionY);
 		marioJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void iniciarSalto() {
 		velocidadVertical = ConstantesGlobales.FUERZA_SALTO;
-		marioJugable.setEnElAire(true);
+		marioJugable.establecerEnElAire(true);
 		aplicarVelocidad();
 	}
 	
 	private void aplicarGravedadSalto() {
-		if(velocidadVertical < ConstantesGlobales.VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.getColisionAbajo()){
+		if(velocidadVertical < ConstantesGlobales.VELOCIDAD_MAXIMA_DE_CAIDA && !marioJugable.obtenerColisionAbajo()){
 			velocidadVertical += ConstantesGlobales.GRAVEDAD;
 			aplicarVelocidad();
-		}else if(!marioJugable.getColisionAbajo()){
+		}else if(!marioJugable.obtenerColisionAbajo()){
 			aplicarVelocidad();
 		}
 	}
@@ -92,13 +92,13 @@ public class ControladorMovimiento {
 	}
 	
 	private void determinarAccion() {
-		this.marioJugable.setAvanzando(false);
-		this.marioJugable.setRetrocediendo(false);
+		this.marioJugable.establecerAvanzando(false);
+		this.marioJugable.establecerRetrocediendo(false);
 		
 		if(marioJugable.getColisionArriba()) {
 			reiniciarVelocidadVertical();
-			marioJugable.setColisionArriba(false);
-		}else if (!marioJugable.getColisionAbajo()) {
+			marioJugable.establecerColisionArriba(false);
+		}else if (!marioJugable.obtenerColisionAbajo()) {
 	        aplicarGravedadSalto();
 	    } else if (sensorDeTeclasJuego.obtenerWPresionada()) {
 	        iniciarSalto();
@@ -117,7 +117,7 @@ public class ControladorMovimiento {
 	    if (realizarAccionEspecial()) {
 	    	accionEspecial();
 	    }
-	    marioJugable.setColisionAbajo(false);
+	    marioJugable.establecerColisionAbajo(false);
 	}
 
 	public void verificarColisiones(Jugable entidad) {
@@ -133,12 +133,12 @@ public class ControladorMovimiento {
 				//de juego aca tira error porque esta siendo eliminado
 				for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
 				    if (entidad.huboColision(elemento)) {
-				        elemento.aceptarVisitante(entidad.getVisitor());
-				        entidad.aceptarVisitante(elemento.getVisitor());
+				        elemento.aceptarVisitante(entidad.obtenerVisitante());
+				        entidad.aceptarVisitante(elemento.obtenerVisitante());
 				    }
 				}
 			}
-			entidad.setPosicion(entidad.obtenerHitbox().getLocation());
+			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 		} else {
 	    	this.nivel.obtenerPartida().cambiarNivel();
 		}
@@ -146,7 +146,7 @@ public class ControladorMovimiento {
 	
 	private void aplicarVelocidad() {
 		Point nuevaVelocidad = new Point(velocidadHorizontal, velocidadVertical);
-		marioJugable.setVelocidadDireccional(nuevaVelocidad);
+		marioJugable.establecerVelocidadDireccional(nuevaVelocidad);
 	}
 	
 	private void reiniciarVelocidadHorizontal() {

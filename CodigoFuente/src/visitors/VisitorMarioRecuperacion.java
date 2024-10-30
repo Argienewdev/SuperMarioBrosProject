@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -16,53 +18,57 @@ public class VisitorMarioRecuperacion implements Visitante{
 	 
 	public VisitorMarioRecuperacion (MarioRecuperacion miEstado) {
 		this.miEstado = miEstado;
-		this.miEntidad = miEstado.getContext();
+		this.miEntidad = miEstado.obtenerContexto();
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
 		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
-			buzzyBeetle.setRemovido(true);
-			this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+			buzzyBeetle.establecerRemovido(true);
+			this.miEntidad.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Implementación pendiente
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
-            goomba.setRemovido(true);
-            this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+            goomba.establecerRemovido(true);
+            this.miEntidad.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
     	}
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Implementación pendiente
+    	contextoKoopaTroopa.getEstado().aceptarVisitante(this.miEstado.obtenerVisitante());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Implementación pendiente
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)
+        		&& this.miEntidad.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.getContext().establecerRemovido(true);
+    	}
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-    		koopaDefault.getContext().setRemovido(true);
-            this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
-    	}
+	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
+	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
+		}
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miEntidad)) {
-    		lakitu.setRemovido(true);
-            this.miEntidad.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+    		lakitu.establecerRemovido(true);
+            this.miEntidad.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
     	}
     }
 
@@ -72,25 +78,25 @@ public class VisitorMarioRecuperacion implements Visitante{
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
 		this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
-        superChampinion.setRemovido(true);
+        superChampinion.establecerRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-    	florDeFuego.setRemovido(true);
+    	florDeFuego.establecerRemovido(true);
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
     	this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
-    	champinionVerde.setRemovido(true);
+    	champinionVerde.establecerRemovido(true);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
     	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorDefault());
-        estrella.setRemovido(true);
+        estrella.establecerRemovido(true);
     }
 
     @Override
@@ -111,7 +117,7 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarBandera(Bandera bandera) {
-    	bandera.aceptarVisitante(miEntidad.getVisitor());
+    	bandera.aceptarVisitante(miEntidad.obtenerVisitante());
     }
 
     @Override

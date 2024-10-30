@@ -33,7 +33,7 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarObserverMario() {
-		this.marioJugable.getObserverGrafico().actualizar();
+		this.marioJugable.obtenerObserverGrafico().actualizar();
 	}
 	
 	public ControladorMovimiento obtenerControladorDeMovimiento() {

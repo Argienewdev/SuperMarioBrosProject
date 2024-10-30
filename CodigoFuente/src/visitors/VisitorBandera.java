@@ -123,7 +123,7 @@ public class VisitorBandera implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		fireball.setRemovido(true);
+		fireball.establecerRemovido(true);
 	}
 
 	@Override

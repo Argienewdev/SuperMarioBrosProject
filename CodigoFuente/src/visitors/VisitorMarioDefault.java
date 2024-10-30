@@ -19,16 +19,16 @@ public class VisitorMarioDefault implements Visitante {
 
     public VisitorMarioDefault(MarioDefault miEstado) {
         this.miEstado = miEstado;
-        this.miContexto = miEstado.getContext();
+        this.miContexto = miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if(this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto) &&
-    	   !buzzyBeetle.getRemovido()) {
-    		buzzyBeetle.setRemovido(true);
-            this.miContexto.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+    	   !buzzyBeetle.obtenerRemovido()) {
+    		buzzyBeetle.establecerRemovido(true);
+            this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
     	}
     }
 
@@ -39,9 +39,9 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if(this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
-    	   && !goomba.getRemovido()) {
-            goomba.setRemovido(true);
-            this.miContexto.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    	   && !goomba.obtenerRemovido()) {
+            goomba.establecerRemovido(true);
+            this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
         }
     }
 
@@ -53,8 +53,8 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)
-    		&& this.miContexto.getVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-    	   koopaEnCaparazon.getContext().setRemovido(true);
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+    	   koopaEnCaparazon.getContext().establecerRemovido(true);
         }
     }
 
@@ -63,17 +63,17 @@ public class VisitorMarioDefault implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
-	        this.miContexto.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
-	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+	        this.miContexto.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
+	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
     	if(this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
-    	   && !lakitu.getRemovido()) {
-    		lakitu.setRemovido(true);
-            this.miContexto.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+    	   && !lakitu.obtenerRemovido()) {
+    		lakitu.establecerRemovido(true);
+            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
         }
     }
 
@@ -84,19 +84,19 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-		if(!superChampinion.getRemovido()) {
+		if(!superChampinion.obtenerRemovido()) {
 			EstadoMario nuevoEstado = new SuperMario();
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
 			this.miContexto.cambiarEstado(nuevoEstado);
-	        superChampinion.setRemovido(true);
+	        superChampinion.establecerRemovido(true);
 		}
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	if(!florDeFuego.getRemovido()) {
+    	if(!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
-            florDeFuego.setRemovido(true);
+            florDeFuego.establecerRemovido(true);
     	}
     }
 
@@ -106,9 +106,9 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	if(!estrella.getRemovido()) {
+    	if(!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
-            estrella.setRemovido(true);
+            estrella.establecerRemovido(true);
     	}
     }
 
@@ -131,7 +131,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarBandera(Bandera bandera) {
-    	bandera.aceptarVisitante(miContexto.getVisitor());
+    	bandera.aceptarVisitante(miContexto.obtenerVisitante());
     }
 
     @Override

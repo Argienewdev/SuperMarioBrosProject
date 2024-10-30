@@ -38,6 +38,8 @@ public class Juego {
 
 	private FabricaSprites fabricaSprites;
 
+	private FabricaSilueta fabricaSilueta;
+
 	private GeneradorDeNivel generadorDeNivel;
 		
 	private PantallaDeJuego pantallaDeJuego;
@@ -58,7 +60,7 @@ public class Juego {
 	
 	public Sprite obtenerSpriteMario(){
 		this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-		return fabricaSprites.getMarioDefaultFrontalQuieto();
+		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 	
 	public Ranking obtenerRanking() {
@@ -76,7 +78,9 @@ public class Juego {
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
-		this.fabricaSprites=generadorDeNivel.getFabricaSprites();
+		this.fabricaSprites = generadorDeNivel.getFabricaSprites();
+		this.fabricaSilueta = generadorDeNivel.getFabricaSilueta();
+		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
@@ -89,7 +93,7 @@ public class Juego {
 	
 	public void finalizarJuego () {
 		jugador = new Jugador();
-		jugador.actualizarPuntos(partida.obtenerJugable().getPuntos());
+		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
 		ranking.agregarJugador(jugador);
@@ -103,7 +107,6 @@ public class Juego {
 	
 	public void cierreDeJuego() {
 		 ranking.guardarEstado();
-	     //TODO liberarRecursos(); si fuera necesario
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}

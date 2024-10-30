@@ -60,7 +60,7 @@ public class GeneradorDeNivel {
 	}
 	
 	public Nivel generarNivel(int numeroNivel, Partida partida) {
-		Silueta silueta = fabricaSilueta.getSilueta();
+		Silueta silueta = fabricaSilueta.obtenerSilueta();
 		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
@@ -82,83 +82,83 @@ public class GeneradorDeNivel {
                 
                 switch(identificadorElemento) {
 	                case 0: {
-	                	Vacio vacio = this.fabricaPlataformas.getVacio(posicion);
+	                	Vacio vacio = this.fabricaPlataformas.obtenerVacio(posicion);
 	                	nivel.addPlataforma(vacio);
 	                	nivel.addPlataformasAfectables(vacio);
 	                	break;
 	                }	             
 	                case 1: {
-	                    Ladrillo ladrillo = this.fabricaPlataformas.getLadrillo(posicion);
+	                    Ladrillo ladrillo = this.fabricaPlataformas.obtenerLadrillo(posicion);
 	                    nivel.addPlataforma(ladrillo);
 	                    nivel.addPlataformasAfectables(ladrillo);
 	                    break;
 	                }	             
 	                case 2: {         
 	                    int alturaTuberia = numeros[3];
-	                    Tuberia tuberiaVacia = this.fabricaPlataformas.getTuberiaVacia(posicion, alturaTuberia);
+	                    Tuberia tuberiaVacia = this.fabricaPlataformas.obtenerTuberiaVacia(posicion, alturaTuberia);
 	                    nivel.addPlataforma(tuberiaVacia);
 	                    break;
 	                }
 	                case 3: {
 	                	int alturaTuberia = numeros[3];
-	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.getTuberiaConPiranhaPlant(posicion, alturaTuberia);
+	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.obtenerTuberiaConPiranhaPlant(posicion, alturaTuberia);
 	                    nivel.addPlataforma(tuberiaConPiranhaPlant);
 	                    break;
 	                }
 	                case 4: {
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.getBloqueDePregunta(posicion, nivel,pantallaDeJuego);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.obtenerBloqueDePregunta(posicion, nivel,pantallaDeJuego);
 	                    nivel.addPlataforma(bloqueDePregunta);
 	                    nivel.addPlataformasAfectables(bloqueDePregunta);
 	                    break;
 	                }
 	                case 5: {
-	                    Bandera bandera = this.fabricaPlataformas.getBandera(posicion,this.controladorVistas);
+	                    Bandera bandera = this.fabricaPlataformas.obtenerBandera(posicion,this.controladorVistas);
 	                	nivel.addPlataforma(bandera);
 	                    break;
 	                }
 	                case 6: {
-	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.getPrincesaPeach(posicion,this.controladorVistas);
+	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.obtenerPrincesaPeach(posicion,this.controladorVistas);
 	                    nivel.addPlataforma(princesaPeach);
 	                    break;
 	                }
 	                case 7: {
-	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.getBloqueSolido(posicion);
+	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.obtenerBloqueSolido(posicion);
 	                	nivel.addPlataforma(bloqueSolido);
 	                	break;
 	                } 
 	                case 8: {
-	                	Piso piso = this.fabricaPlataformas.getPiso(posicion);
+	                	Piso piso = this.fabricaPlataformas.obtenerPiso(posicion);
 	                	nivel.addPlataforma(piso);
 	                	break;
 	                } 
 	                case 20: {
 	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.getMonedas(posicion, cantidadMonedas, false);
-	                	nivel.addPowerUp(monedas);
+	                	Monedas monedas = this.fabricaEntidades.obtenerMonedas(posicion, cantidadMonedas, false);
+	                	nivel.agregarPowerUp(monedas);
 	                	break;
 	                }
 	                case 40: {
-	                    Lakitu lakitu = this.fabricaEntidades.getLakitu(posicion, this.fabricaEntidades);
+	                    Lakitu lakitu = this.fabricaEntidades.obtenerLakitu(posicion, this.fabricaEntidades);
 	                    nivel.addEnemigo(lakitu);
 	                    break;
 	                } 
 	                case 41: {
-	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.getContextoKoopaTroopa(posicion);
+	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.obtenerContextoKoopaTroopa(posicion);
 	                    nivel.addEnemigo(contextoKoopaTroopa);
 	                    break;
 	                } 
 	                case 42: {
-	                    Goomba goomba = fabricaEntidades.getGoomba(posicion);
+	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
 	                    nivel.addEnemigo(goomba);
 	                    break;
 	                }
 	                case 43: {
-	                    Spiny spiny = fabricaEntidades.getSpiny(posicion);
+	                    Spiny spiny = fabricaEntidades.obtenerSpiny(posicion);
 	                    nivel.addEnemigo(spiny);
 	                    break;
 	                }
 	                case 44: {
-	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.getBuzzyBeetle(posicion);
+	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.obtenerBuzzyBeetle(posicion);
 	                    nivel.addEnemigo(buzzyBeetle);
 	                    break;
 	                }
@@ -181,13 +181,13 @@ public class GeneradorDeNivel {
 		}
 		
 		for(Plataforma plataforma : nivel.getPlataformas()) {
-			plataforma.getObserverGrafico().actualizar();
+			plataforma.obtenerObserverGrafico().actualizar();
 		}
 		for(PowerUp powerUp : nivel.getPowerUps()) {
-			powerUp.getObserverGrafico().actualizar();
+			powerUp.obtenerObserverGrafico().actualizar();
 		}
 		for(Enemigo enemigo : nivel.getEnemigos()) {
-			enemigo.getObserverGrafico().actualizar();
+			enemigo.obtenerObserverGrafico().actualizar();
 		}
 		return nivel;
 	}
@@ -195,7 +195,7 @@ public class GeneradorDeNivel {
 	@SuppressWarnings("exports")
 	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
 		Point posicionInicio = posicion;
-		ContextoMario mario = fabricaEntidades.getContextoMario(posicionInicio);
+		ContextoMario mario = fabricaEntidades.obtenerContextoMario(posicionInicio);
 		nivel.setMario(mario);
 	}
 	
@@ -205,6 +205,10 @@ public class GeneradorDeNivel {
 	
 	public FabricaSprites getFabricaSprites() {
 		return fabricaSprites;
+	}
+	
+	public FabricaSilueta getFabricaSilueta() {
+		return fabricaSilueta;
 	}
 	
 }

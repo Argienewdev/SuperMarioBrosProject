@@ -10,7 +10,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import elementos.ElementoDeJuego;
+import elementos.Silueta;
 import elementos.entidades.Jugable;
+import fabricas.FabricaSilueta;
 import juego.Juego;
 import juego.Nivel;
 import observers.ObserverGrafico;
@@ -42,7 +44,6 @@ public class PantallaDeJuego extends JPanel {
 
     public PantallaDeJuego() {
         configurarVentana();
-        establecerFondo();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
 
@@ -75,10 +76,15 @@ public class PantallaDeJuego extends JPanel {
         repaint();
 	}
 
+    public void registrarFondo(FabricaSilueta fabricaSilueta) {
+    	Silueta siluetaFondo = fabricaSilueta.obtenerSilueta();
+    	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.obtenerRutaSilueta());
+        this.fondo = new JLabel(fondoImagen);
+        establecerFondo();
+    }
+    
 	protected void establecerFondo() {
-        ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
-        fondo = new JLabel(fondoImagen);
-        fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
+        fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
         layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
         revalidate();
         repaint();
@@ -87,7 +93,7 @@ public class PantallaDeJuego extends JPanel {
     @SuppressWarnings("exports")
 	public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
-        marioLabel = jugable.getObserverGrafico();
+        marioLabel = jugable.obtenerObserverGrafico();
         setPosicionOriginalJugable();
         setPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
@@ -96,11 +102,11 @@ public class PantallaDeJuego extends JPanel {
     }
 
     private void setPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.marioJugable.getPosicion();
+		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicion();
 	}
 
 	private void setPosicionOriginalJugable () {
-		this.posicionOriginalJugable = this.marioJugable.getPosicion();	
+		this.posicionOriginalJugable = this.marioJugable.obtenerPosicion();	
 	}
 
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
@@ -120,8 +126,8 @@ public class PantallaDeJuego extends JPanel {
     	//la posicion grafica de mario ya se actualizo, entonces cuando se ejecuta este metodo, la posicion grafica de mario es retrotraida
     	//y es visible para el jugador
         hud.actualizarTiempo();
-        hud.actualizarVidas(marioJugable.getVidas());
-        hud.actualizarPuntaje(marioJugable.getPuntos());
+        hud.actualizarVidas(marioJugable.obtenerVidas());
+        hud.actualizarPuntaje(marioJugable.obtenerPuntos());
 
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
@@ -169,7 +175,7 @@ public class PantallaDeJuego extends JPanel {
         			if (observerGrafico.obtenerDebeMoverseConElFondo()) {
         				Point posicionLabel = observerGrafico.getLocation();
             			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
-            			observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
+            			observerGrafico.getEntidadObservada().establecerPosicion(posicionLabel);
             			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
             			observerGrafico.actualizar();
             			revalidate();

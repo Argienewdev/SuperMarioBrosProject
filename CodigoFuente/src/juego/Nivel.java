@@ -60,17 +60,17 @@ public class Nivel {
     
     public void addPlataforma(Plataforma plataforma) {
         this.plataformas.add(plataforma);
-        plataforma.setNivel(this);
+        plataforma.establecerNivel(this);
     }
 
     public void addEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
-        enemigo.setNivel(this);
+        enemigo.establecerNivel(this);
     }
 
-    public void addPowerUp(PowerUp powerUp) {
+    public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
-        powerUp.setNivel(this);
+        powerUp.establecerNivel(this);
     }
     
 	public void addEntidadesAEliminar(ElementoDeJuego entidad) {
@@ -95,7 +95,7 @@ public class Nivel {
 
     public void setMario(ContextoMario mario) {
         this.mario = mario;
-        this.mario.setNivel(this);
+        this.mario.establecerNivel(this);
     }
 
     public void removePlataforma(Plataforma plataforma) {
@@ -104,7 +104,7 @@ public class Nivel {
 
     public void agregarBolaDeFuegoAAgregar() {
     	for(BolaDeFuego bolaDeFuego : bolasDeFuegoAAgregar) {
-    		bolaDeFuego.setNivel(this);
+    		bolaDeFuego.establecerNivel(this);
     	}
     	bolasDeFuego.addAll(bolasDeFuegoAAgregar);
     	bolasDeFuegoAAgregar = new ArrayList<BolaDeFuego>();
@@ -112,7 +112,7 @@ public class Nivel {
     
     public void agregarSpinysAAgregar() {
     	for(Enemigo spiny : spinysAAgregar) {
-    		spiny.setNivel(this);
+    		spiny.establecerNivel(this);
     	}
     	enemigos.addAll(spinysAAgregar);
     	spinysAAgregar = new ArrayList<Enemigo>();
@@ -123,6 +123,7 @@ public class Nivel {
     	powerUps.removeAll(entidadesAEliminar);
     	plataformas.removeAll(entidadesAEliminar);
     	plataformasAfectables.removeAll(entidadesAEliminar);
+    	bolasDeFuego.removeAll(entidadesAEliminar);
     	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     

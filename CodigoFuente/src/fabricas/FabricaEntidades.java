@@ -38,158 +38,158 @@ public class FabricaEntidades {
     }
     
     @SuppressWarnings("exports")
-	public Spiny getSpiny(Point posicion) {
+	public Spiny obtenerSpiny(Point posicion) {
     	Sprite sprite = fabricaSprites.getSpinyCayendo();
         Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
-        spinyADevolver.setVisitor(visitorSpiny);
+        spinyADevolver.establecerVisitor(visitorSpiny);
         ObserverGrafico observerGraficoSpiny = new ObserverGrafico(spinyADevolver);
-        spinyADevolver.setObserverGrafico(observerGraficoSpiny);
-        this.pantallaDeJuego.agregarLabel(spinyADevolver.getObserverGrafico());
+        spinyADevolver.establecerObserverGrafico(observerGraficoSpiny);
+        this.pantallaDeJuego.agregarLabel(spinyADevolver.obtenerObserverGrafico());
         return spinyADevolver;
     }
     
     @SuppressWarnings("exports")
-	public ContextoKoopaTroopa getContextoKoopaTroopa(Point posicion) {
+	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.getKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial= new KoopaDefault();
         ContextoKoopaTroopa koopaADevolver = new ContextoKoopaTroopa(sprite, posicion, null, null, estadoInicial);
         Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(koopaADevolver);
-        koopaADevolver.setVisitor(visitorContextoKoopaTroopa);
+        koopaADevolver.establecerVisitor(visitorContextoKoopaTroopa);
         ObserverGrafico observerGraficoKoopa = new ObserverGrafico(koopaADevolver);
-        koopaADevolver.setObserverGrafico(observerGraficoKoopa);
-        this.pantallaDeJuego.agregarLabel(koopaADevolver.getObserverGrafico());
+        koopaADevolver.establecerObserverGrafico(observerGraficoKoopa);
+        this.pantallaDeJuego.agregarLabel(koopaADevolver.obtenerObserverGrafico());
     	return koopaADevolver;
     }
        
 	@SuppressWarnings("exports")
-	public PiranhaPlant getPiranhaPlant(Point posicion) {
-        Sprite sprite = fabricaSprites.getPiranhaPlantCerrada();
+	public PiranhaPlant obtenerPiranhaPlant(Point posicion) {
+        Sprite sprite = fabricaSprites.getPiranhaPlant();
         PiranhaPlant piranhaADevolver=new PiranhaPlant(sprite,posicion, null, null);
         Visitante visitorPiranha = new VisitorPiranhaPlant(piranhaADevolver);
-        piranhaADevolver.setVisitor(visitorPiranha);
+        piranhaADevolver.establecerVisitor(visitorPiranha);
 		ObserverGrafico observerGraficoPiranha = new ObserverGrafico(piranhaADevolver);
-		piranhaADevolver.setObserverGrafico(observerGraficoPiranha);
-		this.pantallaDeJuego.agregarLabel(piranhaADevolver.getObserverGrafico());
+		piranhaADevolver.establecerObserverGrafico(observerGraficoPiranha);
+		this.pantallaDeJuego.agregarLabel(piranhaADevolver.obtenerObserverGrafico());
         return piranhaADevolver;
     }
     
     @SuppressWarnings("exports")
-	public Lakitu getLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
+	public Lakitu obtenerLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.getLakituReversoFueraDeLaNube();
         Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null, fabricaEntidades);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
-        lakituADevolver.setVisitor(visitorLakitu);
+        lakituADevolver.establecerVisitor(visitorLakitu);
         ObserverGrafico observerGraficoLakitu = new ObserverGrafico(lakituADevolver);
         observerGraficoLakitu.setDebeMoverseConElFondo(false);
-        lakituADevolver.setObserverGrafico(observerGraficoLakitu);
+        lakituADevolver.establecerObserverGrafico(observerGraficoLakitu);
         lakituADevolver.establecerDebeMantenerseSiempreEnPantalla(true);
-        this.pantallaDeJuego.agregarLabel(lakituADevolver.getObserverGrafico());
+        this.pantallaDeJuego.agregarLabel(lakituADevolver.obtenerObserverGrafico());
         return lakituADevolver;
     }
     
     @SuppressWarnings("exports")
-	public BuzzyBeetle getBuzzyBeetle(Point posicion) {
-    	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoQuieto();
+	public BuzzyBeetle obtenerBuzzyBeetle(Point posicion) {
+    	Sprite sprite = fabricaSprites.getBuzzyBeetleReversoCaminando();
         BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
         Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver);
-        buzzyADevolver.setVisitor(visitorBuzzy);
+        buzzyADevolver.establecerVisitor(visitorBuzzy);
         ObserverGrafico observerGraficoBuzzy = new ObserverGrafico(buzzyADevolver);
-        buzzyADevolver.setObserverGrafico(observerGraficoBuzzy);
-        this.pantallaDeJuego.agregarLabel(buzzyADevolver.getObserverGrafico());
+        buzzyADevolver.establecerObserverGrafico(observerGraficoBuzzy);
+        this.pantallaDeJuego.agregarLabel(buzzyADevolver.obtenerObserverGrafico());
         return buzzyADevolver;
     }
     
     @SuppressWarnings("exports")
-	public Goomba getGoomba(Point posicion){
-        Sprite sprite = fabricaSprites.getGoombaCaminando();
+	public Goomba obtenerGoomba(Point posicion){
+        Sprite sprite = fabricaSprites.getGoombaReversoCaminando();
         Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver);
-        goombaADevolver.setVisitor(visitorGoomba);
+        goombaADevolver.establecerVisitor(visitorGoomba);
         ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goombaADevolver);
-        goombaADevolver.setObserverGrafico(observerGraficoGoomba);
-        this.pantallaDeJuego.agregarLabel(goombaADevolver.getObserverGrafico());
+        goombaADevolver.establecerObserverGrafico(observerGraficoGoomba);
+        this.pantallaDeJuego.agregarLabel(goombaADevolver.obtenerObserverGrafico());
         return goombaADevolver;
     }
    
     @SuppressWarnings("exports")
-	public Estrella getEstrella(Point posicion) {
+	public Estrella obtenerEstrella(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         Estrella estrellaADevolver=new Estrella(sprite, posicion, null, null);
 		Visitante visitorEstrella = new VisitorEstrella(estrellaADevolver);
-		estrellaADevolver.setVisitor(visitorEstrella);
+		estrellaADevolver.establecerVisitor(visitorEstrella);
         ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrellaADevolver);
-        estrellaADevolver.setObserverGrafico(observerGraficoEstrella);
+        estrellaADevolver.establecerObserverGrafico(observerGraficoEstrella);
         return estrellaADevolver;
     } 
     
     @SuppressWarnings("exports")
-	public ChampinionVerde getChampinionVerde(Point posicion) {
+	public ChampinionVerde obtenerChampinionVerde(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         ChampinionVerde champinionVerdeADevolver = new ChampinionVerde(sprite, posicion, null, null);
 		Visitante visitorChampinionVerde = new VisitorChampinionVerde(champinionVerdeADevolver);
-		champinionVerdeADevolver.setVisitor(visitorChampinionVerde);
+		champinionVerdeADevolver.establecerVisitor(visitorChampinionVerde);
         ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(champinionVerdeADevolver);
-        champinionVerdeADevolver.setObserverGrafico(observerGraficoChampinionVerde);
+        champinionVerdeADevolver.establecerObserverGrafico(observerGraficoChampinionVerde);
         return champinionVerdeADevolver;
     }
     
     @SuppressWarnings("exports")
-	public SuperChampinion getSuperChampinion(Point posicion) {
+	public SuperChampinion obtenerSuperChampinion(Point posicion) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
 		SuperChampinion superChampionADevolver = new SuperChampinion(sprite, posicion, null, null);
 		Visitante visitorSuperChampinion = new VisitorSuperChampinion(superChampionADevolver);
-		superChampionADevolver.setVisitor(visitorSuperChampinion);
+		superChampionADevolver.establecerVisitor(visitorSuperChampinion);
         ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampionADevolver);
-        superChampionADevolver.setObserverGrafico(observerGraficoSuperChampinion);
+        superChampionADevolver.establecerObserverGrafico(observerGraficoSuperChampinion);
         return superChampionADevolver;
         
     }
     
     @SuppressWarnings("exports")
-	public FlorDeFuego getFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
+	public FlorDeFuego obtenerFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.getSpriteInvisible();
         FlorDeFuego florDeFuegoADevolver = new FlorDeFuego(sprite, posicion, null, null);
 		Visitante visitorFlorDeFuego = new VisitorFlorDeFuego(florDeFuegoADevolver, fabricaEntidades);
-		florDeFuegoADevolver.setVisitor(visitorFlorDeFuego);
+		florDeFuegoADevolver.establecerVisitor(visitorFlorDeFuego);
         ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuegoADevolver);
-        florDeFuegoADevolver.setObserverGrafico(observerGraficoFlorDeFuego);
+        florDeFuegoADevolver.establecerObserverGrafico(observerGraficoFlorDeFuego);
         return florDeFuegoADevolver;
     }
     
     @SuppressWarnings("exports")
-	public Monedas getMonedas(Point posicion,int cantidad, 
+	public Monedas obtenerMonedas(Point posicion,int cantidad, 
 							  boolean estaDentroDeBloqueDePreguntas) {
         Sprite sprite = fabricaSprites.getMonedaEncendida();
 		Monedas monedasADevolver = new Monedas(sprite, posicion, null, null, cantidad, true);
 		Visitante visitorMonedas = new VisitorMonedas(monedasADevolver);
-		monedasADevolver.setVisitor(visitorMonedas);
+		monedasADevolver.establecerVisitor(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasADevolver);
-        monedasADevolver.setObserverGrafico(observerGraficoMonedas);
-    	this.pantallaDeJuego.agregarLabel(monedasADevolver.getObserverGrafico());
+        monedasADevolver.establecerObserverGrafico(observerGraficoMonedas);
+    	this.pantallaDeJuego.agregarLabel(monedasADevolver.obtenerObserverGrafico());
         return monedasADevolver;
     }
     
     @SuppressWarnings("exports")
-    public ContextoMario getContextoMario(Point posicion) {
-    	Sprite sprite = fabricaSprites.getMarioDefaultFrontalQuieto();
+    public ContextoMario obtenerContextoMario(Point posicion) {
+    	Sprite sprite = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
     	MarioDefault estadoInicial = new MarioDefault();
 		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, 3, estadoInicial);
 		Visitante visitorContextoMario = new VisitorContextoMario(marioADevolver);
-		marioADevolver.setVisitor(visitorContextoMario);
+		marioADevolver.establecerVisitor(visitorContextoMario);
 		ObserverGrafico observerGraficoMario = new ObserverGrafico(marioADevolver);
-		marioADevolver.setObserverGrafico(observerGraficoMario);
+		marioADevolver.establecerObserverGrafico(observerGraficoMario);
     	return marioADevolver;
     } 
     
-    public BolaDeFuego getBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
+    public BolaDeFuego obtenerBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
     	Sprite sprite = fabricaSprites.getBolaDeFuego();
     	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
     	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver);
-    	bolaDeFuegoADevolver.setVisitor(visitor);
+    	bolaDeFuegoADevolver.establecerVisitor(visitor);
     	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
-    	bolaDeFuegoADevolver.setObserverGrafico(observer);
-        this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.getObserverGrafico());
+    	bolaDeFuegoADevolver.establecerObserverGrafico(observer);
+        this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.obtenerObserverGrafico());
         return bolaDeFuegoADevolver;
     } 
     
