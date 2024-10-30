@@ -11,9 +11,6 @@ import java.util.List;
 
 public class PantallaRanking extends JPanel {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 6769720571520373550L;
 	
 	private boolean enFoco;
@@ -82,7 +79,7 @@ public class PantallaRanking extends JPanel {
     public void refrescar(){
     	if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
     		sensor.accionarEnter();
-    		controlador.hacerCambio();
+    		controlador.dePantallaRankingAPantallaInicial();
     	}
     }
 
@@ -118,7 +115,7 @@ public class PantallaRanking extends JPanel {
     }
     
     public void setEnFocus(boolean condicion){
-    	this.enFoco= condicion;
+    	this.enFoco = condicion;
     }
     
     public boolean getEnFocus(){

@@ -49,7 +49,6 @@ public class PantallaInicial extends JPanel {
 		modo2 = new JLabel("MODO DE JUEGO 2"); 
 		ranking= new JLabel("RANKING");
 		inicializarArregloDeBotones();
-		currentLabel= modo1;
 		configurarFuente();
 		configurarVentana();
 		ajustarDisposicion();
