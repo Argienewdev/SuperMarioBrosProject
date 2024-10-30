@@ -152,9 +152,7 @@ public class VisitorLadrillo implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		if(detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
-   			int velocidadActualEnX = fireball.obtenerVelocidadDireccional().x;
-   			Point salto = new Point(velocidadActualEnX,-20);
-   			fireball.establecerVelocidadDireccional(salto);
+   			fireball.rebotar();
    		}else {
    			fireball.establecerRemovido(true);
    		}

@@ -160,7 +160,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     
     @Override
     public Sprite getMarioRecuperacionCayendo() {
-    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultFrontalCayendo.gif");
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioDefaultCayendo.png");
     }
     
     @Override
@@ -255,7 +255,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     
     @Override
 	public Sprite getSpinyMuerto() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyMuerto.png");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spinyMuerto.gif");
 	}
 
     @Override

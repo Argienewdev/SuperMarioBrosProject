@@ -11,7 +11,7 @@ import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
 	
-	private static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
+	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
 
 	protected boolean debeMantenerseSiempreEnPantalla;
 		

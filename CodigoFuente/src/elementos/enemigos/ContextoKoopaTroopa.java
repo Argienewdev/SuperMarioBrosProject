@@ -26,6 +26,10 @@ public class ContextoKoopaTroopa extends Enemigo {
     	return this.estadoKoopa;
     }
     
+    public int getTicksAnimacion() {
+    	return this.ticksAnimacion;
+    }
+    
     public void cambiarEstado(EstadoKoopa estado) {
         this.estadoKoopa = estado;
         estado.establecerContexto(this);

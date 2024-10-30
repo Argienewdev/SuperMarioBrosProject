@@ -54,7 +54,6 @@ public class ControladorVistas {
 		this.juego = juego;
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
 		this.pantallaFinal= new PantallaFinal(this,sensorDeTeclasMenu);
-		this.pantallaIngresoNombre = new PantallaIngresoNombre(this);
 		
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -78,11 +77,12 @@ public class ControladorVistas {
 			}	
 		});
 	}
-		
+	
 	public void accionarInicioJuego(String modo) {
-		int duracionDePantallaEntreNiveles = 0;
+		int duracionDePantallaEntreNiveles = 2000;
 		
 		this.pantallaDeJuego = new PantallaDeJuego();
+		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
 	    RegistrarOyenteJuego();
 	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
