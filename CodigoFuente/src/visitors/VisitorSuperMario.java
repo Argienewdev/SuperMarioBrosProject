@@ -108,7 +108,8 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
-            ladrillo.eliminarDelNivel();
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
+    		ladrillo.eliminarDelNivel();
         }
     }
 
