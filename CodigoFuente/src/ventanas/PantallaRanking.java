@@ -120,4 +120,6 @@ public class PantallaRanking extends JPanel {
     public boolean obtenerEnFoco(){
     	return this.enFoco;
     }
+    
+    
 }
