@@ -64,7 +64,7 @@ public class VisitorPrincesa implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas moneda) {
+    public void visitarMoneda(Moneda moneda) {
         // TODO Auto-generated method stub
     }
 

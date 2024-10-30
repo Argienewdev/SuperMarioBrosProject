@@ -6,9 +6,9 @@ import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Monedas extends PowerUp {
+public class Moneda extends PowerUp {
 	
-	public Monedas(Sprite sprite, Point posicion, Visitante visitor,
+	public Moneda(Sprite sprite, Point posicion, Visitante visitor,
 			   	   ObserverGrafico observerGrafico, boolean dentroDeBloqueDePreguntas) {
 		super(sprite, posicion, visitor, observerGrafico);
 		//TODO se deberian setear con los establecer al crear el elemento?
@@ -17,7 +17,7 @@ public class Monedas extends PowerUp {
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
-		visitante.visitarMonedas(this);
+		visitante.visitarMoneda(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {

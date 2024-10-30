@@ -21,7 +21,7 @@ import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
-import elementos.powerUps.Monedas;
+import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
 import ventanas.ControladorVistas;
 import ventanas.ConstantesGlobales;
@@ -137,7 +137,7 @@ public class GeneradorDeNivel {
 	                	break;
 	                } 
 	                case 20: {
-	                	Monedas moneda = this.fabricaEntidades.obtenerMonedas(posicion, false);
+	                	Moneda moneda = this.fabricaEntidades.obtenerMonedas(posicion, false);
 	                	nivel.agregarPowerUp(moneda);
 	                	break;
 	                }

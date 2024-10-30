@@ -95,7 +95,7 @@ public class VisitorSuperMario implements Visitante {
     public void visitarEstrella(Estrella estrella) {}
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
     	if(!monedas.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(monedas.obtenerPuntosPorSuper());
         	monedas.establecerRemovido(true);
