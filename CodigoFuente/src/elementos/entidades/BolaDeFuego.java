@@ -27,6 +27,7 @@ public class BolaDeFuego extends NoJugable {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.getRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarDelNivel();
 		}
 	}
 

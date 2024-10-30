@@ -49,12 +49,25 @@ public abstract class Enemigo extends NoJugable {
     	}
     }
     
+    protected abstract Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites);
+    
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if(this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
 			this.setVelocidadDireccional(new Point(0, 0));
 		}
     }
+    
+    public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
+    	this.incrementarContadorTicks();
+		if(getContadorTicks() == 1){
+			this.setSprite(getSpriteDeMuerte(fabricaSprites));
+			this.actualizarHitboxYPosicion(fabricaSprites);
+		} else if(getContadorTicks() == ticksAnimacion) {
+			this.setSprite(fabricaSprites.getSpriteInvisible());
+			this.eliminarDelNivel();
+		}
+	}
     
     public int getVelocidadHorizontalEnemigo() {
     	return VELOCIDAD_HORIZONTAL_ENEMIGO;
@@ -64,16 +77,17 @@ public abstract class Enemigo extends NoJugable {
 
     @Override
 	public void mover() {
-		if(removido) {
+    	if(removido) {
     		Point velocidad = new Point(0, 0);
     		this.setVelocidadDireccional(velocidad);
     	} else {
     		if (this.getVelocidadDireccional().x <= 0) {
     			moverIzquierda();
-    		} else if (this.getVelocidadDireccional().x > 0){
+    		} else if (this.getVelocidadDireccional().x > 0) {
     			moverDerecha();
     		}
     	}
 	}
+    
    
 }

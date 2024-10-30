@@ -1,5 +1,7 @@
 package visitors;
 
+import java.awt.Point;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -29,7 +31,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Implementación pendiente
     }
 
     @Override
@@ -42,20 +43,25 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        // TODO Implementación pendiente
+    	contextoKoopaTroopa.getEstado().aceptarVisitante(this.miEstado.getVisitor());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        // TODO Implementación pendiente
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)
+        		&& this.miEntidad.getVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.getContext().setRemovido(true);
+    	}
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-    		koopaDefault.getContext().setRemovido(true);
-            this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
-    	}
+	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
+	        this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+	        koopaDefault.getContext().setVelocidadDireccional(new Point(0, 0));
+		}
     }
 
     @Override

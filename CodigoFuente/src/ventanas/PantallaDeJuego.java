@@ -10,7 +10,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import elementos.ElementoDeJuego;
+import elementos.Silueta;
 import elementos.entidades.Jugable;
+import fabricas.FabricaSilueta;
 import juego.Juego;
 import juego.Nivel;
 import observers.ObserverGrafico;
@@ -42,7 +44,6 @@ public class PantallaDeJuego extends JPanel {
 
     public PantallaDeJuego() {
         configurarVentana();
-        establecerFondo();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     }
 
@@ -75,10 +76,15 @@ public class PantallaDeJuego extends JPanel {
         repaint();
 	}
 
+    public void registrarFondo(FabricaSilueta fabricaSilueta) {
+    	Silueta siluetaFondo = fabricaSilueta.getSilueta();
+    	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.getRutaSilueta());
+        this.fondo = new JLabel(fondoImagen);
+        establecerFondo();
+    }
+    
 	protected void establecerFondo() {
-        ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoPantallaJuego.png");
-        fondo = new JLabel(fondoImagen);
-        fondo.setBounds(0, 0, fondoImagen.getIconWidth(), fondoImagen.getIconHeight());
+        fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
         layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
         revalidate();
         repaint();

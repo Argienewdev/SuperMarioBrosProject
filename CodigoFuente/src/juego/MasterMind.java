@@ -25,13 +25,9 @@ public class MasterMind {
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		this.hayNoJugableParaRemover = false;
-		this.entidadARemover = null;
 	}
 
 	public void actualizar() {
-		//TODO podemos hacer que actualizar la posicion llame a actualizar sprite todo dentro de 
-		//enemigo para que solo tenga que llamar a "actualizar()"?
 		actualizarPosicionesEnemigos();
 		actualizarPosicionesPowerUps();
 		actualizarPosicionesBolasDeFuego();
@@ -46,14 +42,6 @@ public class MasterMind {
 		this.nivel.removerEntidadesAEliminar();
 		this.nivel.agregarBolaDeFuegoAAgregar();
 		this.nivel.agregarSpinysAAgregar();
-		if(hayNoJugableParaRemover) {
-			entidadARemover.incrementarContadorTicks();
-			if(entidadARemover.getContadorTicks() > entidadARemover.obtenerTicksAnimacion()) {
-				entidadARemover.eliminarDelNivel();
-				entidadARemover = null;
-				hayNoJugableParaRemover = false;
-			}
-		}
 	}
 	
 	public void cambiarNivel(Nivel nivel) {
@@ -61,7 +49,9 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		if (enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 100)) {
+		boolean esVisibleEnLaPantalla = enemigo.getPosicion().x < (ConstantesGlobales.PANEL_ANCHO + 75)
+										&& enemigo.getPosicion().x > 0;
+		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
 				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 
 				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().getWidth() >= ConstantesGlobales.PANEL_ANCHO;
@@ -104,10 +94,6 @@ public class MasterMind {
 		            entidad.aceptarVisitante(elemento.getVisitor());
 		        }
 		    }
-			if(entidad.getRemovido()) {
-				hayNoJugableParaRemover = true;
-				entidadARemover = entidad;
-			}
 		}
 		entidad.setPosicion(entidad.obtenerHitbox().getLocation());
 	}

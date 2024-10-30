@@ -31,13 +31,8 @@ public class Goomba extends Enemigo {
 		}
 	}
 	
-	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		if(getContadorTicks() == 1){
-			this.setSprite(fabricaSprites.getGoombaAplastado());
-			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(getContadorTicks() == ticksAnimacion) {
-			this.setSprite(fabricaSprites.getSpriteInvisible());
-			this.eliminarDelNivel();
-		}
+	@Override
+	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.getGoombaMuerto();
 	}
 } 

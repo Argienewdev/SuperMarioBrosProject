@@ -123,6 +123,7 @@ public class Nivel {
     	powerUps.removeAll(entidadesAEliminar);
     	plataformas.removeAll(entidadesAEliminar);
     	plataformasAfectables.removeAll(entidadesAEliminar);
+    	bolasDeFuego.removeAll(entidadesAEliminar);
     	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     

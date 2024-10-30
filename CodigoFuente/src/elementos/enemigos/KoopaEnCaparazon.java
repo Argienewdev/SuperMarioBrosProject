@@ -20,10 +20,10 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	public void invertirDireccion() {}
 	
 	@Override
-	public void moverDerecha() {}
-    
-	@Override
-    public void moverIzquierda() {}
+	public void mover() {
+		Point velocidad = new Point(0, 0);
+		this.contexto.setVelocidadDireccional(velocidad);
+	}
 	
 	@Override
     public void aceptarVisitante(Visitante visitante) {

@@ -110,7 +110,9 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
     @Override
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	marioRecuperacion.aceptarVisitante(this.miEntidad.getEstado().getVisitor());
+    }
     
 	@Override
 	public void visitarPiso(Piso piso) {}

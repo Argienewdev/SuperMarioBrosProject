@@ -44,15 +44,23 @@ public class KoopaDefault implements EstadoKoopa {
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {		
 	}
-
+	
 	@Override
-	public void moverDerecha() {
+	public void mover() {
+		if (this.contexto.getVelocidadDireccional().x <= 0) {
+			moverIzquierda();
+		} else if (this.contexto.getVelocidadDireccional().x > 0) {
+			moverDerecha();
+		}
+	}
+	
+	
+	private void moverDerecha() {
 		Point velocidad = new Point(this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
     	this.contexto.setVelocidadDireccional(velocidad);
     }
     
-	@Override
-    public void moverIzquierda() {
+    private void moverIzquierda() {
     	Point velocidad = new Point(-this.contexto.getVelocidadHorizontalEnemigo(), this.contexto.getVelocidadDireccional().y);
     	this.contexto.setVelocidadDireccional(velocidad);
     }

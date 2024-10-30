@@ -128,7 +128,7 @@ public class VisitorKoopaDefault implements Visitante {
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miContexto.getNivel().obtenerPartida().reiniciarNivel();
-        } 
+        }
     }
 
     @Override
