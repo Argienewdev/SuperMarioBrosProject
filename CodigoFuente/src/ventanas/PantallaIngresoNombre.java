@@ -1,6 +1,11 @@
 package ventanas;
 
 import javax.swing.*;
+
+import fabricas.FabricaSiluetaModoAlternativo;
+import fabricas.FabricaSiluetaModoOriginal;
+import fabricas.FabricaSpritesModoAlternativo;
+import fabricas.FabricaSpritesModoOriginal;
 import fuentes.Fuentes;
 import ranking.Jugador;
 
@@ -11,14 +16,23 @@ public class PantallaIngresoNombre extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private Fuentes tipoFuentes;
+    
     private JLabel fondo;
+    
     private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    
     private JTextField campoNombre;
+    
     private JButton botonConfirmar;
+    
     private ControladorVistas controlador;
+    
     private Jugador jugador;
+    
+    private String modo;
 
-    public PantallaIngresoNombre(ControladorVistas controlador) {
+    public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
+    	this.modo = modo;
         this.controlador = controlador;
         tipoFuentes = new Fuentes();
         setLayout(new BorderLayout());  
@@ -48,9 +62,13 @@ public class PantallaIngresoNombre extends JPanel {
     }
 
     private void establecerFondo(JLayeredPane layeredPane) {
-        fondo = new JLabel(new ImageIcon("src/imagenes/fondoJuegoCielo.png"));
+    	if (this.modo.equals("Modo original")) {
+    		fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
+		} else if (this.modo.equals("Modo alternativo")) {
+			fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
+		}
         fondo.setBounds(0, 0, size.width, size.height);
-        layeredPane.add(fondo, Integer.valueOf(0)); 
+        layeredPane.add(fondo, Integer.valueOf(0));
     }
 
     private void establecerContenido(JLayeredPane layeredPane) {

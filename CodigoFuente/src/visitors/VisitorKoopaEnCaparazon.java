@@ -18,7 +18,7 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado) {
         this.miEstado = miEstado;
-        this.miContexto = miEstado.getContext();
+        this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
@@ -47,7 +47,7 @@ public class VisitorKoopaEnCaparazon implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, koopaDefault.getContext());
+        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, koopaDefault.obtenerContext());
     }
 
     @Override

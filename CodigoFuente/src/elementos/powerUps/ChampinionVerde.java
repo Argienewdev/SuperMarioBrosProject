@@ -42,10 +42,10 @@ public class ChampinionVerde extends PowerUp {
 		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
 		}else {
-			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.getChampinionVerdeSaliendoDelBloqueDePreguntas());
-			}else if(getContadorTicks() >= ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.getChampinionVerde());
+			if(!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
+				this.establecerSprite(fabricaSprites.obtenerChampinionVerdeSaliendoDelBloqueDePreguntas());
+			}else if(obtenerContadorTicks() >= ticksHastaSalirDelBloque) {
+				this.establecerSprite(fabricaSprites.obtenerChampinionVerde());
 			}		
 		}
 	}

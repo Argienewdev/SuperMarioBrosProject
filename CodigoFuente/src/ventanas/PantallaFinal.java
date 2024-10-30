@@ -3,6 +3,7 @@ package ventanas;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -57,8 +58,8 @@ public class PantallaFinal extends JPanel {
         establecerMensaje();
 		configurarBotones();
 		add(panelCapas);
+		addKeyListener(sensor);
 	}
-	
 	
 	private void establecerFondo() {
 	       JLabel fondo = new JLabel();
@@ -125,40 +126,43 @@ public class PantallaFinal extends JPanel {
 	        botonCerrar.getPreferredSize().height
 	    );
 	    
-	    panelCapas.add(botonVolver, Integer.valueOf(1));
-	    panelCapas.add(botonCerrar, Integer.valueOf(1));
+	    add(botonVolver);
+	    add(botonCerrar);
 	}
 	
-	 public void actualizarFoco() {
-		 if(enFoco) {
-			 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
-				 if(currentLabel == botonVolver){
-					controlador.dePantallaFinalAPantallaInicial();
-				 }
-				 else if(currentLabel == botonCerrar){
-					 controlador.cerrarJuego();
-				 } 
-		 }
-	        if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
-	            currentLabel.setForeground(Color.WHITE);
-	            currentLabel = arregloDeBotones.siguiente();
-	            currentLabel.setForeground(Color.DARK_GRAY);
-	            sensor.accionarS();
-	        } else if (sensor.obtenerWPresionado()  && !sensor.obtenerWAccionada()) {
-	            currentLabel.setForeground(Color.WHITE);
-	            currentLabel = arregloDeBotones.previo();
-	            currentLabel.setForeground(Color.DARK_GRAY);
-	            sensor.accionarW();
-	        }
-		 }
-    }
+	public void actualizarFoco() {
+		if (enFoco) {
+		    if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()) {
+		        if (currentLabel == botonVolver) {
+		            controlador.dePantallaFinalAPantallaInicial();
+		        } else if (currentLabel == botonCerrar) {
+		            controlador.cerrarJuego();
+		        }
+		        sensor.accionarEnter();
+		    }
+
+		    if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
+		        currentLabel.setForeground(Color.WHITE);
+		        currentLabel = arregloDeBotones.siguiente();
+		        currentLabel.setForeground(Color.DARK_GRAY);
+		        sensor.accionarS();
+		    } else if (sensor.obtenerWPresionado() && !sensor.obtenerWAccionada()) {
+		        currentLabel.setForeground(Color.WHITE);
+		        currentLabel = arregloDeBotones.previo();
+		        currentLabel.setForeground(Color.DARK_GRAY);
+		        sensor.accionarW();
+		    }
+		}
+	}
 	 
 	public void activarFoco() {
 	    this.enFoco = true;
+	    addKeyListener(sensor);
 	}
 
 	public void desactivarFoco() {
 	    this.enFoco = false;
+	    removeKeyListener(sensor);
 	}
 
 }

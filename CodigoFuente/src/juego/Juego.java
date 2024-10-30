@@ -2,31 +2,19 @@ package juego;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import elementos.Sprite;
-import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaEntidades;
-import fabricas.FabricaPlataformas;
 import fabricas.FabricaSilueta;
-import fabricas.FabricaSiluetaModoAlternativo;
-import fabricas.FabricaSiluetaModoOriginal;
 import fabricas.FabricaSprites;
-import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
 import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import sensoresDeTeclas.SensorDeTeclasMenu;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 
@@ -53,7 +41,6 @@ public class Juego {
 	}
 	
 	public Sprite obtenerSpriteMario(){
-		this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 	
@@ -72,8 +59,8 @@ public class Juego {
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
-		this.fabricaSprites = generadorDeNivel.getFabricaSprites();
-		this.fabricaSilueta = generadorDeNivel.getFabricaSilueta();
+		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
+		this.fabricaSilueta = generadorDeNivel.obtenerFabricaSilueta();
 		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();
@@ -126,6 +113,7 @@ public class Juego {
 	private void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null,mensaje);
 	}
+
 
 	public Jugador obtenerJugador() {
 		return jugador;

@@ -25,19 +25,33 @@ public class KoopaDefault implements EstadoKoopa {
         visitante.visitarKoopaDefault(this);
     }
 
-	public ContextoKoopaTroopa getContext() {
+	public ContextoKoopaTroopa obtenerContext() {
 		return this.contexto;
 	}
 	public Visitante obtenerVisitante() {
 		return new VisitorKoopaDefault(this);
 	}
-
+	
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.contexto.obtenerVelocidadDireccional().x < 0) {
-			this.contexto.establecerSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
-		} else if(this.contexto.obtenerVelocidadDireccional().x > 0) {
-			this.contexto.establecerSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
+		if(this.obtenerContext().obtenerRemovido()) {
+			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
+			eliminarEntidadGrafica(fabricaSprites);
+		} else if(this.obtenerContext().obtenerVelocidadDireccional().x < 0) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
+		} else if(this.obtenerContext().obtenerVelocidadDireccional().x > 0) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
+		}
+	}
+	
+	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
+    	this.obtenerContext().incrementarContadorTicks();
+		if(this.obtenerContext().obtenerContadorTicks() == 1){
+			this.obtenerContext().establecerSprite(this.obtenerContext().obtenerSpriteDeMuerte(fabricaSprites));
+			this.actualizarHitboxYPosicion(fabricaSprites);
+		} else if(this.obtenerContext().obtenerContadorTicks() == this.obtenerContext().obtenerTicksAnimacion()) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerSpriteInvisible());
+			this.obtenerContext().eliminarDelNivel();
 		}
 	}
 

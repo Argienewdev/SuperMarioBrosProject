@@ -9,6 +9,7 @@ import elementos.enemigos.ContextoKoopaTroopa;
 import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
+import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
@@ -83,52 +84,52 @@ public class GeneradorDeNivel {
                 switch(identificadorElemento) {
 	                case 0: {
 	                	Vacio vacio = this.fabricaPlataformas.obtenerVacio(posicion);
-	                	nivel.addPlataforma(vacio);
-	                	nivel.addPlataformasAfectables(vacio);
+	                	nivel.agregarPlataforma(vacio);
+	                	nivel.agregarPlataformasAfectables(vacio);
 	                	break;
 	                }	             
 	                case 1: {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.obtenerLadrillo(posicion);
-	                    nivel.addPlataforma(ladrillo);
-	                    nivel.addPlataformasAfectables(ladrillo);
+	                    nivel.agregarPlataforma(ladrillo);
+	                    nivel.agregarPlataformasAfectables(ladrillo);
 	                    break;
 	                }	             
 	                case 2: {         
 	                    int alturaTuberia = numeros[3];
 	                    Tuberia tuberiaVacia = this.fabricaPlataformas.obtenerTuberiaVacia(posicion, alturaTuberia);
-	                    nivel.addPlataforma(tuberiaVacia);
+	                    nivel.agregarPlataforma(tuberiaVacia);
 	                    break;
 	                }
 	                case 3: {
 	                	int alturaTuberia = numeros[3];
-	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.obtenerTuberiaConPiranhaPlant(posicion, alturaTuberia);
-	                    nivel.addPlataforma(tuberiaConPiranhaPlant);
+	                    Tuberia tuberiaConPiranhaPlant = this.fabricaPlataformas.obtenerTuberiaConPiranhaPlant(posicion,nivel, alturaTuberia);
+	                    nivel.agregarPlataforma(tuberiaConPiranhaPlant);
 	                    break;
 	                }
 	                case 4: {
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.obtenerBloqueDePregunta(posicion, nivel,pantallaDeJuego);
-	                    nivel.addPlataforma(bloqueDePregunta);
-	                    nivel.addPlataformasAfectables(bloqueDePregunta);
+	                    nivel.agregarPlataforma(bloqueDePregunta);
+	                    nivel.agregarPlataformasAfectables(bloqueDePregunta);
 	                    break;
 	                }
 	                case 5: {
 	                    Bandera bandera = this.fabricaPlataformas.obtenerBandera(posicion,this.controladorVistas);
-	                	nivel.addPlataforma(bandera);
+	                	nivel.agregarPlataforma(bandera);
 	                    break;
 	                }
 	                case 6: {
 	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.obtenerPrincesaPeach(posicion,this.controladorVistas);
-	                    nivel.addPlataforma(princesaPeach);
+	                    nivel.agregarPlataforma(princesaPeach);
 	                    break;
 	                }
 	                case 7: {
 	                	BloqueSolido bloqueSolido = this.fabricaPlataformas.obtenerBloqueSolido(posicion);
-	                	nivel.addPlataforma(bloqueSolido);
+	                	nivel.agregarPlataforma(bloqueSolido);
 	                	break;
 	                } 
 	                case 8: {
 	                	Piso piso = this.fabricaPlataformas.obtenerPiso(posicion);
-	                	nivel.addPlataforma(piso);
+	                	nivel.agregarPlataforma(piso);
 	                	break;
 	                } 
 	                case 20: {
@@ -139,27 +140,29 @@ public class GeneradorDeNivel {
 	                }
 	                case 40: {
 	                    Lakitu lakitu = this.fabricaEntidades.obtenerLakitu(posicion, this.fabricaEntidades);
-	                    nivel.addEnemigo(lakitu);
+	                    nivel.agregarEnemigo(lakitu);
 	                    break;
 	                } 
 	                case 41: {
 	                    ContextoKoopaTroopa contextoKoopaTroopa = this.fabricaEntidades.obtenerContextoKoopaTroopa(posicion);
-	                    nivel.addEnemigo(contextoKoopaTroopa);
+	                    nivel.agregarEnemigo(contextoKoopaTroopa);
 	                    break;
 	                } 
 	                case 42: {
+	                    //PiranhaPlant dev = fabricaEntidades.obtenerPiranhaPlant(posicion);
+	                    //nivel.addEnemigo(dev);
 	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
-	                    nivel.addEnemigo(goomba);
+	                    nivel.agregarEnemigo(goomba);
 	                    break;
 	                }
 	                case 43: {
 	                    Spiny spiny = fabricaEntidades.obtenerSpiny(posicion);
-	                    nivel.addEnemigo(spiny);
+	                    nivel.agregarEnemigo(spiny);
 	                    break;
 	                }
 	                case 44: {
 	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.obtenerBuzzyBeetle(posicion);
-	                    nivel.addEnemigo(buzzyBeetle);
+	                    nivel.agregarEnemigo(buzzyBeetle);
 	                    break;
 	                }
 	                case 45:{
@@ -180,13 +183,13 @@ public class GeneradorDeNivel {
 			}
 		}
 		
-		for(Plataforma plataforma : nivel.getPlataformas()) {
+		for(Plataforma plataforma : nivel.obtenerPlataformas()) {
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
-		for(PowerUp powerUp : nivel.getPowerUps()) {
+		for(PowerUp powerUp : nivel.obtenerPowerUps()) {
 			powerUp.obtenerObserverGrafico().actualizar();
 		}
-		for(Enemigo enemigo : nivel.getEnemigos()) {
+		for(Enemigo enemigo : nivel.obtenerEnemigos()) {
 			enemigo.obtenerObserverGrafico().actualizar();
 		}
 		return nivel;
@@ -196,18 +199,18 @@ public class GeneradorDeNivel {
 	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
 		Point posicionInicio = posicion;
 		ContextoMario mario = fabricaEntidades.obtenerContextoMario(posicionInicio);
-		nivel.setMario(mario);
+		nivel.establecerMario(mario);
 	}
 	
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
-	public FabricaSprites getFabricaSprites() {
+	public FabricaSprites obtenerFabricaSprites() {
 		return fabricaSprites;
 	}
 	
-	public FabricaSilueta getFabricaSilueta() {
+	public FabricaSilueta obtenerFabricaSilueta() {
 		return fabricaSilueta;
 	}
 	

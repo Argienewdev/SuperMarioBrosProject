@@ -33,7 +33,7 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().establecerAltoImagen() - obtenerSpriteInicial(fabricaSprites).establecerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).establecerAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
 		this.obtenerContexto().setHitbox(nuevaHitbox);
@@ -43,19 +43,19 @@ public class MarioRecuperacion extends MarioDefault {
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
-			aRetornar = fabricaSprites.getMarioRecuperacionCayendo();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioRecuperacionFrontalSaltando();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
-			aRetornar = fabricaSprites.getMarioRecuperacionReversoSaltando();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoSaltando();
 		}else if(avanzando()) {
-			aRetornar = fabricaSprites.getMarioRecuperacionFrontalCaminando();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalCaminando();
 		} else if(retrocediendo()){
-			aRetornar = fabricaSprites.getMarioRecuperacionReversoCaminando();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioRecuperacionFrontalQuieto();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
-			aRetornar = fabricaSprites.getMarioRecuperacionReversoQuieto();
+			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
@@ -63,7 +63,7 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.getMarioRecuperacionFrontalQuieto();
+		return fabricaSprites.obtenerMarioRecuperacionFrontalQuieto();
 	}
 	
 	private boolean enElAire() {
@@ -87,15 +87,15 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionFrontalCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionFrontalQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionFrontalSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalSaltando());
 	}
 	
 	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionReversoCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionReversoQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.getMarioRecuperacionReversoSaltando());
+		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoCaminando()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoQuieto()) ||
+				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoSaltando());
 	}
 
 }

@@ -33,7 +33,7 @@ public class GestorDeColisiones {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila-1,columna);
 			if (elementoDeJuego != null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				huboColision = elementoDeJuego.getPosicion().y + 50 == entidad.getPosicion().y;
+				huboColision = elementoDeJuego.obtenerPosicion().y + 50 == entidad.obtenerPosicion().y;
 			}
 		}
 		if(huboColision) {
@@ -51,7 +51,7 @@ public class GestorDeColisiones {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila + 1,columna);
 			if (elementoDeJuego != null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				huboColision = elementoDeJuego.getPosicion().y == entidad.getPosicion().y + 50;
+				huboColision = elementoDeJuego.obtenerPosicion().y == entidad.obtenerPosicion().y + 50;
 			}
 		}
 		if(huboColision) {
@@ -70,7 +70,7 @@ public class GestorDeColisiones {
 			if (elementoDeJuego != null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
-				//huboColision = elementoDeJuego.getPosicion().x < posX + 50;
+				//huboColision = elementoDeJuego.obtenerPosicion().x < posX + 50;
 			}
 		}
 		if(huboColision) {
@@ -80,15 +80,15 @@ public class GestorDeColisiones {
 	}
 	
 	public boolean verificarColisionIzquierda(Entidad entidad, int posX, int posY) {
-		int fila = Math.floorDiv(entidad.getPosicion().y, 50);
-		int columna = Math.floorDiv(entidad.getPosicion().x, 50);
+		int fila = Math.floorDiv(entidad.obtenerPosicion().y, 50);
+		int columna = Math.floorDiv(entidad.obtenerPosicion().x, 50);
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
 		if(columna-1 >= 0) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila,columna-1);
 			if (elementoDeJuego != null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				//huboColision = posX < (elementoDeJuego.getPosicion().x + 50);
+				//huboColision = posX < (elementoDeJuego.obtenerPosicion().x + 50);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
 			}
 		}
@@ -107,7 +107,7 @@ public class GestorDeColisiones {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila - 1,columna + 1);
 			if (elementoDeJuego != null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				//huboColision = (elementoDeJuego.getPosicion().x < entidad.getPosicion().x + 50) || (elementoDeJuego.getPosicion().y >= posY + 50);
+				//huboColision = (elementoDeJuego.obtenerPosicion().x < entidad.obtenerPosicion().x + 50) || (elementoDeJuego.obtenerPosicion().y >= posY + 50);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
 			}
 		}
@@ -169,8 +169,8 @@ public class GestorDeColisiones {
 	}
 	
 	private void manejarColision(Entidad entidad, ElementoDeJuego elementoDeJuego) {
-		//entidad.aceptarVisitante(elementoDeJuego.getVisitor());
-		//elementoDeJuego.aceptarVisitante(entidad.getVisitor());
+		//entidad.aceptarVisitante(elementoDeJuego.obtenerVisitor());
+		//elementoDeJuego.aceptarVisitante(entidad.obtenerVisitor());
 		//TODO los visitantes rompen todo
 	}*/
 }

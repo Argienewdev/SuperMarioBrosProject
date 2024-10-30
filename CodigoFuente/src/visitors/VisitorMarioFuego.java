@@ -44,25 +44,25 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miEntidad)
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miEntidad)
         		&& this.miEntidad.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-        	   koopaEnCaparazon.getContext().establecerRemovido(true);
+        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
             }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miEntidad)) {
-			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miEntidad)) {
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
+	        this.miEntidad.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 

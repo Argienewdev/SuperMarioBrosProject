@@ -2,19 +2,15 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.entidades.Jugable;
 import fabricas.FabricaSilueta;
-import juego.Juego;
-import juego.Nivel;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
@@ -94,18 +90,18 @@ public class PantallaDeJuego extends JPanel {
 	public void registrarJugable(Jugable jugable) {
         marioJugable = jugable;
         marioLabel = jugable.obtenerObserverGrafico();
-        setPosicionOriginalJugable();
-        setPosicionOriginalLabelJugable();
+        establecerPosicionOriginalJugable();
+        establecerPosicionOriginalLabelJugable();
         agregarLabel(marioLabel);
         revalidate();
         repaint();
     }
 
-    private void setPosicionOriginalLabelJugable() {
+    private void establecerPosicionOriginalLabelJugable() {
 		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicion();
 	}
 
-	private void setPosicionOriginalJugable () {
+	private void establecerPosicionOriginalJugable () {
 		this.posicionOriginalJugable = this.marioJugable.obtenerPosicion();	
 	}
 
@@ -128,6 +124,7 @@ public class PantallaDeJuego extends JPanel {
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.obtenerVidas());
         hud.actualizarPuntaje(marioJugable.obtenerPuntos());
+        hud.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 
         // Obtener la posición actual de Mario
         Point posicionMario = marioLabel.getLocation();
@@ -171,18 +168,19 @@ public class PantallaDeJuego extends JPanel {
         	Thread.run() line: 1589	
         	*/
         	if (fondoMovido) {
-        		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-        			if (observerGrafico.obtenerDebeMoverseConElFondo()) {
-        				Point posicionLabel = observerGrafico.getLocation();
-            			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
-            			observerGrafico.getEntidadObservada().establecerPosicion(posicionLabel);
-            			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
-            			observerGrafico.actualizar();
-            			revalidate();
-            			repaint();
-        			}
-        		}
-        	}
+                for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
+                    Point posicionLabel = observerGrafico.getLocation();
+                    posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Desplazar los labels
+                    observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
+                    observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
+                    observerGrafico.actualizar();
+                    if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
+                    	// TODO: Eliminar label del nivel 
+                    }
+                    revalidate();
+                    repaint();
+                }
+            }
         }
     }
 

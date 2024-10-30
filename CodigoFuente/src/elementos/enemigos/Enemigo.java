@@ -9,7 +9,7 @@ import visitors.Visitante;
 
 public abstract class Enemigo extends NoJugable {
 	
-	protected static final int VELOCIDAD_HORIZONTAL_ENEMIGO = 2;
+	protected int velocidad_horizontal_enemigo;
 	
 	protected int puntosOtorgadosPorEliminacion;
 		
@@ -19,6 +19,7 @@ public abstract class Enemigo extends NoJugable {
 	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
+		this.velocidad_horizontal_enemigo = 2;
 	}
     
     public int obtenerPuntosOtorgadosPorEliminacion() {
@@ -29,16 +30,17 @@ public abstract class Enemigo extends NoJugable {
         return this.puntosSustraidosPorMuerteCausada;
     }
 
-    private void moverDerecha() {
-    	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
+    protected void moverDerecha() {
+    	Point velocidad = new Point(velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     }
     
-    private void moverIzquierda() {
-    	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
+    protected void moverIzquierda() {
+    	Point velocidad = new Point(-velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     }
     
+    @Override
     public void invertirDireccion() {
     	if(removido) {
     		Point velocidad = new Point(0, 0);
@@ -60,17 +62,17 @@ public abstract class Enemigo extends NoJugable {
     
     public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.incrementarContadorTicks();
-		if(getContadorTicks() == 1){
+		if(obtenerContadorTicks() == 1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(getContadorTicks() == ticksAnimacion) {
-			this.establecerSprite(fabricaSprites.getSpriteInvisible());
+		} else if(obtenerContadorTicks() == ticksAnimacion) {
+			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.eliminarDelNivel();
 		}
 	}
     
     public int obtenerVelocidadHorizontalEnemigo() {
-    	return VELOCIDAD_HORIZONTAL_ENEMIGO;
+    	return velocidad_horizontal_enemigo;
     }
     
     public abstract void aceptarVisitante(Visitante visitante);

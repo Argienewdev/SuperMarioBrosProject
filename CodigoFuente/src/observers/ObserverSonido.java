@@ -18,7 +18,7 @@ public class ObserverSonido extends JLabel implements Observer{
 		emitirSonido();
 	}
 	
-	public ElementoDeJuego getEntidadObservada() {
+	public ElementoDeJuego obtenerEntidadObservada() {
 		return this.entidad_observada;
 	}
 	

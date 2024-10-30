@@ -66,7 +66,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
-	public int getContadorTicks() {
+	public int obtenerContadorTicks() {
 		return this.contadorTicks;
 	}
 	
@@ -80,7 +80,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	}
 	
 	public void eliminarDelNivel() {
-		this.miNivel.addEntidadesAEliminar(this);
+		this.miNivel.agregarEntidadesAEliminar(this);
 	}
 	
 	public int obtenerTicksAnimacion() {

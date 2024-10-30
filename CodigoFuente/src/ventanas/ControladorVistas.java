@@ -1,15 +1,12 @@
 package ventanas;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -53,9 +50,8 @@ public class ControladorVistas {
 		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.juego = juego;
-		this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
-		this.pantallaIngresoNombre = new PantallaIngresoNombre(this);
+
 		
 		configurarVentana();
 		RegistrarOyenteInicial();	
@@ -80,19 +76,22 @@ public class ControladorVistas {
 			}	
 		});
 	}
-		
+	
 	public void accionarInicioJuego(String modo) {
-		int duracionDePantallaEntreNiveles = 0;
+		int duracionDePantallaEntreNiveles = 2000;
 		
 		this.pantallaDeJuego = new PantallaDeJuego();
+		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
 	    RegistrarOyenteJuego();
 	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
+	    this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 	    pantallaDeJuego.registrarJugable(marioJugable);
 	    
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
+	    pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
@@ -159,15 +158,15 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
-		pantallaInicial.setEnFocus(false);
+		pantallaInicial.establecerEnFoco(false);
 		ventana.setContentPane(pantallaRanking); 
 		ventana.repaint();
 		ventana.revalidate();
 	}
 	
 	public void dePantallaRankingAPantallaInicial(){
-		pantallaRanking.setEnFocus(false);
-		pantallaInicial.setEnFocus(true);
+		pantallaRanking.establecerEnFoco(false);
+		pantallaInicial.establecerEnFoco(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
 		ventana.repaint();
@@ -175,7 +174,7 @@ public class ControladorVistas {
 	
 	public void dePantallaFinalAPantallaInicial() {
 		pantallaFinal.desactivarFoco();
-		pantallaInicial.setEnFocus(true);
+		pantallaInicial.establecerEnFoco(true);
 		ventana.setContentPane(pantallaInicial);
 		ventana.revalidate();
 		ventana.repaint();
@@ -199,6 +198,7 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 			if(ventana.isAncestorOf(pantallaRanking)) {
 				pantallaRanking.refrescar();
+
 			}
 			
 			ventana.requestFocusInWindow();
@@ -236,7 +236,7 @@ public class ControladorVistas {
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
-     	
+     	pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 		pantallaDeJuego.cambiarDeNivel();
 		ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -34,17 +34,17 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.getContext() ,this.miEntidad);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.obtenerContext() ,this.miEntidad);
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        this.detectorDireccionColision.verificarColisionEntreEntidades(koopaDefault.getContext(), this.miEntidad);
+        this.detectorDireccionColision.verificarColisionEntreEntidades(koopaDefault.obtenerContext(), this.miEntidad);
     }
 
     @Override
@@ -93,17 +93,17 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	marioDefault.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
+    	marioDefault.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {  
-    	superMario.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
+    	superMario.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	marioFuego.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
+    	marioFuego.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
     }
 
     @Override
@@ -111,7 +111,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
     
     @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	marioRecuperacion.aceptarVisitante(this.miEntidad.getEstado().obtenerVisitante());
+    	marioRecuperacion.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
     }
     
 	@Override

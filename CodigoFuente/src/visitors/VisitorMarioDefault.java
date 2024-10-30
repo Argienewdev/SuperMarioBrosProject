@@ -47,24 +47,24 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.getContext(), this.miContexto)
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-    	   koopaEnCaparazon.getContext().establecerRemovido(true);
+    	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
         }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        koopaDefault.getContext().cambiarEstado(nuevoEstado);
-	        this.miContexto.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
-	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
+	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
+	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 

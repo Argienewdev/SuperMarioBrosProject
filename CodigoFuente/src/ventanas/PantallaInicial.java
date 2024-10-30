@@ -63,7 +63,7 @@ public class PantallaInicial extends JPanel {
         fondo.add(modo2);
         fondo.add(ranking);
         fondo.setBounds(0, 0, size.width, size.height);
-		}
+	}
 	
 	protected void registrarOyenteTeclas(){
 		currentLabel.setFocusable(true);
@@ -96,21 +96,13 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	protected void establecerFondo(){
-		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondoJuegoCielo.png");
-		 Image imagen = fondoImagen.getImage();
-		 
-		 ImageIcon iconoCartel = new ImageIcon("src/imagenes/cartelSuperMarioBros.png");
-		 Image imagenCartel= iconoCartel.getImage();
-		 Image imagenCartelEscalada= imagenCartel.getScaledInstance(400, 200, Image.SCALE_SMOOTH);
-		 JLabel cartelLabel= new JLabel(new ImageIcon(imagenCartelEscalada));
-		 cartelLabel.setBounds((size.width - 400) / 2, 50, 400, 300); 
+		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
 		 fondo = new JLabel(fondoImagen);
 		 fondo.setPreferredSize(size);
 		 fondo.setMaximumSize(size);
 		 fondo.setMinimumSize(size);
 		 add(fondo);
-		 fondo.add(cartelLabel);
 	}
 	
 	private void inicializarArregloDeBotones() {
@@ -152,11 +144,11 @@ public class PantallaInicial extends JPanel {
 	       
     }
 	 
-	 public void setEnFocus(boolean condicion){
+	 public void establecerEnFoco(boolean condicion){
 	    	this.enFoco= condicion;
 	    }
 	    
-	 public boolean getEnFocus(){
+	 public boolean obtenerEnFoco(){
 	    	return this.enFoco;
 	 }
 	 

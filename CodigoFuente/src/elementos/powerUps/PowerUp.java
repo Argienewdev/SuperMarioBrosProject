@@ -40,7 +40,7 @@ public abstract class PowerUp extends NoJugable {
 		return this.estaDentroDeBloqueDePreguntas;
 	}
 	
-	public int getTicksHastaSalirDelBloque() {
+	public int obtenerTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
 
@@ -73,11 +73,11 @@ public abstract class PowerUp extends NoJugable {
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.establecerSprite(fabricaSprites.getSpriteInvisible());
-		this.obtenerNivel().addEntidadesAEliminar(this);
+		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
+		this.obtenerNivel().agregarEntidadesAEliminar(this);
 	}
 	
-	public BloqueDePregunta getBloquePregunta() {
+	public BloqueDePregunta obtenerBloquePregunta() {
 		return this.bloquePregunta;
 	}
 	

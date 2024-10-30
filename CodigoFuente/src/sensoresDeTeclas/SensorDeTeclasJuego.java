@@ -80,7 +80,7 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		return spaceAccionado;
 	}
 	
-	public void setSpaceAccionada(boolean accionada) {
+	public void establecerSpaceAccionada(boolean accionada) {
 		this.spaceAccionado = accionada;
 	}
 }
