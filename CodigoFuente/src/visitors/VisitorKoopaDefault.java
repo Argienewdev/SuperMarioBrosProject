@@ -16,7 +16,7 @@ public class VisitorKoopaDefault implements Visitante {
 
     public VisitorKoopaDefault(KoopaDefault miEstado) {
         this.miEstado = miEstado;
-        this.miContexto = miEstado.getContext();
+        this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 

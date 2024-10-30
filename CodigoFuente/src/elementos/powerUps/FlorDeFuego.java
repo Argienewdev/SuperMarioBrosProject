@@ -43,18 +43,12 @@ public class FlorDeFuego extends PowerUp {
 		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
 		}else {
-			if(!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
-<<<<<<< HEAD
-				this.establecerSprite(fabricaSprites.getFlorDeFuegoSaliendoDelBloqueDePreguntas());
-				this.actualizarHitboxYPosicion(fabricaSprites);
-			} else if(getContadorTicks() == ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.getFlorDeFuegoQuieto());
-				this.actualizarHitboxYPosicion(fabricaSprites);
-=======
+			if(!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoSaliendoDelBloqueDePreguntas());
-			} else if(getContadorTicks() == ticksHastaSalirDelBloque) {
+				this.actualizarHitboxYPosicion(fabricaSprites);
+			} else if(obtenerContadorTicks() == ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoQuieto());
->>>>>>> f5445ae5b60ed4951b202a4e547b7803378805c8
+				this.actualizarHitboxYPosicion(fabricaSprites);
 			} 
 		}
 	}

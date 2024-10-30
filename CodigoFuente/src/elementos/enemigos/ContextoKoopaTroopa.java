@@ -22,11 +22,11 @@ public class ContextoKoopaTroopa extends Enemigo {
     	this.cambiarEstado = false;
     }
 
-    public EstadoKoopa getEstado() {
+    public EstadoKoopa obtenerEstado() {
     	return this.estadoKoopa;
     }
     
-    public int getTicksAnimacion() {
+    public int obtenerTicksAnimacion() {
     	return this.ticksAnimacion;
     }
     

@@ -25,12 +25,7 @@ public class PantallaEntreNiveles extends JPanel {
         // Configurar los JLabel
         this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.obtenerRutaImagen()));
-<<<<<<< HEAD
         this.vidasLabel = new JLabel("x");
-=======
-        this.vidasLabel = new JLabel("x3");
-        this.nivelLabel = new JLabel("Nivel: ");
->>>>>>> f5445ae5b60ed4951b202a4e547b7803378805c8
         configurarFuentes();
         crearPaneles();
         

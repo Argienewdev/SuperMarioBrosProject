@@ -89,7 +89,7 @@ public class Nivel {
         this.plataformasAfectables.add(plataforma);
     }
 	
-	public Iterable<Plataforma> getPlataformasAfectables() {
+	public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return plataformasAfectables;
     }
 
@@ -127,23 +127,23 @@ public class Nivel {
     	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     
-    public Iterable<Plataforma> getPlataformas() {
+    public Iterable<Plataforma> obtenerPlataformas() {
         return this.plataformas;
     }
 
-    public Iterable<PowerUp> getPowerUps() {
+    public Iterable<PowerUp> obtenerPowerUps() {
         return this.powerUps;
     }
 
-    public Iterable<Enemigo> getEnemigos() {
+    public Iterable<Enemigo> obtenerEnemigos() {
         return this.enemigos;
     }
     
-    public Iterable<BolaDeFuego> getBolasDeFuego() {
+    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
         return this.bolasDeFuego;
     }
     
-    public ContextoMario getMario() {
+    public ContextoMario obtenerMario() {
         return this.mario;
     }
     
@@ -159,18 +159,18 @@ public class Nivel {
     	return this.partida;
     }
     
-    public Iterable<ElementoDeJuego> getElementosDeJuego() {
+    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
         ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<ElementoDeJuego>();
-        for(Plataforma plataforma : getPlataformas()) {
+        for(Plataforma plataforma : obtenerPlataformas()) {
             elementosDeJuego.add(plataforma);
         }
-        for(PowerUp powerup : getPowerUps()) {
+        for(PowerUp powerup : obtenerPowerUps()) {
             elementosDeJuego.add(powerup);
         }
-        for(Enemigo enemigo : getEnemigos()) {
+        for(Enemigo enemigo : obtenerEnemigos()) {
             elementosDeJuego.add(enemigo);
         }
-        for(BolaDeFuego bolaDeFuego: getBolasDeFuego() ){
+        for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego() ){
             elementosDeJuego.add(bolaDeFuego);
         }
         return elementosDeJuego;

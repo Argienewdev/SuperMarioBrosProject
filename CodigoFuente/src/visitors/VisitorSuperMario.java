@@ -46,7 +46,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
@@ -55,12 +55,12 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.getContext(), this.miContexto)) {
-			ContextoKoopaTroopa contextoKoopa = koopaDefault.getContext();
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miContexto.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
+	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.getContext().establecerVelocidadDireccional(new Point(0, 0));
+	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
 

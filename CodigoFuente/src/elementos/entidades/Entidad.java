@@ -66,7 +66,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
-	public int getContadorTicks() {
+	public int obtenerContadorTicks() {
 		return this.contadorTicks;
 	}
 	

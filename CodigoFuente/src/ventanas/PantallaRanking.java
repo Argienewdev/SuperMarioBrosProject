@@ -118,7 +118,7 @@ public class PantallaRanking extends JPanel {
     	this.enFoco = condicion;
     }
     
-    public boolean getEnFocus(){
+    public boolean obtenerEnFocus(){
     	return this.enFoco;
     }
 }

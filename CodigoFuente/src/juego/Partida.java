@@ -44,7 +44,7 @@ public class Partida {
 		this.generadorDeNivel = generadorDeNivel;
 		this.numeroNivelActual = 1;
 		this.nivel = generarNivel(this.numeroNivelActual, this);
-		this.jugable = this.nivel.getMario();
+		this.jugable = this.nivel.obtenerMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugable, fabricaSprites, nivel);
 		this.bucleJugador = new BucleJugador(this);
 		this.masterMind = new MasterMind(fabricaSprites, this.nivel);

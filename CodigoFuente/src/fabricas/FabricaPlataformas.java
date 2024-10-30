@@ -83,7 +83,7 @@ public class FabricaPlataformas {
 	@SuppressWarnings("exports")
 	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion,Nivel nivel, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.obtenerTuberia(altura);
-		//Sprite spriteTuberia = this.fabricaSprites.getSpriteInvisible();
+		//Sprite spriteTuberia = this.fabricaSprites.obtenerSpriteInvisible();
 		int ancho = 100;
 		int alturaEscalada = altura*50;
 		int posicionPiranhaX = posicion.x;

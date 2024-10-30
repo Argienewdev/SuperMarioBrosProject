@@ -37,17 +37,17 @@ public class VisitorContextoMario implements Visitante {
 
 	@Override
 	public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-		contextoKoopaTroopa.getEstado().aceptarVisitante(this);
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
 	}
 
 	@Override
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-		koopaEnCaparazon.getContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
+		koopaEnCaparazon.obtenerContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override
 	public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-		koopaDefault.getContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
+		koopaDefault.obtenerContext().aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	@Override

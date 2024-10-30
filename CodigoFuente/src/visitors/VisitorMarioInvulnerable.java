@@ -44,14 +44,14 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	koopaEnCaparazon.getContext().establecerRemovido(true);
-    	this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().obtenerPuntosOtorgadosPorEliminacion());
+    	koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaEnCaparazon.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	koopaDefault.getContext().establecerRemovido(true);
-    	this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
+    	koopaDefault.obtenerContext().establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override

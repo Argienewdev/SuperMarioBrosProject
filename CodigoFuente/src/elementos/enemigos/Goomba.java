@@ -29,9 +29,9 @@ public class Goomba extends Enemigo {
 			this.establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
 		} else if(this.obtenerVelocidadDireccional().x < 0) {
-			this.establecerSprite(fabricaSprites.getGoombaReversoCaminando());
+			this.establecerSprite(fabricaSprites.obtenerGoombaReversoCaminando());
 		} else if(this.obtenerVelocidadDireccional().x > 0) {
-			this.establecerSprite(fabricaSprites.getGoombaFrontalCaminando());
+			this.establecerSprite(fabricaSprites.obtenerGoombaFrontalCaminando());
 		}
 	}
 	

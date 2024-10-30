@@ -50,12 +50,11 @@ public class MasterMind {
 		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
 				boolean chocoBordeIzquierdo = enemigo.obtenerHitbox().x <= 0; 
-				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().getWidth() >= ConstantesGlobales.PANEL_ANCHO;
+				boolean chocoBordeDerecho = enemigo.obtenerHitbox().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;
 				if (chocoBordeIzquierdo || chocoBordeDerecho) {
 					enemigo.invertirDireccion();
 				}
 			}
-			//System.out.println(enemigo.getClass().getSimpleName().toString()+"|"+enemigo.obtenerPosicion().y);
 			enemigo.mover();
 			enemigo.aplicarGravedad();
 		}
@@ -85,7 +84,7 @@ public class MasterMind {
 		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < 0) || entidad.obtenerHitbox().y < 0) {
 			entidad.establecerRemovido(true);
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.getElementosDeJuego()) {
+			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
 		        if(entidad.huboColision(elemento) && entidad != elemento) {
 		            elemento.aceptarVisitante(entidad.obtenerVisitante());
 		            entidad.aceptarVisitante(elemento.obtenerVisitante());
@@ -96,26 +95,26 @@ public class MasterMind {
 	}
 	
 	private void actualizarPosicionesEnemigos() {
-		for(Enemigo enemigo : this.nivel.getEnemigos()) {
+		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
 			moverEnemigo(enemigo);
 		}
 	}
 	
 	private void actualizarPosicionesPowerUps() {
-		for(PowerUp powerUp : this.nivel.getPowerUps()) {
+		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
 			moverPowerUp(powerUp);
 		}
 	}
 	
 	private void actualizarPosicionesBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()) {
+		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
 			moverBolaDeFuego(bola);
 		}
 	}
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		boolean ticksEnCero = powerUp.getContadorTicks() == 0;
-		boolean ticksAlcanzaronMarca = powerUp.getContadorTicks() == powerUp.getTicksHastaSalirDelBloque();
+		boolean ticksEnCero = powerUp.obtenerContadorTicks() == 0;
+		boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() == powerUp.obtenerTicksHastaSalirDelBloque();
 		if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
@@ -136,55 +135,55 @@ public class MasterMind {
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicion().x, powerUp.getBloquePregunta().obtenerPosicion().y - powerUp.obtenerAlto()));
+		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicion().x, powerUp.obtenerBloquePregunta().obtenerPosicion().y - powerUp.obtenerAlto()));
 		powerUp.moverHitbox(powerUp.obtenerPosicion());
 		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 	
 	private void actualizarSpritesEnemigos() {
-		for(Enemigo enemigo : this.nivel.getEnemigos()) {
+		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
 			enemigo.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesPlataformas() {
-		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
+		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
 			plataforma.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesPowerUps() {
-		for(PowerUp powerUp : this.nivel.getPowerUps()) {
+		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
 			powerUp.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarSpritesBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()) {
+		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
 			bola.actualizarSprite(this.fabricaSprites);
 		}
 	}
 	
 	private void actualizarLabelsEnemigos() {
-		for(Enemigo enemigo : this.nivel.getEnemigos()) {
+		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
 			enemigo.obtenerObserverGrafico().actualizar();
 		}
 	}
 	
 	private void actualizarLabelsPowerUps() {
-		for(PowerUp powerUp : this.nivel.getPowerUps()) {
+		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
 			powerUp.obtenerObserverGrafico().actualizar();
 		}
 	}
 	
 	private void actualizarLabelsPlataformas() {
-		for(Plataforma plataforma: this.nivel.getPlataformasAfectables()){
+		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
 	}
 	
 	private void actualizarLabelsBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.getBolasDeFuego()){
+		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()){
 			bola.obtenerObserverGrafico().actualizar();
 		}
 	}

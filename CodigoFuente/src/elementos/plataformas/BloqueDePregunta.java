@@ -31,7 +31,7 @@ public class BloqueDePregunta extends Plataforma {
 		this.estaVacio = false;
 	}
 	
-	public PowerUp getPowerUp() {
+	public PowerUp obtenerPowerUp() {
 		return this.powerUp;
 	}
 	

@@ -23,7 +23,7 @@ public class ObserverGrafico extends JLabel implements Observer {
 		actualizarPosicionTamanio();
 	}
 	
-	public ElementoDeJuego getEntidadObservada() {
+	public ElementoDeJuego obtenerEntidadObservada() {
 		return this.entidad_observada;
 	}
 	

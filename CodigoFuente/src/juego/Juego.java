@@ -65,8 +65,8 @@ public class Juego {
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
-		this.fabricaSprites = generadorDeNivel.getFabricaSprites();
-		this.fabricaSilueta = generadorDeNivel.getFabricaSilueta();
+		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
+		this.fabricaSilueta = generadorDeNivel.obtenerFabricaSilueta();
 		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
 		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
 		ContextoMario jugable = partida.obtenerJugable();

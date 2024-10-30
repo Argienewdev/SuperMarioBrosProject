@@ -81,7 +81,7 @@ public abstract class Jugable extends Entidad  {
 		this.colisionArriba = colisionArriba;
 	}
 	
-	public boolean getColisionArriba() {
+	public boolean obtenerColisionArriba() {
 		return this.colisionArriba;
 	}
 	

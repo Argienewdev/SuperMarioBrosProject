@@ -40,7 +40,7 @@ public abstract class PowerUp extends NoJugable {
 		return this.estaDentroDeBloqueDePreguntas;
 	}
 	
-	public int getTicksHastaSalirDelBloque() {
+	public int obtenerTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
 
@@ -77,7 +77,7 @@ public abstract class PowerUp extends NoJugable {
 		this.obtenerNivel().addEntidadesAEliminar(this);
 	}
 	
-	public BloqueDePregunta getBloquePregunta() {
+	public BloqueDePregunta obtenerBloquePregunta() {
 		return this.bloquePregunta;
 	}
 	

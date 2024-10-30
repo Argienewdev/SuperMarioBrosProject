@@ -41,9 +41,9 @@ public class SuperChampinion extends PowerUp {
 		if(this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
 		}else{
-			if (!this.estaDentroDeBloqueDePreguntas && getContadorTicks() < ticksHastaSalirDelBloque) {
+			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerSuperChampinionSaliendoDelBloqueDePreguntas());
-			} else if (getContadorTicks() >= ticksHastaSalirDelBloque) {
+			} else if (obtenerContadorTicks() >= ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerSuperChampinionQuieto());
 			} 
 		}

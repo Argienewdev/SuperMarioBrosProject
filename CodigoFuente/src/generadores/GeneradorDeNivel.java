@@ -183,13 +183,13 @@ public class GeneradorDeNivel {
 			}
 		}
 		
-		for(Plataforma plataforma : nivel.getPlataformas()) {
+		for(Plataforma plataforma : nivel.obtenerPlataformas()) {
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
-		for(PowerUp powerUp : nivel.getPowerUps()) {
+		for(PowerUp powerUp : nivel.obtenerPowerUps()) {
 			powerUp.obtenerObserverGrafico().actualizar();
 		}
-		for(Enemigo enemigo : nivel.getEnemigos()) {
+		for(Enemigo enemigo : nivel.obtenerEnemigos()) {
 			enemigo.obtenerObserverGrafico().actualizar();
 		}
 		return nivel;
@@ -206,11 +206,11 @@ public class GeneradorDeNivel {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
-	public FabricaSprites getFabricaSprites() {
+	public FabricaSprites obtenerFabricaSprites() {
 		return fabricaSprites;
 	}
 	
-	public FabricaSilueta getFabricaSilueta() {
+	public FabricaSilueta obtenerFabricaSilueta() {
 		return fabricaSilueta;
 	}
 	

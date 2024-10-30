@@ -25,7 +25,7 @@ public class KoopaDefault implements EstadoKoopa {
         visitante.visitarKoopaDefault(this);
     }
 
-	public ContextoKoopaTroopa getContext() {
+	public ContextoKoopaTroopa obtenerContext() {
 		return this.contexto;
 	}
 	public Visitante obtenerVisitante() {
@@ -34,31 +34,24 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-<<<<<<< HEAD
-		if(this.getContext().obtenerRemovido()) {
-			this.getContext().establecerVelocidadDireccional(new Point(0, 0));
+		if(this.obtenerContext().obtenerRemovido()) {
+			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.getContext().obtenerVelocidadDireccional().x < 0) {
-			this.getContext().establecerSprite(fabricaSprites.getKoopaTroopaDefaultReversoCaminando());
-		} else if(this.getContext().obtenerVelocidadDireccional().x > 0) {
-			this.getContext().establecerSprite(fabricaSprites.getKoopaTroopaDefaultFrontalCaminando());
+		} else if(this.obtenerContext().obtenerVelocidadDireccional().x < 0) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
+		} else if(this.obtenerContext().obtenerVelocidadDireccional().x > 0) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
 		}
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-    	this.getContext().incrementarContadorTicks();
-		if(this.getContext().getContadorTicks() == 1){
-			this.getContext().establecerSprite(this.getContext().obtenerSpriteDeMuerte(fabricaSprites));
+    	this.obtenerContext().incrementarContadorTicks();
+		if(this.obtenerContext().obtenerContadorTicks() == 1){
+			this.obtenerContext().establecerSprite(this.obtenerContext().obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(this.getContext().getContadorTicks() == this.getContext().getTicksAnimacion()) {
-			this.getContext().establecerSprite(fabricaSprites.getSpriteInvisible());
-			this.getContext().eliminarDelNivel();
-=======
-		if(this.contexto.obtenerVelocidadDireccional().x < 0) {
-			this.contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
-		} else if(this.contexto.obtenerVelocidadDireccional().x > 0) {
-			this.contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
->>>>>>> f5445ae5b60ed4951b202a4e547b7803378805c8
+		} else if(this.obtenerContext().obtenerContadorTicks() == this.obtenerContext().obtenerTicksAnimacion()) {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerSpriteInvisible());
+			this.obtenerContext().eliminarDelNivel();
 		}
 	}
 

@@ -176,8 +176,8 @@ public class PantallaDeJuego extends JPanel {
         			if (observerGrafico.obtenerDebeMoverseConElFondo()) {
         				Point posicionLabel = observerGrafico.getLocation();
             			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
-            			observerGrafico.getEntidadObservada().establecerPosicion(posicionLabel);
-            			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
+            			observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
+            			observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
             			observerGrafico.actualizar();
             			revalidate();
             			repaint();
