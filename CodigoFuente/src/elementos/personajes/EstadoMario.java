@@ -5,15 +5,15 @@ import visitors.Visitante;
 
 public interface EstadoMario{
 	
-	public ContextoMario getContext();
+	public ContextoMario obtenerContexto();
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites);
 
 	public void aceptarVisitante(Visitante visitante);
 
-	public void setContext(ContextoMario contextoMario);
+	public void establecerContexto(ContextoMario contextoMario);
 	
-	public Visitante getVisitor();
+	public Visitante obtenerVisitante();
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites);
 	

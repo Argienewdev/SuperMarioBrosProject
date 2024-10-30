@@ -30,7 +30,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	@SuppressWarnings("exports")
 	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
-		Point posicionConsiderandoSprite = getPosicionConsiderandoSprite(posicion, sprite);
+		Point posicionConsiderandoSprite = obtenerPosicionConsiderandoSprite(posicion, sprite);
 		this.posicion = posicionConsiderandoSprite;
 		this.visitante = visitante;
 		this.observerGrafico = observerGrafico;
@@ -42,28 +42,28 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.hitbox = new Rectangle(x, y, ancho, alto);
 	}
 	
-	private Point getPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
+	private Point obtenerPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
 		return new Point(posicion.x, posicion.y + (50 - sprite.getAltoImagen()));
 	}
 	
-	public void setSprite(Sprite sprite) {
+	public void establecerSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
 	
-	public void setVisitor(Visitante visitor) {
+	public void establecerVisitor(Visitante visitor) {
 		this.visitante = visitor;
 	}
 	
-	public void setNivel (Nivel nivel) {
+	public void establecerNivel (Nivel nivel) {
 		this.miNivel = nivel;
 	}
 	
 	@SuppressWarnings("exports")
-	public void setPosicion (Point posicion) {
+	public void establecerPosicion (Point posicion) {
 		this.posicion = posicion;
 	}
 	
-	public Sprite getSprite() {
+	public Sprite obtenerSprite() {
 		return this.sprite;
 	}
 	
@@ -78,15 +78,15 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	@SuppressWarnings("exports")
-	public Point getPosicion() {
+	public Point obtenerPosicion() {
 		return this.posicion;
 	}
 	
-	public Visitante getVisitor() {
+	public Visitante obtenerVisitante() {
 		return this.visitante;
 	}
 	
-    public Nivel getNivel() {
+    public Nivel obtenerNivel() {
     	return this.miNivel;
     }
 	
@@ -102,21 +102,21 @@ public abstract class ElementoDeJuego implements Visitado {
 		return this.hitbox.intersects(elemento.obtenerHitbox());
 	}
 
-	public void setObserverGrafico(ObserverGrafico observerGrafico) {
+	public void establecerObserverGrafico(ObserverGrafico observerGrafico) {
     	this.observerGrafico = observerGrafico;
     }
     
-    public ObserverGrafico getObserverGrafico() {
+    public ObserverGrafico obtenerObserverGrafico() {
     	return this.observerGrafico;
     }
 	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
-	public void setRemovido(boolean removido) {
+	public void establecerRemovido(boolean removido) {
 		this.removido = removido;
 	}
 	
-	public boolean getRemovido() {
+	public boolean obtenerRemovido() {
 		return this.removido;
 	}
 }

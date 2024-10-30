@@ -18,11 +18,11 @@ public class PiranhaPlant extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 30;
     }
 
-    public void setDentroTuberia() {
+    public void establecerDentroTuberia() {
         this.dentroTuberia = true;
     }
     
-    public void setFueraTuberia() {
+    public void establecerFueraTuberia() {
         this.dentroTuberia = false;
     }
     
@@ -42,7 +42,7 @@ public class PiranhaPlant extends Enemigo {
 	}
 	
 	@Override
-	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.getPiranhaPlantMuerto();
 	}
 

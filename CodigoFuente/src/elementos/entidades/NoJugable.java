@@ -41,26 +41,26 @@ public abstract class NoJugable extends Entidad {
     public abstract void invertirDireccion();
     
     public void aplicarGravedad() {
-		if(this.getVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
-			Point nuevaVelocidad = new Point(this.getVelocidadDireccional().x, this.getVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
-			this.setVelocidadDireccional(nuevaVelocidad);
+		if(this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
+			this.establecerVelocidadDireccional(nuevaVelocidad);
 		}
 	}
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
         this.moverHitbox(nuevaPosicion);
-		this.setPosicion(nuevaPosicion);
+		this.establecerPosicion(nuevaPosicion);
 		this.invertirDireccion();
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int nuevaPosX = this.getPosicion().x;
-		int nuevaPosY = this.getPosicion().y + (this.obtenerAlto() - this.getSprite().getAltoImagen());
-		int nuevoAncho = this.getSprite().getAnchoImagen();
-		int nuevoAlto = this.getSprite().getAltoImagen();
+		int nuevaPosX = this.obtenerPosicion().x;
+		int nuevaPosY = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().getAltoImagen());
+		int nuevoAncho = this.obtenerSprite().getAnchoImagen();
+		int nuevoAlto = this.obtenerSprite().getAltoImagen();
 		this.setHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));
-		this.setPosicion(this.obtenerHitbox().getLocation());
+		this.establecerPosicion(this.obtenerHitbox().getLocation());
 	}
 	
 	public boolean obtenerDebeMantenerseSiempreEnPantalla() {

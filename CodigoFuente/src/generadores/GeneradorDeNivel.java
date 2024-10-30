@@ -181,13 +181,13 @@ public class GeneradorDeNivel {
 		}
 		
 		for(Plataforma plataforma : nivel.getPlataformas()) {
-			plataforma.getObserverGrafico().actualizar();
+			plataforma.obtenerObserverGrafico().actualizar();
 		}
 		for(PowerUp powerUp : nivel.getPowerUps()) {
-			powerUp.getObserverGrafico().actualizar();
+			powerUp.obtenerObserverGrafico().actualizar();
 		}
 		for(Enemigo enemigo : nivel.getEnemigos()) {
-			enemigo.getObserverGrafico().actualizar();
+			enemigo.obtenerObserverGrafico().actualizar();
 		}
 		return nivel;
 	}

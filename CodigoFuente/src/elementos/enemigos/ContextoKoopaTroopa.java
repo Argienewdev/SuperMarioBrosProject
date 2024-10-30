@@ -18,7 +18,7 @@ public class ContextoKoopaTroopa extends Enemigo {
     	this.estadoKoopa = estado;
     	this.puntosOtorgadosPorEliminacion = 90;
     	this.puntosSustraidosPorMuerteCausada = 45;
-    	estado.setContext(this);
+    	estado.establecerContexto(this);
     	this.cambiarEstado = false;
     }
 
@@ -28,7 +28,7 @@ public class ContextoKoopaTroopa extends Enemigo {
     
     public void cambiarEstado(EstadoKoopa estado) {
         this.estadoKoopa = estado;
-        estado.setContext(this);
+        estado.establecerContexto(this);
 		this.cambiarEstado = true;
     }
     
@@ -51,21 +51,21 @@ public class ContextoKoopaTroopa extends Enemigo {
 	}
 	
 	public void  eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
-		this.setSprite(fabricaSprites.getSpriteInvisible());
+		this.establecerSprite(fabricaSprites.getSpriteInvisible());
 	}
     
 	@Override
 	public void mover() {
 		if(removido) {
     		Point velocidad = new Point(0, 0);
-    		this.setVelocidadDireccional(velocidad);
+    		this.establecerVelocidadDireccional(velocidad);
     	} else {
     		this.estadoKoopa.mover();
     	}
 	}
 
 	@Override
-	protected Sprite getSpriteDeMuerte(FabricaSprites fabricaSprites) {
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.getKoopaTroopaMuerto();
 	}
 	

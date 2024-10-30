@@ -16,26 +16,26 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     public VisitorMarioInvulnerable(MarioInvulnerable miEstado) {
         this.miEstado = miEstado;
-        this.miEntidad = this.miEstado.getContext();
+        this.miEntidad = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	buzzyBeetle.setRemovido(true);
-        this.miEntidad.ganarPuntos(buzzyBeetle.getPuntosOtorgadosPorEliminacion());
+    	buzzyBeetle.establecerRemovido(true);
+        this.miEntidad.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-    	spiny.setRemovido(true);
-    	this.miEntidad.ganarPuntos(spiny.getPuntosOtorgadosPorEliminacion());
+    	spiny.establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(spiny.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	goomba.setRemovido(true);
-    	this.miEntidad.ganarPuntos(goomba.getPuntosOtorgadosPorEliminacion());
+    	goomba.establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
@@ -44,38 +44,38 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	koopaEnCaparazon.getContext().setRemovido(true);
-    	this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().getPuntosOtorgadosPorEliminacion());
+    	koopaEnCaparazon.getContext().establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaEnCaparazon.getContext().obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	koopaDefault.getContext().setRemovido(true);
-    	this.miEntidad.ganarPuntos(koopaDefault.getContext().getPuntosOtorgadosPorEliminacion());
+    	koopaDefault.getContext().establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(koopaDefault.getContext().obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	lakitu.setRemovido(true);
-    	this.miEntidad.ganarPuntos(lakitu.getPuntosOtorgadosPorEliminacion());
+    	lakitu.establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    	piranhaPlant.setRemovido(true);
-    	this.miEntidad.ganarPuntos(piranhaPlant.getPuntosOtorgadosPorEliminacion());
+    	piranhaPlant.establecerRemovido(true);
+    	this.miEntidad.ganarPuntos(piranhaPlant.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
-        superChampinion.setRemovido(true);
+        superChampinion.establecerRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorInvulnerable());
-        florDeFuego.setRemovido(true);
+        florDeFuego.establecerRemovido(true);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     @Override
     public void visitarEstrella(Estrella estrella) {
     	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
-        estrella.setRemovido(true);
+        estrella.establecerRemovido(true);
     }
 
     @Override

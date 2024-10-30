@@ -59,29 +59,26 @@ public abstract class Jugable extends Entidad  {
 		}
 	}
 	
-	public void recogerMoneda() {
-		//TODO SACAR, la moneda te da puntos cuando mario visita a la moneda
-	}
-	
-	public int getVidas() {
+	public int obtenerVidas() {
 		return this.vidas;
 	}
 	
-	public int getPuntos() {
+	public int obtenerPuntos() {
 		return this.puntos;
 	}
 	
-	public Monedas getMonedas() {
+	public Monedas obtenerMonedas() {
+		//TODO es necesario?
 		return this.monedas;
 	}
 		
-	public boolean getColisionAbajo() {
+	public boolean obtenerColisionAbajo() {
 		return this.colisionAbajo;
 	}
 	
 	public abstract void reiniciarEstado();
 	
-	public void setColisionArriba(boolean colisionArriba) {
+	public void establecerColisionArriba(boolean colisionArriba) {
 		this.colisionArriba = colisionArriba;
 	}
 	
@@ -92,28 +89,28 @@ public abstract class Jugable extends Entidad  {
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
         this.moverHitbox(nuevaPosicion);
-		this.setPosicion(nuevaPosicion);
-        this.setVelocidadDireccional(new Point(0, getVelocidadDireccional().y));
+		this.establecerPosicion(nuevaPosicion);
+        this.establecerVelocidadDireccional(new Point(0, obtenerVelocidadDireccional().y));
 	}
 	
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(nuevaPosicion);
-		this.setPosicion(nuevaPosicion);
-		if(this.getColisionAbajo()) {
-			this.setEnElAire(false);
+		this.establecerPosicion(nuevaPosicion);
+		if(this.obtenerColisionAbajo()) {
+			this.establecerEnElAire(false);
 		}
 	}
 	
-	public boolean getEnElAire() {
+	public boolean obtenerEnElAire() {
 		return this.enElAire;
 	}
 	
-	public void setEnElAire(boolean enElAire) {
+	public void establecerEnElAire(boolean enElAire) {
 		this.enElAire = enElAire;
 	}
 	
-	public boolean getRetrocediendo() {
+	public boolean obtenerRetrocediendo() {
 		return retrocediendo;
 	}
 	
@@ -121,15 +118,15 @@ public abstract class Jugable extends Entidad  {
 		return this.observerLogico;
 	}
 	
-	public void setRetrocediendo(boolean retrocediendo) {
+	public void establecerRetrocediendo(boolean retrocediendo) {
 		this.retrocediendo = retrocediendo;
 	}
 	
-	public boolean getAvanzando() {
+	public boolean obtenerAvanzando() {
 		return this.avanzando;
 	}
 	
-	public void setAvanzando(boolean avanzando) {
+	public void establecerAvanzando(boolean avanzando) {
 		this.avanzando = avanzando;
 	}
 	

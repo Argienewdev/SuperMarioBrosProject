@@ -44,10 +44,10 @@ public class FabricaPlataformas {
 		Sprite spriteVacio = this.fabricaSprites.getVacio();
 		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, null, null);
 		Visitante visitor = new VisitorVacio(vacioADevolver);
-		vacioADevolver.setVisitor(visitor);
+		vacioADevolver.establecerVisitor(visitor);
 		ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(vacioADevolver);	   
-		vacioADevolver.setObserverGrafico(observerGraficoLadrillo);
-		this.pantallaDeJuego.agregarLabel(vacioADevolver.getObserverGrafico());
+		vacioADevolver.establecerObserverGrafico(observerGraficoLadrillo);
+		this.pantallaDeJuego.agregarLabel(vacioADevolver.obtenerObserverGrafico());
 		return vacioADevolver;
 	}
 	
@@ -56,10 +56,10 @@ public class FabricaPlataformas {
 		Sprite spriteLadrillo = this.fabricaSprites.getLadrillo();
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, null, null);
 		Visitante visitor = new VisitorLadrillo(ladrilloADevolver);
-		ladrilloADevolver.setVisitor(visitor);
+		ladrilloADevolver.establecerVisitor(visitor);
         ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrilloADevolver);	   
-        ladrilloADevolver.setObserverGrafico(observerGraficoLadrillo);
-        this.pantallaDeJuego.agregarLabel(ladrilloADevolver.getObserverGrafico());
+        ladrilloADevolver.establecerObserverGrafico(observerGraficoLadrillo);
+        this.pantallaDeJuego.agregarLabel(ladrilloADevolver.obtenerObserverGrafico());
         return ladrilloADevolver;
 	}
 	
@@ -71,10 +71,10 @@ public class FabricaPlataformas {
 		PiranhaPlant piranhaPlant = null;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitor = new VisitorTuberia(tuberiaADevolver);
-        tuberiaADevolver.setVisitor(visitor);
+        tuberiaADevolver.establecerVisitor(visitor);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
-		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
-        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.getObserverGrafico());
+		tuberiaADevolver.establecerObserverGrafico(observerGraficoTuberia);
+        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.obtenerObserverGrafico());
 		return tuberiaADevolver;
 	}
 	
@@ -87,10 +87,10 @@ public class FabricaPlataformas {
 		PiranhaPlant piranhaPlant = this.fabricaEntidades.getPiranhaPlant(posicion);
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, piranhaPlant, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
-        tuberiaADevolver.setVisitor(visitorTuberia);
+        tuberiaADevolver.establecerVisitor(visitorTuberia);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
-		tuberiaADevolver.setObserverGrafico(observerGraficoTuberia);
-        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.getObserverGrafico());
+		tuberiaADevolver.establecerObserverGrafico(observerGraficoTuberia);
+        this.pantallaDeJuego.agregarLabel(tuberiaADevolver.obtenerObserverGrafico());
 		return tuberiaADevolver;
 	}
 	
@@ -99,10 +99,10 @@ public class FabricaPlataformas {
 		Sprite spriteBandera = this.fabricaSprites.getBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
 		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver);
-		banderaADevolver.setVisitor(visitor);
+		banderaADevolver.establecerVisitor(visitor);
 		ObserverGrafico observerGraficoBandera = new ObserverGrafico(banderaADevolver);
-        banderaADevolver.setObserverGrafico(observerGraficoBandera);
-        this.pantallaDeJuego.agregarLabel(banderaADevolver.getObserverGrafico());
+        banderaADevolver.establecerObserverGrafico(observerGraficoBandera);
+        this.pantallaDeJuego.agregarLabel(banderaADevolver.obtenerObserverGrafico());
         return banderaADevolver;
 	}
 	
@@ -111,10 +111,10 @@ public class FabricaPlataformas {
 		Sprite spritePrincesaPeach = this.fabricaSprites.getPrincesaPeach();
 		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null, null);
 		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver);
-		princesaPeachADevolver.setVisitor(visitor);
+		princesaPeachADevolver.establecerVisitor(visitor);
 		ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeachADevolver);
-        princesaPeachADevolver.setObserverGrafico(observerGraficoPrincesaPeach);
-        this.pantallaDeJuego.agregarLabel(princesaPeachADevolver.getObserverGrafico());
+        princesaPeachADevolver.establecerObserverGrafico(observerGraficoPrincesaPeach);
+        this.pantallaDeJuego.agregarLabel(princesaPeachADevolver.obtenerObserverGrafico());
 		return princesaPeachADevolver;
 	}
 	
@@ -123,9 +123,9 @@ public class FabricaPlataformas {
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.getBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null, null);
 		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver);
-		bloqueDePreguntaADevolver.setVisitor(visitor);
+		bloqueDePreguntaADevolver.establecerVisitor(visitor);
 		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
-		bloqueDePreguntaADevolver.setObserverGrafico(observerGraficoBloqueDePregunta);
+		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
 		int identificadorPowerUp = 5;
@@ -134,7 +134,7 @@ public class FabricaPlataformas {
 			case 2,4,6,8: {
 				Monedas monedasDentroBloqueDePregunta = this.fabricaEntidades.getMonedas(posicion, identificadorPowerUp, true);
 				nivel.addPowerUp(monedasDentroBloqueDePregunta);
-				pantallaDeJuego.agregarLabel(monedasDentroBloqueDePregunta.getObserverGrafico());
+				pantallaDeJuego.agregarLabel(monedasDentroBloqueDePregunta.obtenerObserverGrafico());
 				bloqueDePreguntaADevolver.setPowerUp(monedasDentroBloqueDePregunta);
 				monedasDentroBloqueDePregunta.setBloquePregunta(bloqueDePreguntaADevolver);
 				break;
@@ -142,7 +142,7 @@ public class FabricaPlataformas {
 			case 1: {
 				Estrella estrella = this.fabricaEntidades.getEstrella(posicion);
 				nivel.addPowerUp(estrella);
-		        pantallaDeJuego.agregarLabel(estrella.getObserverGrafico());
+		        pantallaDeJuego.agregarLabel(estrella.obtenerObserverGrafico());
 		        bloqueDePreguntaADevolver.setPowerUp(estrella);
 		        estrella.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
@@ -150,7 +150,7 @@ public class FabricaPlataformas {
 			case 3: {
 				ChampinionVerde champinionVerde = this.fabricaEntidades.getChampinionVerde(posicion);
 		        nivel.addPowerUp(champinionVerde);
-		        pantallaDeJuego.agregarLabel(champinionVerde.getObserverGrafico());
+		        pantallaDeJuego.agregarLabel(champinionVerde.obtenerObserverGrafico());
 		        bloqueDePreguntaADevolver.setPowerUp(champinionVerde);
 		        champinionVerde.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
@@ -158,7 +158,7 @@ public class FabricaPlataformas {
 			case 5: {
 				FlorDeFuego florDeFuego = this.fabricaEntidades.getFlorDeFuego(posicion,fabricaEntidades);
 		        nivel.addPowerUp(florDeFuego);
-		        pantallaDeJuego.agregarLabel(florDeFuego.getObserverGrafico());
+		        pantallaDeJuego.agregarLabel(florDeFuego.obtenerObserverGrafico());
 		        bloqueDePreguntaADevolver.setPowerUp(florDeFuego);
 		        florDeFuego.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
@@ -166,13 +166,13 @@ public class FabricaPlataformas {
 			case 7: {
 				SuperChampinion superChampinion = this.fabricaEntidades.getSuperChampinion(posicion);
 		        nivel.addPowerUp(superChampinion);
-		        pantallaDeJuego.agregarLabel(superChampinion.getObserverGrafico());
+		        pantallaDeJuego.agregarLabel(superChampinion.obtenerObserverGrafico());
 		        bloqueDePreguntaADevolver.setPowerUp(superChampinion);
 		        superChampinion.setBloquePregunta(bloqueDePreguntaADevolver);
 		        break;
 			}
 		}
-        this.pantallaDeJuego.agregarLabel(bloqueDePreguntaADevolver.getObserverGrafico());
+        this.pantallaDeJuego.agregarLabel(bloqueDePreguntaADevolver.obtenerObserverGrafico());
 		return bloqueDePreguntaADevolver;
 	}
 	
@@ -182,10 +182,10 @@ public class FabricaPlataformas {
     	Sprite spriteBloqueSolido = this.fabricaSprites.getBloqueSolido();
     	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null, null);
     	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolidoADevolver);
-    	bloqueSolidoADevolver.setVisitor(visitorBloqueSolido);
+    	bloqueSolidoADevolver.establecerVisitor(visitorBloqueSolido);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolidoADevolver);
-    	bloqueSolidoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
-    	this.pantallaDeJuego.agregarLabel(bloqueSolidoADevolver.getObserverGrafico());
+    	bloqueSolidoADevolver.establecerObserverGrafico(observerGraficoBloqueSolido);
+    	this.pantallaDeJuego.agregarLabel(bloqueSolidoADevolver.obtenerObserverGrafico());
     	return bloqueSolidoADevolver;
     }
     
@@ -194,10 +194,10 @@ public class FabricaPlataformas {
     	Sprite spritePiso = this.fabricaSprites.getPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver);
-    	pisoADevolver.setVisitor(visitorPiso);
+    	pisoADevolver.establecerVisitor(visitorPiso);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(pisoADevolver);
-    	pisoADevolver.setObserverGrafico(observerGraficoBloqueSolido);
-    	this.pantallaDeJuego.agregarLabel(pisoADevolver.getObserverGrafico());
+    	pisoADevolver.establecerObserverGrafico(observerGraficoBloqueSolido);
+    	this.pantallaDeJuego.agregarLabel(pisoADevolver.obtenerObserverGrafico());
     	return pisoADevolver;
     }
 	
