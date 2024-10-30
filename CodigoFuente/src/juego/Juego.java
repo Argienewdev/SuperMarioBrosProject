@@ -79,7 +79,7 @@ public class Juego {
 		controladorVistas.accionarPantallaIngresoNombre();
 		ranking.agregarJugador(jugador);
 		ranking.guardarEstado();
-		BucleJugador bucle= partida.obtenerBucleJugador();
+		BucleJugador bucle = partida.obtenerBucleJugador();
 		bucle.detenerBucleJugador();
 	}
 
