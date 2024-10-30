@@ -166,13 +166,15 @@ public class PantallaDeJuego extends JPanel {
         	*/
         	if (fondoMovido) {
         		for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-        			Point posicionLabel = observerGrafico.getLocation();
-        			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
-        			observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
-        			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
-        			observerGrafico.actualizar();
-        			revalidate();
-        			repaint();
+        			if (observerGrafico.obtenerDebeMoverseConElFondo()) {
+        				Point posicionLabel = observerGrafico.getLocation();
+            			posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Mover los labels hacia la izquierda
+            			observerGrafico.getEntidadObservada().setPosicion(posicionLabel);
+            			observerGrafico.getEntidadObservada().moverHitbox(posicionLabel);
+            			observerGrafico.actualizar();
+            			revalidate();
+            			repaint();
+        			}
         		}
         	}
         }
