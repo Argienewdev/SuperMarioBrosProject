@@ -15,11 +15,9 @@ public class MarioFuego extends MarioDefault {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
-	protected boolean frente;
 	
 	public MarioFuego(FabricaEntidades fabricaEntidades) {
 		this.fabricaEntidades = fabricaEntidades;
-		frente = true;
 	}
 	
 	@Override
@@ -44,22 +42,16 @@ public class MarioFuego extends MarioDefault {
 		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
 		}else if(spriteAereoFrontal(fabricaSprites)) {
-			frente = true;
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
 		} else if(spriteAereoReverso(fabricaSprites)) {
-			frente = false;
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
 		}else if(avanzando()) {
-			frente = true;
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
 		} else if(retrocediendo()){
-			frente = false;
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
 		} else if(spriteFrontal(fabricaSprites)){
-			frente = true;
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 		} else if(spriteReverso(fabricaSprites)){
-			frente = false;
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -109,11 +101,11 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posX = obtenerContexto().obtenerPosicion().x + obtenerContexto().obtenerAncho();
+		int posX = obtenerContexto().obtenerPosicion().x + obtenerContexto().obtenerAncho()/2;
 		int posY = obtenerContexto().obtenerPosicion().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
-		if(frente) {
+		if(this.obtenerContexto().obtenerMirandoAlFrente()) {
 			velocidadDireccionalBolaDeFuego = new Point(15,0);
 		}else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);

@@ -39,21 +39,23 @@ public class ControladorVistas {
 	
 	private PantallaIngresoNombre pantallaIngresoNombre;
 	
+	@SuppressWarnings("unused")
+	private BucleVentana bucleVentana;
+	
 	private Juego juego;
 	
 	public ControladorVistas(Juego juego){
-		//TODO cuando apretas enter en la pantalla de ranking se sigue actualizando la pantalla inicial y escucha el
-		//enter. La solucion seria ponerle una bandera a todas las pantallas que se llame enfocada y que sea verdadera
-		//o falsa según sea necesario. Modificar esas banderas es responsabilidad del controlador de vistas. 
+		
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.juego = juego;
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
-		this.pantallaFinal= new PantallaFinal(this,sensorDeTeclasMenu);
+
 		
 		configurarVentana();
 		RegistrarOyenteInicial();	
+		bucleVentana = new BucleVentana(this);
 	}
 	
 	public void configurarVentana(){
@@ -128,10 +130,11 @@ public class ControladorVistas {
 	    ventana.repaint();	
 	}
 	
-	public void mostrarPantallaFinal() {
-		pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
-		ventana.setContentPane(pantallaFinal);
-		pantallaFinal.activarFoco();
+	public void accionarPantallaFinal() {
+	    this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
+	    pantallaFinal.setFocusable(true);
+	    pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
+	    ventana.setContentPane(pantallaFinal);
 	    ventana.revalidate();
 	    ventana.repaint();
 		
@@ -195,14 +198,22 @@ public class ControladorVistas {
 			pantallaInicial.actualizarFoco();
 			if(ventana.isAncestorOf(pantallaRanking)) {
 				pantallaRanking.refrescar();
+
+			}
+			
+			ventana.requestFocusInWindow();
+		}
+		else{
+			if (ventana.isAncestorOf(pantallaDeJuego)){
+				pantallaDeJuego.refrescar();
+				}
+			else if (pantallaIngresoNombre!=null && ventana.isAncestorOf(pantallaIngresoNombre)){
 			}
 			else if (ventana.isAncestorOf(pantallaFinal)) {
-				pantallaFinal.actualizarFoco(); 
+				pantallaFinal.actualizarFoco();
 			}
-			ventana.requestFocusInWindow();
-		}else {
-			pantallaDeJuego.refrescar();
 		}
+		
 		ventana.revalidate();
 		ventana.repaint();
 	}

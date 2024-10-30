@@ -100,12 +100,11 @@ public class VisitorPrincesa implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {
-        // TODO Auto-generated method stub
+    	this.controlador.accionarPantallaFinal();
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        this.controlador.mostrarPantallaFinal();        
     }
 
     @Override

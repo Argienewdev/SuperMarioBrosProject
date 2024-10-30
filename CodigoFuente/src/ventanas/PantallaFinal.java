@@ -40,6 +40,7 @@ public class PantallaFinal extends JPanel {
 	
 	protected boolean enFoco;
 	
+	@SuppressWarnings("exports")
 	public PantallaFinal (ControladorVistas controlador, SensorDeTeclasMenu sensor) {
 		this.controlador = controlador;
 		this.sensor = sensor;
