@@ -174,12 +174,12 @@ public class PantallaDeJuego extends JPanel {
                         posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Desplazar los labels
                         observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
                         observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
-                        observerGrafico.actualizar();
-                        revalidate();
-                        repaint();
                     } else {
                         // TODO: Eliminar label del nivel 
                     }
+                    observerGrafico.actualizar();
+                    revalidate();
+                    repaint();
                 }
             }
         }
