@@ -8,6 +8,7 @@ import fabricas.FabricaSpritesModoAlternativo;
 import fabricas.FabricaSpritesModoOriginal;
 import fuentes.Fuentes;
 import ranking.Jugador;
+import ranking.Ranking;
 
 import java.awt.*;
 
@@ -113,6 +114,9 @@ public class PantallaIngresoNombre extends JPanel {
             String nombre = campoNombre.getText().trim();
             if (!nombre.isEmpty()) {
                 guardarNombre(nombre);
+            	Ranking ranking = controlador.obtenerRanking();
+            	ranking.agregarJugador(jugador);
+            	ranking.guardarEstado();
                 controlador.accionarPantallaFinal();
             } else {
                 JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);

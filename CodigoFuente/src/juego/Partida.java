@@ -19,12 +19,6 @@ public class Partida {
 	
 	private GeneradorDeNivel generadorDeNivel;
 
-	private FabricaEntidades fabricaEntidades;
-	
-	private FabricaSprites fabricaSpritesModoAlternativo;
-	
-	private FabricaSprites fabricaSpritesModoOriginal;
-	
 	private Nivel nivel;
 	
 	private BucleEntidadesNoJugables bucleEntidadesNoJugables;
@@ -35,8 +29,6 @@ public class Partida {
 	
 	private Juego juego;
 
-	private Jugador jugador;
-	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites, Juego juego) {
 		this.juego = juego;

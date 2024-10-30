@@ -13,7 +13,7 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	
 	
 	public Jugador () {
-		nombre = "---";
+		nombre = null;
 		puntaje = 0;
 	}
 	
