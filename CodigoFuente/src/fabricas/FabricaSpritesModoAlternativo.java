@@ -275,7 +275,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
 	@Override
 	public Sprite getPiranhaPlant() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piranhaPlant.png");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/piranhaPlant.gif");
 	}
 
 	@Override
