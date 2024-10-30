@@ -115,7 +115,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     
     @Override
     public Sprite obtenerMarioInvulnerableFrontalQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalQuieto.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalQuieto.png");
     }
 
     @Override
@@ -125,17 +125,17 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite obtenerMarioInvulnerableFrontalSaltando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalSaltando.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableFrontalSaltando.png");
     }
 
     @Override
     public Sprite obtenerMarioInvulnerableCayendo() {
-    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableCayendo.gif");
+    	return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableCayendo.png");
     }
     
     @Override
     public Sprite obtenerMarioInvulnerableReversoQuieto() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoQuieto.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoQuieto.png");
     }
 
     @Override
@@ -145,7 +145,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite obtenerMarioInvulnerableReversoSaltando() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoSaltando.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/marioInvulnerableReversoSaltando.png");
     }
 
     @Override
@@ -285,7 +285,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite obtenerEstrellaApagada() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/estrella.gif");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/estrellaSaliendo.gif");
     }
 
     @Override
@@ -335,7 +335,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite obtenerBolaDeFuego() {
-		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.png");
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/bolaDeFuego.gif");
 	}
 
     @Override

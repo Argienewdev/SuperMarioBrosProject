@@ -175,7 +175,7 @@ public class GeneradorDeNivel {
 	                }
                 }
 			}
-		} catch (IOException | ArrayIndexOutOfBoundsException | NullPointerException exception) {
+		} catch (IOException | ArrayIndexOutOfBoundsException | NullPointerException | IllegalArgumentException exception) {
 			exception.printStackTrace();
 		} finally {
 			try {
