@@ -12,8 +12,6 @@ import visitors.Visitante;
 public class Lakitu extends Enemigo {
     
 	private static final int TICKS_PARA_ELIMINAR = 20;
-
-	private static final int VELOCIDAD_HORIZONTAL_ENEMIGO = 1;
 	
 	private static final int INTERVALO_PARA_DISPARAR = 300;
 	
