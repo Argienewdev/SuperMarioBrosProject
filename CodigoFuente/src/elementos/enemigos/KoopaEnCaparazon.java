@@ -42,7 +42,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if(this.obtenerContext().obtenerRemovido()) {
-			contexto.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
+			contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaMuerto());
 			eliminarEntidadGrafica(fabricaSprites);
 		}else {
 			contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaCaparazonEstático()); 

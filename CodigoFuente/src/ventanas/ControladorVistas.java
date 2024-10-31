@@ -207,6 +207,7 @@ public class ControladorVistas {
 	        if (ventana.getContentPane() == pantallaDeJuego) {
 	            pantallaDeJuego.refrescar();
 	        } else if (pantallaIngresoNombre != null && ventana.getContentPane() == pantallaIngresoNombre) {
+	            //TODO Actualización de pantallaIngresoNombre si es necesario
 	        } else if (ventana.getContentPane() == pantallaFinal) {
 	            pantallaFinal.establecerEnFoco(true);
 	            ventana.requestFocusInWindow();

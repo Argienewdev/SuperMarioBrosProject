@@ -33,7 +33,6 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -51,6 +50,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
+        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+           }
     }
 
     @Override
@@ -71,7 +74,6 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -84,8 +86,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
-        florDeFuego.eliminarDelNivel();
+    	if(!florDeFuego.obtenerRemovido()) {
+			this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
+			florDeFuego.establecerRemovido(true);
+		}
     }
 
     @Override

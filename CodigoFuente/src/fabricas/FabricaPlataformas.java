@@ -80,20 +80,21 @@ public class FabricaPlataformas {
 	
 	
 	@SuppressWarnings("exports")
-	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion,Nivel nivel, int altura){
+	public Tuberia obtenerTuberiaConPiranhaPlant(Point posicion, Nivel nivel, int altura){
 		Sprite spriteTuberia = this.fabricaSprites.obtenerTuberia(altura);
-		int ancho = 100;
-  		int alturaEscalada = altura*50;
+		int ancho = spriteTuberia.obtenerAnchoImagen();
+  		int alturaEscalada = altura * 50;
+  		PiranhaPlant piranhaPlant= null;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver);
         tuberiaADevolver.establecerVisitor(visitorTuberia);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
 		tuberiaADevolver.establecerObserverGrafico(observerGraficoTuberia);
         this.pantallaDeJuego.agregarLabel(tuberiaADevolver.obtenerObserverGrafico());
-        int posicionPiranhaX = posicion.x+25;
-        int posicionPiranhaY = posicion.y -spriteTuberia.obtenerAltoImagen()+150;
-       	Point posicionPiranha = new Point(posicionPiranhaX,posicionPiranhaY);
-       	PiranhaPlant piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicionPiranha);
+        int posicionPiranhaX = posicion.x;
+        int posicionPiranhaY = posicion.y - spriteTuberia.obtenerAltoImagen() + 150;
+       	Point posicionPiranha = new Point(posicionPiranhaX, posicionPiranhaY);
+       	piranhaPlant = this.fabricaEntidades.obtenerPiranhaPlant(posicionPiranha, spriteTuberia);
        	nivel.agregarEnemigo(piranhaPlant);
 		return tuberiaADevolver;
 	}
@@ -132,7 +133,7 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		//int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		int identificadorPowerUp = 7;
+		int identificadorPowerUp = 1;
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <= identificadorPowerUp; contador++) {

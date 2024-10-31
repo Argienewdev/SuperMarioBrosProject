@@ -27,11 +27,11 @@ public class BloqueDePregunta extends Plataforma {
 	}
 	
 	public PowerUp obtenerPowerUp() {
-		return this.coleccionPowerUps.getLast();
+		return this.coleccionPowerUps.get(coleccionPowerUps.size() - 1);
 	}
 	
 	public PowerUp removerPowerUp() {
-		return this.coleccionPowerUps.removeLast();
+		return this.coleccionPowerUps.remove(coleccionPowerUps.size() - 1);
 	}
 	
 	public void aceptarVisitante (Visitante visitante) {
@@ -45,7 +45,7 @@ public class BloqueDePregunta extends Plataforma {
 	public PowerUp liberarPowerUp() {
 		PowerUp powerUpARemover = null;
 		if (!estaVacio()) {
-			powerUpARemover = this.coleccionPowerUps.removeLast();
+			powerUpARemover = this.coleccionPowerUps.remove(coleccionPowerUps.size() - 1);
 			powerUpARemover.establecerEstaDentroDeBloqueDePreguntas(false);
 		}
 		return powerUpARemover;

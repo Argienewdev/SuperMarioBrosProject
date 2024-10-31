@@ -77,7 +77,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
-        superChampinion.eliminarDelNivel();
+        superChampinion.establecerRemovido(true);
     }
 
     @Override

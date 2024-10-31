@@ -40,18 +40,19 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+    	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miContexto.obtenerEstado().obtenerVisitante());
+    }
+
+    @Override
+    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+    	int puntos = koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion();
+		this.miContexto.ganarPuntos(puntos);
+		koopaDefault.obtenerContext().establecerRemovido(true);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	koopaEnCaparazon.obtenerContext().establecerRemovido(true);
-    	this.miContexto.ganarPuntos(koopaEnCaparazon.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
-    }
-
-    @Override
-    public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	koopaDefault.obtenerContext().establecerRemovido(true);
-    	this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override

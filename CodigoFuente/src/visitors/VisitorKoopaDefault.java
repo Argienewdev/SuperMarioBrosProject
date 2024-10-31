@@ -122,7 +122,8 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)
+    		&& !this.miContexto.obtenerRemovido()) {
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miContexto.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
@@ -133,24 +134,34 @@ public class VisitorKoopaDefault implements Visitante {
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miContexto)
+        	&& !this.miContexto.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
 	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
+    	}else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, superMario.obtenerContexto());
     	}
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miContexto)) {
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miContexto)
+        	&& !this.miContexto.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
+    	}else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioFuego.obtenerContexto());
     	}
     }
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	if(this.miContexto.obtenerRemovido()) {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioRecuperacion.obtenerContexto());
+    	}
+    }
 
     @Override
     public void visitarPiso(Piso piso) {
@@ -158,14 +169,10 @@ public class VisitorKoopaDefault implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }
