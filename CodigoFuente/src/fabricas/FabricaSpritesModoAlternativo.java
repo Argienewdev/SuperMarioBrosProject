@@ -195,7 +195,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
     
     @Override
     public Sprite obtenerKoopaTroopaCaparazonEstático() {
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaCaparazonEstatico.png");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/koopaTroopaCaparazonEstatico.gif");
     }
 
     @Override

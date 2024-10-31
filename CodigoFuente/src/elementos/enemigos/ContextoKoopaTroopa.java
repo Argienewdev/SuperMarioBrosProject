@@ -20,7 +20,7 @@ public class ContextoKoopaTroopa extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 45;
     	estado.establecerContexto(this);
     	this.cambiarEstado = false;
-    	this.ticksAnimacion = 10;
+    	this.ticksAnimacion = 20;
     }
 
     public EstadoKoopa obtenerEstado() {
