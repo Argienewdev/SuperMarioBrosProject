@@ -21,7 +21,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	protected int ticksAnimacion;
 
-	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
+	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
 	
     @SuppressWarnings("exports")
 	public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
