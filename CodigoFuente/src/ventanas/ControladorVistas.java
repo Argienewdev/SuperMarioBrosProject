@@ -172,12 +172,16 @@ public class ControladorVistas {
 	}
 	
 	public void dePantallaFinalAPantallaInicial() {
-		pantallaFinal.establecerEnFoco(false);
-		pantallaInicial.establecerEnFoco(true);
-		ventana.setContentPane(pantallaInicial);
-		ventana.revalidate();
-		ventana.repaint();
+	    pantallaFinal.establecerEnFoco(false);
+	    pantallaInicial.establecerEnFoco(true);
+	    ventana.setContentPane(pantallaInicial);
+	    ventana.removeKeyListener(sensorDeTeclasJuego); 
+	    ventana.addKeyListener(sensorDeTeclasMenu);      
+	    ventana.requestFocusInWindow();
+	    ventana.revalidate();
+	    ventana.repaint();
 	}
+
 	
 	public void ocultarPantallaRanking(){
 		ventana.remove(pantallaRanking);
