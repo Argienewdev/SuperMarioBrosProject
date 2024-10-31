@@ -23,8 +23,6 @@ public class PantallaFinal extends JPanel {
     
     private static final long serialVersionUID = 893955111831369738L;
 
-    private static final int CANTIDAD_BOTONES = 2;
-    
     protected JButton botonVolver;
     
     protected JButton botonCerrar;

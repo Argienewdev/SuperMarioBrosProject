@@ -11,7 +11,6 @@ public class Moneda extends PowerUp {
 	public Moneda(Sprite sprite, Point posicion, Visitante visitor,
 			   	   ObserverGrafico observerGrafico, boolean dentroDeBloqueDePreguntas) {
 		super(sprite, posicion, visitor, observerGrafico);
-		//TODO se deberian setear con los establecer al crear el elemento?
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
 	}

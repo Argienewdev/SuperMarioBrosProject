@@ -195,8 +195,6 @@ public class PantallaDeJuego extends JPanel {
     public void cambiarDeNivel() {
     	establecerFondo();
     	crearHUD();
-    	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
-    	//debido a que primero cambia de nivel y despues revierte su estado
     	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));

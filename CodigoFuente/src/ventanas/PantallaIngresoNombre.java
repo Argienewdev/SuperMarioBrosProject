@@ -106,20 +106,15 @@ public class PantallaIngresoNombre extends JPanel {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
         botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-
-        // Configuración de apariencia sin borde ni fondo
         botonConfirmar.setFocusPainted(false);
         botonConfirmar.setContentAreaFilled(false);
         botonConfirmar.setBorderPainted(false);
 
-        // Acción del botón para guardar el nombre y actualizar el ranking
         botonConfirmar.addActionListener(e -> confirmarNombre());
 
-        // Key Binding para permitir "Enter" como acción para confirmar
         botonConfirmar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                       .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "confirmar");
         botonConfirmar.getActionMap().put("confirmar", new AbstractAction() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 confirmarNombre();
             }

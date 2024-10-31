@@ -14,8 +14,6 @@ public abstract class Jugable extends Entidad  {
 	
 	protected int puntos;
 	
-	protected Moneda monedas;
-		
 	private boolean enElAire;
 	
 	private boolean retrocediendo;
@@ -67,11 +65,6 @@ public abstract class Jugable extends Entidad  {
 	
 	public int obtenerPuntos() {
 		return this.puntos;
-	}
-	
-	public Moneda obtenerMonedas() {
-		//TODO es necesario?
-		return this.monedas;
 	}
 		
 	public boolean obtenerColisionAbajo() {

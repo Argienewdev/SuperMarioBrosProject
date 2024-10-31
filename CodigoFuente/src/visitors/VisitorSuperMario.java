@@ -154,13 +154,11 @@ public class VisitorSuperMario implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
 		
 	}
     
