@@ -67,7 +67,7 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	private boolean enElAire() {
-		return contexto.obtenerEnElAire();
+		return !contexto.obtenerColisionAbajo();
 	}
 	
 	private boolean avanzando() {

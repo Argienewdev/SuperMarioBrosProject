@@ -16,8 +16,6 @@ public abstract class Jugable extends Entidad  {
 	
 	protected Moneda monedas;
 		
-	private boolean enElAire;
-	
 	private boolean retrocediendo;
 	
 	private boolean avanzando;
@@ -30,7 +28,6 @@ public abstract class Jugable extends Entidad  {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
-		this.enElAire = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
 		this.vidas = 3;
@@ -99,17 +96,6 @@ public abstract class Jugable extends Entidad  {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(nuevaPosicion);
 		this.establecerPosicion(nuevaPosicion);
-		if(this.obtenerColisionAbajo()) {
-			this.establecerEnElAire(false);
-		}
-	}
-	
-	public boolean obtenerEnElAire() {
-		return this.enElAire;
-	}
-	
-	public void establecerEnElAire(boolean enElAire) {
-		this.enElAire = enElAire;
 	}
 	
 	public boolean obtenerRetrocediendo() {

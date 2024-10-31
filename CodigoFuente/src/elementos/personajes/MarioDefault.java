@@ -67,7 +67,7 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	private boolean enElAire() {
-		return contexto.obtenerEnElAire();
+		return !contexto.obtenerColisionAbajo();
 	}
 	
 	private boolean avanzando() {
