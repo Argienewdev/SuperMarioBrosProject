@@ -1,6 +1,8 @@
 package visitors;
 
 
+import java.awt.Point;
+
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 
@@ -16,10 +18,17 @@ public class DetectorDireccionColision {
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y - entidad.obtenerAlto());
 		}else if(choquePorAbajo(elementoDeJuego, entidad)){
 			entidad.establecerColisionArriba(true);
-			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto()); 
+			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto());
+			this.eleminarVelocidadVertical(entidad);
 		}
 	}
 	
+	private void eleminarVelocidadVertical(Entidad entidad) {
+		int nuevaVelocidadY =0;
+		Point nuevaVelocidad = new Point(entidad.obtenerVelocidadDireccional().y, nuevaVelocidadY);
+		entidad.establecerVelocidadDireccional(nuevaVelocidad);
+	}
+
 	public void verificarColisionEntreEntidades(Entidad entidad1, Entidad entidad2) {
 		boolean entidad2ChocaAEntidad1PorDerecha = choquePorDerecha(entidad1, entidad2);
 		boolean entidad2ChocaAEntidad1PorIzquierda = choquePorIzquierda(entidad1, entidad2);

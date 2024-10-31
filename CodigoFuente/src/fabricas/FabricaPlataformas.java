@@ -134,6 +134,7 @@ public class FabricaPlataformas {
 		Random random = new Random();
 //		int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
 		int identificadorPowerUp = 1;
+
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <= identificadorPowerUp; contador++) {

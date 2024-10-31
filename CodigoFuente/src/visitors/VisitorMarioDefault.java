@@ -120,7 +120,9 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {}
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    	detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
+    }
 
     @Override
     public void visitarPiso(Piso piso) {}
