@@ -123,6 +123,7 @@ public class FabricaEntidades {
 		estrellaADevolver.establecerVisitor(visitorEstrella);
         ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrellaADevolver);
         estrellaADevolver.establecerObserverGrafico(observerGraficoEstrella);
+        pantallaDeJuego.agregarLabel(estrellaADevolver.obtenerObserverGrafico());
         return estrellaADevolver;
     } 
     
@@ -134,6 +135,7 @@ public class FabricaEntidades {
 		champinionVerdeADevolver.establecerVisitor(visitorChampinionVerde);
         ObserverGrafico observerGraficoChampinionVerde = new ObserverGrafico(champinionVerdeADevolver);
         champinionVerdeADevolver.establecerObserverGrafico(observerGraficoChampinionVerde);
+        pantallaDeJuego.agregarLabel(champinionVerdeADevolver.obtenerObserverGrafico());
         return champinionVerdeADevolver;
     }
     
@@ -145,6 +147,7 @@ public class FabricaEntidades {
 		superChampionADevolver.establecerVisitor(visitorSuperChampinion);
         ObserverGrafico observerGraficoSuperChampinion = new ObserverGrafico(superChampionADevolver);
         superChampionADevolver.establecerObserverGrafico(observerGraficoSuperChampinion);
+        pantallaDeJuego.agregarLabel(superChampionADevolver.obtenerObserverGrafico());
         return superChampionADevolver;
         
     }
@@ -157,6 +160,7 @@ public class FabricaEntidades {
 		florDeFuegoADevolver.establecerVisitor(visitorFlorDeFuego);
         ObserverGrafico observerGraficoFlorDeFuego = new ObserverGrafico(florDeFuegoADevolver);
         florDeFuegoADevolver.establecerObserverGrafico(observerGraficoFlorDeFuego);
+        pantallaDeJuego.agregarLabel(florDeFuegoADevolver.obtenerObserverGrafico());
         return florDeFuegoADevolver;
     }
     
