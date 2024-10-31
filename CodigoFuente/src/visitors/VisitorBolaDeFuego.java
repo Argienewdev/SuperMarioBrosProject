@@ -32,12 +32,11 @@ public class VisitorBolaDeFuego implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        otorgarPuntosYEliminar(contextoKoopaTroopa);
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	koopaDefault.obtenerContext().establecerRemovido(true);
+    	otorgarPuntosYEliminar(koopaDefault.obtenerContext());
     }
 
     @Override
@@ -72,7 +71,7 @@ public class VisitorBolaDeFuego implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas monedas) {
+    public void visitarMoneda(Moneda monedas) {
     }
 
     @Override

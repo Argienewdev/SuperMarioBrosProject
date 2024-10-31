@@ -21,7 +21,7 @@ import elementos.plataformas.Plataforma;
 import elementos.plataformas.PrincesaPeach;
 import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
-import elementos.powerUps.Monedas;
+import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
 import ventanas.ControladorVistas;
 import ventanas.ConstantesGlobales;
@@ -39,7 +39,7 @@ public class GeneradorDeNivel {
 	protected FabricaEntidades fabricaEntidades;
 	
 	protected FabricaSilueta fabricaSilueta;
-	
+		
 	protected FabricaPlataformas fabricaPlataformas;
 	
 	protected FabricaSonidos fabricaSonidos;
@@ -137,9 +137,8 @@ public class GeneradorDeNivel {
 	                	break;
 	                } 
 	                case 20: {
-	                	int cantidadMonedas = 1;
-	                	Monedas monedas = this.fabricaEntidades.obtenerMonedas(posicion, cantidadMonedas, false);
-	                	nivel.agregarPowerUp(monedas);
+	                	Moneda moneda = this.fabricaEntidades.obtenerMonedas(posicion, false);
+	                	nivel.agregarPowerUp(moneda);
 	                	break;
 	                }
 	                case 40: {
@@ -153,8 +152,6 @@ public class GeneradorDeNivel {
 	                    break;
 	                } 
 	                case 42: {
-	                    //PiranhaPlant dev = fabricaEntidades.obtenerPiranhaPlant(posicion);
-	                    //nivel.addEnemigo(dev);
 	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
 	                    nivel.agregarEnemigo(goomba);
 	                    break;

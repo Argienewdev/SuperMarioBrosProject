@@ -8,9 +8,9 @@ import elementos.powerUps.*;
 
 public class VisitorMonedas implements Visitante {
     
-    protected Monedas miEntidad;
+    protected Moneda miEntidad;
 
-    public VisitorMonedas(Monedas miEntidad) {
+    public VisitorMonedas(Moneda miEntidad) {
         this.miEntidad = miEntidad;
     }
 
@@ -60,7 +60,7 @@ public class VisitorMonedas implements Visitante {
     }
 
     @Override
-    public void visitarMonedas(Monedas moneda) {
+    public void visitarMoneda(Moneda moneda) {
         // TODO Auto-generated method stub
     }
 

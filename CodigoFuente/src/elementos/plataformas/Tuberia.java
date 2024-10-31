@@ -8,18 +8,15 @@ import visitors.Visitante;
 
 public class Tuberia extends BloqueSolido{
     
-    protected PiranhaPlant miPiranhaPlant;
-    
     protected int altura;
     
     protected final int ancho;
 
     public Tuberia (Sprite sprite, Point pos, Visitante visitor, ObserverGrafico observerGrafico, 
-    				PiranhaPlant miPiranhaPlant, int altura, int ancho) {
+    				int altura, int ancho) {
         super(sprite,pos,visitor,observerGrafico);
         this.altura = altura;
         this.ancho = ancho;
-        this.miPiranhaPlant = miPiranhaPlant;
     }
 
     public void aceptarVisitante(Visitante visitante) {
@@ -33,13 +30,5 @@ public class Tuberia extends BloqueSolido{
     public int obtenerAlto() {
     	return altura;
     }
-
-	public void establecerPiranha(PiranhaPlant piranhaPlant) {
-		this.miPiranhaPlant=piranhaPlant;
-	}
-	
-	public PiranhaPlant obtenerPiranha( ) {
-		return this.miPiranhaPlant;
-	}
 
 }
