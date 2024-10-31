@@ -52,7 +52,7 @@ public class PantallaFinal extends Pantalla {
         panelCapas.setLayout(null);
         panelCapas.setBounds(0, 0, size.width, size.height);
 
-        botonVolver = new JButton("Pantalla inicial");
+        botonVolver = new JButton("Volver al menu");
 
         configurarFuente();
         establecerFondo();
@@ -123,7 +123,7 @@ public class PantallaFinal extends Pantalla {
         botonVolver.setContentAreaFilled(false);    
         botonVolver.setFocusPainted(false);        
         botonVolver.setOpaque(false);               
-        botonVolver.setForeground(Color.WHITE);
+        botonVolver.setForeground(Color.LIGHT_GRAY);
         
 
         add(botonVolver);

@@ -14,29 +14,32 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	private boolean wPresionada;
 	
+	private boolean wAccionada;
+	
 	private boolean spacePresionada;
 	
 	private boolean spaceAccionado;
 	
 	public SensorDeTeclasJuego() {
-		aPresionada = false;
-		dPresionada = false;
-		wPresionada = false;
-		spacePresionada = false;
-		spaceAccionado = false;
+		this.aPresionada = false;
+		this.dPresionada = false;
+		this.wPresionada = false;
+		this.wAccionada = false;
+		this.spacePresionada = false;
+		this.spaceAccionado = false;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_A) {
-    		aPresionada = true;
+        	this.aPresionada = true;
         }else if (keyCode == KeyEvent.VK_D) {
-    		dPresionada = true;
+        	this.dPresionada = true;
         }else if (keyCode == KeyEvent.VK_W) {
-        	wPresionada = true;
+        	this.wPresionada = true;
         }else if (keyCode == KeyEvent.VK_SPACE) {
-        	spacePresionada = true;
+        	this.spacePresionada = true;
         }
     }
 
@@ -45,14 +48,15 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_A) {
-            aPresionada = false;
+        	this.aPresionada = false;
         } else if (keyCode == KeyEvent.VK_D) {
             dPresionada = false;
         }else if (keyCode == KeyEvent.VK_W) {
-        	wPresionada = false;
+        	this.wAccionada = false;
+        	this.wPresionada = false;
         }else if (keyCode == KeyEvent.VK_SPACE) {
-        	spaceAccionado = false;
-        	spacePresionada = false;
+        	this.spaceAccionado = false;
+        	this.spacePresionada = false;
         }
     }
 
@@ -82,5 +86,13 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	public void establecerSpaceAccionada(boolean accionada) {
 		this.spaceAccionado = accionada;
+	}
+	
+	public boolean obtenerWAccionada() {
+		return wAccionada;
+	}
+	
+	public void establecerWAccionada(boolean accionada) {
+		this.wAccionada = accionada;
 	}
 }

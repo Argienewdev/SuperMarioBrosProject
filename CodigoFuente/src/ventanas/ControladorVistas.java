@@ -85,11 +85,10 @@ public class ControladorVistas {
 		
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
-	    RegistrarOyenteJuego();
-	    	    
 	    marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
 	    this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
 	    pantallaDeJuego.registrarJugable(marioJugable);
+	    RegistrarOyenteJuego();	    
 	    
 	    mostrarPantallaEntreNiveles();
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
@@ -126,7 +125,8 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaDeJuego() {
 		actualizarVentana(pantallaDeJuego);
-	    ventana.addKeyListener(sensorDeTeclasJuego);  
+	    ventana.addKeyListener(sensorDeTeclasJuego);
+		
 	}
 	
 	public void accionarPantallaFinal() {
@@ -171,10 +171,10 @@ public class ControladorVistas {
 	    ventana.setContentPane(pantallaInicial);
 	    this.panelActual = pantallaInicial;
 	    ventana.removeKeyListener(sensorDeTeclasJuego); 
-	    ventana.addKeyListener(sensorDeTeclasMenu);      
 	    ventana.requestFocusInWindow();
 	    ventana.revalidate();
 	    ventana.repaint();
+	    ventana.addKeyListener(sensorDeTeclasMenu);      
 	}
 
 	

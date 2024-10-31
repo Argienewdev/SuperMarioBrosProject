@@ -20,7 +20,5 @@ module CodigoFuente {
 	exports elementos.personajes;
 	exports elementos.plataformas;
 	exports elementos.entidades;
-	exports sonido.sonidoModoAlternativo;
-	exports sonido.sonidoModoOriginal;
 	requires java.desktop;
 }

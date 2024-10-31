@@ -27,6 +27,8 @@ public abstract class FabricaSonidos {
 	
 	public abstract Sonido obtenerSonidoMoneda();
 	
+	public abstract Sonido obtenerMusica();
+	
 	public abstract Sonido obtenerPierdeJuego();
 	
 	public abstract Sonido obtenerPierdeVida();
