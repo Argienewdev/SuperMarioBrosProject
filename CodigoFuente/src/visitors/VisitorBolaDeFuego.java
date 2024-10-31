@@ -32,6 +32,7 @@ public class VisitorBolaDeFuego implements Visitante {
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
+    	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miEntidad.obtenerVisitante());
     }
 
     @Override

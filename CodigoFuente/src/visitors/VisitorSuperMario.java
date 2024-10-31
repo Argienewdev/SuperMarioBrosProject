@@ -69,7 +69,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) ) {
+    		lakitu.establecerRemovido(true);
+			this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
