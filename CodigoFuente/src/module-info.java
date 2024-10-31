@@ -5,7 +5,7 @@
  * 
  */
 
-module superMario {
+module CodigoFuente {
 	exports elementos;
 	exports fabricas;
 	exports fuentes;
