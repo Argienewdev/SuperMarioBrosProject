@@ -193,10 +193,12 @@ public class ControladorVistas {
 	}
 	
 	public void refrescar() {
+		if (panelActual.esRefrescable()) {
 		panelActual.refrescar();
 		ventana.requestFocusInWindow();
 		ventana.revalidate();
 	    ventana.repaint();
+		}
 	}
 
 	

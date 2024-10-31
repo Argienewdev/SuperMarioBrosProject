@@ -6,8 +6,6 @@ import ranking.Jugador;
 import ranking.Ranking;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 
 public class PantallaIngresoNombre extends Pantalla {
@@ -43,6 +41,7 @@ public class PantallaIngresoNombre extends Pantalla {
         establecerContenido(layeredPane);
         add(layeredPane, BorderLayout.CENTER); 
     }
+    
     
     public void establecerJugador(Jugador jugador) {
         this.jugador = jugador;
@@ -100,7 +99,6 @@ public class PantallaIngresoNombre extends Pantalla {
         campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
         campoNombre.setFocusable(true);
-        campoNombre.requestFocusInWindow();
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
@@ -142,6 +140,10 @@ public class PantallaIngresoNombre extends Pantalla {
     }
     
     public JTextField obtenerCampoNombre() {
-    	return campoNombre;
+        return campoNombre;
+    }
+    
+    public boolean esRefrescable() {
+    	return false;
     }
 }
