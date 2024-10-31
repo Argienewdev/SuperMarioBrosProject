@@ -11,7 +11,7 @@ public class Launcher {
     	Juego juego = new Juego();
         juego.establecerControladorVistas(new ControladorVistas(juego));
         ReproductorDeMusicaFondo reproductorDeMusicaFondo = new ReproductorDeMusicaFondo();
-        // reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musicaModoOriginal.wav");   
+        reproductorDeMusicaFondo.playMusic("src/sonido/sonidoModoOriginal/musicaModoOriginal.wav");   
     }
     
 }
