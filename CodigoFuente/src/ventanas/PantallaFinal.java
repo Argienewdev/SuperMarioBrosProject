@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 import fuentes.Fuentes;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
-public class PantallaFinal extends JPanel {
+public class PantallaFinal extends Pantalla {
     
     private static final long serialVersionUID = 893955111831369738L;
 
@@ -177,7 +177,12 @@ public class PantallaFinal extends JPanel {
         });
     }
     
+    public void refrescar() {
+    	establecerEnFoco(true);
+    }
+    
     public void establecerEnFoco (boolean foco) {
     	this.enFoco = foco;
     }
+   
 }

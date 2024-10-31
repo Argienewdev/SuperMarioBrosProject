@@ -6,9 +6,11 @@ import ranking.Jugador;
 import ranking.Ranking;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 
-public class PantallaIngresoNombre extends JPanel {
+public class PantallaIngresoNombre extends Pantalla {
 
     private static final long serialVersionUID = 1L;
 
@@ -97,6 +99,7 @@ public class PantallaIngresoNombre extends JPanel {
         campoNombre = new JTextField(15);
         campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+        campoNombre.setFocusable(true);
         campoNombre.requestFocusInWindow();
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
@@ -111,7 +114,6 @@ public class PantallaIngresoNombre extends JPanel {
         botonConfirmar.setBorderPainted(false);
 
         botonConfirmar.addActionListener(e -> confirmarNombre());
-
         botonConfirmar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                       .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "confirmar");
         botonConfirmar.getActionMap().put("confirmar", new AbstractAction() {
@@ -134,5 +136,12 @@ public class PantallaIngresoNombre extends JPanel {
         } else {
             JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void refrescar() {
+    }
+    
+    public JTextField obtenerCampoNombre() {
+    	return campoNombre;
     }
 }
