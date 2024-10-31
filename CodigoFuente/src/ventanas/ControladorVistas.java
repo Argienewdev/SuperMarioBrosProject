@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -44,6 +45,8 @@ public class ControladorVistas {
 	
 	private Juego juego;
 	
+	private Pantalla panelActual;
+	
 	public ControladorVistas(Juego juego){
 		
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
@@ -52,7 +55,7 @@ public class ControladorVistas {
 		this.juego = juego;
 		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(),sensorDeTeclasMenu,this);
 		this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
-		
+	
 		configurarVentana();
 		RegistrarOyenteInicial();	
 		bucleVentana = new BucleVentana(this);
@@ -104,9 +107,7 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaEntreNiveles(){
 	    ventana.removeKeyListener(sensorDeTeclasJuego); 
-		ventana.setContentPane(pantallaEntreNiveles);
-		ventana.revalidate();
-	    ventana.repaint();	
+		actualizarVentana(pantallaEntreNiveles);
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -120,24 +121,18 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaRanking() {
-		ventana.setContentPane(pantallaRanking);
-	    ventana.revalidate();
-	    ventana.repaint();	
+		actualizarVentana(pantallaRanking);	
 	}
 	
 	public void mostrarPantallaDeJuego() {
-		ventana.setContentPane(pantallaDeJuego);
-		ventana.revalidate();
-	    ventana.repaint();	
+		actualizarVentana(pantallaDeJuego);
 	    ventana.addKeyListener(sensorDeTeclasJuego);  
 	}
 	
 	public void accionarPantallaFinal() {
 	    pantallaFinal.establecerEnFoco(true);
 	    pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
-	    ventana.setContentPane(pantallaFinal);
-	    ventana.revalidate();
-	    ventana.repaint();
+	    actualizarVentana(pantallaFinal);
 		
 	}
 
@@ -150,6 +145,7 @@ public class ControladorVistas {
 	public void accionarPantallaInicial(){
 		ventana.add(pantallaInicial);
 		ventana.setContentPane(pantallaInicial);
+		this.panelActual = pantallaInicial;
 	}
 	
 	public void ocultarPantallaInicial(){
@@ -160,23 +156,20 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaRanking() {
 		pantallaInicial.establecerEnFoco(false);
-		ventana.setContentPane(pantallaRanking); 
-		ventana.repaint();
-		ventana.revalidate();
+		actualizarVentana(pantallaRanking);
 	}
 	
 	public void dePantallaRankingAPantallaInicial(){
 		pantallaRanking.establecerEnFoco(false);
 		pantallaInicial.establecerEnFoco(true);
-		ventana.setContentPane(pantallaInicial);
-		ventana.revalidate();
-		ventana.repaint();
+		actualizarVentana(pantallaInicial);
 	}
 	
 	public void dePantallaFinalAPantallaInicial() {
 	    pantallaFinal.establecerEnFoco(false);
 	    pantallaInicial.establecerEnFoco(true);
 	    ventana.setContentPane(pantallaInicial);
+	    this.panelActual = pantallaInicial;
 	    ventana.removeKeyListener(sensorDeTeclasJuego); 
 	    ventana.addKeyListener(sensorDeTeclasMenu);      
 	    ventana.requestFocusInWindow();
@@ -192,31 +185,20 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaIngresoNombre() {
-		ventana.setContentPane(pantallaIngresoNombre);
-		ventana.revalidate();
-		ventana.repaint();
-		SwingUtilities.invokeLater(() -> pantallaIngresoNombre.solicitarFocoCampoTexto());
+		actualizarVentana(pantallaIngresoNombre);
+		SwingUtilities.invokeLater(() -> {
+			pantallaIngresoNombre.requestFocusInWindow();
+			pantallaIngresoNombre.solicitarFocoCampoTexto();
+		} );
 	}
 	
 	public void refrescar() {
-//		ventana.getKeyListeners()[0] == sensorDeTeclasMenu
-	    if (ventana.getContentPane() == pantallaInicial) {
-	        pantallaInicial.actualizarFoco();
-	        if (ventana.getContentPane() == pantallaRanking) {
-	            pantallaRanking.refrescar();
-	        }
-	        ventana.requestFocusInWindow();
-	    } else {
-	        if (ventana.getContentPane() == pantallaDeJuego) {
-	            pantallaDeJuego.refrescar();
-	        } 
-	         else if (ventana.getContentPane() == pantallaFinal) {
-	            pantallaFinal.establecerEnFoco(true);
-	            ventana.requestFocusInWindow();
-	        }
-	    }
-	    ventana.revalidate();
+		if (panelActual.esRefrescable()) {
+		panelActual.refrescar();
+		ventana.requestFocusInWindow();
+		ventana.revalidate();
 	    ventana.repaint();
+		}
 	}
 
 	
@@ -271,5 +253,15 @@ public class ControladorVistas {
 	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
 		return pantallaIngresoNombre;
 	}
+	
+	public void establecerPanelActual (Pantalla panelActual) {
+		this.panelActual = panelActual;
+	}
 
+	private void actualizarVentana(Pantalla pantalla) {
+		ventana.setContentPane(pantalla);
+		this.panelActual = pantalla;
+		ventana.revalidate();
+		ventana.repaint();
+	}
 }

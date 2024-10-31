@@ -8,7 +8,7 @@ import fuentes.Fuentes;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class PantallaEntreNiveles extends JPanel {
+public class PantallaEntreNiveles extends Pantalla {
     
     private JLabel puntajeLabel;
     private JLabel iconoLabel;
@@ -94,6 +94,8 @@ public class PantallaEntreNiveles extends JPanel {
 	public void setIcono(ImageIcon icono) {
         iconoLabel.setIcon(icono);
     }
+    
+    public void refrescar() {}
 
   
 }
