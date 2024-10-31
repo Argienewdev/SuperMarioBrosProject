@@ -48,15 +48,21 @@ public class GeneradorDeNivel {
 	
 	protected ControladorVistas controladorVistas;
 	
+	protected GeneradorSonidos generadorSonidos;
+	
 	public GeneradorDeNivel(String modoJuego,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
 		if (modoJuego.equals("Modo original")) {
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 			this.fabricaSonidos = new FabricaSonidosModoOriginal("src/sonido/sonidoModoOriginal");
+			generadorSonidos= new GeneradorSonidos(fabricaSonidos);
+			generadorSonidos.reproducirMusicaFondo();
 		} else if (modoJuego.equals("Modo alternativo")) {
 			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 			this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido/sonidoModoAlternativo");
+			generadorSonidos= new GeneradorSonidos(fabricaSonidos);
+			generadorSonidos.reproducirMusicaFondo();
 		}
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
