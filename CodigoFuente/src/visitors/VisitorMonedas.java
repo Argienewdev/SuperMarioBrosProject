@@ -13,7 +13,6 @@ public class VisitorMonedas implements Visitante {
     public VisitorMonedas(Moneda miEntidad) {
         this.miEntidad = miEntidad;
     }
-
     
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
         
