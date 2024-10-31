@@ -93,7 +93,7 @@ public class ControladorVistas {
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
 	    pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
 	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
+	    	public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
 	        }
 	    });
@@ -103,6 +103,7 @@ public class ControladorVistas {
 
 	
 	public void mostrarPantallaEntreNiveles(){
+	    ventana.removeKeyListener(sensorDeTeclasJuego); 
 		ventana.setContentPane(pantallaEntreNiveles);
 		ventana.revalidate();
 	    ventana.repaint();	
@@ -128,6 +129,7 @@ public class ControladorVistas {
 		ventana.setContentPane(pantallaDeJuego);
 		ventana.revalidate();
 	    ventana.repaint();	
+	    ventana.addKeyListener(sensorDeTeclasJuego);  
 	}
 	
 	public void accionarPantallaFinal() {
@@ -172,12 +174,16 @@ public class ControladorVistas {
 	}
 	
 	public void dePantallaFinalAPantallaInicial() {
-		pantallaFinal.establecerEnFoco(false);
-		pantallaInicial.establecerEnFoco(true);
-		ventana.setContentPane(pantallaInicial);
-		ventana.revalidate();
-		ventana.repaint();
+	    pantallaFinal.establecerEnFoco(false);
+	    pantallaInicial.establecerEnFoco(true);
+	    ventana.setContentPane(pantallaInicial);
+	    ventana.removeKeyListener(sensorDeTeclasJuego); 
+	    ventana.addKeyListener(sensorDeTeclasMenu);      
+	    ventana.requestFocusInWindow();
+	    ventana.revalidate();
+	    ventana.repaint();
 	}
+
 	
 	public void ocultarPantallaRanking(){
 		ventana.remove(pantallaRanking);
@@ -193,7 +199,8 @@ public class ControladorVistas {
 	}
 	
 	public void refrescar() {
-	    if (ventana.getKeyListeners()[0] == sensorDeTeclasMenu) {
+//		ventana.getKeyListeners()[0] == sensorDeTeclasMenu
+	    if (ventana.getContentPane() == pantallaInicial) {
 	        pantallaInicial.actualizarFoco();
 	        if (ventana.getContentPane() == pantallaRanking) {
 	            pantallaRanking.refrescar();
@@ -202,9 +209,8 @@ public class ControladorVistas {
 	    } else {
 	        if (ventana.getContentPane() == pantallaDeJuego) {
 	            pantallaDeJuego.refrescar();
-	        } else if (pantallaIngresoNombre != null && ventana.getContentPane() == pantallaIngresoNombre) {
-	            // Actualización de pantallaIngresoNombre si es necesario
-	        } else if (ventana.getContentPane() == pantallaFinal) {
+	        } 
+	         else if (ventana.getContentPane() == pantallaFinal) {
 	            pantallaFinal.establecerEnFoco(true);
 	            ventana.requestFocusInWindow();
 	        }
@@ -260,6 +266,10 @@ public class ControladorVistas {
 	
 	public PantallaFinal obtenerPantallaFinal() {
 		return pantallaFinal;
+	}
+	
+	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
+		return pantallaIngresoNombre;
 	}
 
 }

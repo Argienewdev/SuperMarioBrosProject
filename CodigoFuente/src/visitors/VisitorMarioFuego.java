@@ -14,19 +14,19 @@ public class VisitorMarioFuego implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    protected ContextoMario miEntidad;
+    protected ContextoMario miContexto;
 
     public VisitorMarioFuego(MarioFuego marioFuego) {
         this.miEstado = marioFuego;  // Cambié a marioFuego
-        this.miEntidad = this.miEstado.obtenerContexto();
+        this.miContexto = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miEntidad)) {
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
 			buzzyBeetle.establecerRemovido(true);
-			this.miEntidad.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
+			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -36,9 +36,9 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miEntidad)) {
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
     		goomba.establecerRemovido(true);
-			this.miEntidad.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
 		}
     }
 
@@ -49,18 +49,18 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miEntidad)
-        		&& this.miEntidad.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
+        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
         	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
             }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miEntidad)) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        this.miEntidad.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
+	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
@@ -76,14 +76,14 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miEntidad.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
-        superChampinion.eliminarDelNivel();
+    	this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
+        superChampinion.establecerRemovido(true);
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if(!florDeFuego.obtenerRemovido()) {
-    		this.miEntidad.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
+    		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
             florDeFuego.establecerRemovido(true);
     	}
     }
@@ -93,7 +93,7 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miEntidad.ganarPuntos(estrella.obtenerPuntosPorFuego());
+    	this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
         estrella.eliminarDelNivel();
     }
 
@@ -105,8 +105,9 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-    	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miEntidad)) {
-            ladrillo.eliminarDelNivel();
+    	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
+    		ladrillo.eliminarDelNivel();
         }
     }
 
@@ -148,7 +149,7 @@ public class VisitorMarioFuego implements Visitante {
 	
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
-		this.miEntidad.ganarPuntos(puntos);
+		this.miContexto.ganarPuntos(puntos);
 		enemigo.establecerRemovido(true);
 	}
 

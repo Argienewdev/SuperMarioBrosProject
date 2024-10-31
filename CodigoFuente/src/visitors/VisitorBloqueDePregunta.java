@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;

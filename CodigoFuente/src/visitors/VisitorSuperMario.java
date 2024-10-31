@@ -33,7 +33,6 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -51,6 +50,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+    	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
+        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+           }
     }
 
     @Override
@@ -66,12 +69,14 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) ) {
+    		lakitu.establecerRemovido(true);
+			this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+		}
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -84,8 +89,10 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
-        florDeFuego.eliminarDelNivel();
+    	if(!florDeFuego.obtenerRemovido()) {
+			this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
+			florDeFuego.establecerRemovido(true);
+		}
     }
 
     @Override
@@ -108,7 +115,8 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
-            ladrillo.eliminarDelNivel();
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
+    		ladrillo.eliminarDelNivel();
         }
     }
 
@@ -146,13 +154,11 @@ public class VisitorSuperMario implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
 		
 	}
     

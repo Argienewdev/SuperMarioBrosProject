@@ -77,9 +77,8 @@ public class Juego {
 		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
-		ranking.agregarJugador(jugador);
-		ranking.guardarEstado();
-		BucleJugador bucle = partida.obtenerBucleJugador();
+		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
+		BucleJugador bucle= partida.obtenerBucleJugador();
 		bucle.detenerBucleJugador();
 	}
 	

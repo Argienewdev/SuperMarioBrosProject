@@ -18,11 +18,11 @@ public class PantallaEntreNiveles extends JPanel {
     
     
     public PantallaEntreNiveles(Sprite marioSprite) {
+    	
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
         this.tipoFuentes= new Fuentes();
         
-        // Configurar los JLabel
         this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.obtenerRutaImagen()));
         this.vidasLabel = new JLabel("x");
@@ -53,10 +53,10 @@ public class PantallaEntreNiveles extends JPanel {
         panelNorte.setBackground(new Color(0, 0, 0, 0));
         panelCentro.setOpaque(false); 
         panelCentro.setBackground(new Color(0, 0, 0, 0));
-        panelCentro.add(puntajeLabel);
-        panelEste.add(nivelLabel);
+        panelEste.add(puntajeLabel);
+        panelOeste.add(nivelLabel);
         panelNorte.add(panelOeste, BorderLayout.WEST);
-        panelNorte.add(panelCentro, BorderLayout.CENTER);
+        panelNorte.add(panelCentro, BorderLayout.NORTH);
         panelNorte.add(panelEste, BorderLayout.EAST);
 
         Box box = Box.createVerticalBox();

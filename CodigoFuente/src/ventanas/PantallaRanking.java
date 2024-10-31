@@ -91,7 +91,7 @@ public class PantallaRanking extends JPanel {
     }
 
     private void establecerFondo(JLayeredPane layeredPane) {
-        fondo = new JLabel(new ImageIcon("src/imagenes/fondoJuegoCielo.png"));
+        fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
         fondo.setBounds(0, 0, size.width, size.height);
         layeredPane.add(fondo, Integer.valueOf(0));
     }

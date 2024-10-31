@@ -47,7 +47,7 @@ public class BloqueDePregunta extends Plataforma {
 	public PowerUp liberarPowerUp() {
 		PowerUp powerUpARemover = null;
 		if (!estaVacio()) {
-			powerUpARemover = this.coleccionPowerUps.removeLast();
+			powerUpARemover = this.coleccionPowerUps.remove(coleccionPowerUps.size() - 1);
 			powerUpARemover.establecerEstaDentroDeBloqueDePreguntas(false);
 		}
 		return powerUpARemover;

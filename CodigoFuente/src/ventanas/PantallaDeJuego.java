@@ -139,7 +139,7 @@ public class PantallaDeJuego extends JPanel {
             Point posicionFondo = fondo.getLocation();
 
             // Mueve el fondo hacia la izquierda
-            int nuevaPosicionFondoX = posicionFondo.x - desplazamiento;
+            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
 
             // Obtener el ancho del fondo para limitar el desplazamiento
             int anchoFondo = fondo.getWidth();
@@ -170,7 +170,7 @@ public class PantallaDeJuego extends JPanel {
         	if (fondoMovido) {
                 for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
                     Point posicionLabel = observerGrafico.getLocation();
-                    posicionLabel.x -= (posicionFondo.x - nuevaPosicionFondoX); // Desplazar los labels
+                    posicionLabel.x -= desplazamiento; // Desplazar los labels
                     observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
                     observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
                     observerGrafico.actualizar();
@@ -195,8 +195,6 @@ public class PantallaDeJuego extends JPanel {
     public void cambiarDeNivel() {
     	establecerFondo();
     	crearHUD();
-    	//TODO esto evita que si alguna version super de mario cambia de nivel, aparezca metida en el piso
-    	//debido a que primero cambia de nivel y despues revierte su estado
     	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));

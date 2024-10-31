@@ -104,17 +104,23 @@ public class VisitorBuzzyBeetle implements Visitante {
     
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)) {
+        if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
+        	&& !this.miEntidad.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
+        }else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.obtenerContexto());
         }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad)) {
+    	if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad)
+    		&& !this.miEntidad.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
+        }else {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.obtenerContexto());
         }
     }
     

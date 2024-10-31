@@ -1,15 +1,12 @@
 package ventanas;
 
 import javax.swing.*;
-
-import fabricas.FabricaSiluetaModoAlternativo;
-import fabricas.FabricaSiluetaModoOriginal;
-import fabricas.FabricaSpritesModoAlternativo;
-import fabricas.FabricaSpritesModoOriginal;
 import fuentes.Fuentes;
 import ranking.Jugador;
-
+import ranking.Ranking;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 public class PantallaIngresoNombre extends JPanel {
 
@@ -32,7 +29,7 @@ public class PantallaIngresoNombre extends JPanel {
     private String modo;
 
     public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
-    	this.modo = modo;
+        this.modo = modo;
         this.controlador = controlador;
         tipoFuentes = new Fuentes();
         setLayout(new BorderLayout());  
@@ -46,7 +43,7 @@ public class PantallaIngresoNombre extends JPanel {
     }
     
     public void establecerJugador(Jugador jugador) {
-    	this.jugador = jugador;
+        this.jugador = jugador;
     }
 
     public void guardarNombre(String nombreJugador) {
@@ -62,11 +59,11 @@ public class PantallaIngresoNombre extends JPanel {
     }
 
     private void establecerFondo(JLayeredPane layeredPane) {
-    	if (this.modo.equals("Modo original")) {
-    		fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
-		} else if (this.modo.equals("Modo alternativo")) {
-			fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
-		}
+        if (this.modo.equals("Modo original")) {
+            fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
+        } else if (this.modo.equals("Modo alternativo")) {
+            fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
+        }
         fondo.setBounds(0, 0, size.width, size.height);
         layeredPane.add(fondo, Integer.valueOf(0));
     }
@@ -109,15 +106,33 @@ public class PantallaIngresoNombre extends JPanel {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
         botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-        botonConfirmar.addActionListener(e -> {
-            String nombre = campoNombre.getText().trim();
-            if (!nombre.isEmpty()) {
-                guardarNombre(nombre);
-                controlador.accionarPantallaFinal();
-            } else {
-                JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+        botonConfirmar.setFocusPainted(false);
+        botonConfirmar.setContentAreaFilled(false);
+        botonConfirmar.setBorderPainted(false);
+
+        botonConfirmar.addActionListener(e -> confirmarNombre());
+
+        botonConfirmar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                      .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "confirmar");
+        botonConfirmar.getActionMap().put("confirmar", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                confirmarNombre();
             }
         });
+
         panelContenido.add(botonConfirmar);
+    }
+
+    private void confirmarNombre() {
+        String nombre = campoNombre.getText().trim();
+        if (!nombre.isEmpty()) {
+            guardarNombre(nombre);
+            Ranking ranking = controlador.obtenerRanking();
+            ranking.agregarJugador(jugador);
+            ranking.guardarEstado();
+            controlador.accionarPantallaFinal();
+        } else {
+            JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
