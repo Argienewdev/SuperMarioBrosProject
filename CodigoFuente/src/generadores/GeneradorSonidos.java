@@ -18,9 +18,13 @@ import java.io.IOException;
 public class GeneradorSonidos {
 	
 	FabricaSonidos fabrica;
-
+	File archivoCancion;
+	Clip clipCancion;
+	
 	public GeneradorSonidos(FabricaSonidos fabrica){
-		this.fabrica= fabrica;
+		this.fabrica = fabrica;
+		archivoCancion = new File(fabrica.obtenerMusica().obtenerRutaSonido());
+		establecerMusicaFondo();
 	}
 	
 	public void emitirSonidoAplastarEnemigo(){
@@ -51,6 +55,28 @@ public class GeneradorSonidos {
 	        }
 		
 	}
+	
+	public void establecerMusicaFondo(){
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancion);
+			clipCancion = AudioSystem.getClip();
+			clipCancion.open(audioStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+	}
+	
+	public void reproducirMusicaFondo(){
+		clipCancion.start();
+		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
+	}
+	
+	public void detenerMusicaFondo(){
+		clipCancion.stop();
+	}
+	
 	
 	public void choqueFireball(){
 		 try {

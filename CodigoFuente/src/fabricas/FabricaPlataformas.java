@@ -1,3 +1,4 @@
+
 package fabricas;
 import java.awt.Point;
 import java.util.Random;

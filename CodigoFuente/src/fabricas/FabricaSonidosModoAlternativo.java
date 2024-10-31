@@ -51,6 +51,10 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     public Sonido obtenerSonidoMoneda() {
         return new Sonido(rutaACarpeta + "/sonido/sonidoModoAlternativo/sonidoMoneda.wav");
     }
+    
+    public Sonido obtenerMusica(){
+		return new Sonido(rutaACarpeta + "/musicaModoAlternativo.wav");
+	}
 
     @Override
     public Sonido obtenerPierdeJuego() {
