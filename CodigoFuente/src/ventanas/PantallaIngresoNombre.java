@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-public class PantallaIngresoNombre extends JPanel {
+public class PantallaIngresoNombre extends Pantalla {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,6 +41,7 @@ public class PantallaIngresoNombre extends JPanel {
         establecerContenido(layeredPane);
         add(layeredPane, BorderLayout.CENTER); 
     }
+    
     
     public void establecerJugador(Jugador jugador) {
         this.jugador = jugador;
@@ -97,7 +98,7 @@ public class PantallaIngresoNombre extends JPanel {
         campoNombre = new JTextField(15);
         campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
-        campoNombre.requestFocusInWindow();
+        campoNombre.setFocusable(true);
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
@@ -106,20 +107,14 @@ public class PantallaIngresoNombre extends JPanel {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
         botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-
-        // Configuración de apariencia sin borde ni fondo
         botonConfirmar.setFocusPainted(false);
         botonConfirmar.setContentAreaFilled(false);
         botonConfirmar.setBorderPainted(false);
 
-        // Acción del botón para guardar el nombre y actualizar el ranking
         botonConfirmar.addActionListener(e -> confirmarNombre());
-
-        // Key Binding para permitir "Enter" como acción para confirmar
         botonConfirmar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                       .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "confirmar");
         botonConfirmar.getActionMap().put("confirmar", new AbstractAction() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 confirmarNombre();
             }
@@ -139,5 +134,16 @@ public class PantallaIngresoNombre extends JPanel {
         } else {
             JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void refrescar() {
+    }
+    
+    public JTextField obtenerCampoNombre() {
+        return campoNombre;
+    }
+    
+    public boolean esRefrescable() {
+    	return false;
     }
 }

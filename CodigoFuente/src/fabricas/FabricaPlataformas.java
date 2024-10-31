@@ -177,7 +177,6 @@ public class FabricaPlataformas {
 		return bloqueDePreguntaADevolver;
 	}
 	
-	// TODO IMPLEMENTAR
     @SuppressWarnings("exports")
 	public BloqueSolido obtenerBloqueSolido(Point posicion) {
     	Sprite spriteBloqueSolido = this.fabricaSprites.obtenerBloqueSolido();
