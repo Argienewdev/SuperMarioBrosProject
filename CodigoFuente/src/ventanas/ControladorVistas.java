@@ -76,7 +76,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarInicioJuego(String modo) {
-		int duracionDePantallaEntreNiveles = 100;
+		int duracionDePantallaEntreNiveles = 2000;
 		
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
@@ -101,7 +101,7 @@ public class ControladorVistas {
 
 	
 	public void mostrarPantallaEntreNiveles(){
-	    //ventana.removeKeyListener(sensorDeTeclasJuego); 
+//	    ventana.removeKeyListener(sensorDeTeclasJuego); 
 		actualizarVentana(pantallaEntreNiveles);
 	}
 	
@@ -117,7 +117,7 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaDeJuego() {
 		actualizarVentana(pantallaDeJuego);
-	    //ventana.addKeyListener(sensorDeTeclasJuego);
+//	    ventana.addKeyListener(sensorDeTeclasJuego);
 		
 	}
 	
@@ -210,7 +210,7 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		int duracionPantallaEntreNiveles = 100;
+		int duracionPantallaEntreNiveles = 1000;
 		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
