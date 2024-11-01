@@ -148,15 +148,18 @@ public class PantallaDeJuego extends Pantalla {
         	*/
         	
         	if (fondoMovido) {
-    			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
+        		System.out.println("---------");
+    			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
     				Point posicionLabel = observerGrafico.getLocation();
     				posicionLabel.x -= this.marioJugable.obtenerDesplazamiento();
+    				System.out.println(posicionLabel.x);
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
     				if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
     					// TODO: Eliminar label del nivel 
     				}
     			}
+    			System.out.println("---------");
     			this.marioJugable.establecerDesplazamiento(0);
     			revalidate();
     			repaint();
