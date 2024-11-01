@@ -29,6 +29,8 @@ public class PantallaDeJuego extends Pantalla {
     
     private Interfaz hud;
     
+    private JLabel labelsMovibles;
+    
     private JLabel fondo;
     
     private Point posicionOriginalJugable;
@@ -131,7 +133,7 @@ public class PantallaDeJuego extends Pantalla {
         
         if (desplazamiento > 0) {
             Point posicionFondo = fondo.getLocation();
-            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
+            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento);
 
             // Ver que el fondo no se desplace mas de lo posible
             int anchoFondo = fondo.getWidth();
@@ -180,7 +182,6 @@ public class PantallaDeJuego extends Pantalla {
     }
     
     public void cambiarDeNivel() {
-    	establecerFondo();
     	crearHUD();
     	this.marioJugable.establecerPosicionLogica(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioJugable.establecerPosicionGrafica(this.marioJugable.obtenerPosicionLogica());

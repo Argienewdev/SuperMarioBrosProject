@@ -1,7 +1,9 @@
 package juego;
 
+import elementos.Sprite;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
+import fabricas.FabricaSilueta;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
 import ranking.Jugador;
@@ -28,14 +30,18 @@ public class Partida {
 	private int numeroNivelActual;
 	
 	private Juego juego;
-
+	
+	private FabricaSprites fabricaSprites;
+	
 	@SuppressWarnings("exports")
-	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, GeneradorDeNivel generadorDeNivel, FabricaSprites fabricaSprites, Juego juego) {
+	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		this.generadorDeNivel = generadorDeNivel;
 		this.numeroNivelActual = 1;
+		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas());
 		this.nivel = generarNivel(this.numeroNivelActual, this);
+		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
+		this.generadorDeNivel.establecerSiluetaDelNivel();
 		this.jugable = this.nivel.obtenerMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, this.jugable, fabricaSprites, nivel);
 		this.bucleJugador = new BucleJugador(this);
@@ -59,6 +65,7 @@ public class Partida {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
+		this.generadorDeNivel.establecerSiluetaDelNivel();
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
@@ -69,6 +76,7 @@ public class Partida {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.nivel = generarNivel(numeroNivelActual, this);
+		this.generadorDeNivel.establecerSiluetaDelNivel();
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
@@ -103,5 +111,9 @@ public class Partida {
 	
 	public Juego obtenerJuego() {
 		return this.juego;
+	}
+
+	public Sprite obtenerSpriteMario() {
+		return this.fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
 }

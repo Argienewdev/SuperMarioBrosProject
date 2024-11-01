@@ -213,6 +213,10 @@ public class GeneradorDeNivel {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
+	public void establecerSiluetaDelNivel() {
+		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
+	}
+	
 	public FabricaSprites obtenerFabricaSprites() {
 		return fabricaSprites;
 	}
