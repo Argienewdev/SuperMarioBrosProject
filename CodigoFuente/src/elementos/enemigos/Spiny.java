@@ -74,4 +74,8 @@ public class Spiny extends Enemigo {
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerSpinyMuerto();
 	}
+	 
+	private boolean mirandoAlFrente() {
+		return this.obtenerMirandoAlFrente();
+	}
 }

@@ -39,25 +39,19 @@ public class MarioFuego extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (bajoElNivelDelPiso()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
-		} else if (enElAire() && this.obtenerContexto().obtenerMirandoAlFrente()) {
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (mirandoAlFrente() && enElAire()) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
-		} else if (enElAire() && !this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (!mirandoAlFrente() && enElAire()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
-		} else if (this.obtenerContexto().obtenerMirandoAlFrente() && avanzando()) {
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
-		} else if (!this.obtenerContexto().obtenerMirandoAlFrente() && retrocediendo()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
-		} else if (this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (mirandoAlFrente() && !avanzando()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
-		} else if (!this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (!mirandoAlFrente() && !retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -84,6 +78,14 @@ public class MarioFuego extends MarioDefault {
 	
 	public void realizarAccionEspecial() {	
 		lanzarBolaDeFuego();
+	}
+	
+	private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
+	}
+	
+	private boolean bajoElNivelDelPiso() {
+		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 
 	private void lanzarBolaDeFuego() {
