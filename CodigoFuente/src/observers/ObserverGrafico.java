@@ -34,6 +34,9 @@ public class ObserverGrafico extends JLabel implements Observer {
 	}
 	
 	protected void actualizarPosicionTamanio() {
+		if(entidad_observada.getClass().getSimpleName().equals("BolaDeFuego")) {
+			System.out.println(entidad_observada.obtenerPosicionGrafica().x);
+		}
 		int x = entidad_observada.obtenerPosicionGrafica().x;
 		int y = entidad_observada.obtenerPosicionGrafica().y;
 		int ancho = this.getIcon().getIconWidth();

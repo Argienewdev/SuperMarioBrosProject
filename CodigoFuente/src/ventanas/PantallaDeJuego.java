@@ -156,10 +156,17 @@ public class PantallaDeJuego extends Pantalla {
         	if (fondoMovido) {
     			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
     				Point posicionLabel = observerGrafico.getLocation();
+    				if(posicionLabel.x < 0) {
+    					if(observerGrafico.obtenerEntidadObservada().getClass().getSimpleName().equals("BolaDeFuego")) {
+    						System.out.println(posicionLabel.x);
+    					}
+    				}
     				posicionLabel.x -= desplazamiento;
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
-    				if (observerGrafico.obtenerRemovido() || observerGrafico.obtenerEntidadObservada().obtenerPosicionGrafica().x < -100) {
+    				if (observerGrafico.obtenerRemovido() || observerGrafico.obtenerEntidadObservada().obtenerPosicionGrafica().x < -50) {
+    					//TODO si corres de los enemigos y power ups estos te siguen?????
+    					remove(observerGrafico);
     					this.labelsElementoDeJuegoARemover.add(observerGrafico);
     				}
     			}
