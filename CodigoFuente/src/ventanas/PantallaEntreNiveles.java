@@ -21,7 +21,7 @@ public class PantallaEntreNiveles extends Pantalla {
     	
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
-        this.tipoFuentes= new Fuentes();
+        this.tipoFuentes =  new Fuentes();
         
         this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.obtenerRutaImagen()));

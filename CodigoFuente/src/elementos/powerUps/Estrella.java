@@ -46,7 +46,7 @@ public class Estrella extends PowerUp {
 			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerEstrellaApagada());
 				this.actualizarHitboxYPosicion(fabricaSprites);
-			} else if (obtenerContadorTicks() >= ticksHastaSalirDelBloque) {
+			} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerEstrellaEncendida());
 				this.actualizarHitboxYPosicion(fabricaSprites);
 			}		

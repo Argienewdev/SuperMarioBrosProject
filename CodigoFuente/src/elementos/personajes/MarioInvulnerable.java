@@ -91,7 +91,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public void actualizarTiempo () {
 		duracion--;
-		if (duracion <= 0)
+		if (duracion <=  0)
 			contexto.cambiarEstado(estadoPrevio);
 	}
 }

@@ -19,7 +19,7 @@ public class BloqueDePregunta extends Plataforma {
 							 ObserverGrafico observerGrafico) {
 		super(sprite,pos,visitor,observerGrafico);
 		this.coleccionPowerUps = new LinkedList<PowerUp>();
-		if (powerUp != null) {
+		if (powerUp !=  null) {
 			this.coleccionPowerUps.add(powerUp);
 		}
 	}

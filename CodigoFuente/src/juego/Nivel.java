@@ -75,6 +75,7 @@ public class Nivel {
     
 	public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
         this.entidadesAEliminar.add(entidad);
+        entidad.obtenerObserverGrafico().establecerRemovido(true);
     }
 	
 	public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {

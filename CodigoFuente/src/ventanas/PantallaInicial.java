@@ -42,12 +42,12 @@ public class PantallaInicial extends Pantalla {
 	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
 		this.enFoco = true;
-		this.controlador= controladorVistas;
+		this.controlador =  controladorVistas;
 		this.sensor = sensor;
 		this.fondo = new JLabel();
 		modo1 = new JLabel("MODO ORIGINAL");
 		modo2 = new JLabel("MODO ALTERNATIVO"); 
-		ranking= new JLabel("RANKING");
+		ranking =  new JLabel("RANKING");
 		inicializarArregloDeBotones();
 		configurarFuente();
 		configurarVentana();
@@ -73,7 +73,7 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	public void configurarFuente() {
-		tipoFuentes= new Fuentes();
+		tipoFuentes =  new Fuentes();
 	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
@@ -116,13 +116,13 @@ public class PantallaInicial extends Pantalla {
 		 if (enFoco) {
 		 if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			
-			 if (currentLabel == modo1){
+			 if (currentLabel ==  modo1){
 				controlador.accionarInicioJuego("Modo original");
 			 }
-			 else if (currentLabel == modo2){
+			 else if (currentLabel ==  modo2){
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
-			 else if (currentLabel == ranking) {
+			 else if (currentLabel ==  ranking) {
 				 controlador.mostrarPantallaRanking();
 				 sensor.accionarEnter();
 			 }
@@ -145,7 +145,7 @@ public class PantallaInicial extends Pantalla {
     }
 	 
 	 public void establecerEnFoco(boolean condicion){
-	    	this.enFoco= condicion;
+	    	this.enFoco =  condicion;
 	    }
 	    
 	 public boolean obtenerEnFoco(){

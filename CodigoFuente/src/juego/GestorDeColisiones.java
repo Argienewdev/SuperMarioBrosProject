@@ -29,11 +29,11 @@ public class GestorDeColisiones {
 	public boolean verificarColisionArriba(Entidad entidad, int posX, int posY) {
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
-		if (fila-1 >= 0) {
+		if (fila-1 >=  0) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila-1,columna);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				huboColision = elementoDeJuego.obtenerPosicion().y + 50 == entidad.obtenerPosicion().y;
+				huboColision = elementoDeJuego.obtenerPosicion().y + 50 ==  entidad.obtenerPosicion().y;
 			}
 		}
 		if (huboColision) {
@@ -49,9 +49,9 @@ public class GestorDeColisiones {
 		ElementoDeJuego elementoDeJuego = null;
 		if (fila + 1 < this.nivel.obtenerFilasMatriz()) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila + 1,columna);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				huboColision = elementoDeJuego.obtenerPosicion().y == entidad.obtenerPosicion().y + 50;
+				huboColision = elementoDeJuego.obtenerPosicion().y ==  entidad.obtenerPosicion().y + 50;
 			}
 		}
 		if (huboColision) {
@@ -67,7 +67,7 @@ public class GestorDeColisiones {
 		ElementoDeJuego elementoDeJuego = null;
 		if (columna + 1 < this.nivel.obtenerColumnasMatriz()) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila,columna + 1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
 				//huboColision = elementoDeJuego.obtenerPosicion().x < posX + 50;
@@ -84,9 +84,9 @@ public class GestorDeColisiones {
 		int columna = Math.floorDiv(entidad.obtenerPosicion().x, 50);
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
-		if (columna-1 >= 0) {
+		if (columna-1 >=  0) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila,columna-1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
 				//huboColision = posX < (elementoDeJuego.obtenerPosicion().x + 50);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
@@ -103,11 +103,11 @@ public class GestorDeColisiones {
 		int columna = nivel.obtenerColumnaElementoDeJuegoEnLaMatriz(entidad);
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
-		if (fila-1 >= 0 && columna+1 < this.nivel.obtenerColumnasMatriz()) {
+		if (fila-1 >=  0 && columna+1 < this.nivel.obtenerColumnasMatriz()) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila - 1,columna + 1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				//huboColision = entidad.huboColision(elementoDeJuego);
-				//huboColision = (elementoDeJuego.obtenerPosicion().x < entidad.obtenerPosicion().x + 50) || (elementoDeJuego.obtenerPosicion().y >= posY + 50);
+				//huboColision = (elementoDeJuego.obtenerPosicion().x < entidad.obtenerPosicion().x + 50) || (elementoDeJuego.obtenerPosicion().y >=  posY + 50);
 				huboColision = entidad.obtenerHitbox().intersects(elementoDeJuego.obtenerHitbox());
 			}
 		}
@@ -122,9 +122,9 @@ public class GestorDeColisiones {
 		int columna = nivel.obtenerColumnaElementoDeJuegoEnLaMatriz(entidad);
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
-		if (fila-1 >= 0 && columna-1 >= 0) {
+		if (fila-1 >=  0 && columna-1 >=  0) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila-1,columna-1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				huboColision = entidad.huboColision(elementoDeJuego); 
 			}
 		}
@@ -141,7 +141,7 @@ public class GestorDeColisiones {
 		ElementoDeJuego elementoDeJuego = null;
 		if (fila+1 < this.nivel.obtenerFilasMatriz() && columna+1 < this.nivel.obtenerColumnasMatriz()) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila+1,columna+1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				huboColision = entidad.huboColision(elementoDeJuego); 
 			}
 		}
@@ -156,9 +156,9 @@ public class GestorDeColisiones {
 		int columna = nivel.obtenerColumnaElementoDeJuegoEnLaMatriz(entidad);
 		boolean huboColision = false;
 		ElementoDeJuego elementoDeJuego = null;
-		if (fila+1 < this.nivel.obtenerFilasMatriz() && columna-1 >= 0) {
+		if (fila+1 < this.nivel.obtenerFilasMatriz() && columna-1 >=  0) {
 			elementoDeJuego = this.nivel.obtenerElementoDeJuegoEnLaMatriz(fila+1,columna-1);
-			if (elementoDeJuego != null) {
+			if (elementoDeJuego !=  null) {
 				huboColision = entidad.huboColision(elementoDeJuego); 
 			}
 		}

@@ -355,12 +355,12 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 
     public Sprite obtenerTuberia(int altura) {
     	String rutaAux = rutaACarpeta;
-    	if (altura== 1) {
-    		rutaAux += "/spritesModoOriginal/tuberiaBaja.png";
-    	} else if (altura== 2) {
-    		rutaAux += "/spritesModoOriginal/tuberiaMediana.png";
-    	} else if (altura== 3) {
-    		rutaAux += "/spritesModoOriginal/tuberiaAlta.png";
+    	if (altura == 1) {
+    		rutaAux +=  "/spritesModoOriginal/tuberiaBaja.png";
+    	} else if (altura == 2) {
+    		rutaAux +=  "/spritesModoOriginal/tuberiaMediana.png";
+    	} else if (altura == 3) {
+    		rutaAux +=  "/spritesModoOriginal/tuberiaAlta.png";
     	}
         return new Sprite(rutaAux);
     }

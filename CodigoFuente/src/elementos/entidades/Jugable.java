@@ -45,7 +45,7 @@ public abstract class Jugable extends Entidad  {
 	public void establecerPosicion (Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
 		if (this.posicionGrafica.x + desplazamientoX > ConstantesGlobales.MITAD_PANTALLA) {
-			this.desplazamiento += desplazamientoX;
+			this.desplazamiento +=  desplazamientoX;
 		} else {
 			Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, this.posicionLogica.y);
 			this.posicionGrafica = nuevaPosicionGrafica;
@@ -59,20 +59,20 @@ public abstract class Jugable extends Entidad  {
 	
 	public void perderVida() {
 		this.vidas--;
-		if (vidas == 0) { 
+		if (vidas ==  0) { 
 			muerte();
 		}
 	}
 	
 	public void ganarPuntos(int puntos) {
-		this.puntos += puntos; 
+		this.puntos +=  puntos; 
 	}
 	
 	public void perderPuntos(int puntos) {
 		if (puntos > this.puntos) {
 			this.puntos = 0;
 		} else {
-			this.puntos -= puntos;
+			this.puntos -=  puntos;
 		}
 	}
 	

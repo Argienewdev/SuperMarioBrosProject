@@ -19,7 +19,7 @@ public class MarioRecuperacion extends MarioDefault {
 	
 	public void actualizarTiempo() {
 		tiempoEnRecuperacion--;
-		if (tiempoEnRecuperacion <= 0)
+		if (tiempoEnRecuperacion <=  0)
 			contexto.reiniciarEstado();
 	}
 	

@@ -1,4 +1,3 @@
-
 package juego;
 
 import java.awt.Point;
@@ -6,7 +5,6 @@ import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
-import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
@@ -38,10 +36,10 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <= (ConstantesGlobales.PANEL_ANCHO + 75)
-										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >= -100;
-		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <= 0; 
-		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;									
+		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75)
+										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  -100;
+		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
+		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla() 
 				&& (chocoBordeIzquierdo || chocoBordeDerecho)) {
@@ -73,11 +71,11 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
-		if ((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < -100) || entidad.obtenerHitbox().y < 0) {
+		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50)) {
 			entidad.establecerRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-		        if (entidad.huboColision(elemento) && entidad != elemento) {
+		        if (entidad.huboColision(elemento) && entidad !=  elemento) {
 		            elemento.aceptarVisitante(entidad.obtenerVisitante());
 		            entidad.aceptarVisitante(elemento.obtenerVisitante());
 		        }
@@ -119,13 +117,13 @@ public class MasterMind {
 	
 	
 	private void moverPowerUp(PowerUp powerUp) {
-		boolean ticksEnCero = powerUp.obtenerContadorTicks() == 0;
-		boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() == powerUp.obtenerTicksHastaSalirDelBloque();
+		boolean ticksEnCero = powerUp.obtenerContadorTicks() ==  0;
+		boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() ==  powerUp.obtenerTicksHastaSalirDelBloque();
 		if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
 		} else if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
-			if (powerUp.obtenerVelocidadDireccional().x == 0) {
+			if (powerUp.obtenerVelocidadDireccional().x ==  0) {
 				powerUp.mover();
 			}
 			powerUp.aplicarGravedad();

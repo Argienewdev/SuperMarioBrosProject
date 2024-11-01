@@ -46,7 +46,7 @@ public class ControladorVistas {
 	
 	private Pantalla panelActual;
 	
-	protected static int DURACION_PANTALLA_ENTRE_NIVELES= 3000;
+	protected static int DURACION_PANTALLA_ENTRE_NIVELES =  3000;
 	
 	public ControladorVistas(Juego juego){
 		
@@ -136,7 +136,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaInicial(){
-		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
+		this.pantallaInicial =  new PantallaInicial(sensorDeTeclasMenu, this);
 		ventana.add(pantallaInicial);
 		ventana.setContentPane(pantallaInicial);
 		this.panelActual = pantallaInicial;

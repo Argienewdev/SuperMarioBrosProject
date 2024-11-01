@@ -64,10 +64,10 @@ public abstract class Enemigo extends NoJugable {
     
     public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.incrementarContadorTicks();
-		if (obtenerContadorTicks() == 1){
+		if (obtenerContadorTicks() ==  1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if (obtenerContadorTicks() == ticksAnimacion) {
+		} else if (obtenerContadorTicks() ==  ticksAnimacion) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.eliminarDelNivel();
 		}
@@ -85,7 +85,7 @@ public abstract class Enemigo extends NoJugable {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {
-    		if (this.obtenerVelocidadDireccional().x <= 0) {
+    		if (this.obtenerVelocidadDireccional().x <=  0) {
     			moverIzquierda();
     		} else if (this.obtenerVelocidadDireccional().x > 0) {
     			moverDerecha();

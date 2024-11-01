@@ -36,7 +36,7 @@ public class FabricaEntidades {
 	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
     
     public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos, GeneradorSonidos generadorSonidos) {
-    	this.generadorSonidos= generadorSonidos;
+    	this.generadorSonidos =  generadorSonidos;
         this.fabricaSprites = fabricaSprites;
         this.pantallaDeJuego = pantallaDeJuego;
     }
@@ -44,7 +44,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Spiny obtenerSpiny(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerSpinyCayendo();
-        Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
+        Spiny spinyADevolver =  new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver);
         spinyADevolver.establecerVisitor(visitorSpiny);
         ObserverGrafico observerGraficoSpiny = new ObserverGrafico(spinyADevolver);
@@ -56,7 +56,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando();
-    	KoopaDefault estadoInicial= new KoopaDefault();
+    	KoopaDefault estadoInicial =  new KoopaDefault();
         ContextoKoopaTroopa koopaADevolver = new ContextoKoopaTroopa(sprite, posicion, null, null, estadoInicial);
         Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(koopaADevolver);
         koopaADevolver.establecerVisitor(visitorContextoKoopaTroopa);
@@ -83,7 +83,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Lakitu obtenerLakitu(Point posicion, FabricaEntidades fabricaEntidades) {
         Sprite sprite = fabricaSprites.obtenerLakituReversoFueraDeLaNube();
-        Lakitu lakituADevolver= new Lakitu(sprite, posicion, null, null, fabricaEntidades);
+        Lakitu lakituADevolver =  new Lakitu(sprite, posicion, null, null, fabricaEntidades);
         Visitante visitorLakitu = new VisitorLakitu(lakituADevolver);
         lakituADevolver.establecerVisitor(visitorLakitu);
         ObserverGrafico observerGraficoLakitu = new ObserverGrafico(lakituADevolver);
@@ -96,7 +96,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public BuzzyBeetle obtenerBuzzyBeetle(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerBuzzyBeetleReversoCaminando();
-        BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
+        BuzzyBeetle buzzyADevolver =  new BuzzyBeetle(sprite, posicion, null, null);
         Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver, generadorSonidos);
         buzzyADevolver.establecerVisitor(visitorBuzzy);
         ObserverGrafico observerGraficoBuzzy = new ObserverGrafico(buzzyADevolver);
@@ -108,7 +108,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Goomba obtenerGoomba(Point posicion){
         Sprite sprite = fabricaSprites.obtenerGoombaReversoCaminando();
-        Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
+        Goomba goombaADevolver = new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver, this.generadorSonidos);
         goombaADevolver.establecerVisitor(visitorGoomba);
         ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goombaADevolver);
@@ -120,7 +120,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Estrella obtenerEstrella(Point posicion) {
         Sprite sprite = fabricaSprites.obtenerSpriteInvisible();
-        Estrella estrellaADevolver=new Estrella(sprite, posicion, null, null);
+        Estrella estrellaADevolver = new Estrella(sprite, posicion, null, null);
 		Visitante visitorEstrella = new VisitorEstrella(estrellaADevolver);
 		estrellaADevolver.establecerVisitor(visitorEstrella);
         ObserverGrafico observerGraficoEstrella = new ObserverGrafico(estrellaADevolver);

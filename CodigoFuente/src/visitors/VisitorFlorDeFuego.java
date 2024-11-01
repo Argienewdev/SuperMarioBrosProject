@@ -15,7 +15,7 @@ public class VisitorFlorDeFuego implements Visitante {
 
     public VisitorFlorDeFuego(FlorDeFuego miEntidad, FabricaEntidades fabricaEntidades) {
         this.miEntidad = miEntidad;
-        this.fabricaEntidades=fabricaEntidades;
+        this.fabricaEntidades = fabricaEntidades;
     }
 
     @Override
