@@ -42,22 +42,16 @@ public class MarioFuego extends MarioDefault {
 		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
 		} else if (enElAire() && this.obtenerContexto().obtenerMirandoAlFrente()) {
-			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
 		} else if (enElAire() && !this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
 		} else if (this.obtenerContexto().obtenerMirandoAlFrente() && avanzando()) {
-			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
 		} else if (!this.obtenerContexto().obtenerMirandoAlFrente() && retrocediendo()){
-			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
 		} else if (this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 		} else if (!this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -89,19 +83,25 @@ public class MarioFuego extends MarioDefault {
 	private void lanzarBolaDeFuego() {
 		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x;
 		int posGraficaY = obtenerContexto().obtenerPosicionGrafica().y;
+		
 		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x;
 		int posLogicaY = obtenerContexto().obtenerPosicionLogica().y;
+		
 		Point posicionGraficaBolaDeFuego = new Point(posGraficaX,posGraficaY);
 		Point posicionLogicaBolaDeFuego = new Point(posLogicaX,posLogicaY);
+		
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
+		
 		if (this.obtenerContexto().obtenerMirandoAlFrente()) {
 			velocidadDireccionalBolaDeFuego = new Point(15,0);
 		} else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
+		
 		BolaDeFuego bolaDeFuego = fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		
 		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
-		System.out.println(bolaDeFuego.obtenerPosicionLogica().x);
+		
 		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	
