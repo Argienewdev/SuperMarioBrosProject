@@ -63,7 +63,7 @@ public class Ranking implements Serializable {
         boolean esTop = false;
         List<Jugador> ranking = obtenerTopRanking();
         if (ranking.size() < 5) {
-            esTop =true;
+            esTop  = true;
         }
         else {
 	        int quintoPuntaje = ranking.get(4).obtenerPuntaje();

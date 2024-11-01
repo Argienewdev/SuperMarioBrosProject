@@ -44,7 +44,6 @@ public abstract class PowerUp extends NoJugable {
 		return this.ticksHastaSalirDelBloque;
 	}
 
-
     private void moverDerecha() {
     	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
@@ -74,7 +73,7 @@ public abstract class PowerUp extends NoJugable {
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
-		this.obtenerNivel().agregarEntidadesAEliminar(this);
+		this.eliminarDelNivel();
 	}
 	
 	public BloqueDePregunta obtenerBloquePregunta() {
@@ -93,7 +92,7 @@ public abstract class PowerUp extends NoJugable {
     	} else {
     		if (this.obtenerVelocidadDireccional().x < 0) {
     			moverIzquierda();
-    		} else if (this.obtenerVelocidadDireccional().x >= 0){
+    		} else if (this.obtenerVelocidadDireccional().x >=  0){
     			moverDerecha();
     		}
     	}

@@ -63,9 +63,9 @@ public class PiranhaPlant extends Enemigo {
 	}
 	
 	public void mover() {
-		if (this.obtenerPosicionLogica().y==limiteInferior) {
+		if (this.obtenerPosicionLogica().y == limiteInferior) {
 			moverArriba();
-		} else if (this.obtenerPosicionLogica().y==limiteSuperior){
+		} else if (this.obtenerPosicionLogica().y == limiteSuperior){
 			moverAbajo();
 		}
 	}

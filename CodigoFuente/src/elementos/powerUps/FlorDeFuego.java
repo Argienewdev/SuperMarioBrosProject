@@ -46,7 +46,7 @@ public class FlorDeFuego extends PowerUp {
 			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoSaliendoDelBloqueDePreguntas());
 				this.actualizarHitboxYPosicion(fabricaSprites);
-			} else if (obtenerContadorTicks() == ticksHastaSalirDelBloque) {
+			} else if (obtenerContadorTicks() ==  ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoQuieto());
 				this.actualizarHitboxYPosicion(fabricaSprites);
 			} 

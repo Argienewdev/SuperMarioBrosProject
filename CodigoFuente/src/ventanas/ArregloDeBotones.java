@@ -23,7 +23,7 @@ public class ArregloDeBotones {
 	@SuppressWarnings("exports")
 	public JLabel siguiente() {
 		JLabel aRetornar = null;
-		if (siguiente >= arreglo.length) {
+		if (siguiente >=  arreglo.length) {
 			siguiente = 0;
 			aRetornar = arreglo[siguiente];
 			siguiente++;
@@ -37,9 +37,9 @@ public class ArregloDeBotones {
 	@SuppressWarnings("exports")
 	public JLabel previo() {
 		JLabel aRetornar = null;
-		siguiente -= 2;
+		siguiente -=  2;
 		if (siguiente < 0) {
-			siguiente += arreglo.length;
+			siguiente +=  arreglo.length;
 			aRetornar = arreglo[siguiente];
 			siguiente++;
 		} else {

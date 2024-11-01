@@ -55,7 +55,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 		}
 	}
 	
-	public void  eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
+	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 	}
     

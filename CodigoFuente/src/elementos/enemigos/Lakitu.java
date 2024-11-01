@@ -69,7 +69,7 @@ public class Lakitu extends Enemigo {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {
-    		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <= 0; 
+    		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <=  0; 
 			if (chocoBordeIzquierdo) {
 				if (this.velocidadDireccional.x < 0) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);

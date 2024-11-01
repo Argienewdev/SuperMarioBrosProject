@@ -47,7 +47,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -98,7 +98,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -126,7 +126,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -154,7 +154,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -182,7 +182,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -198,7 +198,7 @@ public class GeneradorSonidos {
 	public void moneda(){
 		try {
 		    Sonido sonido= fabricaSonidos.obtenerSonidoMoneda();
-            
+
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
@@ -210,7 +210,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -242,7 +242,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -270,7 +270,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -298,7 +298,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -326,7 +326,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -354,7 +354,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -382,7 +382,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -410,7 +410,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -438,7 +438,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });

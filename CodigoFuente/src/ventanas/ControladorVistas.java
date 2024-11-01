@@ -78,7 +78,6 @@ public class ControladorVistas {
 	}
 	
 	public void accionarInicioJuego(String modo) {
-		
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
@@ -137,7 +136,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaInicial(){
-		this.pantallaInicial= new PantallaInicial(sensorDeTeclasMenu, this);
+		this.pantallaInicial =  new PantallaInicial(sensorDeTeclasMenu, this);
 		ventana.add(pantallaInicial);
 		ventana.setContentPane(pantallaInicial);
 		this.panelActual = pantallaInicial;
@@ -211,7 +210,6 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());

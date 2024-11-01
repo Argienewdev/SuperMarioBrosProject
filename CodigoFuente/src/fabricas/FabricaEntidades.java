@@ -56,7 +56,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando();
-    	KoopaDefault estadoInicial= new KoopaDefault();
+    	KoopaDefault estadoInicial =  new KoopaDefault();
         ContextoKoopaTroopa koopaADevolver = new ContextoKoopaTroopa(sprite, posicion, null, null, estadoInicial);
         Visitante visitorContextoKoopaTroopa = new VisitorContextoKoopaTroopa(koopaADevolver, this.generadorSonidos);
         koopaADevolver.establecerVisitor(visitorContextoKoopaTroopa);
@@ -108,7 +108,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public Goomba obtenerGoomba(Point posicion){
         Sprite sprite = fabricaSprites.obtenerGoombaReversoCaminando();
-        Goomba goombaADevolver=new Goomba(sprite, posicion, null, null);
+        Goomba goombaADevolver = new Goomba(sprite, posicion, null, null);
         Visitante visitorGoomba = new VisitorGoomba(goombaADevolver, this.generadorSonidos);
         goombaADevolver.establecerVisitor(visitorGoomba);
         ObserverGrafico observerGraficoGoomba = new ObserverGrafico(goombaADevolver);
@@ -196,7 +196,8 @@ public class FabricaEntidades {
     	return marioADevolver;
     } 
     
-    public BolaDeFuego obtenerBolaDeFuego(Point posicion,Point velocidadDireccional,Jugable jugador) {
+    @SuppressWarnings("exports")
+	public BolaDeFuego obtenerBolaDeFuego(Point posicion, Point velocidadDireccional, Jugable jugador) {
     	Sprite sprite = fabricaSprites.obtenerBolaDeFuego();
     	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
     	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver, this.generadorSonidos);

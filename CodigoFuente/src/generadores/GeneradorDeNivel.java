@@ -73,7 +73,7 @@ public class GeneradorDeNivel {
 			archivoDeNivel = new FileReader(RUTA_A_CARPETA + numeroNivel + ".txt");
 			lectorBuffer = new BufferedReader(archivoDeNivel);
 			String linea;
-			while((linea = lectorBuffer.readLine()) != null) {
+			while((linea = lectorBuffer.readLine()) !=  null) {
 				String[] partes = linea.split("\\s+");
 				int[] numeros = new int[partes.length];
 				
@@ -175,7 +175,7 @@ public class GeneradorDeNivel {
 			exception.printStackTrace();
 		} finally {
 			try {
-				if (lectorBuffer != null) {
+				if (lectorBuffer !=  null) {
 					lectorBuffer.close();
 				}
 			} catch (IOException error) {

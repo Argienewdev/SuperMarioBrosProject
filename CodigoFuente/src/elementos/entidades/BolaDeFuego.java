@@ -54,7 +54,6 @@ public class BolaDeFuego extends NoJugable {
 	public Jugable obtenerJugador() {
 		return miJugador;
 	}
-
 	
 	@Override
 	public void mover() {

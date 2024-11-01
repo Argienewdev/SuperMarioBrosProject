@@ -9,22 +9,15 @@ import generadores.GeneradorSonidos;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import visitors.Visitante;
 import visitors.VisitorBandera;
 import visitors.VisitorBloqueDePregunta;
 import visitors.VisitorBloqueSolido;
-import visitors.VisitorChampinionVerde;
-import visitors.VisitorEstrella;
-import visitors.VisitorFlorDeFuego;
 import visitors.VisitorLadrillo;
-import visitors.VisitorMonedas;
-import visitors.VisitorPiranhaPlant;
 import visitors.VisitorPiso;
 import visitors.VisitorPrincesa;
-import visitors.VisitorSuperChampinion;
 import visitors.VisitorTuberia;
 import visitors.VisitorVacio;
 
@@ -89,7 +82,7 @@ public class FabricaPlataformas {
 		Sprite spriteTuberia = this.fabricaSprites.obtenerTuberia(altura);
 		int ancho = spriteTuberia.obtenerAnchoImagen();
   		int alturaEscalada = altura * 50;
-  		PiranhaPlant piranhaPlant= null;
+  		PiranhaPlant piranhaPlant =  null;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver, this.generadorSonidos);
         tuberiaADevolver.establecerVisitor(visitorTuberia);
@@ -139,10 +132,9 @@ public class FabricaPlataformas {
 		Random random = new Random();
 		int identificadorPowerUp = random.nextInt(8) + 1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
 
-		//int identificadorPowerUp= 5;
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
-				for(int contador = 1; contador <= identificadorPowerUp; contador++) {
+				for(int contador = 1; contador <=  identificadorPowerUp; contador++) {
 					Moneda monedas = this.fabricaEntidades.obtenerMonedas(posicion, true);
 					nivel.agregarPowerUp(monedas);
 					bloqueDePreguntaADevolver.agregarPowerUp(monedas);

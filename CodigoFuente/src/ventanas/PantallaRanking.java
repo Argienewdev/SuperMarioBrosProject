@@ -60,7 +60,7 @@ public class PantallaRanking extends Pantalla {
             jugadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
             rankingLabel.add(jugadorLabel);
             jugadoresPanel.add(jugadorLabel);
-            y += labelHeight;
+            y +=  labelHeight;
         }
         jugadoresPanel.setBounds(0, startY, size.width, size.height - startY);
         layeredPane.add(jugadoresPanel, Integer.valueOf(1));
@@ -68,7 +68,7 @@ public class PantallaRanking extends Pantalla {
     }
     
     private void agregarBotonRegresar(){
-    	JLabel botonRegresar= new JLabel("Regresar");
+    	JLabel botonRegresar =  new JLabel("Regresar");
     	botonRegresar.setBounds(570 , ConstantesGlobales.PANEL_ALTO/4, size.width, size.height - 100);
     	Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
     	botonRegresar.setFont(font);
