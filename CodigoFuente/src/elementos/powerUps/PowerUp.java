@@ -19,11 +19,14 @@ public abstract class PowerUp extends NoJugable {
 	protected boolean estaDentroDeBloqueDePreguntas;
 	
 	protected BloqueDePregunta bloquePregunta;
+	
+	protected boolean haceRuidoAlSalir;
 
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
+		this.haceRuidoAlSalir = true;
 	}
-	
+
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public abstract int obtenerPuntosPorDefault();
@@ -96,6 +99,10 @@ public abstract class PowerUp extends NoJugable {
     			moverDerecha();
     		}
     	}
+	}
+	
+	public boolean obtenerHaceRuidoAlSalir() {
+		return this.haceRuidoAlSalir;
 	}
 	
 }

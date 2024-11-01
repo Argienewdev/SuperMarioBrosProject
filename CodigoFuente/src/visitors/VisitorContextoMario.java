@@ -106,7 +106,9 @@ public class VisitorContextoMario implements Visitante {
 	
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
 		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            this.generadorSonidos.powerUpEmerge();
+            if (bloqueDePregunta.obtenerPowerUp().obtenerHaceRuidoAlSalir()) {
+    			this.generadorSonidos.powerUpEmerge();
+            }
 			bloqueDePregunta.liberarPowerUp();
         }
 	}
