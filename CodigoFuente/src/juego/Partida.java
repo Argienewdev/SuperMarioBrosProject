@@ -1,11 +1,17 @@
 package juego;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSilueta;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
+import generadores.GeneradorSonidos;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -33,12 +39,15 @@ public class Partida {
 	
 	private FabricaSprites fabricaSprites;
 	
+	GeneradorSonidos generadorSonidos;
+	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
+		this.generadorSonidos= new GeneradorSonidos();
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.numeroNivelActual = 1;
-		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas());
+		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas(), this.generadorSonidos);
 		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
 		this.generadorDeNivel.establecerSiluetaDelNivel();
@@ -80,6 +89,14 @@ public class Partida {
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
+		
+	    Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		generadorSonidos.reproducirMusicaFondo();
+	        }
+	    });
+	    timer.setRepeats(false);
+	    timer.start();
 	}
 	
 	public void finalizarPartida() {

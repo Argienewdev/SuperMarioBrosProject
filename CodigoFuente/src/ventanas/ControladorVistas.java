@@ -46,6 +46,8 @@ public class ControladorVistas {
 	
 	private Pantalla panelActual;
 	
+	protected static int DURACION_PANTALLA_ENTRE_NIVELES= 3000;
+	
 	public ControladorVistas(Juego juego){
 		
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
@@ -76,7 +78,6 @@ public class ControladorVistas {
 	}
 	
 	public void accionarInicioJuego(String modo) {
-		int duracionDePantallaEntreNiveles = 100;
 		
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
@@ -90,7 +91,7 @@ public class ControladorVistas {
 	    pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
 	    pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
-	    Timer timer = new Timer(duracionDePantallaEntreNiveles, new ActionListener() {
+	    Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	            mostrarPantallaDeJuego();
 	        }
@@ -210,7 +211,6 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		int duracionPantallaEntreNiveles = 100;
 		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
@@ -222,9 +222,13 @@ public class ControladorVistas {
                 mostrarPantallaDeJuego();
             }
 		};
-		Timer timer = new Timer(duracionPantallaEntreNiveles, listener);
+		Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, listener);
         timer.setRepeats(false);
         timer.start();  
+	}
+	
+	public int obtenerDuracionPantallaEntreNiveles(){
+		return DURACION_PANTALLA_ENTRE_NIVELES;
 	}
 	
 	public void cerrarJuego() {
