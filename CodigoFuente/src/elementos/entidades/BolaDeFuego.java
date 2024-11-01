@@ -32,7 +32,7 @@ public class BolaDeFuego extends NoJugable {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.obtenerRemovido()) {
+		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
 			this.eliminarDelNivel();
 		}
@@ -45,7 +45,7 @@ public class BolaDeFuego extends NoJugable {
 	}
 	
 	public void aplicarGravedad() {
-		if(this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+		if (this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
 			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + GRAVEDAD_BOLA_DE_FUEGO);
 			this.establecerVelocidadDireccional(nuevaVelocidad);
 		}

@@ -69,7 +69,7 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-		if(!champinionVerde.obtenerRemovido()) {
+		if (!champinionVerde.obtenerRemovido()) {
 			this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
 			this.miEntidad.ganarVida();
 			champinionVerde.establecerRemovido(true);
@@ -83,7 +83,7 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarMoneda(Moneda monedas) {
-		if(!monedas.obtenerRemovido()) {
+		if (!monedas.obtenerRemovido()) {
     		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
         	monedas.establecerRemovido(true);
     	}
@@ -91,7 +91,7 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if(this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
             bloqueDePregunta.liberarPowerUp();
         }
 	}

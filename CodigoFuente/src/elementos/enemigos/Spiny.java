@@ -32,14 +32,14 @@ public class Spiny extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.removido) {
+		if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.obtenerAterrizo()) {
-			if(!this.salioDelHuevo) {
+		} else if (this.obtenerAterrizo()) {
+			if (!this.salioDelHuevo) {
 				aterrizar(fabricaSprites);
-			}else if(this.obtenerVelocidadDireccional().x < 0) {
+			} else if (this.obtenerVelocidadDireccional().x < 0) {
 				this.establecerSprite(fabricaSprites.obtenerSpinyReversoCaminando());
-			} else if(this.obtenerVelocidadDireccional().x > 0) {
+			} else if (this.obtenerVelocidadDireccional().x > 0) {
 				this.establecerSprite(fabricaSprites.obtenerSpinyFrontalCaminando());
 			}
 		}
@@ -60,8 +60,8 @@ public class Spiny extends Enemigo {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int x = this.obtenerPosicion().x;
-		int y = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
+		int x = this.obtenerPosicionLogica().x;
+		int y = this.obtenerPosicionLogica().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
 		int ancho = this.obtenerSprite().obtenerAnchoImagen();
 		int alto = this.obtenerSprite().obtenerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);

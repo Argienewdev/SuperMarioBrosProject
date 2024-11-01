@@ -3,8 +3,6 @@ package elementos;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javax.swing.JLabel;
-
 import juego.Nivel;
 import observers.ObserverGrafico;
 import visitors.*;
@@ -15,25 +13,26 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected Rectangle hitbox;
 	
-	protected Point posicion;
+	protected Point posicionLogica;
+
+	protected Point posicionGrafica;
 	
 	protected Visitante visitante;
 	
     protected Nivel miNivel;
-    
-    protected JLabel label;
     
     protected ObserverGrafico observerGrafico;
     
     protected boolean removido;
     
 	protected boolean debeMantenerseSiempreEnPantalla;
-    
+	
 	@SuppressWarnings("exports")
 	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
 		Point posicionConsiderandoSprite = obtenerPosicionConsiderandoSprite(posicion, sprite);
-		this.posicion = posicionConsiderandoSprite;
+		this.posicionLogica = posicionConsiderandoSprite;
+		this.posicionGrafica = posicionConsiderandoSprite;
 		this.visitante = visitante;
 		this.observerGrafico = observerGrafico;
 		this.removido = false;
@@ -63,7 +62,20 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	@SuppressWarnings("exports")
 	public void establecerPosicion (Point posicion) {
-		this.posicion = posicion;
+		int desplazamientoX = posicion.x - this.posicionLogica.x;
+		Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, this.posicionLogica.y);
+		this.posicionGrafica = nuevaPosicionGrafica;
+		this.posicionLogica = posicion;
+	}
+	
+	@SuppressWarnings("exports")
+	public void establecerPosicionLogica (Point posicion) {
+		this.posicionLogica = posicion;
+	}
+	
+	@SuppressWarnings("exports")
+	public void establecerPosicionGrafica (Point posicion) {
+		this.posicionGrafica = posicion;
 	}
 	
 	public Sprite obtenerSprite() {
@@ -81,8 +93,13 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	@SuppressWarnings("exports")
-	public Point obtenerPosicion() {
-		return this.posicion;
+	public Point obtenerPosicionLogica() {
+		return this.posicionLogica;
+	}
+	
+	@SuppressWarnings("exports")
+	public Point obtenerPosicionGrafica() {
+		return this.posicionGrafica;
 	}
 	
 	public Visitante obtenerVisitante() {

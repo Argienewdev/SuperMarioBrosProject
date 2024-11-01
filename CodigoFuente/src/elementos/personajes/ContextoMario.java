@@ -29,7 +29,7 @@ public class ContextoMario extends Jugable {
 	}
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(cambiarEstado) {
+		if (cambiarEstado) {
 			estadoMario.actualizarHitboxYPosicion(fabricaSprites);
 			this.cambiarEstado = false;
 		}

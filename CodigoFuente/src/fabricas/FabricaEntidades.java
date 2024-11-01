@@ -170,9 +170,9 @@ public class FabricaEntidades {
 	public Moneda obtenerMonedas(Point posicion, 
 							  boolean estaDentroDeBloqueDePreguntas) {
         Sprite sprite;
-        if(!estaDentroDeBloqueDePreguntas) {
+        if (!estaDentroDeBloqueDePreguntas) {
         	sprite = fabricaSprites.obtenerMonedaEncendida();
-        }else {
+        } else {
         	sprite = fabricaSprites.obtenerSpriteInvisible();
         }
 		Moneda monedasADevolver = new Moneda(sprite, posicion, null, null, true);

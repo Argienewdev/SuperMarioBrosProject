@@ -26,7 +26,7 @@ public class MarioInvulnerable  extends MarioDefault {
     }
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
 		this.obtenerContexto().setHitbox(nuevaHitbox);
@@ -42,19 +42,19 @@ public class MarioInvulnerable  extends MarioDefault {
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
-			if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
+			if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableCayendo();
-			}else if(spriteAereoFrontal(fabricaSprites)) {
+			} else if (spriteAereoFrontal(fabricaSprites)) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalSaltando();
-			} else if(spriteAereoReverso(fabricaSprites)) {
+			} else if (spriteAereoReverso(fabricaSprites)) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoSaltando();
-			}else if(avanzando()) {
+			} else if (avanzando()) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalCaminando();
-			} else if(retrocediendo()){
+			} else if (retrocediendo()){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoCaminando();
-			} else if(spriteFrontal(fabricaSprites)){
+			} else if (spriteFrontal(fabricaSprites)){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
-			} else if(spriteReverso(fabricaSprites)){
+			} else if (spriteReverso(fabricaSprites)){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoQuieto();
 			} else {
 				aRetornar = obtenerSpriteInicial(fabricaSprites);

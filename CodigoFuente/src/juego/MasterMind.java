@@ -45,10 +45,10 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicion().x + enemigo.obtenerAncho() <= (ConstantesGlobales.PANEL_ANCHO + 75)
-										&& enemigo.obtenerPosicion().x + enemigo.obtenerAncho() >= -100;
-		boolean chocoBordeIzquierdo = enemigo.obtenerPosicion().x <= 0; 
-		boolean chocoBordeDerecho = enemigo.obtenerPosicion().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;									
+		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <= (ConstantesGlobales.PANEL_ANCHO + 75)
+										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >= -100;
+		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <= 0; 
+		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >= ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla() 
 				&& (chocoBordeIzquierdo || chocoBordeDerecho)) {
@@ -80,11 +80,11 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
-		if((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < -100) || entidad.obtenerHitbox().y < 0) {
+		if ((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < -100) || entidad.obtenerHitbox().y < 0) {
 			entidad.establecerRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-		        if(entidad.huboColision(elemento) && entidad != elemento) {
+		        if (entidad.huboColision(elemento) && entidad != elemento) {
 		            elemento.aceptarVisitante(entidad.obtenerVisitante());
 		            entidad.aceptarVisitante(elemento.obtenerVisitante());
 		        }
@@ -114,16 +114,16 @@ public class MasterMind {
 	private void moverPowerUp(PowerUp powerUp) {
 		boolean ticksEnCero = powerUp.obtenerContadorTicks() == 0;
 		boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() == powerUp.obtenerTicksHastaSalirDelBloque();
-		if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
+		if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
-		} else if(!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
-			if(powerUp.obtenerVelocidadDireccional().x == 0) {
+		} else if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
+			if (powerUp.obtenerVelocidadDireccional().x == 0) {
 				powerUp.mover();
 			}
 			powerUp.aplicarGravedad();
 			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
-		} else if(!ticksEnCero && !ticksAlcanzaronMarca) {
+		} else if (!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
 		}
 	}
@@ -134,8 +134,8 @@ public class MasterMind {
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicion().x, powerUp.obtenerBloquePregunta().obtenerPosicion().y - powerUp.obtenerAlto()));
-		powerUp.moverHitbox(powerUp.obtenerPosicion());
+		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicionLogica().x, powerUp.obtenerBloquePregunta().obtenerPosicionLogica().y - powerUp.obtenerAlto()));
+		powerUp.moverHitbox(powerUp.obtenerPosicionLogica());
 		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 	

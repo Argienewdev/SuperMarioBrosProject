@@ -138,7 +138,7 @@ public class VisitorKoopaDefault implements Visitante {
         	&& !this.miContexto.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
 	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
-    	}else {
+    	} else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, superMario.obtenerContexto());
     	}
     }
@@ -149,7 +149,7 @@ public class VisitorKoopaDefault implements Visitante {
         	&& !this.miContexto.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
-    	}else {
+    	} else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioFuego.obtenerContexto());
     	}
     }
@@ -158,7 +158,7 @@ public class VisitorKoopaDefault implements Visitante {
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	if(this.miContexto.obtenerRemovido()) {
+    	if (this.miContexto.obtenerRemovido()) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioRecuperacion.obtenerContexto());
     	}
     }

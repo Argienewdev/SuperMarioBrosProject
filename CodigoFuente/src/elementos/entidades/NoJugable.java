@@ -43,8 +43,8 @@ public abstract class NoJugable extends Entidad {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int nuevaPosX = this.obtenerPosicion().x;
-		int nuevaPosY = this.obtenerPosicion().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
+		int nuevaPosX = this.obtenerPosicionLogica().x;
+		int nuevaPosY = this.obtenerPosicionLogica().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
 		int nuevoAncho = this.obtenerSprite().obtenerAnchoImagen();
 		int nuevoAlto = this.obtenerSprite().obtenerAltoImagen();
 		this.setHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));

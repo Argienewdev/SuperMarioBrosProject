@@ -20,19 +20,19 @@ public class SuperMario extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerSuperMarioCayendo();
-		}else if(spriteAereoFrontal(fabricaSprites)) {
+		} else if (spriteAereoFrontal(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerSuperMarioFrontalSaltando();
-		} else if(spriteAereoReverso(fabricaSprites)) {
+		} else if (spriteAereoReverso(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerSuperMarioReversoSaltando();
-		}else if(avanzando()) {
+		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerSuperMarioFrontalCaminando();
-		} else if(retrocediendo()){
+		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerSuperMarioReversoCaminando();
-		} else if(spriteFrontal(fabricaSprites)){
+		} else if (spriteFrontal(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerSuperMarioFrontalQuieto();
-		} else if(spriteReverso(fabricaSprites)){
+		} else if (spriteReverso(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerSuperMarioReversoQuieto();
 		} else {
 			aRetornar = fabricaSprites.obtenerSuperMarioFrontalQuieto();

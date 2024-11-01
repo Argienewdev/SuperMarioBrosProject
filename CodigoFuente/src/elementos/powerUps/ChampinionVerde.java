@@ -39,13 +39,13 @@ public class ChampinionVerde extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.obtenerRemovido()) {
+		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		}else {
-			if(!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
+		} else {
+			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerChampinionVerdeSaliendoDelBloqueDePreguntas());
 				this.actualizarHitboxYPosicion(fabricaSprites);
-			}else if(obtenerContadorTicks() >= ticksHastaSalirDelBloque) {
+			} else if (obtenerContadorTicks() >= ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerChampinionVerde());
 				this.actualizarHitboxYPosicion(fabricaSprites);
 			}		

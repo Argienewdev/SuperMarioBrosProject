@@ -28,7 +28,7 @@ public abstract class Plataforma extends ElementoDeJuego {
 	}
 	
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.removido) {
+		if (this.removido) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 		}
 	}

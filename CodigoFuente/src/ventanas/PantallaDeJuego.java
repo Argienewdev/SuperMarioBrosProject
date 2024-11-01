@@ -3,10 +3,11 @@ package ventanas;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 
 import elementos.Silueta;
 import elementos.entidades.Jugable;
@@ -28,16 +29,12 @@ public class PantallaDeJuego extends Pantalla {
     
     private JLabel fondo;
     
-    private ObserverGrafico observerGrafico;
-    
     private Point posicionOriginalJugable;
     
     private Point posicionOriginalLabelJugable;
     
     private JLayeredPane layeredPane;
    
-    private static final int MITAD_PANTALLA = (ConstantesGlobales.PANEL_ANCHO / 2) - 100;
-
     public PantallaDeJuego() {
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
@@ -86,23 +83,23 @@ public class PantallaDeJuego extends Pantalla {
         repaint();
     }
 
-    @SuppressWarnings("exports")
 	public void registrarJugable(Jugable jugable) {
-        marioJugable = jugable;
-        marioLabel = jugable.obtenerObserverGrafico();
+        this.marioJugable = jugable;
+        this.marioLabel = jugable.obtenerObserverGrafico();
         establecerPosicionOriginalJugable();
         establecerPosicionOriginalLabelJugable();
-        agregarLabel(marioLabel);
+        layeredPane.add(this.marioLabel, JLayeredPane.MODAL_LAYER);
+        this.marioLabel.setVisible(true);
         revalidate();
         repaint();
     }
 
     private void establecerPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicion();
+		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicionGrafica();
 	}
 
 	private void establecerPosicionOriginalJugable () {
-		this.posicionOriginalJugable = this.marioJugable.obtenerPosicion();	
+		this.posicionOriginalJugable = this.marioJugable.obtenerPosicionLogica();	
 	}
 
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
@@ -125,61 +122,44 @@ public class PantallaDeJuego extends Pantalla {
         hud.actualizarVidas(marioJugable.obtenerVidas());
         hud.actualizarPuntaje(marioJugable.obtenerPuntos());
         hud.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
+        
+        boolean fondoMovido = false;
 
-        // Obtener la posición actual de Mario
-        Point posicionMario = marioLabel.getLocation();
-        boolean fondoMovido = false; // Bandera para indicar si el fondo se ha movido
-
-        // Solo mover el fondo y los labels si Mario está más allá de la mitad de la pantalla
-        if (posicionMario.x >= MITAD_PANTALLA) {
-            // Calcular cuánto se debe mover el fondo
-            int desplazamiento = posicionMario.x - MITAD_PANTALLA;
-
-            // Obtener la posición actual del fondo
+        if (this.marioJugable.obtenerDesplazamiento() > 0) {
             Point posicionFondo = fondo.getLocation();
+            int nuevaPosicionFondoX = posicionFondo.x - (this.marioJugable.obtenerDesplazamiento() / 2);
 
-            // Mueve el fondo hacia la izquierda
-            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
-
-            // Obtener el ancho del fondo para limitar el desplazamiento
+            // Ver que el fondo no se desplace mas de lo posible
             int anchoFondo = fondo.getWidth();
-
-            // Asegúrate de que el fondo no se desplace más allá de su posición inicial
             if (nuevaPosicionFondoX < -anchoFondo + ConstantesGlobales.PANEL_ANCHO) {
-                nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO; // Limitar movimiento del fondo
+                nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO;
             }
             
-         // Solo mueve el fondo si su posición ha cambiado
         	if (nuevaPosicionFondoX != posicionFondo.x) {
         		fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
         		fondoMovido = true; // Se ha movido el fondo
-        		revalidate();
-        		repaint();
         	}
 
-         // Si el fondo se movió, mover los labels
         	/*TODO 
         	Thread Suspended (uncaught exception ConcurrentModificationException))	
         	PantallaDeJuego.refrescar() line: 153	
         	ControladorVistas.refrescar() line: 167	
         	Juego.actualizar() line: 56	
-        	BucleJuego.tick() line: 87	
-        	BucleJuego.run() line: 63	
-        	Thread.run() line: 1589	
         	*/
+        	
         	if (fondoMovido) {
-                for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
-                    Point posicionLabel = observerGrafico.getLocation();
-                    posicionLabel.x -= desplazamiento; // Desplazar los labels
-                    observerGrafico.obtenerEntidadObservada().establecerPosicion(posicionLabel);
-                    observerGrafico.obtenerEntidadObservada().moverHitbox(posicionLabel);
-                    observerGrafico.actualizar();
-                    revalidate();
-                    repaint();
-                    if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
-                    	// TODO: Eliminar label del nivel 
-                    }
-                }
+    			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) { 
+    				Point posicionLabel = observerGrafico.getLocation();
+    				posicionLabel.x -= this.marioJugable.obtenerDesplazamiento();
+    				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
+    				observerGrafico.actualizar();
+    				if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
+    					// TODO: Eliminar label del nivel 
+    				}
+    			}
+    			this.marioJugable.establecerDesplazamiento(0);
+    			revalidate();
+    			repaint();
             }
         }
     }
@@ -195,10 +175,11 @@ public class PantallaDeJuego extends Pantalla {
     public void cambiarDeNivel() {
     	establecerFondo();
     	crearHUD();
-    	this.marioJugable.establecerPosicion(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
+    	this.marioJugable.establecerPosicionLogica(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
+    	this.marioJugable.establecerPosicionGrafica(this.marioJugable.obtenerPosicionLogica());
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
-    	agregarLabel(marioLabel);
+    	this.marioJugable.establecerDesplazamiento(0);
     	revalidate();
     	repaint();
     }

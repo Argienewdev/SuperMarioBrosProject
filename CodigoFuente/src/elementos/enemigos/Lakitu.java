@@ -34,12 +34,12 @@ public class Lakitu extends Enemigo {
     }
 
     public void lanzarSpiny() {
-    	if(contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
+    	if (contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
     		this.contadorTicksDisparo++;
-    	}else {
+    	} else {
     		this.contadorTicksDisparo = 0;
-    		int posX = obtenerPosicion().x + this.obtenerAncho();
-    		int posY = obtenerPosicion().y + this.obtenerAlto();
+    		int posX = obtenerPosicionLogica().x + this.obtenerAncho();
+    		int posY = obtenerPosicionLogica().y + this.obtenerAlto();
     		Point posicionInicialSpiny = new Point(posX, posY);
     		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionInicialSpiny);
     		obtenerNivel().agregarSpinyAAgregar(spiny);
@@ -54,24 +54,24 @@ public class Lakitu extends Enemigo {
     @Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
     	lanzarSpiny();
-		if(this.removido) {
+		if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.obtenerVelocidadDireccional().x < 0) {
+		} else if (this.obtenerVelocidadDireccional().x < 0) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
-		} else if(this.obtenerVelocidadDireccional().x > 0) {
+		} else if (this.obtenerVelocidadDireccional().x > 0) {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
     
     @Override
     public void invertirDireccion() {
-    	if(removido) {
+    	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
-    	}else {
+    	} else {
     		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <= 0; 
 			if (chocoBordeIzquierdo) {
-				if(this.velocidadDireccional.x < 0) {
+				if (this.velocidadDireccional.x < 0) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
 					this.establecerVelocidadDireccional(velocidad);
 				}

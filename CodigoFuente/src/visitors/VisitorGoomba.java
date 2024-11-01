@@ -118,7 +118,7 @@ public class VisitorGoomba implements Visitante {
     }
 
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	if(this.miEntidad.obtenerRemovido()) {
+    	if (this.miEntidad.obtenerRemovido()) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.obtenerContexto());
     	}
     }

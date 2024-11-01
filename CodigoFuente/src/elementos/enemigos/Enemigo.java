@@ -42,10 +42,10 @@ public abstract class Enemigo extends NoJugable {
     
     @Override
     public void invertirDireccion() {
-    	if(removido) {
+    	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
-    	}else {
+    	} else {
     		Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
     		this.establecerVelocidadDireccional(velocidad);
     	}
@@ -54,7 +54,7 @@ public abstract class Enemigo extends NoJugable {
     protected abstract Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites);
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
-    	if(this.removido) {
+    	if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
 			this.establecerVelocidadDireccional(new Point(0, 0));
 		}
@@ -62,10 +62,10 @@ public abstract class Enemigo extends NoJugable {
     
     public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.incrementarContadorTicks();
-		if(obtenerContadorTicks() == 1){
+		if (obtenerContadorTicks() == 1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(obtenerContadorTicks() == ticksAnimacion) {
+		} else if (obtenerContadorTicks() == ticksAnimacion) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.eliminarDelNivel();
 		}
@@ -79,7 +79,7 @@ public abstract class Enemigo extends NoJugable {
 
     @Override
 	public void mover() {
-    	if(removido) {
+    	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {

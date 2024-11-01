@@ -21,8 +21,8 @@ public class PiranhaPlant extends Enemigo {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 30;
     	this.puntosSustraidosPorMuerteCausada = 30;
-    	limiteInferior = this.obtenerPosicion().y;
-    	limiteSuperior = this.obtenerPosicion().y-150 ;
+    	limiteInferior = this.obtenerPosicionLogica().y;
+    	limiteSuperior = this.obtenerPosicionLogica().y-150 ;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
     }
 
@@ -49,7 +49,7 @@ public class PiranhaPlant extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.removido) {
+		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
 		} else {
@@ -63,9 +63,9 @@ public class PiranhaPlant extends Enemigo {
 	}
 	
 	public void mover() {
-		if(this.obtenerPosicion().y==limiteInferior) {
+		if (this.obtenerPosicionLogica().y==limiteInferior) {
 			moverArriba();
-		}else if (this.obtenerPosicion().y==limiteSuperior){
+		} else if (this.obtenerPosicionLogica().y==limiteSuperior){
 			moverAbajo();
 		}
 	}

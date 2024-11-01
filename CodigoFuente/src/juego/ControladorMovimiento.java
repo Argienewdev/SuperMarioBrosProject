@@ -29,7 +29,7 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		determinarAccion();
+		this.determinarAccion();
 	    this.cambiarYVerificarPosicionHitboxDelJugador();
 		reiniciarVelocidadHorizontal();
 	}
@@ -61,7 +61,7 @@ public class ControladorMovimiento {
 
 	private boolean deteccionSalto() {
 		boolean retornar = false;
-		if(sensorDeTeclasJuego.obtenerWPresionada()) {
+		if (sensorDeTeclasJuego.obtenerWPresionada()) {
 			retornar = !sensorDeTeclasJuego.obtenerWAccionada();
 			sensorDeTeclasJuego.establecerWAccionada(true);
 		}
@@ -78,7 +78,7 @@ public class ControladorMovimiento {
 	
 	private boolean deteccionAccionEspecial() {
 		boolean retornar = false;
-		if(sensorDeTeclasJuego.obtenerSpacePresionada()) {
+		if (sensorDeTeclasJuego.obtenerSpacePresionada()) {
 			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
 			sensorDeTeclasJuego.establecerSpaceAccionada(true);
 		}
@@ -125,24 +125,28 @@ public class ControladorMovimiento {
 	}
 	
 	public void verificarColisiones(Jugable entidad) {
-		if(!this.nivel.fueCompletado()) {
-			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerHitbox().x < 0;
-			boolean marioChocoBordeDerecho = personajeJugable.obtenerHitbox().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
-			if(marioChocoBordeIzquierdo) {
+		if (!this.nivel.fueCompletado()) {
+			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
+			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
+			
+			if (marioChocoBordeIzquierdo) {
 				this.personajeJugable.retrotraerMovimientoHorizontal(0);
-			} else if(marioChocoBordeDerecho) {
+			} else if (marioChocoBordeDerecho) {
 				this.personajeJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + personajeJugable.obtenerHitbox().width);
-			} else {
-				//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
-				//de juego aca tira error porque esta siendo eliminado
-				for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-				    if (entidad.huboColision(elemento)) {
-				        elemento.aceptarVisitante(entidad.obtenerVisitante());
-				        entidad.aceptarVisitante(elemento.obtenerVisitante());
-				    }
-				}
 			}
+			
+			//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
+			//de juego aca tira error porque esta siendo eliminado
+			
+			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
+			    if (entidad.huboColision(elemento)) {
+			        elemento.aceptarVisitante(entidad.obtenerVisitante());
+			        entidad.aceptarVisitante(elemento.obtenerVisitante());
+			    }
+			}
+			
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
+			
 		} else {
 	    	this.nivel.obtenerPartida().cambiarNivel();
 		}
@@ -150,13 +154,13 @@ public class ControladorMovimiento {
 	
 	private void cambiarPosicionHitboxDelJugadorX() {
 		int nuevaPosicionX = personajeJugable.obtenerHitbox().x + personajeJugable.obtenerVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, personajeJugable.obtenerPosicion().y);
+		Point nuevaPosicion = new Point(nuevaPosicionX, personajeJugable.obtenerPosicionLogica().y);
 		personajeJugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void cambiarPosicionHitboxDelJugadorY() {
 		int nuevaPosicionY = personajeJugable.obtenerHitbox().y + personajeJugable.obtenerVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(personajeJugable.obtenerPosicion().x, nuevaPosicionY);
+		Point nuevaPosicion = new Point(personajeJugable.obtenerPosicionLogica().x, nuevaPosicionY);
 		personajeJugable.moverHitbox(nuevaPosicion);
 	}
 }

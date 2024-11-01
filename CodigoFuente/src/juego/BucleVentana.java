@@ -27,10 +27,6 @@ public class BucleVentana implements Runnable{
 		this.hilo.start();
 	}
 	
-	public void actualizar() {
-		controlador.refrescar();
-	}
-	
 	public synchronized void detenerBucleVentana() {
 		if (!this.bucleVentanaEnEjecucion) {
 			return;
@@ -91,7 +87,7 @@ public class BucleVentana implements Runnable{
 	
 	private void actualizarVentana() {
 		this.controlador.refrescar();
-}
+	}
 
 	private void renderizarBucleVentana() {
 	}

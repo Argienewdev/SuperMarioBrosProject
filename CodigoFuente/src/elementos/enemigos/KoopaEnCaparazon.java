@@ -41,20 +41,20 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.obtenerContext().obtenerRemovido()) {
+		if (this.obtenerContext().obtenerRemovido()) {
 			contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaMuerto());
 			eliminarEntidadGrafica(fabricaSprites);
-		}else {
+		} else {
 			contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaCaparazonEstático()); 
 		}
 	}
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.obtenerContext().incrementarContadorTicks();
-		if(this.obtenerContext().obtenerContadorTicks() == 1){
+		if (this.obtenerContext().obtenerContadorTicks() == 1){
 			this.obtenerContext().establecerSprite(this.obtenerContext().obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if(this.obtenerContext().obtenerContadorTicks() == this.obtenerContext().obtenerTicksAnimacion()) {
+		} else if (this.obtenerContext().obtenerContadorTicks() == this.obtenerContext().obtenerTicksAnimacion()) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.obtenerContext().eliminarDelNivel();
 		}
@@ -62,8 +62,8 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int x = this.obtenerContext().obtenerPosicion().x;
-		int y = this.obtenerContext().obtenerPosicion().y + (this.obtenerContext().obtenerAlto() - this.obtenerContext().obtenerSprite().obtenerAltoImagen());
+		int x = this.obtenerContext().obtenerPosicionLogica().x;
+		int y = this.obtenerContext().obtenerPosicionLogica().y + (this.obtenerContext().obtenerAlto() - this.obtenerContext().obtenerSprite().obtenerAltoImagen());
 		int ancho = this.obtenerContext().obtenerSprite().obtenerAnchoImagen();
 		int alto = this.obtenerContext().obtenerSprite().obtenerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
