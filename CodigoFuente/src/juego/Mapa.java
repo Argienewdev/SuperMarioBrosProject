@@ -1,48 +1,44 @@
 package juego;
 
-import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import elementos.plataformas.Plataforma;
 
 public class Mapa {
 	
-	private HashMap<Integer,Plataforma> columnas;	
+	private HashMap<Integer,List<Plataforma>> columnas;	
+
 	private int anchoMapa;
 	
-	private int altoMapa;
-	
-	
-	private int altoCelda;
-	
-	public Mapa ( int anchoMapa, int altoMapa) {
-		this.cuadricula = new HashMap<>();
+	public Mapa (int anchoMapa) {
+		this.columnas = new HashMap<>();
 		this.anchoMapa = anchoMapa;
-		this.altoMapa = altoMapa;
-		inicializarCuadricula();
+		inicializarColumnas();
+	}
+	
+	private void inicializarColumnas() {
+		for (int i = 0; i <= anchoMapa; i++) {
+			List<Plataforma> plataformasEnColumna = new ArrayList<>();
+			columnas.put(i,plataformasEnColumna);
+		}
 	}
 
-	private void inicializarCuadricula() {
-		int totalFilas = altoMapa / tamanioCelda;
-		int totalColumnas = anchoMapa / tamanioCelda;
-		
-		for (int i = 0; i < totalFilas; i++)
-			for (int j = 0; j < totalColumnas; j++) {
-				Point clave = new Point (j,i);
-				cuadricula.put(clave,null);
-			}
-	}
-	
 	public void agregarPlataforma (Plataforma plataforma) {
-		int celdaX = plataforma.obtenerAncho();
-		int celdaY = plataforma.obtenerAlto();
-		
-		Point clave = new Point(celdaX,celdaY);
-		
-//		cuadricula.put(clave, plataforma);
+		int posX = plataforma.obtenerPosicionLogica().x;
+		List<Plataforma> plataformasEnColumna = columnas.get(posX);
+		plataformasEnColumna.add(plataforma);
 	}
 	
 	public void removerPlataforma (Plataforma plataforma) {
-		
+		int posX = plataforma.obtenerPosicionLogica().x;
+		List<Plataforma> plataformasEnColumna = columnas.get(posX);
+		plataformasEnColumna.remove(plataforma); 
 	}
+	
+	public List<Plataforma> obtenerPlataformaEnColumna (int x) {
+		return columnas.getOrDefault(x, new ArrayList<>());
+	}
+	
 }
