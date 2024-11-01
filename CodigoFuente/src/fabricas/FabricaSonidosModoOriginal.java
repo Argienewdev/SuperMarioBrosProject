@@ -65,7 +65,7 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 
 	@Override
 	public Sonido obtenerPierdeVida() {
-		return new Sonido(rutaACarpeta + "/pierdeVida.wav");
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/pierdeVida.wav");
 	}
 
 	@Override

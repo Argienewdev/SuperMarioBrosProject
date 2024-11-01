@@ -39,25 +39,19 @@ public class MarioFuego extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (bajoElNivelDelPiso()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
-		} else if (enElAire() && this.obtenerContexto().obtenerMirandoAlFrente()) {
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (mirandoAlFrente() && enElAire()) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
-		} else if (enElAire() && !this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (!mirandoAlFrente() && enElAire()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
-		} else if (this.obtenerContexto().obtenerMirandoAlFrente() && avanzando()) {
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
-		} else if (!this.obtenerContexto().obtenerMirandoAlFrente() && retrocediendo()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
-		} else if (this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(true);
+		} else if (mirandoAlFrente() && !avanzando()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
-		} else if (!this.obtenerContexto().obtenerMirandoAlFrente()){
-			this.contexto.establecerMirandoAlFrente(false);
+		} else if (!mirandoAlFrente() && !retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -85,19 +79,31 @@ public class MarioFuego extends MarioDefault {
 	public void realizarAccionEspecial() {	
 		lanzarBolaDeFuego();
 	}
+	
+	private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
+	}
+	
+	private boolean bajoElNivelDelPiso() {
+		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
+	}
 
 	private void lanzarBolaDeFuego() {
-		int posX = obtenerContexto().obtenerPosicionGrafica().x;
-		int posY = obtenerContexto().obtenerPosicionGrafica().y;
-		System.out.println(contexto.obtenerPosicionGrafica().x);
-		Point posicionInicialBolaDeFuego = new Point(posX,posY);
+		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x;
+		int posGraficaY = obtenerContexto().obtenerPosicionGrafica().y;
+		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x;
+		int posLogicaY = obtenerContexto().obtenerPosicionLogica().y;
+		Point posicionGraficaBolaDeFuego = new Point(posGraficaX,posGraficaY);
+		Point posicionLogicaBolaDeFuego = new Point(posLogicaX,posLogicaY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
 		if (this.obtenerContexto().obtenerMirandoAlFrente()) {
 			velocidadDireccionalBolaDeFuego = new Point(15,0);
 		} else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
-		BolaDeFuego bolaDeFuego= fabricaEntidades.obtenerBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		BolaDeFuego bolaDeFuego = fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
+		System.out.println(bolaDeFuego.obtenerPosicionLogica().x);
 		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	

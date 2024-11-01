@@ -27,16 +27,20 @@ public class BuzzyBeetle extends Enemigo {
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0,0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (this.obtenerVelocidadDireccional().x < 0) {
-			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleReversoCaminando());
-		} else if (this.obtenerVelocidadDireccional().x > 0) {
+		} else if (mirandoAlFrente()) {
 			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleFrontalCaminando());
+		} else {
+			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleReversoCaminando());
 		}
 	}
 	
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerBuzzyBeetleMuerto();
+	}
+	
+	private boolean mirandoAlFrente() {
+		return this.obtenerMirandoAlFrente();
 	}
 
 }

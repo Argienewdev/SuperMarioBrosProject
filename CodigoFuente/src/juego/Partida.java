@@ -1,11 +1,18 @@
 package juego;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSilueta;
+import fabricas.FabricaSonidos;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
+import generadores.GeneradorSonidos;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 
@@ -33,12 +40,19 @@ public class Partida {
 	
 	private FabricaSprites fabricaSprites;
 	
+	private FabricaSonidos fabricaSonidos;
+	
+	private GeneradorSonidos generadorSonidos;
+	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.numeroNivelActual = 1;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas());
+		this.fabricaSonidos = generadorDeNivel.obtenerFabricaSonidos();
+		this.generadorSonidos = generadorDeNivel.obtenerGeneradorSonidos();
+		this.generadorSonidos.reproducirMusicaFondo();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
 		this.jugable = this.nivel.obtenerMario();
@@ -62,21 +76,38 @@ public class Partida {
 	
 	public void cambiarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
+		this.juego.obtenerControladorVistas().cambiarNivel();
 		this.numeroNivelActual++;
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
-		this.juego.obtenerControladorVistas().cambiarNivel();
+		
+		Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		generadorSonidos.reproducirMusicaFondo();
+	        }
+	    });
+	    timer.setRepeats(false);
+	    timer.start();
 	}
 	
 	public void reiniciarNivel() {
+		generadorSonidos.detenerMusicaFondo();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
+		
+	    Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		generadorSonidos.reproducirMusicaFondo();
+	        }
+	    });
+	    timer.setRepeats(false);
+	    timer.start();
 	}
 	
 	public void finalizarPartida() {

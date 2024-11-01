@@ -24,17 +24,10 @@ public class MasterMind {
 	}
 
 	public void actualizar() {
-		actualizarPosicionesEnemigos();
-		actualizarPosicionesPowerUps();
-		actualizarPosicionesBolasDeFuego();
-		actualizarSpritesEnemigos();
-		actualizarSpritesPowerUps();
-		actualizarSpritesPlataformas();
-		actualizarSpritesBolasDeFuego();
-		actualizarLabelsEnemigos();
-		actualizarLabelsPowerUps();
-		actualizarLabelsPlataformas();
-		actualizarLabelsBolasDeFuego();
+		actualizarEnemigos();
+		actualizarPowerUps();
+		actualizarBolasDeFuego();
+		actualizarPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 		this.nivel.agregarBolaDeFuegoAAgregar();
 		this.nivel.agregarSpinysAAgregar();
@@ -93,23 +86,37 @@ public class MasterMind {
 		entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 	}
 	
-	private void actualizarPosicionesEnemigos() {
+	private void actualizarEnemigos() {
 		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
 			moverEnemigo(enemigo);
+			enemigo.actualizarSprite(this.fabricaSprites);
+			enemigo.obtenerObserverGrafico().actualizar();
 		}
 	}
 	
-	private void actualizarPosicionesPowerUps() {
+	private void actualizarPowerUps() {
 		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
 			moverPowerUp(powerUp);
+			powerUp.actualizarSprite(this.fabricaSprites);
+			powerUp.obtenerObserverGrafico().actualizar();
 		}
 	}
 	
-	private void actualizarPosicionesBolasDeFuego() {
+	private void actualizarBolasDeFuego() {
 		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
 			moverBolaDeFuego(bola);
+			bola.actualizarSprite(this.fabricaSprites);
+			bola.obtenerObserverGrafico().actualizar();
 		}
 	}
+	
+	private void actualizarPlataformas() {
+		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
+			plataforma.actualizarSprite(this.fabricaSprites);
+			plataforma.obtenerObserverGrafico().actualizar();
+		}
+	}
+	
 	
 	private void moverPowerUp(PowerUp powerUp) {
 		boolean ticksEnCero = powerUp.obtenerContadorTicks() == 0;
@@ -137,54 +144,6 @@ public class MasterMind {
 		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicionLogica().x, powerUp.obtenerBloquePregunta().obtenerPosicionLogica().y - powerUp.obtenerAlto()));
 		powerUp.moverHitbox(powerUp.obtenerPosicionLogica());
 		powerUp.actualizarSprite(this.fabricaSprites);
-	}
-	
-	private void actualizarSpritesEnemigos() {
-		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
-			enemigo.actualizarSprite(this.fabricaSprites);
-		}
-	}
-	
-	private void actualizarSpritesPlataformas() {
-		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
-			plataforma.actualizarSprite(this.fabricaSprites);
-		}
-	}
-	
-	private void actualizarSpritesPowerUps() {
-		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
-			powerUp.actualizarSprite(this.fabricaSprites);
-		}
-	}
-	
-	private void actualizarSpritesBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
-			bola.actualizarSprite(this.fabricaSprites);
-		}
-	}
-	
-	private void actualizarLabelsEnemigos() {
-		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
-			enemigo.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void actualizarLabelsPowerUps() {
-		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
-			powerUp.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void actualizarLabelsPlataformas() {
-		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
-			plataforma.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void actualizarLabelsBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()){
-			bola.obtenerObserverGrafico().actualizar();
-		}
 	}
 	
 }

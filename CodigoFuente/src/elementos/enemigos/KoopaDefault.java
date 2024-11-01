@@ -37,10 +37,10 @@ public class KoopaDefault implements EstadoKoopa {
 		if (this.obtenerContext().obtenerRemovido()) {
 			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (this.obtenerContext().obtenerVelocidadDireccional().x < 0) {
-			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
-		} else if (this.obtenerContext().obtenerVelocidadDireccional().x > 0) {
+		} else if (mirandoAlFrente()) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
+		} else {
+			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
 		}
 	}
 	
@@ -72,11 +72,17 @@ public class KoopaDefault implements EstadoKoopa {
 	private void moverDerecha() {
 		Point velocidad = new Point(this.contexto.obtenerVelocidadHorizontalEnemigo(), this.contexto.obtenerVelocidadDireccional().y);
     	this.contexto.establecerVelocidadDireccional(velocidad);
+    	contexto.establecerMirandoAlFrente(true);
     }
     
     private void moverIzquierda() {
     	Point velocidad = new Point(-this.contexto.obtenerVelocidadHorizontalEnemigo(), this.contexto.obtenerVelocidadDireccional().y);
     	this.contexto.establecerVelocidadDireccional(velocidad);
+    	contexto.establecerMirandoAlFrente(false);
     }
+    
+    private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
+	}
 
 }

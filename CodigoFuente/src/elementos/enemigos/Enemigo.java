@@ -33,11 +33,13 @@ public abstract class Enemigo extends NoJugable {
     protected void moverDerecha() {
     	Point velocidad = new Point(velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
+    	this.establecerMirandoAlFrente(true);
     }
     
     protected void moverIzquierda() {
     	Point velocidad = new Point(-velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
+    	this.establecerMirandoAlFrente(false);
     }
     
     @Override

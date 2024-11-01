@@ -56,9 +56,8 @@ public class GeneradorDeNivel {
 		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
 		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
-		generadorSonidos = new GeneradorSonidos(fabricaSonidos);
-		generadorSonidos.reproducirMusicaFondo();
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos);
+		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
+		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos, generadorSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
@@ -70,7 +69,6 @@ public class GeneradorDeNivel {
 		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
-		
 		try {
 			archivoDeNivel = new FileReader(RUTA_A_CARPETA + numeroNivel + ".txt");
 			lectorBuffer = new BufferedReader(archivoDeNivel);
@@ -209,11 +207,18 @@ public class GeneradorDeNivel {
 	}
 	
 	public FabricaSprites obtenerFabricaSprites() {
-		return fabricaSprites;
+		return this.fabricaSprites;
 	}
 	
 	public FabricaSilueta obtenerFabricaSilueta() {
-		return fabricaSilueta;
+		return this.fabricaSilueta;
 	}
 	
+	public FabricaSonidos obtenerFabricaSonidos() {
+		return this.fabricaSonidos;
+	}
+
+	public GeneradorSonidos obtenerGeneradorSonidos() {
+		return this.generadorSonidos;
+	}
 }
