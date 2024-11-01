@@ -74,8 +74,7 @@ public class PantallaDeJuego extends Pantalla {
         repaint();
 	}
 
-    public void registrarFondo(FabricaSilueta fabricaSilueta) {
-    	Silueta siluetaFondo = fabricaSilueta.obtenerSilueta();
+    public void registrarFondo(Silueta siluetaFondo) {
     	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.obtenerRutaSilueta());
         this.fondo = new JLabel(fondoImagen);
         establecerFondo();
