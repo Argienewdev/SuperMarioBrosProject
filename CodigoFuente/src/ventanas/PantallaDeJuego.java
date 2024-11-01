@@ -14,7 +14,7 @@ import fabricas.FabricaSilueta;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")
-public class PantallaDeJuego extends JPanel {
+public class PantallaDeJuego extends Pantalla {
 
     private ArrayList<ObserverGrafico> labelsElementoDeJuego;
 

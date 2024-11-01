@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
 import observers.ObserverGrafico;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
@@ -20,8 +21,10 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	protected int ticksAnimacion;
 
-    
-    public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
+	
+    @SuppressWarnings("exports")
+	public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
@@ -31,15 +34,18 @@ public abstract class Entidad extends ElementoDeJuego {
 
 	}
 
-    public void establecerVelocidadDireccional(Point velocidadDireccional) {
+    @SuppressWarnings("exports")
+	public void establecerVelocidadDireccional(Point velocidadDireccional) {
         this.velocidadDireccional = velocidadDireccional;
     }
     
-    public Point obtenerVelocidadDireccional() {
+    @SuppressWarnings("exports")
+	public Point obtenerVelocidadDireccional() {
         return this.velocidadDireccional;
     }
     
-    public void establecerPosicion(Point pos) {
+    @SuppressWarnings("exports")
+	public void establecerPosicion(Point pos) {
     	this.posicion = pos;
     }
     
@@ -85,5 +91,12 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	public int obtenerTicksAnimacion() {
 		return this.ticksAnimacion;
+	}
+	
+	public void aplicarGravedad() {
+		if(this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
+			this.establecerVelocidadDireccional(nuevaVelocidad);
+		}
 	}
 }

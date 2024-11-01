@@ -94,7 +94,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarEstrella(Estrella estrella) {
     	this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
-        estrella.eliminarDelNivel();
+        estrella.establecerRemovido(true);
     }
 
     @Override

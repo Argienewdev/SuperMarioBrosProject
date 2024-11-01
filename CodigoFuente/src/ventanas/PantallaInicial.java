@@ -11,7 +11,7 @@ import fuentes.Fuentes;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
 @SuppressWarnings("serial")
-public class PantallaInicial extends JPanel {
+public class PantallaInicial extends Pantalla {
 	
 	private static final int CANTIDAD_BOTONES = 3;
 	
@@ -112,7 +112,7 @@ public class PantallaInicial extends JPanel {
 		arregloDeBotones.agregar(ranking);
 	}
 	
-	 public void actualizarFoco() {
+	 public void refrescar() {
 		 if(enFoco) {
 		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			

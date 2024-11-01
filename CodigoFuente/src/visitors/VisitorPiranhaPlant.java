@@ -126,9 +126,6 @@ public class VisitorPiranhaPlant implements Visitante {
     }
 
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
-    	if(this.miEntidad.obtenerRemovido()) {
-            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.obtenerContexto());
-    	}
     }
 
     @Override
@@ -149,7 +146,7 @@ public class VisitorPiranhaPlant implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		
+		fireball.establecerRemovido(true);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PantallaRanking extends JPanel {
+public class PantallaRanking extends Pantalla {
 
 	private static final long serialVersionUID = 6769720571520373550L;
 	

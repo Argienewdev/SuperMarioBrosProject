@@ -10,9 +10,7 @@ import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
-	
-	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 15;
-		
+			
 	@SuppressWarnings("exports")
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
@@ -36,13 +34,6 @@ public abstract class NoJugable extends Entidad {
 	public abstract void mover();
     
     public abstract void invertirDireccion();
-    
-    public void aplicarGravedad() {
-		if(this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
-			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
-			this.establecerVelocidadDireccional(nuevaVelocidad);
-		}
-	}
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
