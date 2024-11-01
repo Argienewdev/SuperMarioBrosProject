@@ -124,7 +124,6 @@ public class ControladorMovimiento {
 	}
 	
 	public void verificarColisiones(Jugable entidad) {
-		System.out.println(personajeJugable.obtenerPosicionGrafica());
 		if (!this.nivel.fueCompletado()) {
 			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
 			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
