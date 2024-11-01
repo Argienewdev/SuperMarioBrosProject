@@ -58,7 +58,7 @@ public class GeneradorDeNivel {
 		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
 		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
 		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos, generadorSonidos);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
+		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego, this.generadorSonidos);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
 	}

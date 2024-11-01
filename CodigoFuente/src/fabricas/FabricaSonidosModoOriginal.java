@@ -31,7 +31,7 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 
 	@Override
 	public Sonido obtenerPowerUpEmerge() {
-		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/itemEmerge.wav");
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/powerUpEmerge.wav");
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 
 	@Override
 	public Sonido obtenerSonidoMoneda() {
-		return new Sonido(rutaACarpeta + "/sonidoModoOriginalMoneda.wav");
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/moneda.wav");
 	}
 	
 	public Sonido obtenerMusica(){

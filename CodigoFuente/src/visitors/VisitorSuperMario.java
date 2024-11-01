@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 import juego.Nivel;
 
 public class VisitorSuperMario implements Visitante {
@@ -17,8 +18,11 @@ public class VisitorSuperMario implements Visitante {
 
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorSuperMario(SuperMario miEstado) {
-        this.miEstado = miEstado;
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorSuperMario(SuperMario miEstado, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEstado = miEstado;
         this.miContexto = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

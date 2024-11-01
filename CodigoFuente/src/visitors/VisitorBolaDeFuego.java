@@ -5,14 +5,18 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 import juego.Nivel;
 
 public class VisitorBolaDeFuego implements Visitante {
 
     protected BolaDeFuego miEntidad;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorBolaDeFuego(BolaDeFuego miEntidad) {
-        this.miEntidad = miEntidad;
+    public VisitorBolaDeFuego(BolaDeFuego miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
     }
 
     @Override

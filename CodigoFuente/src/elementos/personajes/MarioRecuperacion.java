@@ -29,7 +29,7 @@ public class MarioRecuperacion extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		 return new VisitorMarioRecuperacion(this);
+		 return new VisitorMarioRecuperacion(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {

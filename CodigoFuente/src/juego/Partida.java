@@ -144,4 +144,9 @@ public class Partida {
 	public Sprite obtenerSpriteMario() {
 		return this.fabricaSprites.obtenerMarioDefaultFrontalQuieto();
 	}
+	
+	public GeneradorSonidos obtenerGeneradorDeSonidos() {
+		return this.generadorSonidos;
+	}
+	
 }

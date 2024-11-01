@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorMarioInvulnerable implements Visitante {
 
@@ -13,8 +14,11 @@ public class VisitorMarioInvulnerable implements Visitante {
     protected ContextoMario miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorMarioInvulnerable(MarioInvulnerable miEstado) {
+    public VisitorMarioInvulnerable(MarioInvulnerable miEstado, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEstado = miEstado;
         this.miContexto = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();

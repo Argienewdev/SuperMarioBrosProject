@@ -5,13 +5,17 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorEstrella implements Visitante {
     
     protected Estrella miEntidad;
     
-    public VisitorEstrella(Estrella miEntidad) {
-        this.miEntidad = miEntidad;
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorEstrella(Estrella miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
     }
 
     @Override

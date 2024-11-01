@@ -27,7 +27,7 @@ public class MarioFuego extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioFuego(this);
+		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {

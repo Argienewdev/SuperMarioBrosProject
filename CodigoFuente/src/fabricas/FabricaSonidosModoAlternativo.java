@@ -29,7 +29,7 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
 
     @Override
     public Sonido obtenerPowerUpEmerge() {
-        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/itemEmerge.wav");
+        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/powerUpEmerge.wav");
     }
 
     @Override

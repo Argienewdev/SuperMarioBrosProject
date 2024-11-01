@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorMarioRecuperacion implements Visitante{
 	
@@ -15,8 +16,11 @@ public class VisitorMarioRecuperacion implements Visitante{
 	protected DetectorDireccionColision detectorDireccionColision;
 	
 	private ContextoMario miContexto;
+	
+	protected GeneradorSonidos generadorSonidos;
 	 
-	public VisitorMarioRecuperacion (MarioRecuperacion miEstado) {
+	public VisitorMarioRecuperacion (MarioRecuperacion miEstado, GeneradorSonidos generadorSonidos) {
+		this.generadorSonidos = generadorSonidos;
 		this.miEstado = miEstado;
 		this.miContexto = miEstado.obtenerContexto();
 		this.detectorDireccionColision = new DetectorDireccionColision();

@@ -7,14 +7,18 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorPiso implements Visitante {
 
     protected Piso miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorPiso(Piso miEntidad) {
+    public VisitorPiso(Piso miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorLakitu implements Visitante {
     
@@ -12,7 +13,10 @@ public class VisitorLakitu implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorLakitu(Lakitu miEntidad) {
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorLakitu(Lakitu miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

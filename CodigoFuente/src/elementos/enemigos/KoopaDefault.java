@@ -29,7 +29,7 @@ public class KoopaDefault implements EstadoKoopa {
 		return this.contexto;
 	}
 	public Visitante obtenerVisitante() {
-		return new VisitorKoopaDefault(this);
+		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	@Override

@@ -7,14 +7,18 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorTuberia implements Visitante {
 
     protected Tuberia miEntidad;
 
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorTuberia(Tuberia miEntidad) {
+    public VisitorTuberia(Tuberia miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

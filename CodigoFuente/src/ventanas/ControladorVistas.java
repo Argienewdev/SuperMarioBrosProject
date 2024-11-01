@@ -46,7 +46,7 @@ public class ControladorVistas {
 	
 	private Pantalla panelActual;
 	
-	protected static int DURACION_PANTALLA_ENTRE_NIVELES= 3000;
+	protected static int DURACION_PANTALLA_ENTRE_NIVELES = 3000;
 	
 	public ControladorVistas(Juego juego){
 		

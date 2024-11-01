@@ -6,15 +6,19 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import fabricas.FabricaEntidades;
+import generadores.GeneradorSonidos;
 
 public class VisitorFlorDeFuego implements Visitante {
 
     protected FlorDeFuego miEntidad;
     
     protected FabricaEntidades fabricaEntidades;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorFlorDeFuego(FlorDeFuego miEntidad, FabricaEntidades fabricaEntidades) {
-        this.miEntidad = miEntidad;
+    public VisitorFlorDeFuego(FlorDeFuego miEntidad, FabricaEntidades fabricaEntidades, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.fabricaEntidades=fabricaEntidades;
     }
 
