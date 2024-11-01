@@ -125,12 +125,16 @@ public class ControladorMovimiento {
 	}
 	
 	public void verificarColisiones(Jugable entidad) {
+		System.out.println(personajeJugable.obtenerPosicionGrafica());
 		if (!this.nivel.fueCompletado()) {
 			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
 			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
 			
 			if (marioChocoBordeIzquierdo) {
-				this.personajeJugable.retrotraerMovimientoHorizontal(0);
+				this.personajeJugable.establecerPosicionLogica(new Point(this.personajeJugable.obtenerPosicionLogica().x+10, this.personajeJugable.obtenerPosicionLogica().y));
+				this.personajeJugable.moverHitbox(this.personajeJugable.obtenerPosicionLogica());
+				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
+			
 			} else if (marioChocoBordeDerecho) {
 				this.personajeJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + personajeJugable.obtenerHitbox().width);
 			}
