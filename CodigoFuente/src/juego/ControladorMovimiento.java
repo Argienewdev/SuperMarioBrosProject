@@ -104,7 +104,6 @@ public class ControladorMovimiento {
 	
 	private void realizarAccionEspecial() {
 		personajeJugable.realizarAccionEspecial();
-		
 	}
 	
 	private void cambiarVelocidadHorizontal(int velocidadX) {
@@ -131,17 +130,22 @@ public class ControladorMovimiento {
 			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
 			
 			if (marioChocoBordeIzquierdo) {
-				this.personajeJugable.establecerPosicionLogica(new Point(this.personajeJugable.obtenerPosicionLogica().x+10, this.personajeJugable.obtenerPosicionLogica().y));
-				this.personajeJugable.moverHitbox(this.personajeJugable.obtenerPosicionLogica());
+				int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x - this.personajeJugable.obtenerPosicionGrafica().x;
+				Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
+				this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
 				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
-			
+				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			} else if (marioChocoBordeDerecho) {
-				this.personajeJugable.retrotraerMovimientoHorizontal(ConstantesGlobales.PANEL_ANCHO - + personajeJugable.obtenerHitbox().width);
+				int desplazamientoLogicoX = ConstantesGlobales.PANEL_ANCHO - (ConstantesGlobales.PANEL_ANCHO + personajeJugable.obtenerAncho());
+				int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x + desplazamientoLogicoX;
+				Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
+				this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
+				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
+				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
 			
 			//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
 			//de juego aca tira error porque esta siendo eliminado
-			
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
 			    if (entidad.huboColision(elemento)) {
 			        elemento.aceptarVisitante(entidad.obtenerVisitante());

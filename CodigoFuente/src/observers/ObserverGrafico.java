@@ -10,9 +10,12 @@ public class ObserverGrafico extends JLabel implements Observer {
 	
 	private ElementoDeJuego entidad_observada;
 	
+	private boolean removido;
+	
 	public ObserverGrafico(ElementoDeJuego entidad_observada) {
 		super();
 		this.entidad_observada = entidad_observada;
+		this.removido = false;
 	}
 	
 	public void actualizar() {
@@ -36,6 +39,14 @@ public class ObserverGrafico extends JLabel implements Observer {
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
+	}
+	
+	public void establecerRemovido(boolean removido) {
+		this.removido = removido;
+	}
+	
+	public boolean obtenerRemovido() {
+		return this.removido;
 	}
 	
 }

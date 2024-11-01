@@ -65,7 +65,6 @@ public class VisitorMarioDefault implements Visitante {
 	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
-	        this.miContexto.establecerVelocidadDireccional(new Point(this.miContexto.obtenerVelocidadDireccional().x, 0));
 		}
     }
 

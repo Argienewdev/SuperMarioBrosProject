@@ -22,23 +22,28 @@ public class VisitorBandera implements Visitante {
     }
 
     
-    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {    
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
     }
 
     
     public void visitarSpiny(Spiny spiny) {    
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     
     public void visitarGoomba(Goomba goomba) {    
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
     }
     
     
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
+    	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miEntidad.obtenerVisitante());
     }
 
     
     public void visitarLakitu(Lakitu lakitu) {    
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, lakitu);
     }
     
     
@@ -46,7 +51,8 @@ public class VisitorBandera implements Visitante {
     }
 
     
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {    
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {   
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
     }
     
     
@@ -55,10 +61,12 @@ public class VisitorBandera implements Visitante {
 
     
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
     }
     
     
     public void visitarEstrella(Estrella estrella) {    
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
     }
     
     
@@ -77,12 +85,10 @@ public class VisitorBandera implements Visitante {
 
     
     public void visitarMarioFuego(MarioFuego marioFuego) {}
-
     
     public void visitarSuperMario(SuperMario superMario) {}
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
-
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
     }
@@ -113,6 +119,7 @@ public class VisitorBandera implements Visitante {
 
     
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {        
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, koopaDefault.obtenerContext());
     }
 
 	

@@ -41,17 +41,23 @@ public class MarioFuego extends MarioDefault {
 		Sprite aRetornar = null;
 		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
-		} else if (spriteAereoFrontal(fabricaSprites)) {
+		} else if (enElAire() && this.obtenerContexto().obtenerMirandoAlFrente()) {
+			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
-		} else if (spriteAereoReverso(fabricaSprites)) {
+		} else if (enElAire() && !this.obtenerContexto().obtenerMirandoAlFrente()){
+			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
-		} else if (avanzando()) {
+		} else if (this.obtenerContexto().obtenerMirandoAlFrente() && avanzando()) {
+			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
-		} else if (retrocediendo()){
+		} else if (!this.obtenerContexto().obtenerMirandoAlFrente() && retrocediendo()){
+			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
-		} else if (spriteFrontal(fabricaSprites)){
+		} else if (this.obtenerContexto().obtenerMirandoAlFrente()){
+			this.contexto.establecerMirandoAlFrente(true);
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
-		} else if (spriteReverso(fabricaSprites)){
+		} else if (!this.obtenerContexto().obtenerMirandoAlFrente()){
+			this.contexto.establecerMirandoAlFrente(false);
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -60,6 +66,7 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		this.contexto.establecerMirandoAlFrente(true);
 		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 	}
 	
@@ -75,34 +82,14 @@ public class MarioFuego extends MarioDefault {
 		return contexto.obtenerRetrocediendo();
 	}
 	
-	private boolean spriteAereoFrontal(FabricaSprites fabricaSprites) {
-		return enElAire() && (avanzando() || (spriteFrontal(fabricaSprites) && !retrocediendo()));
-	}
-	
-	private boolean spriteAereoReverso(FabricaSprites fabricaSprites) {
-		return enElAire() && (retrocediendo() || (spriteReverso(fabricaSprites) && !avanzando()));
-	}
-	
-	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoFrontalCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoFrontalQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoFrontalSaltando());
-	}
-	
-	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoReversoCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoReversoQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioFuegoReversoSaltando());
-	}
-
-	
 	public void realizarAccionEspecial() {	
 		lanzarBolaDeFuego();
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posX = obtenerContexto().obtenerPosicionLogica().x + obtenerContexto().obtenerAncho()/2;
-		int posY = obtenerContexto().obtenerPosicionLogica().y;
+		int posX = obtenerContexto().obtenerPosicionGrafica().x;
+		int posY = obtenerContexto().obtenerPosicionGrafica().y;
+		System.out.println(contexto.obtenerPosicionGrafica().x);
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
 		if (this.obtenerContexto().obtenerMirandoAlFrente()) {

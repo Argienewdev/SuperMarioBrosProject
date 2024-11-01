@@ -19,6 +19,8 @@ public class PantallaDeJuego extends Pantalla {
 
     private ArrayList<ObserverGrafico> labelsElementoDeJuego;
 
+    private ArrayList<ObserverGrafico> labelsElementoDeJuegoARemover;
+
     private Dimension size;
     
     private Jugable marioJugable;
@@ -38,6 +40,7 @@ public class PantallaDeJuego extends Pantalla {
     public PantallaDeJuego() {
         configurarVentana();
         this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
+        this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
     }
 
     protected void configurarVentana(){
@@ -123,11 +126,12 @@ public class PantallaDeJuego extends Pantalla {
         hud.actualizarPuntaje(marioJugable.obtenerPuntos());
         hud.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
         
+        int desplazamiento = this.marioJugable.obtenerDesplazamiento();
         boolean fondoMovido = false;
-
-        if (this.marioJugable.obtenerDesplazamiento() > 0) {
+        
+        if (desplazamiento > 0) {
             Point posicionFondo = fondo.getLocation();
-            int nuevaPosicionFondoX = posicionFondo.x - (this.marioJugable.obtenerDesplazamiento() / 2);
+            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
 
             // Ver que el fondo no se desplace mas de lo posible
             int anchoFondo = fondo.getWidth();
@@ -150,15 +154,17 @@ public class PantallaDeJuego extends Pantalla {
         	if (fondoMovido) {
     			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
     				Point posicionLabel = observerGrafico.getLocation();
-    				posicionLabel.x -= this.marioJugable.obtenerDesplazamiento();
-    				System.out.println(posicionLabel.x);
+    				posicionLabel.x -= desplazamiento;
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
-    				if (observerGrafico.obtenerEntidadObservada().obtenerRemovido()) {
-    					// TODO: Eliminar label del nivel 
+    				if (observerGrafico.obtenerRemovido() || observerGrafico.obtenerEntidadObservada().obtenerPosicionGrafica().x < -100) {
+    					this.labelsElementoDeJuegoARemover.add(observerGrafico);
     				}
     			}
-    			this.marioJugable.establecerDesplazamiento(0);
+    			this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
+    			
+    			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
+    			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
     			revalidate();
     			repaint();
             }
