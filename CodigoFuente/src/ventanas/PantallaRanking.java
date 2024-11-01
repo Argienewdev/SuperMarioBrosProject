@@ -76,7 +76,7 @@ public class PantallaRanking extends Pantalla {
     }
     
     public void refrescar(){
-    	if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
+    	if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
     		sensor.accionarEnter();
     		controlador.dePantallaRankingAPantallaInicial();
     	}

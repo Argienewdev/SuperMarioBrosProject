@@ -75,6 +75,7 @@ public class Partida {
 	}
 	
 	public void finalizarPartida() {
+		this.numeroNivelActual = 1;
 		detenerBucleJuego();
 		detenerBucleEntidadesNoJugables();
 	}

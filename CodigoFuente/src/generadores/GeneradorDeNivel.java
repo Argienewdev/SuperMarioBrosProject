@@ -182,7 +182,7 @@ public class GeneradorDeNivel {
 			exception.printStackTrace();
 		} finally {
 			try {
-				if(lectorBuffer != null) {
+				if (lectorBuffer != null) {
 					lectorBuffer.close();
 				}
 			} catch (IOException error) {

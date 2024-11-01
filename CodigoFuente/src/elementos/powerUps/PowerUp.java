@@ -87,10 +87,10 @@ public abstract class PowerUp extends NoJugable {
 	
 	@Override
 	public void mover() {
-		if(removido) {
+		if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
-    	}else {
+    	} else {
     		if (this.obtenerVelocidadDireccional().x < 0) {
     			moverIzquierda();
     		} else if (this.obtenerVelocidadDireccional().x >= 0){

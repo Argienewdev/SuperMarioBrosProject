@@ -53,7 +53,7 @@ public class BloqueDePregunta extends Plataforma {
 		return powerUpARemover;
 	}
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(estaVacio()) {
+		if (estaVacio()) {
 			this.establecerSprite(fabricaSprites.obtenerBloqueDePreguntaApagado());
 		}
 	}

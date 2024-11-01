@@ -49,7 +49,7 @@ public class ContextoKoopaTroopa extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estadoKoopa.actualizarSprite(fabricaSprites);
-		if(cambiarEstado) {
+		if (cambiarEstado) {
 			estadoKoopa.actualizarHitboxYPosicion(fabricaSprites);
 			this.cambiarEstado = false;
 		}
@@ -61,7 +61,7 @@ public class ContextoKoopaTroopa extends Enemigo {
     
 	@Override
 	public void mover() {
-		if(removido) {
+		if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {

@@ -113,16 +113,16 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	 public void refrescar() {
-		 if(enFoco) {
-		 if(sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
+		 if (enFoco) {
+		 if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			
-			 if(currentLabel == modo1){
+			 if (currentLabel == modo1){
 				controlador.accionarInicioJuego("Modo original");
 			 }
-			 else if(currentLabel == modo2){
+			 else if (currentLabel == modo2){
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
-			 else if(currentLabel == ranking) {
+			 else if (currentLabel == ranking) {
 				 controlador.mostrarPantallaRanking();
 				 sensor.accionarEnter();
 			 }

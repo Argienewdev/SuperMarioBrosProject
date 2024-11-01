@@ -37,10 +37,10 @@ public class Moneda extends PowerUp {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.obtenerRemovido()) {
+		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		}else {
-			if(!this.estaDentroDeBloqueDePreguntas ) {
+		} else {
+			if (!this.estaDentroDeBloqueDePreguntas ) {
 				this.establecerSprite(fabricaSprites.obtenerMonedaEncendida());
 			} 
 		}

@@ -91,35 +91,35 @@ public class VisitorBuzzyBeetle implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
+        if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
-        }else {
+        } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.obtenerContexto());
         }
     }
     
     @Override
     public void visitarSuperMario(SuperMario superMario) {
-        if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
+        if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
         	&& !this.miEntidad.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
-        }else {
+        } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.obtenerContexto());
         }
     }
 
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if(this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad)
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad)
     		&& !this.miEntidad.obtenerRemovido()) {
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
-        }else {
+        } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.obtenerContexto());
         }
     }

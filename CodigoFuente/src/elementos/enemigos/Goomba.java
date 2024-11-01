@@ -25,12 +25,12 @@ public class Goomba extends Enemigo {
 
     @Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if(this.removido) {
+		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if(this.obtenerVelocidadDireccional().x < 0) {
+		} else if (this.obtenerVelocidadDireccional().x < 0) {
 			this.establecerSprite(fabricaSprites.obtenerGoombaReversoCaminando());
-		} else if(this.obtenerVelocidadDireccional().x > 0) {
+		} else if (this.obtenerVelocidadDireccional().x > 0) {
 			this.establecerSprite(fabricaSprites.obtenerGoombaFrontalCaminando());
 		}
 	}

@@ -81,7 +81,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	if(!superChampinion.obtenerRemovido()) {
+    	if (!superChampinion.obtenerRemovido()) {
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorSuper());
 	        superChampinion.establecerRemovido(true);
 		}
@@ -89,7 +89,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	if(!florDeFuego.obtenerRemovido()) {
+    	if (!florDeFuego.obtenerRemovido()) {
 			this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
 			florDeFuego.establecerRemovido(true);
 		}
@@ -103,7 +103,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarMoneda(Moneda monedas) {
-    	if(!monedas.obtenerRemovido()) {
+    	if (!monedas.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(monedas.obtenerPuntosPorSuper());
         	monedas.establecerRemovido(true);
     	}

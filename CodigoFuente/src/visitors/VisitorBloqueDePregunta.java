@@ -24,7 +24,7 @@ public class VisitorBloqueDePregunta implements Visitante {
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-    	if(!spiny.obtenerAterrizo()) {
+    	if (!spiny.obtenerAterrizo()) {
     		spiny.establecerAterrizo(true);
     	}
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
@@ -120,7 +120,7 @@ public class VisitorBloqueDePregunta implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		if(this.detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
+		if (this.detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {

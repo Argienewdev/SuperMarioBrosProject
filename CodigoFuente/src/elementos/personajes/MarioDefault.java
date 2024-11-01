@@ -22,8 +22,8 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		int nuevaPosicionX = this.obtenerContexto().obtenerPosicion().x;
-		int nuevaPosicionY = this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
+		int nuevaPosicionX = this.obtenerContexto().obtenerPosicionLogica().x;
+		int nuevaPosicionY = this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
@@ -42,19 +42,19 @@ public class MarioDefault implements EstadoMario {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerMarioDefaultCayendo();
-		}else if(spriteAereoFrontal(fabricaSprites)) {
+		} else if (spriteAereoFrontal(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalSaltando();
-		} else if(spriteAereoReverso(fabricaSprites)) {
+		} else if (spriteAereoReverso(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerMarioDefaultReversoSaltando();
-		}else if(avanzando()) {
+		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalCaminando();
-		} else if(retrocediendo()){
+		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioDefaultReversoCaminando();
-		} else if(spriteFrontal(fabricaSprites)){
+		} else if (spriteFrontal(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
-		} else if(spriteReverso(fabricaSprites)){
+		} else if (spriteReverso(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerMarioDefaultReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);

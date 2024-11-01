@@ -2,10 +2,10 @@ package elementos.entidades;
 
 import java.awt.Point;
 import elementos.Sprite;
-import elementos.powerUps.Moneda;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import observers.ObserverLogicoJugable;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Jugable extends Entidad  {
@@ -14,8 +14,6 @@ public abstract class Jugable extends Entidad  {
 	
 	protected int puntos;
 	
-	protected Moneda monedas;
-		
 	private boolean retrocediendo;
 	
 	private boolean avanzando;
@@ -24,16 +22,39 @@ public abstract class Jugable extends Entidad  {
 	
 	protected boolean mirandoAlFrente;
 	
+	private int desplazamiento;
+	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 3;
+		this.vidas = 1;
 		this.puntos = 0;
-		this.mirandoAlFrente=true;
+		this.mirandoAlFrente = true;
+		this.desplazamiento = 0;
 	}
+	
+	public int obtenerDesplazamiento() {
+		return this.desplazamiento;
+	}
+	
+	public void establecerDesplazamiento(int desplazamiento) {
+		this.desplazamiento = desplazamiento;
+	}
+	
+	@SuppressWarnings("exports")
+	public void establecerPosicion (Point posicion) {
+		int desplazamientoX = posicion.x - this.posicionLogica.x;
+		if (this.posicionGrafica.x + desplazamientoX > ConstantesGlobales.MITAD_PANTALLA) {
+			this.desplazamiento += desplazamientoX;
+		} else {
+			Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, this.posicionLogica.y);
+			this.posicionGrafica = nuevaPosicionGrafica;
+		}
+		this.posicionLogica = posicion;
+	}	
 	
 	public void ganarVida() {
 		this.vidas++;
@@ -51,9 +72,9 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void perderPuntos(int puntos) {
-		if(puntos > this.puntos) {
+		if (puntos > this.puntos) {
 			this.puntos = 0;
-		}else {
+		} else {
 			this.puntos -= puntos;
 		}
 	}
@@ -81,8 +102,9 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
-		Point nuevaPosicion = new Point(posX, this.obtenerHitbox().y);
-        this.moverHitbox(nuevaPosicion);
+		Point nuevaPosicionHitbox = new Point(posX, this.obtenerHitbox().y);
+        this.moverHitbox(nuevaPosicionHitbox);
+        Point nuevaPosicion = new Point(posX, this.obtenerPosicionLogica().y);
 		this.establecerPosicion(nuevaPosicion);
         this.establecerVelocidadDireccional(new Point(0, obtenerVelocidadDireccional().y));
 	}

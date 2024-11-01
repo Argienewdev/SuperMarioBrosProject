@@ -31,7 +31,7 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicion().x, this.obtenerContexto().obtenerPosicion().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
 		this.obtenerContexto().setHitbox(nuevaHitbox);
@@ -39,19 +39,19 @@ public class MarioFuego extends MarioDefault {
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
-		if(contexto.obtenerPosicion().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoCayendo();
-		}else if(spriteAereoFrontal(fabricaSprites)) {
+		} else if (spriteAereoFrontal(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalSaltando();
-		} else if(spriteAereoReverso(fabricaSprites)) {
+		} else if (spriteAereoReverso(fabricaSprites)) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoSaltando();
-		}else if(avanzando()) {
+		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalCaminando();
-		} else if(retrocediendo()){
+		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoCaminando();
-		} else if(spriteFrontal(fabricaSprites)){
+		} else if (spriteFrontal(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoFrontalQuieto();
-		} else if(spriteReverso(fabricaSprites)){
+		} else if (spriteReverso(fabricaSprites)){
 			aRetornar = fabricaSprites.obtenerMarioFuegoReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -101,13 +101,13 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posX = obtenerContexto().obtenerPosicion().x + obtenerContexto().obtenerAncho()/2;
-		int posY = obtenerContexto().obtenerPosicion().y;
+		int posX = obtenerContexto().obtenerPosicionLogica().x + obtenerContexto().obtenerAncho()/2;
+		int posY = obtenerContexto().obtenerPosicionLogica().y;
 		Point posicionInicialBolaDeFuego = new Point(posX,posY);
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
-		if(this.obtenerContexto().obtenerMirandoAlFrente()) {
+		if (this.obtenerContexto().obtenerMirandoAlFrente()) {
 			velocidadDireccionalBolaDeFuego = new Point(15,0);
-		}else {
+		} else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
 		BolaDeFuego bolaDeFuego= fabricaEntidades.obtenerBolaDeFuego(posicionInicialBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);

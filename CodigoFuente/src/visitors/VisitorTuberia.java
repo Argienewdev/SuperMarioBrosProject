@@ -115,7 +115,7 @@ public class VisitorTuberia implements Visitante {
     public void visitarPiso(Piso piso) {}
 
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		if(detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
+		if (detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {

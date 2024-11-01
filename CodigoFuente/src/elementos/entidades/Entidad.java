@@ -44,11 +44,6 @@ public abstract class Entidad extends ElementoDeJuego {
         return this.velocidadDireccional;
     }
     
-    @SuppressWarnings("exports")
-	public void establecerPosicion(Point pos) {
-    	this.posicion = pos;
-    }
-    
     public void establecerColisionAbajo(boolean colisionAbajo) {
 		this.colisionAbajo = colisionAbajo;
 	}
@@ -94,7 +89,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	}
 	
 	public void aplicarGravedad() {
-		if(this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
+		if (this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
 			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
 			this.establecerVelocidadDireccional(nuevaVelocidad);
 		}

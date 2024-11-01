@@ -77,7 +77,7 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-		if(!superChampinion.obtenerRemovido()) {
+		if (!superChampinion.obtenerRemovido()) {
 			EstadoMario nuevoEstado = new SuperMario();
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
 			this.miContexto.cambiarEstado(nuevoEstado);
@@ -87,7 +87,7 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	if(!florDeFuego.obtenerRemovido()) {
+    	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
             florDeFuego.establecerRemovido(true);
     	}
@@ -99,7 +99,7 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	if(!estrella.obtenerRemovido()) {
+    	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
     	}
