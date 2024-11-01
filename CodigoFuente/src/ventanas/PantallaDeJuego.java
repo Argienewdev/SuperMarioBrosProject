@@ -133,7 +133,7 @@ public class PantallaDeJuego extends Pantalla {
         
         if (desplazamiento > 0) {
             Point posicionFondo = fondo.getLocation();
-            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento);
+            int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
 
             // Ver que el fondo no se desplace mas de lo posible
             int anchoFondo = fondo.getWidth();
