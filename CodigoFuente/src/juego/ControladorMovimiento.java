@@ -117,6 +117,7 @@ public class ControladorMovimiento {
 	}
 
 	private void cambiarYVerificarPosicionHitboxDelJugador() {
+		personajeJugable.establecerColisionAbajo(false);
 		cambiarPosicionHitboxDelJugadorX();
 		verificarColisiones(personajeJugable);
 		cambiarPosicionHitboxDelJugadorY();
@@ -127,7 +128,6 @@ public class ControladorMovimiento {
 		if (!this.nivel.fueCompletado()) {
 			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
 			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
-			
 			if (marioChocoBordeIzquierdo) {
 				int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x - this.personajeJugable.obtenerPosicionGrafica().x;
 				Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
