@@ -13,6 +13,7 @@ public class Moneda extends PowerUp {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = false;
 		this.estaDentroDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
+		this.haceRuidoAlSalir = false;
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
@@ -45,4 +46,5 @@ public class Moneda extends PowerUp {
 			} 
 		}
 	}
+
 }
