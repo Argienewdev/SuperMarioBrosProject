@@ -63,7 +63,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	@SuppressWarnings("exports")
 	public void establecerPosicion (Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
-		Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, this.posicionLogica.y);
+		Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, posicion.y);
 		this.posicionGrafica = nuevaPosicionGrafica;
 		this.posicionLogica = posicion;
 	}
