@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorBuzzyBeetle implements Visitante {
     
@@ -12,10 +13,14 @@ public class VisitorBuzzyBeetle implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorBuzzyBeetle(BuzzyBeetle miEntidad) {
+    protected GeneradorSonidos generadorSonido;
+    
+    public VisitorBuzzyBeetle(BuzzyBeetle miEntidad, GeneradorSonidos generadorSonido) {
+    	this.generadorSonido = generadorSonido;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
+    
     
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
@@ -96,6 +101,8 @@ public class VisitorBuzzyBeetle implements Visitante {
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
+            generadorSonido.detenerMusicaFondo();
+            generadorSonido.pierdeVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
         } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.obtenerContexto());
