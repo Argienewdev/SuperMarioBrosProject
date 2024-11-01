@@ -56,9 +56,9 @@ public class Lakitu extends Enemigo {
     	lanzarSpiny();
 		if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (this.obtenerVelocidadDireccional().x < 0) {
+		} else if (mirandoAlFrente()) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
-		} else if (this.obtenerVelocidadDireccional().x > 0) {
+		} else if (!mirandoAlFrente()) {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
@@ -85,5 +85,9 @@ public class Lakitu extends Enemigo {
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerLakituMuerto();
+	}
+	
+	private boolean mirandoAlFrente() {
+		return this.obtenerMirandoAlFrente();
 	}
 }

@@ -20,6 +20,8 @@ public abstract class Entidad extends ElementoDeJuego {
 	protected int contadorTicks;
 	
 	protected int ticksAnimacion;
+	
+	protected boolean mirandoAlFrente;
 
 	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
 	
@@ -31,6 +33,7 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.velocidadDireccional = new Point(0,0);
 		this.contadorTicks = 0;
 		this.ticksAnimacion = 60;
+		this.mirandoAlFrente = true;
 
 	}
 
@@ -93,5 +96,13 @@ public abstract class Entidad extends ElementoDeJuego {
 			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + ConstantesGlobales.GRAVEDAD);
 			this.establecerVelocidadDireccional(nuevaVelocidad);
 		}
+	}
+	
+	public boolean obtenerMirandoAlFrente() {
+		return this.mirandoAlFrente;
+	}
+	
+	public void establecerMirandoAlFrente(boolean mirandoAlFrente) {
+		this.mirandoAlFrente = mirandoAlFrente;
 	}
 }

@@ -42,19 +42,19 @@ public class MarioRecuperacion extends MarioDefault {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		actualizarTiempo();
 		Sprite aRetornar = null;
-		if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
+		if (bajoElNivelDelPiso()){
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionCayendo();
-		} else if (spriteAereoFrontal(fabricaSprites)) {
+		} else if (mirandoAlFrente() && enElAire()) {
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalSaltando();
-		} else if (spriteAereoReverso(fabricaSprites)) {
+		} else if (!mirandoAlFrente() && enElAire()) {
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoSaltando();
 		} else if (avanzando()) {
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalCaminando();
 		} else if (retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoCaminando();
-		} else if (spriteFrontal(fabricaSprites)){
+		} else if (mirandoAlFrente() && !avanzando()){
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionFrontalQuieto();
-		} else if (spriteReverso(fabricaSprites)){
+		} else if (!mirandoAlFrente() && !retrocediendo()){
 			aRetornar = fabricaSprites.obtenerMarioRecuperacionReversoQuieto();
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -78,24 +78,12 @@ public class MarioRecuperacion extends MarioDefault {
 		return contexto.obtenerRetrocediendo();
 	}
 	
-	private boolean spriteAereoFrontal(FabricaSprites fabricaSprites) {
-		return enElAire() && (avanzando() || (spriteFrontal(fabricaSprites) && !retrocediendo()));
+	private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
 	}
 	
-	private boolean spriteAereoReverso(FabricaSprites fabricaSprites) {
-		return enElAire() && (retrocediendo() || (spriteReverso(fabricaSprites) && !avanzando()));
-	}
-	
-	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionFrontalSaltando());
-	}
-	
-	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioRecuperacionReversoSaltando());
+	private boolean bajoElNivelDelPiso() {
+		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 
 }
