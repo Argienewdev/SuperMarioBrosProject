@@ -10,6 +10,6 @@ public abstract class FabricaSilueta {
 		this.rutaACarpeta = rutaACarpeta;
 	}
 	
-	public abstract Silueta obtenerSilueta();
+	public abstract Silueta obtenerSilueta(int numeroNivel);
 	
 }

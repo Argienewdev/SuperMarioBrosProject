@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorMarioFuego implements Visitante {
 
@@ -15,9 +16,12 @@ public class VisitorMarioFuego implements Visitante {
     protected DetectorDireccionColision detectorDireccionColision;
     
     protected ContextoMario miContexto;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorMarioFuego(MarioFuego marioFuego) {
-        this.miEstado = marioFuego;  // Cambié a marioFuego
+    public VisitorMarioFuego(MarioFuego marioFuego, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEstado = marioFuego;  // Cambié a marioFuego
         this.miContexto = this.miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }

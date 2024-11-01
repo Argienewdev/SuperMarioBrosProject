@@ -3,6 +3,7 @@ package generadores;
 import fabricas.*;
 import juego.Nivel;
 import juego.Partida;
+import modoDeJuego.ModoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.BuzzyBeetle;
 import elementos.enemigos.ContextoKoopaTroopa;
@@ -50,29 +51,21 @@ public class GeneradorDeNivel {
 	
 	protected GeneradorSonidos generadorSonidos;
 	
-	public GeneradorDeNivel(String modoJuego,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas,GeneradorSonidos generadorSonidos) {
-		if (modoJuego.equals("Modo original")) {
-			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
-			this.fabricaSonidos = new FabricaSonidosModoOriginal("src/sonido/sonidoModoOriginal");
-			generadorSonidos.establecerFabrica(fabricaSonidos);
-			generadorSonidos.reproducirMusicaFondo();
-		} else if (modoJuego.equals("Modo alternativo")) {
-			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
-			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-			this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido/sonidoModoAlternativo");
-			generadorSonidos.establecerFabrica(fabricaSonidos);
-			generadorSonidos.reproducirMusicaFondo();
-		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos,generadorSonidos );
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
+	public GeneradorDeNivel(String modoDeJuegoSeleccionado,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
+		ModoDeJuego modoDeJuego = new ModoDeJuego(modoDeJuegoSeleccionado);
+		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
+		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
+		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
+		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
+		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos, generadorSonidos);
+		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego, this.generadorSonidos);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
 	}
 	
 	public Nivel generarNivel(int numeroNivel, Partida partida) {
-		Silueta silueta = fabricaSilueta.obtenerSilueta();
+		Silueta silueta = fabricaSilueta.obtenerSilueta(numeroNivel);
+		this.controladorVistas.obtenerPantallaDeJuego().registrarFondo(silueta);
 		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
@@ -213,16 +206,19 @@ public class GeneradorDeNivel {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
-	public void establecerSiluetaDelNivel() {
-		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
-	}
-	
 	public FabricaSprites obtenerFabricaSprites() {
-		return fabricaSprites;
+		return this.fabricaSprites;
 	}
 	
 	public FabricaSilueta obtenerFabricaSilueta() {
-		return fabricaSilueta;
+		return this.fabricaSilueta;
 	}
 	
+	public FabricaSonidos obtenerFabricaSonidos() {
+		return this.fabricaSonidos;
+	}
+
+	public GeneradorSonidos obtenerGeneradorSonidos() {
+		return this.generadorSonidos;
+	}
 }

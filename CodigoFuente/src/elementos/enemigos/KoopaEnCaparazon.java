@@ -36,7 +36,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 
 	@Override
 	public Visitante obtenerVisitante() {
-		return new VisitorKoopaEnCaparazon(this);
+		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 
 	@Override

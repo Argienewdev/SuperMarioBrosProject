@@ -34,7 +34,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		 return new VisitorMarioInvulnerable(this);
+		 return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {

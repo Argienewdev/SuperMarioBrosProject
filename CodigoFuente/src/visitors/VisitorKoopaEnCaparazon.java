@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorKoopaEnCaparazon implements Visitante {
 
@@ -15,9 +16,12 @@ public class VisitorKoopaEnCaparazon implements Visitante {
     private ContextoKoopaTroopa miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado) {
-        this.miEstado = miEstado;
+    public VisitorKoopaEnCaparazon(KoopaEnCaparazon miEstado, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEstado = miEstado;
         this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
