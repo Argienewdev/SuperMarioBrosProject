@@ -37,8 +37,20 @@ public class Mapa {
 		plataformasEnColumna.remove(plataforma); 
 	}
 	
-	public List<Plataforma> obtenerPlataformaEnColumna (int x) {
+	public Iterable<Plataforma> obtenerPlataformaEnColumna (int x) {
 		return columnas.getOrDefault(x, new ArrayList<>());
 	}
+	
+	public Iterable<Plataforma> obtenerTodasLasPlataformas() {
+        List<Plataforma> todasLasPlataformas = new ArrayList<>();
+        for (List<Plataforma> plataformas : columnas.values()) {
+            todasLasPlataformas.addAll(plataformas);
+        }
+        return todasLasPlataformas; 
+	}
+	
+	public void limpiarMapa() {
+        columnas.clear();
+    }
 	
 }

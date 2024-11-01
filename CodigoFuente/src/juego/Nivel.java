@@ -18,7 +18,8 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
 
-    protected Collection<Plataforma> plataformas;
+//    protected Collection<Plataforma> plataformas;
+    protected Mapa mapa;
 
     protected Collection<PowerUp> powerUps;
 
@@ -44,7 +45,8 @@ public class Nivel {
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
-        this.plataformas = new ArrayList<Plataforma>();
+//        this.plataformas = new ArrayList<Plataforma>();
+        this.mapa = new Mapa(silueta.obtenerAncho());
         this.plataformasAfectables = new ArrayList<Plataforma>();
         this.powerUps = new ArrayList<PowerUp>();
         this.enemigos = new ArrayList<Enemigo>();
@@ -59,7 +61,8 @@ public class Nivel {
     }
     
     public void agregarPlataforma(Plataforma plataforma) {
-        this.plataformas.add(plataforma);
+//        this.plataformas.add(plataforma);
+    	mapa.agregarPlataforma(plataforma);
         plataforma.establecerNivel(this);
     }
 
@@ -99,7 +102,8 @@ public class Nivel {
     }
 
     public void removerPlataforma(Plataforma plataforma) {
-        this.plataformas.remove(plataforma);
+//        this.plataformas.remove(plataforma);
+    	mapa.removerPlataforma(plataforma);
     }
 
     public void agregarBolaDeFuegoAAgregar() {
@@ -121,14 +125,16 @@ public class Nivel {
     public void removerEntidadesAEliminar() {
     	enemigos.removeAll(entidadesAEliminar);
     	powerUps.removeAll(entidadesAEliminar);
-    	plataformas.removeAll(entidadesAEliminar);
+//    	plataformas.removeAll(entidadesAEliminar);
+    	mapa.limpiarMapa();
     	plataformasAfectables.removeAll(entidadesAEliminar);
     	bolasDeFuego.removeAll(entidadesAEliminar);
     	entidadesAEliminar = new ArrayList<ElementoDeJuego>();
     }
     
     public Iterable<Plataforma> obtenerPlataformas() {
-        return this.plataformas;
+//        return this.plataformas;
+    	return mapa.obtenerTodasLasPlataformas();
     }
 
     public Iterable<PowerUp> obtenerPowerUps() {
