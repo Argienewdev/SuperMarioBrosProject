@@ -23,12 +23,6 @@ public class Juego {
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
-
-	private FabricaSprites fabricaSprites;
-
-	private FabricaSilueta fabricaSilueta;
-
-	private GeneradorDeNivel generadorDeNivel;
 		
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -36,12 +30,14 @@ public class Juego {
 	
 	private Jugador jugador;
 	
+	private String modoDeJuegoSeleccionado;
+	
 	public Juego() {
 		ranking = cargarEstadoRanking();
 	}
 	
 	public Sprite obtenerSpriteMario(){
-		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
+		return this.partida.obtenerSpriteMario();
 	}
 	
 	public Ranking obtenerRanking() {
@@ -55,14 +51,19 @@ public class Juego {
 	public ControladorVistas obtenerControladorVistas() {
 		return this.controladorVistas;
 	}
+	
+	public PantallaDeJuego obtenerPantallaDeJuego() {
+		return this.pantallaDeJuego;
+	}
+	
+	public String obtenerModoDeJuegoSeleccionado() {
+		return this.modoDeJuegoSeleccionado;
+	}
 
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
+		this.modoDeJuegoSeleccionado = modo;
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
-		this.generadorDeNivel = new GeneradorDeNivel(modo, pantallaDeJuego, controladorVistas);
-		this.fabricaSprites = generadorDeNivel.obtenerFabricaSprites();
-		this.fabricaSilueta = generadorDeNivel.obtenerFabricaSilueta();
-		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
-		this.partida = new Partida(sensorDeTeclasJuego, generadorDeNivel, fabricaSprites,this);
+		this.partida = new Partida(sensorDeTeclasJuego, this);
 		ContextoMario jugable = partida.obtenerJugable();
 		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		return jugable;

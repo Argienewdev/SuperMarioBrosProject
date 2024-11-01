@@ -29,6 +29,8 @@ public class PantallaDeJuego extends Pantalla {
     
     private Interfaz hud;
     
+    private JLabel labelsMovibles;
+    
     private JLabel fondo;
     
     private Point posicionOriginalJugable;
@@ -165,7 +167,6 @@ public class PantallaDeJuego extends Pantalla {
     			
     			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
     			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
-    			
     			revalidate();
     			repaint();
             }
@@ -181,7 +182,6 @@ public class PantallaDeJuego extends Pantalla {
     }
     
     public void cambiarDeNivel() {
-    	establecerFondo();
     	crearHUD();
     	this.marioJugable.establecerPosicionLogica(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioJugable.establecerPosicionGrafica(this.marioJugable.obtenerPosicionLogica());

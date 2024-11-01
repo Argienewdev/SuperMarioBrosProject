@@ -35,8 +35,8 @@ public class FabricaEntidades {
 
 	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
     
-    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos) {
-    	this.generadorSonidos= new GeneradorSonidos(fabricaSonidos);
+    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos= generadorSonidos;
         this.fabricaSprites = fabricaSprites;
         this.pantallaDeJuego = pantallaDeJuego;
     }
@@ -97,7 +97,7 @@ public class FabricaEntidades {
 	public BuzzyBeetle obtenerBuzzyBeetle(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerBuzzyBeetleReversoCaminando();
         BuzzyBeetle buzzyADevolver= new BuzzyBeetle(sprite, posicion, null, null);
-        Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver);
+        Visitante visitorBuzzy = new VisitorBuzzyBeetle(buzzyADevolver, generadorSonidos);
         buzzyADevolver.establecerVisitor(visitorBuzzy);
         ObserverGrafico observerGraficoBuzzy = new ObserverGrafico(buzzyADevolver);
         buzzyADevolver.establecerObserverGrafico(observerGraficoBuzzy);

@@ -20,8 +20,6 @@ public abstract class Jugable extends Entidad  {
 	
 	private ObserverLogicoJugable observerLogico;
 	
-	protected boolean mirandoAlFrente;
-	
 	private int desplazamiento;
 	
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
@@ -32,7 +30,6 @@ public abstract class Jugable extends Entidad  {
 		this.avanzando = false;
 		this.vidas = 3;
 		this.puntos = 0;
-		this.mirandoAlFrente = true;
 		this.desplazamiento = 0;
 	}
 	
@@ -149,12 +146,5 @@ public abstract class Jugable extends Entidad  {
 
 	public abstract void realizarAccionEspecial();
 	
-	public boolean obtenerMirandoAlFrente() {
-		return this.mirandoAlFrente;
-	}
-	
-	public void establecerMirandoAlFrente(boolean mirandoAlFrente) {
-		this.mirandoAlFrente = mirandoAlFrente;
-	}
 	
 }

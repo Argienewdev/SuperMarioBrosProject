@@ -21,8 +21,15 @@ public class GeneradorSonidos {
 	File archivoCancion;
 	Clip clipCancion;
 	
-	public GeneradorSonidos(FabricaSonidos fabrica){
-		this.fabrica = fabrica;
+	public GeneradorSonidos(){
+	}
+
+	public void establecerFabrica(FabricaSonidos fabrica){
+		this.fabrica= fabrica;
+		establecerArchivo();
+	}
+	
+	protected void establecerArchivo(){
 		archivoCancion = new File(fabrica.obtenerMusica().obtenerRutaSonido());
 		establecerMusicaFondo();
 	}

@@ -42,19 +42,19 @@ public class MarioInvulnerable  extends MarioDefault {
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
-			if (contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO)){
+			if (bajoElNivelDelPiso()){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableCayendo();
-			} else if (spriteAereoFrontal(fabricaSprites)) {
+			} else if (mirandoAlFrente() && enElAire()) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalSaltando();
-			} else if (spriteAereoReverso(fabricaSprites)) {
+			} else if (!mirandoAlFrente() && enElAire()) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoSaltando();
 			} else if (avanzando()) {
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalCaminando();
 			} else if (retrocediendo()){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoCaminando();
-			} else if (spriteFrontal(fabricaSprites)){
+			} else if (mirandoAlFrente() && !avanzando()){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
-			} else if (spriteReverso(fabricaSprites)){
+			} else if (!mirandoAlFrente() && !retrocediendo()){
 				aRetornar = fabricaSprites.obtenerMarioInvulnerableReversoQuieto();
 			} else {
 				aRetornar = obtenerSpriteInicial(fabricaSprites);
@@ -81,24 +81,12 @@ public class MarioInvulnerable  extends MarioDefault {
 		return contexto.obtenerRetrocediendo();
 	}
 	
-	private boolean spriteAereoFrontal(FabricaSprites fabricaSprites) {
-		return enElAire() && (avanzando() || (spriteFrontal(fabricaSprites) && !retrocediendo()));
+	private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
 	}
 	
-	private boolean spriteAereoReverso(FabricaSprites fabricaSprites) {
-		return enElAire() && (retrocediendo() || (spriteReverso(fabricaSprites) && !avanzando()));
-	}
-	
-	private boolean spriteFrontal(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableFrontalCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableFrontalQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableFrontalSaltando());
-	}
-	
-	private boolean spriteReverso(FabricaSprites fabricaSprites) {
-		return contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableReversoCaminando()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableReversoQuieto()) ||
-				contexto.obtenerSprite().equals(fabricaSprites.obtenerMarioInvulnerableReversoSaltando());
+	private boolean bajoElNivelDelPiso() {
+		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 	
 	public void actualizarTiempo () {

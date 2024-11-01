@@ -50,21 +50,22 @@ public class GeneradorDeNivel {
 	
 	protected GeneradorSonidos generadorSonidos;
 	
-	public GeneradorDeNivel(String modoJuego,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
+	public GeneradorDeNivel(String modoJuego,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas,GeneradorSonidos generadorSonidos) {
 		if (modoJuego.equals("Modo original")) {
 			this.fabricaSilueta = new FabricaSiluetaModoOriginal("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
+			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 			this.fabricaSonidos = new FabricaSonidosModoOriginal("src/sonido/sonidoModoOriginal");
-			generadorSonidos= new GeneradorSonidos(fabricaSonidos);
+			generadorSonidos.establecerFabrica(fabricaSonidos);
 			generadorSonidos.reproducirMusicaFondo();
 		} else if (modoJuego.equals("Modo alternativo")) {
 			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
 			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
 			this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido/sonidoModoAlternativo");
-			generadorSonidos= new GeneradorSonidos(fabricaSonidos);
+			generadorSonidos.establecerFabrica(fabricaSonidos);
 			generadorSonidos.reproducirMusicaFondo();
 		}
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos);
+		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos,generadorSonidos );
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
@@ -75,7 +76,6 @@ public class GeneradorDeNivel {
 		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
-		
 		try {
 			archivoDeNivel = new FileReader(RUTA_A_CARPETA + numeroNivel + ".txt");
 			lectorBuffer = new BufferedReader(archivoDeNivel);
@@ -211,6 +211,10 @@ public class GeneradorDeNivel {
 	
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
+	}
+	
+	public void establecerSiluetaDelNivel() {
+		this.pantallaDeJuego.registrarFondo(fabricaSilueta);
 	}
 	
 	public FabricaSprites obtenerFabricaSprites() {
