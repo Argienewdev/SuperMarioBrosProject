@@ -2,10 +2,14 @@
 package juego;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
+import elementos.entidades.Jugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
@@ -75,14 +79,61 @@ public class MasterMind {
 		if ((entidad.obtenerHitbox().x + entidad.obtenerHitbox().width < -100) || entidad.obtenerHitbox().y < 0) {
 			entidad.establecerRemovido(true);
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-		        if (entidad.huboColision(elemento) && entidad != elemento) {
-		            elemento.aceptarVisitante(entidad.obtenerVisitante());
-		            entidad.aceptarVisitante(elemento.obtenerVisitante());
-		        }
-		    }
+//			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
+//		        if (entidad.huboColision(elemento) && entidad != elemento) {
+//		            elemento.aceptarVisitante(entidad.obtenerVisitante());
+//		            entidad.aceptarVisitante(elemento.obtenerVisitante());
+//		        }
+//		    }
+			verificarColisionConElemento(entidad);
 		}
 		entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
+	}
+	
+	private void verificarColisionConElemento(Entidad entidad) {
+	    Point posicionLogica = entidad.obtenerPosicionLogica();
+	    final int TAMANO_CELDA = 50;
+	    
+	    List<ElementoDeJuego> elementosAdyacentes = new ArrayList<>();
+	    
+//	    elementosAdyacentes.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(
+//	        new Point(posicionLogica.x, posicionLogica.y)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x, posicionLogica.y - TAMANO_CELDA)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x, posicionLogica.y + TAMANO_CELDA)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x - TAMANO_CELDA, posicionLogica.y)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x + TAMANO_CELDA, posicionLogica.y)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x - TAMANO_CELDA, posicionLogica.y - TAMANO_CELDA)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x + TAMANO_CELDA, posicionLogica.y - TAMANO_CELDA)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x - TAMANO_CELDA, posicionLogica.y + TAMANO_CELDA)));
+	    
+	    elementosAdyacentes.add(entidad.obtenerNivel().obtenerPlataformaEnPunto(
+	        new Point(posicionLogica.x + TAMANO_CELDA, posicionLogica.y + TAMANO_CELDA)));
+
+	    for (ElementoDeJuego elemento : elementosAdyacentes) {
+	        if (elemento != null && entidad.huboColision(elemento)) {
+	            System.out.println("Colisión detectada en: " + 
+	                elemento.obtenerPosicionLogica().x + ", " + 
+	                elemento.obtenerPosicionLogica().y);
+	            
+	            elemento.aceptarVisitante(entidad.obtenerVisitante());
+	            entidad.aceptarVisitante(elemento.obtenerVisitante());
+	        }
+	    }
+	    
 	}
 	
 	private void actualizarEnemigos() {
