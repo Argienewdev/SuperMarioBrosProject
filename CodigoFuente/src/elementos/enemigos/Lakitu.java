@@ -38,11 +38,11 @@ public class Lakitu extends Enemigo {
     		this.contadorTicksDisparo++;
     	} else {
     		this.contadorTicksDisparo = 0;
-    		int posGraficaX = obtenerPosicionGrafica().x + (obtenerAncho() / 2);
-    		int posGraficaY = obtenerPosicionGrafica().y;
+    		int posGraficaX = obtenerPosicionGrafica().x + (this.obtenerAncho() / 2);
+    		int posGraficaY = obtenerPosicionGrafica().y + (this.obtenerAlto());
     		
     		int posLogicaX = obtenerPosicionLogica().x + (obtenerAncho() / 2);
-    		int posLogicaY = obtenerPosicionLogica().y;
+    		int posLogicaY = obtenerPosicionLogica().y + (this.obtenerAlto());
     		
     		Point posicionGraficaSpiny = new Point(posGraficaX,posGraficaY);
     		Point posicionLogicaSpiny = new Point(posLogicaX,posLogicaY);
