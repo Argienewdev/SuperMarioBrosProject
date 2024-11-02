@@ -81,7 +81,6 @@ public class GeneradorSonidos {
 		clipCancion.stop();
 	}
 	
-	
 	public void choqueFireball(){
 		 try {
 			    Sonido sonido= fabricaSonidos.obtenerChoqueFireball();
@@ -108,6 +107,34 @@ public class GeneradorSonidos {
 	        } catch (LineUnavailableException e) {
 	            System.err.println("Línea de audio no disponible: " + e.getMessage());
 	        }
+	}
+	
+	public void matarBolaDeFuego(){
+		try {
+			Sonido sonido= fabricaSonidos.obtenerMatarBolaDeFuego();
+			
+			File archivoSonido = new File(sonido.obtenerRutaSonido());
+			
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+			
+			Clip clip = AudioSystem.getClip();
+			
+			clip.open(audioStream);
+			
+			clip.start();
+			
+			clip.addLineListener(event -> {
+				if (event.getType() ==  LineEvent.Type.STOP) {
+					clip.close();
+				}
+			});
+		} catch (UnsupportedAudioFileException e) {
+			System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+		} catch (LineUnavailableException e) {
+			System.err.println("Línea de audio no disponible: " + e.getMessage());
+		}
 	}
 	
 	public void disparoBolaFuego(){
@@ -168,7 +195,7 @@ public class GeneradorSonidos {
 	
 	public void modoInvencible(){
 		try {
-		    Sonido sonido= 	fabricaSonidos.obtenerModoInvencible();;
+		    Sonido sonido= 	fabricaSonidos.obtenerModoInvencible();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -193,6 +220,35 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+	
+	public void modoFuego(){
+		try {
+			Sonido sonido= 	fabricaSonidos.obtenerModoFuego();
+			
+			File archivoSonido = new File(sonido.obtenerRutaSonido());
+			
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+			
+			Clip clip = AudioSystem.getClip();
+			
+			clip.open(audioStream);
+			
+			clip.start();
+			
+			clip.addLineListener(event -> {
+				if (event.getType() ==  LineEvent.Type.STOP) {
+					clip.close();
+				}
+			});
+		} catch (UnsupportedAudioFileException e) {
+			System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+		} catch (LineUnavailableException e) {
+			System.err.println("Línea de audio no disponible: " + e.getMessage());
+		}
+	}
+	
 	
 	public void moneda(){
 		try {

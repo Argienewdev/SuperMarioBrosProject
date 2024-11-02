@@ -157,6 +157,7 @@ public class VisitorLakitu implements Visitante {
 
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		generadorSonidos.matarBolaDeFuego();
 		fireball.establecerRemovido(true);
 	}
 

@@ -46,6 +46,11 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     public Sonido obtenerModoInvencible() {
         return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoInvencible.wav");
     }
+    
+    @Override
+    public Sonido obtenerModoFuego() {
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoFuego.wav");
+    }
 
     @Override
     public Sonido obtenerSonidoMoneda() {

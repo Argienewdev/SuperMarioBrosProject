@@ -133,6 +133,7 @@ public class VisitorSpiny implements Visitante {
 	}
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		generadorSonidos.matarBolaDeFuego();
 		fireball.establecerRemovido(true);
 	}
 
