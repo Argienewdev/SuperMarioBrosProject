@@ -145,8 +145,6 @@ public class VisitorMarioInvulnerable implements Visitante {
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
     

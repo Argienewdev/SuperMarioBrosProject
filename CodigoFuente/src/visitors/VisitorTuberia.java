@@ -123,6 +123,7 @@ public class VisitorTuberia implements Visitante {
    			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
+   			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}	
 	}

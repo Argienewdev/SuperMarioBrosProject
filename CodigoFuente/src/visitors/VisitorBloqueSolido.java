@@ -131,10 +131,11 @@ public class VisitorBloqueSolido implements Visitante {
 
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		if (detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
-   			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
+		if (detectorDireccionColision.choquePorArriba(this.miEntidad, fireball)) {
+   			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
+   			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}
 	}

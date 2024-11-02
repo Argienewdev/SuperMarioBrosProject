@@ -67,7 +67,6 @@ public class GeneradorSonidos {
 			clipCancion = AudioSystem.getClip();
 			clipCancion.open(audioStream);
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         

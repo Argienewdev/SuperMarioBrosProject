@@ -35,7 +35,6 @@ public class VisitorPiranhaPlant implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-        // TODO Auto-generated method stub
     }
 
     @Override

@@ -387,8 +387,7 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 
     @Override
     public Sprite obtenerPrincesaPeach() {
-    	System.out.println(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.png");
-        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.png");
+        return new Sprite(rutaACarpeta + "/spritesModoAlternativo/princesaPeach.gif");
     }
 	
 	@Override

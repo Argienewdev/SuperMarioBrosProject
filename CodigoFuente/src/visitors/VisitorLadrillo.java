@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -57,7 +55,6 @@ public class VisitorLadrillo implements Visitante {
     
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {        
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
@@ -101,32 +98,26 @@ public class VisitorLadrillo implements Visitante {
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {        
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {    
-        // Implementar lógica aquí si es necesario
     }
     
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
     public void visitarBandera(Bandera bandera) {
-        // Implementar lógica aquí si es necesario
     }
     
     @Override
     public void visitarTuberia(Tuberia tuberia) {    
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {        
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
@@ -149,7 +140,6 @@ public class VisitorLadrillo implements Visitante {
 
     @Override
     public void visitarPiso(Piso piso) {
-        // Implementar lógica aquí si es necesario
     }
 
     @Override
@@ -158,14 +148,13 @@ public class VisitorLadrillo implements Visitante {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
+   			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

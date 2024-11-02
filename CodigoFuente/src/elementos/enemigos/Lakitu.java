@@ -82,7 +82,7 @@ public class Lakitu extends Enemigo {
     		boolean chocoBordeIzquierdo = this.obtenerPosicionGrafica().x <=  0; 
     		boolean chocoBordeDerecho = this.obtenerPosicionGrafica().x + this.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75);
 			if (chocoBordeIzquierdo) {
-				if (moviendoHaciaElBordeIzquierdo()) {
+				if (moviendoseHaciaElBordeIzquierdo()) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
 					this.establecerVelocidadDireccional(velocidad);
 				}
@@ -93,7 +93,7 @@ public class Lakitu extends Enemigo {
     	}
     }
     
-	private boolean moviendoHaciaElBordeIzquierdo() {
+	private boolean moviendoseHaciaElBordeIzquierdo() {
 		return this.velocidadDireccional.x < 0;
 	}
 
