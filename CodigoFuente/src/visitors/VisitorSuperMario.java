@@ -29,6 +29,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+    	generadorSonidos.emitirSonidoAplastarEnemigo();
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
 			buzzyBeetle.establecerRemovido(true);
 			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
@@ -41,6 +42,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
+    	generadorSonidos.emitirSonidoAplastarEnemigo();
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
     		goomba.establecerRemovido(true);
 			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
@@ -57,6 +59,7 @@ public class VisitorSuperMario implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
         		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
         	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+        	   generadorSonidos.emitirSonidoAplastarEnemigo();
            }
     }
 
@@ -68,6 +71,7 @@ public class VisitorSuperMario implements Visitante {
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
+	        generadorSonidos.emitirSonidoAplastarEnemigo();
 		}
     }
 
@@ -76,6 +80,7 @@ public class VisitorSuperMario implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) ) {
     		lakitu.establecerRemovido(true);
 			this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+			generadorSonidos.emitirSonidoAplastarEnemigo();
 		}
     }
 
