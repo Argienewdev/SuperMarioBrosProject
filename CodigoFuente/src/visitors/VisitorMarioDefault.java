@@ -61,6 +61,7 @@ public class VisitorMarioDefault implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
     	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	   this.generadorSonidos.emitirSonidoAplastarEnemigo();
         }
     }
 
@@ -168,14 +169,10 @@ public class VisitorMarioDefault implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

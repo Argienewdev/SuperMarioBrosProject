@@ -56,10 +56,10 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
-        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-    			this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
-            }
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+			this.generadorSonidos.emitirSonidoAplastarEnemigo();
+			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+        }
     }
 
     @Override
@@ -76,6 +76,12 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
+    	   && !lakitu.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		lakitu.establecerRemovido(true);
+            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override

@@ -42,12 +42,10 @@ public class VisitorBuzzyBeetle implements Visitante {
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	//TODO
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	//TODO
     }
     
     @Override

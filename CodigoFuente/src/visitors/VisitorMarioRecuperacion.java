@@ -70,7 +70,9 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto)) {
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
+    	   && !lakitu.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		lakitu.establecerRemovido(true);
             this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
     	}
@@ -159,8 +161,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
