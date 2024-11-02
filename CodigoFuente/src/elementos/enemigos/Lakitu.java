@@ -80,18 +80,23 @@ public class Lakitu extends Enemigo {
     		this.establecerVelocidadDireccional(velocidad);
     	} else {
     		boolean chocoBordeIzquierdo = this.obtenerPosicionGrafica().x <=  0; 
+    		boolean chocoBordeDerecho = this.obtenerPosicionGrafica().x + this.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75);
 			if (chocoBordeIzquierdo) {
-				if (this.velocidadDireccional.x < 0) {
+				if (moviendoHaciaElBordeIzquierdo()) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
 					this.establecerVelocidadDireccional(velocidad);
 				}
-			} else {
+			} else if (chocoBordeDerecho) {
 				Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
 				this.establecerVelocidadDireccional(velocidad);
 			}
     	}
     }
     
+	private boolean moviendoHaciaElBordeIzquierdo() {
+		return this.velocidadDireccional.x < 0;
+	}
+
 	@Override
 	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerLakituMuerto();
