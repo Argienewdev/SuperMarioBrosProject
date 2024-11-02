@@ -29,7 +29,7 @@ public class InterfazJuego extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.vidasLabel =  new JLabel("Vidas: 3");
 		this.puntajeLabel =  new JLabel("Puntaje 0");
-		this.tiempoLabel =  new JLabel("Tiempo: 3:00");
+		this.tiempoLabel =  new JLabel("Tiempo: 300:00");
 		this.tiempoEnCero = false;
 		this.nivelLabel = new JLabel("Nivel: 1");
 		this.setOpaque(false);
