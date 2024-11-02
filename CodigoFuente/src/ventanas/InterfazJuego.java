@@ -10,27 +10,32 @@ import javax.swing.JPanel;
 import fuentes.Fuentes;
 
 @SuppressWarnings("serial")
-public class Interfaz extends JPanel{
+public class InterfazJuego extends JPanel{
 
 	private JLabel vidasLabel;
+	
 	private JLabel puntajeLabel;
+	
 	private JLabel tiempoLabel;
+	
 	private JLabel nivelLabel;
+	
 	private Fuentes tipoFuentes;
+	
+	private boolean tiempoEnCero;
 
-
-	public Interfaz(){
-		setPreferredSize(new Dimension(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.PANEL_ALTO));
-		setLayout(new BorderLayout());
-		vidasLabel =  new JLabel("Vidas: 3");
-		puntajeLabel =  new JLabel("Puntaje 0");
-		tiempoLabel =  new JLabel("Tiempo: 300:00");
-		nivelLabel = new JLabel("Nivel: 1");
-		    
-		setOpaque(false);
-		setBackground(new Color(0, 0, 0, 0));
-		configurarFuente();
-		crearPaneles();
+	public InterfazJuego(){
+		this.setPreferredSize(new Dimension(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.PANEL_ALTO));
+		this.setLayout(new BorderLayout());
+		this.vidasLabel =  new JLabel("Vidas: 3");
+		this.puntajeLabel =  new JLabel("Puntaje 0");
+		this.tiempoLabel =  new JLabel("Tiempo: 3:00");
+		this.tiempoEnCero = false;
+		this.nivelLabel = new JLabel("Nivel: 1");
+		this.setOpaque(false);
+		this.setBackground(new Color(0, 0, 0, 0));
+		this.configurarFuente();
+		this.crearPaneles();
 	
 	}
 	
@@ -59,50 +64,53 @@ public class Interfaz extends JPanel{
 	    panelNorte.add(panelEste, BorderLayout.EAST);
 	    panelNorte.add(panelCentroI, BorderLayout.NORTH);
 	    panelNorte.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    add(panelNorte, BorderLayout.NORTH);
+	    this.add(panelNorte, BorderLayout.NORTH);
 	}
 	
 	public void actualizarTiempo(){
 	    String tiempoTexto = tiempoLabel.getText().substring(8);
-	    
 	    String[] tiempoPartes = tiempoTexto.split(":");
 	    int segundos = Integer.parseInt(tiempoPartes[0]);
 	    int miliSegundos = Integer.parseInt(tiempoPartes[1]);
-	    
-	    if (miliSegundos ==  0) {
+	    if(segundos==0 && miliSegundos==0) {
+	    	this.tiempoEnCero=true;
+	    }else if (miliSegundos ==  0) {
 	        if (segundos > 0) {
 	            segundos--;
 	            miliSegundos = 59;
 	        }
 	    } else {
 	        miliSegundos--;
-	    }
-	    
+	    }	    
 	    String nuevoTiempoTexto = String.format("Tiempo: %02d:%02d", segundos, miliSegundos);
-	    tiempoLabel.setText(nuevoTiempoTexto);
+	    this.tiempoLabel.setText(nuevoTiempoTexto);
 	}
 	
 	public void actualizarVidas(int vidas){
-		vidasLabel.setText("Vidas: " + vidas);
+		this.vidasLabel.setText("Vidas: " + vidas);
 	}
 	
 	public void configurarFuente() {
-		tipoFuentes =  new Fuentes();
-		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		nivelLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ALTO / 55));
-		vidasLabel.setForeground(Color.WHITE);
-		puntajeLabel.setForeground(Color.WHITE);
-		tiempoLabel.setForeground(Color.WHITE);
-		nivelLabel.setForeground(Color.WHITE);
+		this.tipoFuentes =  new Fuentes();
+		this.vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.nivelLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ALTO / 55));
+		this.vidasLabel.setForeground(Color.WHITE);
+		this.puntajeLabel.setForeground(Color.WHITE);
+		this.tiempoLabel.setForeground(Color.WHITE);
+		this.nivelLabel.setForeground(Color.WHITE);
 	}
 	
 	public void actualizarPuntaje(int puntaje) {
-		puntajeLabel.setText("Puntaje " + puntaje);
+		this.puntajeLabel.setText("Puntaje " + puntaje);
 	}
 	
 	public void actualizarNivel (int nivel) {
-		nivelLabel.setText("Nivel " + nivel);
+		this.nivelLabel.setText("Nivel " + nivel);
+	}
+	
+	public boolean obtenerTiempoEnCero() {
+		return this.tiempoEnCero;
 	}
 }
