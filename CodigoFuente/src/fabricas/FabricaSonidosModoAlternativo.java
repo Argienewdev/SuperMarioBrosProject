@@ -11,6 +11,16 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     public Sonido obtenerAplastarEnemigo() {
         return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/aplastarEnemigo.wav");
     }
+    
+    @Override
+    public Sonido obtenerAplastarEnemigo2() {
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/aplastarEnemigo2.wav");
+    }
+    
+    @Override
+    public Sonido obtenerAplastarEnemigo3() {
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/aplastarEnemigo3.wav");
+    }
 
     @Override
     public Sonido obtenerChoqueFireball() {
@@ -45,6 +55,11 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     @Override
     public Sonido obtenerModoInvencible() {
         return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoInvencible.wav");
+    }
+    
+    @Override
+    public Sonido obtenerModoRecuperacion() {
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoRecuperacion.wav");
     }
     
     @Override

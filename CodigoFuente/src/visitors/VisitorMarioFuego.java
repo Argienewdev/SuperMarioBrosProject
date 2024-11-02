@@ -30,6 +30,7 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
     		&& !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		otorgarPuntosYEliminar(buzzyBeetle);
     	}
     }
@@ -42,6 +43,7 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
     	   && !goomba.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(goomba);
 		}
     }
@@ -56,7 +58,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()
     		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
-			this.generadorSonidos.emitirSonidoAplastarEnemigo();
+			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
         }
     }
@@ -66,7 +68,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
@@ -77,6 +79,7 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(lakitu);
     	}
     }
@@ -170,7 +173,6 @@ public class VisitorMarioFuego implements Visitante {
 	// Método auxiliar para otorgar puntos y eliminar enemigos
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
-		this.generadorSonidos.emitirSonidoAplastarEnemigo();
 		this.miContexto.ganarPuntos(puntos);
 		enemigo.establecerRemovido(true);
 	}

@@ -11,7 +11,16 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 	@Override
 	public Sonido obtenerAplastarEnemigo() {
 		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/aplastarEnemigo.wav");
-
+	}
+	
+	@Override
+	public Sonido obtenerAplastarEnemigo2() {
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/aplastarEnemigo2.wav");
+	}
+	
+	@Override
+	public Sonido obtenerAplastarEnemigo3() {
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/aplastarEnemigo3.wav");
 	}
 
 	@Override
@@ -47,6 +56,11 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 	@Override
 	public Sonido obtenerModoInvencible() {
 		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/modoInvencible.wav");
+	}
+	
+	@Override
+	public Sonido obtenerModoRecuperacion() {
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/modoRecuperacion.wav");
 	}
 	
 	@Override

@@ -96,6 +96,7 @@ public class VisitorGoomba implements Visitante {
     public void visitarSuperMario(SuperMario superMario) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
     		&& !this.miEntidad.obtenerRemovido()) {
+        	this.generadorSonidos.modoRecuperacion();
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
 	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
     	} else {
@@ -107,6 +108,7 @@ public class VisitorGoomba implements Visitante {
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad) 
     		&& !this.miEntidad.obtenerRemovido()) {
+        	this.generadorSonidos.modoRecuperacion();
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
     	} else {
