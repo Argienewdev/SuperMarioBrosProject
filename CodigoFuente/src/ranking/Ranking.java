@@ -1,5 +1,6 @@
 package ranking;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -61,6 +62,7 @@ public class Ranking implements Serializable {
     
     public void reiniciarRanking() {
     	topJugadores.clear();
+    	guardarEstado();
     }
     
     public boolean esTop(int puntaje) {
