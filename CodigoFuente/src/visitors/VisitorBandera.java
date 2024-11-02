@@ -79,6 +79,7 @@ public class VisitorBandera implements Visitante {
 
     
     public void visitarContextoMario(ContextoMario contextoMario) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
     }
 
     

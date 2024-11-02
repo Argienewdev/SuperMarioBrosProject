@@ -83,7 +83,7 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
 
     @Override
     public Sonido obtenerTocarBanderaFinNivel() {
-        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/tocarBanderaFinalNivel.wav");
+        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/tocarBanderaFinNivel.wav");
     }
 
     @Override

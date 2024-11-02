@@ -104,6 +104,7 @@ public class VisitorVacio implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
+    	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	contextoMario.perderPuntos(puntajeASustraer);
     	contextoMario.perderVida();

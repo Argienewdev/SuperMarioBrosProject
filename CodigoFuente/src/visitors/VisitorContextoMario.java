@@ -105,7 +105,8 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad) 
+			&& !bloqueDePregunta.estaVacio()) {
             if (bloqueDePregunta.obtenerPowerUp().obtenerHaceRuidoAlSalir()) {
     			this.generadorSonidos.powerUpEmerge();
             }
@@ -125,18 +126,22 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarBandera(Bandera bandera) {
-		this.generadorSonidos.tocarBanderaFinNivel();
-		
-		Timer timer = new Timer(1500, new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	        }
-	    });
-	    timer.setRepeats(false);
-	    timer.start();
-		
-	    this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
-        this.miEntidad.reiniciarEstado();
-		this.miEntidad.obtenerNivel().establecerCompletado(true);
+		if (!bandera.obtenerFueActivada()) {
+			this.generadorSonidos.detenerMusicaFondo();
+			bandera.establecerActivada(true);
+			this.generadorSonidos.tocarBanderaFinNivel();
+			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
+			
+			Timer timer = new Timer(6000, new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		            miEntidad.reiniciarEstado();
+		    		miEntidad.obtenerNivel().establecerCompletado(true);
+		        }
+		    });
+			
+		    timer.setRepeats(false);
+		    timer.start();
+		}
 	}
 
 	

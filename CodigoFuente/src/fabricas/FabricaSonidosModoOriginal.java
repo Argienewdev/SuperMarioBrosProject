@@ -85,7 +85,7 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 
 	@Override
 	public Sonido obtenerTocarBanderaFinNivel() {
-		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/tocarBanderaFinalNivel.wav");
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/tocarBanderaFinNivel.wav");
 	}
 
 	@Override
