@@ -76,8 +76,8 @@ public class Partida {
 	
 	public void cambiarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
-		this.juego.obtenerControladorVistas().cambiarNivel();
 		this.numeroNivelActual++;
+		this.juego.obtenerControladorVistas().cambiarNivel();
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
