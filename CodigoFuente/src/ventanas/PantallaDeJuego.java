@@ -168,7 +168,11 @@ public class PantallaDeJuego extends Pantalla {
     			
     			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
     			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
-            }
+            } else {/*
+            	System.out.println(this.marioJugable.obtenerPosicionLogica().x);
+            	Point nuevaPosicionGrafica = new Point (this.marioJugable.obtenerPosicionLogica().x, this.marioJugable.obtenerPosicionGrafica().y);
+    			this.marioJugable.establecerPosicionGrafica(nuevaPosicionGrafica);            	
+            */}
         	revalidate();
         	repaint();
         }

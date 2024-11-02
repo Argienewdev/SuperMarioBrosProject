@@ -31,6 +31,7 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto) &&
     	   !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		buzzyBeetle.establecerRemovido(true);
             this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
     	}
