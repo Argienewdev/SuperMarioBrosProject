@@ -109,6 +109,7 @@ public class MarioFuego extends MarioDefault {
 		BolaDeFuego bolaDeFuego = fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
 		
 		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
+		bolaDeFuego.obtenerObserverGrafico().actualizar();
 		
 		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
 	}

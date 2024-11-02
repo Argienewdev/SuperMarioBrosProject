@@ -156,8 +156,6 @@ public class PantallaDeJuego extends Pantalla {
     			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
     				Point posicionLabel = observerGrafico.getLocation();
     				posicionLabel.x -=  desplazamiento;
-    				//TODO en la linea se modifica la posicion grafica de la bola de fuego
-    				if(())
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
     				if (observerGrafico.obtenerRemovido()) {
