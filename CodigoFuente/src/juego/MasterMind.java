@@ -36,10 +36,6 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
-		if (enemigo.getClass().getSimpleName().equals("Lakitu")) {
-			System.out.println(enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho());
-		}
-		System.out.println("PANEL=" + ConstantesGlobales.PANEL_ANCHO);
 		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75)
 										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  -100;
 		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0;
@@ -56,9 +52,7 @@ public class MasterMind {
 					enemigo.invertirDireccion();
 				} else if (chocoBordeDerecho) {
 					int desplazamientoHaciaFueraDeLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() - ConstantesGlobales.PANEL_ANCHO;
-					System.out.println("DES=" + desplazamientoHaciaFueraDeLaPantalla);
 					Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
-					System.out.println("NP=" + nuevaPosicionGrafica.x);
 					Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
 					enemigo.establecerPosicionLogica(nuevaPosicionLogica);
 					enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);

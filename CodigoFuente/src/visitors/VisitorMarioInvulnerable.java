@@ -61,8 +61,9 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	lakitu.establecerRemovido(true);
-    	this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+		lakitu.establecerRemovido(true);
+        this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
     }
 
     @Override

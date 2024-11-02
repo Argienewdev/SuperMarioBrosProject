@@ -182,6 +182,8 @@ public class PantallaDeJuego extends Pantalla {
     	layeredPane.remove(hud);
     	removerElementos();
     	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
+    	this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
+    	this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
     }
     
     public void cambiarDeNivel() {

@@ -61,6 +61,7 @@ public class VisitorMarioDefault implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
     	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	   this.generadorSonidos.emitirSonidoAplastarEnemigo();
         }
     }
 
