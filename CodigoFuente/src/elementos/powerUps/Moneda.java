@@ -7,13 +7,17 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public class Moneda extends PowerUp {
+
+	protected boolean seRealizoAnimacionSalto;
 	
 	public Moneda(Sprite sprite, Point posicion, Visitante visitor,
 			   	   ObserverGrafico observerGrafico, boolean dentroDeBloqueDePreguntas) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.esMovible = false;
+		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = dentroDeBloqueDePreguntas;
 		this.haceRuidoAlSalir = false;
+		this.ticksHastaSalirDelBloque=1;
+		this.seRealizoAnimacionSalto=false;
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
@@ -43,8 +47,25 @@ public class Moneda extends PowerUp {
 		} else {
 			if (!this.estaDentroDeBloqueDePreguntas ) {
 				this.establecerSprite(fabricaSprites.obtenerMonedaEncendida());
+				if(!seRealizoAnimacionSalto) {
+					this.realizarAnimacionSalto();
+					seRealizoAnimacionSalto=true;
+				}
 			} 
 		}
 	}
+	
+	private void realizarAnimacionSalto() {
+		Point salto = new Point(0,-15);
+		this.establecerVelocidadDireccional(salto);
+	}
+	
+	//A diferencia de los otros power ups movibles la monedan no tiene movimiento lateral
+	protected void moverDerecha() {
+    }
+    
+    protected void moverIzquierda() {
+    }
+    
 
 }

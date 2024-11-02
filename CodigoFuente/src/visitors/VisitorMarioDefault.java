@@ -87,7 +87,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Implementación pendiente
     }
 
     @Override

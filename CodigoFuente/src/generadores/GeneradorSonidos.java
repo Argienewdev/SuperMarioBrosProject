@@ -34,7 +34,7 @@ public class GeneradorSonidos {
 	
 	public void emitirSonidoAplastarEnemigo(){
 		  try {
-			    Sonido sonido= fabricaSonidos.obtenerAplastarEnemigo();
+			    Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
 	            
 	            File archivoSonido = new File(sonido.obtenerRutaSonido());
 	            

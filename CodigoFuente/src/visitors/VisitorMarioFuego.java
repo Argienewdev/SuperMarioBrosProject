@@ -29,6 +29,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
 			buzzyBeetle.establecerRemovido(true);
 			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
 		}
@@ -41,6 +42,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		goomba.establecerRemovido(true);
 			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
 		}
@@ -55,7 +57,8 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
         		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    			this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
             }
     }
 
@@ -64,6 +67,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));

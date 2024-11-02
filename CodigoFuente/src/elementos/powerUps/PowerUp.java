@@ -47,12 +47,12 @@ public abstract class PowerUp extends NoJugable {
 		return this.ticksHastaSalirDelBloque;
 	}
 
-    private void moverDerecha() {
+    protected void moverDerecha() {
     	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     }
     
-    private void moverIzquierda() {
+    protected void moverIzquierda() {
     	Point velocidad = new Point(-VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     }

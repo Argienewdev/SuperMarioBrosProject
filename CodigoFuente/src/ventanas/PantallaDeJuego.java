@@ -153,26 +153,26 @@ public class PantallaDeJuego extends Pantalla {
         	*/
         	
         	if (fondoMovido) {
-    			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-    				Point posicionLabel = observerGrafico.getLocation();
-    				posicionLabel.x -=  desplazamiento;
-    				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
-    				observerGrafico.actualizar();
-    				if (observerGrafico.obtenerRemovido()) {
-    					layeredPane.remove(observerGrafico);
-    					this.labelsElementoDeJuegoARemover.add(observerGrafico);
-    				}
-    			}
-    			this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
-    			this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
-    			
-    			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
-    			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
-            } else {/*
-            	System.out.println(this.marioJugable.obtenerPosicionLogica().x);
-            	Point nuevaPosicionGrafica = new Point (this.marioJugable.obtenerPosicionLogica().x, this.marioJugable.obtenerPosicionGrafica().y);
-    			this.marioJugable.establecerPosicionGrafica(nuevaPosicionGrafica);            	
-            */}
+        		try {
+        			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+        				Point posicionLabel = observerGrafico.getLocation();
+        				posicionLabel.x -=  desplazamiento;
+        				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
+        				observerGrafico.actualizar();
+        				if (observerGrafico.obtenerRemovido()) {
+        					layeredPane.remove(observerGrafico);
+        					this.labelsElementoDeJuegoARemover.add(observerGrafico);
+        				}
+        			}
+        			this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
+        			this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
+        			
+        			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
+        			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
+        		}catch(ConcurrentModificationException e) {
+        			e.printStackTrace();
+        		}
+            }
         	revalidate();
         	repaint();
         }
