@@ -36,14 +36,35 @@ public class MasterMind {
 	}
 	
 	private void moverEnemigo(Enemigo enemigo) {
+		if (enemigo.getClass().getSimpleName().equals("Lakitu")) {
+			System.out.println(enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho());
+		}
+		System.out.println("PANEL=" + ConstantesGlobales.PANEL_ANCHO);
 		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75)
 										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  -100;
 		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
 		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
-			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla() 
-				&& (chocoBordeIzquierdo || chocoBordeDerecho)) {
-				enemigo.invertirDireccion();
+			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
+				if (chocoBordeIzquierdo) {
+					int desplazamientoHaciaFueraDeLaPantalla = Math.abs(enemigo.obtenerPosicionGrafica().x);
+					Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
+					enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
+					Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
+					enemigo.establecerPosicionLogica(nuevaPosicionLogica);
+					enemigo.moverHitbox(nuevaPosicionLogica);
+					enemigo.invertirDireccion();
+				} else if (chocoBordeDerecho) {
+					int desplazamientoHaciaFueraDeLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() - ConstantesGlobales.PANEL_ANCHO;
+					System.out.println("DES=" + desplazamientoHaciaFueraDeLaPantalla);
+					Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
+					System.out.println("NP=" + nuevaPosicionGrafica.x);
+					Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
+					enemigo.establecerPosicionLogica(nuevaPosicionLogica);
+					enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
+					enemigo.moverHitbox(nuevaPosicionLogica);
+					enemigo.invertirDireccion();
+				}
 			}
 			enemigo.mover();
 			enemigo.aplicarGravedad();
@@ -71,7 +92,7 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
-		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50)) {
+		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50) && !entidad.obtenerDebeMantenerseSiempreEnPantalla()) {
 			entidad.establecerRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {

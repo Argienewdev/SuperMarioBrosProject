@@ -153,23 +153,25 @@ public class PantallaDeJuego extends Pantalla {
         	*/
         	
         	if (fondoMovido) {
-    			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-    				Point posicionLabel = observerGrafico.getLocation();
-    				posicionLabel.x -=  desplazamiento;
-    				//TODO en la linea se modifica la posicion grafica de la bola de fuego
-    				if(())
-    				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
-    				observerGrafico.actualizar();
-    				if (observerGrafico.obtenerRemovido()) {
-    					layeredPane.remove(observerGrafico);
-    					this.labelsElementoDeJuegoARemover.add(observerGrafico);
-    				}
-    			}
-    			this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
-    			this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
-    			
-    			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
-    			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
+        		try {
+        			for (ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+        				Point posicionLabel = observerGrafico.getLocation();
+        				posicionLabel.x -=  desplazamiento;
+        				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
+        				observerGrafico.actualizar();
+        				if (observerGrafico.obtenerRemovido()) {
+        					layeredPane.remove(observerGrafico);
+        					this.labelsElementoDeJuegoARemover.add(observerGrafico);
+        				}
+        			}
+        			this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
+        			this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
+        			
+        			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
+        			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
+        		}catch(ConcurrentModificationException e) {
+        			e.printStackTrace();
+        		}
             }
         	revalidate();
         	repaint();
