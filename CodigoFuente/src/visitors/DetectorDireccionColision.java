@@ -16,6 +16,7 @@ public class DetectorDireccionColision {
 		} else if (choquePorArriba(elementoDeJuego, entidad)) {
 			entidad.establecerColisionAbajo(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y - entidad.obtenerAlto());
+			this.eleminarVelocidadVertical(entidad);
 		} else if (choquePorAbajo(elementoDeJuego, entidad)){
 			entidad.establecerColisionArriba(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto());
@@ -24,8 +25,8 @@ public class DetectorDireccionColision {
 	}
 	
 	private void eleminarVelocidadVertical(Entidad entidad) {
-		int nuevaVelocidadY =0;
-		Point nuevaVelocidad = new Point(entidad.obtenerVelocidadDireccional().y, nuevaVelocidadY);
+		int nuevaVelocidadY  = 0;
+		Point nuevaVelocidad = new Point(entidad.obtenerVelocidadDireccional().x, nuevaVelocidadY);
 		entidad.establecerVelocidadDireccional(nuevaVelocidad);
 	}
 
@@ -54,7 +55,7 @@ public class DetectorDireccionColision {
 	}
 	
 	public boolean verificarImpactoLateralEntreMarioYEnemigo(Entidad mario, Entidad enemigo) {
-		boolean enemigoImpactaPorDerecha= enemigo.obtenerHitbox().x < mario.obtenerHitbox().x + mario.obtenerHitbox().width;
+		boolean enemigoImpactaPorDerecha =  enemigo.obtenerHitbox().x < mario.obtenerHitbox().x + mario.obtenerHitbox().width;
 		boolean enemigoImpactaPorIzquierda = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().width > mario.obtenerHitbox().x;
 		boolean marioNoGolpeoPorArriba = !choquePorArriba(enemigo, mario);
 		return ((enemigoImpactaPorIzquierda) || (enemigoImpactaPorDerecha)) && marioNoGolpeoPorArriba;

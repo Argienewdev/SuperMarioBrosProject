@@ -5,14 +5,18 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorVacio implements Visitante {
 
     protected Vacio miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorVacio(Vacio miEntidad) {
+    public VisitorVacio(Vacio miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -100,6 +104,7 @@ public class VisitorVacio implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
+    	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	contextoMario.perderPuntos(puntajeASustraer);
     	contextoMario.perderVida();

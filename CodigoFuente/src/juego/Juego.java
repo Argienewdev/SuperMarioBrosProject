@@ -79,13 +79,13 @@ public class Juego {
 		controladorVistas.establecerJugador(jugador);
 		controladorVistas.accionarPantallaIngresoNombre();
 		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
-		BucleJugador bucle= partida.obtenerBucleJugador();
+		BucleJugador bucle =  partida.obtenerBucleJugador();
 		bucle.detenerBucleJugador();
 	}
 	
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
-		this.controladorVistas=controladorVistas;
+		this.controladorVistas = controladorVistas;
 	}
 	
 	public void cierreDeJuego() {

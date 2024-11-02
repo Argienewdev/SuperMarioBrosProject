@@ -32,7 +32,7 @@ public class ReproductorDeMusicaFondo {
     }
 
     public void stopMusic() {
-        if (clip != null && clip.isRunning()) {
+        if (clip !=  null && clip.isRunning()) {
             clip.stop(); // Detener la reproducción
         }
     }

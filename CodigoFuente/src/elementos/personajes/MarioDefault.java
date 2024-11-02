@@ -37,7 +37,7 @@ public class MarioDefault implements EstadoMario {
 
 	@Override
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioDefault(this);
+		return new VisitorMarioDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {

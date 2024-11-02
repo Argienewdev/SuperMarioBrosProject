@@ -7,6 +7,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 import ventanas.ConstantesGlobales;
 
 public class VisitorMarioDefault implements Visitante {
@@ -16,9 +17,12 @@ public class VisitorMarioDefault implements Visitante {
     protected DetectorDireccionColision detectorDireccionColision;
     
     protected ContextoMario miContexto;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorMarioDefault(MarioDefault miEstado) {
-        this.miEstado = miEstado;
+    public VisitorMarioDefault(MarioDefault miEstado, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEstado = miEstado;
         this.miContexto = miEstado.obtenerContexto();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -27,6 +31,7 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto) &&
     	   !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		buzzyBeetle.establecerRemovido(true);
             this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
     	}
@@ -40,6 +45,7 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
     	   && !goomba.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
             goomba.establecerRemovido(true);
             this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
         }
@@ -61,7 +67,8 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
-	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
@@ -72,6 +79,7 @@ public class VisitorMarioDefault implements Visitante {
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		lakitu.establecerRemovido(true);
             this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
         }
@@ -79,7 +87,6 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // TODO Implementación pendiente
     }
 
     @Override

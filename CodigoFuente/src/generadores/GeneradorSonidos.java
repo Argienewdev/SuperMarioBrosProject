@@ -17,26 +17,24 @@ import java.io.IOException;
 
 public class GeneradorSonidos {
 	
-	FabricaSonidos fabrica;
+	FabricaSonidos fabricaSonidos;
 	File archivoCancion;
 	Clip clipCancion;
 	
-	public GeneradorSonidos(){
-	}
-
-	public void establecerFabrica(FabricaSonidos fabrica){
-		this.fabrica= fabrica;
+	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
+		this.fabricaSonidos = fabricaSonidos;
 		establecerArchivo();
 	}
-	
+
 	protected void establecerArchivo(){
-		archivoCancion = new File(fabrica.obtenerMusica().obtenerRutaSonido());
+		archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
+		System.out.println(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
 		establecerMusicaFondo();
 	}
 	
 	public void emitirSonidoAplastarEnemigo(){
 		  try {
-			    Sonido sonido= fabrica.obtenerAplastarEnemigo();
+			    Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
 	            
 	            File archivoSonido = new File(sonido.obtenerRutaSonido());
 	            
@@ -49,7 +47,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -87,7 +85,7 @@ public class GeneradorSonidos {
 	
 	public void choqueFireball(){
 		 try {
-			    Sonido sonido= fabrica.obtenerChoqueFireball();
+			    Sonido sonido= fabricaSonidos.obtenerChoqueFireball();
 	            
 	            File archivoSonido = new File(sonido.obtenerRutaSonido());
 	            
@@ -100,7 +98,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -115,7 +113,7 @@ public class GeneradorSonidos {
 	
 	public void disparoBolaFuego(){
 		 try {
-			    Sonido sonido= fabrica.obtenerDisparoBolaFuego();
+			    Sonido sonido= fabricaSonidos.obtenerDisparoBolaFuego();
 	            
 	            File archivoSonido = new File(sonido.obtenerRutaSonido());
 	            
@@ -128,7 +126,7 @@ public class GeneradorSonidos {
 	            clip.start();
 	            
 	            clip.addLineListener(event -> {
-	                if (event.getType() == LineEvent.Type.STOP) {
+	                if (event.getType() ==  LineEvent.Type.STOP) {
 	                    clip.close();
 	                }
 	            });
@@ -143,7 +141,7 @@ public class GeneradorSonidos {
 	
 	public void golpeBloque(){
 		try {
-		    Sonido sonido= fabrica.obtenerGolpeBloque();
+		    Sonido sonido= fabricaSonidos.obtenerGolpeBloque();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -156,7 +154,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -171,7 +169,7 @@ public class GeneradorSonidos {
 	
 	public void modoInvencible(){
 		try {
-		    Sonido sonido= 	fabrica.obtenerModoInvencible();;
+		    Sonido sonido= 	fabricaSonidos.obtenerModoInvencible();;
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -184,7 +182,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -199,8 +197,8 @@ public class GeneradorSonidos {
 	
 	public void moneda(){
 		try {
-		    Sonido sonido= fabrica.obtenerSonidoMoneda();
-            
+		    Sonido sonido= fabricaSonidos.obtenerSonidoMoneda();
+
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
@@ -212,7 +210,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -231,7 +229,7 @@ public class GeneradorSonidos {
 	
 	public void pierdeJuego(){
 		try {
-		    Sonido sonido= fabrica.obtenerPierdeJuego();
+		    Sonido sonido= fabricaSonidos.obtenerPierdeJuego();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -244,7 +242,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -259,7 +257,7 @@ public class GeneradorSonidos {
 	
 	public void pierdeVida(){
 		try {
-		    Sonido sonido= fabrica.obtenerPierdeVida();
+		    Sonido sonido= fabricaSonidos.obtenerPierdeVida();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -272,7 +270,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -287,7 +285,7 @@ public class GeneradorSonidos {
 	
 	public void PowerupAgarrado(){
 		try {
-		    Sonido sonido= fabrica.obtenerPowerUpAgarrado();
+		    Sonido sonido= fabricaSonidos.obtenerPowerUpAgarrado();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -300,7 +298,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -315,7 +313,7 @@ public class GeneradorSonidos {
 	
 	public void powerUpEmerge(){
 		try {
-		    Sonido sonido= fabrica.obtenerPowerUpEmerge();
+		    Sonido sonido= fabricaSonidos.obtenerPowerUpEmerge();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -328,7 +326,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -343,7 +341,7 @@ public class GeneradorSonidos {
 	
 	public void recuperaVida(){
 		try {
-		    Sonido sonido= 	fabrica.obtenerRecuperarVida();
+		    Sonido sonido= 	fabricaSonidos.obtenerRecuperarVida();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -356,7 +354,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -371,7 +369,7 @@ public class GeneradorSonidos {
 	
 	public void romperLadrillo(){
 		try {
-		    Sonido sonido= 	fabrica.obtenerRomperLadrillo();
+		    Sonido sonido= 	fabricaSonidos.obtenerRomperLadrillo();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -384,7 +382,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -399,7 +397,7 @@ public class GeneradorSonidos {
 	
 	public void salto(){
 		try {
-		    Sonido sonido= 	fabrica.obtenerSalto();
+		    Sonido sonido= 	fabricaSonidos.obtenerSalto();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -412,7 +410,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });
@@ -427,7 +425,7 @@ public class GeneradorSonidos {
 	
 	public void tocarBanderaFinNivel(){
 		try {
-		    Sonido sonido= 	fabrica.obtenerTocarBanderaFinNivel();
+		    Sonido sonido= 	fabricaSonidos.obtenerTocarBanderaFinNivel();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
@@ -440,7 +438,7 @@ public class GeneradorSonidos {
             clip.start();
             
             clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
+                if (event.getType() ==  LineEvent.Type.STOP) {
                     clip.close();
                 }
             });

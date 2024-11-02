@@ -5,12 +5,16 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorMonedas implements Visitante {
     
     protected Moneda miEntidad;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorMonedas(Moneda miEntidad) {
+    public VisitorMonedas(Moneda miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
     }
     

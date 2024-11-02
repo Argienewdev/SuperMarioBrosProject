@@ -31,7 +31,7 @@ public class BucleEntidadesNoJugables implements Runnable {
 		}
 		this.bucleEntidadesNoJugablesEnEjecucion = false;
         try {
-            if (this.hilo != null && this.hilo.isAlive()) {
+            if (this.hilo !=  null && this.hilo.isAlive()) {
                 this.hilo.join();
             }
         } catch (InterruptedException e) {
@@ -57,14 +57,14 @@ public class BucleEntidadesNoJugables implements Runnable {
 	    while(this.bucleEntidadesNoJugablesEnEjecucion) {
 	        long tiempoActual = System.nanoTime();
 	        
-	        delta += (tiempoActual - ultimoTiempoCapturado);
+	        delta +=  (tiempoActual - ultimoTiempoCapturado);
 	        
 	        ultimoTiempoCapturado = tiempoActual;
 	        
-	        while (delta >= nanoSegundosPorTick) {
+	        while (delta >=  nanoSegundosPorTick) {
 	            actualizarBucleEntidadesNoJugables();
 	            actualizaciones++;
-	            delta -= nanoSegundosPorTick;
+	            delta -=  nanoSegundosPorTick;
 	        }
 	        
 	        if (bucleEntidadesNoJugablesEnEjecucion) {
@@ -73,7 +73,7 @@ public class BucleEntidadesNoJugables implements Runnable {
 	        }
 	        
 	        if (System.currentTimeMillis() - cronometro > MILISEGUNDOS_POR_SEGUNDO) {
-	            cronometro += MILISEGUNDOS_POR_SEGUNDO;
+	            cronometro +=  MILISEGUNDOS_POR_SEGUNDO;
 	            //System.out.println("FPS: " + frames + " TPS: " + updates);
 	            actualizaciones = 0;
 	            frames = 0;

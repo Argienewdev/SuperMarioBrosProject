@@ -29,11 +29,11 @@ public class SensorDeTeclasMenu implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_ENTER) {
+		if (keyCode ==  KeyEvent.VK_ENTER) {
 			enterPresionado = true;
-		} else if (keyCode == KeyEvent.VK_S) {
+		} else if (keyCode ==  KeyEvent.VK_S) {
 			SPresionado = true;
-		} else if (keyCode == KeyEvent.VK_W) {
+		} else if (keyCode ==  KeyEvent.VK_W) {
 			WPresionado = true;
 		}
     }
@@ -41,13 +41,13 @@ public class SensorDeTeclasMenu implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
-    	if (keyCode == KeyEvent.VK_ENTER) {
+    	if (keyCode ==  KeyEvent.VK_ENTER) {
     		enterPresionado = false;
     		enterAccionado = false;
-    	} else if (keyCode == KeyEvent.VK_S) {
+    	} else if (keyCode ==  KeyEvent.VK_S) {
     		SPresionado = false;
     		SAccionado = false;
-    	} else if (keyCode == KeyEvent.VK_W) {
+    	} else if (keyCode ==  KeyEvent.VK_W) {
     		WPresionado = false;
     		WAccionado = false;
     	}

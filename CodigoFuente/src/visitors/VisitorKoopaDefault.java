@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorKoopaDefault implements Visitante {
 
@@ -13,9 +14,12 @@ public class VisitorKoopaDefault implements Visitante {
     private ContextoKoopaTroopa miContexto;
     
     private DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorKoopaDefault(KoopaDefault miEstado) {
-        this.miEstado = miEstado;
+    public VisitorKoopaDefault(KoopaDefault miEstado, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEstado = miEstado;
         this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -124,6 +128,8 @@ public class VisitorKoopaDefault implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)
     		&& !this.miContexto.obtenerRemovido()) {
+    		generadorSonidos.detenerMusicaFondo();
+    		generadorSonidos.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miContexto.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);

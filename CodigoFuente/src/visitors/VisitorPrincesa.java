@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 import ventanas.ControladorVistas;
 
 public class VisitorPrincesa implements Visitante {
@@ -13,8 +14,11 @@ public class VisitorPrincesa implements Visitante {
     
     protected PrincesaPeach miEntidad;
     
-    public VisitorPrincesa(ControladorVistas controlador, PrincesaPeach miEntidad) {
-        this.controlador = controlador;
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorPrincesa(ControladorVistas controlador, PrincesaPeach miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.controlador = controlador;
         this.miEntidad = miEntidad;
     }
 

@@ -93,18 +93,17 @@ public class Nivel {
         this.spinysAAgregar.add(spiny);
     }
 
-    public void agregarSpinysAAgregar() {
-        for(Enemigo spiny : spinysAAgregar) {
-            spiny.establecerNivel(this);
-        }
-        enemigos.addAll(spinysAAgregar);
-        spinysAAgregar = new ArrayList<>();
-    }
 
     public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
         powerUp.establecerNivel(this);
     }
+	
+	
+	public void agregarPlataformasAfectables(Plataforma plataforma) {
+        this.plataformasAfectables.add(plataforma);
+    }
+	
 
     public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
         this.bolasDeFuegoAAgregar.add(bolaDeFuego);

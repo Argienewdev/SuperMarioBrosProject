@@ -38,10 +38,20 @@ public class Lakitu extends Enemigo {
     		this.contadorTicksDisparo++;
     	} else {
     		this.contadorTicksDisparo = 0;
-    		int posX = obtenerPosicionLogica().x + this.obtenerAncho();
-    		int posY = obtenerPosicionLogica().y + this.obtenerAlto();
-    		Point posicionInicialSpiny = new Point(posX, posY);
-    		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionInicialSpiny);
+    		int posGraficaX = obtenerPosicionGrafica().x + (obtenerAncho() / 2);
+    		int posGraficaY = obtenerPosicionGrafica().y;
+    		
+    		int posLogicaX = obtenerPosicionLogica().x + (obtenerAncho() / 2);
+    		int posLogicaY = obtenerPosicionLogica().y;
+    		
+    		Point posicionGraficaSpiny = new Point(posGraficaX,posGraficaY);
+    		Point posicionLogicaSpiny = new Point(posLogicaX,posLogicaY);
+
+    		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionLogicaSpiny);
+    		
+    		spiny.establecerPosicionGrafica(posicionGraficaSpiny);
+    		spiny.obtenerObserverGrafico().actualizar();
+    		
     		obtenerNivel().agregarSpinyAAgregar(spiny);
     	}
     }
@@ -69,7 +79,7 @@ public class Lakitu extends Enemigo {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {
-    		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <= 0; 
+    		boolean chocoBordeIzquierdo = this.obtenerHitbox().x <=  0; 
 			if (chocoBordeIzquierdo) {
 				if (this.velocidadDireccional.x < 0) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);

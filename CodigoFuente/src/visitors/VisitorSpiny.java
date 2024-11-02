@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorSpiny implements Visitante {
 	
@@ -12,8 +13,10 @@ public class VisitorSpiny implements Visitante {
 
     protected DetectorDireccionColision detectorDireccionColision;
 
+    protected GeneradorSonidos generadorSonidos;
 	
-	public VisitorSpiny(Spiny miEntidad) {
+	public VisitorSpiny(Spiny miEntidad, GeneradorSonidos generadorSonidos) {
+		this.generadorSonidos = generadorSonidos;
 		this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
 	}

@@ -5,15 +5,19 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorPiranhaPlant implements Visitante {
     
     protected PiranhaPlant miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorPiranhaPlant(PiranhaPlant miEntidad) {
-        this.miEntidad = miEntidad;
+    public VisitorPiranhaPlant(PiranhaPlant miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 

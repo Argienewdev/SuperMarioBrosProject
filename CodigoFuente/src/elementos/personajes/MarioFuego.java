@@ -27,7 +27,7 @@ public class MarioFuego extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioFuego(this);
+		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
@@ -89,21 +89,28 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x;
+		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x + (this.contexto.obtenerAncho() / 2);
 		int posGraficaY = obtenerContexto().obtenerPosicionGrafica().y;
-		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x;
+		
+		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x + (this.contexto.obtenerAncho() / 2);
 		int posLogicaY = obtenerContexto().obtenerPosicionLogica().y;
+		
 		Point posicionGraficaBolaDeFuego = new Point(posGraficaX,posGraficaY);
 		Point posicionLogicaBolaDeFuego = new Point(posLogicaX,posLogicaY);
+		
 		Point velocidadDireccionalBolaDeFuego = new Point(0,0);
+		
 		if (this.obtenerContexto().obtenerMirandoAlFrente()) {
 			velocidadDireccionalBolaDeFuego = new Point(15,0);
 		} else {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
+		
 		BolaDeFuego bolaDeFuego = fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		
 		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
-		System.out.println(bolaDeFuego.obtenerPosicionLogica().x);
+		bolaDeFuego.obtenerObserverGrafico().actualizar();
+		
 		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
 	}
 	

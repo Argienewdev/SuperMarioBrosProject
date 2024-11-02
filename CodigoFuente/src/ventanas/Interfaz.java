@@ -22,9 +22,9 @@ public class Interfaz extends JPanel{
 	public Interfaz(){
 		setPreferredSize(new Dimension(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.PANEL_ALTO));
 		setLayout(new BorderLayout());
-		vidasLabel= new JLabel("Vidas: 3");
-		puntajeLabel= new JLabel("Puntaje 0");
-		tiempoLabel= new JLabel("Tiempo: 300:00");
+		vidasLabel =  new JLabel("Vidas: 3");
+		puntajeLabel =  new JLabel("Puntaje 0");
+		tiempoLabel =  new JLabel("Tiempo: 300:00");
 		nivelLabel = new JLabel("Nivel: 1");
 		    
 		setOpaque(false);
@@ -69,7 +69,7 @@ public class Interfaz extends JPanel{
 	    int segundos = Integer.parseInt(tiempoPartes[0]);
 	    int miliSegundos = Integer.parseInt(tiempoPartes[1]);
 	    
-	    if (miliSegundos == 0) {
+	    if (miliSegundos ==  0) {
 	        if (segundos > 0) {
 	            segundos--;
 	            miliSegundos = 59;
@@ -87,7 +87,7 @@ public class Interfaz extends JPanel{
 	}
 	
 	public void configurarFuente() {
-		tipoFuentes= new Fuentes();
+		tipoFuentes =  new Fuentes();
 		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));

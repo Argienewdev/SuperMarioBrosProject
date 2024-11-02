@@ -25,7 +25,6 @@ public abstract class NoJugable extends Entidad {
 
 	public void eliminarDelNivel() {
 		this.miNivel.agregarEntidadesAEliminar(this);
-		this.observerGrafico.establecerRemovido(true);
 	}
 	
 	public int obtenerTicksAnimacion() {

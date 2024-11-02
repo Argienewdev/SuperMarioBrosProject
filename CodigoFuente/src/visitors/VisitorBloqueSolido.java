@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorBloqueSolido implements Visitante {
     
@@ -12,8 +13,11 @@ public class VisitorBloqueSolido implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorBloqueSolido(BloqueSolido miEntidad) {
-        this.miEntidad = miEntidad;
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorBloqueSolido(BloqueSolido miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
     
@@ -64,8 +68,8 @@ public class VisitorBloqueSolido implements Visitante {
     }
     
     
-    public void visitarMoneda(Moneda monedas) {
-        
+    public void visitarMoneda(Moneda moneda) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, moneda);
     }
     
     

@@ -29,7 +29,7 @@ public class KoopaDefault implements EstadoKoopa {
 		return this.contexto;
 	}
 	public Visitante obtenerVisitante() {
-		return new VisitorKoopaDefault(this);
+		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	@Override
@@ -46,10 +46,10 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.obtenerContext().incrementarContadorTicks();
-		if (this.obtenerContext().obtenerContadorTicks() == 1){
+		if (this.obtenerContext().obtenerContadorTicks() ==  1){
 			this.obtenerContext().establecerSprite(this.obtenerContext().obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
-		} else if (this.obtenerContext().obtenerContadorTicks() == this.obtenerContext().obtenerTicksAnimacion()) {
+		} else if (this.obtenerContext().obtenerContadorTicks() ==  this.obtenerContext().obtenerTicksAnimacion()) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.obtenerContext().eliminarDelNivel();
 		}
@@ -61,7 +61,7 @@ public class KoopaDefault implements EstadoKoopa {
 	
 	@Override
 	public void mover() {
-		if (this.contexto.obtenerVelocidadDireccional().x <= 0) {
+		if (this.contexto.obtenerVelocidadDireccional().x <=  0) {
 			moverIzquierda();
 		} else if (this.contexto.obtenerVelocidadDireccional().x > 0) {
 			moverDerecha();

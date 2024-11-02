@@ -1,10 +1,16 @@
 package visitors;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorContextoMario implements Visitante {
 	
@@ -12,7 +18,10 @@ public class VisitorContextoMario implements Visitante {
 	
 	protected DetectorDireccionColision detectorDireccionColision;
 	
-	public VisitorContextoMario (ContextoMario miEntidad) {
+	protected GeneradorSonidos generadorSonidos;
+	
+	public VisitorContextoMario (ContextoMario miEntidad, GeneradorSonidos generadorSonidos) {
+		this.generadorSonidos = generadorSonidos;
 		this.miEntidad = miEntidad;
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
@@ -59,17 +68,20 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
+		this.generadorSonidos.PowerupAgarrado();
 		superChampinion.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	
 	public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+		this.generadorSonidos.PowerupAgarrado();
 		florDeFuego.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
 		if (!champinionVerde.obtenerRemovido()) {
+			this.generadorSonidos.PowerupAgarrado();
 			this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
 			this.miEntidad.ganarVida();
 			champinionVerde.establecerRemovido(true);
@@ -78,12 +90,14 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarEstrella(Estrella estrella) {
+		this.generadorSonidos.PowerupAgarrado();
 		estrella.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 
 	
 	public void visitarMoneda(Moneda monedas) {
 		if (!monedas.obtenerRemovido()) {
+			this.generadorSonidos.moneda();
     		this.miEntidad.ganarPuntos(monedas.obtenerPuntosPorDefault());
         	monedas.establecerRemovido(true);
     	}
@@ -91,8 +105,12 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)) {
-            bloqueDePregunta.liberarPowerUp();
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad) 
+			&& !bloqueDePregunta.estaVacio()) {
+            if (bloqueDePregunta.obtenerPowerUp().obtenerHaceRuidoAlSalir()) {
+    			this.generadorSonidos.powerUpEmerge();
+            }
+			bloqueDePregunta.liberarPowerUp();
         }
 	}
 
@@ -108,9 +126,22 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarBandera(Bandera bandera) {
-        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
-        this.miEntidad.reiniciarEstado();
-		this.miEntidad.obtenerNivel().establecerCompletado(true);
+		if (!bandera.obtenerFueActivada()) {
+			this.generadorSonidos.detenerMusicaFondo();
+			bandera.establecerActivada(true);
+			this.generadorSonidos.tocarBanderaFinNivel();
+			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
+			
+			Timer timer = new Timer(6000, new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		            miEntidad.reiniciarEstado();
+		    		miEntidad.obtenerNivel().establecerCompletado(true);
+		        }
+		    });
+			
+		    timer.setRepeats(false);
+		    timer.start();
+		}
 	}
 
 	

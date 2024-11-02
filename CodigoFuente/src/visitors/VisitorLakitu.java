@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorLakitu implements Visitante {
     
@@ -12,7 +13,10 @@ public class VisitorLakitu implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorLakitu(Lakitu miEntidad) {
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorLakitu(Lakitu miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -67,6 +71,8 @@ public class VisitorLakitu implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) 
             && !this.miEntidad.obtenerRemovido()) {
+            this.generadorSonidos.detenerMusicaFondo();
+        	this.generadorSonidos.pierdeVida();
     		ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
@@ -79,18 +85,24 @@ public class VisitorLakitu implements Visitante {
 
     
     public void visitarSuperMario(SuperMario superMario) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
-    		EstadoMario marioRecuperacion = new MarioRecuperacion();
-	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
-    	}
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
+        		&& !this.miEntidad.obtenerRemovido()) {
+        		EstadoMario marioRecuperacion = new MarioRecuperacion();
+    	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
+        	} else {
+                detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superMario.obtenerContexto());
+            }
     }
 
     
     public void visitarMarioFuego(MarioFuego marioFuego) {
-    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
-    		EstadoMario marioRecuperacion = new MarioRecuperacion();
-    		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
-    	}
+    	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad) 
+        		&& !this.miEntidad.obtenerRemovido()) {
+        		EstadoMario marioRecuperacion = new MarioRecuperacion();
+        		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
+        	} else {
+                detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioFuego.obtenerContexto());
+            }
     }
 
     
@@ -98,6 +110,9 @@ public class VisitorLakitu implements Visitante {
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	if (this.miEntidad.obtenerRemovido()) {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioRecuperacion.obtenerContexto());
+    	}
     }
 
     

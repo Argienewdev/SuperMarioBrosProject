@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 import ventanas.ControladorVistas;
 
 public class VisitorBandera implements Visitante {
@@ -14,9 +15,12 @@ public class VisitorBandera implements Visitante {
     private ControladorVistas controlador;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
    
-    public VisitorBandera(ControladorVistas controlador, Bandera miEntidad) {
-        this.controlador = controlador;
+    public VisitorBandera(ControladorVistas controlador, Bandera miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.controlador = controlador;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
@@ -75,6 +79,7 @@ public class VisitorBandera implements Visitante {
 
     
     public void visitarContextoMario(ContextoMario contextoMario) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
     }
 
     

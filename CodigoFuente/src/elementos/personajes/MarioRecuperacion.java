@@ -19,7 +19,7 @@ public class MarioRecuperacion extends MarioDefault {
 	
 	public void actualizarTiempo() {
 		tiempoEnRecuperacion--;
-		if (tiempoEnRecuperacion <= 0)
+		if (tiempoEnRecuperacion <=  0)
 			contexto.reiniciarEstado();
 	}
 	
@@ -29,7 +29,7 @@ public class MarioRecuperacion extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		 return new VisitorMarioRecuperacion(this);
+		 return new VisitorMarioRecuperacion(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {

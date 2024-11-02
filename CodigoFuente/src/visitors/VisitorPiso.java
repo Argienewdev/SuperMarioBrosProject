@@ -7,21 +7,25 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorPiso implements Visitante {
 
     protected Piso miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorPiso(Piso miEntidad) {
+    public VisitorPiso(Piso miEntidad, GeneradorSonidos generadorSonidos) {
+    	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
     }
 
     @Override
@@ -29,12 +33,12 @@ public class VisitorPiso implements Visitante {
     	if (!spiny.obtenerAterrizo()) {
     		spiny.establecerAterrizo(true);
     	}
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, goomba);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
     }
 
     @Override
@@ -56,16 +60,17 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, estrella);
     }
 
     @Override
-    public void visitarMoneda(Moneda monedas) {
+    public void visitarMoneda(Moneda moneda) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, moneda);
     }
 
     @Override
@@ -113,12 +118,12 @@ public class VisitorPiso implements Visitante {
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {   
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoMario);
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {    
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopaTroopa);
+        this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, contextoKoopaTroopa);
     }
 
     @Override
@@ -133,7 +138,7 @@ public class VisitorPiso implements Visitante {
 
     @Override
    	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-   		if (detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
+   		if (this.detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {

@@ -15,7 +15,7 @@ public class SuperMario extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		return new VisitorSuperMario(this);
+		return new VisitorSuperMario(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {

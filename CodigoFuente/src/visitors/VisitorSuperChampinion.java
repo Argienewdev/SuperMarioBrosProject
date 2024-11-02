@@ -5,15 +5,19 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorSuperChampinion implements Visitante {
 
     protected SuperChampinion miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorSuperChampinion(SuperChampinion miEntidad) {
-        this.miEntidad = miEntidad;
+    public VisitorSuperChampinion(SuperChampinion miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 

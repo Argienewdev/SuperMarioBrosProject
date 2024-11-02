@@ -34,7 +34,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	@Override
 	public Visitante obtenerVisitante() {
-		 return new VisitorMarioInvulnerable(this);
+		 return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
@@ -91,7 +91,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public void actualizarTiempo () {
 		duracion--;
-		if (duracion <= 0)
+		if (duracion <=  0)
 			contexto.cambiarEstado(estadoPrevio);
 	}
 }

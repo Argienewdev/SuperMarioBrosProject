@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorChampinionVerde implements Visitante {
     
@@ -12,8 +13,11 @@ public class VisitorChampinionVerde implements Visitante {
     
     protected DetectorDireccionColision detectorDireccionColision;
     
-    public VisitorChampinionVerde(ChampinionVerde miEntidad) {
-        this.miEntidad = miEntidad;
+    protected GeneradorSonidos generadorSonidos;
+    
+    public VisitorChampinionVerde(ChampinionVerde miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 

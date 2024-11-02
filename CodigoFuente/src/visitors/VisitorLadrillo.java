@@ -7,15 +7,19 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorSonidos;
 
 public class VisitorLadrillo implements Visitante {
     
     private Ladrillo miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
+    
+    protected GeneradorSonidos generadorSonidos;
 
-    public VisitorLadrillo(Ladrillo miEntidad) {
-        this.miEntidad = miEntidad;
+    public VisitorLadrillo(Ladrillo miEntidad, GeneradorSonidos generadorSonidos) {
+        this.generadorSonidos = generadorSonidos;
+    	this.miEntidad = miEntidad;
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
@@ -29,7 +33,7 @@ public class VisitorLadrillo implements Visitante {
     	if (!spiny.obtenerAterrizo()) {
     		spiny.establecerAterrizo(true);
     	}
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
@@ -67,8 +71,8 @@ public class VisitorLadrillo implements Visitante {
     }
     
     @Override
-    public void visitarMoneda(Moneda monedas) {
-        // Implementar lógica aquí si es necesario
+    public void visitarMoneda(Moneda moneda) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, moneda);
     }
     
     @Override
@@ -150,7 +154,7 @@ public class VisitorLadrillo implements Visitante {
 
     @Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		if (detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
+		if (this.detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
