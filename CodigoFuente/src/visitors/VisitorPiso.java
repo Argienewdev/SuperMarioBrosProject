@@ -142,6 +142,7 @@ public class VisitorPiso implements Visitante {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
+   			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}
    	}

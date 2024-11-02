@@ -143,8 +143,6 @@ public class ControladorMovimiento {
 				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
 			
-			//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
-			//de juego aca tira error porque esta siendo eliminado
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
 			    if (entidad.huboColision(elemento)) {
 			        elemento.aceptarVisitante(entidad.obtenerVisitante());

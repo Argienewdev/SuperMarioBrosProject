@@ -38,7 +38,7 @@ public class MasterMind {
 	private void moverEnemigo(Enemigo enemigo) {
 		boolean esVisibleEnLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75)
 										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  -100;
-		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
+		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0;
 		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
 		if (esVisibleEnLaPantalla) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla() 

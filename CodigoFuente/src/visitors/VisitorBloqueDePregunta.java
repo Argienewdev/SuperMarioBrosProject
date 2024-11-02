@@ -128,14 +128,13 @@ public class VisitorBloqueDePregunta implements Visitante {
    			fireball.retrotraerMovimientoVertical(this.miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {
+   			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}
 	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

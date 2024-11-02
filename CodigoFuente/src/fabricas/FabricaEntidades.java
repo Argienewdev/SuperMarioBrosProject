@@ -49,7 +49,7 @@ public class FabricaEntidades {
         spinyADevolver.establecerVisitor(visitorSpiny);
         ObserverGrafico observerGraficoSpiny = new ObserverGrafico(spinyADevolver);
         spinyADevolver.establecerObserverGrafico(observerGraficoSpiny);
-        this.pantallaDeJuego.agregarLabel(spinyADevolver.obtenerObserverGrafico());
+        this.pantallaDeJuego.agregarLabelAAgregar(observerGraficoSpiny);
         return spinyADevolver;
     }
     
@@ -204,7 +204,7 @@ public class FabricaEntidades {
     	bolaDeFuegoADevolver.establecerVisitor(visitor);
     	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
     	bolaDeFuegoADevolver.establecerObserverGrafico(observer);
-        this.pantallaDeJuego.agregarLabel(bolaDeFuegoADevolver.obtenerObserverGrafico());
+        this.pantallaDeJuego.agregarLabelAAgregar(observer);
         return bolaDeFuegoADevolver;
     } 
     

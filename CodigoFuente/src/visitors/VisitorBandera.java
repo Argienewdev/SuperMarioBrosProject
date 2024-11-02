@@ -132,11 +132,11 @@ public class VisitorBandera implements Visitante {
 	}
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		fireball.establecerRemovido(true);
+   		generadorSonidos.choqueFireball();
+    	fireball.establecerRemovido(true);
 	}
 
 	
 	public void visitarVacio(Vacio vacio) {
-
 	}
 }
