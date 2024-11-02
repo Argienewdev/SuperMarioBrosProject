@@ -33,7 +33,7 @@ public class VisitorLadrillo implements Visitante {
     	if (!spiny.obtenerAterrizo()) {
     		spiny.establecerAterrizo(true);
     	}
-        detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, spiny);
     }
 
     @Override
@@ -71,8 +71,8 @@ public class VisitorLadrillo implements Visitante {
     }
     
     @Override
-    public void visitarMoneda(Moneda monedas) {
-        // Implementar lógica aquí si es necesario
+    public void visitarMoneda(Moneda moneda) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, moneda);
     }
     
     @Override
@@ -154,7 +154,7 @@ public class VisitorLadrillo implements Visitante {
 
     @Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		if (detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
+		if (this.detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
    		} else {

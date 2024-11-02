@@ -68,8 +68,8 @@ public class VisitorBloqueSolido implements Visitante {
     }
     
     
-    public void visitarMoneda(Moneda monedas) {
-        
+    public void visitarMoneda(Moneda moneda) {
+    	this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, moneda);
     }
     
     
