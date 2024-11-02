@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
+import elementos.plataformas.Plataforma;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ConstantesGlobales;
 
@@ -16,8 +17,6 @@ public class ControladorMovimiento {
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	private Nivel nivel;
-	
-	int cont=0;
 	
 	@SuppressWarnings("exports")
 	public ControladorMovimiento(Jugable marioJugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel) {
@@ -145,7 +144,6 @@ public class ControladorMovimiento {
 				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
 				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
-			cont=0;
 			verificarColisionConPlataformas(entidad);
 			verificarColisionConEntidades(entidad);
 			System.out.println(cont);
@@ -158,7 +156,6 @@ public class ControladorMovimiento {
 	
 	private void verificarColisionConEntidades(Jugable jugador) {
 		for (Entidad entidad : this.nivel.obtenerEntidades()) {
-			cont++;
 	        if (entidad != null && jugador.huboColision(entidad)) {
 	        	entidad.aceptarVisitante(jugador.obtenerVisitante());
 	            jugador.aceptarVisitante(entidad.obtenerVisitante());
@@ -169,7 +166,6 @@ public class ControladorMovimiento {
 
 	private void verificarColisionConPlataformas(Jugable entidad) {
 	    for (ElementoDeJuego elemento : this.nivel.obtenerPlataformasAdyacentes(entidad)) {
-	    	cont++;
 	    	if (elemento != null && entidad.huboColision(elemento)) {
 	            elemento.aceptarVisitante(entidad.obtenerVisitante());
 	            entidad.aceptarVisitante(elemento.obtenerVisitante());

@@ -20,7 +20,7 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
     
-    protected Mapa mapa;
+    protected MatrizPlataforma matrizPlataforma;
     
     protected Collection<PowerUp> powerUps;
     
@@ -46,7 +46,7 @@ public class Nivel {
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
-        this.mapa = new Mapa(silueta.obtenerAncho(), silueta.obtenerAlto());
+        this.matrizPlataforma = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
         inicializarColecciones();
         this.plataformasAfectables = new ArrayList<Plataforma>();
         this.nivelCompletado = false;
@@ -65,29 +65,25 @@ public class Nivel {
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
-        mapa.agregarPlataforma(plataforma);
+        matrizPlataforma.agregarPlataforma(plataforma);
         plataforma.establecerNivel(this);
     }
 
     public void removerPlataforma(Plataforma plataforma) {
-        mapa.removerPlataforma(plataforma);
+        matrizPlataforma.removerPlataforma(plataforma);
     }
-    /*
-    public void agregarPlataformasAfectables(Plataforma plataforma) {
-        mapa.agregarPlataformaAfectable(plataforma);
-    }
-    */
+    
 
     public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }
 
     public Iterable<Plataforma> obtenerPlataformas() {
-        return mapa.obtenerTodasLasPlataformas();
+        return matrizPlataforma.obtenerTodasLasPlataformas();
     }
 
     public Plataforma obtenerPlataformaEnPunto(Point punto) {
-        return mapa.obtenerPlataformaEnPunto(punto);
+        return matrizPlataforma.obtenerPlataformaEnPunto(punto);
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
@@ -130,8 +126,7 @@ public class Nivel {
     public void removerEntidadesAEliminar() {
         enemigos.removeAll(entidadesAEliminar);
         powerUps.removeAll(entidadesAEliminar);
-        mapa.limpiarMapa();
-        mapa.obtenerPlataformasAfectables().removeAll(entidadesAEliminar);
+        this.plataformasAfectables.removeAll(entidadesAEliminar);
         bolasDeFuego.removeAll(entidadesAEliminar);
         entidadesAEliminar = new ArrayList<>();
     }
@@ -199,7 +194,7 @@ public class Nivel {
     }
     
     public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
-    	return this.mapa.obtenerAdyacentes( entidad);
+    	return this.matrizPlataforma.obtenerAdyacentes( entidad);
     	
     }
 
