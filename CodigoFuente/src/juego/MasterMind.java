@@ -105,7 +105,8 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionConPlataformas(Entidad entidad) {
-	    for (Plataforma plataforma : nivel.obtenerPlataformasAdyacentes(entidad)) {
+	    
+		for (Plataforma plataforma : nivel.obtenerPlataformasAdyacentes(entidad)) {
 	        if (plataforma != null && entidad.huboColision(plataforma)) {
 	        	plataforma.aceptarVisitante(entidad.obtenerVisitante());
 	            entidad.aceptarVisitante(plataforma.obtenerVisitante());
