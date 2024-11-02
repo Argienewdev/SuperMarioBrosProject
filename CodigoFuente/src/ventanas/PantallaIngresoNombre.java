@@ -1,8 +1,11 @@
 package ventanas;
 
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
+
 import fuentes.Fuentes;
 import ranking.Jugador;
+import ranking.LimitadorDeCaracteres;
 import ranking.Ranking;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -99,6 +102,7 @@ public class PantallaIngresoNombre extends Pantalla {
         campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
         campoNombre.setFocusable(true);
+        ((AbstractDocument) campoNombre.getDocument()).setDocumentFilter(new LimitadorDeCaracteres(4));
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
