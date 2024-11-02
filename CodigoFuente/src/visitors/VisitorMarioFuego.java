@@ -28,11 +28,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-			buzzyBeetle.establecerRemovido(true);
-			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
-		}
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
+    		&& !buzzyBeetle.obtenerRemovido()) {
+    		otorgarPuntosYEliminar(buzzyBeetle);
+    	}
     }
 
     @Override
@@ -41,10 +40,9 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    		goomba.establecerRemovido(true);
-			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.obtenerRemovido()) {
+    		otorgarPuntosYEliminar(goomba);
 		}
     }
 
@@ -56,7 +54,8 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
-    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()
+    		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
 			this.generadorSonidos.emitirSonidoAplastarEnemigo();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
         }
@@ -78,9 +77,7 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    		lakitu.establecerRemovido(true);
-            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+    		otorgarPuntosYEliminar(lakitu);
     	}
     }
 
@@ -90,8 +87,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
-        superChampinion.establecerRemovido(true);
+    	if(!superChampinion.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
+    		superChampinion.establecerRemovido(true);
+    	}
     }
 
     @Override
@@ -107,8 +106,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
-        estrella.establecerRemovido(true);
+    	if(!estrella.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
+    		estrella.establecerRemovido(true);
+    	}
     }
 
     @Override
@@ -152,6 +153,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
@@ -160,15 +162,17 @@ public class VisitorMarioFuego implements Visitante {
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
-	
-	private void otorgarPuntosYEliminar(Enemigo enemigo) {
-		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
-		this.miContexto.ganarPuntos(puntos);
-		enemigo.establecerRemovido(true);
-	}
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
+	}
+	
+	// Método auxiliar para otorgar puntos y eliminar enemigos
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
+		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+		this.miContexto.ganarPuntos(puntos);
+		enemigo.establecerRemovido(true);
 	}
     
 }

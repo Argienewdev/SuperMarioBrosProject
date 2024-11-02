@@ -141,6 +141,7 @@ public class VisitorBolaDeFuego implements Visitante {
 	// Método auxiliar para otorgar puntos y eliminar enemigos
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
+		this.generadorSonidos.emitirSonidoAplastarEnemigo();
 		this.miEntidad.obtenerJugador().ganarPuntos(puntos);
 		enemigo.establecerRemovido(true);
 	}
