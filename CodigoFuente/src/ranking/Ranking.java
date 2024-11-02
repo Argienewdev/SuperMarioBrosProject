@@ -46,7 +46,7 @@ public class Ranking implements Serializable {
 	
     public void guardarEstado() {
 		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntajes");
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntaje");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this);
 			objectOutputStream.flush();
@@ -58,6 +58,10 @@ public class Ranking implements Serializable {
 			e.printStackTrace();
 		}
 	}
+    
+    public void reiniciarRanking() {
+    	topJugadores.clear();
+    }
     
     public boolean esTop(int puntaje) {
         boolean esTop = false;

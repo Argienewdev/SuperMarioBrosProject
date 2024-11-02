@@ -34,6 +34,8 @@ public class Juego {
 	
 	public Juego() {
 		ranking = cargarEstadoRanking();
+		//Llamar solo cuando se quiera reiniciar
+//		ranking.reiniciarRanking();
 	}
 	
 	public Sprite obtenerSpriteMario(){
