@@ -9,7 +9,7 @@ import visitors.Visitante;
 
 public abstract class Enemigo extends NoJugable {
 	
-	protected int velocidad_horizontal_enemigo;
+	protected int velocidadHorizontalEnemigo;
 	
 	protected int puntosOtorgadosPorEliminacion;
 		
@@ -19,7 +19,7 @@ public abstract class Enemigo extends NoJugable {
 	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
-		this.velocidad_horizontal_enemigo = 2;
+		this.velocidadHorizontalEnemigo = 2;
 	}
     
     public int obtenerPuntosOtorgadosPorEliminacion() {
@@ -31,13 +31,13 @@ public abstract class Enemigo extends NoJugable {
     }
 
     protected void moverDerecha() {
-    	Point velocidad = new Point(velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
+    	Point velocidad = new Point(velocidadHorizontalEnemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     	this.establecerMirandoAlFrente(true);
     }
     
     protected void moverIzquierda() {
-    	Point velocidad = new Point(-velocidad_horizontal_enemigo, this.obtenerVelocidadDireccional().y);
+    	Point velocidad = new Point(-velocidadHorizontalEnemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     	this.establecerMirandoAlFrente(false);
     }
@@ -74,7 +74,7 @@ public abstract class Enemigo extends NoJugable {
 	}
     
     public int obtenerVelocidadHorizontalEnemigo() {
-    	return velocidad_horizontal_enemigo;
+    	return velocidadHorizontalEnemigo;
     }
     
     public abstract void aceptarVisitante(Visitante visitante);
