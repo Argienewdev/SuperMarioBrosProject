@@ -2,9 +2,12 @@ package juego;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 import elementos.ElementoDeJuego;
 import elementos.entidades.Jugable;
+import elementos.plataformas.Plataforma;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ConstantesGlobales;
 
@@ -145,18 +148,43 @@ public class ControladorMovimiento {
 			
 			//TODO cuando la bola de fuego toca a algun enemigo, pedir la lista de elementos
 			//de juego aca tira error porque esta siendo eliminado
-			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-			    if (entidad.huboColision(elemento)) {
-			        elemento.aceptarVisitante(entidad.obtenerVisitante());
-			        entidad.aceptarVisitante(elemento.obtenerVisitante());
-			    }
-			}
+//			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
+//			    if (entidad.huboColision(elemento)) {
+//			        elemento.aceptarVisitante(entidad.obtenerVisitante());
+//			        entidad.aceptarVisitante(elemento.obtenerVisitante());
+//			    }
+//			}
+			
+			verificarColisionConElemento(entidad);
 			
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 			
 		} else {
 	    	this.nivel.obtenerPartida().cambiarNivel();
 		}
+	}
+	
+	private void verificarColisionConElemento(Jugable entidad) {
+		int posX = personajeJugable.obtenerPosicionLogica().x;
+		int posY = personajeJugable.obtenerPosicionLogica().y;
+		
+		List<ElementoDeJuego> elementos = new ArrayList<>();
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX-50),posY)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX-50),posY-50)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX),posY-50)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX),posY+50)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX-50),posY+50)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX+50),posY)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX+50),posY-50)));
+		elementos.add(personajeJugable.obtenerNivel().obtenerPlataformaEnPunto(new Point((posX+50),posY+50)));
+		
+		for (ElementoDeJuego elemento : elementos) 
+			if (elemento != null &&  entidad.huboColision(elemento)) {
+				System.out.println("colision "+elemento.obtenerPosicionLogica().x + " " + elemento.obtenerPosicionLogica().y);
+				elemento.aceptarVisitante(entidad.obtenerVisitante());
+		        entidad.aceptarVisitante(elemento.obtenerVisitante());}
+//			} else
+//				System.out.println("no colision");
 	}
 	
 	private void cambiarPosicionHitboxDelJugadorX() {

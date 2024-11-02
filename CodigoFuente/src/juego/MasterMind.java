@@ -6,7 +6,6 @@ import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
-import elementos.entidades.NoJugable;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;

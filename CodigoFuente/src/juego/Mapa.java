@@ -1,85 +1,94 @@
 package juego;
 
+import java.util.HashMap;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-
 import elementos.plataformas.Plataforma;
 
 public class Mapa {
-	
-    private ConcurrentHashMap<Integer, List<Plataforma>> columnas;
     
-    private final int anchoMapa;
-
-    public Mapa(int anchoMapa) {
+    private static final int TAMANIOCELDA = 50;
+    
+    private int anchoMapa;
+    
+    private int altoMapa;
+    
+    private HashMap<Point, Plataforma> grilla;
+    
+    private Collection<Plataforma> todasLasPlataformas;
+    
+    private Collection<Plataforma> plataformasAfectables;
+    
+    public Mapa(int anchoMapa, int altoMapa) {
         this.anchoMapa = anchoMapa;
-        this.columnas = new ConcurrentHashMap<>();
-        inicializarColumnas();
+        this.altoMapa = altoMapa;
+        this.grilla = new HashMap<>();
+        this.todasLasPlataformas = new ArrayList<>();
+        this.plataformasAfectables = new ArrayList<>();;
     }
-
-    private void inicializarColumnas() {
-        for (int i = 0; i <= anchoMapa; i++) {
-            columnas.put(i, new ArrayList<>());
-        }
-    }
-
-    public synchronized void agregarPlataforma(Plataforma plataforma) {
-        int posX = plataforma.obtenerPosicionLogica().x;
+    
+    
+    public void agregarPlataforma(Plataforma plataforma) {
+    	Point posicionPlataforma = plataforma.obtenerPosicionLogica();
+        int altoPlataforma = plataforma.obtenerAlto();
+        int anchoPlataforma = plataforma.obtenerAncho();
+        int posX = posicionPlataforma.x;
+        int posY = posicionPlataforma.y;
         
-        List<Plataforma> plataformasEnColumna = columnas.get(posX);
-        if (plataformasEnColumna == null) {
-            plataformasEnColumna = new ArrayList<>();
-            columnas.put(posX, plataformasEnColumna);
+        for (int i = posX; i < posX + anchoPlataforma; i += TAMANIOCELDA)
+        	for (int j = posY; j < posY + altoPlataforma; j += TAMANIOCELDA) {
+        		Point celda = new Point (i / TAMANIOCELDA, j / TAMANIOCELDA);
+        		grilla.put(celda, plataforma);
+        	}
+        todasLasPlataformas.add(plataforma);
         }
-        synchronized (plataformasEnColumna) {
-            plataformasEnColumna.add(plataforma);
-        }
-    }
-
-    public synchronized void removerPlataforma(Plataforma plataforma) {
-        int posX = plataforma.obtenerPosicionLogica().x;
-        List<Plataforma> plataformasEnColumna = columnas.get(posX);
+    
+    public void removerPlataforma(Plataforma plataforma) {
+    	Point posicionPlataforma = plataforma.obtenerPosicionLogica();
+        int altoPlataforma = plataforma.obtenerAlto();
+        int anchoPlataforma = plataforma.obtenerAncho();
+        int posX = posicionPlataforma.x;
+        int posY = posicionPlataforma.y;
         
-        if (plataformasEnColumna != null) {
-            synchronized (plataformasEnColumna) {
-                plataformasEnColumna.remove(plataforma);
-            }
-        }
+        for (int i = posX; i < posX + anchoPlataforma; i += TAMANIOCELDA)
+        	for (int j = posY; j < posY + altoPlataforma; j += TAMANIOCELDA) {
+        		Point celda = new Point (i / TAMANIOCELDA, j / TAMANIOCELDA);
+        		grilla.remove(celda);
+        	}
+        todasLasPlataformas.remove(plataforma);
     }
-
-    public List<Plataforma> obtenerPlataformaEnColumna(int x) {
-        List<Plataforma> plataformasEnColumna = columnas.get(x);
-        if (plataformasEnColumna == null) {
-            return new ArrayList<>();
-        }
-        synchronized (plataformasEnColumna) {
-            return plataformasEnColumna;
-        }
+    
+    public void agregarPlataformaAfectable(Plataforma plataforma) {
+    	plataformasAfectables.add(plataforma);
     }
-
-    public List<Plataforma> obtenerTodasLasPlataformas() {
-        List<Plataforma> todasLasPlataformas = new ArrayList<>();
-        
-        for (Integer columna : new ArrayList<>(columnas.keySet())) {
-            List<Plataforma> plataformasEnColumna = columnas.get(columna);
-            if (plataformasEnColumna != null) {
-                synchronized (plataformasEnColumna) {
-                    todasLasPlataformas.addAll(new ArrayList<>(plataformasEnColumna));
-                }
-            }
-        }
-        
-        return todasLasPlataformas;
+    
+    public Collection<Plataforma> obtenerPlataformasAfectables() {
+    	return this.plataformasAfectables;
     }
-
-    public synchronized void limpiarMapa() {
-        columnas.clear();
-        inicializarColumnas();
+    
+    public Collection<Plataforma> obtenerTodasLasPlataformas() {
+    	return this.todasLasPlataformas;
     }
-
-    public int obtenerAnchoMapa() {
-        return anchoMapa;
+    
+    public Plataforma obtenerPlataformaEnPunto (Point punto) {
+    	int posX = punto.x;
+    	int posY = punto.y;
+    	Point celda = new Point ((posX / TAMANIOCELDA), (posY / TAMANIOCELDA));
+    	
+    	return grilla.get(celda);
     }
+    
+   public void limpiarMapa() {
+	   ArrayList<Plataforma> plataformasARemover = new ArrayList<>();
+	   
+	   for (Plataforma plataforma : todasLasPlataformas)
+		   if (plataforma.obtenerRemovido())
+			   plataformasARemover.add(plataforma);
+	   
+	   for (Plataforma plataforma : plataformasARemover)
+		   removerPlataforma(plataforma);
+   }
+   
 }

@@ -78,8 +78,6 @@ public class ControladorVistas {
 	}
 	
 	public void accionarInicioJuego(String modo) {
-		int duracionDePantallaEntreNiveles = 2000;
-
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
@@ -212,8 +210,6 @@ public class ControladorVistas {
 	}
 	
 	public void cambiarNivel() {
-		int duracionPantallaEntreNiveles = 1000;
-		
 		mostrarPantallaEntreNiveles();
 		pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
 	    pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
