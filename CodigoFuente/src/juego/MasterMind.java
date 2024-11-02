@@ -71,7 +71,7 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {
-		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50)) {
+		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50) && !entidad.obtenerDebeMantenerseSiempreEnPantalla()) {
 			entidad.establecerRemovido(true);
 		} else {
 			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {

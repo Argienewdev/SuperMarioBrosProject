@@ -89,10 +89,10 @@ public class MarioFuego extends MarioDefault {
 	}
 
 	private void lanzarBolaDeFuego() {
-		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x;
+		int posGraficaX = obtenerContexto().obtenerPosicionGrafica().x + (this.contexto.obtenerAncho() / 2);
 		int posGraficaY = obtenerContexto().obtenerPosicionGrafica().y;
 		
-		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x;
+		int posLogicaX = obtenerContexto().obtenerPosicionLogica().x + (this.contexto.obtenerAncho() / 2);
 		int posLogicaY = obtenerContexto().obtenerPosicionLogica().y;
 		
 		Point posicionGraficaBolaDeFuego = new Point(posGraficaX,posGraficaY);
