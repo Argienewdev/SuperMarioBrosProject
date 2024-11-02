@@ -17,7 +17,7 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public MarioInvulnerable (EstadoMario estadoPrevio) {
 		this.estadoPrevio = estadoPrevio;
-		this.duracion = 600;
+		this.duracion = 300;
 	}
 	
 	@Override

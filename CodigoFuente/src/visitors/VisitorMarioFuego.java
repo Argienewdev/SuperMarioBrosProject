@@ -1,6 +1,10 @@
 package visitors;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
@@ -93,6 +97,7 @@ public class VisitorMarioFuego implements Visitante {
     	if(!superChampinion.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
     		superChampinion.establecerRemovido(true);
+    		generadorSonidos.PowerupAgarrado();
     	}
     }
 
@@ -101,6 +106,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
             florDeFuego.establecerRemovido(true);
+            generadorSonidos.PowerupAgarrado();
     	}
     }
 
@@ -112,6 +118,15 @@ public class VisitorMarioFuego implements Visitante {
     	if(!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
     		estrella.establecerRemovido(true);
+    		generadorSonidos.modoInvencible();
+            generadorSonidos.detenerMusicaFondo();
+            Timer timer = new Timer(5500, new ActionListener() {
+    	    	public void actionPerformed(ActionEvent e) {
+    	            generadorSonidos.reproducirMusicaFondo();
+    	        }
+    	    });
+            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
+            timer.start(); // Inicia el timer
     	}
     }
 
@@ -119,13 +134,18 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarMoneda(Moneda monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	if(detectorDireccionColision.choquePorAbajo(bloqueDePregunta, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
     		ladrillo.eliminarDelNivel();
+    		generadorSonidos.romperLadrillo();
         }
     }
 
@@ -139,7 +159,11 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {}
