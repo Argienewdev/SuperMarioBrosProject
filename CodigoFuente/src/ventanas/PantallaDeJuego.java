@@ -140,7 +140,7 @@ public class PantallaDeJuego extends Pantalla {
                 nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO;
             }
             
-        	if (nuevaPosicionFondoX !=  posicionFondo.x) {
+        	if (nuevaPosicionFondoX != posicionFondo.x) {
         		fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
         		fondoMovido = true; // Se ha movido el fondo
         	}
@@ -168,9 +168,9 @@ public class PantallaDeJuego extends Pantalla {
     			
     			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
     			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
-    			revalidate();
-    			repaint();
             }
+        	revalidate();
+        	repaint();
         }
     }
 

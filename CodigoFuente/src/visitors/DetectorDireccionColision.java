@@ -16,6 +16,7 @@ public class DetectorDireccionColision {
 		} else if (choquePorArriba(elementoDeJuego, entidad)) {
 			entidad.establecerColisionAbajo(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y - entidad.obtenerAlto());
+			this.eleminarVelocidadVertical(entidad);
 		} else if (choquePorAbajo(elementoDeJuego, entidad)){
 			entidad.establecerColisionArriba(true);
 			entidad.retrotraerMovimientoVertical(elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto());
@@ -25,7 +26,7 @@ public class DetectorDireccionColision {
 	
 	private void eleminarVelocidadVertical(Entidad entidad) {
 		int nuevaVelocidadY  = 0;
-		Point nuevaVelocidad = new Point(entidad.obtenerVelocidadDireccional().y, nuevaVelocidadY);
+		Point nuevaVelocidad = new Point(entidad.obtenerVelocidadDireccional().x, nuevaVelocidadY);
 		entidad.establecerVelocidadDireccional(nuevaVelocidad);
 	}
 
