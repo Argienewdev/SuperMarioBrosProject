@@ -47,7 +47,7 @@ public class Ranking implements Serializable {
 	
     public void guardarEstado() {
 		try {
-			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntaje");
+			FileOutputStream  fileOutputStream = new FileOutputStream("./src/puntos");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this);
 			objectOutputStream.flush();
