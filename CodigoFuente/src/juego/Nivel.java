@@ -20,7 +20,11 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
     
+<<<<<<< HEAD
     protected MatrizPlataforma matrizPlataforma;
+=======
+    protected Mapa mapa;
+>>>>>>> nuevaGestionPlataformas
     
     protected Collection<PowerUp> powerUps;
     
@@ -33,8 +37,6 @@ public class Nivel {
     protected Collection<ElementoDeJuego> entidadesAEliminar;
  
     protected Collection<Enemigo> spinysAAgregar;
-    
-    protected Collection<Plataforma> plataformasAfectables;
     
     protected Silueta silueta;
     
@@ -184,13 +186,9 @@ public class Nivel {
     public int obtenerNumeroNivel() {
         return partida.obtenerNumeroDeNivelActual();
     }
-    
-    public void agregarSpinysAAgregar() {
-    	for(Enemigo spiny : spinysAAgregar) {
-    		spiny.establecerNivel(this);
-    	}
-    	enemigos.addAll(spinysAAgregar);
-    	spinysAAgregar = new ArrayList<Enemigo>();
+
+    public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
+        this.entidadesAEliminar.add(entidad);
     }
     
     public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
@@ -200,6 +198,7 @@ public class Nivel {
 
 	public Iterable<Entidad> obtenerEntidades() {
 		ArrayList<Entidad> entidadesDeJuego = new ArrayList<>();
+
         for(PowerUp powerup : obtenerPowerUps()) {
         	entidadesDeJuego.add(powerup);
         }

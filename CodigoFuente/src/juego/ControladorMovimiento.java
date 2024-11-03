@@ -2,6 +2,8 @@ package juego;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
@@ -144,9 +146,12 @@ public class ControladorMovimiento {
 				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
 				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
+
 			verificarColisionConPlataformas(entidad);
 			verificarColisionConEntidades(entidad);
 			System.out.println(cont);
+			
+
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 			
 		} else {
