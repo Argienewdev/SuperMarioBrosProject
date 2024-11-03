@@ -75,12 +75,16 @@ public class Nivel {
     }
     
 
-    public Iterable<Plataforma> obtenerPlataformasAfectables() {
+    public synchronized Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }
 
-    public Iterable<Plataforma> obtenerPlataformas() {
+    public synchronized Iterable<Plataforma> obtenerPlataformas() {
         return matrizPlataforma.obtenerTodasLasPlataformas();
+    }
+
+    public synchronized Plataforma obtenerPlataformaEnPunto(Point punto) {
+        return matrizPlataforma.obtenerPlataformaEnPunto(punto);
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
@@ -128,7 +132,7 @@ public class Nivel {
         entidadesAEliminar = new ArrayList<>();
     }
 
-    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
+    public synchronized Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
         ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<>();
         for(Plataforma plataforma : obtenerPlataformas()) {
             elementosDeJuego.add(plataforma);
@@ -154,15 +158,15 @@ public class Nivel {
         return this.mario;
     }
 
-    public Iterable<PowerUp> obtenerPowerUps() {
+    public synchronized Iterable<PowerUp> obtenerPowerUps() {
         return this.powerUps;
     }
 
-    public Iterable<Enemigo> obtenerEnemigos() {
+    public synchronized Iterable<Enemigo> obtenerEnemigos() {
         return this.enemigos;
     }
 
-    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
+    public synchronized Iterable<BolaDeFuego> obtenerBolasDeFuego() {
         return this.bolasDeFuego;
     }
 
@@ -186,12 +190,11 @@ public class Nivel {
         this.entidadesAEliminar.add(entidad);
     }
     
-    public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
+    public synchronized Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
     	return this.matrizPlataforma.obtenerAdyacentes( entidad);
-    	
     }
 
-	public Iterable<Entidad> obtenerEntidades() {
+	public synchronized Iterable<Entidad> obtenerEntidades() {
 		ArrayList<Entidad> entidadesDeJuego = new ArrayList<>();
 
         for(PowerUp powerup : obtenerPowerUps()) {
@@ -203,6 +206,7 @@ public class Nivel {
         for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego()) {
         	entidadesDeJuego.add(bolaDeFuego);
         }
+        
         return entidadesDeJuego;
 	}
 }
