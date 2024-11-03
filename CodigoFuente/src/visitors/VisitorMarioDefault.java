@@ -112,6 +112,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    	
     }
 
     @Override
@@ -119,6 +120,7 @@ public class VisitorMarioDefault implements Visitante {
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
+            generadorSonidos.PowerupAgarrado();
             generadorSonidos.modoInvencible();
             generadorSonidos.detenerMusicaFondo();
             Timer timer = new Timer(5500, new ActionListener() {
