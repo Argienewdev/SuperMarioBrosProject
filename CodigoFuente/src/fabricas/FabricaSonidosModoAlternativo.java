@@ -59,7 +59,7 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     
     @Override
     public Sonido obtenerModoRecuperacion() {
-    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/marioRecuperacion.wav");
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoRecuperacion.wav");
     }
     
     @Override
@@ -69,7 +69,7 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
 
     @Override
     public Sonido obtenerSonidoMoneda() {
-        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/Moneda.wav");
+        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/moneda.wav");
     }
     
     public Sonido obtenerMusica(){

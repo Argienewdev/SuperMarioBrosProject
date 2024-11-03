@@ -31,23 +31,26 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	if(!buzzyBeetle.obtenerRemovido())
+    	if(!buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		this.otorgarPuntosYEliminar(buzzyBeetle);
+    	}
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-    	if(!spiny.obtenerRemovido())
+    	if(!spiny.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
     		this.otorgarPuntosYEliminar(spiny);
+    	}
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if(!goomba.obtenerRemovido())
+    	if(!goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		this.otorgarPuntosYEliminar(goomba);
+    	}
     }
 
     @Override
@@ -57,9 +60,10 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	if(!koopaDefault.obtenerContext().obtenerRemovido())
+    	if(!koopaDefault.obtenerContext().obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		this.otorgarPuntosYEliminar(koopaDefault.obtenerContext());
+    	}
     }
 
     @Override
@@ -72,16 +76,18 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	if(!lakitu.obtenerRemovido())
+    	if(!lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		this.otorgarPuntosYEliminar(lakitu);
+    	}
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    	if(!piranhaPlant.obtenerRemovido())
+    	if(!piranhaPlant.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
     		this.otorgarPuntosYEliminar(piranhaPlant);
+    	}
     }
 
     @Override
@@ -112,7 +118,7 @@ public class VisitorMarioInvulnerable implements Visitante {
             generadorSonidos.PowerupAgarrado();
             generadorSonidos.modoInvencible();
             generadorSonidos.detenerMusicaFondo();
-            Timer timer = new Timer(5500, new ActionListener() {
+            Timer timer = new Timer(5000, new ActionListener() {
     	    	public void actionPerformed(ActionEvent e) {
     	    		generadorSonidos.reproducirMusicaFondo();
     	        }
@@ -123,10 +129,12 @@ public class VisitorMarioInvulnerable implements Visitante {
     }
 
     @Override
-    public void visitarMoneda(Moneda monedas) {}
+    public void visitarMoneda(Moneda monedas) {
+    }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {

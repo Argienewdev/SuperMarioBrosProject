@@ -17,13 +17,13 @@ public class PantallaInicial extends Pantalla {
 	
 	protected JLabel fondo;
 	
-	protected JLabel modo1;
+	protected JLabel botonModo1;
 	
-	protected JLabel modo2;
+	protected JLabel botonModo2;
 	
-	protected JLabel currentLabel;
+	protected JLabel botonEnfocado;
 	
-	protected JLabel ranking;
+	protected JLabel botonRanking;
 
 	protected SensorDeTeclasMenu sensor;
 	
@@ -45,9 +45,9 @@ public class PantallaInicial extends Pantalla {
 		this.controlador =  controladorVistas;
 		this.sensor = sensor;
 		this.fondo = new JLabel();
-		modo1 = new JLabel("MODO ORIGINAL");
-		modo2 = new JLabel("MODO ALTERNATIVO"); 
-		ranking =  new JLabel("RANKING");
+		botonModo1 = new JLabel("MODO ORIGINAL");
+		botonModo2 = new JLabel("MODO ALTERNATIVO"); 
+		botonRanking =  new JLabel("RANKING");
 		inicializarArregloDeBotones();
 		configurarFuente();
 		configurarVentana();
@@ -56,17 +56,17 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	protected void ajustarDisposicion(){
-		modo1.setBounds((size.width - modo1.getPreferredSize().width) / 2, (size.height / 2) - 30, modo1.getPreferredSize().width, modo1.getPreferredSize().height);
-        modo2.setBounds((size.width - modo2.getPreferredSize().width) / 2, (size.height / 2) + 30, modo2.getPreferredSize().width, modo2.getPreferredSize().height);
-        ranking.setBounds((size.width - ranking.getPreferredSize().width) / 2, (size.height / 2) + 90, ranking.getPreferredSize().width, ranking.getPreferredSize().height);
-        fondo.add(modo1);
-        fondo.add(modo2);
-        fondo.add(ranking);
+		botonModo1.setBounds((size.width - botonModo1.getPreferredSize().width) / 2, (size.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
+        botonModo2.setBounds((size.width - botonModo2.getPreferredSize().width) / 2, (size.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
+        botonRanking.setBounds((size.width - botonRanking.getPreferredSize().width) / 2, (size.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
+        fondo.add(botonModo1);
+        fondo.add(botonModo2);
+        fondo.add(botonRanking);
         fondo.setBounds(0, 0, size.width, size.height);
 	}
 	
 	protected void registrarOyenteTeclas(){
-		currentLabel.setFocusable(true);
+		botonEnfocado.setFocusable(true);
 		this.setFocusable(true);
 	    this.requestFocusInWindow(); 
 	    addKeyListener(sensor);
@@ -74,15 +74,15 @@ public class PantallaInicial extends Pantalla {
 	
 	public void configurarFuente() {
 		tipoFuentes =  new Fuentes();
-	    modo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    modo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    ranking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    modo1.setForeground(Color.WHITE);
-	    modo2.setForeground(Color.WHITE);
-	    ranking.setForeground(Color.WHITE);
-	    currentLabel = modo1;
+	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonRanking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonModo1.setForeground(Color.WHITE);
+	    botonModo2.setForeground(Color.WHITE);
+	    botonRanking.setForeground(Color.WHITE);
+	    botonEnfocado = botonModo1;
 	    arregloDeBotones.siguiente();
-	    currentLabel.setForeground(Color.DARK_GRAY);
+	    botonEnfocado.setForeground(Color.DARK_GRAY);
 	}
 	
 	protected void configurarVentana(){
@@ -107,22 +107,22 @@ public class PantallaInicial extends Pantalla {
 	
 	private void inicializarArregloDeBotones() {
 		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
-		arregloDeBotones.agregar(modo1);
-		arregloDeBotones.agregar(modo2);
-		arregloDeBotones.agregar(ranking);
+		arregloDeBotones.agregar(botonModo1);
+		arregloDeBotones.agregar(botonModo2);
+		arregloDeBotones.agregar(botonRanking);
 	}
 	
 	 public void refrescar() {
 		 if (enFoco) {
 		 if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
 			
-			 if (currentLabel ==  modo1){
+			 if (botonEnfocado ==  botonModo1){
 				controlador.accionarInicioJuego("Modo original");
 			 }
-			 else if (currentLabel ==  modo2){
+			 else if (botonEnfocado ==  botonModo2){
 				 controlador.accionarInicioJuego("Modo alternativo");
 			 } 
-			 else if (currentLabel ==  ranking) {
+			 else if (botonEnfocado ==  botonRanking) {
 				 controlador.mostrarPantallaRanking();
 				 sensor.accionarEnter();
 			 }
@@ -130,14 +130,14 @@ public class PantallaInicial extends Pantalla {
 		 }
 		 
 	        if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
-	            currentLabel.setForeground(Color.WHITE);
-	            currentLabel = arregloDeBotones.siguiente();
-	            currentLabel.setForeground(Color.DARK_GRAY);
+	            botonEnfocado.setForeground(Color.WHITE);
+	            botonEnfocado = arregloDeBotones.siguiente();
+	            botonEnfocado.setForeground(Color.DARK_GRAY);
 	            sensor.accionarS();
 	        } else if (sensor.obtenerWPresionado()  && !sensor.obtenerWAccionada()) {
-	            currentLabel.setForeground(Color.WHITE);
-	            currentLabel = arregloDeBotones.previo();
-	            currentLabel.setForeground(Color.DARK_GRAY);
+	            botonEnfocado.setForeground(Color.WHITE);
+	            botonEnfocado = arregloDeBotones.previo();
+	            botonEnfocado.setForeground(Color.DARK_GRAY);
 	            sensor.accionarW();
 	        }
 		 }

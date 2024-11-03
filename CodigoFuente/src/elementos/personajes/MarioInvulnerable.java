@@ -11,13 +11,19 @@ import visitors.VisitorMarioInvulnerable;
 
 public class MarioInvulnerable  extends MarioDefault {
 
+	protected static final int DURACION_INVULNERABLE = 300;
+		
 	protected int duracion;
 	
 	private EstadoMario estadoPrevio;
 	
 	public MarioInvulnerable (EstadoMario estadoPrevio) {
 		this.estadoPrevio = estadoPrevio;
-		this.duracion = 300;
+		this.duracion = DURACION_INVULNERABLE;
+	}
+	
+	public void reiniciarDuracion() {
+		this.duracion = DURACION_INVULNERABLE;
 	}
 	
 	@Override

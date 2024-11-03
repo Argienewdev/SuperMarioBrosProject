@@ -33,11 +33,12 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	generadorSonidos.emitirSonidoAplastarEnemigo();
-    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
-			buzzyBeetle.establecerRemovido(true);
-			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
-		}
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto) &&
+    	   !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		buzzyBeetle.establecerRemovido(true);
+            this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
+    	}
     }
 
     @Override
@@ -46,11 +47,12 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
- 
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
-    		goomba.establecerRemovido(true);
-			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
-		}
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+            goomba.establecerRemovido(true);
+            this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+        }
     }
 
     @Override
@@ -61,31 +63,31 @@ public class VisitorSuperMario implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
-        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
-        	   generadorSonidos.emitirSonidoAplastarEnemigo();
-           }
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
+    	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	   this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+        }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
-			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
-	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
+	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
-	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
-	        generadorSonidos.emitirSonidoAplastarEnemigo();
 		}
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) ) {
+    	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
+    	   && !lakitu.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		lakitu.establecerRemovido(true);
-			this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
-			generadorSonidos.emitirSonidoAplastarEnemigo();
-		}
+            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+        }
     }
 
     @Override

@@ -22,13 +22,14 @@ public abstract class Jugable extends Entidad  {
 	
 	private int desplazamiento;
 	
+	@SuppressWarnings("exports")
 	public Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 3;
+		this.vidas = 1;
 		this.puntos = 0;
 		this.desplazamiento = 0;
 	}
