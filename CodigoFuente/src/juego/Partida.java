@@ -163,7 +163,7 @@ public class Partida {
 	
 	private void matarJugador() {
 		this.generadorSonidos.detenerMusicaFondo();
-     	this.generadorSonidos.pierdeVida();
+     	this.generadorSonidos.seAcaboElTiempo();
      	this.jugable.perderVida();
      	this.reiniciarNivel();
 	}
@@ -174,6 +174,14 @@ public class Partida {
 
 	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
 		return this.sensorDeTeclasJuego;
+	}
+
+	public void desactivarMovimientoEnemigos() {
+		this.masterMind.desactivarMovimientoEnemigos();
+	}
+
+	public void activarMovimientoEnemigos() {
+		this.masterMind.activarMovimientoEnemigos();
 	}
 	
 	

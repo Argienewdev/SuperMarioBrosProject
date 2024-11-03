@@ -76,7 +76,8 @@ public abstract class PowerUp extends NoJugable {
 	
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
-		this.eliminarDelNivel();
+		this.obtenerNivel().removerPowerUp(this);
+		this.observerGrafico.establecerRemovido(true);
 	}
 	
 	public BloqueDePregunta obtenerBloquePregunta() {

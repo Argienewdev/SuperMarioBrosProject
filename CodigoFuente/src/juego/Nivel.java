@@ -3,7 +3,10 @@ package juego;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
@@ -21,21 +24,15 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
     
-    protected MatrizPlataforma matrizPlataforma;
+    protected MatrizPlataforma matrizPlataformas;
     
-    protected Collection<PowerUp> powerUps;
+    protected List<PowerUp> powerUps;
     
-    protected Collection<Enemigo> enemigos;
+    protected List<Enemigo> enemigos;
     
-    protected Collection<BolaDeFuego> bolasDeFuego;
+    protected List<BolaDeFuego> bolasDeFuego;
     
-    protected Collection<BolaDeFuego> bolasDeFuegoAAgregar;
-    
-    protected Collection<ElementoDeJuego> entidadesAEliminar;
- 
-    protected Collection<Enemigo> spinysAAgregar;
-    
-    protected Collection<Plataforma> plataformasAfectables;
+    protected List<Plataforma> plataformasAfectables;
     
     protected Silueta silueta;
     
@@ -47,9 +44,8 @@ public class Nivel {
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
-        this.matrizPlataforma = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
+        this.matrizPlataformas = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
         inicializarColecciones();
-        this.plataformasAfectables = new ArrayList<Plataforma>();
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
@@ -57,21 +53,19 @@ public class Nivel {
     }
     
     private void inicializarColecciones() {
-        this.powerUps = new ArrayList<>();
-        this.enemigos = new ArrayList<>();
-        this.bolasDeFuego = new ArrayList<>();
-        this.bolasDeFuegoAAgregar = new ArrayList<>();
-        this.entidadesAEliminar = new ArrayList<>();
-        this.spinysAAgregar = new ArrayList<>();
+        this.powerUps = new CopyOnWriteArrayList<PowerUp>();
+        this.enemigos = new CopyOnWriteArrayList<Enemigo>();
+        this.bolasDeFuego = new CopyOnWriteArrayList<BolaDeFuego>();
+        this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
-        matrizPlataforma.agregarPlataforma(plataforma);
+        matrizPlataformas.agregarPlataforma(plataforma);
         plataforma.establecerNivel(this);
     }
 
     public void removerPlataforma(Plataforma plataforma) {
-        matrizPlataforma.removerPlataforma(plataforma);
+        matrizPlataformas.removerPlataforma(plataforma);
     }
     
 
@@ -80,11 +74,7 @@ public class Nivel {
     }
 
     public Iterable<Plataforma> obtenerPlataformas() {
-        return matrizPlataforma.obtenerTodasLasPlataformas();
-    }
-
-    public Plataforma obtenerPlataformaEnPunto(Point punto) {
-        return matrizPlataforma.obtenerPlataformaEnPunto(punto);
+        return this.matrizPlataformas.obtenerTodasLasPlataformas();
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
@@ -92,44 +82,17 @@ public class Nivel {
         enemigo.establecerNivel(this);
     }
 
-
     public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
         powerUp.establecerNivel(this);
     }
 	
-	
-	public void agregarPlataformasAfectables(Plataforma plataforma) {
+	public void agregarPlataformaAfectable(Plataforma plataforma) {
         this.plataformasAfectables.add(plataforma);
     }
-	
 
-    public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
-        this.bolasDeFuegoAAgregar.add(bolaDeFuego);
-    }
-
-    public void agregarBolaDeFuegoAAgregar() {
-        for(BolaDeFuego bolaDeFuego : bolasDeFuegoAAgregar) {
-            bolaDeFuego.establecerNivel(this);
-        }
-        bolasDeFuego.addAll(bolasDeFuegoAAgregar);
-        bolasDeFuegoAAgregar = new ArrayList<>();
-    }
-    
-    public void agregarSpinysAAgregar() {
-    	for(Enemigo spiny : spinysAAgregar) {
-    		spiny.establecerNivel(this);
-    	}
-    	enemigos.addAll(spinysAAgregar);
-    	spinysAAgregar = new ArrayList<Enemigo>();
-    }
-
-    public void removerEntidadesAEliminar() {
-        enemigos.removeAll(entidadesAEliminar);
-        powerUps.removeAll(entidadesAEliminar);
-        this.plataformasAfectables.removeAll(entidadesAEliminar);
-        bolasDeFuego.removeAll(entidadesAEliminar);
-        entidadesAEliminar = new ArrayList<>();
+    public void agregarBolaDeFuego(BolaDeFuego bolaDeFuego) {
+        this.bolasDeFuego.add(bolaDeFuego);
     }
 
     public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
@@ -186,17 +149,12 @@ public class Nivel {
         return partida.obtenerNumeroDeNivelActual();
     }
 
-    public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
-        this.entidadesAEliminar.add(entidad);
-    }
-    
     public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
-    	return this.matrizPlataforma.obtenerAdyacentes( entidad);
-    	
+    	return this.matrizPlataformas.obtenerAdyacentes( entidad);
     }
 
 	public Iterable<Entidad> obtenerEntidades() {
-		ArrayList<Entidad> entidadesDeJuego = new ArrayList<>();
+		ArrayList<Entidad> entidadesDeJuego = new ArrayList<Entidad>();
 
         for(PowerUp powerup : obtenerPowerUps()) {
         	entidadesDeJuego.add(powerup);
@@ -207,6 +165,24 @@ public class Nivel {
         for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego()) {
         	entidadesDeJuego.add(bolaDeFuego);
         }
+        
         return entidadesDeJuego;
 	}
+	
+	public void removerEnemigo(Enemigo enemigo) {
+		this.enemigos.remove(enemigo);
+	}
+	
+	public void removerPowerUp(PowerUp powerUp) {
+		this.powerUps.remove(powerUp);
+	}
+	
+	public void removerBolaDeFuego(BolaDeFuego bolaDeFuego) {
+		this.bolasDeFuego.remove(bolaDeFuego);
+	}
+	
+	public void removerPlataformaAfectable(Plataforma plataforma) {
+		this.plataformasAfectables.remove(plataforma);
+	}
+	
 }
