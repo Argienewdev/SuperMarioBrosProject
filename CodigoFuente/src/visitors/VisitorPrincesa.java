@@ -127,8 +127,10 @@ public class VisitorPrincesa implements Visitante {
 
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-   		generadorSonidos.choqueFireball();
-    	fireball.establecerRemovido(true);
+		if(!fireball.obtenerRemovido()) {
+			generadorSonidos.matarBolaDeFuego();
+			fireball.establecerRemovido(true);
+		}
 	}
 
 	

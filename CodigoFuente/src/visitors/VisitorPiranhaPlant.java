@@ -151,8 +151,10 @@ public class VisitorPiranhaPlant implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		generadorSonidos.matarBolaDeFuego();
-		fireball.establecerRemovido(true);
+		if(!fireball.obtenerRemovido()) {
+			generadorSonidos.matarBolaDeFuego();
+			fireball.establecerRemovido(true);
+		}
 	}
 
 	@Override

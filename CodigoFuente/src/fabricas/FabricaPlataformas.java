@@ -131,9 +131,6 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		int identificadorPowerUp =  generarIdentificadorPowerUpRandom(random); // Genera un número entre 1 (inclusive) y 8 (inclusive)
-
-		identificadorPowerUp =  5;		//TODO REMOVER
-		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <=  identificadorPowerUp; contador++) {

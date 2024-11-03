@@ -147,7 +147,7 @@ public class VisitorLadrillo implements Visitante {
 		if (this.detectorDireccionColision.choquePorArriba(miEntidad, fireball)) {
    			fireball.retrotraerMovimientoVertical(miEntidad.obtenerHitbox().y - fireball.obtenerAlto());
    			fireball.rebotar();
-   		} else {
+   		} else if(!fireball.obtenerRemovido()){
    			generadorSonidos.choqueFireball();
    			fireball.establecerRemovido(true);
    		}

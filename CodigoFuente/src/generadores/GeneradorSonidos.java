@@ -28,7 +28,6 @@ public class GeneradorSonidos {
 
 	protected void establecerArchivo(){
 		archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
-		System.out.println(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
 		establecerMusicaFondo();
 	}
 	
