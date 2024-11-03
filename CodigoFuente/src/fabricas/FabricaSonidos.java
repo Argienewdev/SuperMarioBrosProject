@@ -9,6 +9,7 @@ public abstract class FabricaSonidos {
 	public FabricaSonidos(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
+	
 	public abstract Sonido obtenerAplastarEnemigo();
 
 	public abstract Sonido obtenerAplastarEnemigo2();
@@ -53,6 +54,4 @@ public abstract class FabricaSonidos {
 	
 	public abstract Sonido obtenerSeAcaboElTiempo();
 
-	
-	
 }

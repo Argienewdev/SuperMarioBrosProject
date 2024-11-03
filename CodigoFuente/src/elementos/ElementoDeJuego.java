@@ -55,14 +55,6 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.sprite = sprite;
 	}
 	
-	public void establecerVisitor(Visitante visitor) {
-		this.visitante = visitor;
-	}
-	
-	public void establecerNivel (Nivel nivel) {
-		this.miNivel = nivel;
-	}
-	
 	@SuppressWarnings("exports")
 	public void establecerPosicion (Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
@@ -81,6 +73,30 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.posicionGrafica = posicion;
 	}
 	
+	public void establecerVisitante(Visitante visitor) {
+		this.visitante = visitor;
+	}
+	
+	public void establecerNivel (Nivel nivel) {
+		this.miNivel = nivel;
+	}
+	
+	public void establecerObserverGrafico(ObserverGrafico observerGrafico) {
+		this.observerGrafico = observerGrafico;
+	}
+	
+	public void establecerRemovido(boolean removido) {
+		this.removido = removido;
+	}
+	
+	public boolean establecerVisibleEnPantalla(boolean visbleEnPantalla) {
+		return this.visiblesEnPantalla = visbleEnPantalla;
+	}
+	
+	public void establecerDebeMantenerseSiempreEnPantalla(boolean debeMantenerseSiempreEnPantalla) {
+		this.debeMantenerseSiempreEnPantalla = debeMantenerseSiempreEnPantalla;
+	}
+	
 	public Sprite obtenerSprite() {
 		return this.sprite;
 	}
@@ -88,11 +104,6 @@ public abstract class ElementoDeJuego implements Visitado {
 	@SuppressWarnings("exports")
 	public Rectangle obtenerHitbox() {
 		return this.hitbox;
-	}
-	
-	@SuppressWarnings("exports")
-	public void moverHitbox(Point nuevaPosicion) {
-		this.hitbox.setLocation(nuevaPosicion);
 	}
 	
 	@SuppressWarnings("exports")
@@ -121,22 +132,8 @@ public abstract class ElementoDeJuego implements Visitado {
 		return hitbox.height;
 	}
 	
-	public boolean huboColision(ElementoDeJuego elemento) {
-		return this.hitbox.intersects(elemento.obtenerHitbox());
-	}
-
-	public void establecerObserverGrafico(ObserverGrafico observerGrafico) {
-    	this.observerGrafico = observerGrafico;
-    }
-    
-    public ObserverGrafico obtenerObserverGrafico() {
-    	return this.observerGrafico;
-    }
-	
-	public abstract void aceptarVisitante(Visitante visitante);
-	
-	public void establecerRemovido(boolean removido) {
-		this.removido = removido;
+	public ObserverGrafico obtenerObserverGrafico() {
+		return this.observerGrafico;
 	}
 	
 	public boolean obtenerRemovido() {
@@ -147,16 +144,19 @@ public abstract class ElementoDeJuego implements Visitado {
 		return this.debeMantenerseSiempreEnPantalla;
 	}
 
-	public void establecerDebeMantenerseSiempreEnPantalla(boolean debeMantenerseSiempreEnPantalla) {
-		this.debeMantenerseSiempreEnPantalla = debeMantenerseSiempreEnPantalla;
-	}
-	
 	public boolean obtenerVisibleEnPantalla() {
 		return this.visiblesEnPantalla;
 	}
 	
-	public boolean establecerVisibleEnPantalla(boolean visbleEnPantalla) {
-		return this.visiblesEnPantalla = visbleEnPantalla;
+	@SuppressWarnings("exports")
+	public void moverHitbox(Point nuevaPosicion) {
+		this.hitbox.setLocation(nuevaPosicion);
 	}
+	
+	public boolean huboColision(ElementoDeJuego elemento) {
+		return this.hitbox.intersects(elemento.obtenerHitbox());
+	}
+	
+	public abstract void aceptarVisitante(Visitante visitante);
 	
 }

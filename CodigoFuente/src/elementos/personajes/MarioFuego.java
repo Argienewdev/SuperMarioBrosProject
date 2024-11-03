@@ -18,27 +18,29 @@ public class MarioFuego extends MarioDefault {
 	
 	protected GeneradorSonidos generadorSonido;
 	
-	
 	public MarioFuego(FabricaEntidades fabricaEntidades, GeneradorSonidos generadorSonido) {
 		this.fabricaEntidades = fabricaEntidades;
 		this.generadorSonido = generadorSonido;
 	}
 	
-	@Override
-    public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarMarioFuego(this);
-    }
+	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		this.contexto.establecerMirandoAlFrente(true);
+		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
+	}
 	
-	@Override
 	public Visitante obtenerVisitante() {
 		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
+	public void aceptarVisitante(Visitante visitante) {
+		visitante.visitarMarioFuego(this);
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
-		this.obtenerContexto().setHitbox(nuevaHitbox);
+		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
@@ -63,33 +65,8 @@ public class MarioFuego extends MarioDefault {
 		contexto.establecerSprite(aRetornar);
 	}
 	
-	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		this.contexto.establecerMirandoAlFrente(true);
-		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
-	}
-	
-	private boolean enElAire() {
-		return !contexto.obtenerColisionAbajo();
-	}
-	
-	private boolean avanzando() {
-		return contexto.obtenerAvanzando();
-	}
-	
-	private boolean retrocediendo() {
-		return contexto.obtenerRetrocediendo();
-	}
-	
 	public void realizarAccionEspecial() {	
 		lanzarBolaDeFuego();
-	}
-	
-	private boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
-	}
-	
-	private boolean bajoElNivelDelPiso() {
-		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 
 	private void lanzarBolaDeFuego() {
@@ -119,6 +96,26 @@ public class MarioFuego extends MarioDefault {
 		this.contexto.obtenerNivel().agregarBolaDeFuego(bolaDeFuego);
 		
 		generadorSonido.disparoBolaFuego();
+	}
+	
+	private boolean enElAire() {
+		return !contexto.obtenerColisionAbajo();
+	}
+	
+	private boolean avanzando() {
+		return contexto.obtenerAvanzando();
+	}
+	
+	private boolean retrocediendo() {
+		return contexto.obtenerRetrocediendo();
+	}
+	
+	private boolean mirandoAlFrente() {
+		return contexto.obtenerMirandoAlFrente();
+	}
+	
+	private boolean bajoElNivelDelPiso() {
+		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 	
 }

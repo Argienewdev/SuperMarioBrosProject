@@ -14,25 +14,23 @@ public class KoopaDefault implements EstadoKoopa {
 		this.contexto = contexto;
 	}
 	
-	@Override
+	public ContextoKoopaTroopa obtenerContext() {
+		return this.contexto;
+	}
+	
+	public Visitante obtenerVisitante() {
+		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
 	public void invertirDireccion() {
     	Point velocidad = new Point(-this.contexto.obtenerVelocidadDireccional().x, this.contexto.obtenerVelocidadDireccional().y);
     	this.contexto.establecerVelocidadDireccional(velocidad);
     }
 
-	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarKoopaDefault(this);
     }
 
-	public ContextoKoopaTroopa obtenerContext() {
-		return this.contexto;
-	}
-	public Visitante obtenerVisitante() {
-		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
-	}
-	
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerContext().obtenerRemovido()) {
 			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
@@ -55,11 +53,8 @@ public class KoopaDefault implements EstadoKoopa {
 		}
 	}
 
-	@Override
-	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {		
-	}
+	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {}
 	
-	@Override
 	public void mover() {
 		if (this.contexto.obtenerVelocidadDireccional().x <=  0) {
 			moverIzquierda();
@@ -67,7 +62,6 @@ public class KoopaDefault implements EstadoKoopa {
 			moverDerecha();
 		}
 	}
-	
 	
 	private void moverDerecha() {
 		Point velocidad = new Point(this.contexto.obtenerVelocidadHorizontalEnemigo(), this.contexto.obtenerVelocidadDireccional().y);

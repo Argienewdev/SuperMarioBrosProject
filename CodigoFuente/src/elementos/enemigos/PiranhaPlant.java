@@ -10,13 +10,14 @@ public class PiranhaPlant extends Enemigo {
 	
 	private static final int TICKS_PARA_ELIMINAR = 10;
 	
-    protected boolean dentroTuberia;
+    private boolean dentroTuberia;
     
-    protected int limiteInferior;
+    private int limiteInferior;
     
-    protected int limiteSuperior;
+    private int limiteSuperior;
 
-    public PiranhaPlant(Sprite sprite, Point posicion, Visitante visitor,
+	@SuppressWarnings("exports")
+	public PiranhaPlant(Sprite sprite, Point posicion, Visitante visitor,
     					ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 30;
@@ -30,24 +31,24 @@ public class PiranhaPlant extends Enemigo {
         this.dentroTuberia = true;
     }
     
-    @Override
-    public void aplicarGravedad() {
+    public void establecerFueraTuberia() {
+    	this.dentroTuberia = false;
     }
     
-    public void establecerFueraTuberia() {
-        this.dentroTuberia = false;
+    protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+    	return fabricaSprites.obtenerPiranhaPlantMuerto();
     }
     
     public boolean enTuberia() {
-        return this.dentroTuberia;
+    	return this.dentroTuberia;
     }
     
-    @Override
+    public void aplicarGravedad() {}
+    
     public void aceptarVisitante (Visitante visitante) {
         visitante.visitarPiranhaPlant(this);
     }
 
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0, 0));
@@ -55,11 +56,6 @@ public class PiranhaPlant extends Enemigo {
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerPiranhaPlant());
 		}
-	}
-	
-	@Override
-	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerPiranhaPlantMuerto();
 	}
 	
 	public void mover() {

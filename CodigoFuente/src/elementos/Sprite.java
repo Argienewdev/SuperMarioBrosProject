@@ -14,9 +14,6 @@ public class Sprite {
 		return this.rutaImagen;
 	}
 	
-	public void establecerRutaImagen(String rutaImagen) {
-		this.rutaImagen = rutaImagen;
-	}
 	
 	public int obtenerAnchoImagen() {
 		ImageIcon imagen = new ImageIcon(this.obtenerRutaImagen());
@@ -26,6 +23,10 @@ public class Sprite {
 	public int obtenerAltoImagen() {
 		ImageIcon imagen = new ImageIcon(this.obtenerRutaImagen());
 		return imagen.getIconHeight();
+	}
+	
+	public void establecerRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
 	}
 	
 	public boolean equals(Sprite sprite) {

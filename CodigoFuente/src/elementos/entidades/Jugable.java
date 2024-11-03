@@ -29,18 +29,15 @@ public abstract class Jugable extends Entidad  {
 		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 1;
+		this.vidas = 3;
 		this.puntos = 0;
 		this.desplazamiento = 0;
 	}
 	
-	public int obtenerDesplazamiento() {
-		return this.desplazamiento;
+	public void establecerColisionArriba(boolean colisionArriba) {
+		this.colisionArriba = colisionArriba;
 	}
 	
-	public void establecerDesplazamiento(int desplazamiento) {
-		this.desplazamiento = desplazamiento;
-	}
 	
 	@SuppressWarnings("exports")
 	public void establecerPosicion (Point posicion) {
@@ -52,7 +49,54 @@ public abstract class Jugable extends Entidad  {
 			this.posicionGrafica = nuevaPosicionGrafica;
 		}
 		this.posicionLogica = posicion;
-	}	
+	}
+	
+	public void establecerRetrocediendo(boolean retrocediendo) {
+		this.retrocediendo = retrocediendo;
+	}
+	
+	public void establecerAvanzando(boolean avanzando) {
+		this.avanzando = avanzando;
+	}
+	
+	public void establecerObserverLogico (ObserverLogicoJugable observerLogico) {
+		this.observerLogico = observerLogico;
+	}
+	
+	public void establecerDesplazamiento(int desplazamiento) {
+		this.desplazamiento = desplazamiento;
+	}
+	
+	public boolean obtenerColisionAbajo() {
+		return this.colisionAbajo;
+	}
+	
+	public boolean obtenerColisionArriba() {
+		return this.colisionArriba;
+	}
+	
+	public int obtenerVidas() {
+		return this.vidas;
+	}
+	
+	public int obtenerPuntos() {
+		return this.puntos;
+	}
+	public boolean obtenerAvanzando() {
+		return this.avanzando;
+	}
+	
+	public boolean obtenerRetrocediendo() {
+		return retrocediendo;
+	}
+	
+	public ObserverLogicoJugable obtenerObserverLogico() {
+		return this.observerLogico;
+	}
+	
+	public int obtenerDesplazamiento() {
+		return this.desplazamiento;
+	}
 	
 	public void ganarVida() {
 		this.vidas++;
@@ -77,27 +121,7 @@ public abstract class Jugable extends Entidad  {
 		}
 	}
 	
-	public int obtenerVidas() {
-		return this.vidas;
-	}
-	
-	public int obtenerPuntos() {
-		return this.puntos;
-	}
-		
-	public boolean obtenerColisionAbajo() {
-		return this.colisionAbajo;
-	}
-	
 	public abstract void reiniciarEstado();
-	
-	public void establecerColisionArriba(boolean colisionArriba) {
-		this.colisionArriba = colisionArriba;
-	}
-	
-	public boolean obtenerColisionArriba() {
-		return this.colisionArriba;
-	}
 	
 	public void retrotraerMovimientoHorizontal(int posX) {
 		Point nuevaPosicionHitbox = new Point(posX, this.obtenerHitbox().y);
@@ -111,30 +135,6 @@ public abstract class Jugable extends Entidad  {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(nuevaPosicion);
 		this.establecerPosicion(nuevaPosicion);
-	}
-	
-	public boolean obtenerRetrocediendo() {
-		return retrocediendo;
-	}
-	
-	public ObserverLogicoJugable obtenerObserverLogico() {
-		return this.observerLogico;
-	}
-	
-	public void establecerRetrocediendo(boolean retrocediendo) {
-		this.retrocediendo = retrocediendo;
-	}
-	
-	public boolean obtenerAvanzando() {
-		return this.avanzando;
-	}
-	
-	public void establecerAvanzando(boolean avanzando) {
-		this.avanzando = avanzando;
-	}
-	
-	public void establecerObserverLogico (ObserverLogicoJugable observerLogico) {
-		this.observerLogico = observerLogico;
 	}
 	
 	public void muerte() {

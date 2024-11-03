@@ -8,6 +8,7 @@ import visitors.Visitante;
 
 public class SuperChampinion extends PowerUp {
 	
+	@SuppressWarnings("exports")
 	public SuperChampinion(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = true;
@@ -15,11 +16,6 @@ public class SuperChampinion extends PowerUp {
 		this.ticksHastaSalirDelBloque = 50;
 	}
 	
-	@Override
-	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarSuperChampinion(this);
-	}
-
 	public int obtenerPuntosPorDefault() {
 		return 10;
 	}
@@ -36,7 +32,10 @@ public class SuperChampinion extends PowerUp {
 		return obtenerPuntosPorSuper();
 	}
 
-	@Override
+	public void aceptarVisitante (Visitante visitante) {
+		visitante.visitarSuperChampinion(this);
+	}
+	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
@@ -50,4 +49,5 @@ public class SuperChampinion extends PowerUp {
 			} 
 		}
 	}
+	
 }

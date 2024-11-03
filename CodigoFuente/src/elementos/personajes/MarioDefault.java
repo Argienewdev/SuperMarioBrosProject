@@ -21,25 +21,27 @@ public class MarioDefault implements EstadoMario {
 		return this.contexto;
 	}
 	
+	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
+	}
+	
+	public Visitante obtenerVisitante() {
+		return new VisitorMarioDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		int nuevaPosicionX = this.obtenerContexto().obtenerPosicionLogica().x;
 		int nuevaPosicionY = this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerHitbox().height - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
-		this.obtenerContexto().setHitbox(nuevaHitbox);
+		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
-	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarMarioDefault(this);
     }
 
-	@Override
-	public Visitante obtenerVisitante() {
-		return new VisitorMarioDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
-	}
-	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
 		if (bajoElNivelDelPiso()){
@@ -62,8 +64,10 @@ public class MarioDefault implements EstadoMario {
 		contexto.establecerSprite(aRetornar);
 	}
 	
-	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerMarioDefaultFrontalQuieto();
+	public void realizarAccionEspecial() {		
+	}
+	
+	public void actualizarTiempo() {
 	}
 	
 	private boolean enElAire() {
@@ -84,12 +88,6 @@ public class MarioDefault implements EstadoMario {
 	
 	private boolean bajoElNivelDelPiso() {
 		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
-	}
-
-	public void realizarAccionEspecial() {		
-	}
-	
-	public void actualizarTiempo() {
 	}
 	
 }

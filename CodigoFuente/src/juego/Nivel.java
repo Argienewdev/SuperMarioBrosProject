@@ -1,17 +1,9 @@
 package juego;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
-import elementos.enemigos.Spiny;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
 import elementos.personajes.ContextoMario;
@@ -47,7 +39,7 @@ public class Nivel {
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
         this.matrizPlataformas = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
-        inicializarColecciones();
+        this.inicializarColecciones();
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
@@ -55,11 +47,11 @@ public class Nivel {
     }
     
     private void inicializarColecciones() {
-        this.powerUps = new CopyOnWriteArrayList<PowerUp>();
-        this.enemigos = new CopyOnWriteArrayList<Enemigo>();
-        this.bolasDeFuego = new CopyOnWriteArrayList<BolaDeFuego>();
-        this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
-        this.entidadesVisiblesEnPantalla = new CopyOnWriteArrayList<Entidad>();
+        this.powerUps = new CopyOnWriteArrayList<>();
+        this.enemigos = new CopyOnWriteArrayList<>();
+        this.bolasDeFuego = new CopyOnWriteArrayList<>();
+        this.plataformasAfectables = new CopyOnWriteArrayList<>();
+        this.entidadesVisiblesEnPantalla = new CopyOnWriteArrayList<>();
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
@@ -96,23 +88,6 @@ public class Nivel {
 
     public void agregarBolaDeFuego(BolaDeFuego bolaDeFuego) {
         this.bolasDeFuego.add(bolaDeFuego);
-    }
-
-    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
-        ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<>();
-        for(Plataforma plataforma : obtenerPlataformas()) {
-            elementosDeJuego.add(plataforma);
-        }
-        for(PowerUp powerup : obtenerPowerUps()) {
-            elementosDeJuego.add(powerup);
-        }
-        for(Enemigo enemigo : obtenerEnemigos()) {
-            elementosDeJuego.add(enemigo);
-        }
-        for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego()) {
-            elementosDeJuego.add(bolaDeFuego);
-        }
-        return elementosDeJuego;
     }
 
     public void establecerMario(ContextoMario mario) {
@@ -155,22 +130,6 @@ public class Nivel {
     public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
     	return this.matrizPlataformas.obtenerAdyacentes( entidad);
     }
-
-	public Iterable<Entidad> obtenerEntidades() {
-		ArrayList<Entidad> entidadesDeJuego = new ArrayList<Entidad>();
-
-        for(PowerUp powerup : obtenerPowerUps()) {
-        	entidadesDeJuego.add(powerup);
-        }
-        for(Enemigo enemigo : obtenerEnemigos()) {
-        	entidadesDeJuego.add(enemigo);
-        }
-        for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego()) {
-        	entidadesDeJuego.add(bolaDeFuego);
-        }
-        
-        return entidadesDeJuego;
-	}
 	
 	public void removerEnemigo(Enemigo enemigo) {
 		this.enemigos.remove(enemigo);
@@ -192,12 +151,12 @@ public class Nivel {
 	}
 	
 	public void agregarEntidadVisible(Entidad entidad) {
-	        this.entidadesVisiblesEnPantalla.add(entidad);
-	        entidad.establecerNivel(this);
-	    }
+		this.entidadesVisiblesEnPantalla.add(entidad);
+		entidad.establecerNivel(this);
+	}
 	 
 	public void removerEntidadVisible(Entidad entidad) {
-	        this.entidadesVisiblesEnPantalla.remove(entidad);
+		this.entidadesVisiblesEnPantalla.remove(entidad);
 	}
 	
 	public Iterable<Entidad> obtenerEntidadesVisiblesEnPantalla(){

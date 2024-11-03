@@ -17,6 +17,7 @@ public class ContextoMario extends Jugable {
 	
 	protected GeneradorSonidos generadorSonidos;
 		
+	@SuppressWarnings("exports")
 	public ContextoMario(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico,
 						 int vidas, MarioDefault estadoMario, GeneradorSonidos generadorSonidos) {
 		super(sprite, posicion, visitor, observerGrafico);
@@ -48,12 +49,10 @@ public class ContextoMario extends Jugable {
         this.cambiarEstado(new MarioDefault());
 	}
 	
-	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarContextoMario(this);
 	}
 
-	@Override
 	public void realizarAccionEspecial() {
 		estadoMario.realizarAccionEspecial();
 	}

@@ -8,15 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaSilueta;
-import fabricas.FabricaSprites;
-import fabricas.FabricaSpritesModoOriginal;
-import generadores.GeneradorDeNivel;
 import observers.ObserverLogicoJugable;
-import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ControladorVistas;
@@ -32,7 +26,6 @@ public class Juego {
 	
 	private Ranking ranking;
 	
-	private Jugador jugador;
 	
 	private String modoDeJuegoSeleccionado;
 	
@@ -40,6 +33,7 @@ public class Juego {
 		ranking = cargarEstadoRanking();
 		//Utilizar solo cuando se quiere establecer un nuevo ranking
 		//Unicamente en el primer juego creado, despues volver a comentar
+		//TODO esto que onda?
 //		ranking.reiniciarRanking();
 	}
 	
@@ -47,12 +41,9 @@ public class Juego {
 		return this.partida.obtenerSpriteMario();
 	}
 	
+	@SuppressWarnings("exports")
 	public Ranking obtenerRanking() {
 		return this.ranking;
-	}
-	
-	public void render() {
-		//TICK
 	}
 	
 	public ControladorVistas obtenerControladorVistas() {
@@ -67,6 +58,7 @@ public class Juego {
 		return this.modoDeJuegoSeleccionado;
 	}
 
+	@SuppressWarnings("exports")
 	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.modoDeJuegoSeleccionado = modo;
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
@@ -95,7 +87,6 @@ public class Juego {
         bucle.detenerBucleJugador();
     }
 
-
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
 		this.controladorVistas = controladorVistas;
 	}
@@ -106,21 +97,20 @@ public class Juego {
 	     System.exit(0);
 	}
 	
+	@SuppressWarnings("exports")
 	public Ranking cargarEstadoRanking() {
-    	Ranking ranking = null;
+    	Ranking rankingARetornar = null;
     	try {
     		FileInputStream fileInputStream = new FileInputStream ("./src/puntos");
     		ObjectInputStream objectInputStream = new ObjectInputStream (fileInputStream);
-    		ranking = (Ranking) objectInputStream.readObject();
+    		rankingARetornar = (Ranking) objectInputStream.readObject();
     		objectInputStream.close();
     	} catch (FileNotFoundException e) {
     		//No hacer nada
-    	} catch (IOException e) {
+    	} catch (IOException | ClassNotFoundException e) {
     		e.printStackTrace();
-    	} catch (ClassNotFoundException e) {
-    		e.printStackTrace();
-    	}
-    	return ranking;
+    	} 
+    	return rankingARetornar;
     }
 	
 	private void mostrarMensaje(String mensaje) {

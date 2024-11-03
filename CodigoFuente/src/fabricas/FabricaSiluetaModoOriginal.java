@@ -8,7 +8,6 @@ public class FabricaSiluetaModoOriginal extends FabricaSilueta {
 		super(rutaACarpeta);
 	}
 
-	@Override
 	public Silueta obtenerSilueta(int numeroNivel) {
 		return new Silueta(rutaACarpeta + "/siluetaModoOriginal/siluetaNivel-" + numeroNivel + ".png");
 	}

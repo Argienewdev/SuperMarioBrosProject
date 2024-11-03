@@ -30,11 +30,18 @@ public class MarioInvulnerable  extends MarioDefault {
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
+	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		return fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
+	}
+	
+	public Visitante obtenerVisitante() {
+		return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
 	public void reiniciarDuracion() {
 		this.duracion = DURACION_INVULNERABLE;
 	}
 	
-	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarMarioInvulnerable(this);
     }
@@ -43,16 +50,10 @@ public class MarioInvulnerable  extends MarioDefault {
 		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
-		this.obtenerContexto().setHitbox(nuevaHitbox);
-	}
-	
-	@Override
-	public Visitante obtenerVisitante() {
-		 return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		//TODO esta llamada no va aca
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
@@ -77,10 +78,6 @@ public class MarioInvulnerable  extends MarioDefault {
 		}catch(NullPointerException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
 	}
 	
 	private boolean enElAire() {

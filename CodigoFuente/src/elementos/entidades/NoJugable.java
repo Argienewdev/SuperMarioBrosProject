@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
@@ -17,12 +16,6 @@ public abstract class NoJugable extends Entidad {
 		this.colisionAbajo = true;
 	}
 
-	public abstract void aceptarVisitante(Visitante visitante);
-	
-	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
-	
-    protected abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
-	
 	public int obtenerTicksAnimacion() {
 		return this.ticksAnimacion;
 	}
@@ -43,8 +36,15 @@ public abstract class NoJugable extends Entidad {
 		int nuevaPosY = this.obtenerPosicionLogica().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
 		int nuevoAncho = this.obtenerSprite().obtenerAnchoImagen();
 		int nuevoAlto = this.obtenerSprite().obtenerAltoImagen();
-		this.setHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));
+		this.establecerHitbox(new Rectangle(nuevaPosX, nuevaPosY, nuevoAncho, nuevoAlto));
 		this.establecerPosicion(this.obtenerHitbox().getLocation());
 	}
 	
+	public abstract void aceptarVisitante(Visitante visitante);
+	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
+	
+	protected abstract void eliminarEntidadGrafica(FabricaSprites fabricaSprites);
+	
 }
+

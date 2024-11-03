@@ -21,78 +21,70 @@ public class VisitorBuzzyBeetle implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
     
-    
-    @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
     }
     
-    @Override
-    public void visitarSpiny(Spiny spiny) {}
+    public void visitarSpiny(Spiny spiny) {
+    }
 
-    @Override
     public void visitarGoomba(Goomba goomba) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
     }
     
-    @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, contextoKoopaTroopa);
     }
 
-    @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     }
 
-    @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     }
     
-    @Override
-    public void visitarLakitu(Lakitu lakitu) {}
+    public void visitarLakitu(Lakitu lakitu) {
+    }
     
-    @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
-
-    @Override
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
-
-    @Override
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
-
-    @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+    }
     
-    @Override
-    public void visitarEstrella(Estrella estrella) {}
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+    }
 
-    @Override
-    public void visitarMoneda(Moneda monedas) {}
-
-    @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
-
-    @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {}
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+    }
     
-    @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
-
-    @Override
-    public void visitarBandera(Bandera bandera) {}
-
-    @Override
-    public void visitarTuberia(Tuberia tuberia) {}
-
-    @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    }
     
-    @Override
+    public void visitarEstrella(Estrella estrella) {
+    }
+    
+    public void visitarMoneda(Moneda monedas) {
+    }
+
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    }
+
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    }
+    
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
+
+    public void visitarBandera(Bandera bandera) {
+    }
+
+    public void visitarTuberia(Tuberia tuberia) {
+    }
+
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
+    
     public void visitarContextoMario(ContextoMario contextoMario) {
         contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
-    @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
         if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
             ContextoMario contextoMario = marioDefault.obtenerContexto();
@@ -107,7 +99,6 @@ public class VisitorBuzzyBeetle implements Visitante {
         }
     }
     
-    @Override
     public void visitarSuperMario(SuperMario superMario) {
         if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miEntidad)
         	&& !this.miEntidad.obtenerRemovido()) {
@@ -119,7 +110,6 @@ public class VisitorBuzzyBeetle implements Visitante {
         }
     }
 
-    @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miEntidad)
     		&& !this.miEntidad.obtenerRemovido()) {
@@ -131,15 +121,15 @@ public class VisitorBuzzyBeetle implements Visitante {
         }
     }
     
-    @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
 
-	@Override
-	public void visitarPiso(Piso piso) {}
-
-	@Override
+	public void visitarPiso(Piso piso) {
+	}
+	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 		if(!fireball.obtenerRemovido()) {
 			generadorSonidos.matarBolaDeFuego();
@@ -147,7 +137,6 @@ public class VisitorBuzzyBeetle implements Visitante {
 		}
 	}
 
-	@Override
 	public void visitarVacio(Vacio vacio) {
 	}
     

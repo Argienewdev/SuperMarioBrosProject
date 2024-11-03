@@ -7,12 +7,12 @@ import visitors.Visitante;
 
 public abstract class Meta extends Plataforma{
 
+	@SuppressWarnings("exports")
 	public Meta(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.solido = false;
 	}
 
-	@Override
 	public abstract void aceptarVisitante(Visitante visitante);
 
 }

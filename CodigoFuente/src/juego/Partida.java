@@ -7,15 +7,10 @@ import javax.swing.Timer;
 
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
-import fabricas.FabricaEntidades;
-import fabricas.FabricaSilueta;
-import fabricas.FabricaSonidos;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;
-import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import ventanas.ControladorVistas;
 
 public class Partida {
 	
@@ -41,13 +36,7 @@ public class Partida {
 	
 	private FabricaSprites fabricaSprites;
 	
-	private FabricaSonidos fabricaSonidos;
-	
 	private GeneradorSonidos generadorSonidos;
-	
-	private int tiempoEnSegundos;
-	
-	private int tiempoEnMilisegundos;
 	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
@@ -55,7 +44,6 @@ public class Partida {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.numeroNivelActual = 1;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas());
-		this.fabricaSonidos = generadorDeNivel.obtenerFabricaSonidos();
 		this.generadorSonidos = generadorDeNivel.obtenerGeneradorSonidos();
 		this.generadorSonidos.reproducirMusicaFondo();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
@@ -120,8 +108,8 @@ public class Partida {
 	
 	public void finalizarPartida() {
 		this.numeroNivelActual = 1;
-		detenerBucleJuego();
-		detenerBucleEntidadesNoJugables();
+		this.detenerBucleJuego();
+		this.detenerBucleEntidadesNoJugables();
 	}
 	
 	private void detenerBucleJuego() {
@@ -133,10 +121,9 @@ public class Partida {
 	}
 
 	private Nivel generarNivel(int numeroNivelActual, Partida partida) {
-		
-		return generadorDeNivel.generarNivel(numeroNivelActual, this);
+		return generadorDeNivel.generarNivel(numeroNivelActual, partida);
 	}
-
+	
 	public int obtenerNumeroDeNivelActual() {
 		return this.numeroNivelActual;
 	}
@@ -172,6 +159,7 @@ public class Partida {
 		return this.fabricaSprites;
 	}
 
+	@SuppressWarnings("exports")
 	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
 		return this.sensorDeTeclasJuego;
 	}

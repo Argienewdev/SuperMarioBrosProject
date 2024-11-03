@@ -16,7 +16,7 @@ public class BucleEntidadesNoJugables implements Runnable {
 	
 	public BucleEntidadesNoJugables(MasterMind masterMind) {
 		this.masterMind = masterMind;
-		iniciarBucleEntidadesNoJugables();
+		this.iniciarBucleEntidadesNoJugables();
 	}
 	
 	private void iniciarBucleEntidadesNoJugables() {
@@ -45,14 +45,18 @@ public class BucleEntidadesNoJugables implements Runnable {
 	    long ultimoTiempoCapturado = System.nanoTime();
 	    
 	    double cantidadTicks = CANTIDAD_TICKS;
+	    
 	    double nanoSegundosPorTick = NANOSEGUNDOS_POR_SEGUNDO / cantidadTicks;
 	    
 	    double delta = 0;
 	    
 	    long cronometro = System.currentTimeMillis();
 	    
-	    int frames = 0;
-	    int actualizaciones = 0;
+	    @SuppressWarnings("unused")
+		int frames = 0;
+	    
+	    @SuppressWarnings("unused")
+		int actualizaciones = 0;
 
 	    while(this.bucleEntidadesNoJugablesEnEjecucion) {
 	        long tiempoActual = System.nanoTime();
@@ -62,25 +66,23 @@ public class BucleEntidadesNoJugables implements Runnable {
 	        ultimoTiempoCapturado = tiempoActual;
 	        
 	        while (delta >=  nanoSegundosPorTick) {
-	            actualizarBucleEntidadesNoJugables();
+	        	this.actualizarBucleEntidadesNoJugables();
 	            actualizaciones++;
 	            delta -=  nanoSegundosPorTick;
 	        }
 	        
-	        if (bucleEntidadesNoJugablesEnEjecucion) {
-	            renderizarBucleEntidadesNoJugables();
+	        if (this.bucleEntidadesNoJugablesEnEjecucion) {
 	            frames++;
 	        }
 	        
 	        if (System.currentTimeMillis() - cronometro > MILISEGUNDOS_POR_SEGUNDO) {
 	            cronometro +=  MILISEGUNDOS_POR_SEGUNDO;
-	            //System.out.println("FPS: " + frames + " TPS: " + updates);
 	            actualizaciones = 0;
 	            frames = 0;
 	        }
 	    }
 	    
-	    detenerBucleEntidadesNoJugables();
+	    this.detenerBucleEntidadesNoJugables();
 	}
 
 	
@@ -88,6 +90,5 @@ public class BucleEntidadesNoJugables implements Runnable {
 		this.masterMind.actualizar();
 	}
 	
-	private void renderizarBucleEntidadesNoJugables() {
-	}
+
 }
