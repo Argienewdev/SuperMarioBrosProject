@@ -99,18 +99,22 @@ public class PantallaIngresoNombre extends Pantalla {
 
     private void establecerTitulo(JPanel panelContenido) {
         JLabel etiqueta = new JLabel("Ingresa tu nombre:");
-        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 80));
+        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 75));
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
         panelContenido.add(etiqueta);
-        panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
+        panelContenido.add(Box.createRigidArea(new Dimension(10, 30))); 
     }
 
     private void ajustarCampoNombre(JPanel panelContenido) {
         campoNombre = new JTextField(15);
         campoNombre.setMaximumSize(new Dimension(300, 30)); 
         campoNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+        campoNombre.setHorizontalAlignment(JTextField.CENTER);
         campoNombre.setFocusable(true);
+        campoNombre.setBorder(null);
+        campoNombre.setOpaque(false);
+        campoNombre.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 75));
         ((AbstractDocument) campoNombre.getDocument()).setDocumentFilter(new LimitadorDeCaracteres(4));
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
@@ -119,7 +123,7 @@ public class PantallaIngresoNombre extends Pantalla {
     private void configurarBotonConfirmar(JPanel panelContenido) {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
+        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 45));
         botonConfirmar.setFocusPainted(false);
         botonConfirmar.setContentAreaFilled(false);
         botonConfirmar.setBorderPainted(false);
