@@ -130,6 +130,5 @@ public class VisitorTuberia implements Visitante {
 
 	
 	public void visitarVacio(Vacio vacio) {
-		
 	}
 }

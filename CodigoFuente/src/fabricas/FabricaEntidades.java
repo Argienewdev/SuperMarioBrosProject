@@ -151,7 +151,6 @@ public class FabricaEntidades {
         superChampionADevolver.establecerObserverGrafico(observerGraficoSuperChampinion);
         pantallaDeJuego.agregarLabel(superChampionADevolver.obtenerObserverGrafico());
         return superChampionADevolver;
-        
     }
     
     @SuppressWarnings("exports")
@@ -199,7 +198,7 @@ public class FabricaEntidades {
     @SuppressWarnings("exports")
 	public BolaDeFuego obtenerBolaDeFuego(Point posicion, Point velocidadDireccional, Jugable jugador) {
     	Sprite sprite = fabricaSprites.obtenerBolaDeFuego();
-    	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null,velocidadDireccional, null, jugador);
+    	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null, velocidadDireccional, null, jugador);
     	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver, this.generadorSonidos);
     	bolaDeFuegoADevolver.establecerVisitor(visitor);
     	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);

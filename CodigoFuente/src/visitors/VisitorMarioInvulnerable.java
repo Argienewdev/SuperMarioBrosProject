@@ -1,5 +1,10 @@
 package visitors;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -101,10 +106,19 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	if(!estrella.obtenerRemovido()) {
-    		generadorSonidos.PowerupAgarrado();
-    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
-    		estrella.establecerRemovido(true);
+    	if (!estrella.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
+            estrella.establecerRemovido(true);
+            generadorSonidos.PowerupAgarrado();
+            generadorSonidos.modoInvencible();
+            generadorSonidos.detenerMusicaFondo();
+            Timer timer = new Timer(5500, new ActionListener() {
+    	    	public void actionPerformed(ActionEvent e) {
+    	    		generadorSonidos.reproducirMusicaFondo();
+    	        }
+    	    });
+            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
+            timer.start(); // Inicia el timer
     	}
     }
 

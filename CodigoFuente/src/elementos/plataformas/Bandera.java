@@ -30,7 +30,6 @@ public class Bandera extends Meta {
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.activada) {
-			System.out.println("ENTRE");
 			this.establecerSprite(fabricaSprites.obtenerSpriteBanderaActivada());
 		}
 	}
