@@ -49,20 +49,22 @@ public class ControladorMovimiento {
 	private void determinarAccion() {
 		this.personajeJugable.establecerAvanzando(false);
 		this.personajeJugable.establecerRetrocediendo(false);
-	    if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
-	    	this.iniciarSalto();
-	    } 
-		
-	    if (deteccionMovimientoAIzquierda()) {
-	    	this.realizarMovimientoALaIzquierda();
-	    }
-	    
-	    if (deteccionMovimientoADerecha()) {
-	    	this.realizarMovimientoALaDerecha();
-	    }
-	    
-	    if (deteccionAccionEspecial()) {
-	    	this.realizarAccionEspecial();
+	    if(this.sensorDeTeclasJuego.obtenerSensorDeTeclasActivado()) {
+	    	if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
+	    		this.iniciarSalto();
+	    	} 
+	    	
+	    	if (deteccionMovimientoAIzquierda()) {
+	    		this.realizarMovimientoALaIzquierda();
+	    	}
+	    	
+	    	if (deteccionMovimientoADerecha()) {
+	    		this.realizarMovimientoALaDerecha();
+	    	}
+	    	
+	    	if (deteccionAccionEspecial()) {
+	    		this.realizarAccionEspecial();
+	    	}
 	    }
 	    personajeJugable.aplicarGravedad();
 	}

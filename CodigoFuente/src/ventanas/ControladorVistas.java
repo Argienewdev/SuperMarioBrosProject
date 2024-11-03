@@ -101,8 +101,8 @@ public class ControladorVistas {
 
 	
 	public void mostrarPantallaEntreNiveles(){
-//	    ventana.removeKeyListener(sensorDeTeclasJuego); 
-		actualizarVentana(pantallaEntreNiveles);
+		this.sensorDeTeclasJuego.desactivarSensorDeTeclas();
+		this.actualizarVentana(pantallaEntreNiveles);
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -117,8 +117,7 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaDeJuego() {
 		actualizarVentana(pantallaDeJuego);
-//	    ventana.addKeyListener(sensorDeTeclasJuego);
-		
+		this.sensorDeTeclasJuego.activarSensorDeTeclas();
 	}
 	
 	public void accionarPantallaFinal() {

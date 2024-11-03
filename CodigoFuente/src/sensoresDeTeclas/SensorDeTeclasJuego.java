@@ -111,4 +111,7 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		this.activado = true;
 	}
 	
+	public boolean obtenerSensorDeTeclasActivado() {
+		return this.activado;
+	}
 }

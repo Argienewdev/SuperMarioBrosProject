@@ -127,7 +127,6 @@ public class VisitorContextoMario implements Visitante {
 	
 	public void visitarBandera(Bandera bandera) {
 		if (!bandera.obtenerFueActivada()) {
-			this.miEntidad.obtenerNivel().obtenerPartida().obtenerSensorDeTeclasJuego().desactivarSensorDeTeclas();
 			this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().obtenerHUD().detenerTiempo();
 			this.generadorSonidos.detenerMusicaFondo();
 			bandera.establecerActivada(true);
@@ -141,7 +140,6 @@ public class VisitorContextoMario implements Visitante {
 		    		miEntidad.obtenerNivel().establecerCompletado(true);
 		        }
 		    });
-			this.miEntidad.obtenerNivel().obtenerPartida().obtenerSensorDeTeclasJuego().activarSensorDeTeclas();
 		    timer.setRepeats(false);
 		    timer.start();
 		}
