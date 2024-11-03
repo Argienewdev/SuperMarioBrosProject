@@ -23,107 +23,67 @@ public class VisitorKoopaDefault implements Visitante {
         this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
-
     
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        
     }
-
     
     public void visitarSpiny(Spiny spiny) {
-        
     }
-
     
     public void visitarGoomba(Goomba goomba) {
-        
     }
-
     
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        
     }
-
     
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        
     }
 
-    
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        
     }
 
-    
     public void visitarLakitu(Lakitu lakitu) {
-        
     }
 
-    
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        
     }
 
-    
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        
     }
 
-    
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        
     }
 
-    
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        
     }
 
-    
     public void visitarEstrella(Estrella estrella) {
-        
     }
 
-    
     public void visitarMoneda(Moneda monedas) {
-        
     }
-
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        
     }
 
-    
     public void visitarLadrillo(Ladrillo ladrillo) {
-        
     }
 
-    
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        
     }
 
-    
     public void visitarBandera(Bandera bandera) {
-        
     }
 
-    
     public void visitarTuberia(Tuberia tuberia) {
-        
     }
 
-    
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        
     }
-
     
     public void visitarContextoMario(ContextoMario contextoMario) {
         contextoMario.obtenerEstado().aceptarVisitante(this);
     }
-
     
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)
@@ -137,7 +97,6 @@ public class VisitorKoopaDefault implements Visitante {
             miContexto.obtenerNivel().obtenerPartida().reiniciarNivel();
         }
     }
-
     
     public void visitarSuperMario(SuperMario superMario) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(superMario.obtenerContexto(), this.miContexto)
@@ -150,7 +109,6 @@ public class VisitorKoopaDefault implements Visitante {
     	}
     }
 
-    
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioFuego.obtenerContexto(), this.miContexto)
         	&& !this.miContexto.obtenerRemovido()) {
@@ -171,15 +129,12 @@ public class VisitorKoopaDefault implements Visitante {
     	}
     }
 
-    
     public void visitarPiso(Piso piso) {
     }
-
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
 
-	
 	public void visitarVacio(Vacio vacio) {
 	}
     

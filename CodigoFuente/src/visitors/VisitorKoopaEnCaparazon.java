@@ -23,95 +23,84 @@ public class VisitorKoopaEnCaparazon implements Visitante {
         this.miContexto = miEstado.obtenerContext();
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
-
     
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, buzzyBeetle);
     }
 
-    
     public void visitarSpiny(Spiny spiny) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, spiny);
     }
-
     
     public void visitarGoomba(Goomba goomba) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, goomba);
     }
-
     
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, contextoKoopaTroopa);
     }
 
-    
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     }
 
-    
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, koopaDefault.obtenerContext());
     }
-
     
     public void visitarLakitu(Lakitu lakitu) {
         detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, lakitu);
     }
-
     
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
-
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+    }
     
-    public void visitarSuperChampinion(SuperChampinion superChampinion) {}
-
+    public void visitarSuperChampinion(SuperChampinion superChampinion) {
+    }
     
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
-
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+    }
     
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
-
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    }
     
-    public void visitarEstrella(Estrella estrella) {}
-
+    public void visitarEstrella(Estrella estrella) {
+    }
     
-    public void visitarMoneda(Moneda monedas) {}
-
+    public void visitarMoneda(Moneda monedas) {
+    }
     
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
-
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    }
     
-    public void visitarLadrillo(Ladrillo ladrillo) {}
-
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    }
     
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
-
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
     
-    public void visitarBandera(Bandera bandera) {}
-
+    public void visitarBandera(Bandera bandera) {
+    }
     
-    public void visitarTuberia(Tuberia tuberia) {}
-
+    public void visitarTuberia(Tuberia tuberia) {
+    }
     
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
 
-    
     public void visitarContextoMario(ContextoMario contextoMario) {
     }
 
-    
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	if(!this.miContexto.obtenerRemovido()) {
     		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioDefault.obtenerContexto());
     	}
     }
 
-    
     public void visitarSuperMario(SuperMario superMario) {
     	if(!this.miContexto.obtenerRemovido()) {
     		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, superMario.obtenerContexto());
     	}
     }
-
     
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if(!this.miContexto.obtenerRemovido()) {
@@ -119,7 +108,6 @@ public class VisitorKoopaEnCaparazon implements Visitante {
     	}
     }
 
-    
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     	if(!this.miContexto.obtenerRemovido()) {
     		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miContexto, marioInvulnerable.obtenerContexto());
@@ -132,14 +120,11 @@ public class VisitorKoopaEnCaparazon implements Visitante {
     	}
     }
 
-    
     public void visitarPiso(Piso piso) {
     }
-
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
-
 	
 	public void visitarVacio(Vacio vacio) {
 	}
