@@ -39,9 +39,9 @@ public class PantallaDeJuego extends Pantalla {
    
     public PantallaDeJuego() {
         configurarVentana();
-        this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
-        this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
-        this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
+        this.labelsElementoDeJuego = new ArrayList<>();
+        this.labelsElementoDeJuegoARemover = new ArrayList<>();
+        this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
     }
 
     protected void configurarVentana(){
@@ -112,12 +112,12 @@ public class PantallaDeJuego extends Pantalla {
 		for(ObserverGrafico observer : this.labelsElementoDeJuegoAAgregar) {
 			this.agregarLabel(observer);
 		}
-		this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
+		this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
 	}
 	
 	private void removerLabelsARemover() {
 		this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
-		this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
+		this.labelsElementoDeJuegoARemover = new ArrayList<>();
 	}
 	
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
@@ -180,16 +180,16 @@ public class PantallaDeJuego extends Pantalla {
     	layeredPane.remove(fondo);
     	layeredPane.remove(hud);
     	this.removerElementos();
-    	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
-    	this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
-    	this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
+    	this.labelsElementoDeJuego = new ArrayList<>();
+    	this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
+    	this.labelsElementoDeJuegoARemover = new ArrayList<>();
     }
     
     public void cambiarDeNivel() {
     	crearHUD();
     	this.marioJugable.establecerPosicionLogica(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
     	this.marioJugable.establecerPosicionGrafica(this.marioJugable.obtenerPosicionLogica());
-    	this.marioJugable.moverHitbox(posicionOriginalJugable);
+    	this.marioJugable.moverHitbox(this.marioJugable.obtenerPosicionLogica());
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	this.marioJugable.establecerDesplazamiento(0);
     	this.revalidate();
