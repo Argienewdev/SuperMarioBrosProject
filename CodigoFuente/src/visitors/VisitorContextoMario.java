@@ -81,16 +81,15 @@ public class VisitorContextoMario implements Visitante {
 	
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
 		if (!champinionVerde.obtenerRemovido()) {
-			this.generadorSonidos.PowerupAgarrado();
 			this.miEntidad.ganarPuntos(champinionVerde.obtenerPuntosPorDefault());
 			this.miEntidad.ganarVida();
 			champinionVerde.establecerRemovido(true);
+			generadorSonidos.recuperaVida();
 		}
 	}
 
 	
 	public void visitarEstrella(Estrella estrella) {
-		this.generadorSonidos.PowerupAgarrado();
 		estrella.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 

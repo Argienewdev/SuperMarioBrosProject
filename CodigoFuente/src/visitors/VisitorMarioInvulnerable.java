@@ -102,6 +102,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     @Override
     public void visitarEstrella(Estrella estrella) {
     	if(!estrella.obtenerRemovido()) {
+    		generadorSonidos.PowerupAgarrado();
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
     		estrella.establecerRemovido(true);
     	}
