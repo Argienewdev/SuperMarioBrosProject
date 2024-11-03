@@ -69,9 +69,9 @@ public class PantallaRanking extends Pantalla {
     
     private void agregarBotonRegresar(){
     	JLabel botonRegresar =  new JLabel("Regresar");
-    	botonRegresar.setBounds(450 , ConstantesGlobales.PANEL_ALTO/4, size.width, size.height - 100);
     	Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
     	botonRegresar.setFont(font);
+    	botonRegresar.setBounds((size.width - botonRegresar.getPreferredSize().width) / 2, ConstantesGlobales.PANEL_ALTO - (ConstantesGlobales.PANEL_ALTO / 3), botonRegresar.getPreferredSize().width, botonRegresar.getPreferredSize().height);
     	add(botonRegresar);
     }
     
