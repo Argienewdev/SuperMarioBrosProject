@@ -1,14 +1,9 @@
 package juego;
 
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
-import elementos.plataformas.Plataforma;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ConstantesGlobales;
 
@@ -36,130 +31,75 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		reiniciarVelocidadHorizontal();
+		this.reiniciarVelocidadHorizontal();
 		if(movimientoPersonajeActivo) {
 			this.determinarAccion();
 		}
-	    personajeJugable.aplicarGravedad();
+		personajeJugable.aplicarGravedad();
 		this.cambiarYVerificarPosicionHitboxDelJugador();
 	}
-
+	
 	private void reiniciarVelocidadHorizontal() {
 		this.cambiarVelocidadHorizontal(0);
 		this.personajeJugable.establecerAvanzando(false);
 		this.personajeJugable.establecerRetrocediendo(false);
 		
 	}
-
+	
 	private void determinarAccion() {
-	    if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
-	    	this.iniciarSalto();
-	    } 
-	    	
-	    if (deteccionMovimientoAIzquierda()) {
-	    	this.realizarMovimientoALaIzquierda();
-	    }
-	    	
-	    if (deteccionMovimientoADerecha()) {
-	    	this.realizarMovimientoALaDerecha();
-	    }
-	    	
-	    if (deteccionAccionEspecial()) {
-	    	this.realizarAccionEspecial();
-	    }
-	}
-	
-	private boolean deteccionSalto() {
-		boolean retornar = false;
-		if (sensorDeTeclasJuego.obtenerWPresionada()) {
-			retornar = !sensorDeTeclasJuego.obtenerWAccionada();
-			sensorDeTeclasJuego.establecerWAccionada(true);
+		if (this.deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
+			this.iniciarSalto();
+		} 
+		
+		if (this.deteccionMovimientoAIzquierda()) {
+			this.realizarMovimientoALaIzquierda();
 		}
-		return retornar;
-	}
-	
-	private boolean deteccionMovimientoADerecha() {
-		return sensorDeTeclasJuego.obtenerDPresionada() && !sensorDeTeclasJuego.obtenerAPresionada();
-	}
-	
-	private boolean deteccionMovimientoAIzquierda() {
-		return sensorDeTeclasJuego.obtenerAPresionada() && !sensorDeTeclasJuego.obtenerDPresionada();
-	}
-	
-	private boolean deteccionAccionEspecial() {
-		boolean retornar = false;
-		if (sensorDeTeclasJuego.obtenerSpacePresionada()) {
-			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
-			sensorDeTeclasJuego.establecerSpaceAccionada(true);
+		
+		if (this.deteccionMovimientoADerecha()) {
+			this.realizarMovimientoALaDerecha();
 		}
-		return retornar;
-	}
-
-	private void realizarMovimientoALaDerecha() {
-		cambiarVelocidadHorizontal(ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
-		personajeJugable.establecerMirandoAlFrente(true);
-		personajeJugable.establecerAvanzando(true);
+		
+		if (this.deteccionAccionEspecial()) {
+			this.realizarAccionEspecial();
+		}
 	}
 	
-	private void realizarMovimientoALaIzquierda() {
-		cambiarVelocidadHorizontal(-ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
-		personajeJugable.establecerMirandoAlFrente(false);
-		personajeJugable.establecerRetrocediendo(true);
-	}
-	
-	private void iniciarSalto() {
-		cambiarVelocidadVertical(ConstantesGlobales.FUERZA_SALTO);
-		personajeJugable.establecerColisionAbajo(false);
-		personajeJugable.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos().salto();
-	}
-	
-	private void realizarAccionEspecial() {
-		personajeJugable.realizarAccionEspecial();
-	}
-	
-	private void cambiarVelocidadHorizontal(int velocidadX) {
-		Point nuevaVelocidad = new Point(velocidadX,personajeJugable.obtenerVelocidadDireccional().y);
-		personajeJugable.establecerVelocidadDireccional(nuevaVelocidad);
-	}
-	
-	private void cambiarVelocidadVertical(int velocidadY) {
-		Point nuevaVelocidad = new Point(personajeJugable.obtenerVelocidadDireccional().x,velocidadY);
-		personajeJugable.establecerVelocidadDireccional(nuevaVelocidad);
-	}
-
 	private void cambiarYVerificarPosicionHitboxDelJugador() {
 		personajeJugable.establecerColisionAbajo(false);
-		cambiarPosicionHitboxDelJugadorX();
-		verificarColisiones(personajeJugable);
-		cambiarPosicionHitboxDelJugadorY();
-		verificarColisiones(personajeJugable);
+		this.cambiarPosicionHitboxDelJugadorX();
+		this.verificarColisiones(personajeJugable);
+		this.cambiarPosicionHitboxDelJugadorY();
+		this.verificarColisiones(personajeJugable);
 	}
 	
+	public void desactivarMovimientoPersonaje() {
+		this.movimientoPersonajeActivo = false;
+	}
+	
+	public void activarMovimientoPersonaje() {
+		this.movimientoPersonajeActivo = true;
+	}
+
 	public void verificarColisiones(Jugable entidad) {
+		
 		if (!this.nivel.fueCompletado()) {
-			boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
-			boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
-			if (marioChocoBordeIzquierdo) {
-				int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x - this.personajeJugable.obtenerPosicionGrafica().x;
-				Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
-				this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
-				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
-				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
-			} else if (marioChocoBordeDerecho) {
-				int desplazamientoLogicoX = ConstantesGlobales.PANEL_ANCHO - (ConstantesGlobales.PANEL_ANCHO + personajeJugable.obtenerAncho());
-				int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x + desplazamientoLogicoX;
-				Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
-				this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
-				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
-				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
-			}
-			verificarColisionConPlataformas(entidad);
-			verificarColisionConEntidades(entidad);
+			this.chequearChoquesConBordes();
+			this.verificarColisionConPlataformas(entidad);
+			this.verificarColisionConEntidades(entidad);
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
-			
 		} else {
-	    	this.nivel.obtenerPartida().cambiarNivel();
+			this.nivel.obtenerPartida().cambiarNivel();
 		}
+	}
+	
+	private void verificarColisionConPlataformas(Jugable entidad) {
+	    for (ElementoDeJuego elemento : this.nivel.obtenerPlataformasAdyacentes(entidad)) {
+	    	if (elemento != null && entidad.huboColision(elemento)) {
+	            elemento.aceptarVisitante(entidad.obtenerVisitante());
+	            entidad.aceptarVisitante(elemento.obtenerVisitante());
+	        }
+	    }
+	    
 	}
 	
 	private void verificarColisionConEntidades(Jugable jugador) {
@@ -172,16 +112,33 @@ public class ControladorMovimiento {
 		
 	}
 
-	private void verificarColisionConPlataformas(Jugable entidad) {
-	    for (ElementoDeJuego elemento : this.nivel.obtenerPlataformasAdyacentes(entidad)) {
-	    	if (elemento != null && entidad.huboColision(elemento)) {
-	            elemento.aceptarVisitante(entidad.obtenerVisitante());
-	            entidad.aceptarVisitante(elemento.obtenerVisitante());
-	        }
-	    }
-	    
+	private void chequearChoquesConBordes() {
+		boolean marioChocoBordeIzquierdo = personajeJugable.obtenerPosicionGrafica().x < 0;
+		boolean marioChocoBordeDerecho = personajeJugable.obtenerPosicionGrafica().x + personajeJugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
+		if (marioChocoBordeIzquierdo) {
+			this.chocarBordeIzquierdo();
+		} else if (marioChocoBordeDerecho) {
+			this.chocarBordeDerecho();
+		}
 	}
-	
+
+	private void chocarBordeIzquierdo() {
+		int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x - this.personajeJugable.obtenerPosicionGrafica().x;
+		Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
+		this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
+		this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
+		this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
+	}
+
+	private void chocarBordeDerecho() {
+		int desplazamientoLogicoX = ConstantesGlobales.PANEL_ANCHO - (ConstantesGlobales.PANEL_ANCHO + personajeJugable.obtenerAncho());
+		int nuevaPosicionLogicaX = this.personajeJugable.obtenerPosicionLogica().x + desplazamientoLogicoX;
+		Point nuevaPosicionLogica = new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerPosicionLogica().y);
+		this.personajeJugable.establecerPosicionLogica(nuevaPosicionLogica);
+		this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
+		this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));		
+	}
+
 	private void cambiarPosicionHitboxDelJugadorX() {
 		int nuevaPosicionX = personajeJugable.obtenerHitbox().x + personajeJugable.obtenerVelocidadDireccional().x;
 		Point nuevaPosicion = new Point(nuevaPosicionX, personajeJugable.obtenerPosicionLogica().y);
@@ -193,12 +150,67 @@ public class ControladorMovimiento {
 		Point nuevaPosicion = new Point(personajeJugable.obtenerPosicionLogica().x, nuevaPosicionY);
 		personajeJugable.moverHitbox(nuevaPosicion);
 	}
+
+	private boolean deteccionSalto() {
+		boolean retornar = false;
+		if (sensorDeTeclasJuego.obtenerWPresionada()) {
+			retornar = !sensorDeTeclasJuego.obtenerWAccionada();
+			sensorDeTeclasJuego.establecerWAccionada(true);
+		}
+		return retornar;
+	}
 	
-	public void desactivarMovimientoPersonaje() {
-		this.movimientoPersonajeActivo = false;
+	private boolean deteccionMovimientoAIzquierda() {
+		return sensorDeTeclasJuego.obtenerAPresionada() && !sensorDeTeclasJuego.obtenerDPresionada();
+	}
+	
+	private boolean deteccionMovimientoADerecha() {
+		return sensorDeTeclasJuego.obtenerDPresionada() && !sensorDeTeclasJuego.obtenerAPresionada();
+	}
+	
+	private boolean deteccionAccionEspecial() {
+		boolean retornar = false;
+		if (sensorDeTeclasJuego.obtenerSpacePresionada()) {
+			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
+			sensorDeTeclasJuego.establecerSpaceAccionada(true);
+		}
+		return retornar;
+	}
+	
+	private void iniciarSalto() {
+		this.cambiarVelocidadVertical(ConstantesGlobales.FUERZA_SALTO);
+		personajeJugable.establecerColisionAbajo(false);
+		personajeJugable.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos().salto();
+	}
+	
+	private void realizarMovimientoALaIzquierda() {
+		this.cambiarVelocidadHorizontal(-ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
+		personajeJugable.establecerMirandoAlFrente(false);
+		personajeJugable.establecerRetrocediendo(true);
+	}
+	
+	private void realizarMovimientoALaDerecha() {
+		this.cambiarVelocidadHorizontal(ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
+		personajeJugable.establecerMirandoAlFrente(true);
+		personajeJugable.establecerAvanzando(true);
 	}
 
-	public void activarMovimientoPersonaje() {
-		this.movimientoPersonajeActivo = true;
+	private void realizarAccionEspecial() {
+		personajeJugable.realizarAccionEspecial();
+	}
+
+	private void cambiarVelocidadHorizontal(int velocidadX) {
+		int nuevaVelocidadX = velocidadX;
+		int velocidadY = personajeJugable.obtenerVelocidadDireccional().y;
+		Point nuevaVelocidad = new Point(nuevaVelocidadX,velocidadY);
+		personajeJugable.establecerVelocidadDireccional(nuevaVelocidad);
+	}
+	
+	private void cambiarVelocidadVertical(int velocidadY) {
+		int nuevaVelocidadY = velocidadY;
+		int velocidadX = personajeJugable.obtenerVelocidadDireccional().x;
+		Point nuevaVelocidad = new Point(velocidadX,nuevaVelocidadY);
+		personajeJugable.establecerVelocidadDireccional(nuevaVelocidad);
 	}
 }
+

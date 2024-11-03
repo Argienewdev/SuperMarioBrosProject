@@ -16,7 +16,7 @@ public class BucleJugador implements Runnable {
 	
 	public BucleJugador(Partida partida) {
 		this.partida = partida;
-		iniciarBucleJugador();
+		this.iniciarBucleJugador();
 	}
 	
 	private synchronized void iniciarBucleJugador() {
@@ -45,14 +45,18 @@ public class BucleJugador implements Runnable {
 	    long ultimoTiempoCapturado = System.nanoTime();
 	    
 	    double cantidadTicks = CANTIDAD_TICKS;
+	    
 	    double nanoSegundosPorTick = NANOSEGUNDOS_POR_SEGUNDO / cantidadTicks;
 	    
 	    double delta = 0;
 	    
 	    long cronometro = System.currentTimeMillis();
 	    
-	    int frames = 0;
-	    int actualizaciones = 0;
+	    @SuppressWarnings("unused")
+		int frames = 0;
+	    
+	    @SuppressWarnings("unused")
+		int actualizaciones = 0;
 
 	    while (this.bucleJugadorEnEjecucion) {
 	        long tiempoActual = System.nanoTime();
@@ -62,32 +66,27 @@ public class BucleJugador implements Runnable {
 	        ultimoTiempoCapturado = tiempoActual;
 	        
 	        while (delta >=  nanoSegundosPorTick) {
-	            actualizarBucleJugador();
+	        	this.actualizarBucleJugador();
 	            actualizaciones++;
 	            delta -=  nanoSegundosPorTick;
 	        }
 	        
 	        if (this.bucleJugadorEnEjecucion) {
-	            renderizarBucleJugador();
 	            frames++;
 	        }
 	        
 	        if (System.currentTimeMillis() - cronometro > MILISEGUNDOS_POR_SEGUNDO) {
 	            cronometro +=  MILISEGUNDOS_POR_SEGUNDO;
-	            //System.out.println("FPS: " + frames + " TPS: " + updates);
 	            actualizaciones = 0;
 	            frames = 0;
 	        }
 	    }
 	    
-	    detenerBucleJugador();
+	    this.detenerBucleJugador();
 	}
 
 	
 	private void actualizarBucleJugador() {
 		this.partida.actualizar();
-	}
-	
-	private void renderizarBucleJugador() {
 	}
 }

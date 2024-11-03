@@ -4,15 +4,14 @@ import java.awt.Font;
 import java.io.InputStream;
 
 public class Fuentes {
-    private Font font = null;
+	private Font font = null;
     public String pxl = "VT323-Regular.ttf";
 
     /* Font.PLAIN = 0 , Font.BOLD = 1 , Font.ITALIC = 2
  * tamanio = float
  */
     @SuppressWarnings("exports")
-	public Font fuente( String fontName, int estilo, float tamanio)
-    {
+	public Font fuente( String fontName, int estilo, float tamanio){
          try {
             //Se carga la fuente
             InputStream is =  getClass().getResourceAsStream(fontName);
