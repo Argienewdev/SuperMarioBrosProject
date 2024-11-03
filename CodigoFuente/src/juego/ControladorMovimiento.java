@@ -36,30 +36,22 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		
+		reiniciarVelocidadHorizontal();
 		if(movimientoPersonajeActivo) {
 			this.determinarAccion();
-		}else {
-			this.detenerPersonaje();
 		}
 	    personajeJugable.aplicarGravedad();
 		this.cambiarYVerificarPosicionHitboxDelJugador();
-		reiniciarVelocidadHorizontal();
-	}
-	
-	private void detenerPersonaje() {
-		personajeJugable.establecerAvanzando(false);
-		personajeJugable.establecerRetrocediendo(false);
-		personajeJugable.establecerVelocidadDireccional(new Point(0,0));
 	}
 
 	private void reiniciarVelocidadHorizontal() {
 		this.cambiarVelocidadHorizontal(0);
+		this.personajeJugable.establecerAvanzando(false);
+		this.personajeJugable.establecerRetrocediendo(false);
+		
 	}
 
 	private void determinarAccion() {
-		this.personajeJugable.establecerAvanzando(false);
-		this.personajeJugable.establecerRetrocediendo(false);
 	    if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
 	    	this.iniciarSalto();
 	    } 
