@@ -5,7 +5,6 @@ import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import ventanas.ConstantesGlobales;
 
 public class CoordinadorActualizacionesJugador {
 	
@@ -23,9 +22,9 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	public void actualizar() {
-		actualizarPosicion();
+		this.actualizarPosicion();
 		marioJugable.actualizarSprite(fabricaSprites);
-		actualizarObserverMario();
+		this.actualizarObserverMario();
 	}
 	
 	private void actualizarPosicion() {

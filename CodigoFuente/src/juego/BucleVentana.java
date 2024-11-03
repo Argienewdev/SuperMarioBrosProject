@@ -18,7 +18,7 @@ public class BucleVentana implements Runnable{
 	
 	public BucleVentana(ControladorVistas controlador) {
 		this.controlador =  controlador;
-		iniciarBucleVentana();
+		this.iniciarBucleVentana();
 	}
 	
 	private synchronized void iniciarBucleVentana() {
@@ -47,14 +47,18 @@ public class BucleVentana implements Runnable{
 		 long ultimoTiempoCapturado = System.nanoTime();
 		    
 		    double cantidadTicks = CANTIDAD_TICKS;
+		    
 		    double nanoSegundosPorTick = NANOSEGUNDOS_POR_SEGUNDO / cantidadTicks;
 		    
 		    double delta = 0;
 		    
 		    long cronometro = System.currentTimeMillis();
 		    
-		    int frames = 0;
-		    int actualizaciones = 0;
+		    @SuppressWarnings("unused")
+			int frames = 0;
+		    
+		    @SuppressWarnings("unused")
+			int actualizaciones = 0;
 
 		    while (this.bucleVentanaEnEjecucion) {
 		        long tiempoActual = System.nanoTime();
@@ -64,33 +68,26 @@ public class BucleVentana implements Runnable{
 		        ultimoTiempoCapturado = tiempoActual;
 		        
 		        while (delta >=  nanoSegundosPorTick) {
-		        	actualizarVentana();
+		        	this.actualizarVentana();
 		            actualizaciones++;
 		            delta -=  nanoSegundosPorTick;
 		        }
 		        
 		        if (this.bucleVentanaEnEjecucion) {
-		        	renderizarBucleVentana();
 		            frames++;
 		        }
 		        
 		        if (System.currentTimeMillis() - cronometro > MILISEGUNDOS_POR_SEGUNDO) {
 		            cronometro +=  MILISEGUNDOS_POR_SEGUNDO;
-		            //System.out.println("FPS: " + frames + " TPS: " + updates);
 		            actualizaciones = 0;
 		            frames = 0;
 		        }
 		    }
 		    
-		    detenerBucleVentana();
+		    this.detenerBucleVentana();
 	}
 	
 	private void actualizarVentana() {
 		this.controlador.refrescar();
 	}
-
-	private void renderizarBucleVentana() {
-	}
-
-
 }

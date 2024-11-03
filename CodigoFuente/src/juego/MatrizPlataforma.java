@@ -1,12 +1,8 @@
 package juego;
 
-import java.util.HashMap;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.plataformas.Plataforma;
 
@@ -57,7 +53,7 @@ public class MatrizPlataforma {
     }
        
 	public Iterable<Plataforma> obtenerAdyacentes(Entidad entidad) {
-		ArrayList<Plataforma> listaDePlataformasAdyacentes = new ArrayList<Plataforma>();
+		ArrayList<Plataforma> listaDePlataformasAdyacentes = new ArrayList<>();
 		Point puntoEnLaGrilla = posicionEnLaGrilla(entidad);
 		for(int y=puntoEnLaGrilla.y-2;y<=puntoEnLaGrilla.y+2;y++) {
 			for(int x=puntoEnLaGrilla.x-2;x<=puntoEnLaGrilla.x+2;x++) {
@@ -66,9 +62,6 @@ public class MatrizPlataforma {
 					if( plataforma!=null) {
 						listaDePlataformasAdyacentes.add(plataforma);
 					}
-					else {
-					}
-				}else {
 				}
 			}
 		}
@@ -76,7 +69,7 @@ public class MatrizPlataforma {
 	}
 	
 	public Iterable<Plataforma> obtenerTodasLasPlataformas() {
-		ArrayList<Plataforma> listaDePlataformas = new ArrayList<Plataforma>();
+		ArrayList<Plataforma> listaDePlataformas = new ArrayList<>();
 		for(int y=0-2;y<=this.filas;y++) {
 			for(int x=0;x<=this.columnas;x++) {
 				if(estanEnRango(x, y)) {
@@ -99,7 +92,6 @@ public class MatrizPlataforma {
 		float posicionYDeElementoSinRedondear = entidad.obtenerPosicionLogica().y/(TAMANIO_CELDA* 1.0f);
 		int posicionXDeElementoEnLaGrilla = Math.round(posicionXDeElementoSinRedondear);
 		int posicionYDeElementoEnLaGrilla = Math.round(posicionYDeElementoSinRedondear);
-		Point puntoADevolver = new Point(posicionXDeElementoEnLaGrilla,posicionYDeElementoEnLaGrilla);
-		return puntoADevolver;
+		return new Point(posicionXDeElementoEnLaGrilla,posicionYDeElementoEnLaGrilla);
 	}
 }

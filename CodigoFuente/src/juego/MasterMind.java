@@ -1,10 +1,6 @@
 package juego;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import elementos.ElementoDeJuego;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
@@ -29,14 +25,34 @@ public class MasterMind {
 	}
 
 	public void actualizar() {
-		actualizarEnemigos();
-		actualizarPowerUps();
-		actualizarBolasDeFuego();
-		actualizarPlataformas();
+		this.actualizarEnemigos();
+		this.actualizarPowerUps();
+		this.actualizarBolasDeFuego();
+		this.actualizarPlataformas();
 	}
 	
-	public void cambiarNivel(Nivel nivel) {
-		this.nivel = nivel;
+	private void actualizarEnemigos() {
+		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
+			this.moverEnemigo(enemigo);
+			enemigo.actualizarSprite(this.fabricaSprites);
+			enemigo.obtenerObserverGrafico().actualizar();
+		}
+	}
+	
+	private void actualizarPowerUps() {
+		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
+			this.moverPowerUp(powerUp);
+			powerUp.actualizarSprite(this.fabricaSprites);
+			powerUp.obtenerObserverGrafico().actualizar();
+		}
+	}
+	
+	private void actualizarBolasDeFuego() {
+		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
+			this.moverBolaDeFuego(bola);
+			bola.actualizarSprite(this.fabricaSprites);
+			bola.obtenerObserverGrafico().actualizar();
+		}
 	}
 	
 	private void actualizarPlataformas() {
@@ -45,60 +61,16 @@ public class MasterMind {
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
 	}
-
-	private void actualizarEnemigos() {
-		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
-			moverEnemigo(enemigo);
-			enemigo.actualizarSprite(this.fabricaSprites);
-			enemigo.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void actualizarPowerUps() {
-		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
-			moverPowerUp(powerUp);
-			powerUp.actualizarSprite(this.fabricaSprites);
-			powerUp.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void actualizarBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
-			moverBolaDeFuego(bola);
-			bola.actualizarSprite(this.fabricaSprites);
-			bola.obtenerObserverGrafico().actualizar();
-		}
-	}
-	
-	private void moverEnemigo(Enemigo enemigo) {
 		
-		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
-		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
+	public void cambiarNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+
+	private void moverEnemigo(Enemigo enemigo) {
 		if (enemigo.obtenerVisibleEnPantalla()){
-			if(!this.nivel.estaEntidadVisible(enemigo)) {
-				this.nivel.agregarEntidadVisible(enemigo);
-			}
+			this.agregarEntidadVisible(enemigo);
 			if (this.movimientoEnemigosActivo) {
-				
-				if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
-					if (chocoBordeIzquierdo) {
-						int desplazamientoHaciaFueraDeLaPantalla = Math.abs(enemigo.obtenerPosicionGrafica().x);
-						Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
-						enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
-						Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
-						enemigo.establecerPosicionLogica(nuevaPosicionLogica);
-						enemigo.moverHitbox(nuevaPosicionLogica);
-						enemigo.invertirDireccion();
-					} else if (chocoBordeDerecho) {
-						int desplazamientoHaciaFueraDeLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() - ConstantesGlobales.PANEL_ANCHO;
-						Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
-						Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
-						enemigo.establecerPosicionLogica(nuevaPosicionLogica);
-						enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
-						enemigo.moverHitbox(nuevaPosicionLogica);
-						enemigo.invertirDireccion();
-					}
-				}
+				this.chequearChoqueBordesEnemigo(enemigo);
 				enemigo.mover();
 				enemigo.aplicarGravedad();
 			} else{
@@ -107,33 +79,79 @@ public class MasterMind {
 		} else {
 			this.nivel.removerEntidadVisible(enemigo);
 		}
-		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
+		this.cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
 	
+	private void agregarEntidadVisible(Entidad entidad) {
+		if(!this.nivel.estaEntidadVisible(entidad)) {
+			this.nivel.agregarEntidadVisible(entidad);
+		}
+	}
+	
+	private void chequearChoqueBordesEnemigo(Enemigo enemigo) {
+		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
+		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
+		if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
+			if (chocoBordeIzquierdo) {
+				this.chocarBordeIzquierdo(enemigo);
+			} else if (chocoBordeDerecho) {
+				this.chocarBordeDerecho(enemigo);
+			}
+		}
+	}
+
+	private void chocarBordeIzquierdo(Enemigo enemigo) {
+		int desplazamientoHaciaFueraDeLaPantalla = Math.abs(enemigo.obtenerPosicionGrafica().x);
+		Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
+		enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
+		Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x + desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
+		enemigo.establecerPosicionLogica(nuevaPosicionLogica);
+		enemigo.moverHitbox(nuevaPosicionLogica);
+		enemigo.invertirDireccion();
+	}
+	
+	private void chocarBordeDerecho(Enemigo enemigo) {
+		int desplazamientoHaciaFueraDeLaPantalla = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() - ConstantesGlobales.PANEL_ANCHO;
+		Point nuevaPosicionGrafica = new Point(enemigo.obtenerPosicionGrafica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionGrafica().y);
+		Point nuevaPosicionLogica = new Point(enemigo.obtenerPosicionLogica().x - desplazamientoHaciaFueraDeLaPantalla, enemigo.obtenerPosicionLogica().y);
+		enemigo.establecerPosicionLogica(nuevaPosicionLogica);
+		enemigo.establecerPosicionGrafica(nuevaPosicionGrafica);
+		enemigo.moverHitbox(nuevaPosicionLogica);
+		enemigo.invertirDireccion();
+	}
+
 	private void moverPowerUp(PowerUp powerUp) {
 		if(powerUp.obtenerVisibleEnPantalla()) {
-			if(!this.nivel.estaEntidadVisible(powerUp)) {
-				this.nivel.agregarEntidadVisible(powerUp);
-			}
-			boolean ticksEnCero = powerUp.obtenerContadorTicks() ==  0;
-			boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() ==  powerUp.obtenerTicksHastaSalirDelBloque();
-			if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
-				sacarPowerUpDeBloqueDePreguntas(powerUp);
-				powerUp.incrementarContadorTicks();
-			} else if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
-				if (powerUp.obtenerVelocidadDireccional().x ==  0) {
-					powerUp.mover();
-				}
-				powerUp.aplicarGravedad();
-				cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
-			} else if (!ticksEnCero && !ticksAlcanzaronMarca) {
-				powerUp.incrementarContadorTicks();
-			}
+			this.agregarEntidadVisible(powerUp);
+			this.realizarComportamientoPowerUp(powerUp);
 		}else {
 			this.nivel.removerEntidadVisible(powerUp);
 		}
 	}
 	
+	private void realizarComportamientoPowerUp(PowerUp powerUp) {
+		boolean ticksEnCero = powerUp.obtenerContadorTicks() ==  0;
+		boolean ticksAlcanzaronMarca = powerUp.obtenerContadorTicks() ==  powerUp.obtenerTicksHastaSalirDelBloque();
+		if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksEnCero) {
+			sacarPowerUpDeBloqueDePreguntas(powerUp);
+			powerUp.incrementarContadorTicks();
+		} else if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
+			if (powerUp.obtenerVelocidadDireccional().x ==  0) {
+				powerUp.mover();
+			}
+			powerUp.aplicarGravedad();
+			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
+		} else if (!ticksEnCero && !ticksAlcanzaronMarca) {
+			powerUp.incrementarContadorTicks();
+		}
+	}
+	
+	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
+		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicionLogica().x, powerUp.obtenerBloquePregunta().obtenerPosicionLogica().y - powerUp.obtenerAlto()));
+		powerUp.moverHitbox(powerUp.obtenerPosicionLogica());
+		powerUp.actualizarSprite(this.fabricaSprites);
+	}
+
 	private void moverBolaDeFuego(BolaDeFuego bolaFuego) {
 		if(bolaFuego.obtenerVisibleEnPantalla()) {
 			if(!this.nivel.estaEntidadVisible(bolaFuego)) {
@@ -147,10 +165,10 @@ public class MasterMind {
 	}
 	
 	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
-		cambiarPosicionXHitboxDeEntidad(entidad);
-		verificarColisiones(entidad);
-		cambiarPosicionYHitboxDeEntidad(entidad);
-		verificarColisiones(entidad);
+		this.cambiarPosicionXHitboxDeEntidad(entidad);
+		this.verificarColisiones(entidad);
+		this.cambiarPosicionYHitboxDeEntidad(entidad);
+		this.verificarColisiones(entidad);
 	}
 	
 	private void cambiarPosicionXHitboxDeEntidad(Entidad entidad) {
@@ -166,8 +184,8 @@ public class MasterMind {
 	}
 	
 	private void verificarColisiones(Entidad entidad) {
-		verificarColisionConPlataformas(entidad);
-		verificarColisionesConEntidades(entidad);
+		this.verificarColisionConPlataformas(entidad);
+		this.verificarColisionesConEntidades(entidad);
 	}
 	
 	private void verificarColisionesConEntidades(Entidad entidad) {
@@ -193,12 +211,6 @@ public class MasterMind {
 	        }
 	    }
 	    
-	}
-	
-	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
-		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicionLogica().x, powerUp.obtenerBloquePregunta().obtenerPosicionLogica().y - powerUp.obtenerAlto()));
-		powerUp.moverHitbox(powerUp.obtenerPosicionLogica());
-		powerUp.actualizarSprite(this.fabricaSprites);
 	}
 
 	public void desactivarMovimientoEnemigos() {
