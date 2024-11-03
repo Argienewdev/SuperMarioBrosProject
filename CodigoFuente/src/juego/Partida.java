@@ -175,6 +175,14 @@ public class Partida {
 	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
 		return this.sensorDeTeclasJuego;
 	}
+
+	public void desactivarMovimientoEnemigos() {
+		this.masterMind.desactivarMovimientoEnemigos();
+	}
+
+	public void activarMovimientoEnemigos() {
+		this.masterMind.activarMovimientoEnemigos();
+	}
 	
 	
 }

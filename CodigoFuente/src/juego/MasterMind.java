@@ -19,9 +19,12 @@ public class MasterMind {
 	
 	protected Nivel nivel;
 	
+	protected boolean movimientoEnemigosActivo;
+	
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
+		movimientoEnemigosActivo=false;
 	}
 
 	public void actualizar() {
@@ -31,7 +34,7 @@ public class MasterMind {
 		actualizarPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 		this.nivel.agregarBolaDeFuegoAAgregar();
-		this.nivel.agregarSpinysAAgregar(); 
+		this.nivel.agregarSpinysAAgregar();
 	}
 	
 	public void cambiarNivel(Nivel nivel) {
@@ -43,7 +46,7 @@ public class MasterMind {
 										&& enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() > 0;
 		boolean chocoBordeIzquierdo = enemigo.obtenerPosicionGrafica().x <=  0; 
 		boolean chocoBordeDerecho = enemigo.obtenerPosicionGrafica().x + enemigo.obtenerAncho() >=  ConstantesGlobales.PANEL_ANCHO;									
-		if (esVisibleEnLaPantalla) {
+		if (esVisibleEnLaPantalla && this.movimientoEnemigosActivo) {
 			if (enemigo.obtenerDebeMantenerseSiempreEnPantalla()) {
 				if (chocoBordeIzquierdo) {
 					int desplazamientoHaciaFueraDeLaPantalla = Math.abs(enemigo.obtenerPosicionGrafica().x);
@@ -176,6 +179,14 @@ public class MasterMind {
 		powerUp.establecerPosicion(new Point(powerUp.obtenerPosicionLogica().x, powerUp.obtenerBloquePregunta().obtenerPosicionLogica().y - powerUp.obtenerAlto()));
 		powerUp.moverHitbox(powerUp.obtenerPosicionLogica());
 		powerUp.actualizarSprite(this.fabricaSprites);
+	}
+
+	public void desactivarMovimientoEnemigos() {
+		this.movimientoEnemigosActivo = false;
+	}
+
+	public void activarMovimientoEnemigos() {
+		this.movimientoEnemigosActivo = true;
 	}
 	
 }
