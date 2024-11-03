@@ -120,6 +120,7 @@ public class VisitorContextoMario implements Visitante {
 	
 	
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		this.detenerEntidades();
 		this.miEntidad.obtenerNivel().obtenerPartida().finalizarPartida();
 	}
 
@@ -189,11 +190,11 @@ public class VisitorContextoMario implements Visitante {
 		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(piso, this.miEntidad);
 	}
 	
+	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 
 	
 	public void visitarVacio(Vacio vacio) {
 	}
-	
 	
 }
