@@ -10,36 +10,35 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 
 	protected ContextoKoopaTroopa contexto;
 	
-	protected static final int VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO = 20;
+	private static final int VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO = 20;
 	
 	public void establecerContexto(ContextoKoopaTroopa contexto) {
 		this.contexto = contexto;
 	}
 	
-	@Override
+	public ContextoKoopaTroopa obtenerContext() {
+		return this.contexto;
+	}
+	
+	public int obtenerVelocidadNecesariaParaMatarKoopa() {
+		return VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO;
+	}
+	
+	public Visitante obtenerVisitante() {
+		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
 	public void invertirDireccion() {}
 	
-	@Override
 	public void mover() {
 		Point velocidad = new Point(0, 0);
 		this.contexto.establecerVelocidadDireccional(velocidad);
 	}
 	
-	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarKoopaEnCaparazon(this);
     }
 
-	public ContextoKoopaTroopa obtenerContext() {
-		return this.contexto;
-	}
-
-	@Override
-	public Visitante obtenerVisitante() {
-		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
-	}
-
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerContext().obtenerRemovido()) {
 			contexto.establecerSprite(fabricaSprites.obtenerKoopaTroopaMuerto());
@@ -60,7 +59,6 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 		}
 	}
 	
-	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		int x = this.obtenerContext().obtenerPosicionLogica().x;
 		int y = this.obtenerContext().obtenerPosicionLogica().y + (this.obtenerContext().obtenerAlto() - this.obtenerContext().obtenerSprite().obtenerAltoImagen());
@@ -68,12 +66,9 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 		int alto = this.obtenerContext().obtenerSprite().obtenerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
-		this.obtenerContext().setHitbox(nuevaHitbox);
+		this.obtenerContext().establecerHitbox(nuevaHitbox);
 		this.obtenerContext().establecerPosicion(nuevaPosicion);
 	}
 	
-	public int obtenerVelocidadNecesariaParaMatarKoopa() {
-		return VELOCIDAD_NECESARIA_PARA_MATAR_ENEMIGO;
-	}
 	
 }

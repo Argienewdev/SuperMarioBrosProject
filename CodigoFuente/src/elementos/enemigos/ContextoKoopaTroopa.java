@@ -12,7 +12,8 @@ public class ContextoKoopaTroopa extends Enemigo {
 	
 	private boolean cambiarEstado;
 
-    public ContextoKoopaTroopa(Sprite sprite,Point posicion, Visitante visitor, 
+    @SuppressWarnings("exports")
+	public ContextoKoopaTroopa(Sprite sprite, Point posicion, Visitante visitor, 
 							   ObserverGrafico observerGrafico, KoopaDefault estado) {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.estadoKoopa = estado;
@@ -31,13 +32,16 @@ public class ContextoKoopaTroopa extends Enemigo {
     	return this.ticksAnimacion;
     }
     
+    protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+    	return fabricaSprites.obtenerKoopaTroopaMuerto();
+    }
+    
     public void cambiarEstado(EstadoKoopa estado) {
         this.estadoKoopa = estado;
         estado.establecerContexto(this);
 		this.cambiarEstado = true;
     }
     
-    @Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarContextoKoopaTroopa(this);
     }
@@ -46,7 +50,6 @@ public class ContextoKoopaTroopa extends Enemigo {
     	this.estadoKoopa.invertirDireccion();
     }
     
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estadoKoopa.actualizarSprite(fabricaSprites);
 		if (cambiarEstado) {
@@ -59,7 +62,6 @@ public class ContextoKoopaTroopa extends Enemigo {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 	}
     
-	@Override
 	public void mover() {
 		if (removido) {
     		Point velocidad = new Point(0, 0);
@@ -69,9 +71,4 @@ public class ContextoKoopaTroopa extends Enemigo {
     	}
 	}
 
-	@Override
-	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerKoopaTroopaMuerto();
-	}
-	
 }

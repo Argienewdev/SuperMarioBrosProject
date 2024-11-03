@@ -1,9 +1,7 @@
 package elementos.plataformas;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.LinkedList;
-
 import elementos.Sprite;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
@@ -14,8 +12,8 @@ public class BloqueDePregunta extends Plataforma {
 	
 	protected LinkedList<PowerUp> coleccionPowerUps;
 	
-	public BloqueDePregunta (Sprite sprite, Point pos, 
-							 Visitante visitor, PowerUp powerUp,
+	@SuppressWarnings("exports")
+	public BloqueDePregunta (Sprite sprite, Point pos, Visitante visitor, PowerUp powerUp,
 							 ObserverGrafico observerGrafico) {
 		super(sprite,pos,visitor,observerGrafico);
 		this.coleccionPowerUps = new LinkedList<PowerUp>();
@@ -24,12 +22,12 @@ public class BloqueDePregunta extends Plataforma {
 		}
 	}
 	
-	public void agregarPowerUp (PowerUp powerUp) {
-		this.coleccionPowerUps.add(powerUp);
-	}
-	
 	public PowerUp obtenerPowerUp() {
 		return this.coleccionPowerUps.getLast();
+	}
+	
+	public void agregarPowerUp (PowerUp powerUp) {
+		this.coleccionPowerUps.add(powerUp);
 	}
 	
 	public PowerUp removerPowerUp() {
@@ -40,10 +38,6 @@ public class BloqueDePregunta extends Plataforma {
 		visitante.visitarBloqueDePregunta(this);
 	}
 
-	public boolean estaVacio() {
-		return coleccionPowerUps.isEmpty();
-	}
-	
 	public PowerUp liberarPowerUp() {
 		PowerUp powerUpARemover = null;
 		if (!estaVacio()) {
@@ -58,4 +52,8 @@ public class BloqueDePregunta extends Plataforma {
 		}
 	}
 
+	public boolean estaVacio() {
+		return coleccionPowerUps.isEmpty();
+	}
 }
+

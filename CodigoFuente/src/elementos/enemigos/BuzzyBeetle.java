@@ -10,6 +10,7 @@ public class BuzzyBeetle extends Enemigo {
 	
 	private static final int TICKS_PARA_ELIMINAR = 10;
 	
+	@SuppressWarnings("exports")
 	public BuzzyBeetle(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.puntosOtorgadosPorEliminacion = 30;
@@ -17,12 +18,18 @@ public class BuzzyBeetle extends Enemigo {
         this.ticksAnimacion = TICKS_PARA_ELIMINAR;
 	}
 	
-	@Override
+	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+		return fabricaSprites.obtenerBuzzyBeetleMuerto();
+	}
+	
+	private boolean mirandoAlFrente() {
+		return this.obtenerMirandoAlFrente();
+	}
+	
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarBuzzyBeetle(this);
 	}
-
-	@Override
+	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0,0));
@@ -33,14 +40,4 @@ public class BuzzyBeetle extends Enemigo {
 			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleReversoCaminando());
 		}
 	}
-	
-	@Override
-	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerBuzzyBeetleMuerto();
-	}
-	
-	private boolean mirandoAlFrente() {
-		return this.obtenerMirandoAlFrente();
-	}
-
 }

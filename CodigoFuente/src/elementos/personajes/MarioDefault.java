@@ -27,7 +27,7 @@ public class MarioDefault implements EstadoMario {
 		Rectangle nuevaHitbox = new Rectangle(nuevaPosicionX, nuevaPosicionY, obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
-		this.obtenerContexto().setHitbox(nuevaHitbox);
+		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
 	@Override

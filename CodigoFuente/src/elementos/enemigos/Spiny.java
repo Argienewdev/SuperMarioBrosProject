@@ -16,7 +16,8 @@ public class Spiny extends Enemigo {
 	
 	private boolean salioDelHuevo;
 	
-    public Spiny(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+    @SuppressWarnings("exports")
+	public Spiny(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 60;
     	this.puntosSustraidosPorMuerteCausada = 30;
@@ -25,12 +26,22 @@ public class Spiny extends Enemigo {
     	this.salioDelHuevo = false;
     }
 
-    @Override
+    public void establecerAterrizo(Boolean aterrizo) {
+    	this.aterrizo = aterrizo;
+    }
+    
+    public boolean obtenerAterrizo() {
+    	return this.aterrizo;
+    }
+    
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarSpiny(this);
     }
+    
+    protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+    	return fabricaSprites.obtenerSpinyMuerto();
+    }
 
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
@@ -51,14 +62,6 @@ public class Spiny extends Enemigo {
 		this.salioDelHuevo = true;
 	}
 	
-	public void establecerAterrizo(Boolean aterrizo) {
-		this.aterrizo = aterrizo;
-	}
-	
-	public boolean obtenerAterrizo() {
-		return this.aterrizo;
-	}
-	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		int x = this.obtenerPosicionLogica().x;
 		int y = this.obtenerPosicionLogica().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
@@ -66,16 +69,8 @@ public class Spiny extends Enemigo {
 		int alto = this.obtenerSprite().obtenerAltoImagen();
 		Rectangle nuevaHitbox = new Rectangle(x, y, ancho, alto);
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
-		this.setHitbox(nuevaHitbox);
+		this.establecerHitbox(nuevaHitbox);
 		this.establecerPosicion(nuevaPosicion);
 	}
 	
-	@Override
-	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerSpinyMuerto();
-	}
-	 
-	private boolean mirandoAlFrente() {
-		return this.obtenerMirandoAlFrente();
-	}
 }

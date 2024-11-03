@@ -22,6 +22,10 @@ public abstract class Enemigo extends NoJugable {
 		this.velocidadHorizontalEnemigo = 2;
 	}
     
+	public int obtenerVelocidadHorizontalEnemigo() {
+		return velocidadHorizontalEnemigo;
+	}
+	
     public int obtenerPuntosOtorgadosPorEliminacion() {
         return this.puntosOtorgadosPorEliminacion;
     }
@@ -30,6 +34,9 @@ public abstract class Enemigo extends NoJugable {
         return this.puntosSustraidosPorMuerteCausada;
     }
 
+    protected abstract Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites);
+    
+    
     protected void moverDerecha() {
     	Point velocidad = new Point(velocidadHorizontalEnemigo, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
@@ -42,7 +49,6 @@ public abstract class Enemigo extends NoJugable {
     	this.establecerMirandoAlFrente(false);
     }
     
-    @Override
     public void invertirDireccion() {
     	if (removido) {
     		Point velocidad = new Point(0, 0);
@@ -52,8 +58,6 @@ public abstract class Enemigo extends NoJugable {
     		this.establecerVelocidadDireccional(velocidad);
     	}
     }
-    
-    protected abstract Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites);
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if (this.removido) {
@@ -74,13 +78,8 @@ public abstract class Enemigo extends NoJugable {
 		}
 	}
     
-    public int obtenerVelocidadHorizontalEnemigo() {
-    	return velocidadHorizontalEnemigo;
-    }
-    
     public abstract void aceptarVisitante(Visitante visitante);
 
-    @Override
 	public void mover() {
     	if (removido) {
     		Point velocidad = new Point(0, 0);

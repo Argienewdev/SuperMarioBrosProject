@@ -2,7 +2,6 @@ package elementos.enemigos;
 
 import java.awt.Point;
 import elementos.Sprite;
-import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
@@ -17,9 +16,10 @@ public class Lakitu extends Enemigo {
 	
 	private int contadorTicksDisparo;
 	
-	FabricaEntidades fabricaEntidades;
+	private FabricaEntidades fabricaEntidades;
 	
-    public Lakitu(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico, FabricaEntidades fabricaEntidades) {
+	@SuppressWarnings("exports")
+	public Lakitu(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico, FabricaEntidades fabricaEntidades) {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.fabricaEntidades = fabricaEntidades;
     	this.puntosOtorgadosPorEliminacion = 60;
@@ -29,39 +29,15 @@ public class Lakitu extends Enemigo {
 		this.velocidadHorizontalEnemigo = 3;
     }
     
-    @Override
-    public void aplicarGravedad() {
-    }
-
-    public void lanzarSpiny() {
-    	if (contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
-    		this.contadorTicksDisparo++;
-    	} else {
-    		this.contadorTicksDisparo = 0;
-    		int posGraficaX = obtenerPosicionGrafica().x + (this.obtenerAncho() / 2);
-    		int posGraficaY = obtenerPosicionGrafica().y + (this.obtenerAlto());
-    		
-    		int posLogicaX = obtenerPosicionLogica().x + (obtenerAncho() / 2);
-    		int posLogicaY = obtenerPosicionLogica().y + (this.obtenerAlto());
-    		
-    		Point posicionGraficaSpiny = new Point(posGraficaX,posGraficaY);
-    		Point posicionLogicaSpiny = new Point(posLogicaX,posLogicaY);
-
-    		Spiny spiny = fabricaEntidades.obtenerSpiny(posicionLogicaSpiny);
-    		
-    		spiny.establecerPosicionGrafica(posicionGraficaSpiny);
-    		spiny.obtenerObserverGrafico().actualizar();
-    		
-    		this.obtenerNivel().agregarEnemigo(spiny);
-    	}
+    
+    protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
+    	return fabricaSprites.obtenerLakituMuerto();
     }
     
-    @Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarLakitu(this);
     }
 
-    @Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
     	lanzarSpiny();
 		if (this.removido) {
@@ -73,7 +49,31 @@ public class Lakitu extends Enemigo {
 		}
 	}
     
-    @Override
+	public void aplicarGravedad() {}
+	
+	public void lanzarSpiny() {
+		if (contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
+			this.contadorTicksDisparo++;
+		} else {
+			this.contadorTicksDisparo = 0;
+			int posGraficaX = obtenerPosicionGrafica().x + (this.obtenerAncho() / 2);
+			int posGraficaY = obtenerPosicionGrafica().y + (this.obtenerAlto());
+			
+			int posLogicaX = obtenerPosicionLogica().x + (obtenerAncho() / 2);
+			int posLogicaY = obtenerPosicionLogica().y + (this.obtenerAlto());
+			
+			Point posicionGraficaSpiny = new Point(posGraficaX,posGraficaY);
+			Point posicionLogicaSpiny = new Point(posLogicaX,posLogicaY);
+			
+			Spiny spiny = fabricaEntidades.obtenerSpiny(posicionLogicaSpiny);
+			
+			spiny.establecerPosicionGrafica(posicionGraficaSpiny);
+			spiny.obtenerObserverGrafico().actualizar();
+			
+			this.obtenerNivel().agregarEnemigo(spiny);
+		}
+	}
+	
     public void invertirDireccion() {
     	if (removido) {
     		Point velocidad = new Point(0, 0);
@@ -95,11 +95,6 @@ public class Lakitu extends Enemigo {
     
 	private boolean moviendoseHaciaElBordeIzquierdo() {
 		return this.velocidadDireccional.x < 0;
-	}
-
-	@Override
-	protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerLakituMuerto();
 	}
 	
 	private boolean mirandoAlFrente() {
