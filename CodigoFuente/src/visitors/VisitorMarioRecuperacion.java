@@ -114,6 +114,7 @@ public class VisitorMarioRecuperacion implements Visitante{
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
+            generadorSonidos.reproducirMusicaInvencible();
     	}
     }
 
@@ -124,7 +125,11 @@ public class VisitorMarioRecuperacion implements Visitante{
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
 
     @Override
-    public void visitarLadrillo(Ladrillo ladrillo) {}
+    public void visitarLadrillo(Ladrillo ladrillo) {
+    	if(detectorDireccionColision.choquePorAbajo(ladrillo, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarPiso(Piso piso) {}
@@ -142,7 +147,11 @@ public class VisitorMarioRecuperacion implements Visitante{
     public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {}

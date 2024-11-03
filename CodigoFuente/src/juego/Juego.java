@@ -26,15 +26,15 @@ public class Juego {
 	
 	private Ranking ranking;
 	
-	
 	private String modoDeJuegoSeleccionado;
 	
 	public Juego() {
 		ranking = cargarEstadoRanking();
+		//TODO Esto se deja?
 		//Utilizar solo cuando se quiere establecer un nuevo ranking
 		//Unicamente en el primer juego creado, despues volver a comentar
-		//TODO esto que onda?
-//		ranking.reiniciarRanking();
+		
+		//ranking.reiniciarRanking();
 	}
 	
 	public Sprite obtenerSpriteMario(){

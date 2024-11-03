@@ -118,16 +118,9 @@ public class VisitorMarioDefault implements Visitante {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
             generadorSonidos.PowerupAgarrado();
-            generadorSonidos.modoInvencible();
-            generadorSonidos.detenerMusicaFondo();
-            Timer timer = new Timer(5000, new ActionListener() {
-    	    	public void actionPerformed(ActionEvent e) {
-    	    		generadorSonidos.reproducirMusicaFondo();
-    	        }
-    	    });
-            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
-            timer.start(); // Inicia el timer
-    	}
+            generadorSonidos.reproducirMusicaInvencible();
+            generadorSonidos.detenerMusicaFondo(); 
+    		}
     }
 
     
@@ -136,9 +129,7 @@ public class VisitorMarioDefault implements Visitante {
 
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    	if(detectorDireccionColision.choquePorAbajo(bloqueDePregunta, miContexto)){
-    		generadorSonidos.golpeBloque();
-    	}
+    	
     }
 
     
@@ -169,6 +160,7 @@ public class VisitorMarioDefault implements Visitante {
     	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
+    	detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(bloqueSolido, miContexto);
     }
 
     
