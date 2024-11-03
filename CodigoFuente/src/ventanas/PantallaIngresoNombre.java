@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 
 import fuentes.Fuentes;
+import juego.Partida;
 import ranking.Jugador;
 import ranking.LimitadorDeCaracteres;
 import ranking.Ranking;
@@ -12,23 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class PantallaIngresoNombre extends Pantalla {
-
     private static final long serialVersionUID = 1L;
-
     private Fuentes tipoFuentes;
-    
     private JLabel fondo;
-    
     private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-    
     private JTextField campoNombre;
-    
     private JButton botonConfirmar;
-    
     private ControladorVistas controlador;
-    
-    private Jugador jugador;
-    
     private String modo;
 
     public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
@@ -45,32 +36,6 @@ public class PantallaIngresoNombre extends Pantalla {
         add(layeredPane, BorderLayout.CENTER); 
     }
     
-    
-    public void establecerJugador(Jugador jugador) {
-        this.jugador = jugador;
-    }
-
-    public void guardarNombre(String nombreJugador) {
-        Ranking ranking = controlador.obtenerRanking();
-        Jugador jugadorTop = ranking.obtenerJugador(nombreJugador);
-
-        if (jugadorTop == null) {
-            // Si el jugador no está en el ranking, establece el nombre y lo agrega
-            jugador.establecerNombre(nombreJugador);
-            ranking.agregarJugador(jugador);
-        } else {
-            // Si el jugador ya existe, solo actualiza el puntaje si es mayor
-            int puntosNuevos = jugador.obtenerPuntaje();
-            if (puntosNuevos > jugadorTop.obtenerPuntaje()) {
-                jugadorTop.actualizarPuntos(puntosNuevos);
-            }
-        }
-    }
-
-    public String obtenerNombreJugador() {
-        return jugador.obtenerNombre();
-    }
-
     public void solicitarFocoCampoTexto() {
         campoNombre.requestFocusInWindow();
     }
@@ -147,13 +112,43 @@ public class PantallaIngresoNombre extends Pantalla {
     private void confirmarNombre() {
         String nombre = campoNombre.getText().trim();
         if (!nombre.isEmpty()) {
-            guardarNombre(nombre);
-            Ranking ranking = controlador.obtenerRanking();
-            ranking.guardarEstado();
-            controlador.accionarPantallaFinal();
+            if (procesarJugador(nombre)) {
+                controlador.obtenerRanking().guardarEstado();
+                controlador.accionarPantallaFinal();
+            }
         } else {
-            JOptionPane.showMessageDialog(PantallaIngresoNombre.this, "Por favor, ingresa un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, ingresa un nombre.", "Error", 
+                JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+
+    private boolean procesarJugador(String nombre) {
+    	boolean toRet = false;
+        try {
+            Ranking ranking = controlador.obtenerRanking();
+            Partida partida = controlador.obtenerJuego().obtenerPartida();
+            int puntajeActual = partida.obtenerJugable().obtenerPuntos();
+            Jugador jugadorExistente = ranking.obtenerJugador(nombre);
+
+            if (jugadorExistente == null) {
+                Jugador nuevoJugador = new Jugador();
+                nuevoJugador.establecerNombre(nombre);
+                nuevoJugador.actualizarPuntos(puntajeActual);
+                ranking.agregarJugador(nuevoJugador);
+            } else 
+                if (puntajeActual > jugadorExistente.obtenerPuntaje()) {
+                    jugadorExistente.actualizarPuntos(puntajeActual);
+            }
+            toRet = true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor ingresa un nombre: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+        return toRet;
     }
     
     public void refrescar() {

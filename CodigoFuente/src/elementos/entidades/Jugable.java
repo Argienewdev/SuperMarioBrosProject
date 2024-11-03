@@ -28,8 +28,8 @@ public abstract class Jugable extends Entidad  {
 		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 1;
-		this.puntos = 100;
+		this.vidas = 3;
+		this.puntos = 0;
 		this.desplazamiento = 0;
 	}
 	

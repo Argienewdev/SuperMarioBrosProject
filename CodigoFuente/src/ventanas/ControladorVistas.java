@@ -125,7 +125,7 @@ public class ControladorVistas {
 	public void accionarPantallaFinal() {
 		this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
 	    pantallaFinal.establecerEnFoco(true);
-	    pantallaFinal.puntajeJugador(juego.obtenerJugador().obtenerPuntaje());
+	    pantallaFinal.puntajeJugador(juego.obtenerPartida().obtenerJugable().obtenerPuntos());
 	    actualizarVentana(pantallaFinal);
 		
 	}
@@ -249,10 +249,10 @@ public class ControladorVistas {
 	}
 
 	@SuppressWarnings("exports")
-	public void establecerJugador (Jugador jugador) {
-		pantallaIngresoNombre.establecerJugador(jugador);
-	}
-	
+//	public void establecerJugador (Jugador jugador) {
+//		pantallaIngresoNombre.establecerJugador(jugador);
+//	}
+//	
 	public PantallaFinal obtenerPantallaFinal() {
 		return pantallaFinal;
 	}
@@ -274,5 +274,9 @@ public class ControladorVistas {
 	
 	public InterfazJuego obtenerHUD() {
 		return this.pantallaDeJuego.obtenerHUD();
+	}
+	
+	public Juego obtenerJuego() {
+		return this.juego;
 	}
 }

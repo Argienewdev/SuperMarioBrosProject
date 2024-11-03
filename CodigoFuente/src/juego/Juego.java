@@ -89,23 +89,12 @@ public class Juego {
 	    });
 	    timer.setRepeats(false);
 	    timer.start();
-		jugador = new Jugador();
-		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
-		controladorVistas.establecerJugador(jugador);
-		
-		BucleJugador bucle =  partida.obtenerBucleJugador();
-		bucle.detenerBucleJugador();
-		
-		controladorVistas.accionarPantallaIngresoNombre();
-		String nombreIngresado = controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador();
-		jugador.establecerNombre(nombreIngresado);
-		
-		if (!nombreIngresado.isEmpty()) {
-	        controladorVistas.obtenerPantallaIngresoNombre().guardarNombre(nombreIngresado);
-	    }
+        controladorVistas.accionarPantallaIngresoNombre();
 
-	}
-	
+        BucleJugador bucle = partida.obtenerBucleJugador();
+        bucle.detenerBucleJugador();
+    }
+
 
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
 		this.controladorVistas = controladorVistas;
@@ -138,9 +127,4 @@ public class Juego {
 		JOptionPane.showMessageDialog(null,mensaje);
 	}
 
-
-	public Jugador obtenerJugador() {
-		return jugador;
-	}
-	
 }
