@@ -131,6 +131,7 @@ public class GeneradorSonidos {
 	}
 	
 	public void reproducirMusicaFondo(){
+		clipCancion.setFramePosition(0);
 		clipCancion.start();
 		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
 	}

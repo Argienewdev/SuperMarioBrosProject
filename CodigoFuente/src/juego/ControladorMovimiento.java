@@ -119,6 +119,7 @@ public class ControladorMovimiento {
 	private void iniciarSalto() {
 		cambiarVelocidadVertical(ConstantesGlobales.FUERZA_SALTO);
 		personajeJugable.establecerColisionAbajo(false);
+		personajeJugable.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos().salto();
 	}
 	
 	private void realizarAccionEspecial() {

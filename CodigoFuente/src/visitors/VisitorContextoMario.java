@@ -189,11 +189,11 @@ public class VisitorContextoMario implements Visitante {
 		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(piso, this.miEntidad);
 	}
 	
-	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 
 	
 	public void visitarVacio(Vacio vacio) {
 	}
+	
 	
 }
