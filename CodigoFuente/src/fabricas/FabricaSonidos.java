@@ -51,5 +51,8 @@ public abstract class FabricaSonidos {
 	
 	public abstract Sonido obtenerRecuperarVida();
 	
+	public abstract Sonido obtenerSeAcaboElTiempo();
+
+	
 	
 }
