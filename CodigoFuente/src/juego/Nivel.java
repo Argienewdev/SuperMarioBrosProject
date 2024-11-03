@@ -75,15 +75,15 @@ public class Nivel {
     }
     
 
-    public Iterable<Plataforma> obtenerPlataformasAfectables() {
+    public synchronized Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }
 
-    public Iterable<Plataforma> obtenerPlataformas() {
+    public synchronized Iterable<Plataforma> obtenerPlataformas() {
         return matrizPlataforma.obtenerTodasLasPlataformas();
     }
 
-    public Plataforma obtenerPlataformaEnPunto(Point punto) {
+    public synchronized Plataforma obtenerPlataformaEnPunto(Point punto) {
         return matrizPlataforma.obtenerPlataformaEnPunto(punto);
     }
 
@@ -132,7 +132,7 @@ public class Nivel {
         entidadesAEliminar = new ArrayList<>();
     }
 
-    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
+    public synchronized Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
         ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<>();
         for(Plataforma plataforma : obtenerPlataformas()) {
             elementosDeJuego.add(plataforma);
@@ -158,15 +158,15 @@ public class Nivel {
         return this.mario;
     }
 
-    public Iterable<PowerUp> obtenerPowerUps() {
+    public synchronized Iterable<PowerUp> obtenerPowerUps() {
         return this.powerUps;
     }
 
-    public Iterable<Enemigo> obtenerEnemigos() {
+    public synchronized Iterable<Enemigo> obtenerEnemigos() {
         return this.enemigos;
     }
 
-    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
+    public synchronized Iterable<BolaDeFuego> obtenerBolasDeFuego() {
         return this.bolasDeFuego;
     }
 
