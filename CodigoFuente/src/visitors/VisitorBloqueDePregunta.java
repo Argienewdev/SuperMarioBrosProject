@@ -21,7 +21,7 @@ public class VisitorBloqueDePregunta implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-s    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
         this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, buzzyBeetle);
     }
     
