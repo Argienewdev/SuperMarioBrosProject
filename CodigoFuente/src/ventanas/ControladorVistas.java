@@ -181,20 +181,9 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaIngresoNombre() {
-		Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		actualizarVentana(pantallaIngresoNombre);
-	    		SwingUtilities.invokeLater(() -> {
-	    			pantallaIngresoNombre.requestFocusInWindow();
-	    			pantallaIngresoNombre.solicitarFocoCampoTexto();
-	    		} );
-	    		
-	        }
-	    });
-	    timer.setRepeats(false);
-	    timer.start();
-	    
-		
+		actualizarVentana(pantallaIngresoNombre);
+		pantallaIngresoNombre.requestFocusInWindow();
+		pantallaIngresoNombre.solicitarFocoCampoTexto();
 	}
 	
 	public void refrescar() {

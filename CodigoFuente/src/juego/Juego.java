@@ -73,8 +73,7 @@ public class Juego {
 	}
 	
 	public void finalizarJuego (){
-		partida.obtenerGeneradorDeSonidos().detenerMusicaFondo();
-		Timer timer = new Timer(3000, new ActionListener() {
+		Timer timer = new Timer(2000, new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	            partida.obtenerGeneradorDeSonidos().pierdeJuego();
 	        }
