@@ -10,7 +10,6 @@ import elementos.enemigos.ContextoKoopaTroopa;
 import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
-import elementos.enemigos.PiranhaPlant;
 import elementos.enemigos.Spiny;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Bandera;
@@ -61,6 +60,22 @@ public class GeneradorDeNivel {
 		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego, this.generadorSonidos);
 		this.pantallaDeJuego = pantallaDeJuego;
 		this.controladorVistas = controladorVistas;		
+	}
+	
+	public FabricaSprites obtenerFabricaSprites() {
+		return this.fabricaSprites;
+	}
+	
+	public FabricaSilueta obtenerFabricaSilueta() {
+		return this.fabricaSilueta;
+	}
+	
+	public FabricaSonidos obtenerFabricaSonidos() {
+		return this.fabricaSonidos;
+	}
+	
+	public GeneradorSonidos obtenerGeneradorSonidos() {
+		return this.generadorSonidos;
 	}
 	
 	public Nivel generarNivel(int numeroNivel, Partida partida) {
@@ -206,19 +221,4 @@ public class GeneradorDeNivel {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
 	}
 	
-	public FabricaSprites obtenerFabricaSprites() {
-		return this.fabricaSprites;
-	}
-	
-	public FabricaSilueta obtenerFabricaSilueta() {
-		return this.fabricaSilueta;
-	}
-	
-	public FabricaSonidos obtenerFabricaSonidos() {
-		return this.fabricaSonidos;
-	}
-
-	public GeneradorSonidos obtenerGeneradorSonidos() {
-		return this.generadorSonidos;
-	}
 }

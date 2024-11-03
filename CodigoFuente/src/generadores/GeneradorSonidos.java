@@ -1,6 +1,5 @@
 package generadores;
 
-
 import fabricas.FabricaSonidos;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -14,24 +13,35 @@ import elementos.Sonido;
 import java.io.File;
 import java.io.IOException;
 
-
 public class GeneradorSonidos {
 	
-	FabricaSonidos fabricaSonidos;
-	File archivoCancion;
-	Clip clipCancion;
+	protected FabricaSonidos fabricaSonidos;
+	
+	protected File archivoCancion;
+	
+	protected Clip clipCancion;
 	
 	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
 		this.fabricaSonidos = fabricaSonidos;
 		establecerArchivo();
 	}
 
-	protected void establecerArchivo(){
+	protected void establecerArchivo() {
 		archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
 		establecerMusicaFondo();
 	}
 	
-	public void emitirSonidoAplastarEnemigo(){
+	public void establecerMusicaFondo(){
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancion);
+			clipCancion = AudioSystem.getClip();
+			clipCancion.open(audioStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void emitirSonidoAplastarEnemigo() {
 		  try {
 			    Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
 	            
@@ -60,7 +70,7 @@ public class GeneradorSonidos {
 		
 	}
 	
-	public void emitirSonidoAplastarEnemigo2(){
+	public void emitirSonidoAplastarEnemigo2() {
 		try {
 			Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo2();
 			
@@ -116,17 +126,6 @@ public class GeneradorSonidos {
 			System.err.println("Línea de audio no disponible: " + e.getMessage());
 		}
 		
-	}
-	
-	public void establecerMusicaFondo(){
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancion);
-			clipCancion = AudioSystem.getClip();
-			clipCancion.open(audioStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
-		}
-        
 	}
 	
 	public void reproducirMusicaFondo(){
@@ -365,7 +364,6 @@ public class GeneradorSonidos {
 	}
 	
 	public void musicaModoOriginal(){
-		
 	}
 	
 	public void pierdeJuego(){
@@ -619,4 +617,5 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+	
 }
