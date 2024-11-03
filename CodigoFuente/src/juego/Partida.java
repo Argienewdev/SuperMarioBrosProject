@@ -49,7 +49,7 @@ public class Partida {
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
-		this.numeroNivelActual = 1;
+		this.numeroNivelActual = 3;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), this.juego.obtenerPantallaDeJuego(), this.juego.obtenerControladorVistas());
 		this.fabricaSonidos = generadorDeNivel.obtenerFabricaSonidos();
 		this.generadorSonidos = generadorDeNivel.obtenerGeneradorSonidos();
