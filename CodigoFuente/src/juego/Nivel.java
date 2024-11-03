@@ -190,12 +190,11 @@ public class Nivel {
         this.entidadesAEliminar.add(entidad);
     }
     
-    public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
+    public synchronized Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
     	return this.matrizPlataforma.obtenerAdyacentes( entidad);
-    	
     }
 
-	public Iterable<Entidad> obtenerEntidades() {
+	public synchronized Iterable<Entidad> obtenerEntidades() {
 		ArrayList<Entidad> entidadesDeJuego = new ArrayList<>();
 
         for(PowerUp powerup : obtenerPowerUps()) {
@@ -207,6 +206,7 @@ public class Nivel {
         for(BolaDeFuego bolaDeFuego: obtenerBolasDeFuego()) {
         	entidadesDeJuego.add(bolaDeFuego);
         }
+        
         return entidadesDeJuego;
 	}
 }
