@@ -68,9 +68,9 @@ public class MasterMind {
 	
 	private void cambiarYVerificarPosicionHitboxDeEntidad(Entidad entidad) {
 		cambiarPosicionXHitboxDeEntidad(entidad);
-		verificarColisionesEntidades(entidad);
+		verificarColisiones(entidad);
 		cambiarPosicionYHitboxDeEntidad(entidad);
-		verificarColisionesEntidades(entidad);
+		verificarColisiones(entidad);
 	}
 	
 	private void cambiarPosicionXHitboxDeEntidad(Entidad entidad) {
@@ -83,6 +83,36 @@ public class MasterMind {
 		int nuevaPosicionY = entidad.obtenerHitbox().y + entidad.obtenerVelocidadDireccional().y;
 		Point nuevaPosicion = new Point(entidad.obtenerHitbox().x, nuevaPosicionY);
 		entidad.moverHitbox(nuevaPosicion);
+	}
+	
+	private void verificarColisiones(Entidad entidad) {
+		verificarColisionConPlataformas(entidad);
+		verificarColisionesConEntidades(entidad);
+	}
+	
+	private void verificarColisionesConEntidades(Entidad entidad) {
+		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50) && !entidad.obtenerDebeMantenerseSiempreEnPantalla()) {
+			entidad.establecerRemovido(true);
+		} else {
+			for(ElementoDeJuego elemento : this.nivel.obtenerEntidades()) {
+		        if (entidad.huboColision(elemento) && entidad !=  elemento) {
+		            elemento.aceptarVisitante(entidad.obtenerVisitante());
+		            entidad.aceptarVisitante(elemento.obtenerVisitante());
+		        }
+		    }
+		}
+		entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
+	}
+	
+	private void verificarColisionConPlataformas(Entidad entidad) {
+	    
+		for (Plataforma plataforma : nivel.obtenerPlataformasAdyacentes(entidad)) {
+	        if (plataforma != null && entidad.huboColision(plataforma)) {
+	        	plataforma.aceptarVisitante(entidad.obtenerVisitante());
+	            entidad.aceptarVisitante(plataforma.obtenerVisitante());
+	        }
+	    }
+	    
 	}
 	
 	private void verificarColisionesEntidades(Entidad entidad) {

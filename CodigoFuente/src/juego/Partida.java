@@ -15,6 +15,7 @@ import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
+import ventanas.ControladorVistas;
 
 public class Partida {
 	
@@ -68,8 +69,11 @@ public class Partida {
 	
 	public void actualizar() {
 		this.coordinadorActualizacionesJugador.actualizar();
+		if(tiempoLlegoACero()) {
+			matarJugador();
+		}
 	}
-	
+
 	public BucleJugador obtenerBucleJugador(){
 		return this.bucleJugador;
 	}
@@ -148,5 +152,17 @@ public class Partida {
 	public GeneradorSonidos obtenerGeneradorDeSonidos() {
 		return this.generadorSonidos;
 	}
+	
+	private boolean tiempoLlegoACero() {
+		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenterTiempoEnCero();
+	}
+	
+	private void matarJugador() {
+		this.generadorSonidos.detenerMusicaFondo();
+     	this.generadorSonidos.pierdeVida();
+     	this.jugable.perderVida();
+     	this.reiniciarNivel();
+	}
+	
 	
 }

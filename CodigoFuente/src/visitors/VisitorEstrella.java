@@ -32,62 +32,50 @@ public class VisitorEstrella implements Visitante {
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        // Lógica para visitar PiranhaPlant
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        // Lógica para visitar SuperChampinion
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        // Lógica para visitar FlorDeFuego
     }
 
     @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        // Lógica para visitar ChampinionVerde
     }
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-        // Lógica para visitar Estrella
     }
 
     @Override
     public void visitarMoneda(Moneda monedas) {
-        // Lógica para visitar Monedas
     }
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        // Lógica para visitar BloqueDePregunta
     }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
-        // Lógica para visitar Ladrillo
     }
 
     @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        // Lógica para visitar PrincesaPeach
     }
 
     @Override
     public void visitarBandera(Bandera bandera) {
-        // Lógica para visitar Bandera
     }
 
     @Override
     public void visitarTuberia(Tuberia tuberia) {
-        // Lógica para visitar Tuberia
     }
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        // Lógica para visitar BloqueSolido
     }
 
     @Override

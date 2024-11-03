@@ -123,6 +123,7 @@ public class VisitorContextoKoopaTroopa implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		generadorSonidos.matarBolaDeFuego();
 		fireball.establecerRemovido(true);
 	}
 

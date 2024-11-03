@@ -92,8 +92,8 @@ public class VisitorPiranhaPlant implements Visitante {
 
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
-    	
         if (!this.miEntidad.obtenerRemovido()) {
+        	this.generadorSonidos.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
@@ -107,6 +107,7 @@ public class VisitorPiranhaPlant implements Visitante {
     @Override
     public void visitarSuperMario(SuperMario superMario) {
     	if (!this.miEntidad.obtenerRemovido()) {
+        	this.generadorSonidos.modoRecuperacion();
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
 	        superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
     	} else {
@@ -117,6 +118,7 @@ public class VisitorPiranhaPlant implements Visitante {
     @Override
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	if (!this.miEntidad.obtenerRemovido()) {
+        	this.generadorSonidos.modoRecuperacion();
     		EstadoMario marioRecuperacion = new MarioRecuperacion();
     		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
     	} else {
@@ -149,6 +151,7 @@ public class VisitorPiranhaPlant implements Visitante {
 
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		generadorSonidos.matarBolaDeFuego();
 		fireball.establecerRemovido(true);
 	}
 

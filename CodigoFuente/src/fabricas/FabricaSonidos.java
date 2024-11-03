@@ -10,6 +10,10 @@ public abstract class FabricaSonidos {
 		this.rutaACarpeta = rutaACarpeta;
 	}
 	public abstract Sonido obtenerAplastarEnemigo();
+
+	public abstract Sonido obtenerAplastarEnemigo2();
+
+	public abstract Sonido obtenerAplastarEnemigo3();
 	
 	public abstract Sonido obtenerChoqueFireball();
 	
@@ -24,6 +28,10 @@ public abstract class FabricaSonidos {
 	public abstract Sonido obtenerMatarBolaDeFuego();
 	
 	public abstract Sonido obtenerModoInvencible();
+
+	public abstract Sonido obtenerModoRecuperacion();
+
+	public abstract Sonido obtenerModoFuego();
 	
 	public abstract Sonido obtenerSonidoMoneda();
 	

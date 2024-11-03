@@ -4,7 +4,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import elementos.ElementoDeJuego;
+import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
+import elementos.plataformas.Plataforma;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ConstantesGlobales;
 
@@ -142,19 +144,34 @@ public class ControladorMovimiento {
 				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
 				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
-			
-			for(ElementoDeJuego elemento : this.nivel.obtenerElementosDeJuego()) {
-			    if (entidad.huboColision(elemento)) {
-			        elemento.aceptarVisitante(entidad.obtenerVisitante());
-			        entidad.aceptarVisitante(elemento.obtenerVisitante());
-			    }
-			}
-			
+			verificarColisionConPlataformas(entidad);
+			verificarColisionConEntidades(entidad);
+			System.out.println(cont);
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 			
 		} else {
 	    	this.nivel.obtenerPartida().cambiarNivel();
 		}
+	}
+	
+	private void verificarColisionConEntidades(Jugable jugador) {
+		for (Entidad entidad : this.nivel.obtenerEntidades()) {
+	        if (entidad != null && jugador.huboColision(entidad)) {
+	        	entidad.aceptarVisitante(jugador.obtenerVisitante());
+	            jugador.aceptarVisitante(entidad.obtenerVisitante());
+	        }
+	    }
+		
+	}
+
+	private void verificarColisionConPlataformas(Jugable entidad) {
+	    for (ElementoDeJuego elemento : this.nivel.obtenerPlataformasAdyacentes(entidad)) {
+	    	if (elemento != null && entidad.huboColision(elemento)) {
+	            elemento.aceptarVisitante(entidad.obtenerVisitante());
+	            entidad.aceptarVisitante(elemento.obtenerVisitante());
+	        }
+	    }
+	    
 	}
 	
 	private void cambiarPosicionHitboxDelJugadorX() {
