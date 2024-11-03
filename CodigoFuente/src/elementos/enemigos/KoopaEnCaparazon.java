@@ -28,7 +28,8 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
 	}
 	
-	public void invertirDireccion() {}
+	public void invertirDireccion() {
+	}
 	
 	public void mover() {
 		Point velocidad = new Point(0, 0);
@@ -69,6 +70,5 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 		this.obtenerContext().establecerHitbox(nuevaHitbox);
 		this.obtenerContext().establecerPosicion(nuevaPosicion);
 	}
-	
 	
 }

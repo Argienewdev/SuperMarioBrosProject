@@ -137,7 +137,6 @@ public abstract class Jugable extends Entidad  {
 		this.establecerPosicion(nuevaPosicion);
 	}
 	
-	
 	public void muerte() {
 		observerLogico.actualizar();
 	}

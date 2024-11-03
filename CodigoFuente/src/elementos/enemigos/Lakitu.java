@@ -29,7 +29,6 @@ public class Lakitu extends Enemigo {
 		this.velocidadHorizontalEnemigo = 3;
     }
     
-    
     protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {
     	return fabricaSprites.obtenerLakituMuerto();
     }
@@ -100,4 +99,5 @@ public class Lakitu extends Enemigo {
 	private boolean mirandoAlFrente() {
 		return this.obtenerMirandoAlFrente();
 	}
+	
 }

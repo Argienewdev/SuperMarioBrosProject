@@ -52,9 +52,11 @@ public class BolaDeFuego extends NoJugable {
 		}
 	}
 
-	public void mover() {}
+	public void mover() {
+	}
 
-	public void invertirDireccion() {}
+	public void invertirDireccion() {
+	}
 
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());

@@ -8,6 +8,7 @@ import visitors.Visitante;
 
 public class FlorDeFuego extends PowerUp {
 	
+	@SuppressWarnings("exports")
 	public FlorDeFuego(Sprite sprite, Point posicion, Visitante visitor,					   
 					   ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
@@ -17,10 +18,6 @@ public class FlorDeFuego extends PowerUp {
 		this.ticksHastaSalirDelBloque = 40;
 	}
 	
-	@Override
-	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarFlorDeFuego(this);
-	}
 	
 	public int obtenerPuntosPorDefault() {
 		return 5;
@@ -38,7 +35,6 @@ public class FlorDeFuego extends PowerUp {
 		return 50;
 	}
 
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
@@ -53,4 +49,8 @@ public class FlorDeFuego extends PowerUp {
 		}
 	}
 
+	public void aceptarVisitante (Visitante visitante) {
+		visitante.visitarFlorDeFuego(this);
+	}
+	
 }

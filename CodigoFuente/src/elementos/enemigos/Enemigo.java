@@ -92,6 +92,5 @@ public abstract class Enemigo extends NoJugable {
     		}
     	}
 	}
-    
    
 }
