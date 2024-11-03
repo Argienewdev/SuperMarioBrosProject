@@ -55,25 +55,12 @@ public class MatrizPlataforma {
         		grilla[j/TAMANIO_CELDA][i/TAMANIO_CELDA]=null;
         	}
     }
-    
-    
-    public Plataforma obtenerPlataformaEnPunto (Point punto) {
-    	int posX = punto.x/TAMANIO_CELDA;
-    	int posY = punto.y/TAMANIO_CELDA;
-    	return grilla[posY][posX];
-    }
-    
-   public void limpiarMapa() {
-	   this.grilla = new Plataforma[filas][columnas];
-   }
-
-
+       
 	public Iterable<Plataforma> obtenerAdyacentes(Entidad entidad) {
 		ArrayList<Plataforma> listaDePlataformasAdyacentes = new ArrayList<Plataforma>();
-		int posicionXDeElementoEnLaGrilla = entidad.obtenerPosicionLogica().x/TAMANIO_CELDA;
-		int posicionYDeElementoEnLaGrilla = (entidad.obtenerPosicionLogica().y)/TAMANIO_CELDA;
-		for(int y=posicionYDeElementoEnLaGrilla-2;y<=posicionYDeElementoEnLaGrilla+2;y++) {
-			for(int x=posicionXDeElementoEnLaGrilla-2;x<=posicionXDeElementoEnLaGrilla+2;x++) {
+		Point puntoEnLaGrilla = posicionEnLaGrilla(entidad);
+		for(int y=puntoEnLaGrilla.y-2;y<=puntoEnLaGrilla.y+2;y++) {
+			for(int x=puntoEnLaGrilla.x-2;x<=puntoEnLaGrilla.x+2;x++) {
 				if(estanEnRango(x, y)) {
 					Plataforma plataforma = grilla[y][x];
 					if( plataforma!=null) {
@@ -87,7 +74,6 @@ public class MatrizPlataforma {
 		}
 		return listaDePlataformasAdyacentes;
 	}
-	
 	
 	public Iterable<Plataforma> obtenerTodasLasPlataformas() {
 		ArrayList<Plataforma> listaDePlataformas = new ArrayList<Plataforma>();
@@ -105,7 +91,17 @@ public class MatrizPlataforma {
 	}
 	
 	private boolean estanEnRango(int x, int y) {
-		return (x>=0 && x<this.columnas && y>=0 && y<this.filas);
-	  
+		return (x>=0 && x<this.columnas && y>=0 && y<this.filas); 
+	}
+	
+	private Point posicionEnLaGrilla(Entidad entidad) {
+		//TODO se puede sacar el casteo?
+		//Se castea el tamanio de la celda, para que la division de un float y asi poder redondear al mas cercano
+		float posicionXDeElementoSinRedondear = entidad.obtenerPosicionLogica().x/((float)TAMANIO_CELDA);
+		float posicionYDeElementoSinRedondear = entidad.obtenerPosicionLogica().y/((float)TAMANIO_CELDA);
+		int posicionXDeElementoEnLaGrilla = Math.round(posicionXDeElementoSinRedondear);
+		int posicionYDeElementoEnLaGrilla = Math.round(posicionYDeElementoSinRedondear);
+		Point puntoADevolver = new Point(posicionXDeElementoEnLaGrilla,posicionYDeElementoEnLaGrilla);
+		return puntoADevolver;
 	}
 }
