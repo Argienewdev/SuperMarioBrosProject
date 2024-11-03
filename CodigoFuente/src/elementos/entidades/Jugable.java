@@ -4,7 +4,6 @@ import java.awt.Point;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
-import observers.ObserverLogicoJugable;
 import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
@@ -17,8 +16,6 @@ public abstract class Jugable extends Entidad  {
 	private boolean retrocediendo;
 	
 	private boolean avanzando;
-	
-	private ObserverLogicoJugable observerLogico;
 	
 	private int desplazamiento;
 	
@@ -59,10 +56,6 @@ public abstract class Jugable extends Entidad  {
 		this.avanzando = avanzando;
 	}
 	
-	public void establecerObserverLogico (ObserverLogicoJugable observerLogico) {
-		this.observerLogico = observerLogico;
-	}
-	
 	public void establecerDesplazamiento(int desplazamiento) {
 		this.desplazamiento = desplazamiento;
 	}
@@ -88,10 +81,6 @@ public abstract class Jugable extends Entidad  {
 	
 	public boolean obtenerRetrocediendo() {
 		return retrocediendo;
-	}
-	
-	public ObserverLogicoJugable obtenerObserverLogico() {
-		return this.observerLogico;
 	}
 	
 	public int obtenerDesplazamiento() {
@@ -138,7 +127,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void muerte() {
-		observerLogico.actualizar();
+		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego();
 	}
 	
 	public abstract void aceptarVisitante(Visitante visitante);
