@@ -1,6 +1,5 @@
 package visitors;
 
-
 import java.awt.Point;
 
 import elementos.ElementoDeJuego;

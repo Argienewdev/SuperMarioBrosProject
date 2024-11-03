@@ -101,7 +101,7 @@ public class FabricaPlataformas {
 	public Bandera obtenerBandera(Point posicion,ControladorVistas controladorVistas) {
 		Sprite spriteBandera = this.fabricaSprites.obtenerBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
-		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver, this.generadorSonidos);
+		Visitante visitor = new VisitorBandera(banderaADevolver, this.generadorSonidos);
 		banderaADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoBandera = new ObserverGrafico(banderaADevolver);
         banderaADevolver.establecerObserverGrafico(observerGraficoBandera);
