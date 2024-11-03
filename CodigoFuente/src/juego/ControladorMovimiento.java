@@ -33,9 +33,13 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		this.determinarAccion();
-	    this.cambiarYVerificarPosicionHitboxDelJugador();
-		reiniciarVelocidadHorizontal();
+		if (sensorDeTeclasJuego.estaActivado()) {
+			this.determinarAccion();
+		    this.cambiarYVerificarPosicionHitboxDelJugador();
+			reiniciarVelocidadHorizontal();
+		} else {
+			personajeJugable.aplicarGravedad();
+		}
 	}
 	
 	private void reiniciarVelocidadHorizontal() {

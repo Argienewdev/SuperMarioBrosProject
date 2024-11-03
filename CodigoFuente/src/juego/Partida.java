@@ -83,6 +83,7 @@ public class Partida {
 	}
 	
 	public void cambiarNivel() {
+		this.sensorDeTeclasJuego.activarSensorDeTeclas();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.numeroNivelActual++;
 		this.juego.obtenerControladorVistas().cambiarNivel();
@@ -101,6 +102,7 @@ public class Partida {
 	}
 	
 	public void reiniciarNivel() {
+		this.sensorDeTeclasJuego.activarSensorDeTeclas();
 		generadorSonidos.detenerMusicaFondo();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.juego.obtenerControladorVistas().reiniciarNivel();
@@ -170,6 +172,10 @@ public class Partida {
 	
 	public FabricaSprites obtenerFabricaSprites() {
 		return this.fabricaSprites;
+	}
+
+	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
+		return this.sensorDeTeclasJuego;
 	}
 	
 	
