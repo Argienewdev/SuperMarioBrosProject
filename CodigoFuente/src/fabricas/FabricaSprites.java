@@ -160,4 +160,7 @@ public abstract class FabricaSprites {
 	public abstract Sprite obtenerPrincesaPeach();
 	
 	public abstract Sprite obtenerSpriteInvisible();
+	
+	public abstract Sprite obtenerSpriteBanderaActivada();
+	
 }

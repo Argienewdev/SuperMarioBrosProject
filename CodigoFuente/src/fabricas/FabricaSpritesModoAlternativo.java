@@ -394,4 +394,9 @@ public class FabricaSpritesModoAlternativo extends FabricaSprites {
 	public Sprite obtenerSpriteInvisible() {
 		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/spriteInvisible.png");
 	}
+
+	@Override
+	public Sprite obtenerSpriteBanderaActivada() {
+		return new Sprite(rutaACarpeta + "/spritesModoAlternativo/banderaActivada.gif");
+	}
 }

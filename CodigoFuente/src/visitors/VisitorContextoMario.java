@@ -127,12 +127,13 @@ public class VisitorContextoMario implements Visitante {
 	
 	public void visitarBandera(Bandera bandera) {
 		if (!bandera.obtenerFueActivada()) {
+			this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().obtenerHUD().detenerTiempo();
 			this.generadorSonidos.detenerMusicaFondo();
 			bandera.establecerActivada(true);
+			bandera.actualizarSprite(this.miEntidad.obtenerNivel().obtenerPartida().obtenerFabricaSprites());
+			bandera.obtenerObserverGrafico().actualizar();
 			this.generadorSonidos.tocarBanderaFinNivel();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
-			
-			//TODO ponerlo en 6000
 			Timer timer = new Timer(6000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		            miEntidad.reiniciarEstado();

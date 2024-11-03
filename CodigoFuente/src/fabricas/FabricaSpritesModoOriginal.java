@@ -394,4 +394,9 @@ public class FabricaSpritesModoOriginal extends FabricaSprites {
 	public Sprite obtenerSpriteInvisible() {
 		return new Sprite(rutaACarpeta + "/spritesModoOriginal/spriteInvisible.png");
 	}
+
+	@Override
+	public Sprite obtenerSpriteBanderaActivada() {
+		return new Sprite(rutaACarpeta + "/spritesModoOriginal/banderaActivada.gif");
+	}
 }

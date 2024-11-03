@@ -261,4 +261,8 @@ public class ControladorVistas {
 		ventana.revalidate();
 		ventana.repaint();
 	}
+	
+	public InterfazJuego obtenerHUD() {
+		return this.pantallaDeJuego.obtenerHUD();
+	}
 }

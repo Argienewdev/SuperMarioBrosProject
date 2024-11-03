@@ -24,6 +24,8 @@ public class InterfazJuego extends JPanel{
 	
 	private boolean tiempoEnCero;
 
+	private boolean tiempoDetenido;
+	
 	public InterfazJuego(){
 		this.setPreferredSize(new Dimension(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.PANEL_ALTO));
 		this.setLayout(new BorderLayout());
@@ -32,11 +34,11 @@ public class InterfazJuego extends JPanel{
 		this.tiempoLabel =  new JLabel("Tiempo: 300:00");
 		this.tiempoEnCero = false;
 		this.nivelLabel = new JLabel("Nivel: 1");
+		this.tiempoDetenido = false;
 		this.setOpaque(false);
 		this.setBackground(new Color(0, 0, 0, 0));
 		this.configurarFuente();
 		this.crearPaneles();
-	
 	}
 	
 	protected void crearPaneles(){
@@ -67,23 +69,25 @@ public class InterfazJuego extends JPanel{
 	    this.add(panelNorte, BorderLayout.NORTH);
 	}
 	
-	public void actualizarTiempo(){
-	    String tiempoTexto = tiempoLabel.getText().substring(8);
-	    String[] tiempoPartes = tiempoTexto.split(":");
-	    int segundos = Integer.parseInt(tiempoPartes[0]);
-	    int miliSegundos = Integer.parseInt(tiempoPartes[1]);
-	    if(segundos==0 && miliSegundos==0) {
-	    	this.tiempoEnCero=true;
-	    }else if (miliSegundos ==  0) {
-	        if (segundos > 0) {
-	            segundos--;
-	            miliSegundos = 59;
-	        }
-	    } else {
-	        miliSegundos--;
-	    }	    
-	    String nuevoTiempoTexto = String.format("Tiempo: %02d:%02d", segundos, miliSegundos);
-	    this.tiempoLabel.setText(nuevoTiempoTexto);
+	public void actualizarTiempo() {
+	    if (!tiempoDetenido) {
+	    	String tiempoTexto = tiempoLabel.getText().substring(8);
+		    String[] tiempoPartes = tiempoTexto.split(":");
+		    int segundos = Integer.parseInt(tiempoPartes[0]);
+		    int miliSegundos = Integer.parseInt(tiempoPartes[1]);
+		    if(segundos==0 && miliSegundos==0) {
+		    	this.tiempoEnCero=true;
+		    }else if (miliSegundos ==  0) {
+		        if (segundos > 0) {
+		            segundos--;
+		            miliSegundos = 59;
+		        }
+		    } else {
+		        miliSegundos--;
+		    }	    
+		    String nuevoTiempoTexto = String.format("Tiempo: %02d:%02d", segundos, miliSegundos);
+		    this.tiempoLabel.setText(nuevoTiempoTexto);
+	    }
 	}
 	
 	public void actualizarVidas(int vidas){
@@ -113,4 +117,9 @@ public class InterfazJuego extends JPanel{
 	public boolean obtenerTiempoEnCero() {
 		return this.tiempoEnCero;
 	}
+	
+	public void detenerTiempo() {
+		this.tiempoDetenido = true;
+	}
+	
 }

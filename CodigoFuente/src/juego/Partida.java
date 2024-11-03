@@ -45,6 +45,10 @@ public class Partida {
 	
 	private GeneradorSonidos generadorSonidos;
 	
+	private int tiempoEnSegundos;
+	
+	private int tiempoEnMilisegundos;
+	
 	@SuppressWarnings("exports")
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
@@ -162,6 +166,10 @@ public class Partida {
      	this.generadorSonidos.pierdeVida();
      	this.jugable.perderVida();
      	this.reiniciarNivel();
+	}
+	
+	public FabricaSprites obtenerFabricaSprites() {
+		return this.fabricaSprites;
 	}
 	
 	

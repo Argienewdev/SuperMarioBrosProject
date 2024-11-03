@@ -2,6 +2,7 @@ package elementos.plataformas;
 
 import java.awt.Point;
 import elementos.Sprite;
+import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
@@ -27,4 +28,11 @@ public class Bandera extends Meta {
 		this.activada = activada;
 	}
 
+	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		if (this.activada) {
+			System.out.println("ENTRE");
+			this.establecerSprite(fabricaSprites.obtenerSpriteBanderaActivada());
+		}
+	}
+	
 }

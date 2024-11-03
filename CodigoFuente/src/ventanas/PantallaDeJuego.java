@@ -207,5 +207,9 @@ public class PantallaDeJuego extends Pantalla {
 	public boolean obtenterTiempoEnCero() {
 		return this.hud.obtenerTiempoEnCero();
 	}
+	
+	public InterfazJuego obtenerHUD() {
+		return this.hud;
+	}
     
 }
