@@ -119,15 +119,8 @@ public class VisitorSuperMario implements Visitante {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorSuper());
     		generadorSonidos.PowerupAgarrado();
             estrella.establecerRemovido(true);
-            generadorSonidos.modoInvencible();
+            generadorSonidos.reproducirMusicaInvencible();
             generadorSonidos.detenerMusicaFondo();
-            Timer timer = new Timer(5500, new ActionListener() {
-    	    	public void actionPerformed(ActionEvent e) {
-    	    		generadorSonidos.reproducirMusicaFondo();
-    	        }
-    	    });
-            timer.setRepeats(false); 
-            timer.start(); 
     	}
     }
 

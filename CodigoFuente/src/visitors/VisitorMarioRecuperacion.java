@@ -114,6 +114,7 @@ public class VisitorMarioRecuperacion implements Visitante{
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
+            generadorSonidos.reproducirMusicaInvencible();
     	}
     }
 

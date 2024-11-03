@@ -116,15 +116,6 @@ public class VisitorMarioInvulnerable implements Visitante {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
             generadorSonidos.PowerupAgarrado();
-            generadorSonidos.modoInvencible();
-            generadorSonidos.detenerMusicaFondo();
-            Timer timer = new Timer(5000, new ActionListener() {
-    	    	public void actionPerformed(ActionEvent e) {
-    	    		generadorSonidos.reproducirMusicaFondo();
-    	        }
-    	    });
-            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
-            timer.start(); // Inicia el timer
     	}
     }
 
@@ -141,6 +132,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
             ladrillo.eliminarDelNivel();
+            generadorSonidos.golpeBloque();
         }
     }
 

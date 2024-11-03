@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
+import generadores.GeneradorSonidos;
 import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;
@@ -17,7 +18,10 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	private EstadoMario estadoPrevio;
 	
-	public MarioInvulnerable (EstadoMario estadoPrevio) {
+	protected GeneradorSonidos generadorSonidos;
+	
+	public MarioInvulnerable (EstadoMario estadoPrevio, GeneradorSonidos generadorSonidos) {
+		this.generadorSonidos = generadorSonidos;
 		this.estadoPrevio = estadoPrevio;
 		this.duracion = DURACION_INVULNERABLE;
 	}
@@ -97,7 +101,10 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public void actualizarTiempo () {
 		duracion--;
-		if (duracion <=  0)
+		if (duracion <=  0) {
 			contexto.cambiarEstado(estadoPrevio);
+			generadorSonidos.reproducirMusicaFondo();
+			generadorSonidos.detenerMusicaInvencible();
+		}
 	}
 }
