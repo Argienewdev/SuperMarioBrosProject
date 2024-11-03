@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import elementos.ElementoDeJuego;
+import ventanas.ConstantesGlobales;
 
 @SuppressWarnings("serial")
 public class ObserverGrafico extends JLabel implements Observer {
@@ -21,6 +22,13 @@ public class ObserverGrafico extends JLabel implements Observer {
 	public void actualizar() {
 		actualizarImagen();
 		actualizarPosicionTamanio();
+		if(this.entidad_observada.obtenerPosicionGrafica().x <  ConstantesGlobales.PANEL_ANCHO
+		&& this.entidad_observada.obtenerPosicionGrafica().x + this.entidad_observada.obtenerAncho() > 0) {
+			this.entidad_observada.establecerVisibleEnPantalla(true);
+		} else {
+			this.entidad_observada.establecerVisibleEnPantalla(false);
+		}
+			
 	}
 	
 	public ElementoDeJuego obtenerEntidadObservada() {

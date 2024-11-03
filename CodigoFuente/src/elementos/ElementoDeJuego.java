@@ -27,6 +27,8 @@ public abstract class ElementoDeJuego implements Visitado {
     
 	protected boolean debeMantenerseSiempreEnPantalla;
 	
+	protected boolean visiblesEnPantalla;
+	
 	@SuppressWarnings("exports")
 	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
@@ -42,6 +44,7 @@ public abstract class ElementoDeJuego implements Visitado {
 		int y = posicionConsiderandoSprite.y;
 		this.hitbox = new Rectangle(x, y, ancho, alto);
 		this.debeMantenerseSiempreEnPantalla = false;
+		this.visiblesEnPantalla=false;
 	}
 	
 	private Point obtenerPosicionConsiderandoSprite(Point posicion, Sprite sprite) {
@@ -146,6 +149,14 @@ public abstract class ElementoDeJuego implements Visitado {
 
 	public void establecerDebeMantenerseSiempreEnPantalla(boolean debeMantenerseSiempreEnPantalla) {
 		this.debeMantenerseSiempreEnPantalla = debeMantenerseSiempreEnPantalla;
+	}
+	
+	public boolean obtenerVisibleEnPantalla() {
+		return this.visiblesEnPantalla;
+	}
+	
+	public boolean establecerVisibleEnPantalla(boolean visbleEnPantalla) {
+		return this.visiblesEnPantalla = visbleEnPantalla;
 	}
 	
 }

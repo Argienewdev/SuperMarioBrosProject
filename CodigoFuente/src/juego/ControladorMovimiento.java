@@ -69,7 +69,6 @@ public class ControladorMovimiento {
 	    }
 	}
 	
-
 	private boolean deteccionSalto() {
 		boolean retornar = false;
 		if (sensorDeTeclasJuego.obtenerWPresionada()) {
@@ -154,11 +153,8 @@ public class ControladorMovimiento {
 				this.personajeJugable.establecerPosicionGrafica(new Point(0, this.personajeJugable.obtenerPosicionLogica().y));
 				this.personajeJugable.moverHitbox(new Point(nuevaPosicionLogicaX, this.personajeJugable.obtenerHitbox().y));
 			}
-
 			verificarColisionConPlataformas(entidad);
 			verificarColisionConEntidades(entidad);
-			
-
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 			
 		} else {
@@ -167,7 +163,7 @@ public class ControladorMovimiento {
 	}
 	
 	private void verificarColisionConEntidades(Jugable jugador) {
-		for (Entidad entidad : this.nivel.obtenerEntidades()) {
+		for (Entidad entidad : this.nivel.obtenerEntidadesVisiblesEnPantalla()) {
 	        if (entidad != null && jugador.huboColision(entidad)) {
 	        	entidad.aceptarVisitante(jugador.obtenerVisitante());
 	            jugador.aceptarVisitante(entidad.obtenerVisitante());

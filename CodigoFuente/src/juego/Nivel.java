@@ -33,7 +33,9 @@ public class Nivel {
     protected List<BolaDeFuego> bolasDeFuego;
     
     protected List<Plataforma> plataformasAfectables;
-    
+   
+    protected List<Entidad> entidadesVisiblesEnPantalla;
+       
     protected Silueta silueta;
     
     protected ContextoMario mario;
@@ -57,6 +59,7 @@ public class Nivel {
         this.enemigos = new CopyOnWriteArrayList<Enemigo>();
         this.bolasDeFuego = new CopyOnWriteArrayList<BolaDeFuego>();
         this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
+        this.entidadesVisiblesEnPantalla = new CopyOnWriteArrayList<Entidad>();
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
@@ -171,18 +174,37 @@ public class Nivel {
 	
 	public void removerEnemigo(Enemigo enemigo) {
 		this.enemigos.remove(enemigo);
+		this.entidadesVisiblesEnPantalla.remove(enemigo);
 	}
 	
 	public void removerPowerUp(PowerUp powerUp) {
 		this.powerUps.remove(powerUp);
+		this.entidadesVisiblesEnPantalla.remove(powerUp);
 	}
 	
 	public void removerBolaDeFuego(BolaDeFuego bolaDeFuego) {
 		this.bolasDeFuego.remove(bolaDeFuego);
+		this.entidadesVisiblesEnPantalla.remove(bolaDeFuego);
 	}
 	
 	public void removerPlataformaAfectable(Plataforma plataforma) {
 		this.plataformasAfectables.remove(plataforma);
 	}
 	
+	public void agregarEntidadVisible(Entidad entidad) {
+	        this.entidadesVisiblesEnPantalla.add(entidad);
+	        entidad.establecerNivel(this);
+	    }
+	 
+	public void removerEntidadVisible(Entidad entidad) {
+	        this.entidadesVisiblesEnPantalla.remove(entidad);
+	}
+	
+	public Iterable<Entidad> obtenerEntidadesVisiblesEnPantalla(){
+		return this.entidadesVisiblesEnPantalla;
+	}
+	
+	public boolean estaEntidadVisible(Entidad entidad) {
+		return this.entidadesVisiblesEnPantalla.contains(entidad);
+}
 }

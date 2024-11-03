@@ -10,7 +10,7 @@ import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
-			
+				
 	@SuppressWarnings("exports")
 	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);

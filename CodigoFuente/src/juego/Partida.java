@@ -191,6 +191,5 @@ public class Partida {
 	public void activarMovimientoPersonaje() {
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().activarMovimientoPersonaje();
 	}
-	
-	
+
 }

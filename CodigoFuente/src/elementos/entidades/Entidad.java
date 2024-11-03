@@ -22,7 +22,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	protected int ticksAnimacion;
 	
 	protected boolean mirandoAlFrente;
-
+	
 	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
 	
     @SuppressWarnings("exports")
