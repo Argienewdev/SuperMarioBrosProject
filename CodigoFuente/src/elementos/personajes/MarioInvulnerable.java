@@ -11,7 +11,7 @@ import visitors.DetectorDireccionColision;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;
 
-public class MarioInvulnerable  extends MarioDefault {
+public class MarioInvulnerable extends MarioDefault {
 
 	protected static final int DURACION_INVULNERABLE = 300;
 		
