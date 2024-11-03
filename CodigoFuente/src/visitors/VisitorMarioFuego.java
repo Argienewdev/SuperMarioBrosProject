@@ -97,7 +97,6 @@ public class VisitorMarioFuego implements Visitante {
     	if(!superChampinion.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
     		superChampinion.establecerRemovido(true);
-    		generadorSonidos.PowerupAgarrado();
     	}
     }
 
@@ -106,7 +105,6 @@ public class VisitorMarioFuego implements Visitante {
     	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
             florDeFuego.establecerRemovido(true);
-            generadorSonidos.PowerupAgarrado();
     	}
     }
 
@@ -118,16 +116,17 @@ public class VisitorMarioFuego implements Visitante {
     	if(!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
     		estrella.establecerRemovido(true);
-    		generadorSonidos.modoInvencible();
-            generadorSonidos.detenerMusicaFondo();
-            Timer timer = new Timer(5500, new ActionListener() {
-    	    	public void actionPerformed(ActionEvent e) {
-    	            generadorSonidos.reproducirMusicaFondo();
-    	        }
-    	    });
-            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
-            timer.start(); // Inicia el timer
     	}
+    	this.generadorSonidos.PowerupAgarrado();
+		generadorSonidos.modoInvencible();
+        generadorSonidos.detenerMusicaFondo();
+        Timer timer = new Timer(5500, new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	            generadorSonidos.reproducirMusicaFondo();
+	        }
+	    });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     @Override

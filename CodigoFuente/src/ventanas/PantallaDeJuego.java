@@ -52,7 +52,6 @@ public class PantallaDeJuego extends Pantalla {
         setMaximumSize(size);
         setMinimumSize(size);
         
-        // Crear el JLayeredPane para gestionar las capas
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(size);
         layeredPane.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
@@ -144,7 +143,7 @@ public class PantallaDeJuego extends Pantalla {
             Point posicionFondo = fondo.getLocation();
             int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
 
-            // Ver que el fondo no se desplace mas de lo posible
+ 
             int anchoFondo = fondo.getWidth();
             if (nuevaPosicionFondoX < -anchoFondo + ConstantesGlobales.PANEL_ANCHO) {
                 nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO;
@@ -152,7 +151,7 @@ public class PantallaDeJuego extends Pantalla {
             
         	if (nuevaPosicionFondoX != posicionFondo.x) {
         		fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
-        		fondoMovido = true; // Se ha movido el fondo
+        		fondoMovido = true; 
         	}
 
         	if (fondoMovido) {
@@ -203,7 +202,6 @@ public class PantallaDeJuego extends Pantalla {
 		}
 	}
     
-	//TODO ven esto mal?, porque en vez de usar un obtener hud y perdirle el tiempo lo llamo directo de la pantalla de juego
 	public boolean obtenterTiempoEnCero() {
 		return this.hud.obtenerTiempoEnCero();
 	}

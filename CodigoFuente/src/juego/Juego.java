@@ -1,10 +1,14 @@
 package juego;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaSilueta;
@@ -77,6 +81,14 @@ public class Juego {
 	}
 	
 	public void finalizarJuego (){
+		partida.obtenerGeneradorDeSonidos().detenerMusicaFondo();
+		Timer timer = new Timer(3000, new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	            partida.obtenerGeneradorDeSonidos().pierdeJuego();
+	        }
+	    });
+	    timer.setRepeats(false);
+	    timer.start();
 		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);

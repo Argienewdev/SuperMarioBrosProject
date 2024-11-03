@@ -1,6 +1,10 @@
 package visitors;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
@@ -42,7 +46,7 @@ public class VisitorSuperMario implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	generadorSonidos.emitirSonidoAplastarEnemigo();
+ 
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
     		goomba.establecerRemovido(true);
 			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
@@ -108,7 +112,22 @@ public class VisitorSuperMario implements Visitante {
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
 
     @Override
-    public void visitarEstrella(Estrella estrella) {}
+    public void visitarEstrella(Estrella estrella) {
+    	if (!estrella.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorSuper());
+    		generadorSonidos.PowerupAgarrado();
+            estrella.establecerRemovido(true);
+            generadorSonidos.modoInvencible();
+            generadorSonidos.detenerMusicaFondo();
+            Timer timer = new Timer(5500, new ActionListener() {
+    	    	public void actionPerformed(ActionEvent e) {
+    	    		generadorSonidos.reproducirMusicaFondo();
+    	        }
+    	    });
+            timer.setRepeats(false); 
+            timer.start(); 
+    	}
+    }
 
     @Override
     public void visitarMoneda(Moneda monedas) {
@@ -119,13 +138,19 @@ public class VisitorSuperMario implements Visitante {
     }
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	if (detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miContexto)) {
+            detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(bloqueDePregunta, miContexto);
+    		generadorSonidos.golpeBloque();
+        }
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
     		ladrillo.eliminarDelNivel();
+    		generadorSonidos.romperLadrillo();
         }
     }
 
