@@ -133,7 +133,7 @@ public class VisitorContextoMario implements Visitante {
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			
 			//TODO ponerlo en 6000
-			Timer timer = new Timer(0, new ActionListener() {
+			Timer timer = new Timer(6000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		            miEntidad.reiniciarEstado();
 		    		miEntidad.obtenerNivel().establecerCompletado(true);
