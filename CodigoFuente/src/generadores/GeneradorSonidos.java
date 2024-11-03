@@ -591,4 +591,32 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+	
+	public void seAcaboElTiempo(){
+		try {
+		    Sonido sonido= 	fabricaSonidos.obtenerSeAcaboElTiempo();
+            
+            File archivoSonido = new File(sonido.obtenerRutaSonido());
+            
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioStream);
+            
+            clip.start();
+            
+            clip.addLineListener(event -> {
+                if (event.getType() ==  LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println("Línea de audio no disponible: " + e.getMessage());
+        }
+	}
 }

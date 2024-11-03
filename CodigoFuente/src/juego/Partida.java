@@ -163,7 +163,7 @@ public class Partida {
 	
 	private void matarJugador() {
 		this.generadorSonidos.detenerMusicaFondo();
-     	this.generadorSonidos.pierdeVida();
+     	this.generadorSonidos.seAcaboElTiempo();
      	this.jugable.perderVida();
      	this.reiniciarNivel();
 	}

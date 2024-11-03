@@ -111,5 +111,12 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 	public Sonido obtenerRecuperarVida() {
 		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/recuperarVida.wav");
 	}
+
+	@Override
+	public Sonido obtenerSeAcaboElTiempo() {
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/seAcaboElTiempo.wav");
+	}
+	
+	
 	
 }

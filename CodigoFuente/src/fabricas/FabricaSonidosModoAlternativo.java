@@ -111,4 +111,9 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
         return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/recuperarVida.wav");
     }
     
+    @Override
+	public Sonido obtenerSeAcaboElTiempo() {
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/pierdeVida.wav");
+	}
+    
 }

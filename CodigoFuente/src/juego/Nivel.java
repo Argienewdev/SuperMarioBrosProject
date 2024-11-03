@@ -83,10 +83,6 @@ public class Nivel {
         return matrizPlataforma.obtenerTodasLasPlataformas();
     }
 
-    public synchronized Plataforma obtenerPlataformaEnPunto(Point punto) {
-        return matrizPlataforma.obtenerPlataformaEnPunto(punto);
-    }
-
     public void agregarEnemigo(Enemigo enemigo) {
         this.enemigos.add(enemigo);
         enemigo.establecerNivel(this);
