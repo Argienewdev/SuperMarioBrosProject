@@ -5,6 +5,7 @@ import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import fabricas.FabricaEntidades;
 import generadores.GeneradorSonidos;
 
 public class VisitorSuperChampinion implements Visitante {
@@ -53,14 +54,21 @@ public class VisitorSuperChampinion implements Visitante {
 
     
     public void visitarContextoMario(ContextoMario contextoMario) {
+        contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
     
     public void visitarMarioDefault(MarioDefault marioDefault) {
+    	ContextoMario contextoMario = marioDefault.obtenerContexto();
+        EstadoMario nuevoEstado = new SuperMario();
+        contextoMario.cambiarEstado(nuevoEstado);
     }
 
     
     public void visitarSuperMario(SuperMario superMario) {
+    	ContextoMario contextoMario = superMario.obtenerContexto();
+        EstadoMario nuevoEstado = new SuperMario();
+        contextoMario.cambiarEstado(nuevoEstado);
     }
 
     

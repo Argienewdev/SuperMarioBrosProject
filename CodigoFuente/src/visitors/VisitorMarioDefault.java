@@ -97,9 +97,7 @@ public class VisitorMarioDefault implements Visitante {
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
 		if (!superChampinion.obtenerRemovido()) {
-			EstadoMario nuevoEstado = new SuperMario();
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorDefault());
-			this.miContexto.cambiarEstado(nuevoEstado);
 	        superChampinion.establecerRemovido(true);
 		}
     }

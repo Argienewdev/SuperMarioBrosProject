@@ -130,8 +130,8 @@ public class FabricaPlataformas {
 		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
-		int identificadorPowerUp =  1; // Genera un número entre 1 (inclusive) y 8 (inclusive)
-		//int identificadorPowerUp = 5;
+		int identificadorPowerUp =  generarIdentificadorPowerUpRandom(random); // Genera un número entre 1 (inclusive) y 8 (inclusive)
+		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <=  identificadorPowerUp; contador++) {
@@ -175,7 +175,11 @@ public class FabricaPlataformas {
 		return bloqueDePreguntaADevolver;
 	}
 	
-    @SuppressWarnings("exports")
+    private int generarIdentificadorPowerUpRandom(Random random) {
+		return random.nextInt(8) + 1;
+	}
+
+	@SuppressWarnings("exports")
 	public BloqueSolido obtenerBloqueSolido(Point posicion) {
     	Sprite spriteBloqueSolido = this.fabricaSprites.obtenerBloqueSolido();
     	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null, null);

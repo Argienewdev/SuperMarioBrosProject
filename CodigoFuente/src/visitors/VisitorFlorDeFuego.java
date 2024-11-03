@@ -72,7 +72,11 @@ public class VisitorFlorDeFuego implements Visitante {
     }
 
     @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    	ContextoMario contextoMario = marioFuego.obtenerContexto();
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades,generadorSonidos);
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
 
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {

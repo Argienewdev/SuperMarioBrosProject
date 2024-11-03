@@ -60,7 +60,7 @@ public class FabricaSonidosModoOriginal extends FabricaSonidos{
 	
 	@Override
 	public Sonido obtenerModoRecuperacion() {
-		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/modoRecuperacion.wav");
+		return new Sonido(rutaACarpeta + "/sonidoModoOriginal/marioRecuperacion.wav");
 	}
 	
 	@Override

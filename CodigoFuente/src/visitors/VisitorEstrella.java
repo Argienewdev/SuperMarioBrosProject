@@ -105,7 +105,11 @@ public class VisitorEstrella implements Visitante {
     }
 
     @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    	ContextoMario contextoMario = marioInvulnerable.obtenerContexto();
+        EstadoMario nuevoEstado = new MarioInvulnerable(marioInvulnerable);
+        contextoMario.cambiarEstado(nuevoEstado);
+    }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     	ContextoMario contextoMario = marioRecuperacion.obtenerContexto();
