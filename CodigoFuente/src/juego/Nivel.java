@@ -3,7 +3,10 @@ package juego;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
@@ -23,19 +26,19 @@ public class Nivel {
     
     protected MatrizPlataforma matrizPlataforma;
     
-    protected Collection<PowerUp> powerUps;
+    protected List<PowerUp> powerUps;
     
-    protected Collection<Enemigo> enemigos;
+    protected List<Enemigo> enemigos;
     
-    protected Collection<BolaDeFuego> bolasDeFuego;
+    protected List<BolaDeFuego> bolasDeFuego;
     
-    protected Collection<BolaDeFuego> bolasDeFuegoAAgregar;
+    protected List<BolaDeFuego> bolasDeFuegoAAgregar;
     
-    protected Collection<ElementoDeJuego> entidadesAEliminar;
+    protected List<ElementoDeJuego> entidadesAEliminar;
  
-    protected Collection<Enemigo> spinysAAgregar;
+    protected List<Enemigo> spinysAAgregar;
     
-    protected Collection<Plataforma> plataformasAfectables;
+    protected List<Plataforma> plataformasAfectables;
     
     protected Silueta silueta;
     
@@ -49,7 +52,7 @@ public class Nivel {
         this.silueta = silueta;
         this.matrizPlataforma = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
         inicializarColecciones();
-        this.plataformasAfectables = new ArrayList<Plataforma>();
+        this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
@@ -57,12 +60,12 @@ public class Nivel {
     }
     
     private void inicializarColecciones() {
-        this.powerUps = new ArrayList<>();
-        this.enemigos = new ArrayList<>();
-        this.bolasDeFuego = new ArrayList<>();
-        this.bolasDeFuegoAAgregar = new ArrayList<>();
-        this.entidadesAEliminar = new ArrayList<>();
-        this.spinysAAgregar = new ArrayList<>();
+        this.powerUps = new CopyOnWriteArrayList<PowerUp>();
+        this.enemigos = new CopyOnWriteArrayList<Enemigo>();
+        this.bolasDeFuego = new CopyOnWriteArrayList<BolaDeFuego>();
+        this.bolasDeFuegoAAgregar = new CopyOnWriteArrayList<BolaDeFuego>();
+        this.entidadesAEliminar = new CopyOnWriteArrayList<ElementoDeJuego>();
+        this.spinysAAgregar = new CopyOnWriteArrayList<Enemigo>();
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
