@@ -118,15 +118,8 @@ public class VisitorMarioFuego implements Visitante {
     		estrella.establecerRemovido(true);
     	}
     	this.generadorSonidos.PowerupAgarrado();
-		generadorSonidos.modoInvencible();
-        generadorSonidos.detenerMusicaFondo();
-        Timer timer = new Timer(5500, new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	            generadorSonidos.reproducirMusicaFondo();
-	        }
-	    });
-        timer.setRepeats(false);
-        timer.start();
+		generadorSonidos.reproducirMusicaInvencible();
+    
     }
 
     

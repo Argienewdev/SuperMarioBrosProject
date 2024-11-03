@@ -91,12 +91,14 @@ public class VisitorContextoMario implements Visitante {
 	}
 
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad) 
-			&& !bloqueDePregunta.estaVacio()) {
-            if (bloqueDePregunta.obtenerPowerUp().obtenerHaceRuidoAlSalir()) {
-    			this.generadorSonidos.powerUpEmerge();
-            }
-			bloqueDePregunta.liberarPowerUp();
+		if (this.detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miEntidad)){
+			if(!bloqueDePregunta.estaVacio()){
+				if (bloqueDePregunta.obtenerPowerUp().obtenerHaceRuidoAlSalir()) {
+					this.generadorSonidos.powerUpEmerge();
+				}
+				bloqueDePregunta.liberarPowerUp();
+			} 
+			generadorSonidos.golpeBloque();
         }
 	}
 

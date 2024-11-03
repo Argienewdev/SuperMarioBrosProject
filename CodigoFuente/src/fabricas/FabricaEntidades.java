@@ -187,7 +187,7 @@ public class FabricaEntidades {
     public ContextoMario obtenerContextoMario(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
     	MarioDefault estadoInicial = new MarioDefault();
-		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, 3, estadoInicial);
+		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, 3, estadoInicial, generadorSonidos);
 		Visitante visitorContextoMario = new VisitorContextoMario(marioADevolver, this.generadorSonidos);
 		marioADevolver.establecerVisitante(visitorContextoMario);
 		ObserverGrafico observerGraficoMario = new ObserverGrafico(marioADevolver);
