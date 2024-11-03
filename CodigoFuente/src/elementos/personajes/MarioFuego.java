@@ -115,7 +115,7 @@ public class MarioFuego extends MarioDefault {
 		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
 		bolaDeFuego.obtenerObserverGrafico().actualizar();
 		
-		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
+		contexto.obtenerNivel().agregarBolaDeFuego(bolaDeFuego);
 		
 		generadorSonido.disparoBolaFuego();
 	}

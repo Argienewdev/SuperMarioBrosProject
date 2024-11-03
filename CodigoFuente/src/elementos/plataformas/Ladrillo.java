@@ -18,7 +18,7 @@ public class Ladrillo extends Plataforma {
 		visitante.visitarLadrillo(this);
 	}
 	public void eliminarDelNivel() {
-		this.miNivel.agregarPlataformasAfectables(this);
+		this.miNivel.agregarPlataformaAfectable(this);
 		this.hitbox = new Rectangle(0, 0, 0, 0);
 		this.removido = true;
 	}

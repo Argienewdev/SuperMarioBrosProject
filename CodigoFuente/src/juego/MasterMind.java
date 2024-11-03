@@ -32,9 +32,6 @@ public class MasterMind {
 		actualizarPowerUps();
 		actualizarBolasDeFuego();
 		actualizarPlataformas();
-		this.nivel.removerEntidadesAEliminar();
-		this.nivel.agregarBolaDeFuegoAAgregar();
-		this.nivel.agregarSpinysAAgregar();
 	}
 	
 	public void cambiarNivel(Nivel nivel) {

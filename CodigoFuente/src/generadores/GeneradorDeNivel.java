@@ -88,13 +88,13 @@ public class GeneradorDeNivel {
 	                case 0: {
 	                	Vacio vacio = this.fabricaPlataformas.obtenerVacio(posicion);
 	                	nivel.agregarPlataforma(vacio);
-	                	nivel.agregarPlataformasAfectables(vacio);
+	                	nivel.agregarPlataformaAfectable(vacio);
 	                	break;
 	                }	             
 	                case 1: {
 	                    Ladrillo ladrillo = this.fabricaPlataformas.obtenerLadrillo(posicion);
 	                    nivel.agregarPlataforma(ladrillo);
-	                    nivel.agregarPlataformasAfectables(ladrillo);
+	                    nivel.agregarPlataformaAfectable(ladrillo);
 	                    break;
 	                }	             
 	                case 2: {         
@@ -112,7 +112,7 @@ public class GeneradorDeNivel {
 	                case 4: {
 	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.obtenerBloqueDePregunta(posicion, nivel,pantallaDeJuego);
 	                    nivel.agregarPlataforma(bloqueDePregunta);
-	                    nivel.agregarPlataformasAfectables(bloqueDePregunta);
+	                    nivel.agregarPlataformaAfectable(bloqueDePregunta);
 	                    break;
 	                }
 	                case 5: {

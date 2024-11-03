@@ -24,19 +24,13 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
     
-    protected MatrizPlataforma matrizPlataforma;
+    protected MatrizPlataforma matrizPlataformas;
     
     protected List<PowerUp> powerUps;
     
     protected List<Enemigo> enemigos;
     
     protected List<BolaDeFuego> bolasDeFuego;
-    
-    protected List<BolaDeFuego> bolasDeFuegoAAgregar;
-    
-    protected List<ElementoDeJuego> entidadesAEliminar;
- 
-    protected List<Enemigo> spinysAAgregar;
     
     protected List<Plataforma> plataformasAfectables;
     
@@ -50,9 +44,8 @@ public class Nivel {
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
-        this.matrizPlataforma = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
+        this.matrizPlataformas = new MatrizPlataforma(silueta.obtenerAncho(), silueta.obtenerAlto());
         inicializarColecciones();
-        this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
@@ -63,27 +56,25 @@ public class Nivel {
         this.powerUps = new CopyOnWriteArrayList<PowerUp>();
         this.enemigos = new CopyOnWriteArrayList<Enemigo>();
         this.bolasDeFuego = new CopyOnWriteArrayList<BolaDeFuego>();
-        this.bolasDeFuegoAAgregar = new CopyOnWriteArrayList<BolaDeFuego>();
-        this.entidadesAEliminar = new CopyOnWriteArrayList<ElementoDeJuego>();
-        this.spinysAAgregar = new CopyOnWriteArrayList<Enemigo>();
+        this.plataformasAfectables = new CopyOnWriteArrayList<Plataforma>();
     }
 
     public void agregarPlataforma(Plataforma plataforma) {
-        matrizPlataforma.agregarPlataforma(plataforma);
+        matrizPlataformas.agregarPlataforma(plataforma);
         plataforma.establecerNivel(this);
     }
 
     public void removerPlataforma(Plataforma plataforma) {
-        matrizPlataforma.removerPlataforma(plataforma);
+        matrizPlataformas.removerPlataforma(plataforma);
     }
     
 
-    public synchronized Iterable<Plataforma> obtenerPlataformasAfectables() {
+    public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }
 
-    public synchronized Iterable<Plataforma> obtenerPlataformas() {
-        return matrizPlataforma.obtenerTodasLasPlataformas();
+    public Iterable<Plataforma> obtenerPlataformas() {
+        return this.matrizPlataformas.obtenerTodasLasPlataformas();
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
@@ -91,47 +82,20 @@ public class Nivel {
         enemigo.establecerNivel(this);
     }
 
-
     public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
         powerUp.establecerNivel(this);
     }
 	
-	
-	public void agregarPlataformasAfectables(Plataforma plataforma) {
+	public void agregarPlataformaAfectable(Plataforma plataforma) {
         this.plataformasAfectables.add(plataforma);
     }
-	
 
-    public void agregarBolaDeFuegoAAgregar(BolaDeFuego bolaDeFuego) {
-        this.bolasDeFuegoAAgregar.add(bolaDeFuego);
+    public void agregarBolaDeFuego(BolaDeFuego bolaDeFuego) {
+        this.bolasDeFuego.add(bolaDeFuego);
     }
 
-    public void agregarBolaDeFuegoAAgregar() {
-        for(BolaDeFuego bolaDeFuego : bolasDeFuegoAAgregar) {
-            bolaDeFuego.establecerNivel(this);
-        }
-        bolasDeFuego.addAll(bolasDeFuegoAAgregar);
-        bolasDeFuegoAAgregar = new ArrayList<>();
-    }
-    
-    public void agregarSpinysAAgregar() {
-    	for(Enemigo spiny : spinysAAgregar) {
-    		spiny.establecerNivel(this);
-    	}
-    	enemigos.addAll(spinysAAgregar);
-    	spinysAAgregar = new ArrayList<Enemigo>();
-    }
-
-    public void removerEntidadesAEliminar() {
-        enemigos.removeAll(entidadesAEliminar);
-        powerUps.removeAll(entidadesAEliminar);
-        this.plataformasAfectables.removeAll(entidadesAEliminar);
-        bolasDeFuego.removeAll(entidadesAEliminar);
-        entidadesAEliminar = new ArrayList<>();
-    }
-
-    public synchronized Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
+    public Iterable<ElementoDeJuego> obtenerElementosDeJuego() {
         ArrayList<ElementoDeJuego> elementosDeJuego = new ArrayList<>();
         for(Plataforma plataforma : obtenerPlataformas()) {
             elementosDeJuego.add(plataforma);
@@ -157,15 +121,15 @@ public class Nivel {
         return this.mario;
     }
 
-    public synchronized Iterable<PowerUp> obtenerPowerUps() {
+    public Iterable<PowerUp> obtenerPowerUps() {
         return this.powerUps;
     }
 
-    public synchronized Iterable<Enemigo> obtenerEnemigos() {
+    public Iterable<Enemigo> obtenerEnemigos() {
         return this.enemigos;
     }
 
-    public synchronized Iterable<BolaDeFuego> obtenerBolasDeFuego() {
+    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
         return this.bolasDeFuego;
     }
 
@@ -185,16 +149,12 @@ public class Nivel {
         return partida.obtenerNumeroDeNivelActual();
     }
 
-    public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
-        this.entidadesAEliminar.add(entidad);
-    }
-    
-    public synchronized Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
-    	return this.matrizPlataforma.obtenerAdyacentes( entidad);
+    public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
+    	return this.matrizPlataformas.obtenerAdyacentes( entidad);
     }
 
-	public synchronized Iterable<Entidad> obtenerEntidades() {
-		ArrayList<Entidad> entidadesDeJuego = new ArrayList<>();
+	public Iterable<Entidad> obtenerEntidades() {
+		ArrayList<Entidad> entidadesDeJuego = new ArrayList<Entidad>();
 
         for(PowerUp powerup : obtenerPowerUps()) {
         	entidadesDeJuego.add(powerup);
@@ -208,4 +168,21 @@ public class Nivel {
         
         return entidadesDeJuego;
 	}
+	
+	public void removerEnemigo(Enemigo enemigo) {
+		this.enemigos.remove(enemigo);
+	}
+	
+	public void removerPowerUp(PowerUp powerUp) {
+		this.powerUps.remove(powerUp);
+	}
+	
+	public void removerBolaDeFuego(BolaDeFuego bolaDeFuego) {
+		this.bolasDeFuego.remove(bolaDeFuego);
+	}
+	
+	public void removerPlataformaAfectable(Plataforma plataforma) {
+		this.plataformasAfectables.remove(plataforma);
+	}
+	
 }

@@ -56,7 +56,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 			this.actualizarHitboxYPosicion(fabricaSprites);
 		} else if (this.obtenerContext().obtenerContadorTicks() ==  this.obtenerContext().obtenerTicksAnimacion()) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerSpriteInvisible());
-			this.obtenerContext().eliminarDelNivel();
+			this.obtenerContext().obtenerNivel().removerEnemigo(this.contexto);
 		}
 	}
 	
