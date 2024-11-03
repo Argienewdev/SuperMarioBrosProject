@@ -18,6 +18,8 @@ public class ControladorMovimiento {
 	
 	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
+	protected boolean movimientoPersonajeActivo;
+	
 	private Nivel nivel;
 	
 	@SuppressWarnings("exports")
@@ -26,6 +28,7 @@ public class ControladorMovimiento {
 		this.personajeJugable = marioJugable; 
 		this.personajeJugable.establecerVelocidadDireccional(new Point(0,0));
 		this.nivel = nivel;
+		this.movimientoPersonajeActivo=false;
 	}
 	
 	public void actualizarNivel(Nivel nivel) {
@@ -33,15 +36,23 @@ public class ControladorMovimiento {
 	}
 	
 	public void actualizarPosicion() {
-		if (sensorDeTeclasJuego.estaActivado()) {
+		
+		if(movimientoPersonajeActivo) {
 			this.determinarAccion();
-		    this.cambiarYVerificarPosicionHitboxDelJugador();
-			reiniciarVelocidadHorizontal();
-		} else {
-			personajeJugable.aplicarGravedad();
+		}else {
+			this.detenerPersonaje();
 		}
+	    personajeJugable.aplicarGravedad();
+		this.cambiarYVerificarPosicionHitboxDelJugador();
+		reiniciarVelocidadHorizontal();
 	}
 	
+	private void detenerPersonaje() {
+		personajeJugable.establecerAvanzando(false);
+		personajeJugable.establecerRetrocediendo(false);
+		personajeJugable.establecerVelocidadDireccional(new Point(0,0));
+	}
+
 	private void reiniciarVelocidadHorizontal() {
 		this.cambiarVelocidadHorizontal(0);
 	}
@@ -49,25 +60,23 @@ public class ControladorMovimiento {
 	private void determinarAccion() {
 		this.personajeJugable.establecerAvanzando(false);
 		this.personajeJugable.establecerRetrocediendo(false);
-	    if(this.sensorDeTeclasJuego.obtenerSensorDeTeclasActivado()) {
-	    	if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
-	    		this.iniciarSalto();
-	    	} 
+	    if (deteccionSalto() && personajeJugable.obtenerColisionAbajo()) {
+	    	this.iniciarSalto();
+	    } 
 	    	
-	    	if (deteccionMovimientoAIzquierda()) {
-	    		this.realizarMovimientoALaIzquierda();
-	    	}
-	    	
-	    	if (deteccionMovimientoADerecha()) {
-	    		this.realizarMovimientoALaDerecha();
-	    	}
-	    	
-	    	if (deteccionAccionEspecial()) {
-	    		this.realizarAccionEspecial();
-	    	}
+	    if (deteccionMovimientoAIzquierda()) {
+	    	this.realizarMovimientoALaIzquierda();
 	    }
-	    personajeJugable.aplicarGravedad();
+	    	
+	    if (deteccionMovimientoADerecha()) {
+	    	this.realizarMovimientoALaDerecha();
+	    }
+	    	
+	    if (deteccionAccionEspecial()) {
+	    	this.realizarAccionEspecial();
+	    }
 	}
+	
 
 	private boolean deteccionSalto() {
 		boolean retornar = false;
@@ -194,5 +203,13 @@ public class ControladorMovimiento {
 		int nuevaPosicionY = personajeJugable.obtenerHitbox().y + personajeJugable.obtenerVelocidadDireccional().y;
 		Point nuevaPosicion = new Point(personajeJugable.obtenerPosicionLogica().x, nuevaPosicionY);
 		personajeJugable.moverHitbox(nuevaPosicion);
+	}
+	
+	public void desactivarMovimientoPersonaje() {
+		this.movimientoPersonajeActivo = false;
+	}
+
+	public void activarMovimientoPersonaje() {
+		this.movimientoPersonajeActivo = true;
 	}
 }

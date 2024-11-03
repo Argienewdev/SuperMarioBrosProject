@@ -140,12 +140,19 @@ public class VisitorContextoMario implements Visitante {
 		    		miEntidad.obtenerNivel().establecerCompletado(true);
 		        }
 		    });
+			this.detenerEntidades();
 		    timer.setRepeats(false);
 		    timer.start();
 		}
 	}
 
 	
+	private void detenerEntidades() {
+		miEntidad.obtenerNivel().obtenerPartida().desactivarMovimientoEnemigos();
+		miEntidad.obtenerNivel().obtenerPartida().desactivarMovimientoPersonaje();
+	}
+
+
 	public void visitarTuberia(Tuberia tuberia) {
 		this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(tuberia, this.miEntidad);
 	}
