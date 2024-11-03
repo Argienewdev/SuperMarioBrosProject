@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
@@ -129,7 +128,8 @@ public class PantallaFinal extends Pantalla {
         add(botonVolver);
     }
     
-    private void configurarMapasTeclado() {
+    @SuppressWarnings("serial")
+	private void configurarMapasTeclado() {
         InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = getActionMap();
 
