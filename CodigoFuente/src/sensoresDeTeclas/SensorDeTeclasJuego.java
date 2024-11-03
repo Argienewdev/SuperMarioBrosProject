@@ -20,8 +20,6 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 	
 	private boolean spaceAccionado;
 	
-	private boolean activado;
-	
 	public SensorDeTeclasJuego() {
 		this.aPresionada = false;
 		this.dPresionada = false;
@@ -29,7 +27,6 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		this.wAccionada = false;
 		this.spacePresionada = false;
 		this.spaceAccionado = false;
-		this.activado = true;
 	}
 
 	@Override
@@ -99,19 +96,4 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		this.wAccionada = accionada;
 	}
 
-	public boolean estaActivado() {
-		return this.activado;
-	}
-	
-	public void desactivarSensorDeTeclas() {
-		this.activado = false;
-	}
-	
-	public void activarSensorDeTeclas() {
-		this.activado = true;
-	}
-	
-	public boolean obtenerSensorDeTeclasActivado() {
-		return this.activado;
-	}
 }

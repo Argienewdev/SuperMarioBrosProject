@@ -95,10 +95,8 @@ public class MatrizPlataforma {
 	}
 	
 	private Point posicionEnLaGrilla(Entidad entidad) {
-		//TODO se puede sacar el casteo?
-		//Se castea el tamanio de la celda, para que la division de un float y asi poder redondear al mas cercano
-		float posicionXDeElementoSinRedondear = entidad.obtenerPosicionLogica().x/((float)TAMANIO_CELDA);
-		float posicionYDeElementoSinRedondear = entidad.obtenerPosicionLogica().y/((float)TAMANIO_CELDA);
+		float posicionXDeElementoSinRedondear = entidad.obtenerPosicionLogica().x/(TAMANIO_CELDA* 1.0f);
+		float posicionYDeElementoSinRedondear = entidad.obtenerPosicionLogica().y/(TAMANIO_CELDA* 1.0f);
 		int posicionXDeElementoEnLaGrilla = Math.round(posicionXDeElementoSinRedondear);
 		int posicionYDeElementoEnLaGrilla = Math.round(posicionYDeElementoSinRedondear);
 		Point puntoADevolver = new Point(posicionXDeElementoEnLaGrilla,posicionYDeElementoEnLaGrilla);

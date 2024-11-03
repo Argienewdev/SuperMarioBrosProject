@@ -184,5 +184,13 @@ public class Partida {
 		this.masterMind.activarMovimientoEnemigos();
 	}
 	
+	public void desactivarMovimientoPersonaje() {
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().desactivarMovimientoPersonaje();
+	}
+
+	public void activarMovimientoPersonaje() {
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().activarMovimientoPersonaje();
+	}
+	
 	
 }

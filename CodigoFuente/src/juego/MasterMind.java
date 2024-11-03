@@ -65,6 +65,8 @@ public class MasterMind {
 			}
 			enemigo.mover();
 			enemigo.aplicarGravedad();
+		} else if (!this.movimientoEnemigosActivo){
+			enemigo.establecerVelocidadDireccional(new Point(0,0));
 		}
 		cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}

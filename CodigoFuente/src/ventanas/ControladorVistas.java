@@ -102,8 +102,8 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaEntreNiveles(){
 		this.actualizarVentana(pantallaEntreNiveles);
-		this.sensorDeTeclasJuego.desactivarSensorDeTeclas();
 		this.juego.obtenerPartida().desactivarMovimientoEnemigos();
+		this.juego.obtenerPartida().desactivarMovimientoPersonaje();
 	}
 	
 	public void RegistrarOyenteInicial(){
@@ -118,8 +118,8 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaDeJuego() {
 		actualizarVentana(pantallaDeJuego);
-		this.sensorDeTeclasJuego.activarSensorDeTeclas();
 		this.juego.obtenerPartida().activarMovimientoEnemigos();
+		this.juego.obtenerPartida().activarMovimientoPersonaje();
 	}
 	
 	public void accionarPantallaFinal() {
