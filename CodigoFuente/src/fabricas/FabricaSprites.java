@@ -9,6 +9,7 @@ public abstract class FabricaSprites {
 	public FabricaSprites(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
+	
 	public abstract Sprite obtenerMarioDefaultFrontalQuieto();
 		
 	public abstract Sprite obtenerMarioDefaultFrontalCaminando();
