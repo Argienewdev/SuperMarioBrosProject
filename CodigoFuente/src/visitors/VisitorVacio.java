@@ -71,18 +71,54 @@ public class VisitorVacio implements Visitante {
 
     
     public void visitarMarioDefault(MarioDefault marioDefault) {
+    	this.generadorSonidos.detenerMusicaFondo();
+    	this.generadorSonidos.pierdeVida();
+    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+    	marioDefault.obtenerContexto().perderPuntos(puntajeASustraer);
+    	marioDefault.obtenerContexto().perderVida();
+    	marioDefault.obtenerContexto().reiniciarEstado();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
 
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    	this.generadorSonidos.detenerMusicaFondo();
+    	this.generadorSonidos.detenerMusicaInvencible();
+    	this.generadorSonidos.pierdeVida();
+    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+    	marioInvulnerable.obtenerContexto().perderPuntos(puntajeASustraer);
+    	marioInvulnerable.obtenerContexto().perderVida();
+    	marioInvulnerable.obtenerContexto().reiniciarEstado();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
     
     public void visitarMarioFuego(MarioFuego marioFuego) {
+    	this.generadorSonidos.detenerMusicaFondo();
+    	this.generadorSonidos.pierdeVida();
+    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+    	marioFuego.obtenerContexto().perderPuntos(puntajeASustraer);
+    	marioFuego.obtenerContexto().perderVida();
+    	marioFuego.obtenerContexto().reiniciarEstado();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
 
     public void visitarSuperMario(SuperMario superMario) {
+    	this.generadorSonidos.detenerMusicaFondo();
+    	this.generadorSonidos.pierdeVida();
+    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+    	superMario.obtenerContexto().perderPuntos(puntajeASustraer);
+    	superMario.obtenerContexto().perderVida();
+    	superMario.obtenerContexto().reiniciarEstado();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    	this.generadorSonidos.detenerMusicaFondo();
+    	this.generadorSonidos.pierdeVida();
+    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+    	marioRecuperacion.obtenerContexto().perderPuntos(puntajeASustraer);
+    	marioRecuperacion.obtenerContexto().perderVida();
+    	marioRecuperacion.obtenerContexto().reiniciarEstado();
+        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
     }
 
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
@@ -104,13 +140,7 @@ public class VisitorVacio implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	this.generadorSonidos.detenerMusicaFondo();
-    	this.generadorSonidos.pierdeVida();
-    	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
-    	contextoMario.perderPuntos(puntajeASustraer);
-    	contextoMario.perderVida();
-    	contextoMario.reiniciarEstado();
-        miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
+    	contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
     
