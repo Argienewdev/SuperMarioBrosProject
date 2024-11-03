@@ -132,7 +132,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
             ladrillo.eliminarDelNivel();
-            generadorSonidos.golpeBloque();
+            generadorSonidos.romperLadrillo();
         }
     }
 
@@ -146,7 +146,8 @@ public class VisitorMarioInvulnerable implements Visitante {
     public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {}

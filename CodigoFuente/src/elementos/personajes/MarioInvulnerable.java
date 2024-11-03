@@ -7,6 +7,7 @@ import elementos.Sprite;
 import fabricas.FabricaSprites;
 import generadores.GeneradorSonidos;
 import ventanas.ConstantesGlobales;
+import visitors.DetectorDireccionColision;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;
 
@@ -20,10 +21,13 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	protected GeneradorSonidos generadorSonidos;
 	
+	protected DetectorDireccionColision detectorDireccionColision;
+	
 	public MarioInvulnerable (EstadoMario estadoPrevio, GeneradorSonidos generadorSonidos) {
 		this.generadorSonidos = generadorSonidos;
 		this.estadoPrevio = estadoPrevio;
 		this.duracion = DURACION_INVULNERABLE;
+		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
 	public void reiniciarDuracion() {
@@ -101,10 +105,11 @@ public class MarioInvulnerable  extends MarioDefault {
 	
 	public void actualizarTiempo () {
 		duracion--;
-		if (duracion <=  0) {
+		if (duracion ==  0) {
 			contexto.cambiarEstado(estadoPrevio);
 			generadorSonidos.reproducirMusicaFondo();
 			generadorSonidos.detenerMusicaInvencible();
+			generadorSonidos.marioPequenioDeNuevo();
 		}
 	}
 }

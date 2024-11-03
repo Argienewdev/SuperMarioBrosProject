@@ -13,9 +13,12 @@ public class VisitorEstrella implements Visitante {
     
     protected GeneradorSonidos generadorSonidos;
     
+    protected DetectorDireccionColision detectorDireccionColision;
+    
     public VisitorEstrella(Estrella miEntidad, GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
     	this.miEntidad = miEntidad;
+    	detectorDireccionColision = new DetectorDireccionColision();
     }
 
     @Override
@@ -56,6 +59,7 @@ public class VisitorEstrella implements Visitante {
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	
     }
 
     @Override
@@ -76,6 +80,7 @@ public class VisitorEstrella implements Visitante {
 
     @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    	
     }
 
     @Override

@@ -132,9 +132,7 @@ public class VisitorMarioDefault implements Visitante {
 
     @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-    	if(detectorDireccionColision.choquePorAbajo(bloqueDePregunta, miContexto)){
-    		generadorSonidos.golpeBloque();
-    	}
+    	
     }
 
     @Override
@@ -165,6 +163,7 @@ public class VisitorMarioDefault implements Visitante {
     	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
+    	detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(bloqueSolido, miContexto);
     }
 
     @Override
