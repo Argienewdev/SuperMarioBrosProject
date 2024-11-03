@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import elementos.Sprite;
 import elementos.personajes.ContextoMario;
-import observers.ObserverLogicoJugable;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ControladorVistas;
@@ -64,7 +63,6 @@ public class Juego {
 		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
 		this.partida = new Partida(sensorDeTeclasJuego, this);
 		ContextoMario jugable = partida.obtenerJugable();
-		jugable.establecerObserverLogico(new ObserverLogicoJugable(this));
 		return jugable;
 	}
 	
