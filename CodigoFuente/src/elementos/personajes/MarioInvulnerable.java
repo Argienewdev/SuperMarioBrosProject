@@ -22,11 +22,18 @@ public class MarioInvulnerable  extends MarioDefault {
 		this.duracion = DURACION_INVULNERABLE;
 	}
 	
+	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		return fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
+	}
+	
+	public Visitante obtenerVisitante() {
+		return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
 	public void reiniciarDuracion() {
 		this.duracion = DURACION_INVULNERABLE;
 	}
 	
-	@Override
     public void aceptarVisitante(Visitante visitante) {
         visitante.visitarMarioInvulnerable(this);
     }
@@ -38,13 +45,7 @@ public class MarioInvulnerable  extends MarioDefault {
 		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
-	@Override
-	public Visitante obtenerVisitante() {
-		 return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
-	}
-	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		//TODO esta llamada no va aca
 		actualizarTiempo();
 		Sprite aRetornar = null;
 		try {
@@ -69,10 +70,6 @@ public class MarioInvulnerable  extends MarioDefault {
 		}catch(NullPointerException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerMarioInvulnerableFrontalQuieto();
 	}
 	
 	private boolean enElAire() {

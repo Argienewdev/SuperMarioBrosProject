@@ -8,14 +8,16 @@ import visitors.VisitorSuperMario;
 
 public class SuperMario extends MarioDefault {
 	
-	@Override
-    public void aceptarVisitante(Visitante visitante) {
-        visitante.visitarSuperMario(this);
-    }
-	
-	@Override
 	public Visitante obtenerVisitante() {
 		return new VisitorSuperMario(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+	}
+	
+	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
+		return fabricaSprites.obtenerSuperMarioFrontalQuieto();
+	}
+	
+	public void aceptarVisitante(Visitante visitante) {
+		visitante.visitarSuperMario(this);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
@@ -38,10 +40,6 @@ public class SuperMario extends MarioDefault {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
 		contexto.establecerSprite(aRetornar);
-	}
-	
-	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		return fabricaSprites.obtenerSuperMarioFrontalQuieto();
 	}
 	
 	private boolean enElAire() {
