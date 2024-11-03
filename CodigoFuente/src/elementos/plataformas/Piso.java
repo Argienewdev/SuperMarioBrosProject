@@ -7,12 +7,12 @@ import visitors.Visitante;
 
 public class Piso extends Plataforma{
 	
+	@SuppressWarnings("exports")
 	public Piso(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.setSolido(true);
+		this.establecerSolido(true);
 	}
 
-	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarPiso(this);
 	}

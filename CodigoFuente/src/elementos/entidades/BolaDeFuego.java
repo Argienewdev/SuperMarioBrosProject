@@ -4,7 +4,6 @@ import java.awt.Point;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public class BolaDeFuego extends NoJugable {
@@ -17,6 +16,7 @@ public class BolaDeFuego extends NoJugable {
 	
 	protected Jugable miJugador;
 	
+	@SuppressWarnings("exports")
 	public BolaDeFuego(Sprite sprite, Point posicion, Visitante visitor, Point velocidadDireccional,
 					ObserverGrafico observerGrafico,Jugable jugador) {
 		super(sprite, posicion, visitor, observerGrafico);
@@ -24,13 +24,14 @@ public class BolaDeFuego extends NoJugable {
 		this.miJugador = jugador;
 	}
 	
-	// Metodos
-	@Override
+	public Jugable obtenerJugador() {
+		return miJugador;
+	}
+	
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarBolaDeFuego(this);
 	}
 
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
@@ -51,19 +52,12 @@ public class BolaDeFuego extends NoJugable {
 		}
 	}
 
-	public Jugable obtenerJugador() {
-		return miJugador;
-	}
-	
-	@Override
 	public void mover() {
 	}
 
-	@Override
 	public void invertirDireccion() {
 	}
 
-	@Override
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 		this.obtenerNivel().removerBolaDeFuego(this);

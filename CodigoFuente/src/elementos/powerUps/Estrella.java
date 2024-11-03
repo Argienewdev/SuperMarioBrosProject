@@ -10,16 +10,12 @@ public class Estrella extends PowerUp {
 	
 	public static final int TIEMPO_DURACION = 10;
 	
+	@SuppressWarnings("exports")
 	public Estrella(Sprite sprite,Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.esMovible = true;
 		this.estaDentroDeBloqueDePreguntas = true;
 		this.ticksHastaSalirDelBloque = 50;
-	}
-	
-	@Override
-	public void aceptarVisitante (Visitante visitante) {
-		visitante.visitarEstrella(this);
 	}
 	
 	public int obtenerPuntosPorDefault() {
@@ -38,7 +34,6 @@ public class Estrella extends PowerUp {
 		return obtenerPuntosPorSuper();
 	}
 
-	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
@@ -53,4 +48,7 @@ public class Estrella extends PowerUp {
 		}
 	}
 
+	public void aceptarVisitante (Visitante visitante) {
+		visitante.visitarEstrella(this);
+	}
 }

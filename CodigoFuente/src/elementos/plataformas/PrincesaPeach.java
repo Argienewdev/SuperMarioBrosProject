@@ -7,11 +7,11 @@ import visitors.Visitante;
 
 public class PrincesaPeach extends Meta{
 
+	@SuppressWarnings("exports")
 	public PrincesaPeach(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 	}
 
-	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarPrincesaPeach(this);
 	}

@@ -9,16 +9,16 @@ public class Vacio extends Plataforma{
 	
 	private static final int PUNTOS_SUSTRAIDOS_POR_MUERTE_CAUSADA = 15;
 	
+	@SuppressWarnings("exports")
 	public Vacio(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.setSolido(true);
+		this.establecerSolido(true);
 	}
 	
 	public int obtenerPuntosSustraidosPorMuerteCausada() {
 		return PUNTOS_SUSTRAIDOS_POR_MUERTE_CAUSADA;
 	}
 	
-	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarVacio(this);
 	}

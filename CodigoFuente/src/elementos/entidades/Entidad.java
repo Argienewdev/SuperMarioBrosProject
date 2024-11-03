@@ -34,17 +34,16 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.contadorTicks = 0;
 		this.ticksAnimacion = 60;
 		this.mirandoAlFrente = true;
-
 	}
 
     @SuppressWarnings("exports")
-	public void establecerVelocidadDireccional(Point velocidadDireccional) {
-        this.velocidadDireccional = velocidadDireccional;
+    public void establecerHitbox(Rectangle hitbox) {
+    	this.hitbox = hitbox;
     }
     
     @SuppressWarnings("exports")
-	public Point obtenerVelocidadDireccional() {
-        return this.velocidadDireccional;
+	public void establecerVelocidadDireccional(Point velocidadDireccional) {
+        this.velocidadDireccional = velocidadDireccional;
     }
     
     public void establecerColisionAbajo(boolean colisionAbajo) {
@@ -53,6 +52,31 @@ public abstract class Entidad extends ElementoDeJuego {
     
     public void establecerColisionArriba(boolean colisionArriba) {
     	this.colisionArriba = colisionArriba;
+    }
+    
+    public void establecerMirandoAlFrente(boolean mirandoAlFrente) {
+    	this.mirandoAlFrente = mirandoAlFrente;
+    }
+    
+    @SuppressWarnings("exports")
+    public Point obtenerVelocidadDireccional() {
+    	return this.velocidadDireccional;
+    }
+    
+    public boolean obtenerColisionAbajo() {
+    	return this.colisionAbajo;
+    }
+    
+    public int obtenerContadorTicks() {
+    	return this.contadorTicks;
+    }
+    
+    public int obtenerTicksAnimacion() {
+    	return this.ticksAnimacion;
+    }
+    
+    public boolean obtenerMirandoAlFrente() {
+    	return this.mirandoAlFrente;
     }
     
     public abstract void retrotraerMovimientoHorizontal(int posX);
@@ -64,27 +88,10 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.establecerVelocidadDireccional(new Point(obtenerVelocidadDireccional().x, 0));
 	}
     
-	public boolean obtenerColisionAbajo() {
-		return this.colisionAbajo;
-	}
-	
 	public abstract void aceptarVisitante(Visitante visitante);
-	
-	public int obtenerContadorTicks() {
-		return this.contadorTicks;
-	}
 	
 	public void incrementarContadorTicks() {
 		this.contadorTicks++;
-	}
-	
-	@SuppressWarnings("exports")
-	public void setHitbox(Rectangle hitbox) {
-		this.hitbox = hitbox;
-	}
-	
-	public int obtenerTicksAnimacion() {
-		return this.ticksAnimacion;
 	}
 	
 	public void aplicarGravedad() {
@@ -94,11 +101,4 @@ public abstract class Entidad extends ElementoDeJuego {
 		}
 	}
 	
-	public boolean obtenerMirandoAlFrente() {
-		return this.mirandoAlFrente;
-	}
-	
-	public void establecerMirandoAlFrente(boolean mirandoAlFrente) {
-		this.mirandoAlFrente = mirandoAlFrente;
-	}
 }

@@ -1,6 +1,7 @@
 package elementos;
 
 public class Sonido {
+	
 	protected String rutaSonido;
 	
 	public Sonido(String rutaSonido) {
@@ -18,4 +19,5 @@ public class Sonido {
 	public boolean equals(Sonido sonido) {
 		return this.obtenerRutaSonido().equals(sonido.obtenerRutaSonido());
 	}
+	
 }

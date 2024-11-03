@@ -22,13 +22,12 @@ public abstract class PowerUp extends NoJugable {
 	
 	protected boolean haceRuidoAlSalir;
 
+	@SuppressWarnings("exports")
 	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.haceRuidoAlSalir = true;
 	}
 
-	public abstract void aceptarVisitante(Visitante visitante);
-	
 	public abstract int obtenerPuntosPorDefault();
 	
 	public abstract int obtenerPuntosPorSuper();
@@ -37,16 +36,26 @@ public abstract class PowerUp extends NoJugable {
 	
 	public abstract int obtenerPuntosPorFuego();
 	
-	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
-	
-	public boolean estaDentroDeBloqueDePreguntas() {
-		return this.estaDentroDeBloqueDePreguntas;
-	}
-	
 	public int obtenerTicksHastaSalirDelBloque() {
 		return this.ticksHastaSalirDelBloque;
 	}
+	
+	public void establecerBloquePregunta(BloqueDePregunta bloquePregunta) {
+		this.bloquePregunta = bloquePregunta;
+	}
+	
+	public BloqueDePregunta obtenerBloquePregunta() {
+		return this.bloquePregunta;
+	}
+	
+	public boolean obtenerHaceRuidoAlSalir() {
+		return this.haceRuidoAlSalir;
+	}
+	
+	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 
+	public abstract void aceptarVisitante(Visitante visitante);
+	
     protected void moverDerecha() {
     	Point velocidad = new Point(VELOCIDAD_HORIZONTAL_POWERUP, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
@@ -62,10 +71,6 @@ public abstract class PowerUp extends NoJugable {
     	this.establecerVelocidadDireccional(velocidad);
     }
 	
-	public boolean esMovible() {
-		return this.esMovible;
-	}
-	
 	public void establecerEsMovible(boolean esMovible) {
 		this.esMovible = esMovible;
 	}
@@ -80,15 +85,6 @@ public abstract class PowerUp extends NoJugable {
 		this.observerGrafico.establecerRemovido(true);
 	}
 	
-	public BloqueDePregunta obtenerBloquePregunta() {
-		return this.bloquePregunta;
-	}
-	
-	public void establecerBloquePregunta(BloqueDePregunta bloquePregunta) {
-		this.bloquePregunta = bloquePregunta;
-	}
-	
-	@Override
 	public void mover() {
 		if (removido) {
     		Point velocidad = new Point(0, 0);
@@ -102,8 +98,11 @@ public abstract class PowerUp extends NoJugable {
     	}
 	}
 	
-	public boolean obtenerHaceRuidoAlSalir() {
-		return this.haceRuidoAlSalir;
+	public boolean esMovible() {
+		return this.esMovible;
 	}
 	
+	public boolean estaDentroDeBloqueDePreguntas() {
+		return this.estaDentroDeBloqueDePreguntas;
+	}
 }

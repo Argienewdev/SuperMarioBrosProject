@@ -43,7 +43,7 @@ public class FabricaPlataformas {
 		Sprite spriteVacio = this.fabricaSprites.obtenerVacio();
 		Vacio vacioADevolver = new Vacio(spriteVacio, posicion, null, null);
 		Visitante visitor = new VisitorVacio(vacioADevolver, this.generadorSonidos);
-		vacioADevolver.establecerVisitor(visitor);
+		vacioADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(vacioADevolver);	   
 		vacioADevolver.establecerObserverGrafico(observerGraficoLadrillo);
 		this.pantallaDeJuego.agregarLabel(vacioADevolver.obtenerObserverGrafico());
@@ -55,7 +55,7 @@ public class FabricaPlataformas {
 		Sprite spriteLadrillo = this.fabricaSprites.obtenerLadrillo();
 		Ladrillo ladrilloADevolver = new Ladrillo(spriteLadrillo, posicion, null, null);
 		Visitante visitor = new VisitorLadrillo(ladrilloADevolver, this.generadorSonidos);
-		ladrilloADevolver.establecerVisitor(visitor);
+		ladrilloADevolver.establecerVisitante(visitor);
         ObserverGrafico observerGraficoLadrillo = new ObserverGrafico(ladrilloADevolver);	   
         ladrilloADevolver.establecerObserverGrafico(observerGraficoLadrillo);
         this.pantallaDeJuego.agregarLabel(ladrilloADevolver.obtenerObserverGrafico());
@@ -69,7 +69,7 @@ public class FabricaPlataformas {
 		int alturaEscalada = altura * 50;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, alturaEscalada, ancho);
         Visitante visitor = new VisitorTuberia(tuberiaADevolver, this.generadorSonidos);
-        tuberiaADevolver.establecerVisitor(visitor);
+        tuberiaADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
 		tuberiaADevolver.establecerObserverGrafico(observerGraficoTuberia);
         this.pantallaDeJuego.agregarLabel(tuberiaADevolver.obtenerObserverGrafico());
@@ -85,7 +85,7 @@ public class FabricaPlataformas {
   		PiranhaPlant piranhaPlant =  null;
 		Tuberia tuberiaADevolver = new Tuberia(spriteTuberia, posicion, null, null, alturaEscalada, ancho);
         Visitante visitorTuberia = new VisitorTuberia(tuberiaADevolver, this.generadorSonidos);
-        tuberiaADevolver.establecerVisitor(visitorTuberia);
+        tuberiaADevolver.establecerVisitante(visitorTuberia);
 		ObserverGrafico observerGraficoTuberia = new ObserverGrafico(tuberiaADevolver);
 		tuberiaADevolver.establecerObserverGrafico(observerGraficoTuberia);
         this.pantallaDeJuego.agregarLabel(tuberiaADevolver.obtenerObserverGrafico());
@@ -102,7 +102,7 @@ public class FabricaPlataformas {
 		Sprite spriteBandera = this.fabricaSprites.obtenerBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
 		Visitante visitor = new VisitorBandera(controladorVistas,banderaADevolver, this.generadorSonidos);
-		banderaADevolver.establecerVisitor(visitor);
+		banderaADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoBandera = new ObserverGrafico(banderaADevolver);
         banderaADevolver.establecerObserverGrafico(observerGraficoBandera);
         this.pantallaDeJuego.agregarLabel(banderaADevolver.obtenerObserverGrafico());
@@ -114,7 +114,7 @@ public class FabricaPlataformas {
 		Sprite spritePrincesaPeach = this.fabricaSprites.obtenerPrincesaPeach();
 		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null, null);
 		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver, this.generadorSonidos);
-		princesaPeachADevolver.establecerVisitor(visitor);
+		princesaPeachADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeachADevolver);
         princesaPeachADevolver.establecerObserverGrafico(observerGraficoPrincesaPeach);
         this.pantallaDeJuego.agregarLabel(princesaPeachADevolver.obtenerObserverGrafico());
@@ -126,7 +126,7 @@ public class FabricaPlataformas {
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.obtenerBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null, null);
 		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver, this.generadorSonidos);
-		bloqueDePreguntaADevolver.establecerVisitor(visitor);
+		bloqueDePreguntaADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
@@ -183,7 +183,7 @@ public class FabricaPlataformas {
     	Sprite spriteBloqueSolido = this.fabricaSprites.obtenerBloqueSolido();
     	BloqueSolido bloqueSolidoADevolver = new BloqueSolido(spriteBloqueSolido, posicion, null, null);
     	Visitante visitorBloqueSolido = new VisitorBloqueSolido(bloqueSolidoADevolver, this.generadorSonidos);
-    	bloqueSolidoADevolver.establecerVisitor(visitorBloqueSolido);
+    	bloqueSolidoADevolver.establecerVisitante(visitorBloqueSolido);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(bloqueSolidoADevolver);
     	bloqueSolidoADevolver.establecerObserverGrafico(observerGraficoBloqueSolido);
     	this.pantallaDeJuego.agregarLabel(bloqueSolidoADevolver.obtenerObserverGrafico());
@@ -195,7 +195,7 @@ public class FabricaPlataformas {
     	Sprite spritePiso = this.fabricaSprites.obtenerPiso();
     	Piso pisoADevolver = new Piso(spritePiso, posicion, null, null);
     	Visitante visitorPiso = new VisitorPiso(pisoADevolver, this.generadorSonidos);
-    	pisoADevolver.establecerVisitor(visitorPiso);
+    	pisoADevolver.establecerVisitante(visitorPiso);
     	ObserverGrafico observerGraficoBloqueSolido = new ObserverGrafico(pisoADevolver);
     	pisoADevolver.establecerObserverGrafico(observerGraficoBloqueSolido);
     	this.pantallaDeJuego.agregarLabel(pisoADevolver.obtenerObserverGrafico());

@@ -38,7 +38,7 @@ public class MarioFuego extends MarioDefault {
 		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
-		this.obtenerContexto().setHitbox(nuevaHitbox);
+		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
