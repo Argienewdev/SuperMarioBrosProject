@@ -77,6 +77,17 @@ public class Ranking implements Serializable {
         }
     	return esTop;
     }
+    
+    public Jugador obtenerJugador (String nombre) {
+    	Iterator<Jugador> iterador = topJugadores.iterator();
+    	Jugador jugador = null;
+    	boolean encontre = false;
+    	while (iterador.hasNext() && !encontre) {
+    		jugador = iterador.next();
+    		encontre = jugador.obtenerNombre().equals(nombre);
+    	}
+    	return jugador;
+    }
 	
 
 }

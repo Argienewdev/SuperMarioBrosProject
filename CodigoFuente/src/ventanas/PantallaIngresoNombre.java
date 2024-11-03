@@ -51,7 +51,16 @@ public class PantallaIngresoNombre extends Pantalla {
     }
 
     public void guardarNombre(String nombreJugador) {
-        jugador.establecerNombre(nombreJugador);
+    	Ranking ranking = controlador.obtenerRanking();
+    	Jugador jugadorTop = ranking.obtenerJugador(nombreJugador);
+        if (jugadorTop == null) {
+        	jugador.establecerNombre(nombreJugador);
+        	ranking.agregarJugador(jugador);
+        }
+        else {
+        	int puntosNuevos = jugador.obtenerPuntaje();
+        	jugadorTop.actualizarPuntos(puntosNuevos);
+        }
     }
 
     public String obtenerNombreJugador() {
@@ -132,7 +141,6 @@ public class PantallaIngresoNombre extends Pantalla {
         if (!nombre.isEmpty()) {
             guardarNombre(nombre);
             Ranking ranking = controlador.obtenerRanking();
-            ranking.agregarJugador(jugador);
             ranking.guardarEstado();
             controlador.accionarPantallaFinal();
         } else {
