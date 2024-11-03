@@ -80,10 +80,18 @@ public class Juego {
 		jugador = new Jugador();
 		jugador.actualizarPuntos(partida.obtenerJugable().obtenerPuntos());
 		controladorVistas.establecerJugador(jugador);
-		controladorVistas.accionarPantallaIngresoNombre();
-		jugador.establecerNombre(controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador());
+		
 		BucleJugador bucle =  partida.obtenerBucleJugador();
 		bucle.detenerBucleJugador();
+		
+		controladorVistas.accionarPantallaIngresoNombre();
+		String nombreIngresado = controladorVistas.obtenerPantallaIngresoNombre().obtenerNombreJugador();
+		jugador.establecerNombre(nombreIngresado);
+		
+		if (!nombreIngresado.isEmpty()) {
+	        controladorVistas.obtenerPantallaIngresoNombre().guardarNombre(nombreIngresado);
+	    }
+
 	}
 	
 

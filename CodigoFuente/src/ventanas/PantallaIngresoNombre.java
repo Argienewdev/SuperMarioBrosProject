@@ -51,15 +51,19 @@ public class PantallaIngresoNombre extends Pantalla {
     }
 
     public void guardarNombre(String nombreJugador) {
-    	Ranking ranking = controlador.obtenerRanking();
-    	Jugador jugadorTop = ranking.obtenerJugador(nombreJugador);
+        Ranking ranking = controlador.obtenerRanking();
+        Jugador jugadorTop = ranking.obtenerJugador(nombreJugador);
+
         if (jugadorTop == null) {
-        	jugador.establecerNombre(nombreJugador);
-        	ranking.agregarJugador(jugador);
-        }
-        else {
-        	int puntosNuevos = jugador.obtenerPuntaje();
-        	jugadorTop.actualizarPuntos(puntosNuevos);
+            // Si el jugador no está en el ranking, establece el nombre y lo agrega
+            jugador.establecerNombre(nombreJugador);
+            ranking.agregarJugador(jugador);
+        } else {
+            // Si el jugador ya existe, solo actualiza el puntaje si es mayor
+            int puntosNuevos = jugador.obtenerPuntaje();
+            if (puntosNuevos > jugadorTop.obtenerPuntaje()) {
+                jugadorTop.actualizarPuntos(puntosNuevos);
+            }
         }
     }
 
