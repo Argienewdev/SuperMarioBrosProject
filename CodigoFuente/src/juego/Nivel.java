@@ -8,6 +8,7 @@ import java.util.HashMap;
 import elementos.ElementoDeJuego;
 import elementos.Silueta;
 import elementos.enemigos.Enemigo;
+import elementos.enemigos.Spiny;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
 import elementos.personajes.ContextoMario;
@@ -20,11 +21,7 @@ public class Nivel {
 
     protected GeneradorDeNivel generadorDeNivel;
     
-<<<<<<< HEAD
     protected MatrizPlataforma matrizPlataforma;
-=======
-    protected Mapa mapa;
->>>>>>> nuevaGestionPlataformas
     
     protected Collection<PowerUp> powerUps;
     
@@ -37,6 +34,8 @@ public class Nivel {
     protected Collection<ElementoDeJuego> entidadesAEliminar;
  
     protected Collection<Enemigo> spinysAAgregar;
+    
+    protected Collection<Plataforma> plataformasAfectables;
     
     protected Silueta silueta;
     
@@ -93,10 +92,6 @@ public class Nivel {
         enemigo.establecerNivel(this);
     }
 
-    public void agregarSpinyAAgregar(Enemigo spiny) {
-        this.spinysAAgregar.add(spiny);
-    }
-
 
     public void agregarPowerUp(PowerUp powerUp) {
         this.powerUps.add(powerUp);
@@ -120,9 +115,13 @@ public class Nivel {
         bolasDeFuego.addAll(bolasDeFuegoAAgregar);
         bolasDeFuegoAAgregar = new ArrayList<>();
     }
-
-    public void agregarEntidadesAEliminar(ElementoDeJuego entidad) {
-        this.entidadesAEliminar.add(entidad);
+    
+    public void agregarSpinysAAgregar() {
+    	for(Enemigo spiny : spinysAAgregar) {
+    		spiny.establecerNivel(this);
+    	}
+    	enemigos.addAll(spinysAAgregar);
+    	spinysAAgregar = new ArrayList<Enemigo>();
     }
 
     public void removerEntidadesAEliminar() {

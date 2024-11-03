@@ -31,7 +31,7 @@ public class MasterMind {
 		actualizarPlataformas();
 		this.nivel.removerEntidadesAEliminar();
 		this.nivel.agregarBolaDeFuegoAAgregar();
-		this.nivel.agregarSpinysAAgregar();
+		this.nivel.agregarSpinysAAgregar(); 
 	}
 	
 	public void cambiarNivel(Nivel nivel) {

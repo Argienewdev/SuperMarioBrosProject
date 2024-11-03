@@ -149,7 +149,7 @@ public class ControladorMovimiento {
 
 			verificarColisionConPlataformas(entidad);
 			verificarColisionConEntidades(entidad);
-			System.out.println(cont);
+//			System.out.println(cont);
 			
 
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
