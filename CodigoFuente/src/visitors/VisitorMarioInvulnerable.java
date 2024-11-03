@@ -26,20 +26,23 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	buzzyBeetle.establecerRemovido(true);
-        this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
+    	if(!buzzyBeetle.obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		this.otorgarPuntosYEliminar(buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
-    	spiny.establecerRemovido(true);
-    	this.miContexto.ganarPuntos(spiny.obtenerPuntosOtorgadosPorEliminacion());
+    	if(!spiny.obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
+    		this.otorgarPuntosYEliminar(spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	goomba.establecerRemovido(true);
-    	this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+    	if(!goomba.obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		this.otorgarPuntosYEliminar(goomba);
     }
 
     @Override
@@ -49,39 +52,47 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-    	int puntos = koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion();
-		this.miContexto.ganarPuntos(puntos);
-		koopaDefault.obtenerContext().establecerRemovido(true);
+    	if(!koopaDefault.obtenerContext().obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		this.otorgarPuntosYEliminar(koopaDefault.obtenerContext());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-    	koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	if(!koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+    	}
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
-		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-		lakitu.establecerRemovido(true);
-        this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+    	if(!lakitu.obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		this.otorgarPuntosYEliminar(lakitu);
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-    	piranhaPlant.establecerRemovido(true);
-    	this.miContexto.ganarPuntos(piranhaPlant.obtenerPuntosOtorgadosPorEliminacion());
+    	if(!piranhaPlant.obtenerRemovido())
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
+    		this.otorgarPuntosYEliminar(piranhaPlant);
     }
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
-        superChampinion.establecerRemovido(true);
+    	if(!superChampinion.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
+    		superChampinion.establecerRemovido(true);
+    	}
     }
 
     @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-    	this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorInvulnerable());
-        florDeFuego.establecerRemovido(true);
+    	if(!florDeFuego.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorInvulnerable());
+    		florDeFuego.establecerRemovido(true);
+    	}
     }
 
     @Override
@@ -90,8 +101,10 @@ public class VisitorMarioInvulnerable implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miContexto.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
-        estrella.establecerRemovido(true);
+    	if(!estrella.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorInvulnerable());
+    		estrella.establecerRemovido(true);
+    	}
     }
 
     @Override
@@ -135,6 +148,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
@@ -148,5 +162,11 @@ public class VisitorMarioInvulnerable implements Visitante {
 	public void visitarVacio(Vacio vacio) {
 	}
 
+	// Método auxiliar para otorgar puntos y eliminar enemigos
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
+		this.miContexto.ganarPuntos(puntos);
+		enemigo.establecerRemovido(true);
+	}
     
 }

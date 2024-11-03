@@ -60,14 +60,14 @@ public class VisitorFlorDeFuego implements Visitante {
     @Override
     public void visitarMarioDefault(MarioDefault marioDefault) {
         ContextoMario contextoMario = marioDefault.obtenerContexto();
-        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades,generadorSonidos);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
     @Override
     public void visitarSuperMario(SuperMario superMario) {
         ContextoMario contextoMario = superMario.obtenerContexto();
-        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades,generadorSonidos);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 
@@ -82,7 +82,7 @@ public class VisitorFlorDeFuego implements Visitante {
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     	ContextoMario contextoMario = marioRecuperacion.obtenerContexto();
-        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades);
+        EstadoMario nuevoEstado = new MarioFuego(fabricaEntidades,generadorSonidos);
         contextoMario.cambiarEstado(nuevoEstado);
     }
 

@@ -74,7 +74,7 @@ public class VisitorContextoMario implements Visitante {
 
 	
 	public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-		this.generadorSonidos.PowerupAgarrado();
+		this.generadorSonidos.modoFuego();
 		florDeFuego.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 	}
 

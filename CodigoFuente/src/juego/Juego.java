@@ -34,6 +34,9 @@ public class Juego {
 	
 	public Juego() {
 		ranking = cargarEstadoRanking();
+		//Utilizar solo cuando se quiere establecer un nuevo ranking
+		//Unicamente en el primer juego creado, despues volver a comentar
+//		ranking.reiniciarRanking();
 	}
 	
 	public Sprite obtenerSpriteMario(){
@@ -97,7 +100,7 @@ public class Juego {
 	public Ranking cargarEstadoRanking() {
     	Ranking ranking = null;
     	try {
-    		FileInputStream fileInputStream = new FileInputStream ("./src/puntajes");
+    		FileInputStream fileInputStream = new FileInputStream ("./src/puntos");
     		ObjectInputStream objectInputStream = new ObjectInputStream (fileInputStream);
     		ranking = (Ranking) objectInputStream.readObject();
     		objectInputStream.close();

@@ -21,16 +21,19 @@ public class VisitorBolaDeFuego implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
         otorgarPuntosYEliminar(buzzyBeetle);
     }
 
     @Override
     public void visitarSpiny(Spiny spiny) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
         otorgarPuntosYEliminar(spiny);
     }
 
     @Override
     public void visitarGoomba(Goomba goomba) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     	otorgarPuntosYEliminar(goomba);
     }
 
@@ -41,21 +44,25 @@ public class VisitorBolaDeFuego implements Visitante {
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     	otorgarPuntosYEliminar(koopaDefault.obtenerContext());
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     	koopaEnCaparazon.obtenerContext().establecerRemovido(true);
     }
 
     @Override
     public void visitarLakitu(Lakitu lakitu) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo();
         otorgarPuntosYEliminar(lakitu);
     }
 
     @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
         otorgarPuntosYEliminar(piranhaPlant);
     }
 

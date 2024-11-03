@@ -101,7 +101,7 @@ public class ControladorVistas {
 
 	
 	public void mostrarPantallaEntreNiveles(){
-	    //ventana.removeKeyListener(sensorDeTeclasJuego); 
+//	    ventana.removeKeyListener(sensorDeTeclasJuego); 
 		actualizarVentana(pantallaEntreNiveles);
 	}
 	
@@ -117,7 +117,7 @@ public class ControladorVistas {
 	
 	public void mostrarPantallaDeJuego() {
 		actualizarVentana(pantallaDeJuego);
-	    //ventana.addKeyListener(sensorDeTeclasJuego);
+//	    ventana.addKeyListener(sensorDeTeclasJuego);
 		
 	}
 	

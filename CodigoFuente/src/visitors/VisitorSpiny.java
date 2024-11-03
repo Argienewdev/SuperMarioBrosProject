@@ -110,12 +110,14 @@ public class VisitorSpiny implements Visitante {
 	}
 	
 	public void visitarSuperMario(SuperMario superMario) {
+    	this.generadorSonidos.modoRecuperacion();
 		EstadoMario marioRecuperacion = new MarioRecuperacion();
         superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
 	}
 
 	
 	public void visitarMarioFuego(MarioFuego marioFuego) {
+    	this.generadorSonidos.modoRecuperacion();
 		EstadoMario marioRecuperacion = new MarioRecuperacion();
 		marioFuego.obtenerContexto().cambiarEstado(marioRecuperacion);
 	}
@@ -133,6 +135,7 @@ public class VisitorSpiny implements Visitante {
 	}
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+		generadorSonidos.matarBolaDeFuego();
 		fireball.establecerRemovido(true);
 	}
 

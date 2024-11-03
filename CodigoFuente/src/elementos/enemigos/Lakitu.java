@@ -52,7 +52,7 @@ public class Lakitu extends Enemigo {
     		spiny.establecerPosicionGrafica(posicionGraficaSpiny);
     		spiny.obtenerObserverGrafico().actualizar();
     		
-    		obtenerNivel().agregarSpinyAAgregar(spiny);
+    		obtenerNivel().agregarSpinysAAgregar();
     	}
     }
     

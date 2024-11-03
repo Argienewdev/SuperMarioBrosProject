@@ -1,6 +1,10 @@
 package visitors;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
@@ -28,11 +32,11 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-			buzzyBeetle.establecerRemovido(true);
-			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
-		}
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
+    		&& !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		otorgarPuntosYEliminar(buzzyBeetle);
+    	}
     }
 
     @Override
@@ -41,10 +45,10 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    		goomba.establecerRemovido(true);
-			this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+    		otorgarPuntosYEliminar(goomba);
 		}
     }
 
@@ -56,8 +60,9 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
-    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-			this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()
+    		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
+			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
         }
     }
@@ -67,7 +72,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
@@ -79,8 +84,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    		lakitu.establecerRemovido(true);
-            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+    		otorgarPuntosYEliminar(lakitu);
     	}
     }
 
@@ -90,8 +94,11 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-    	this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
-        superChampinion.establecerRemovido(true);
+    	if(!superChampinion.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
+    		superChampinion.establecerRemovido(true);
+    		generadorSonidos.PowerupAgarrado();
+    	}
     }
 
     @Override
@@ -99,6 +106,7 @@ public class VisitorMarioFuego implements Visitante {
     	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
             florDeFuego.establecerRemovido(true);
+            generadorSonidos.PowerupAgarrado();
     	}
     }
 
@@ -107,21 +115,37 @@ public class VisitorMarioFuego implements Visitante {
 
     @Override
     public void visitarEstrella(Estrella estrella) {
-    	this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
-        estrella.establecerRemovido(true);
+    	if(!estrella.obtenerRemovido()) {
+    		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorFuego());
+    		estrella.establecerRemovido(true);
+    		generadorSonidos.modoInvencible();
+            generadorSonidos.detenerMusicaFondo();
+            Timer timer = new Timer(5500, new ActionListener() {
+    	    	public void actionPerformed(ActionEvent e) {
+    	            generadorSonidos.reproducirMusicaFondo();
+    	        }
+    	    });
+            timer.setRepeats(false); // Para que el timer se ejecute solo una vez
+            timer.start(); // Inicia el timer
+    	}
     }
 
     @Override
     public void visitarMoneda(Moneda monedas) {}
 
     @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    	if(detectorDireccionColision.choquePorAbajo(bloqueDePregunta, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
     		ladrillo.eliminarDelNivel();
+    		generadorSonidos.romperLadrillo();
         }
     }
 
@@ -135,7 +159,11 @@ public class VisitorMarioFuego implements Visitante {
     public void visitarTuberia(Tuberia tuberia) {}
 
     @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
+    		generadorSonidos.golpeBloque();
+    	}
+    }
 
     @Override
     public void visitarContextoMario(ContextoMario contextoMario) {}
@@ -152,6 +180,7 @@ public class VisitorMarioFuego implements Visitante {
     @Override
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
+    @Override
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
     @Override
@@ -160,15 +189,16 @@ public class VisitorMarioFuego implements Visitante {
 	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
+
+	@Override
+	public void visitarVacio(Vacio vacio) {
+	}
 	
+	// Método auxiliar para otorgar puntos y eliminar enemigos
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
 		this.miContexto.ganarPuntos(puntos);
 		enemigo.establecerRemovido(true);
-	}
-
-	@Override
-	public void visitarVacio(Vacio vacio) {
 	}
     
 }

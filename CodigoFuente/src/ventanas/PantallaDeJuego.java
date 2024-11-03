@@ -27,7 +27,7 @@ public class PantallaDeJuego extends Pantalla {
     
     private ObserverGrafico marioLabel;
     
-    private Interfaz hud;
+    private InterfazJuego hud;
     
     private JLabel fondo;
     
@@ -65,7 +65,7 @@ public class PantallaDeJuego extends Pantalla {
     }
     
     private void crearHUD() {
-    	hud = new Interfaz();
+    	hud = new InterfazJuego();
     	hud.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     	layeredPane.add(hud, JLayeredPane.PALETTE_LAYER);
         hud.setVisible(true);
@@ -111,7 +111,7 @@ public class PantallaDeJuego extends Pantalla {
 	
 	private void agregarLabelsAAgregar() {
 		for(ObserverGrafico observer : this.labelsElementoDeJuegoAAgregar) {
-			agregarLabel(observer);
+			this.agregarLabel(observer);
 		}
 		this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
 	}
@@ -125,12 +125,12 @@ public class PantallaDeJuego extends Pantalla {
 		labelsElementoDeJuego.add(labelElementoDeJuego);
 		layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
 		labelElementoDeJuego.setVisible(true);
-        revalidate();
-        repaint();
+		this.revalidate();
+        this.repaint();
     }
 	
     public void refrescar() {
-    	agregarLabelsAAgregar();
+    	this.agregarLabelsAAgregar();
     	
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.obtenerVidas());
@@ -171,8 +171,8 @@ public class PantallaDeJuego extends Pantalla {
     			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
     			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
             }
-        	revalidate();
-        	repaint();
+        	this.revalidate();
+        	this.repaint();
         }
     }
 
@@ -180,7 +180,7 @@ public class PantallaDeJuego extends Pantalla {
     public void eliminarNivelActual() {
     	layeredPane.remove(fondo);
     	layeredPane.remove(hud);
-    	removerElementos();
+    	this.removerElementos();
     	this.labelsElementoDeJuego = new ArrayList<ObserverGrafico>();
     	this.labelsElementoDeJuegoAAgregar = new ArrayList<ObserverGrafico>();
     	this.labelsElementoDeJuegoARemover = new ArrayList<ObserverGrafico>();
@@ -193,8 +193,8 @@ public class PantallaDeJuego extends Pantalla {
     	this.marioJugable.moverHitbox(posicionOriginalJugable);
     	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
     	this.marioJugable.establecerDesplazamiento(0);
-    	revalidate();
-    	repaint();
+    	this.revalidate();
+    	this.repaint();
     }
 
 	private void removerElementos() {
@@ -203,5 +203,9 @@ public class PantallaDeJuego extends Pantalla {
 		}
 	}
     
+	//TODO ven esto mal?, porque en vez de usar un obtener hud y perdirle el tiempo lo llamo directo de la pantalla de juego
+	public boolean obtenterTiempoEnCero() {
+		return this.hud.obtenerTiempoEnCero();
+	}
     
 }

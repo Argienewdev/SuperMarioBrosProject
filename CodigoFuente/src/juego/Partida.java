@@ -15,6 +15,7 @@ import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasJuego;
+import ventanas.ControladorVistas;
 
 public class Partida {
 	
@@ -68,16 +69,19 @@ public class Partida {
 	
 	public void actualizar() {
 		this.coordinadorActualizacionesJugador.actualizar();
+		if(tiempoLlegoACero()) {
+			matarJugador();
+		}
 	}
-	
+
 	public BucleJugador obtenerBucleJugador(){
 		return this.bucleJugador;
 	}
 	
 	public void cambiarNivel() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
-		this.juego.obtenerControladorVistas().cambiarNivel();
 		this.numeroNivelActual++;
+		this.juego.obtenerControladorVistas().cambiarNivel();
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
@@ -148,5 +152,17 @@ public class Partida {
 	public GeneradorSonidos obtenerGeneradorDeSonidos() {
 		return this.generadorSonidos;
 	}
+	
+	private boolean tiempoLlegoACero() {
+		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenterTiempoEnCero();
+	}
+	
+	private void matarJugador() {
+		this.generadorSonidos.detenerMusicaFondo();
+     	this.generadorSonidos.pierdeVida();
+     	this.jugable.perderVida();
+     	this.reiniciarNivel();
+	}
+	
 	
 }

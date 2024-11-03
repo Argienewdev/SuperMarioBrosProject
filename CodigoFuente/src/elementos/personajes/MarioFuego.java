@@ -7,6 +7,7 @@ import elementos.Sprite;
 import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import generadores.GeneradorSonidos;
 import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
@@ -15,9 +16,12 @@ public class MarioFuego extends MarioDefault {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
+	protected GeneradorSonidos generadorSonido;
 	
-	public MarioFuego(FabricaEntidades fabricaEntidades) {
+	
+	public MarioFuego(FabricaEntidades fabricaEntidades, GeneradorSonidos generadorSonido) {
 		this.fabricaEntidades = fabricaEntidades;
+		this.generadorSonido = generadorSonido;
 	}
 	
 	@Override
@@ -112,6 +116,8 @@ public class MarioFuego extends MarioDefault {
 		bolaDeFuego.obtenerObserverGrafico().actualizar();
 		
 		contexto.obtenerNivel().agregarBolaDeFuegoAAgregar(bolaDeFuego);
+		
+		generadorSonido.disparoBolaFuego();
 	}
 	
 }

@@ -26,11 +26,13 @@ public class VisitorMarioRecuperacion implements Visitante{
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
-	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-		if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)) {
-			buzzyBeetle.establecerRemovido(true);
-			this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
-		}
+	@Override
+    public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
+    	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
+    		&& !buzzyBeetle.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+    		otorgarPuntosYEliminar(buzzyBeetle);
+    	}
     }
 
     @Override
@@ -39,31 +41,36 @@ public class VisitorMarioRecuperacion implements Visitante{
 
     @Override
     public void visitarGoomba(Goomba goomba) {
-    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto)) {
-            goomba.establecerRemovido(true);
-            this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
-    	}
+    	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
+    	   && !goomba.obtenerRemovido()) {
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo();
+    		otorgarPuntosYEliminar(goomba);
+		}
     }
 
     @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-    	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miEstado.obtenerVisitante());
+		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
     @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
-        		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
-        	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
-    	}
+    		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()
+    		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
+			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+        }
     }
 
     @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
+			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
 	        EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
-	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
+    		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
+	        contextoKoopa.cambiarEstado(nuevoEstado);
 	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
@@ -73,8 +80,7 @@ public class VisitorMarioRecuperacion implements Visitante{
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
-    		lakitu.establecerRemovido(true);
-            this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+    		otorgarPuntosYEliminar(lakitu);
     	}
     }
 
@@ -161,6 +167,13 @@ public class VisitorMarioRecuperacion implements Visitante{
 
 	@Override
 	public void visitarVacio(Vacio vacio) {
+	}
+	
+	// Método auxiliar para otorgar puntos y eliminar enemigos
+	private void otorgarPuntosYEliminar(Enemigo enemigo) {
+		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
+		this.miContexto.ganarPuntos(puntos);
+		enemigo.establecerRemovido(true);
 	}
 
 }
