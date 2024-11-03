@@ -89,10 +89,10 @@ public class VisitorBuzzyBeetle implements Visitante {
         if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) && !this.miEntidad.obtenerRemovido()) {
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
+            this.generadorSonidos.detenerMusicaFondo();
+            this.generadorSonidos.pierdeVida();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
-            generadorSonidos.detenerMusicaFondo();
-            generadorSonidos.pierdeVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
         } else {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, marioDefault.obtenerContexto());

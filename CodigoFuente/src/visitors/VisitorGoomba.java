@@ -81,10 +81,10 @@ public class VisitorGoomba implements Visitante {
         if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) 
         	&& !this.miEntidad.obtenerRemovido()) {
             this.generadorSonidos.detenerMusicaFondo();
-        	this.generadorSonidos.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);
+            this.generadorSonidos.pierdeVida();
             contextoMario.perderVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
         } else {
