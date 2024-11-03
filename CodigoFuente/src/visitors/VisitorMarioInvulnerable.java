@@ -29,7 +29,7 @@ public class VisitorMarioInvulnerable implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-    @Override
+    
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if(!buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -37,7 +37,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarSpiny(Spiny spiny) {
     	if(!spiny.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
@@ -45,7 +45,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarGoomba(Goomba goomba) {
     	if(!goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
@@ -53,12 +53,12 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
     	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miContexto.obtenerEstado().obtenerVisitante());
     }
 
-    @Override
+    
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if(!koopaDefault.obtenerContext().obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -66,7 +66,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if(!koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -74,7 +74,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarLakitu(Lakitu lakitu) {
     	if(!lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
@@ -82,7 +82,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
     	if(!piranhaPlant.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo3();
@@ -90,7 +90,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	if(!superChampinion.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
@@ -98,7 +98,7 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if(!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorInvulnerable());
@@ -106,11 +106,11 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
     }
 
-    @Override
+    
     public void visitarEstrella(Estrella estrella) {
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
@@ -128,15 +128,15 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    @Override
+    
     public void visitarMoneda(Moneda monedas) {
     }
 
-    @Override
+    
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
     }
 
-    @Override
+    
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
@@ -144,48 +144,47 @@ public class VisitorMarioInvulnerable implements Visitante {
         }
     }
 
-    @Override
+    
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
 
-    @Override
+    
     public void visitarBandera(Bandera bandera) {}
 
-    @Override
+    
     public void visitarTuberia(Tuberia tuberia) {}
 
-    @Override
+    
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
 
-    @Override
+    
     public void visitarContextoMario(ContextoMario contextoMario) {}
 
-    @Override
+    
     public void visitarMarioDefault(MarioDefault marioDefault) {}
 
-    @Override
+    
     public void visitarSuperMario(SuperMario superMario) {}
 
-    @Override
+    
     public void visitarMarioFuego(MarioFuego marioFuego) {}
 
-    @Override
+    
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
     
-    @Override
+    
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
 
-    @Override
+    
     public void visitarPiso(Piso piso) {}
 
-	@Override
+	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
 
-	@Override
+	
 	public void visitarVacio(Vacio vacio) {
 	}
 
-	// Método auxiliar para otorgar puntos y eliminar enemigos
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
 		this.miContexto.ganarPuntos(puntos);
