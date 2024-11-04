@@ -7,9 +7,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
 import elementos.entidades.Jugable;
-import elementos.personajes.ContextoMario;
 import juego.*;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
