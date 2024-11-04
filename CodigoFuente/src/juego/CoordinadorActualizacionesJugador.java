@@ -10,20 +10,19 @@ public class CoordinadorActualizacionesJugador {
 	
 	private ControladorMovimiento controladorMovimiento;
 	
-	private Jugable marioJugable;
+	private Jugable jugable;
 	
 	private FabricaSprites fabricaSprites;
 	
-	@SuppressWarnings("exports")
-	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, ContextoMario marioJugable, FabricaSprites fabricaSprites, Nivel nivel) {
+	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable jugable, FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
-		this.marioJugable = marioJugable;
-		this.controladorMovimiento = new ControladorMovimiento(this.marioJugable, sensorDeTeclasJuego, nivel);
+		this.jugable = jugable;
+		this.controladorMovimiento = new ControladorMovimiento(this.jugable, sensorDeTeclasJuego, nivel);
 	}
 	
 	public void actualizar() {
 		this.actualizarPosicion();
-		marioJugable.actualizarSprite(fabricaSprites);
+		jugable.actualizarSprite(fabricaSprites);
 		this.actualizarObserverMario();
 	}
 	
@@ -32,7 +31,7 @@ public class CoordinadorActualizacionesJugador {
 	}
 	
 	private void actualizarObserverMario() {
-		this.marioJugable.obtenerObserverGrafico().actualizar();
+		this.jugable.obtenerObserverGrafico().actualizar();
 	}
 	
 	public ControladorMovimiento obtenerControladorDeMovimiento() {

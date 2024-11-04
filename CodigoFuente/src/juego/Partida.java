@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import elementos.Sprite;
+import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
@@ -14,13 +15,11 @@ public class Partida {
 	
 	private Juego juego;
 		
-	private ContextoMario jugable;
+	private Jugable jugable;
 	
 	private BucleJugador bucleJugador;
 	
 	private BucleEntidadesNoJugables bucleEntidadesNoJugables;
-	
-	private SensorDeTeclasJuego sensorDeTeclasJuego;
 	
 	private MasterMind masterMind;
 	
@@ -34,7 +33,6 @@ public class Partida {
 	
 	public Partida(SensorDeTeclasJuego sensorDeTeclasJuego, Juego juego) {
 		this.juego = juego;
-		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.numeroNivelActual = 1;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), 
 													 this.juego.obtenerPantallaDeJuego(), 
@@ -42,17 +40,45 @@ public class Partida {
 		obtenerGeneradorSonidos().reproducirMusicaFondo();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.jugable = this.nivel.obtenerMario();
-		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(this.sensorDeTeclasJuego, 
+		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(sensorDeTeclasJuego, 
 																					   this.jugable, 
 																					   obtenerFabricaSprites(), 
 																					   this.nivel);
 		this.bucleJugador = new BucleJugador(this);
-		this.masterMind = new MasterMind(this.generadorDeNivel.obtenerFabricaSprites(), this.nivel);
+		this.masterMind = new MasterMind(obtenerFabricaSprites(), this.nivel);
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	public ContextoMario obtenerJugable() {
+	public int obtenerNumeroDeNivelActual() {
+		return this.numeroNivelActual;
+	}
+	
+	public Jugable obtenerJugable() {
 		return this.jugable;
+	}
+	
+	public BucleJugador obtenerBucleJugador(){
+		return this.bucleJugador;
+	}
+	
+	public GeneradorSonidos obtenerGeneradorSonidos() {
+		return this.generadorDeNivel.obtenerGeneradorSonidos();
+	}
+	
+	public FabricaSprites obtenerFabricaSprites() {
+		return this.generadorDeNivel.obtenerFabricaSprites();
+	}
+	
+	public GeneradorDeNivel obtenerGeneradorDeNivel() {
+		return this.generadorDeNivel;
+	}
+	
+	public Juego obtenerJuego() {
+		return this.juego;
+	}
+
+	public Sprite obtenerSpriteMario() {
+		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
 	}
 	
 	public void actualizar() {
@@ -61,29 +87,41 @@ public class Partida {
 			matarJugador();
 		}
 	}
-
-	public BucleJugador obtenerBucleJugador(){
-		return this.bucleJugador;
-	}
 	
 	public void cambiarNivel() {
+		eliminarNivelActual();
+		generarNuevoNivel();
+		actualizarReferenciasANivelActual();
+		iniciarTemporizadorCambioDeNivel();
+	}
+
+	private void eliminarNivelActual() {
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
-		this.numeroNivelActual++;
-		this.juego.obtenerControladorVistas().cambiarNivel();
-		this.nivel = generarNivel(numeroNivelActual, this);
-		this.nivel.establecerMario(jugable);
-		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
-		this.masterMind.cambiarNivel(this.nivel);
-		obtenerGeneradorSonidos().establecerFinNivelFalso();
-		Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		obtenerGeneradorSonidos().reproducirMusicaFondo();
-	        }
-	    });
-	    timer.setRepeats(false);
-	    timer.start();
 	}
 	
+	private void generarNuevoNivel() {
+		this.numeroNivelActual++;
+		this.juego.obtenerControladorVistas().cambiarNivel();
+		this.nivel = generarNivel(this.numeroNivelActual, this);
+		this.nivel.establecerMario(this.jugable);
+	}
+	
+	private void actualizarReferenciasANivelActual() {
+		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
+		this.masterMind.cambiarNivel(this.nivel);
+	}
+	
+	private void iniciarTemporizadorCambioDeNivel() {
+	    int duracionEntreNiveles = this.juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles();
+	    Timer temporizadorCambio = new Timer(duracionEntreNiveles, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	obtenerGeneradorSonidos().reproducirMusicaFondo();
+	        }
+	    });
+	    temporizadorCambio.setRepeats(false);
+	    temporizadorCambio.start();
+	}
+
 	public void reiniciarNivel() {
 		obtenerGeneradorSonidos().detenerMusicaFondo();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
@@ -119,22 +157,6 @@ public class Partida {
 		return this.generadorDeNivel.generarNivel(numeroNivelActual, partida);
 	}
 	
-	public int obtenerNumeroDeNivelActual() {
-		return this.numeroNivelActual;
-	}
-	
-	public GeneradorDeNivel obtenerGeneradorDeNivel() {
-		return this.generadorDeNivel;
-	}
-	
-	public Juego obtenerJuego() {
-		return this.juego;
-	}
-
-	public Sprite obtenerSpriteMario() {
-		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
-	}
-	
 	private boolean tiempoLlegoACero() {
 		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenterTiempoEnCero();
 	}
@@ -144,9 +166,6 @@ public class Partida {
      	obtenerGeneradorSonidos().seAcaboElTiempo();
      	this.jugable.perderVida();
      	this.reiniciarNivel();
-	}
-	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
-		return this.sensorDeTeclasJuego;
 	}
 
 	public void desactivarMovimientoEnemigos() {
@@ -163,14 +182,6 @@ public class Partida {
 
 	public void activarMovimientoPersonaje() {
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().activarMovimientoPersonaje();
-	}
-	
-	public GeneradorSonidos obtenerGeneradorSonidos() {
-		return this.generadorDeNivel.obtenerGeneradorSonidos();
-	}
-	
-	public FabricaSprites obtenerFabricaSprites() {
-		return this.generadorDeNivel.obtenerFabricaSprites();
 	}
 
 }
