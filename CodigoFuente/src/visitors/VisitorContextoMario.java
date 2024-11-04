@@ -119,7 +119,8 @@ public class VisitorContextoMario implements Visitante {
 			bandera.actualizarSprite(this.miEntidad.obtenerNivel().obtenerPartida().obtenerFabricaSprites());
 			bandera.obtenerObserverGrafico().actualizar();
 			this.generadorSonidos.tocarBanderaFinNivel();
-			generadorSonidos.detenerMusicaInvencible();
+			this.generadorSonidos.detenerMusicaInvencible();
+			this.generadorSonidos.establecerFinNivelVerdadero();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			Timer timer = new Timer(3000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
