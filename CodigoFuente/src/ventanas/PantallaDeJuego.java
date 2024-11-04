@@ -10,6 +10,7 @@ import javax.swing.JLayeredPane;
 
 import elementos.Silueta;
 import elementos.entidades.Jugable;
+import juego.ConstantesGlobales;
 import observers.ObserverGrafico;
 
 @SuppressWarnings("serial")

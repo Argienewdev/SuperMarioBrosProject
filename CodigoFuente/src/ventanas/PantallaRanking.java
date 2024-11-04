@@ -2,6 +2,7 @@ package ventanas;
 
 import javax.swing.*;
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import java.awt.*;

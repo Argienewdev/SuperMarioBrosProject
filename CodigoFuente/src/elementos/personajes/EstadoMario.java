@@ -20,5 +20,7 @@ public interface EstadoMario{
 	public void realizarAccionEspecial();
 	
 	public void actualizarTiempo();
+
+	public void reiniciarEstado();
 		
 }

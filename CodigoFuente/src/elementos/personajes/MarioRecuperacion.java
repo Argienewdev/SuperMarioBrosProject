@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioRecuperacion;
 
@@ -17,24 +17,29 @@ public class MarioRecuperacion extends MarioDefault {
 		this.tiempoEnRecuperacion = 180;
 	}
 	
+	@Override
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerMarioRecuperacionFrontalQuieto();
 	}
 	
+	@Override
 	public Visitante obtenerVisitante() {
 		return new VisitorMarioRecuperacion(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
+	@Override
 	public void actualizarTiempo() {
 		tiempoEnRecuperacion--;
 		if (tiempoEnRecuperacion <=  0)
 			contexto.reiniciarEstado();
 	}
 	
-	 public void aceptarVisitante(Visitante visitante) {
+	@Override
+	public void aceptarVisitante(Visitante visitante) {
 	        visitante.visitarMarioRecuperacion(this);
     }
 	
+	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
@@ -42,6 +47,7 @@ public class MarioRecuperacion extends MarioDefault {
 		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		actualizarTiempo();
 		Sprite aRetornar = null;
@@ -65,24 +71,4 @@ public class MarioRecuperacion extends MarioDefault {
 		contexto.establecerSprite(aRetornar);
 	}
 	
-	private boolean enElAire() {
-		return !contexto.obtenerColisionAbajo();
-	}
-	
-	private boolean avanzando() {
-		return contexto.obtenerAvanzando();
-	}
-	
-	private boolean retrocediendo() {
-		return contexto.obtenerRetrocediendo();
-	}
-	
-	private boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
-	}
-	
-	private boolean bajoElNivelDelPiso() {
-		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
-	}
-
 }

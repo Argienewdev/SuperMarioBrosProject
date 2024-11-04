@@ -4,8 +4,8 @@ import java.awt.Point;
 import elementos.Sprite;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import juego.ConstantesGlobales;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public class Lakitu extends Enemigo {
@@ -26,7 +26,6 @@ public class Lakitu extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 0;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
     	this.contadorTicksDisparo = 0;
-		this.velocidadHorizontalEnemigo = 3;
     }
     
     protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {

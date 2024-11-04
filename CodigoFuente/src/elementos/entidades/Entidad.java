@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
+import juego.ConstantesGlobales;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {
@@ -25,8 +25,7 @@ public abstract class Entidad extends ElementoDeJuego {
 	
 	protected static final int VELOCIDAD_MAXIMA_DE_CAIDA = 24;
 	
-    @SuppressWarnings("exports")
-	public Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+    protected Entidad(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;

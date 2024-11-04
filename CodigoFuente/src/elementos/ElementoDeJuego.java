@@ -29,8 +29,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected boolean visiblesEnPantalla;
 	
-	@SuppressWarnings("exports")
-	public ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
+	protected ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
 		Point posicionConsiderandoSprite = obtenerPosicionConsiderandoSprite(posicion, sprite);
 		this.posicionLogica = posicionConsiderandoSprite;
@@ -89,8 +88,8 @@ public abstract class ElementoDeJuego implements Visitado {
 		this.removido = removido;
 	}
 	
-	public boolean establecerVisibleEnPantalla(boolean visbleEnPantalla) {
-		return this.visiblesEnPantalla = visbleEnPantalla;
+	public void establecerVisibleEnPantalla(boolean visbleEnPantalla) {
+		this.visiblesEnPantalla = visbleEnPantalla;
 	}
 	
 	public void establecerDebeMantenerseSiempreEnPantalla(boolean debeMantenerseSiempreEnPantalla) {
@@ -156,7 +155,5 @@ public abstract class ElementoDeJuego implements Visitado {
 	public boolean huboColision(ElementoDeJuego elemento) {
 		return this.hitbox.intersects(elemento.obtenerHitbox());
 	}
-	
-	public abstract void aceptarVisitante(Visitante visitante);
 	
 }

@@ -89,4 +89,5 @@ public class BucleJugador implements Runnable {
 	private void actualizarBucleJugador() {
 		this.partida.actualizar();
 	}
+	
 }

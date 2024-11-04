@@ -22,8 +22,7 @@ public abstract class PowerUp extends NoJugable {
 	
 	protected boolean haceRuidoAlSalir;
 
-	@SuppressWarnings("exports")
-	public PowerUp(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected PowerUp(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.haceRuidoAlSalir = true;
 	}
@@ -89,13 +88,11 @@ public abstract class PowerUp extends NoJugable {
 		if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
-    	} else {
-    		if (this.obtenerVelocidadDireccional().x < 0) {
-    			moverIzquierda();
-    		} else if (this.obtenerVelocidadDireccional().x >=  0){
-    			moverDerecha();
-    		}
-    	}
+    	} else if (this.obtenerVelocidadDireccional().x < 0) {
+			this.moverIzquierda();
+		} else if (this.obtenerVelocidadDireccional().x >=  0){
+			this.moverDerecha();
+		}
 	}
 	
 	public boolean esMovible() {

@@ -28,6 +28,7 @@ public class Bandera extends Meta {
 		visitante.visitarBandera(this);
 	}
 	
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.activada) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteBanderaActivada());

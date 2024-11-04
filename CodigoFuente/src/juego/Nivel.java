@@ -13,8 +13,7 @@ import elementos.powerUps.PowerUp;
 import generadores.GeneradorDeNivel;
 
 public class Nivel {
-    protected static final int ANCHO_ALTO_BLOQUES_PLATAFORMA = 50;
-    
+	    
     protected MatrizPlataforma matrizPlataformas;
     
     protected List<PowerUp> powerUps;
@@ -29,14 +28,14 @@ public class Nivel {
        
     protected Silueta silueta;
     
-    protected Jugable mario;
-    
-    protected boolean nivelCompletado;
+    protected Jugable jugable;
     
     protected Partida partida;
     
     protected boolean princesaAccionada;
     
+    protected boolean nivelCompletado;
+        
     protected boolean banderaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
@@ -45,7 +44,7 @@ public class Nivel {
         this.inicializarColecciones();
         this.nivelCompletado = false;
         this.partida = partida;
-        this.mario = null;
+        this.jugable = null;
         this.banderaAccionada = false;
         this.princesaAccionada = false;
     }
@@ -62,9 +61,9 @@ public class Nivel {
     	return this.banderaAccionada;
     }
     
-    public void accionarBandera() {
-    	this.banderaAccionada = true;
-    }
+    public Iterable<Entidad> obtenerEntidadesVisiblesEnPantalla(){
+		return this.entidadesVisiblesEnPantalla;
+	}
     
     public boolean obtenerPrincesaAccionada() {
     	return this.banderaAccionada;
@@ -74,22 +73,66 @@ public class Nivel {
     	this.princesaAccionada = true;
     }
     
-    public void agregarPlataforma(Plataforma plataforma) {
-        matrizPlataformas.agregarPlataforma(plataforma);
-        plataforma.establecerNivel(this);
-    }
-
-    public void removerPlataforma(Plataforma plataforma) {
-        matrizPlataformas.removerPlataforma(plataforma);
-    }
-    
-
     public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }
 
     public Iterable<Plataforma> obtenerPlataformas() {
         return this.matrizPlataformas.obtenerTodasLasPlataformas();
+    }
+    
+    public Jugable obtenerJugable() {
+        return this.jugable;
+    }
+
+    public Iterable<PowerUp> obtenerPowerUps() {
+        return this.powerUps;
+    }
+
+    public Iterable<Enemigo> obtenerEnemigos() {
+        return this.enemigos;
+    }
+
+    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
+        return this.bolasDeFuego;
+    }
+
+    public Partida obtenerPartida() {
+        return this.partida;
+    }
+
+    public int obtenerNumeroNivel() {
+        return this.partida.obtenerNumeroDeNivelActual();
+    }
+
+    public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
+    	return this.matrizPlataformas.obtenerAdyacentes( entidad);
+    }
+    
+    public boolean fueCompletado() {
+        return this.nivelCompletado;
+    }
+    
+    public boolean estaEntidadVisible(Entidad entidad) {
+		return this.entidadesVisiblesEnPantalla.contains(entidad);
+	}
+    
+    public void accionarBandera() {
+    	this.banderaAccionada = true;
+    }
+    
+    public void establecerJugable(Jugable jugable) {
+        this.jugable = jugable;
+        this.jugable.establecerNivel(this);
+    }
+
+    public void establecerCompletado(boolean completado) {
+        this.nivelCompletado = completado;
+    }
+    
+    public void agregarPlataforma(Plataforma plataforma) {
+        this.matrizPlataformas.agregarPlataforma(plataforma);
+        plataforma.establecerNivel(this);
     }
 
     public void agregarEnemigo(Enemigo enemigo) {
@@ -109,46 +152,14 @@ public class Nivel {
     public void agregarBolaDeFuego(BolaDeFuego bolaDeFuego) {
         this.bolasDeFuego.add(bolaDeFuego);
     }
-
-    public void establecerMario(Jugable mario) {
-        this.mario = mario;
-        this.mario.establecerNivel(this);
-    }
-
-    public Jugable obtenerMario() {
-        return this.mario;
-    }
-
-    public Iterable<PowerUp> obtenerPowerUps() {
-        return this.powerUps;
-    }
-
-    public Iterable<Enemigo> obtenerEnemigos() {
-        return this.enemigos;
-    }
-
-    public Iterable<BolaDeFuego> obtenerBolasDeFuego() {
-        return this.bolasDeFuego;
-    }
-
-    public boolean fueCompletado() {
-        return this.nivelCompletado;
-    }
-
-    public void establecerCompletado(boolean completado) {
-        this.nivelCompletado = completado;
-    }
-
-    public Partida obtenerPartida() {
-        return this.partida;
-    }
-
-    public int obtenerNumeroNivel() {
-        return partida.obtenerNumeroDeNivelActual();
-    }
-
-    public Iterable<Plataforma> obtenerPlataformasAdyacentes(Entidad entidad){
-    	return this.matrizPlataformas.obtenerAdyacentes( entidad);
+    
+    public void agregarEntidadVisible(Entidad entidad) {
+		this.entidadesVisiblesEnPantalla.add(entidad);
+		entidad.establecerNivel(this);
+	}
+    
+    public void removerPlataforma(Plataforma plataforma) {
+        this.matrizPlataformas.removerPlataforma(plataforma);
     }
 	
 	public void removerEnemigo(Enemigo enemigo) {
@@ -169,21 +180,9 @@ public class Nivel {
 	public void removerPlataformaAfectable(Plataforma plataforma) {
 		this.plataformasAfectables.remove(plataforma);
 	}
-	
-	public void agregarEntidadVisible(Entidad entidad) {
-		this.entidadesVisiblesEnPantalla.add(entidad);
-		entidad.establecerNivel(this);
-	}
 	 
 	public void removerEntidadVisible(Entidad entidad) {
 		this.entidadesVisiblesEnPantalla.remove(entidad);
 	}
 	
-	public Iterable<Entidad> obtenerEntidadesVisiblesEnPantalla(){
-		return this.entidadesVisiblesEnPantalla;
-	}
-	
-	public boolean estaEntidadVisible(Entidad entidad) {
-		return this.entidadesVisiblesEnPantalla.contains(entidad);
-}
 }

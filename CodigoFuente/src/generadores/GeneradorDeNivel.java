@@ -1,6 +1,7 @@
 package generadores;
 
 import fabricas.*;
+import juego.ConstantesGlobales;
 import juego.Nivel;
 import juego.Partida;
 import modoDeJuego.ModoDeJuego;
@@ -11,7 +12,7 @@ import elementos.enemigos.Enemigo;
 import elementos.enemigos.Goomba;
 import elementos.enemigos.Lakitu;
 import elementos.enemigos.Spiny;
-import elementos.personajes.ContextoMario;
+import elementos.entidades.Jugable;
 import elementos.plataformas.Bandera;
 import elementos.plataformas.BloqueDePregunta;
 import elementos.plataformas.BloqueSolido;
@@ -24,9 +25,7 @@ import elementos.plataformas.Vacio;
 import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
 import ventanas.ControladorVistas;
-import ventanas.ConstantesGlobales;
 import ventanas.PantallaDeJuego;
-
 import java.awt.Point;
 import java.io.*;
 
@@ -43,23 +42,22 @@ public class GeneradorDeNivel {
 	protected FabricaPlataformas fabricaPlataformas;
 	
 	protected FabricaSonidos fabricaSonidos;
-	
-	protected PantallaDeJuego pantallaDeJuego;
+		
+	protected GeneradorSonidos generadorSonidos;
 	
 	protected ControladorVistas controladorVistas;
 	
-	protected GeneradorSonidos generadorSonidos;
-	
-	public GeneradorDeNivel(String modoDeJuegoSeleccionado,  PantallaDeJuego pantallaDeJuego, 
+	public GeneradorDeNivel(String modoDeJuegoSeleccionado, PantallaDeJuego pantallaDeJuego, 
 							ControladorVistas controladorVistas) {
 		ModoDeJuego modoDeJuego = new ModoDeJuego(modoDeJuegoSeleccionado);
 		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
 		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
 		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
-		this.fabricaEntidades = new FabricaEntidades(fabricaSprites,pantallaDeJuego, fabricaSonidos, generadorSonidos);
-		this.fabricaPlataformas = new FabricaPlataformas(fabricaSprites, fabricaEntidades,pantallaDeJuego, this.generadorSonidos);
-		this.pantallaDeJuego = pantallaDeJuego;
+		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, pantallaDeJuego, 
+													 this.fabricaSonidos, this.generadorSonidos);
+		this.fabricaPlataformas = new FabricaPlataformas(this.fabricaSprites, this.fabricaEntidades, 
+														 pantallaDeJuego, this.generadorSonidos);
 		this.controladorVistas = controladorVistas;		
 	}
 	
@@ -126,18 +124,18 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 4: {
-	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.obtenerBloqueDePregunta(posicion, nivel,pantallaDeJuego);
+	                    BloqueDePregunta bloqueDePregunta = this.fabricaPlataformas.obtenerBloqueDePregunta(posicion, nivel);
 	                    nivel.agregarPlataforma(bloqueDePregunta);
 	                    nivel.agregarPlataformaAfectable(bloqueDePregunta);
 	                    break;
 	                }
 	                case 5: {
-	                    Bandera bandera = this.fabricaPlataformas.obtenerBandera(posicion,this.controladorVistas);
+	                    Bandera bandera = this.fabricaPlataformas.obtenerBandera(posicion);
 	                	nivel.agregarPlataforma(bandera);
 	                    break;
 	                }
 	                case 6: {
-	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.obtenerPrincesaPeach(posicion,this.controladorVistas);
+	                    PrincesaPeach princesaPeach = this.fabricaPlataformas.obtenerPrincesaPeach(posicion);
 	                    nivel.agregarPlataforma(princesaPeach);
 	                    break;
 	                }
@@ -214,8 +212,8 @@ public class GeneradorDeNivel {
 	@SuppressWarnings("exports")
 	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
 		Point posicionInicio = posicion;
-		ContextoMario mario = fabricaEntidades.obtenerContextoMario(posicionInicio);
-		nivel.establecerMario(mario);
+		Jugable jugable = fabricaEntidades.obtenerContextoMario(posicionInicio);
+		nivel.establecerJugable(jugable);
 	}
 	
 	private Point parsearPosicion(int x, int y) {

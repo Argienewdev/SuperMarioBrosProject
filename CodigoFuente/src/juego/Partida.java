@@ -41,13 +41,13 @@ public class Partida {
 		this.obtenerGeneradorSonidos().establecerSonidoMusicaFondo();
 		this.obtenerGeneradorSonidos().reproducirSonidoActual();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
-		this.jugable = this.nivel.obtenerMario();
+		this.jugable = this.nivel.obtenerJugable();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(sensorDeTeclasJuego, 
 																					   this.jugable, 
-																					   obtenerFabricaSprites(), 
+																					   this.obtenerFabricaSprites(), 
 																					   this.nivel);
 		this.bucleJugador = new BucleJugador(this);
-		this.masterMind = new MasterMind(obtenerFabricaSprites(), this.nivel);
+		this.masterMind = new MasterMind(this.obtenerFabricaSprites(), this.nivel);
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
@@ -70,8 +70,8 @@ public class Partida {
 	}
 
 	private void analizarEstadoTiempo() {
-		int segundos = obtenerTiempoPartida().obtenerPrimerComponente();
-		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
+		int segundos = this.obtenerTiempoPartida().obtenerPrimerComponente();
+		int milisegundos = this.obtenerTiempoPartida().obtenerSegundoComponente();
 		if (segundos == 5 && milisegundos == 0) {
 			this.obtenerGeneradorSonidos().detenerSonidoActual();
 			this.obtenerGeneradorSonidos().establecerSonidoPocoTiempo();
@@ -108,8 +108,8 @@ public class Partida {
 	private void generarNuevoNivel() {
 		this.numeroNivelActual++;
 		this.juego.obtenerControladorVistas().cambiarNivel();
-		this.nivel = generarNivel(this.numeroNivelActual, this);
-		this.nivel.establecerMario(this.jugable);
+		this.nivel = this.generarNivel(this.numeroNivelActual, this);
+		this.nivel.establecerJugable(this.jugable);
 	}
 	
 	private void actualizarReferenciasANivelActual() {
@@ -131,16 +131,16 @@ public class Partida {
 	}
 
 	public void reiniciarNivel() {
-		eliminarNivelActual();
-		generarNivelActualNuevamente();
-		actualizarReferenciasANivelActual();
-	    iniciarTemporizadorCambioDeNivel();
+		this.eliminarNivelActual();
+		this.generarNivelActualNuevamente();
+		this.actualizarReferenciasANivelActual();
+	    this.iniciarTemporizadorCambioDeNivel();
 	}
 
 	private void generarNivelActualNuevamente() {
 		this.juego.obtenerControladorVistas().reiniciarNivel();
-		this.nivel = generarNivel(numeroNivelActual, this);
-		this.nivel.establecerMario(jugable);
+		this.nivel = this.generarNivel(numeroNivelActual, this);
+		this.nivel.establecerJugable(jugable);
 	}
 	
 	public void finalizarPartida() {
@@ -178,7 +178,7 @@ public class Partida {
 	}
 
 	public Sprite obtenerSpriteMario() {
-		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
+		return this.obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
 	}
 		
 	public void desactivarMovimientoEnemigos() {

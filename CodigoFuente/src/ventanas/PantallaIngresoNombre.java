@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 import juego.Partida;
 import ranking.Jugador;
 import ranking.LimitadorDeCaracteres;
@@ -160,10 +161,6 @@ public class PantallaIngresoNombre extends Pantalla {
     }
     
     public void refrescar() {
-    }
-    
-    public JTextField obtenerCampoNombre() {
-        return campoNombre;
     }
     
     public boolean esRefrescable() {

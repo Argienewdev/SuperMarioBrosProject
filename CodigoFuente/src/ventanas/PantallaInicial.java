@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
 @SuppressWarnings("serial")

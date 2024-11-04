@@ -127,9 +127,9 @@ public class VisitorContextoMario implements Visitante {
 			this.generadorSonidos.reproducirSonidoActual();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			this.miEntidad.obtenerNivel().accionarBandera();
+			miEntidad.obtenerEstado().reiniciarEstado();
 			Timer timer = new Timer(3000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
-		            miEntidad.reiniciarEstado();
 		    		miEntidad.obtenerNivel().establecerCompletado(true);
 		        }
 		    });

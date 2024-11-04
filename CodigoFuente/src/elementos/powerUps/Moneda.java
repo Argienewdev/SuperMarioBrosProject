@@ -26,30 +26,29 @@ public class Moneda extends PowerUp {
 	}
 	
 	public int obtenerPuntosPorSuper() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 	
 	public int obtenerPuntosPorInvulnerable() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 	
 	public int obtenerPuntosPorFuego() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		} else {
-			if (!this.estaDentroDeBloqueDePreguntas ) {
+		} else if (!this.estaDentroDeBloqueDePreguntas ) {
 				this.establecerSprite(fabricaSprites.obtenerMonedaEncendida());
 				if(!seRealizoAnimacionSalto) {
 					this.realizarAnimacionSalto();
 					seRealizoAnimacionSalto=true;
 				}
-			} 
-		}
+		} 
+		
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {
