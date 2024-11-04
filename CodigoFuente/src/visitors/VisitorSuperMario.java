@@ -102,7 +102,7 @@ public class VisitorSuperMario implements Visitante {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorSuper());
     		generadorSonidos.PowerupAgarrado();
             estrella.establecerRemovido(true);
-            generadorSonidos.reproducirMusicaInvencible();
+            generadorSonidos.reproducirMusicaInvulnerable();
             generadorSonidos.detenerMusicaFondo();
     	}
     }

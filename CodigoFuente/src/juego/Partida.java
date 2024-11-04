@@ -123,6 +123,8 @@ public class Partida {
 	}
 
 	public void reiniciarNivel() {
+		
+		
 		obtenerGeneradorSonidos().detenerMusicaFondo();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.juego.obtenerControladorVistas().reiniciarNivel();

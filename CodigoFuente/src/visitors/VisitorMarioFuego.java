@@ -105,7 +105,7 @@ public class VisitorMarioFuego implements Visitante {
     		estrella.establecerRemovido(true);
     	}
     	this.generadorSonidos.PowerupAgarrado();
-		generadorSonidos.reproducirMusicaInvencible();
+		generadorSonidos.reproducirMusicaInvulnerable();
     
     }
     
