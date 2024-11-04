@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorChampinionVerde implements Visitante {
     
-    protected ChampinionVerde miEntidad;
+    private ChampinionVerde miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     

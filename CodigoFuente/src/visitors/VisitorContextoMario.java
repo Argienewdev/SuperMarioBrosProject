@@ -14,7 +14,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorContextoMario implements Visitante {
 	
-	protected ContextoMario miEntidad;
+	private ContextoMario miEntidad;
 	
 	protected DetectorDireccionColision detectorDireccionColision;
 	

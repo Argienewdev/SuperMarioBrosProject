@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorGoomba implements Visitante {
 
-    protected Goomba miEntidad;
+    private Goomba miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     

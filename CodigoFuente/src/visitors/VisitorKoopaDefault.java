@@ -9,11 +9,11 @@ import generadores.GeneradorSonidos;
 
 public class VisitorKoopaDefault implements Visitante {
 
-    protected EstadoKoopa miEstado;
+    private EstadoKoopa miEstado;
     
     private ContextoKoopaTroopa miContexto;
     
-    private DetectorDireccionColision detectorDireccionColision;
+    protected DetectorDireccionColision detectorDireccionColision;
     
     protected GeneradorSonidos generadorSonidos;
 

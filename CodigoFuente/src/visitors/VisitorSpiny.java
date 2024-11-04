@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorSpiny implements Visitante {
 	
-	protected Spiny miEntidad;
+	private Spiny miEntidad;
 
     protected DetectorDireccionColision detectorDireccionColision;
 
@@ -21,79 +21,61 @@ public class VisitorSpiny implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 
-	
 	public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, buzzyBeetle);
 	}
-
 	
 	public void visitarSpiny(Spiny spiny) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, spiny);
 	}
 
-	
 	public void visitarGoomba(Goomba goomba) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, goomba);
 	}
 
-	
 	public void visitarLakitu(Lakitu lakitu) {
         this.detectorDireccionColision.verificarColisionEntreEntidades(this.miEntidad, lakitu);
 	}
-
 	
 	public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
 	}
 
-	
 	public void visitarSuperChampinion(SuperChampinion superChampinion) {
 	}
 
-	
 	public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
 	}
 
-	
 	public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
 	}
 
-	
 	public void visitarEstrella(Estrella estrella) {
 	}
 
-	
 	public void visitarMoneda(Moneda monedas) {
 	}
 
-	
 	public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
 	}
-
 	
 	public void visitarLadrillo(Ladrillo ladrillo) {
 	}
-
 	
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
 	}
-
 	
 	public void visitarBandera(Bandera bandera) {
 	}
 
-	
 	public void visitarTuberia(Tuberia tuberia) {
 	}
 
-	
 	public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
 	}
 
-	
 	public void visitarContextoMario(ContextoMario contextoMario) {
 		contextoMario.obtenerEstado().aceptarVisitante(this);
 	}
-
 	
 	public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
 	}
@@ -117,7 +99,6 @@ public class VisitorSpiny implements Visitante {
         superMario.obtenerContexto().cambiarEstado(marioRecuperacion);
 	}
 
-	
 	public void visitarMarioFuego(MarioFuego marioFuego) {
     	this.generadorSonidos.modoRecuperacion();
 		EstadoMario marioRecuperacion = new MarioRecuperacion();

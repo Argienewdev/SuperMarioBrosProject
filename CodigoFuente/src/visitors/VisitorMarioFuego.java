@@ -1,6 +1,5 @@
 package visitors;
 
-import java.awt.Point;
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -10,11 +9,11 @@ import generadores.GeneradorSonidos;
 
 public class VisitorMarioFuego implements Visitante {
 
-    protected EstadoMario miEstado;
+    private EstadoMario miEstado;
+    
+    private ContextoMario miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
-    
-    protected ContextoMario miContexto;
     
     protected GeneradorSonidos generadorSonidos;
 

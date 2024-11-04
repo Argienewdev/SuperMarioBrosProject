@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorEstrella implements Visitante {
     
-    protected Estrella miEntidad;
+    private Estrella miEntidad;
     
     protected GeneradorSonidos generadorSonidos;
     

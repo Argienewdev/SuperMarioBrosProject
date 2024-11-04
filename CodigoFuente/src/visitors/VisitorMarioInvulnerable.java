@@ -9,9 +9,9 @@ import generadores.GeneradorSonidos;
 
 public class VisitorMarioInvulnerable implements Visitante {
 
-    protected EstadoMario miEstado;
+    private EstadoMario miEstado;
     
-    protected ContextoMario miContexto;
+    private ContextoMario miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
     

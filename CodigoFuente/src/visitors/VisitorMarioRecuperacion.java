@@ -1,7 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -13,9 +11,9 @@ public class VisitorMarioRecuperacion implements Visitante{
 	
 	private MarioRecuperacion miEstado;
 	
-	protected DetectorDireccionColision detectorDireccionColision;
-	
 	private ContextoMario miContexto;
+	
+	protected DetectorDireccionColision detectorDireccionColision;
 	
 	protected GeneradorSonidos generadorSonidos;
 	 
@@ -26,7 +24,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 		this.detectorDireccionColision = new DetectorDireccionColision();
 	}
 	
-	@Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
     		&& !buzzyBeetle.obtenerRemovido()) {
@@ -36,11 +33,9 @@ public class VisitorMarioRecuperacion implements Visitante{
     	}
     }
 
-    @Override
     public void visitarSpiny(Spiny spiny) {
     }
 
-    @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
     	   && !goomba.obtenerRemovido()) {
@@ -50,12 +45,10 @@ public class VisitorMarioRecuperacion implements Visitante{
 		}
     }
 
-    @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
 		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
-    @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()
@@ -66,7 +59,6 @@ public class VisitorMarioRecuperacion implements Visitante{
         }
     }
 
-    @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
 			ContextoKoopaTroopa contextoKoopa = koopaDefault.obtenerContext();
@@ -78,7 +70,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 		}
     }
 
-    @Override
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
@@ -88,10 +79,9 @@ public class VisitorMarioRecuperacion implements Visitante{
     	}
     }
 
-    @Override
-    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {}
+    public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
+    }
 
-    @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
 		if (!superChampinion.obtenerRemovido()) {
 			EstadoMario nuevoEstado = new SuperMario();
@@ -101,7 +91,6 @@ public class VisitorMarioRecuperacion implements Visitante{
 		}
     }
 
-    @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
@@ -109,11 +98,9 @@ public class VisitorMarioRecuperacion implements Visitante{
     	}
     }
 
-    @Override
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
     }
 
-    @Override
     public void visitarEstrella(Estrella estrella) {
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
@@ -122,67 +109,60 @@ public class VisitorMarioRecuperacion implements Visitante{
     	}
     }
 
-    @Override
-    public void visitarMoneda(Moneda monedas) {}
+    public void visitarMoneda(Moneda monedas) {
+    }
 
-    @Override
-    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {}
+    public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
+    }
 
-    @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if(detectorDireccionColision.choquePorAbajo(ladrillo, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
     }
 
-    @Override
-    public void visitarPiso(Piso piso) {}
+    public void visitarPiso(Piso piso) {
+    }
 
-    @Override
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
     }
 
-    @Override
     public void visitarBandera(Bandera bandera) {
     	bandera.aceptarVisitante(miContexto.obtenerVisitante());
     }
 
-    @Override
     public void visitarTuberia(Tuberia tuberia) {}
 
-    @Override
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
     	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
     }
 
-    @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {}
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    }
 
-    @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {}
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
 
-    @Override
-    public void visitarSuperMario(SuperMario superMario) {}
+    public void visitarSuperMario(SuperMario superMario) {
+    }
 
-    @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    }
     
-	@Override
-	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+	public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+	}
 
-    @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
 
-	@Override
-	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
+	public void visitarBolaDeFuego(BolaDeFuego fireball) {
+	}
 
-	@Override
 	public void visitarVacio(Vacio vacio) {
 	}
 	
-	// Método auxiliar para otorgar puntos y eliminar enemigos
 	private void otorgarPuntosYEliminar(Enemigo enemigo) {
 		int puntos = enemigo.obtenerPuntosOtorgadosPorEliminacion();
 		this.miContexto.ganarPuntos(puntos);

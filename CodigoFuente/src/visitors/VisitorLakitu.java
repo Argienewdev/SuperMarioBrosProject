@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorLakitu implements Visitante {
     
-    protected Lakitu miEntidad;
+    private Lakitu miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     

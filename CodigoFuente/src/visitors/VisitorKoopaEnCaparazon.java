@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorKoopaEnCaparazon implements Visitante {
 
-    protected EstadoKoopa miEstado;
+    private EstadoKoopa miEstado;
     
     private ContextoKoopaTroopa miContexto;
     

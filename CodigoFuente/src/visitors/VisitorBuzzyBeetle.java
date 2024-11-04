@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorBuzzyBeetle implements Visitante {
     
-    protected BuzzyBeetle miEntidad;
+    private BuzzyBeetle miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     
