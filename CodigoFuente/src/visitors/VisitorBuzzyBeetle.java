@@ -90,6 +90,7 @@ public class VisitorBuzzyBeetle implements Visitante {
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             this.generadorSonidos.detenerMusicaFondo();
+            this.generadorSonidos.detenerSeAcaboElTiempo();
             this.generadorSonidos.pierdeVida();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
