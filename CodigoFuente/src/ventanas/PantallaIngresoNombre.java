@@ -13,13 +13,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class PantallaIngresoNombre extends Pantalla {
+	
     private static final long serialVersionUID = 1L;
+    
     private Fuentes tipoFuentes;
+    
     private JLabel fondo;
+    
     private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    
     private JTextField campoNombre;
+    
     private JButton botonConfirmar;
+    
     private ControladorVistas controlador;
+    
     private String modo;
 
     public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
@@ -54,23 +62,23 @@ public class PantallaIngresoNombre extends Pantalla {
         JPanel panelContenido = new JPanel();
         panelContenido.setLayout(new BoxLayout(panelContenido, BoxLayout.Y_AXIS));
         panelContenido.setOpaque(false);  
-
-        int panelWidth = 300;
-        int panelHeight = 200;
-        panelContenido.setBounds((size.width - panelWidth) / 2, (size.height - panelHeight) / 2, panelWidth, panelHeight);
+        
+        panelContenido.setBounds((ConstantesGlobales.PANEL_ANCHO - ConstantesGlobales.PANEL_ANCHO / 2) / 2,
+        	    (ConstantesGlobales.PANEL_ALTO - ConstantesGlobales.PANEL_ALTO / 4) / 2,
+        	    ConstantesGlobales.PANEL_ANCHO / 2, ConstantesGlobales.PANEL_ALTO / 2);
 
         establecerTitulo(panelContenido);
         ajustarCampoNombre(panelContenido);
         configurarBotonConfirmar(panelContenido);
-
         layeredPane.add(panelContenido, Integer.valueOf(1)); 
     }
 
     private void establecerTitulo(JPanel panelContenido) {
         JLabel etiqueta = new JLabel("Ingresa tu nombre:");
-        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 75));
+        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 60));
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
+        etiqueta.setPreferredSize(new Dimension(size.width, 50));
         panelContenido.add(etiqueta);
         panelContenido.add(Box.createRigidArea(new Dimension(10, 30))); 
     }
@@ -123,7 +131,6 @@ public class PantallaIngresoNombre extends Pantalla {
         }
     }
     
-
     private boolean procesarJugador(String nombre) {
     	boolean toRet = false;
         try {
