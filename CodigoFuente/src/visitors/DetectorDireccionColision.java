@@ -64,12 +64,6 @@ public class DetectorDireccionColision {
 		}
 	}
 	
-	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
-		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
-		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().x + entidad.obtenerAncho() <= elementoDeJuego.obtenerPosicionLogica().x;
-		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
-	}
-	
 	public boolean verificarImpactoLateralEntreMarioYEnemigo(Entidad mario, Entidad enemigo) {
 		boolean enemigoImpactaPorDerecha =  enemigo.obtenerHitbox().x < mario.obtenerHitbox().x + mario.obtenerHitbox().width;
 		boolean enemigoImpactaPorIzquierda = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().width > mario.obtenerHitbox().x;
@@ -77,20 +71,26 @@ public class DetectorDireccionColision {
 		return ((enemigoImpactaPorIzquierda) || (enemigoImpactaPorDerecha)) && marioNoGolpeoPorArriba;
 	}
 	
-	public boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	private boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicionLogica().x + entidad.obtenerAncho() > elementoDeJuego.obtenerPosicionLogica().x);
+		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
+	}
+	
+	private boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x < elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerAncho();
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().x >= elementoDeJuego.obtenerPosicionLogica().x + elementoDeJuego.obtenerAncho();
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
-	public boolean choquePorArriba(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	private boolean choquePorArriba(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y + entidad.obtenerAlto() > elementoDeJuego.obtenerHitbox().y;
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().y + entidad.obtenerAlto() <= elementoDeJuego.obtenerPosicionLogica().y;
 		boolean cayendo = entidad.obtenerVelocidadDireccional().y > 0;
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada && cayendo;
 	}
 	
-	public boolean choquePorAbajo(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	private boolean choquePorAbajo(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y < elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto();
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().y >= elementoDeJuego.obtenerPosicionLogica().y + elementoDeJuego.obtenerAlto();
 		boolean subiendo = entidad.obtenerVelocidadDireccional().y < 0;
