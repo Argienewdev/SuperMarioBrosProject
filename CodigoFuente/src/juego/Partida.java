@@ -78,7 +78,7 @@ public class Partida {
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
-		
+		generadorSonidos.establecerFinNivelFalso();
 		Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		generadorSonidos.reproducirMusicaFondo();
@@ -96,7 +96,6 @@ public class Partida {
 		this.nivel.establecerMario(jugable);
 		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
 		this.masterMind.cambiarNivel(this.nivel);
-		
 	    Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		generadorSonidos.reproducirMusicaFondo();
