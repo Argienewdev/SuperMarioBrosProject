@@ -22,8 +22,7 @@ public abstract class Jugable extends Entidad  {
 	
 	private int desplazamiento;
 	
-	@SuppressWarnings("exports")
-	public Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.colisionArriba = false;
@@ -34,6 +33,7 @@ public abstract class Jugable extends Entidad  {
 		this.desplazamiento = 0;
 	}
 	
+	@Override
 	public void establecerColisionArriba(boolean colisionArriba) {
 		this.colisionArriba = colisionArriba;
 	}
@@ -42,7 +42,7 @@ public abstract class Jugable extends Entidad  {
 		this.partida = partida;
 	}
 	
-	@SuppressWarnings("exports")
+	@Override
 	public void establecerPosicion (Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
 		if (this.posicionGrafica.x + desplazamientoX > ConstantesGlobales.MITAD_PANTALLA) {
@@ -66,6 +66,7 @@ public abstract class Jugable extends Entidad  {
 		this.desplazamiento = desplazamiento;
 	}
 	
+	@Override
 	public boolean obtenerColisionAbajo() {
 		return this.colisionAbajo;
 	}
@@ -100,7 +101,7 @@ public abstract class Jugable extends Entidad  {
 	public void perderVida() {
 		this.vidas--;
 		if (vidas ==  0) { 
-			muerte();
+			this.muerte();
 		}
 	}
 	
@@ -126,6 +127,7 @@ public abstract class Jugable extends Entidad  {
         this.establecerVelocidadDireccional(new Point(0, obtenerVelocidadDireccional().y));
 	}
 	
+	@Override
 	public void retrotraerMovimientoVertical(int posY) {
 		Point nuevaPosicion = new Point(this.obtenerHitbox().x, posY);
 		this.moverHitbox(nuevaPosicion);
@@ -133,7 +135,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void muerte() {
-		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego();
+		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego(false);
 	}
 	
 	public void rebotar() {

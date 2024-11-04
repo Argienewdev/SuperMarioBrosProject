@@ -61,6 +61,7 @@ public class VisitorVacio implements Visitante {
 
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	this.generadorSonidos.detenerMusicaFondo();
+        this.generadorSonidos.detenerSeAcaboElTiempo();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	marioDefault.obtenerContexto().perderPuntos(puntajeASustraer);
@@ -71,6 +72,7 @@ public class VisitorVacio implements Visitante {
 
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     	this.generadorSonidos.detenerMusicaFondo();
+        this.generadorSonidos.detenerSeAcaboElTiempo();
     	this.generadorSonidos.detenerMusicaInvulnerable();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
@@ -82,6 +84,7 @@ public class VisitorVacio implements Visitante {
     
     public void visitarMarioFuego(MarioFuego marioFuego) {
     	this.generadorSonidos.detenerMusicaFondo();
+        this.generadorSonidos.detenerSeAcaboElTiempo();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	marioFuego.obtenerContexto().perderPuntos(puntajeASustraer);
@@ -92,6 +95,7 @@ public class VisitorVacio implements Visitante {
 
     public void visitarSuperMario(SuperMario superMario) {
     	this.generadorSonidos.detenerMusicaFondo();
+        this.generadorSonidos.detenerSeAcaboElTiempo();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	superMario.obtenerContexto().perderPuntos(puntajeASustraer);
@@ -102,6 +106,7 @@ public class VisitorVacio implements Visitante {
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
     	this.generadorSonidos.detenerMusicaFondo();
+        this.generadorSonidos.detenerSeAcaboElTiempo();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	marioRecuperacion.obtenerContexto().perderPuntos(puntajeASustraer);

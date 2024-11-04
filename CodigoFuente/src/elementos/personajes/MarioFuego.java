@@ -23,19 +23,23 @@ public class MarioFuego extends MarioDefault {
 		this.generadorSonido = generadorSonido;
 	}
 	
+	@Override
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
 		this.contexto.establecerMirandoAlFrente(true);
 		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 	}
+	@Override
 	
 	public Visitante obtenerVisitante() {
 		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
+	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarMarioFuego(this);
 	}
 	
+	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
 		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
@@ -43,6 +47,7 @@ public class MarioFuego extends MarioDefault {
 		this.obtenerContexto().establecerHitbox(nuevaHitbox);
 	}
 	
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
 		if (bajoElNivelDelPiso()){
@@ -65,6 +70,7 @@ public class MarioFuego extends MarioDefault {
 		contexto.establecerSprite(aRetornar);
 	}
 	
+	@Override
 	public void realizarAccionEspecial() {	
 		lanzarBolaDeFuego();
 	}
@@ -96,26 +102,6 @@ public class MarioFuego extends MarioDefault {
 		this.contexto.obtenerNivel().agregarBolaDeFuego(bolaDeFuego);
 		
 		generadorSonido.disparoBolaFuego();
-	}
-	
-	private boolean enElAire() {
-		return !contexto.obtenerColisionAbajo();
-	}
-	
-	private boolean avanzando() {
-		return contexto.obtenerAvanzando();
-	}
-	
-	private boolean retrocediendo() {
-		return contexto.obtenerRetrocediendo();
-	}
-	
-	private boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
-	}
-	
-	private boolean bajoElNivelDelPiso() {
-		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 	
 }

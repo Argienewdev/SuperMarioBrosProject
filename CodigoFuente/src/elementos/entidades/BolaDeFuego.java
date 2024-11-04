@@ -45,6 +45,7 @@ public class BolaDeFuego extends NoJugable {
 		this.establecerVelocidadDireccional(salto);
 	}
 	
+	@Override
 	public void aplicarGravedad() {
 		if (this.obtenerVelocidadDireccional().y < VELOCIDAD_MAXIMA_DE_CAIDA){
 			Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y + GRAVEDAD_BOLA_DE_FUEGO);

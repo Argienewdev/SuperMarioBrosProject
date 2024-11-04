@@ -43,7 +43,7 @@ public class InterfazJuego extends JPanel{
 		this.crearPaneles();
 	}
 	
-	protected void crearPaneles(){
+	private void crearPaneles(){
 		JPanel panelNorte = new JPanel(new BorderLayout());
 	    JPanel panelOeste = new JPanel();
 	    JPanel panelCentro = new JPanel();
@@ -96,7 +96,7 @@ public class InterfazJuego extends JPanel{
 		this.vidasLabel.setText("Vidas: " + vidas);
 	}
 	
-	public void configurarFuente() {
+	private void configurarFuente() {
 		this.tipoFuentes =  new Fuente();
 		this.vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));

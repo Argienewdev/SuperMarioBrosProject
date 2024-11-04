@@ -10,12 +10,12 @@ import visitors.Visitante;
 
 public abstract class NoJugable extends Entidad {
 				
-	@SuppressWarnings("exports")
-	public NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 	}
 
+	@Override
 	public int obtenerTicksAnimacion() {
 		return this.ticksAnimacion;
 	}
@@ -31,7 +31,7 @@ public abstract class NoJugable extends Entidad {
 		this.invertirDireccion();
 	}
 	
-	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
+	public void actualizarHitboxYPosicion() {
 		int nuevaPosX = this.obtenerPosicionLogica().x;
 		int nuevaPosY = this.obtenerPosicionLogica().y + (this.obtenerAlto() - this.obtenerSprite().obtenerAltoImagen());
 		int nuevoAncho = this.obtenerSprite().obtenerAnchoImagen();

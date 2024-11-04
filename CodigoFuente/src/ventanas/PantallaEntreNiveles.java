@@ -12,11 +12,14 @@ import java.awt.*;
 public class PantallaEntreNiveles extends Pantalla {
     
     private JLabel puntajeLabel;
-    private JLabel iconoLabel;
-    private JLabel vidasLabel;
-    private JLabel nivelLabel;
-    private Fuente tipoFuentes;
     
+    private JLabel iconoLabel;
+    
+    private JLabel vidasLabel;
+    
+    private JLabel nivelLabel;
+    
+    private Fuente tipoFuentes;
     
     public PantallaEntreNiveles(Sprite marioSprite) {
         setLayout(new BorderLayout());
@@ -35,7 +38,7 @@ public class PantallaEntreNiveles extends Pantalla {
         nivelLabel.setForeground(Color.WHITE);
     }
     
-    protected void crearPaneles(){
+    private void crearPaneles(){
     	JPanel panelNorte = new JPanel(new BorderLayout());
         JPanel panelOeste = new JPanel();
         JPanel panelCentro = new JPanel();
@@ -69,7 +72,7 @@ public class PantallaEntreNiveles extends Pantalla {
         add(box, BorderLayout.CENTER);
 	}
     
-    protected void configurarFuentes(){
+    private void configurarFuentes(){
 		puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		nivelLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
@@ -90,7 +93,7 @@ public class PantallaEntreNiveles extends Pantalla {
     }
     
     @SuppressWarnings("exports")
-	public void setIcono(ImageIcon icono) {
+	public void establecerIcono(ImageIcon icono) {
         iconoLabel.setIcon(icono);
     }
     

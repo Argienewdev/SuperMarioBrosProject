@@ -31,21 +31,19 @@ public class Estrella extends PowerUp {
 	}
 	
 	public int obtenerPuntosPorFuego() {
-		return obtenerPuntosPorSuper();
+		return this.obtenerPuntosPorSuper();
 	}
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		} else {
-			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.obtenerEstrellaApagada());
-				this.actualizarHitboxYPosicion(fabricaSprites);
-			} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.obtenerEstrellaEncendida());
-				this.actualizarHitboxYPosicion(fabricaSprites);
-			}		
-		}
+		} else if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
+			this.establecerSprite(fabricaSprites.obtenerEstrellaApagada());
+			this.actualizarHitboxYPosicion();
+		} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
+			this.establecerSprite(fabricaSprites.obtenerEstrellaEncendida());
+			this.actualizarHitboxYPosicion();
+		}		
 	}
 
 	public void aceptarVisitante (Visitante visitante) {
