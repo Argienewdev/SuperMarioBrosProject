@@ -24,21 +24,10 @@ public class GeneradorSonidos {
 	Clip clipCancion;
 	
 	Clip clipCancionInvencible;
-
-	boolean finNivel;
 	
 	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
 		this.fabricaSonidos = fabricaSonidos;
-		establecerArchivos();		
-		finNivel= false;
-	}
-	
-	public void establecerFinNivelVerdadero(){
-		finNivel = true;
-	}
-	
-	public void establecerFinNivelFalso(){
-		finNivel = false;
+		establecerArchivos();
 	}
 
 	protected void establecerArchivos() {
@@ -158,11 +147,9 @@ public class GeneradorSonidos {
 	}
 	
 	public void reproducirMusicaFondo(){
-		if(!finNivel) {
-			clipCancion.setFramePosition(0);
-			clipCancion.start();
-			clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
-		}
+		clipCancion.setFramePosition(0);
+		clipCancion.start();
+		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
 	public void detenerMusicaFondo(){
@@ -302,9 +289,9 @@ public class GeneradorSonidos {
 			Clip clip = AudioSystem.getClip();
 			
 			clip.open(audioStream);
-			if(!finNivel) {
-				clip.start();
-			}
+			
+			clip.start();
+			
 			clip.addLineListener(event -> {
 				if (event.getType() ==  LineEvent.Type.STOP) {
 					clip.close();

@@ -6,6 +6,7 @@ import elementos.Silueta;
 import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
+import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
@@ -13,8 +14,6 @@ import generadores.GeneradorDeNivel;
 
 public class Nivel {
     protected static final int ANCHO_ALTO_BLOQUES_PLATAFORMA = 50;
-
-    protected GeneradorDeNivel generadorDeNivel;
     
     protected MatrizPlataforma matrizPlataformas;
     
@@ -30,7 +29,7 @@ public class Nivel {
        
     protected Silueta silueta;
     
-    protected ContextoMario mario;
+    protected Jugable mario;
     
     protected boolean nivelCompletado;
     
@@ -43,7 +42,6 @@ public class Nivel {
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
-        this.generadorDeNivel = null;
     }
     
     private void inicializarColecciones() {
@@ -90,12 +88,12 @@ public class Nivel {
         this.bolasDeFuego.add(bolaDeFuego);
     }
 
-    public void establecerMario(ContextoMario mario) {
+    public void establecerMario(Jugable mario) {
         this.mario = mario;
         this.mario.establecerNivel(this);
     }
 
-    public ContextoMario obtenerMario() {
+    public Jugable obtenerMario() {
         return this.mario;
     }
 

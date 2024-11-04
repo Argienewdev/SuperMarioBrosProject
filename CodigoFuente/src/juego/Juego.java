@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import elementos.Sprite;
+import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
@@ -55,10 +56,10 @@ public class Juego {
 		return this.partida;
 	}
 
-	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
+	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.modoDeJuegoSeleccionado = modo;
 		this.partida = new Partida(sensorDeTeclasJuego, this);
-		ContextoMario jugable = this.partida.obtenerJugable();
+		Jugable jugable = this.partida.obtenerJugable();
 		return jugable;
 	}
 	
