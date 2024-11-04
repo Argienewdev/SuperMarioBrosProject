@@ -35,7 +35,7 @@ public class KoopaDefault implements EstadoKoopa {
 		boolean mirandoAlFrente = contexto.obtenerMirandoAlFrente();
 		if (this.obtenerContext().obtenerRemovido()) {
 			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
-			eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 		} else if (mirandoAlFrente) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
 		} else {

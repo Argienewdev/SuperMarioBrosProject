@@ -37,6 +37,7 @@ public class Lakitu extends Enemigo {
         visitante.visitarLakitu(this);
     }
 
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
     	boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
     	lanzarSpiny();
@@ -44,7 +45,7 @@ public class Lakitu extends Enemigo {
 			eliminarEntidadGrafica(fabricaSprites);
 		} else if (mirandoAlFrente) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
-		} else if (!mirandoAlFrente) {
+		} else {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
@@ -74,24 +75,36 @@ public class Lakitu extends Enemigo {
 		}
 	}
 	
+    @Override
     public void invertirDireccion() {
-    	boolean moviendoseHaciaElBordeIzquierdo = this.velocidadDireccional.x < 0;
     	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {
-    		boolean chocoBordeIzquierdo = this.obtenerPosicionGrafica().x <=  0; 
-    		boolean chocoBordeDerecho = this.obtenerPosicionGrafica().x + this.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75);
-			if (chocoBordeIzquierdo) {
-				if (moviendoseHaciaElBordeIzquierdo) {
-					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
-					this.establecerVelocidadDireccional(velocidad);
-				}
-			} else if (chocoBordeDerecho) {
-				Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
-				this.establecerVelocidadDireccional(velocidad);
-			}
+    		this.chequearChoquesConBordes();
     	}
     }
+
+	private void chequearChoquesConBordes() {
+		boolean chocoBordeIzquierdo = this.obtenerPosicionGrafica().x <=  0; 
+		boolean chocoBordeDerecho = this.obtenerPosicionGrafica().x + this.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75);
+		if (chocoBordeIzquierdo) {
+			this.chocarBordeIzquierdo();
+		} else if (chocoBordeDerecho) {
+			this.chocarBordeDerecho();
+		}
+	}
 	
+	private void chocarBordeIzquierdo() {
+		boolean moviendoseHaciaElBordeIzquierdo = this.velocidadDireccional.x < 0;
+		if (moviendoseHaciaElBordeIzquierdo) {
+			Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+			this.establecerVelocidadDireccional(velocidad);
+		}		
+	}
+	private void chocarBordeDerecho() {
+		Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
+		this.establecerVelocidadDireccional(velocidad);
+	}
+
 }
