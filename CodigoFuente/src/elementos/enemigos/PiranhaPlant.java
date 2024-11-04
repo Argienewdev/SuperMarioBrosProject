@@ -22,8 +22,8 @@ public class PiranhaPlant extends Enemigo {
     	super(sprite, posicion, visitor, observerGrafico);
     	this.puntosOtorgadosPorEliminacion = 30;
     	this.puntosSustraidosPorMuerteCausada = 30;
-    	limiteInferior = this.obtenerPosicionLogica().y;
-    	limiteSuperior = this.obtenerPosicionLogica().y-150 ;
+    	this.limiteInferior = this.obtenerPosicionLogica().y;
+    	this.limiteSuperior = this.obtenerPosicionLogica().y-150 ;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
     }
 
@@ -43,35 +43,38 @@ public class PiranhaPlant extends Enemigo {
     	return this.dentroTuberia;
     }
     
+    @Override
     public void aplicarGravedad() {}
     
     public void aceptarVisitante (Visitante visitante) {
         visitante.visitarPiranhaPlant(this);
     }
 
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0, 0));
-			eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerPiranhaPlant());
 		}
 	}
 	
+	@Override
 	public void mover() {
 		if (this.obtenerPosicionLogica().y == limiteInferior) {
-			moverArriba();
+			this.moverHaciaArriba();
 		} else if (this.obtenerPosicionLogica().y == limiteSuperior){
-			moverAbajo();
+			this.moverHaciaAbajo();
 		}
 	}
 
-	private void moverAbajo() {
+	private void moverHaciaAbajo() {
 		Point velocidad = new Point(0, 1);
     	this.establecerVelocidadDireccional(velocidad);
 	}
 
-	private void moverArriba() {
+	private void moverHaciaArriba() {
 		Point velocidad = new Point(0, -1);
     	this.establecerVelocidadDireccional(velocidad);
 	}
