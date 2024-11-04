@@ -19,7 +19,7 @@ public class KoopaDefault implements EstadoKoopa {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorKoopaDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void invertirDireccion() {

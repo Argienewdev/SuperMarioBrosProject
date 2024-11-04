@@ -9,7 +9,7 @@ import visitors.VisitorSuperMario;
 public class SuperMario extends MarioDefault {
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorSuperMario(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorSuperMario(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {

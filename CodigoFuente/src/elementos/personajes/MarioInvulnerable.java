@@ -35,7 +35,7 @@ public class MarioInvulnerable extends MarioDefault {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorMarioInvulnerable(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void reiniciarDuracion() {

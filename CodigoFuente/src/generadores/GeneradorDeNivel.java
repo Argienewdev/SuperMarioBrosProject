@@ -50,7 +50,8 @@ public class GeneradorDeNivel {
 	
 	protected GeneradorSonidos generadorSonidos;
 	
-	public GeneradorDeNivel(String modoDeJuegoSeleccionado,  PantallaDeJuego pantallaDeJuego, ControladorVistas controladorVistas) {
+	public GeneradorDeNivel(String modoDeJuegoSeleccionado,  PantallaDeJuego pantallaDeJuego, 
+							ControladorVistas controladorVistas) {
 		ModoDeJuego modoDeJuego = new ModoDeJuego(modoDeJuegoSeleccionado);
 		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();

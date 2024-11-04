@@ -20,27 +20,21 @@ public class Juego {
 	private ControladorVistas controladorVistas;
 	
 	private Partida partida;
-		
-	private PantallaDeJuego pantallaDeJuego;
 	
 	private Ranking ranking;
 	
 	private String modoDeJuegoSeleccionado;
 	
 	public Juego() {
-		ranking = cargarEstadoRanking();
-		//TODO Esto se deja?
-		//Utilizar solo cuando se quiere establecer un nuevo ranking
-		//Unicamente en el primer juego creado, despues volver a comentar
-		
-		//ranking.reiniciarRanking();
+		this.ranking = cargarEstadoRanking();
+		//TODO reiniciar ranking antes de la entrega
+		//this.ranking.reiniciarRanking();
 	}
 	
-	public Sprite obtenerSpriteMario(){
+	public Sprite obtenerSpriteMario() {
 		return this.partida.obtenerSpriteMario();
 	}
 	
-	@SuppressWarnings("exports")
 	public Ranking obtenerRanking() {
 		return this.ranking;
 	}
@@ -50,51 +44,63 @@ public class Juego {
 	}
 	
 	public PantallaDeJuego obtenerPantallaDeJuego() {
-		return this.pantallaDeJuego;
+		return this.controladorVistas.obtenerPantallaDeJuego();
 	}
 	
 	public String obtenerModoDeJuegoSeleccionado() {
 		return this.modoDeJuegoSeleccionado;
 	}
-
-	@SuppressWarnings("exports")
-	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
-		this.modoDeJuegoSeleccionado = modo;
-		this.pantallaDeJuego = this.controladorVistas.obtenerPantallaDeJuego();
-		this.partida = new Partida(sensorDeTeclasJuego, this);
-		ContextoMario jugable = partida.obtenerJugable();
-		return jugable;
-	}
 	
 	public Partida obtenerPartida() {
 		return this.partida;
 	}
+
+	public ContextoMario crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
+		this.modoDeJuegoSeleccionado = modo;
+		this.partida = new Partida(sensorDeTeclasJuego, this);
+		ContextoMario jugable = this.partida.obtenerJugable();
+		return jugable;
+	}
 	
-	public void finalizarJuego (){
-		Timer timer = new Timer(2000, new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	            partida.obtenerGeneradorDeSonidos().pierdeJuego();
-	        }
-	    });
-	    timer.setRepeats(false);
-	    timer.start();
-        controladorVistas.accionarPantallaIngresoNombre();
-
-        BucleJugador bucle = partida.obtenerBucleJugador();
-        bucle.detenerBucleJugador();
-    }
-
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
 		this.controladorVistas = controladorVistas;
 	}
 	
+	public void finalizarJuego() {
+	    iniciarTemporizadorSonidoFinDeJuego();
+	    mostrarPantallaIngresoNombre();
+	    detenerBucleJugador();
+	}
+
+	private void iniciarTemporizadorSonidoFinDeJuego() {
+		Timer temporizadorFinDeJuego = new Timer(2000, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            partida.obtenerGeneradorSonidos().pierdeJuego();
+	        }
+	    });
+	    temporizadorFinDeJuego.setRepeats(false);
+	    temporizadorFinDeJuego.start();
+	}
+
+	private void mostrarPantallaIngresoNombre() {
+	    this.controladorVistas.accionarPantallaIngresoNombre();
+	}
+
+	private void detenerBucleJugador() {
+	    BucleJugador bucle = this.partida.obtenerBucleJugador();
+	    bucle.detenerBucleJugador();
+	}
+	
 	public void cierreDeJuego() {
-		 ranking.guardarEstado();
+		 this.ranking.guardarEstado();
 	     mostrarMensaje("Gracias por jugar!");
 	     System.exit(0);
 	}
 	
-	@SuppressWarnings("exports")
+	private void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje);
+	}
+	
 	public Ranking cargarEstadoRanking() {
     	Ranking rankingARetornar = null;
     	try {
@@ -103,15 +109,13 @@ public class Juego {
     		rankingARetornar = (Ranking) objectInputStream.readObject();
     		objectInputStream.close();
     	} catch (FileNotFoundException e) {
-    		//No hacer nada
-    	} catch (IOException | ClassNotFoundException e) {
-    		e.printStackTrace();
-    	} 
+            System.err.println("Error: El archivo de puntos no se encontró en la ruta especificada. Asegúrate de que el archivo './src/puntos' exista.");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error: La clase 'Ranking' no se encontró durante la deserialización. Verifica que la clase exista y sea compatible.");
+        } catch (IOException e) {
+            System.err.println("Error de I/O al intentar leer el archivo de puntos. Verifica los permisos de lectura o si el archivo está corrupto.");
+        } 
     	return rankingARetornar;
     }
-	
-	private void mostrarMensaje(String mensaje) {
-		JOptionPane.showMessageDialog(null,mensaje);
-	}
 
 }

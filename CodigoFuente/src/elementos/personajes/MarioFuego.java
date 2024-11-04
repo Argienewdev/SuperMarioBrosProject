@@ -29,7 +29,7 @@ public class MarioFuego extends MarioDefault {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorMarioFuego(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {

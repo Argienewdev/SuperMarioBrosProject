@@ -26,7 +26,7 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorMarioDefault(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {

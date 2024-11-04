@@ -22,7 +22,7 @@ public class MarioRecuperacion extends MarioDefault {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorMarioRecuperacion(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorMarioRecuperacion(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void actualizarTiempo() {

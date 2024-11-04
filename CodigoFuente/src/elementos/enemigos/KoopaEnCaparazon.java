@@ -25,7 +25,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	}
 	
 	public Visitante obtenerVisitante() {
-		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorDeSonidos());
+		return new VisitorKoopaEnCaparazon(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
 	public void invertirDireccion() {
