@@ -3,7 +3,7 @@ package ventanas;
 import javax.swing.*;
 
 import elementos.Sprite;
-import fuentes.Fuentes;
+import fuentes.Fuente;
 
 import java.awt.*;
 
@@ -14,13 +14,13 @@ public class PantallaEntreNiveles extends Pantalla {
     private JLabel iconoLabel;
     private JLabel vidasLabel;
     private JLabel nivelLabel;
-    private Fuentes tipoFuentes;
+    private Fuente tipoFuentes;
     
     
     public PantallaEntreNiveles(Sprite marioSprite) {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
-        this.tipoFuentes =  new Fuentes();
+        this.tipoFuentes =  new Fuente();
         this.puntajeLabel = new JLabel("Puntaje");
         this.iconoLabel = new JLabel(new ImageIcon(marioSprite.obtenerRutaImagen()));
         this.vidasLabel = new JLabel("x");

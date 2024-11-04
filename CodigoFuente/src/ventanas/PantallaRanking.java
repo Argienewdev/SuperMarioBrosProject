@@ -1,7 +1,7 @@
 package ventanas;
 
 import javax.swing.*;
-import fuentes.Fuentes;
+import fuentes.Fuente;
 import ranking.Jugador;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class PantallaRanking extends Pantalla {
 	
 	private boolean enFoco;
 	
-	private Fuentes tipoFuentes;
+	private Fuente tipoFuentes;
     
 	private List<JLabel> rankingLabel;
     
@@ -33,7 +33,7 @@ public class PantallaRanking extends Pantalla {
     	this.sensor = sensor;
         setLayout(null);
         setPreferredSize(size);
-        this.tipoFuentes = new Fuentes();
+        this.tipoFuentes = new Fuente();
         this.rankingLabel = new ArrayList<>();
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(null);

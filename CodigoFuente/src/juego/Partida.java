@@ -49,16 +49,9 @@ public class Partida {
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	public int obtenerNumeroDeNivelActual() {
-		return this.numeroNivelActual;
-	}
 	
 	public Jugable obtenerJugable() {
 		return this.jugable;
-	}
-	
-	public BucleJugador obtenerBucleJugador(){
-		return this.bucleJugador;
 	}
 	
 	public GeneradorSonidos obtenerGeneradorSonidos() {
@@ -69,23 +62,33 @@ public class Partida {
 		return this.generadorDeNivel.obtenerFabricaSprites();
 	}
 	
-	public GeneradorDeNivel obtenerGeneradorDeNivel() {
-		return this.generadorDeNivel;
-	}
-	
-	public Juego obtenerJuego() {
-		return this.juego;
-	}
-
-	public Sprite obtenerSpriteMario() {
-		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
-	}
-	
 	public void actualizar() {
 		this.coordinadorActualizacionesJugador.actualizar();
-		if(tiempoLlegoACero()) {
-			matarJugador();
+		this.analizarEstadoTiempo();
+	}
+
+	private void analizarEstadoTiempo() {
+		int segundos = obtenerTiempoPartida().obtenerPrimerComponente();
+		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
+		if(segundos == 5 && milisegundos == 0) {
+			this.obtenerGeneradorSonidos().detenerMusicaFondo();
+			this.obtenerGeneradorSonidos().seAcaboElTiempo();
+		}else if(segundos == 0 && milisegundos == 0) {
+			this.matarJugadorPorFaltaDeTiempo();
 		}
+	}
+		
+	private void matarJugadorPorFaltaDeTiempo() {
+		this.jugable.perderVida();
+     	this.reiniciarNivel();
+	}
+
+	private Par obtenerTiempoPartida() {
+		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenerHUD().obtenerTiempo();
+	}
+
+	public BucleJugador obtenerBucleJugador(){
+		return this.bucleJugador;
 	}
 	
 	public void cambiarNivel() {
@@ -123,6 +126,8 @@ public class Partida {
 	}
 
 	public void reiniciarNivel() {
+		
+		
 		obtenerGeneradorSonidos().detenerMusicaFondo();
 		this.juego.obtenerControladorVistas().eliminarNivelActual();
 		this.juego.obtenerControladorVistas().reiniciarNivel();
@@ -157,17 +162,22 @@ public class Partida {
 		return this.generadorDeNivel.generarNivel(numeroNivelActual, partida);
 	}
 	
-	private boolean tiempoLlegoACero() {
-		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenterTiempoEnCero();
+	public int obtenerNumeroDeNivelActual() {
+		return this.numeroNivelActual;
 	}
 	
-	private void matarJugador() {
-		obtenerGeneradorSonidos().detenerMusicaFondo();
-     	obtenerGeneradorSonidos().seAcaboElTiempo();
-     	this.jugable.perderVida();
-     	this.reiniciarNivel();
+	public GeneradorDeNivel obtenerGeneradorDeNivel() {
+		return this.generadorDeNivel;
+	}
+	
+	public Juego obtenerJuego() {
+		return this.juego;
 	}
 
+	public Sprite obtenerSpriteMario() {
+		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
+	}
+		
 	public void desactivarMovimientoEnemigos() {
 		this.masterMind.desactivarMovimientoEnemigos();
 	}

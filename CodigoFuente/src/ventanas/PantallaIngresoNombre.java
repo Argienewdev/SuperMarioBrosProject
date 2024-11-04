@@ -3,7 +3,7 @@ package ventanas;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 
-import fuentes.Fuentes;
+import fuentes.Fuente;
 import juego.Partida;
 import ranking.Jugador;
 import ranking.LimitadorDeCaracteres;
@@ -16,7 +16,7 @@ public class PantallaIngresoNombre extends Pantalla {
 	
     private static final long serialVersionUID = 1L;
     
-    private Fuentes tipoFuentes;
+    private Fuente tipoFuentes;
     
     private JLabel fondo;
     
@@ -33,7 +33,7 @@ public class PantallaIngresoNombre extends Pantalla {
     public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
         this.modo = modo;
         this.controlador = controlador;
-        tipoFuentes = new Fuentes();
+        tipoFuentes = new Fuente();
         setLayout(new BorderLayout());  
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(size);

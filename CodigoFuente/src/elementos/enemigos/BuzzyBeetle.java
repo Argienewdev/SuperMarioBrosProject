@@ -22,19 +22,16 @@ public class BuzzyBeetle extends Enemigo {
 		return fabricaSprites.obtenerBuzzyBeetleMuerto();
 	}
 	
-	private boolean mirandoAlFrente() {
-		return this.obtenerMirandoAlFrente();
-	}
-	
 	public void aceptarVisitante (Visitante visitante) {
 		visitante.visitarBuzzyBeetle(this);
 	}
 	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0,0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (mirandoAlFrente()) {
+		} else if (mirandoAlFrente) {
 			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleFrontalCaminando());
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleReversoCaminando());
