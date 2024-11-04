@@ -43,10 +43,10 @@ public class ChampinionVerde extends PowerUp {
 		} else {
 			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerChampinionVerdeSaliendoDelBloqueDePreguntas());
-				this.actualizarHitboxYPosicion(fabricaSprites);
+				this.actualizarHitboxYPosicion();
 			} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerChampinionVerde());
-				this.actualizarHitboxYPosicion(fabricaSprites);
+				this.actualizarHitboxYPosicion();
 			}		
 		}
 	}

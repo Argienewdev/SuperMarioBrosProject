@@ -28,7 +28,7 @@ public class FlorDeFuego extends PowerUp {
 	}
 	
 	public int obtenerPuntosPorInvulnerable() {
-		return obtenerPuntosPorSuper();
+		return this.obtenerPuntosPorSuper();
 	}
 	
 	public int obtenerPuntosPorFuego() {
@@ -41,10 +41,10 @@ public class FlorDeFuego extends PowerUp {
 		} else {
 			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoSaliendoDelBloqueDePreguntas());
-				this.actualizarHitboxYPosicion(fabricaSprites);
+				this.actualizarHitboxYPosicion();
 			} else if (obtenerContadorTicks() ==  ticksHastaSalirDelBloque) {
 				this.establecerSprite(fabricaSprites.obtenerFlorDeFuegoQuieto());
-				this.actualizarHitboxYPosicion(fabricaSprites);
+				this.actualizarHitboxYPosicion();
 			} 
 		}
 	}

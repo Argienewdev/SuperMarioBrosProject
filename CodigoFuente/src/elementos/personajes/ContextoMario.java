@@ -34,15 +34,16 @@ public class ContextoMario extends Jugable {
 	}
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		if (cambiarEstado) {
-			estadoMario.actualizarHitboxYPosicion(fabricaSprites);
+		/*
+		if (this.cambiarEstado) {
+			this.estadoMario.actualizarHitboxYPosicion(fabricaSprites);
 			this.cambiarEstado = false;
-		}
-		estadoMario.actualizarSprite(fabricaSprites);
+		}*/
+		this.estadoMario.actualizarSprite(fabricaSprites);
 	}
 	
 	public EstadoMario obtenerEstado() {
-		return estadoMario;
+		return this.estadoMario;
 	}
 	
 	public void reiniciarEstado() {
@@ -54,7 +55,7 @@ public class ContextoMario extends Jugable {
 	}
 
 	public void realizarAccionEspecial() {
-		estadoMario.realizarAccionEspecial();
+		this.estadoMario.realizarAccionEspecial();
 	}
 	
 }
