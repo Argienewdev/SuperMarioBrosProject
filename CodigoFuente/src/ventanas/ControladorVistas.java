@@ -4,15 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-
 import elementos.personajes.ContextoMario;
 import juego.*;
-import ranking.Jugador;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import sensoresDeTeclas.SensorDeTeclasMenu;
@@ -46,16 +42,47 @@ public class ControladorVistas {
 	
 	private Pantalla panelActual;
 	
-	protected static int DURACION_PANTALLA_ENTRE_NIVELES = 3000;
+	private static int DURACION_PANTALLA_ENTRE_NIVELES = 3000;
 	
 	public ControladorVistas(Juego juego){
-		
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		this.juego = juego;
-	
 		configurarVentana();
 		RegistrarOyenteInicial();	
 		bucleVentana = new BucleVentana(this);
+	}
+	
+	public void establecerPanelActual (Pantalla panelActual) {
+		this.panelActual = panelActual;
+	}
+	public PantallaDeJuego obtenerPantallaDeJuego() {
+		return this.pantallaDeJuego;
+	}
+	
+	public PantallaFinal obtenerPantallaFinal() {
+		return pantallaFinal;
+	}
+	
+	@SuppressWarnings("exports")
+	public Ranking obtenerRanking() {
+		return juego.obtenerRanking();
+	}
+	
+	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
+		return pantallaIngresoNombre;
+	}
+	
+	
+	public InterfazJuego obtenerHUD() {
+		return this.pantallaDeJuego.obtenerHUD();
+	}
+	
+	public Juego obtenerJuego() {
+		return this.juego;
+	}
+	
+	public int obtenerDuracionPantallaEntreNiveles(){
+		return DURACION_PANTALLA_ENTRE_NIVELES;
 	}
 	
 	public void configurarVentana(){
@@ -99,6 +126,12 @@ public class ControladorVistas {
 	    timer.start();
 	}
 
+	private void actualizarVentana(Pantalla pantalla) {
+		ventana.setContentPane(pantalla);
+		this.panelActual = pantalla;
+		ventana.revalidate();
+		ventana.repaint();
+	}
 	
 	public void mostrarPantallaEntreNiveles(){
 		this.actualizarVentana(pantallaEntreNiveles);
@@ -127,7 +160,6 @@ public class ControladorVistas {
 	    pantallaFinal.establecerEnFoco(true);
 	    pantallaFinal.puntajeJugador(juego.obtenerPartida().obtenerJugable().obtenerPuntos());
 	    actualizarVentana(pantallaFinal);
-		
 	}
 
 	public void mostrarPantallaInicial() {
@@ -173,7 +205,6 @@ public class ControladorVistas {
 	    ventana.addKeyListener(sensorDeTeclasMenu);      
 	}
 
-	
 	public void ocultarPantallaRanking(){
 		ventana.remove(pantallaRanking);
 		ventana.revalidate();
@@ -193,11 +224,6 @@ public class ControladorVistas {
 			ventana.revalidate();
 		    ventana.repaint();
 		}
-	}
-
-	
-	public PantallaDeJuego obtenerPantallaDeJuego() {
-		return this.pantallaDeJuego;
 	}
 	
 	public void eliminarNivelActual() {
@@ -224,48 +250,7 @@ public class ControladorVistas {
         timer.start();  
 	}
 	
-	public int obtenerDuracionPantallaEntreNiveles(){
-		return DURACION_PANTALLA_ENTRE_NIVELES;
-	}
-	
 	public void cerrarJuego() {
 		juego.cierreDeJuego();
-	}
-	
-	@SuppressWarnings("exports")
-	public Ranking obtenerRanking() {
-		return juego.obtenerRanking();
-	}
-
-	@SuppressWarnings("exports")
-//	public void establecerJugador (Jugador jugador) {
-//		pantallaIngresoNombre.establecerJugador(jugador);
-//	}
-//	
-	public PantallaFinal obtenerPantallaFinal() {
-		return pantallaFinal;
-	}
-	
-	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
-		return pantallaIngresoNombre;
-	}
-	
-	public void establecerPanelActual (Pantalla panelActual) {
-		this.panelActual = panelActual;
-	}
-
-	private void actualizarVentana(Pantalla pantalla) {
-		ventana.setContentPane(pantalla);
-		this.panelActual = pantalla;
-		ventana.revalidate();
-		ventana.repaint();
-	}
-	
-	public InterfazJuego obtenerHUD() {
-		return this.pantallaDeJuego.obtenerHUD();
-	}
-	
-	public Juego obtenerJuego() {
-		return this.juego;
 	}
 }

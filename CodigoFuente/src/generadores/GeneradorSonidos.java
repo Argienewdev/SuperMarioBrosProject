@@ -25,23 +25,29 @@ public class GeneradorSonidos {
 	
 	Clip clipCancionInvencible;
 
+	boolean finNivel;
 	
 	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
 		this.fabricaSonidos = fabricaSonidos;
 		establecerArchivos();		
+		finNivel= false;
+	}
+	
+	public void establecerFinNivelVerdadero(){
+		finNivel = true;
+	}
+	
+	public void establecerFinNivelFalso(){
+		finNivel = false;
 	}
 
 	protected void establecerArchivos() {
-
 		archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
 		archivoCancionInvulnerabilidad = new File(fabricaSonidos.obtenerModoInvencible().obtenerRutaSonido());
 		establecerMusicaFondo();
 		establecerMusicaInvencible();
 	}
 	
-	public void modoInvencible(){
-		
-	}
 	
 	public void establecerMusicaFondo(){
 		try {
@@ -51,6 +57,17 @@ public class GeneradorSonidos {
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void establecerMusicaInvencible(){
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
+			clipCancionInvencible = AudioSystem.getClip();
+			clipCancionInvencible.open(audioStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void emitirSonidoAplastarEnemigo() {
@@ -141,24 +158,15 @@ public class GeneradorSonidos {
 	}
 	
 	public void reproducirMusicaFondo(){
-		clipCancion.setFramePosition(0);
-		clipCancion.start();
-		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
+		if(!finNivel) {
+			clipCancion.setFramePosition(0);
+			clipCancion.start();
+			clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
+		}
 	}
 	
 	public void detenerMusicaFondo(){
 		clipCancion.stop();
-	}
-	
-	public void establecerMusicaInvencible(){
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
-			clipCancionInvencible = AudioSystem.getClip();
-			clipCancionInvencible.open(audioStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
-		}
-        
 	}
 	
 	public void reproducirMusicaInvencible(){
@@ -294,9 +302,9 @@ public class GeneradorSonidos {
 			Clip clip = AudioSystem.getClip();
 			
 			clip.open(audioStream);
-			
-			clip.start();
-			
+			if(!finNivel) {
+				clip.start();
+			}
 			clip.addLineListener(event -> {
 				if (event.getType() ==  LineEvent.Type.STOP) {
 					clip.close();

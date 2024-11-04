@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorVacio implements Visitante {
 
-    protected Vacio miEntidad;
+    private Vacio miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     
@@ -21,55 +21,44 @@ public class VisitorVacio implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-    
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	buzzyBeetle.establecerRemovido(true);
     }
 
-    
     public void visitarSpiny(Spiny spiny) {    
     	spiny.establecerRemovido(true);
     }
-    
     
     public void visitarGoomba(Goomba goomba) {
     	goomba.establecerRemovido(true);
     }
 
-    
     public void visitarLakitu(Lakitu lakitu) {
     	lakitu.establecerRemovido(true);
     }
 
-    
     public void visitarPiranhaPlant(PiranhaPlant planta) {
     }
 
-    
     public void visitarSuperChampinion(SuperChampinion superChampinion) {    
     	superChampinion.establecerRemovido(true);
     }
 
-    
     public void visitarFlorDeFuego(FlorDeFuego flor) {
     	flor.establecerRemovido(true);
     }
 
-    
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {    
     	champinionVerde.establecerRemovido(true);
     }
-
     
     public void visitarEstrella(Estrella estrella) {
     	estrella.establecerRemovido(true);
     }
-
     
     public void visitarMoneda(Moneda monedas) {
     }
 
-    
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	this.generadorSonidos.detenerMusicaFondo();
     	this.generadorSonidos.pierdeVida();
@@ -143,7 +132,6 @@ public class VisitorVacio implements Visitante {
     	contextoMario.obtenerEstado().aceptarVisitante(this);
     }
 
-    
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) { 
     	contextoKoopaTroopa.establecerRemovido(true);
     }
@@ -164,6 +152,5 @@ public class VisitorVacio implements Visitante {
 
 	public void visitarVacio(Vacio vacio) {
 	}
-
     
 }

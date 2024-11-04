@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorContextoKoopaTroopa implements Visitante {
     
-    protected ContextoKoopaTroopa miEntidad;
+    private ContextoKoopaTroopa miEntidad;
     
     protected DetectorDireccionColision detectorDireccionColision;
     

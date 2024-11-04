@@ -1,10 +1,5 @@
 package visitors;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -14,9 +9,9 @@ import generadores.GeneradorSonidos;
 
 public class VisitorMarioInvulnerable implements Visitante {
 
-    protected EstadoMario miEstado;
+    private EstadoMario miEstado;
     
-    protected ContextoMario miContexto;
+    private ContextoMario miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
     
@@ -29,14 +24,12 @@ public class VisitorMarioInvulnerable implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-    
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if(!buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		this.otorgarPuntosYEliminar(buzzyBeetle);
     	}
     }
-
     
     public void visitarSpiny(Spiny spiny) {
     	if(!spiny.obtenerRemovido()) {
@@ -45,7 +38,6 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarGoomba(Goomba goomba) {
     	if(!goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
@@ -53,12 +45,10 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
     	contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this.miContexto.obtenerEstado().obtenerVisitante());
     }
 
-    
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if(!koopaDefault.obtenerContext().obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -66,7 +56,6 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if(!koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -74,14 +63,12 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarLakitu(Lakitu lakitu) {
     	if(!lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		this.otorgarPuntosYEliminar(lakitu);
     	}
     }
-
     
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
     	if(!piranhaPlant.obtenerRemovido()) {
@@ -90,14 +77,12 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	if(!superChampinion.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorInvulnerable());
     		superChampinion.establecerRemovido(true);
     	}
     }
-
     
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if(!florDeFuego.obtenerRemovido()) {
@@ -106,11 +91,9 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
     }
 
-    
     public void visitarEstrella(Estrella estrella) {
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
@@ -119,14 +102,11 @@ public class VisitorMarioInvulnerable implements Visitante {
     	}
     }
 
-    
     public void visitarMoneda(Moneda monedas) {
     }
-
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
     }
-
     
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
@@ -136,43 +116,41 @@ public class VisitorMarioInvulnerable implements Visitante {
         }
     }
 
-    
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
 
+    public void visitarBandera(Bandera bandera) {
+    }
     
-    public void visitarBandera(Bandera bandera) {}
+    public void visitarTuberia(Tuberia tuberia) {
+    }
+    
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
+    
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    }
+    
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
+    
+    public void visitarSuperMario(SuperMario superMario) {
+    }
 
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    }
     
-    public void visitarTuberia(Tuberia tuberia) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
     
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
     
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
-
-    
-    public void visitarContextoMario(ContextoMario contextoMario) {}
-
-    
-    public void visitarMarioDefault(MarioDefault marioDefault) {}
-
-    
-    public void visitarSuperMario(SuperMario superMario) {}
-
-    
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
-
-    
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
-    
-    
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
-
-    
-    public void visitarPiso(Piso piso) {}
-
+    public void visitarPiso(Piso piso) {
+    }
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
-
 	
 	public void visitarVacio(Vacio vacio) {
 	}

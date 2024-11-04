@@ -1,6 +1,5 @@
 package ranking;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,16 +20,34 @@ public class Ranking implements Serializable {
 		this.topJugadores = new ArrayList<>();
 	}
 	
+	public List<Jugador> obtenerTopRanking() {
+		Collections.sort(topJugadores, Collections.reverseOrder());
+		List<Jugador> top5 = new ArrayList<>();
+		Iterator<Jugador> iterador = topJugadores.iterator();
+		int i = 0;
+		while (iterador.hasNext() && i < 5) {
+			top5.add(iterador.next());
+			i++;
+		}
+		return top5;
+	}
+	
+	public Jugador obtenerJugador(String nombre) {
+		Jugador jugador = null;
+		for (Jugador jug : topJugadores) {
+			if (jug.obtenerNombre().equals(nombre)) {
+				jugador = jug;
+			}
+		}
+		return jugador;
+	}
+	
 	public void agregarJugador(Jugador jugador) {
-        // Primero ordenamos la lista para asegurar que esté en orden correcto
         Collections.sort(topJugadores, Collections.reverseOrder());
-        
         if (topJugadores.size() < 5) {
-            // Si hay menos de 5 jugadores, agregamos directamente
             topJugadores.add(jugador);
             Collections.sort(topJugadores, Collections.reverseOrder());
         } else {
-            // Si ya hay 5 o más jugadores, verificamos si el nuevo puntaje es mayor que el menor
             Jugador menorPuntaje = topJugadores.get(topJugadores.size() - 1);
             if (jugador.obtenerPuntaje() > menorPuntaje.obtenerPuntaje()) {
                 topJugadores.remove(menorPuntaje);
@@ -39,18 +56,6 @@ public class Ranking implements Serializable {
             }
         }
     }
-	
-	 public List<Jugador> obtenerTopRanking() {
-	     Collections.sort(topJugadores, Collections.reverseOrder());
-	     List<Jugador> top5 = new ArrayList<>();
-	     Iterator<Jugador> iterador = topJugadores.iterator();
-	     int i = 0;
-	     while (iterador.hasNext() && i < 5) {
-	         top5.add(iterador.next());
-	         i++;
-	     }
-	     return top5;
-	 }
 	
     public void guardarEstado() {
 		try {
@@ -84,16 +89,5 @@ public class Ranking implements Serializable {
         }
     	return esTop;
     }
-    
-    public Jugador obtenerJugador(String nombre) {
-    	Jugador jugador = null;
-        for (Jugador jug : topJugadores) {
-            if (jug.obtenerNombre().equals(nombre)) {
-                jugador = jug;
-            }
-        }
-        return jugador;
-    }
-	
 
 }

@@ -1,24 +1,18 @@
 package visitors;
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import generadores.GeneradorSonidos;
-import juego.Nivel;
 
 public class VisitorSuperMario implements Visitante {
 
-    protected EstadoMario miEstado;
+    private EstadoMario miEstado;
     
-    protected ContextoMario miContexto;
+    private ContextoMario miContexto;
 
     protected DetectorDireccionColision detectorDireccionColision;
     
@@ -31,7 +25,6 @@ public class VisitorSuperMario implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-    @Override
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto) &&
     	   !buzzyBeetle.obtenerRemovido()) {
@@ -41,11 +34,9 @@ public class VisitorSuperMario implements Visitante {
     	}
     }
 
-    @Override
     public void visitarSpiny(Spiny spiny) {
     }
 
-    @Override
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
     	   && !goomba.obtenerRemovido()) {
@@ -55,12 +46,10 @@ public class VisitorSuperMario implements Visitante {
         }
     }
 
-    @Override
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
 		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
 
-    @Override
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
@@ -69,7 +58,6 @@ public class VisitorSuperMario implements Visitante {
         }
     }
 
-    @Override
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
@@ -80,7 +68,6 @@ public class VisitorSuperMario implements Visitante {
 		}
     }
 
-    @Override
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
@@ -90,11 +77,9 @@ public class VisitorSuperMario implements Visitante {
         }
     }
 
-    @Override
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
     }
 
-    @Override
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	if (!superChampinion.obtenerRemovido()) {
 			this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorSuper());
@@ -102,7 +87,6 @@ public class VisitorSuperMario implements Visitante {
 		}
     }
 
-    @Override
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if (!florDeFuego.obtenerRemovido()) {
 			this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorSuper());
@@ -110,10 +94,9 @@ public class VisitorSuperMario implements Visitante {
 		}
     }
 
-    @Override
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    }
 
-    @Override
     public void visitarEstrella(Estrella estrella) {
     	if (!estrella.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorSuper());
@@ -124,7 +107,6 @@ public class VisitorSuperMario implements Visitante {
     	}
     }
 
-    @Override
     public void visitarMoneda(Moneda monedas) {
     	if (!monedas.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(monedas.obtenerPuntosPorSuper());
@@ -132,7 +114,6 @@ public class VisitorSuperMario implements Visitante {
     	}
     }
 
-    @Override
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
     	if (detectorDireccionColision.choquePorAbajo(bloqueDePregunta, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(bloqueDePregunta, miContexto);
@@ -140,7 +121,6 @@ public class VisitorSuperMario implements Visitante {
         }
     }
 
-    @Override
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
             detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(ladrillo, miContexto);
@@ -149,46 +129,43 @@ public class VisitorSuperMario implements Visitante {
         }
     }
 
-    @Override
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
 
-    @Override
-    public void visitarBandera(Bandera bandera) {}
+    public void visitarBandera(Bandera bandera) {
+    }
 
-    @Override
-    public void visitarTuberia(Tuberia tuberia) {}
+    public void visitarTuberia(Tuberia tuberia) {
+    }
 
-    @Override
-    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {}
+    public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
+    }
 
-    @Override
-    public void visitarContextoMario(ContextoMario contextoMario) {}
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    }
 
-    @Override
-    public void visitarMarioDefault(MarioDefault marioDefault) {}
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
 
-    @Override
-    public void visitarSuperMario(SuperMario superMario) {}
+    public void visitarSuperMario(SuperMario superMario) {
+    }
 
-    @Override
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    }
 
-    @Override
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
 
-    @Override
-    public void visitarPiso(Piso piso) {}
+    public void visitarPiso(Piso piso) {
+    }
 
-	@Override
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		
 	}
 
-	@Override
 	public void visitarVacio(Vacio vacio) {
-		
 	}
     
 }

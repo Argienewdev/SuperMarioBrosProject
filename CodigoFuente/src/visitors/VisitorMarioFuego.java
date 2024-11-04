@@ -1,11 +1,5 @@
 package visitors;
 
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
 import elementos.personajes.*;
@@ -15,11 +9,11 @@ import generadores.GeneradorSonidos;
 
 public class VisitorMarioFuego implements Visitante {
 
-    protected EstadoMario miEstado;
+    private EstadoMario miEstado;
+    
+    private ContextoMario miContexto;
     
     protected DetectorDireccionColision detectorDireccionColision;
-    
-    protected ContextoMario miContexto;
     
     protected GeneradorSonidos generadorSonidos;
 
@@ -30,33 +24,30 @@ public class VisitorMarioFuego implements Visitante {
         this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
-    
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
     	if (this.detectorDireccionColision.choquePorArriba(buzzyBeetle, this.miContexto)
     		&& !buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		otorgarPuntosYEliminar(buzzyBeetle);
+            this.miContexto.rebotar();
     	}
     }
-
     
     public void visitarSpiny(Spiny spiny) {
     }
-
     
     public void visitarGoomba(Goomba goomba) {
     	if (this.detectorDireccionColision.choquePorArriba(goomba, this.miContexto) 
     	   && !goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(goomba);
+            this.miContexto.rebotar();
 		}
     }
 
-    
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
 		contextoKoopaTroopa.obtenerEstado().aceptarVisitante(this);
     }
-
     
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaEnCaparazon.obtenerContext(), this.miContexto)
@@ -64,9 +55,9 @@ public class VisitorMarioFuego implements Visitante {
     		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
 			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+            this.miContexto.rebotar();
         }
     }
-
     
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
     	if (this.detectorDireccionColision.choquePorArriba(koopaDefault.obtenerContext(), this.miContexto)) {
@@ -75,24 +66,22 @@ public class VisitorMarioFuego implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
+            this.miContexto.rebotar();
 		}
     }
 
-    
     public void visitarLakitu(Lakitu lakitu) {
     	if (this.detectorDireccionColision.choquePorArriba(lakitu, this.miContexto) 
     	   && !lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(lakitu);
+            this.miContexto.rebotar();
     	}
     }
 
-    
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
     }
 
-    
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
     	if(!superChampinion.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(superChampinion.obtenerPuntosPorFuego());
@@ -100,7 +89,6 @@ public class VisitorMarioFuego implements Visitante {
     	}
     }
 
-    
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
     	if (!florDeFuego.obtenerRemovido()) {
     		this.miContexto.ganarPuntos(florDeFuego.obtenerPuntosPorDefault());
@@ -108,9 +96,8 @@ public class VisitorMarioFuego implements Visitante {
     	}
     }
 
-    
-    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {}
-
+    public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
+    }
     
     public void visitarEstrella(Estrella estrella) {
     	if(!estrella.obtenerRemovido()) {
@@ -121,17 +108,15 @@ public class VisitorMarioFuego implements Visitante {
 		generadorSonidos.reproducirMusicaInvencible();
     
     }
-
     
-    public void visitarMoneda(Moneda monedas) {}
-
+    public void visitarMoneda(Moneda monedas) {
+    }
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
     	if(detectorDireccionColision.choquePorAbajo(bloqueDePregunta, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
     }
-
     
     public void visitarLadrillo(Ladrillo ladrillo) {
     	if (detectorDireccionColision.choquePorAbajo(ladrillo, this.miContexto)) {
@@ -140,49 +125,46 @@ public class VisitorMarioFuego implements Visitante {
     		generadorSonidos.romperLadrillo();
         }
     }
-
     
-    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {}
-
+    public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+    }
     
-    public void visitarBandera(Bandera bandera) {}
-
+    public void visitarBandera(Bandera bandera) {
+    }
     
-    public void visitarTuberia(Tuberia tuberia) {}
-
+    public void visitarTuberia(Tuberia tuberia) {
+    }
     
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
     	if(detectorDireccionColision.choquePorAbajo(bloqueSolido, miContexto)){
     		generadorSonidos.golpeBloque();
     	}
     }
-
     
-    public void visitarContextoMario(ContextoMario contextoMario) {}
-
+    public void visitarContextoMario(ContextoMario contextoMario) {
+    }
     
-    public void visitarMarioDefault(MarioDefault marioDefault) {}
-
+    public void visitarMarioDefault(MarioDefault marioDefault) {
+    }
     
-    public void visitarSuperMario(SuperMario superMario) {}
-
+    public void visitarSuperMario(SuperMario superMario) {
+    }
     
-    public void visitarMarioFuego(MarioFuego marioFuego) {}
-
+    public void visitarMarioFuego(MarioFuego marioFuego) {
+    }
     
-    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {}
+    public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
+    }
     
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
-
-    
-    public void visitarPiso(Piso piso) {}
-
+    public void visitarPiso(Piso piso) {
+    }
 	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
 	}
 
-	
 	public void visitarVacio(Vacio vacio) {
 	}
 	

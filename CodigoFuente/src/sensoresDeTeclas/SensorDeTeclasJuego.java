@@ -28,46 +28,19 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		this.spacePresionada = false;
 		this.spaceAccionado = false;
 	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode ==  KeyEvent.VK_A) {
-        	this.aPresionada = true;
-        } else if (keyCode ==  KeyEvent.VK_D) {
-        	this.dPresionada = true;
-        } else if (keyCode ==  KeyEvent.VK_W) {
-        	this.wPresionada = true;
-        } else if (keyCode ==  KeyEvent.VK_SPACE) {
-        	this.spacePresionada = true;
-        }
-    }
-
-    // Invoked when a key is released
-    @Override
-    public void keyReleased(KeyEvent e) {
-    	int keyCode = e.getKeyCode();
-        if (keyCode ==  KeyEvent.VK_A) {
-        	this.aPresionada = false;
-        } else if (keyCode ==  KeyEvent.VK_D) {
-            dPresionada = false;
-        } else if (keyCode ==  KeyEvent.VK_W) {
-        	this.wAccionada = false;
-        	this.wPresionada = false;
-        } else if (keyCode ==  KeyEvent.VK_SPACE) {
-        	this.spaceAccionado = false;
-        	this.spacePresionada = false;
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
+	
+	public void establecerWAccionada(boolean accionada) {
+		this.wAccionada = accionada;
+	}
+	
+	public void establecerSpaceAccionada(boolean accionada) {
+		this.spaceAccionado = accionada;
+	}
+	
 	public boolean obtenerAPresionada() {
 		return aPresionada;
 	}
-
+	
 	public boolean obtenerDPresionada() {
 		return dPresionada;
 	}
@@ -84,16 +57,39 @@ public class SensorDeTeclasJuego extends JFrame implements KeyListener{
 		return spaceAccionado;
 	}
 	
-	public void establecerSpaceAccionada(boolean accionada) {
-		this.spaceAccionado = accionada;
-	}
-	
 	public boolean obtenerWAccionada() {
 		return wAccionada;
 	}
-	
-	public void establecerWAccionada(boolean accionada) {
-		this.wAccionada = accionada;
-	}
+
+	public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (keyCode ==  KeyEvent.VK_A) {
+        	this.aPresionada = true;
+        } else if (keyCode ==  KeyEvent.VK_D) {
+        	this.dPresionada = true;
+        } else if (keyCode ==  KeyEvent.VK_W) {
+        	this.wPresionada = true;
+        } else if (keyCode ==  KeyEvent.VK_SPACE) {
+        	this.spacePresionada = true;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+    	int keyCode = e.getKeyCode();
+        if (keyCode ==  KeyEvent.VK_A) {
+        	this.aPresionada = false;
+        } else if (keyCode ==  KeyEvent.VK_D) {
+            dPresionada = false;
+        } else if (keyCode ==  KeyEvent.VK_W) {
+        	this.wAccionada = false;
+        	this.wPresionada = false;
+        } else if (keyCode ==  KeyEvent.VK_SPACE) {
+        	this.spaceAccionado = false;
+        	this.spacePresionada = false;
+        }
+    }
+
+    public void keyTyped(KeyEvent e) {
+    }
 
 }

@@ -1,11 +1,13 @@
 package ventanas;
 
-
 import javax.swing.JLabel;
 
 public class ArregloDeBotones {
+	
 	private int siguiente;
+	
 	private JLabel[] arreglo;
+	
 	private int cantidad;
 	
 	public ArregloDeBotones(int tamanho){
@@ -48,4 +50,5 @@ public class ArregloDeBotones {
 		}
 		return aRetornar;
 	}
+	
 }

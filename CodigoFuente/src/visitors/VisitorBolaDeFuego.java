@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorBolaDeFuego implements Visitante {
 
-    protected BolaDeFuego miEntidad;
+    private BolaDeFuego miEntidad;
     
     protected GeneradorSonidos generadorSonidos;
 

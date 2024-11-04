@@ -9,7 +9,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorMonedas implements Visitante {
     
-    protected Moneda miEntidad;
+    private Moneda miEntidad;
     
     protected GeneradorSonidos generadorSonidos;
 
@@ -19,137 +19,87 @@ public class VisitorMonedas implements Visitante {
     }
     
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
-        
     }
 
     public void visitarSpiny(Spiny spiny) {
-        
     }
 
-    
     public void visitarGoomba(Goomba goomba) {
-        
     }
 
-    
     public void visitarLakitu(Lakitu lakitu) {
-        
     }
-
     
     public void visitarPiranhaPlant(PiranhaPlant piranhaPlant) {
-        
     }
-
     
     public void visitarSuperChampinion(SuperChampinion superChampinion) {
-        
     }
 
-    
     public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
-        
     }
-
     
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
-        
     }
 
-    
     public void visitarEstrella(Estrella estrella) {
-        
     }
 
-    
     public void visitarMoneda(Moneda moneda) {
-        
     }
 
-    
     public void visitarContextoMario(ContextoMario contextoMario) {
     }
-
     
     public void visitarBloqueDePregunta(BloqueDePregunta bloqueDePregunta) {
-        
     }
-
     
     public void visitarLadrillo(Ladrillo ladrillo) {
-        
     }
 
-    
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-        
     }
 
-    
     public void visitarBandera(Bandera bandera) {
-        
     }
-
     
     public void visitarTuberia(Tuberia tuberia) {
-        
     }
 
-    
     public void visitarBloqueSolido(BloqueSolido bloqueSolido) {
-        
     }
 
-    
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {
-        
     }
 
-    
     public void visitarKoopaEnCaparazon(KoopaEnCaparazon koopaEnCaparazon) {
-        
     }
-
     
     public void visitarKoopaDefault(KoopaDefault koopaDefault) {
-        
     }
-
     
     public void visitarMarioDefault(MarioDefault marioDefault) {
-        
     }
-
     
     public void visitarSuperMario(SuperMario superMario) {
-        
     }
 
-    
     public void visitarMarioFuego(MarioFuego marioFuego) {
     }
-
     
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     }
     
-    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {}
-
+    public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
+    }
     
     public void visitarPiso(Piso piso) {
-        
     }
 
-	
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {
-		
-		
 	}
 
-	
 	public void visitarVacio(Vacio vacio) {
-		
-		
 	}
     
 }

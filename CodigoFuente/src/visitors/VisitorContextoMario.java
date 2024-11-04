@@ -14,7 +14,7 @@ import generadores.GeneradorSonidos;
 
 public class VisitorContextoMario implements Visitante {
 	
-	protected ContextoMario miEntidad;
+	private ContextoMario miEntidad;
 	
 	protected DetectorDireccionColision detectorDireccionColision;
 	
@@ -119,6 +119,8 @@ public class VisitorContextoMario implements Visitante {
 			bandera.actualizarSprite(this.miEntidad.obtenerNivel().obtenerPartida().obtenerFabricaSprites());
 			bandera.obtenerObserverGrafico().actualizar();
 			this.generadorSonidos.tocarBanderaFinNivel();
+			this.generadorSonidos.detenerMusicaInvencible();
+			this.generadorSonidos.establecerFinNivelVerdadero();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			Timer timer = new Timer(3000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
@@ -171,6 +173,7 @@ public class VisitorContextoMario implements Visitante {
 	public void visitarBolaDeFuego(BolaDeFuego fireball) {}
 
 	public void visitarVacio(Vacio vacio) {
+		generadorSonidos.detenerMusicaInvencible();
 	}
 	
 }

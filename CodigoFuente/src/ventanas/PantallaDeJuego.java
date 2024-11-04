@@ -44,7 +44,15 @@ public class PantallaDeJuego extends Pantalla {
         this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
     }
 
-    protected void configurarVentana(){
+    public boolean obtenterTiempoEnCero() {
+    	return this.hud.obtenerTiempoEnCero();
+    }
+    
+    public InterfazJuego obtenerHUD() {
+    	return this.hud;
+    }
+    
+    private void configurarVentana(){
         setVisible(true);
         setLayout(null);
         this.size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
@@ -78,7 +86,7 @@ public class PantallaDeJuego extends Pantalla {
         establecerFondo();
     }
     
-	protected void establecerFondo() {
+	private void establecerFondo() {
         fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
         layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
         revalidate();
@@ -202,12 +210,5 @@ public class PantallaDeJuego extends Pantalla {
 		}
 	}
     
-	public boolean obtenterTiempoEnCero() {
-		return this.hud.obtenerTiempoEnCero();
-	}
-	
-	public InterfazJuego obtenerHUD() {
-		return this.hud;
-	}
     
 }

@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
@@ -48,10 +47,10 @@ public class PantallaFinal extends Pantalla {
         this.enFoco = false;
         setLayout(null);
         setPreferredSize(size);
+        
         panelCapas = new JLayeredPane();
         panelCapas.setLayout(null);
         panelCapas.setBounds(0, 0, size.width, size.height);
-
         botonVolver = new JButton("Volver al menu");
 
         configurarFuente();
@@ -63,9 +62,11 @@ public class PantallaFinal extends Pantalla {
         configurarMapasTeclado();
     }
     
-    private void realizarAccionVolver() {
-        controlador.dePantallaFinalAPantallaInicial();
+    private void configurarFuente() {
+    	tipoFuentes = new Fuentes();
+    	botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
     }
+    
         
     private void establecerFondo() {
        JLabel fondo = new JLabel();
@@ -73,12 +74,6 @@ public class PantallaFinal extends Pantalla {
        fondo.setOpaque(true);
        fondo.setBounds(0, 0, size.width, size.height);
        panelCapas.add(fondo, Integer.valueOf(0));
-    }
-    
-    
-    private void configurarFuente() {
-        tipoFuentes = new Fuentes();
-        botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
     }
     
     private void establecerMensaje() {
@@ -89,17 +84,6 @@ public class PantallaFinal extends Pantalla {
         int posicionTituloY = size.height / 6;
         titulo.setBounds(0, posicionTituloY, size.width, 50);
         panelCapas.add(titulo, Integer.valueOf(1));
-    }
-
-    public void puntajeJugador(int puntaje) {
-        puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
-        puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-        puntajeLabel.setForeground(Color.WHITE);
-        puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        int posicionPuntajeY = size.height / 3;
-        puntajeLabel.setBounds(0, posicionPuntajeY, size.width, 50);
-        panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
     }
 
     private void configurarBotones() {
@@ -129,7 +113,12 @@ public class PantallaFinal extends Pantalla {
         add(botonVolver);
     }
     
-    private void configurarMapasTeclado() {
+    private void realizarAccionVolver() {
+    	controlador.dePantallaFinalAPantallaInicial();
+    }
+    
+    @SuppressWarnings("serial")
+	private void configurarMapasTeclado() {
         InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = getActionMap();
 
@@ -139,6 +128,17 @@ public class PantallaFinal extends Pantalla {
                 realizarAccionVolver();
             }
         });
+    }
+    
+    public void puntajeJugador(int puntaje) {
+    	puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
+    	puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+    	puntajeLabel.setForeground(Color.WHITE);
+    	puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	
+    	int posicionPuntajeY = size.height / 3;
+    	puntajeLabel.setBounds(0, posicionPuntajeY, size.width, 50);
+    	panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
     }
     
     public void refrescar() {

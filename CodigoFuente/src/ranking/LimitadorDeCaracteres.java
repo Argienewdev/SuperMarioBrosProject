@@ -23,4 +23,5 @@ public class LimitadorDeCaracteres extends DocumentFilter {
             super.replace(fb, offset, length, text, attrs);
         }
     }
+	
 }
