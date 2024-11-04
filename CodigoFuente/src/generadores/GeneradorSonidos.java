@@ -14,157 +14,179 @@ import java.io.File;
 import java.io.IOException;
 
 public class GeneradorSonidos {
-	
-	FabricaSonidos fabricaSonidos;
-	
-	File archivoCancion;
-	
-	File archivoCancionInvulnerabilidad;
-	
-	Clip clipCancion;
-	
-	Clip clipCancionInvencible;
-	
-	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
-		this.fabricaSonidos = fabricaSonidos;
-		establecerArchivos();
-	}
+    
+    FabricaSonidos fabricaSonidos;
+    
+    File archivoCancion;
+    
+    File archivoCancionInvulnerabilidad;
+    
+    File archivoSeAcaboElTiempo;
+    
+    Clip clipCancion;
+    
+    Clip clipCancionInvencible;
+    
+    Clip clipSeAcaboElTiempo;
+    
+    public GeneradorSonidos(FabricaSonidos fabricaSonidos){
+        this.fabricaSonidos = fabricaSonidos;
+        establecerArchivos();
+    }
 
-	protected void establecerArchivos() {
-		archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
-		archivoCancionInvulnerabilidad = new File(fabricaSonidos.obtenerModoInvencible().obtenerRutaSonido());
-		establecerMusicaFondo();
-		establecerMusicaInvencible();
-	}
-	
-	
-	public void establecerMusicaFondo(){
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancion);
-			clipCancion = AudioSystem.getClip();
-			clipCancion.open(audioStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void establecerMusicaInvencible(){
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
-			clipCancionInvencible = AudioSystem.getClip();
-			clipCancionInvencible.open(audioStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void emitirSonidoAplastarEnemigo() {
-		  try {
-			    Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
-	            
-	            File archivoSonido = new File(sonido.obtenerRutaSonido());
-	            
-	            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
-	            
-	            Clip clip = AudioSystem.getClip();
-	            
-	            clip.open(audioStream);
-	            
-	            clip.start();
-	            
-	            clip.addLineListener(event -> {
-	                if (event.getType() ==  LineEvent.Type.STOP) {
-	                    clip.close();
-	                }
-	            });
-	        } catch (UnsupportedAudioFileException e) {
-	            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
-	        } catch (IOException e) {
-	            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
-	        } catch (LineUnavailableException e) {
-	            System.err.println("Línea de audio no disponible: " + e.getMessage());
-	        }
-		
-	}
-	
-	public void emitirSonidoAplastarEnemigo2() {
-		try {
-			Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo2();
-			
-			File archivoSonido = new File(sonido.obtenerRutaSonido());
-			
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
-			
-			Clip clip = AudioSystem.getClip();
-			
-			clip.open(audioStream);
-			
-			clip.start();
-			
-			clip.addLineListener(event -> {
-				if (event.getType() ==  LineEvent.Type.STOP) {
-					clip.close();
-				}
-			});
-		} catch (UnsupportedAudioFileException e) {
-			System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
-		} catch (IOException e) {
-			System.err.println("Error al leer el archivo de audio: " + e.getMessage());
-		} catch (LineUnavailableException e) {
-			System.err.println("Línea de audio no disponible: " + e.getMessage());
-		}
-		
-	}
-	
-	public void emitirSonidoAplastarEnemigo3(){
-		try {
-			Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo3();
-			
-			File archivoSonido = new File(sonido.obtenerRutaSonido());
-			
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
-			
-			Clip clip = AudioSystem.getClip();
-			
-			clip.open(audioStream);
-			
-			clip.start();
-			
-			clip.addLineListener(event -> {
-				if (event.getType() ==  LineEvent.Type.STOP) {
-					clip.close();
-				}
-			});
-		} catch (UnsupportedAudioFileException e) {
-			System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
-		} catch (IOException e) {
-			System.err.println("Error al leer el archivo de audio: " + e.getMessage());
-		} catch (LineUnavailableException e) {
-			System.err.println("Línea de audio no disponible: " + e.getMessage());
-		}
-		
-	}
-	
-	public void reproducirMusicaFondo(){
-		clipCancion.setFramePosition(0);
-		clipCancion.start();
-		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
-	}
-	
-	public void detenerMusicaFondo(){
-		clipCancion.stop();
-	}
-	
-	public void reproducirMusicaInvulnerable(){
-		clipCancionInvencible.setFramePosition(0);
-		clipCancionInvencible.start();
-		clipCancionInvencible.loop(Clip.LOOP_CONTINUOUSLY);
-	}
-	
-	public void detenerMusicaInvulnerable(){
-		clipCancionInvencible.stop();
-	}
+    protected void establecerArchivos() {
+        archivoCancion = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
+        archivoCancionInvulnerabilidad = new File(fabricaSonidos.obtenerModoInvencible().obtenerRutaSonido());
+        archivoSeAcaboElTiempo = new File(fabricaSonidos.obtenerSeAcaboElTiempo().obtenerRutaSonido());
+        establecerMusicaFondo();
+        establecerMusicaInvencible();
+        establecerSeAcaboElTiempo();
+    }
+    
+    public void establecerMusicaFondo(){
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancion);
+            clipCancion = AudioSystem.getClip();
+            clipCancion.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void establecerMusicaInvencible(){
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
+            clipCancionInvencible = AudioSystem.getClip();
+            clipCancionInvencible.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void establecerSeAcaboElTiempo(){
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSeAcaboElTiempo);
+            clipSeAcaboElTiempo = AudioSystem.getClip();
+            clipSeAcaboElTiempo.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void emitirSonidoAplastarEnemigo() {
+        try {
+            Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
+            
+            File archivoSonido = new File(sonido.obtenerRutaSonido());
+            
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioStream);
+            
+            clip.start();
+            
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println("Línea de audio no disponible: " + e.getMessage());
+        }
+    }
+    
+    public void emitirSonidoAplastarEnemigo2() {
+        try {
+            Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo2();
+            
+            File archivoSonido = new File(sonido.obtenerRutaSonido());
+            
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioStream);
+            
+            clip.start();
+            
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println("Línea de audio no disponible: " + e.getMessage());
+        }
+    }
+    
+    public void emitirSonidoAplastarEnemigo3(){
+        try {
+            Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo3();
+            
+            File archivoSonido = new File(sonido.obtenerRutaSonido());
+            
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioStream);
+            
+            clip.start();
+            
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println("Línea de audio no disponible: " + e.getMessage());
+        }
+    }
+    
+    public void reproducirMusicaFondo(){
+        clipCancion.setFramePosition(0);
+        clipCancion.start();
+        clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+    
+    public void detenerMusicaFondo(){
+        clipCancion.stop();
+    }
+    
+    public void reproducirMusicaInvulnerable(){
+        clipCancionInvencible.setFramePosition(0);
+        clipCancionInvencible.start();
+        clipCancionInvencible.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+    
+    public void detenerMusicaInvulnerable(){
+        clipCancionInvencible.stop();
+    }
+    
+    public void reproducirSeAcaboElTiempo(){
+        clipSeAcaboElTiempo.setFramePosition(0);
+        clipSeAcaboElTiempo.start();
+    }
+    
+    public void detenerSeAcaboElTiempo(){
+        clipSeAcaboElTiempo.stop();
+    }
+
+
 	
 	public void choqueFireball(){
 		 try {
@@ -391,9 +413,6 @@ public class GeneradorSonidos {
         }
 	}
 	
-	public void musicaModoOriginal(){
-	}
-	
 	public void pierdeJuego(){
 		try {
 		    Sonido sonido = fabricaSonidos.obtenerPierdeJuego();
@@ -618,33 +637,6 @@ public class GeneradorSonidos {
         }
 	}
 	
-	public void seAcaboElTiempo(){
-		try {
-		    Sonido sonido = fabricaSonidos.obtenerSeAcaboElTiempo();
-            
-            File archivoSonido = new File(sonido.obtenerRutaSonido());
-            
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
-            
-            Clip clip = AudioSystem.getClip();
-            
-            clip.open(audioStream);
-            
-            clip.start();
-            
-            clip.addLineListener(event -> {
-                if (event.getType() ==  LineEvent.Type.STOP) {
-                    clip.close();
-                }
-            });
-        } catch (UnsupportedAudioFileException e) {
-            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
-        } catch (LineUnavailableException e) {
-            System.err.println("Línea de audio no disponible: " + e.getMessage());
-        }
-	}
 
 	public void reproducirMusicaRescatePrincesa() {
 		try {

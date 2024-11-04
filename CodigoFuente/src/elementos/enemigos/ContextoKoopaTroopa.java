@@ -28,6 +28,7 @@ public class ContextoKoopaTroopa extends Enemigo {
     	return this.estadoKoopa;
     }
     
+    @Override
     public int obtenerTicksAnimacion() {
     	return this.ticksAnimacion;
     }
@@ -46,10 +47,12 @@ public class ContextoKoopaTroopa extends Enemigo {
         visitante.visitarContextoKoopaTroopa(this);
     }
     
+    @Override
     public void invertirDireccion() {
     	this.estadoKoopa.invertirDireccion();
     }
     
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estadoKoopa.actualizarSprite(fabricaSprites);
 		if (cambiarEstado) {
@@ -58,10 +61,12 @@ public class ContextoKoopaTroopa extends Enemigo {
 		}
 	}
 	
+	@Override
 	public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
 		this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 	}
     
+	@Override
 	public void mover() {
 		if (removido) {
     		Point velocidad = new Point(0, 0);

@@ -23,11 +23,12 @@ public class Goomba extends Enemigo {
     	return fabricaSprites.obtenerGoombaMuerto();
     }
     
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
 		if (this.removido) {
 			this.establecerVelocidadDireccional(new Point(0, 0));
-			eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 		} else if (mirandoAlFrente) {
 				this.establecerSprite(fabricaSprites.obtenerGoombaFrontalCaminando());
 		} else {

@@ -29,6 +29,7 @@ public class KoopaEnCaparazon implements EstadoKoopa {
 	}
 	
 	public void invertirDireccion() {
+		// No se invierte la dirección, porque es estático 
 	}
 	
 	public void mover() {

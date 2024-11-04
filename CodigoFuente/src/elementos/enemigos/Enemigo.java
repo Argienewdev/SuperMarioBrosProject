@@ -15,8 +15,7 @@ public abstract class Enemigo extends NoJugable {
 		
 	protected int puntosSustraidosPorMuerteCausada;
 	
-	@SuppressWarnings("exports")
-	public Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
 		this.velocidadHorizontalEnemigo = 2;
@@ -61,14 +60,14 @@ public abstract class Enemigo extends NoJugable {
     
     public void actualizarSprite(FabricaSprites fabricaSprites) {
     	if (this.removido) {
-			eliminarEntidadGrafica(fabricaSprites);
+			this.eliminarEntidadGrafica(fabricaSprites);
 			this.establecerVelocidadDireccional(new Point(0, 0));
 		}
     }
     
     public void eliminarEntidadGrafica(FabricaSprites fabricaSprites) {
     	this.incrementarContadorTicks();
-		if (obtenerContadorTicks() ==  1){
+		if (this.obtenerContadorTicks() ==  1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion(fabricaSprites);
 		} else if (obtenerContadorTicks() ==  ticksAnimacion) {
@@ -84,12 +83,10 @@ public abstract class Enemigo extends NoJugable {
     	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
-    	} else {
-    		if (this.obtenerVelocidadDireccional().x <=  0) {
-    			moverIzquierda();
-    		} else if (this.obtenerVelocidadDireccional().x > 0) {
-    			moverDerecha();
-    		}
+    	} else if (this.obtenerVelocidadDireccional().x <=  0) {
+    		this.moverIzquierda();
+    	} else if (this.obtenerVelocidadDireccional().x > 0) {
+    		this.moverDerecha();
     	}
 	}
    

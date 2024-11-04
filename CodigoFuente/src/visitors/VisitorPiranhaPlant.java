@@ -76,6 +76,7 @@ public class VisitorPiranhaPlant implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
         if (!this.miEntidad.obtenerRemovido()) {
         	this.generadorSonidos.detenerMusicaFondo();
+            this.generadorSonidos.detenerSeAcaboElTiempo();
         	this.generadorSonidos.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();

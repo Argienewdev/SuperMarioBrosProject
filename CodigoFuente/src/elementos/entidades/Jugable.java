@@ -127,7 +127,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void muerte() {
-		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego();
+		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego(false);
 	}
 	
 	public void rebotar() {
