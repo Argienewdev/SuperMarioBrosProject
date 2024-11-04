@@ -7,7 +7,8 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import fuentes.Fuentes;
+import fuentes.Fuente;
+import juego.Par;
 
 @SuppressWarnings("serial")
 public class InterfazJuego extends JPanel{
@@ -20,9 +21,9 @@ public class InterfazJuego extends JPanel{
 	
 	private JLabel nivelLabel;
 	
-	private Fuentes tipoFuentes;
+	private Fuente tipoFuentes;
 	
-	private boolean tiempoEnCero;
+	private Par tiempo;
 
 	private boolean tiempoDetenido;
 	
@@ -31,8 +32,8 @@ public class InterfazJuego extends JPanel{
 		this.setLayout(new BorderLayout());
 		this.vidasLabel =  new JLabel("Vidas: 3");
 		this.puntajeLabel =  new JLabel("Puntaje 0");
-		this.tiempoLabel =  new JLabel("Tiempo: 300:00");
-		this.tiempoEnCero = false;
+		this.tiempo = new Par(300,00);
+		this.tiempoLabel =  new JLabel("Tiempo: "+tiempo.obtenerPrimerComponente()+":"+tiempo.obtenerPrimerComponente());
 		this.nivelLabel = new JLabel("Nivel: 1");
 		this.tiempoDetenido = false;
 		this.setOpaque(false);
@@ -71,12 +72,10 @@ public class InterfazJuego extends JPanel{
 	
 	public void actualizarTiempo() {
 	    if (!tiempoDetenido) {
-	    	String tiempoTexto = tiempoLabel.getText().substring(8);
-		    String[] tiempoPartes = tiempoTexto.split(":");
-		    int segundos = Integer.parseInt(tiempoPartes[0]);
-		    int miliSegundos = Integer.parseInt(tiempoPartes[1]);
+		    int segundos = tiempo.obtenerPrimerComponente();
+		    int miliSegundos = tiempo.obtenerSegundoComponente();   
 		    if(segundos==0 && miliSegundos==0) {
-		    	this.tiempoEnCero=true;
+		    	
 		    }else if (miliSegundos ==  0) {
 		    		if (segundos > 0) {
 		    			segundos--;
@@ -84,7 +83,9 @@ public class InterfazJuego extends JPanel{
 		        }
 		    } else {
 		        miliSegundos--;
-		    }	    
+		    }
+		    this.tiempo.establecerPrimero(segundos);
+		    this.tiempo.establecerSegundo(miliSegundos);
 		    String nuevoTiempoTexto = String.format("Tiempo: %02d:%02d", segundos, miliSegundos);
 		    this.tiempoLabel.setText(nuevoTiempoTexto);
 	    }
@@ -95,7 +96,7 @@ public class InterfazJuego extends JPanel{
 	}
 	
 	public void configurarFuente() {
-		this.tipoFuentes =  new Fuentes();
+		this.tipoFuentes =  new Fuente();
 		this.vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
 		this.tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
@@ -114,8 +115,8 @@ public class InterfazJuego extends JPanel{
 		this.nivelLabel.setText("Nivel " + nivel);
 	}
 	
-	public boolean obtenerTiempoEnCero() {
-		return this.tiempoEnCero;
+	public Par obtenerTiempo() {
+		return this.tiempo;
 	}
 	
 	public void detenerTiempo() {

@@ -92,7 +92,7 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
     }
     
 	public Sonido obtenerSeAcaboElTiempo() {
-    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/pierdeVida.wav");
+    	return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/seAcaboElTiempo.wav");
 	}
     
 }

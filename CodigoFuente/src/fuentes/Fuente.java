@@ -3,7 +3,7 @@ package fuentes;
 import java.awt.Font;
 import java.io.InputStream;
 
-public class Fuentes {
+public class Fuente {
 
     private Font font = null;
 
@@ -18,8 +18,6 @@ public class Fuentes {
             System.err.println(fontName + " No se cargo la fuente");
             font = new Font("Arial", Font.PLAIN, 14);            
         }
-         
-        Font tfont = font.deriveFont(estilo, tamanio);
-        return tfont;
+        return font.deriveFont(estilo, tamanio);
     }
 }

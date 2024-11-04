@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import fuentes.Fuentes;
+import fuentes.Fuente;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
 @SuppressWarnings("serial")
@@ -31,7 +31,7 @@ public class PantallaInicial extends Pantalla {
 	
 	protected ControladorVistas controlador;
 	
-	Fuentes tipoFuentes;
+	Fuente tipoFuentes;
 	
 	private String modo;
 	
@@ -61,7 +61,7 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	private void configurarFuente() {
-		tipoFuentes =  new Fuentes();
+		tipoFuentes =  new Fuente();
 	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    botonRanking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));

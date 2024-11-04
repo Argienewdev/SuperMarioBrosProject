@@ -43,10 +43,6 @@ public class PantallaDeJuego extends Pantalla {
         this.labelsElementoDeJuegoARemover = new ArrayList<>();
         this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
     }
-
-    public boolean obtenterTiempoEnCero() {
-    	return this.hud.obtenerTiempoEnCero();
-    }
     
     public InterfazJuego obtenerHUD() {
     	return this.hud;

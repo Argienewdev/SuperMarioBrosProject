@@ -57,9 +57,27 @@ public class Partida {
 	
 	public void actualizar() {
 		this.coordinadorActualizacionesJugador.actualizar();
-		if(tiempoLlegoACero()) {
-			matarJugador();
+		this.analizarEstadoTiempo();
+	}
+
+	private void analizarEstadoTiempo() {
+		int segundos = obtenerTiempoPartida().obtenerPrimerComponente();
+		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
+		if(segundos == 5 && milisegundos == 0) {
+			this.obtenerGeneradorSonidos().detenerMusicaFondo();
+			this.obtenerGeneradorSonidos().seAcaboElTiempo();
+		}else if(segundos == 0 && milisegundos == 0) {
+			this.matarJugadorPorFaltaDeTiempo();
 		}
+	}
+		
+	private void matarJugadorPorFaltaDeTiempo() {
+		this.jugable.perderVida();
+     	this.reiniciarNivel();
+	}
+
+	private Par obtenerTiempoPartida() {
+		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenerHUD().obtenerTiempo();
 	}
 
 	public BucleJugador obtenerBucleJugador(){
@@ -135,16 +153,6 @@ public class Partida {
 		return obtenerFabricaSprites().obtenerMarioDefaultFrontalQuieto();
 	}
 	
-	private boolean tiempoLlegoACero() {
-		return this.juego.obtenerControladorVistas().obtenerPantallaDeJuego().obtenterTiempoEnCero();
-	}
-	
-	private void matarJugador() {
-		obtenerGeneradorSonidos().detenerMusicaFondo();
-     	obtenerGeneradorSonidos().seAcaboElTiempo();
-     	this.jugable.perderVida();
-     	this.reiniciarNivel();
-	}
 	public SensorDeTeclasJuego obtenerSensorDeTeclasJuego() {
 		return this.sensorDeTeclasJuego;
 	}

@@ -15,7 +15,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
-import fuentes.Fuentes;
+import fuentes.Fuente;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
 public class PantallaFinal extends Pantalla {
@@ -36,7 +36,7 @@ public class PantallaFinal extends Pantalla {
     
     protected ControladorVistas controlador;
     
-    protected Fuentes tipoFuentes;
+    protected Fuente tipoFuentes;
     
     protected boolean enFoco;
     
@@ -63,7 +63,7 @@ public class PantallaFinal extends Pantalla {
     }
     
     private void configurarFuente() {
-    	tipoFuentes = new Fuentes();
+    	tipoFuentes = new Fuente();
     	botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
     }
     
