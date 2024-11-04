@@ -89,6 +89,7 @@ public class VisitorKoopaDefault implements Visitante {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miContexto)
     		&& !this.miContexto.obtenerRemovido()) {
     		generadorSonidos.detenerMusicaFondo();
+    	    this.generadorSonidos.detenerSeAcaboElTiempo();
     		generadorSonidos.pierdeVida();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miContexto.obtenerPuntosSustraidosPorMuerteCausada();

@@ -72,8 +72,8 @@ public class Partida {
 		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
 		if (segundos == 5 && milisegundos == 0) {
 			this.obtenerGeneradorSonidos().detenerMusicaFondo();
-			this.obtenerGeneradorSonidos().seAcaboElTiempo();
-		} else if (segundos == 0 && milisegundos == 0) {
+			this.obtenerGeneradorSonidos().reproducirSeAcaboElTiempo();
+		}else if(segundos == 0 && milisegundos == 0) {
 			this.matarJugadorPorFaltaDeTiempo();
 		}
 	}
@@ -137,15 +137,15 @@ public class Partida {
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
 	}
-
-	public void finalizarPartida() {
+	
+	public void finalizarPartida(boolean ganaJuego) {
 		this.numeroNivelActual = 1;
-		this.detenerBucleJuego();
+		this.detenerBucleJuego(ganaJuego);
 		this.detenerBucleEntidadesNoJugables();
 	}
 	
-	private void detenerBucleJuego() {
-		this.juego.finalizarJuego();		
+	private void detenerBucleJuego(boolean ganaJuego) {
+		this.juego.finalizarJuego(ganaJuego);		
 	}
 
 	private void detenerBucleEntidadesNoJugables() {

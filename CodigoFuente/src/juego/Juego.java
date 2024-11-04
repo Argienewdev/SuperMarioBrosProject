@@ -67,14 +67,17 @@ public class Juego {
 		this.controladorVistas = controladorVistas;
 	}
 	
-	public void finalizarJuego() {
-	    iniciarTemporizadorSonidoFinDeJuego();
+	public void finalizarJuego(boolean ganaJuego) {
+	    if(!ganaJuego) {
+	    	iniciarTemporizadorSonidoFinDeJuego();
+		}
+	    partida.obtenerGeneradorSonidos().detenerMusicaInvulnerable();
 	    mostrarPantallaIngresoNombre();
 	    detenerBucleJugador();
 	}
 
 	private void iniciarTemporizadorSonidoFinDeJuego() {
-		Timer temporizadorFinDeJuego = new Timer(2000, new ActionListener() {
+		Timer temporizadorFinDeJuego = new Timer(2500, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            partida.obtenerGeneradorSonidos().pierdeJuego();
 	        }

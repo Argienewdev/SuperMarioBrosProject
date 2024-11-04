@@ -4,7 +4,8 @@
 /**
  * 
  */
-module superMario {
+module CodigoFuente
+{
 	exports elementos;
 	exports elementos.enemigos;
 	exports elementos.entidades;
