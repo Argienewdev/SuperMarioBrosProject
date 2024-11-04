@@ -25,8 +25,31 @@ public class SensorDeTeclasMenu implements KeyListener{
 		SAccionado = false;
 		enterAccionado = false;
 	}
+	
+	public boolean obtenerSPresionado() {
+		return SPresionado;
+	}
+	
+	public boolean obtenerWPresionado() {
+		return WPresionado;
+	}
+	
+	public boolean obtenerWAccionada() {
+		return WAccionado;
+	}
+	
+	public boolean obtenerSAccionada() {
+		return SAccionado;
+	}
+	
+	public boolean obtenerEnterPresionado() {
+		return enterPresionado;
+	}
+	
+	public boolean obtenerEnterAccionada() {
+		return enterAccionado;
+	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (keyCode ==  KeyEvent.VK_ENTER) {
@@ -38,7 +61,6 @@ public class SensorDeTeclasMenu implements KeyListener{
 		}
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
     	if (keyCode ==  KeyEvent.VK_ENTER) {
@@ -53,7 +75,6 @@ public class SensorDeTeclasMenu implements KeyListener{
     	}
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
     }
     
@@ -68,30 +89,5 @@ public class SensorDeTeclasMenu implements KeyListener{
     public void accionarEnter() {
     	enterAccionado = true;
     }
-    
-    public boolean obtenerEnterPresionado() {
-    	return enterPresionado;
-    }
-    
-    public boolean obtenerSPresionado() {
-    	return SPresionado;
-    }
-    
-    public boolean obtenerWPresionado() {
-    	return WPresionado;
-    }
-    
-    public boolean obtenerWAccionada() {
-    	return WAccionado;
-    }
-    
-    public boolean obtenerSAccionada() {
-    	return SAccionado;
-    }
-    
-    public boolean obtenerEnterAccionada() {
-    	return enterAccionado;
-    }
-    
     
 }
