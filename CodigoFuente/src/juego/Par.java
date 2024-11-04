@@ -26,4 +26,5 @@ public class Par {
 	public void establecerSegundo(int segundoComponente) {
 		this.segundoComponente = segundoComponente;
 	}
+	
 }
