@@ -70,7 +70,6 @@ public class MasterMind {
 		if (enemigo.obtenerVisibleEnPantalla()){
 			this.agregarEntidadVisible(enemigo);
 			if (this.movimientoEnemigosActivo) {
-				this.chequearChoqueBordesEnemigo(enemigo);
 				enemigo.mover();
 				enemigo.aplicarGravedad();
 			} else{
@@ -79,6 +78,7 @@ public class MasterMind {
 		} else {
 			this.nivel.removerEntidadVisible(enemigo);
 		}
+		this.chequearChoqueBordesEnemigo(enemigo);
 		this.cambiarYVerificarPosicionHitboxDeEntidad(enemigo);
 	}
 	
@@ -124,6 +124,9 @@ public class MasterMind {
 		if(powerUp.obtenerVisibleEnPantalla()) {
 			this.agregarEntidadVisible(powerUp);
 			this.realizarComportamientoPowerUp(powerUp);
+			if (!powerUp.estaDentroDeBloqueDePreguntas()) {
+				powerUp.aplicarGravedad();
+			}
 		}else {
 			this.nivel.removerEntidadVisible(powerUp);
 		}
@@ -136,14 +139,12 @@ public class MasterMind {
 			sacarPowerUpDeBloqueDePreguntas(powerUp);
 			powerUp.incrementarContadorTicks();
 		} else if (!powerUp.estaDentroDeBloqueDePreguntas() && ticksAlcanzaronMarca && powerUp.esMovible()) {
-			if (powerUp.obtenerVelocidadDireccional().x ==  0) {
-				powerUp.mover();
-			}
+			powerUp.mover();
 			powerUp.aplicarGravedad();
-			cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
 		} else if (!ticksEnCero && !ticksAlcanzaronMarca) {
 			powerUp.incrementarContadorTicks();
 		}
+		this.cambiarYVerificarPosicionHitboxDeEntidad(powerUp);
 	}
 	
 	private void sacarPowerUpDeBloqueDePreguntas(PowerUp powerUp) {
@@ -203,8 +204,7 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionConPlataformas(Entidad entidad) {
-	    
-		for (Plataforma plataforma : nivel.obtenerPlataformasAdyacentes(entidad)) {
+		for (Plataforma plataforma : this.nivel.obtenerPlataformasAdyacentes(entidad)) {
 	        if (plataforma != null && entidad.huboColision(plataforma)) {
 	        	plataforma.aceptarVisitante(entidad.obtenerVisitante());
 	            entidad.aceptarVisitante(plataforma.obtenerVisitante());

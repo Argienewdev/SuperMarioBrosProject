@@ -26,7 +26,6 @@ public class Lakitu extends Enemigo {
     	this.puntosSustraidosPorMuerteCausada = 0;
     	this.ticksAnimacion = TICKS_PARA_ELIMINAR;
     	this.contadorTicksDisparo = 0;
-		this.velocidadHorizontalEnemigo = 3;
     }
     
     protected Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites) {

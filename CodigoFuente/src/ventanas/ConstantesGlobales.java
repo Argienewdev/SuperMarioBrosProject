@@ -24,4 +24,8 @@ public class ConstantesGlobales {
 	
 	public static final int GRAVEDAD = 2;
 	
+	public static final int VELOCIDAD_HORIZONTAL_POWERUP = 4;
+	
+	public static final int VELOCIDAD_HORIZONTAL_ENEMIGO = 4;
+	
 }

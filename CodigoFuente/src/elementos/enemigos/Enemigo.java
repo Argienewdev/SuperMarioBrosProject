@@ -5,11 +5,10 @@ import elementos.Sprite;
 import elementos.entidades.NoJugable;
 import fabricas.FabricaSprites;
 import observers.ObserverGrafico;
+import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Enemigo extends NoJugable {
-	
-	protected int velocidadHorizontalEnemigo;
 	
 	protected int puntosOtorgadosPorEliminacion;
 		
@@ -18,11 +17,10 @@ public abstract class Enemigo extends NoJugable {
 	protected Enemigo(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.colisionAbajo = true;
-		this.velocidadHorizontalEnemigo = 2;
 	}
     
 	public int obtenerVelocidadHorizontalEnemigo() {
-		return velocidadHorizontalEnemigo;
+		return ConstantesGlobales.VELOCIDAD_HORIZONTAL_ENEMIGO;
 	}
 	
     public int obtenerPuntosOtorgadosPorEliminacion() {
@@ -37,13 +35,13 @@ public abstract class Enemigo extends NoJugable {
     
     
     protected void moverDerecha() {
-    	Point velocidad = new Point(velocidadHorizontalEnemigo, this.obtenerVelocidadDireccional().y);
+    	Point velocidad = new Point(ConstantesGlobales.VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     	this.establecerMirandoAlFrente(true);
     }
     
     protected void moverIzquierda() {
-    	Point velocidad = new Point(-velocidadHorizontalEnemigo, this.obtenerVelocidadDireccional().y);
+    	Point velocidad = new Point(-ConstantesGlobales.VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
     	this.establecerMirandoAlFrente(false);
     }
