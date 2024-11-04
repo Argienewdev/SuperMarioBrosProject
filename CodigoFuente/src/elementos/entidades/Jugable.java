@@ -130,6 +130,11 @@ public abstract class Jugable extends Entidad  {
 		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego();
 	}
 	
+	public void rebotar() {
+		Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, -15);
+		this.establecerVelocidadDireccional(nuevaVelocidad);
+	}
+	
 	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);

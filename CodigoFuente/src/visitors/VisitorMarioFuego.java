@@ -30,6 +30,7 @@ public class VisitorMarioFuego implements Visitante {
     		&& !buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		otorgarPuntosYEliminar(buzzyBeetle);
+            this.miContexto.rebotar();
     	}
     }
     
@@ -41,6 +42,7 @@ public class VisitorMarioFuego implements Visitante {
     	   && !goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(goomba);
+            this.miContexto.rebotar();
 		}
     }
 
@@ -54,6 +56,7 @@ public class VisitorMarioFuego implements Visitante {
     		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
 			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+            this.miContexto.rebotar();
         }
     }
     
@@ -64,7 +67,7 @@ public class VisitorMarioFuego implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
-	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
+            this.miContexto.rebotar();
 		}
     }
 
@@ -73,6 +76,7 @@ public class VisitorMarioFuego implements Visitante {
     	   && !lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(lakitu);
+            this.miContexto.rebotar();
     	}
     }
 

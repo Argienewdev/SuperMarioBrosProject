@@ -31,6 +31,7 @@ public class VisitorMarioDefault implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		buzzyBeetle.establecerRemovido(true);
             this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
+            this.miContexto.rebotar();
     	}
     }
 
@@ -43,6 +44,7 @@ public class VisitorMarioDefault implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
             goomba.establecerRemovido(true);
             this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+            this.miContexto.rebotar();
         }
     }
     
@@ -55,6 +57,7 @@ public class VisitorMarioDefault implements Visitante {
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
     	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
     	   this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+           this.miContexto.rebotar();
         }
     }
 
@@ -64,7 +67,7 @@ public class VisitorMarioDefault implements Visitante {
     		EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
-	        koopaDefault.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
+            this.miContexto.rebotar();
 		}
     }
 
@@ -74,6 +77,7 @@ public class VisitorMarioDefault implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		lakitu.establecerRemovido(true);
             this.miContexto.ganarPuntos(lakitu.obtenerPuntosOtorgadosPorEliminacion());
+            this.miContexto.rebotar();
         }
     }
 
