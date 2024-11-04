@@ -59,6 +59,17 @@ public class GeneradorSonidos {
 		}
 	}
 	
+	public void establecerMusicaInvencible(){
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
+			clipCancionInvencible = AudioSystem.getClip();
+			clipCancionInvencible.open(audioStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void emitirSonidoAplastarEnemigo() {
 		  try {
 			    Sonido sonido = fabricaSonidos.obtenerAplastarEnemigo();
@@ -156,17 +167,6 @@ public class GeneradorSonidos {
 	
 	public void detenerMusicaFondo(){
 		clipCancion.stop();
-	}
-	
-	public void establecerMusicaInvencible(){
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoCancionInvulnerabilidad);
-			clipCancionInvencible = AudioSystem.getClip();
-			clipCancionInvencible.open(audioStream);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
-		}
-        
 	}
 	
 	public void reproducirMusicaInvencible(){

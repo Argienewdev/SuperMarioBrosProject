@@ -19,6 +19,18 @@ public class ObserverGrafico extends JLabel implements Observer {
 		this.removido = false;
 	}
 	
+	public ElementoDeJuego obtenerEntidadObservada() {
+		return this.entidad_observada;
+	}
+	
+	public void establecerRemovido(boolean removido) {
+		this.removido = removido;
+	}
+	
+	public boolean obtenerRemovido() {
+		return this.removido;
+	}
+	
 	public void actualizar() {
 		actualizarImagen();
 		actualizarPosicionTamanio();
@@ -29,10 +41,6 @@ public class ObserverGrafico extends JLabel implements Observer {
 			this.entidad_observada.establecerVisibleEnPantalla(false);
 		}
 			
-	}
-	
-	public ElementoDeJuego obtenerEntidadObservada() {
-		return this.entidad_observada;
 	}
 	
 	protected void actualizarImagen() {
@@ -47,14 +55,6 @@ public class ObserverGrafico extends JLabel implements Observer {
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
-	}
-	
-	public void establecerRemovido(boolean removido) {
-		this.removido = removido;
-	}
-	
-	public boolean obtenerRemovido() {
-		return this.removido;
 	}
 	
 }
