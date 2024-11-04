@@ -32,10 +32,11 @@ public class KoopaDefault implements EstadoKoopa {
     }
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+		boolean mirandoAlFrente = contexto.obtenerMirandoAlFrente();
 		if (this.obtenerContext().obtenerRemovido()) {
 			this.obtenerContext().establecerVelocidadDireccional(new Point(0, 0));
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (mirandoAlFrente()) {
+		} else if (mirandoAlFrente) {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultFrontalCaminando());
 		} else {
 			this.obtenerContext().establecerSprite(fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando());
@@ -75,8 +76,4 @@ public class KoopaDefault implements EstadoKoopa {
     	contexto.establecerMirandoAlFrente(false);
     }
     
-    private boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
-	}
-
 }

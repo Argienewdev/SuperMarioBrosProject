@@ -105,7 +105,7 @@ public class MarioInvulnerable extends MarioDefault {
 		if (duracion ==  0) {
 			contexto.cambiarEstado(estadoPrevio);
 			generadorSonidos.reproducirMusicaFondo();
-			generadorSonidos.detenerMusicaInvencible();
+			generadorSonidos.detenerMusicaInvulnerable();
 			generadorSonidos.marioPequenioDeNuevo();
 		}
 	}

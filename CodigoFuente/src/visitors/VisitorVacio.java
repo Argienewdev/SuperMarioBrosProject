@@ -71,7 +71,7 @@ public class VisitorVacio implements Visitante {
 
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
     	this.generadorSonidos.detenerMusicaFondo();
-    	this.generadorSonidos.detenerMusicaInvencible();
+    	this.generadorSonidos.detenerMusicaInvulnerable();
     	this.generadorSonidos.pierdeVida();
     	int puntajeASustraer = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
     	marioInvulnerable.obtenerContexto().perderPuntos(puntajeASustraer);

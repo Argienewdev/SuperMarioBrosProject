@@ -24,21 +24,10 @@ public class GeneradorSonidos {
 	Clip clipCancion;
 	
 	Clip clipCancionInvencible;
-
-	boolean finNivel;
 	
 	public GeneradorSonidos(FabricaSonidos fabricaSonidos){
 		this.fabricaSonidos = fabricaSonidos;
-		establecerArchivos();		
-		finNivel= false;
-	}
-	
-	public void establecerFinNivelVerdadero(){
-		finNivel = true;
-	}
-	
-	public void establecerFinNivelFalso(){
-		finNivel = false;
+		establecerArchivos();
 	}
 
 	protected void establecerArchivos() {
@@ -158,24 +147,22 @@ public class GeneradorSonidos {
 	}
 	
 	public void reproducirMusicaFondo(){
-		if(!finNivel) {
-			clipCancion.setFramePosition(0);
-			clipCancion.start();
-			clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
-		}
+		clipCancion.setFramePosition(0);
+		clipCancion.start();
+		clipCancion.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
 	public void detenerMusicaFondo(){
 		clipCancion.stop();
 	}
 	
-	public void reproducirMusicaInvencible(){
+	public void reproducirMusicaInvulnerable(){
 		clipCancionInvencible.setFramePosition(0);
 		clipCancionInvencible.start();
 		clipCancionInvencible.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
-	public void detenerMusicaInvencible(){
+	public void detenerMusicaInvulnerable(){
 		clipCancionInvencible.stop();
 	}
 	
@@ -302,9 +289,9 @@ public class GeneradorSonidos {
 			Clip clip = AudioSystem.getClip();
 			
 			clip.open(audioStream);
-			if(!finNivel) {
-				clip.start();
-			}
+			
+			clip.start();
+			
 			clip.addLineListener(event -> {
 				if (event.getType() ==  LineEvent.Type.STOP) {
 					clip.close();
@@ -634,6 +621,34 @@ public class GeneradorSonidos {
 	public void seAcaboElTiempo(){
 		try {
 		    Sonido sonido = fabricaSonidos.obtenerSeAcaboElTiempo();
+            
+            File archivoSonido = new File(sonido.obtenerRutaSonido());
+            
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSonido);
+            
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioStream);
+            
+            clip.start();
+            
+            clip.addLineListener(event -> {
+                if (event.getType() ==  LineEvent.Type.STOP) {
+                    clip.close();
+                }
+            });
+        } catch (UnsupportedAudioFileException e) {
+            System.err.println("El formato de archivo de audio no es compatible: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo de audio: " + e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println("Línea de audio no disponible: " + e.getMessage());
+        }
+	}
+
+	public void reproducirMusicaRescatePrincesa() {
+		try {
+		    Sonido sonido = fabricaSonidos.obtenerRescatePrincesa();
             
             File archivoSonido = new File(sonido.obtenerRutaSonido());
             
