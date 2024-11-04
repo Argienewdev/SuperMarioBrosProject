@@ -53,7 +53,7 @@ public class FabricaEntidades {
         return spinyADevolver;
     }
     
-    @SuppressWarnings("exports")
+	@SuppressWarnings("exports")
 	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial =  new KoopaDefault();

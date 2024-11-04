@@ -77,7 +77,7 @@ public class Juego {
 	}
 
 	private void iniciarTemporizadorSonidoFinDeJuego() {
-		Timer temporizadorFinDeJuego = new Timer(2500, new ActionListener() {
+		Timer temporizadorFinDeJuego = new Timer(3000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            partida.obtenerGeneradorSonidos().pierdeJuego();
 	        }

@@ -35,6 +35,8 @@ public class Nivel {
     protected boolean nivelCompletado;
         
     protected boolean banderaAccionada;
+    
+    protected boolean princesaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
@@ -44,6 +46,7 @@ public class Nivel {
         this.partida = partida;
         this.jugable = null;
         this.banderaAccionada = false;
+        this.princesaAccionada = false;
     }
     
     private void inicializarColecciones() {
