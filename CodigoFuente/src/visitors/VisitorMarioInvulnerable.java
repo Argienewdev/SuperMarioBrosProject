@@ -117,7 +117,6 @@ public class VisitorMarioInvulnerable implements Visitante {
     }
 
     public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-    	this.generadorSonidos.detenerMusicaInvulnerable();
     }
 
     public void visitarBandera(Bandera bandera) {

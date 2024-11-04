@@ -26,7 +26,7 @@ public abstract class Jugable extends Entidad  {
 		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
-		this.vidas = 1;
+		this.vidas = 3;
 		this.puntos = 0;
 		this.desplazamiento = 0;
 	}
@@ -127,7 +127,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public void muerte() {
-		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego(false);
+		this.miNivel.obtenerPartida().obtenerJuego().finalizarJuego();
 	}
 	
 	public void rebotar() {

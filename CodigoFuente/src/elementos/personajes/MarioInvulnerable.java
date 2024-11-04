@@ -104,10 +104,10 @@ public class MarioInvulnerable extends MarioDefault {
 		duracion--;
 		if (duracion ==  0) {
 			contexto.cambiarEstado(estadoPrevio);
-			generadorSonidos.detenerMusicaInvulnerable();
+			generadorSonidos.detenerSonidoActual();
 			generadorSonidos.marioPequenioDeNuevo();
 			if (!this.contexto.obtenerNivel().obtenerBanderaAccionada()) {
-				generadorSonidos.reproducirMusicaFondo();
+				generadorSonidos.reproducirSonidoPrevio();
 			}
 		}
 	}

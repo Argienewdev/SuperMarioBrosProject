@@ -37,7 +37,9 @@ public class Partida {
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), 
 													 this.juego.obtenerPantallaDeJuego(), 
 													 this.juego.obtenerControladorVistas());
-		obtenerGeneradorSonidos().reproducirMusicaFondo();
+		this.obtenerGeneradorSonidos().detenerSonidoActual();
+		this.obtenerGeneradorSonidos().establecerSonidoMusicaFondo();
+		this.obtenerGeneradorSonidos().reproducirSonidoActual();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.jugable = this.nivel.obtenerMario();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(sensorDeTeclasJuego, 
@@ -71,8 +73,9 @@ public class Partida {
 		int segundos = obtenerTiempoPartida().obtenerPrimerComponente();
 		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
 		if (segundos == 5 && milisegundos == 0) {
-			this.obtenerGeneradorSonidos().detenerMusicaFondo();
-			this.obtenerGeneradorSonidos().reproducirSeAcaboElTiempo();
+			this.obtenerGeneradorSonidos().detenerSonidoActual();
+			this.obtenerGeneradorSonidos().establecerSonidoPocoTiempo();
+			this.obtenerGeneradorSonidos().reproducirSonidoActual();
 		}else if(segundos == 0 && milisegundos == 0) {
 			this.matarJugadorPorFaltaDeTiempo();
 		}
@@ -92,10 +95,10 @@ public class Partida {
 	}
 	
 	public void cambiarNivel() {
-		eliminarNivelActual();
-		generarNuevoNivel();
-		actualizarReferenciasANivelActual();
-		iniciarTemporizadorCambioDeNivel();
+		this.eliminarNivelActual();
+		this.generarNuevoNivel();
+		this.actualizarReferenciasANivelActual();
+		this.iniciarTemporizadorCambioDeNivel();
 	}
 
 	private void eliminarNivelActual() {
@@ -118,7 +121,9 @@ public class Partida {
 	    int duracionEntreNiveles = this.juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles();
 	    Timer temporizadorCambio = new Timer(duracionEntreNiveles, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	        	obtenerGeneradorSonidos().reproducirMusicaFondo();
+	        	obtenerGeneradorSonidos().detenerSonidoActual();
+	        	obtenerGeneradorSonidos().establecerSonidoMusicaFondo();
+	        	obtenerGeneradorSonidos().reproducirSonidoActual();
 	        }
 	    });
 	    temporizadorCambio.setRepeats(false);
@@ -138,14 +143,18 @@ public class Partida {
 		this.nivel.establecerMario(jugable);
 	}
 	
-	public void finalizarPartida(boolean ganaJuego) {
+	public void finalizarPartida() {
 		this.numeroNivelActual = 1;
-		this.detenerBucleJuego(ganaJuego);
+		this.detenerBucleJuego();
 		this.detenerBucleEntidadesNoJugables();
 	}
 	
-	private void detenerBucleJuego(boolean ganaJuego) {
-		this.juego.finalizarJuego(ganaJuego);		
+	public Nivel obtenerNivel(){
+		return nivel;
+	}
+	
+	private void detenerBucleJuego( ) {
+		this.juego.finalizarJuego();		
 	}
 
 	private void detenerBucleEntidadesNoJugables() {

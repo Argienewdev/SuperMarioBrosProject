@@ -130,7 +130,7 @@ public class FabricaPlataformas {
 		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
-		int identificadorPowerUp =  1;
+		int identificadorPowerUp =  generarIdentificadorPowerUpRandom(random);
 		//generarIdentificadorPowerUpRandom(random); // Genera un número entre 1 (inclusive) y 8 (inclusive)
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {

@@ -35,6 +35,8 @@ public class Nivel {
     
     protected Partida partida;
     
+    protected boolean princesaAccionada;
+    
     protected boolean banderaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
@@ -45,6 +47,7 @@ public class Nivel {
         this.partida = partida;
         this.mario = null;
         this.banderaAccionada = false;
+        this.princesaAccionada = false;
     }
     
     private void inicializarColecciones() {
@@ -61,6 +64,14 @@ public class Nivel {
     
     public void accionarBandera() {
     	this.banderaAccionada = true;
+    }
+    
+    public boolean obtenerPrincesaAccionada() {
+    	return this.banderaAccionada;
+    }
+    
+    public void accionarPrincesa(){
+    	this.princesaAccionada = true;
     }
     
     public void agregarPlataforma(Plataforma plataforma) {

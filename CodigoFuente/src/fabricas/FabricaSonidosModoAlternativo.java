@@ -43,8 +43,8 @@ public class FabricaSonidosModoAlternativo extends FabricaSonidos{
         return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/matarBolaDeFuego.wav");
     }
 
-    public Sonido obtenerModoInvencible() {
-        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoInvencible.wav");
+    public Sonido obtenerModoInvulnerable() {
+        return new Sonido(rutaACarpeta + "/sonidoModoAlternativo/modoInvulnerable.wav");
     }
     
     public Sonido obtenerModoRecuperacion() {
