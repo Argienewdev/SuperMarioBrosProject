@@ -44,15 +44,12 @@ public class PantallaIngresoNombre extends Pantalla {
         add(layeredPane, BorderLayout.CENTER); 
     }
     
-    public void solicitarFocoCampoTexto() {
-        campoNombre.requestFocusInWindow();
-    }
 
     private void establecerFondo(JLayeredPane layeredPane) {
         if (this.modo.equals("Modo original")) {
             fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
         } else if (this.modo.equals("Modo alternativo")) {
-            fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
+            	fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
         }
         fondo.setBounds(0, 0, size.width, size.height);
         layeredPane.add(fondo, Integer.valueOf(0));
@@ -158,6 +155,10 @@ public class PantallaIngresoNombre extends Pantalla {
         return toRet;
     }
     
+    public void solicitarFocoCampoTexto() {
+    	campoNombre.requestFocusInWindow();
+    }
+    
     public void refrescar() {
     }
     
@@ -168,4 +169,5 @@ public class PantallaIngresoNombre extends Pantalla {
     public boolean esRefrescable() {
     	return false;
     }
+    
 }

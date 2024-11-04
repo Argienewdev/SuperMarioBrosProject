@@ -78,9 +78,9 @@ public class InterfazJuego extends JPanel{
 		    if(segundos==0 && miliSegundos==0) {
 		    	this.tiempoEnCero=true;
 		    }else if (miliSegundos ==  0) {
-		        if (segundos > 0) {
-		            segundos--;
-		            miliSegundos = 59;
+		    		if (segundos > 0) {
+		    			segundos--;
+		    			miliSegundos = 59;
 		        }
 		    } else {
 		        miliSegundos--;

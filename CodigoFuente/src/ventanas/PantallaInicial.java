@@ -2,8 +2,6 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,24 +53,14 @@ public class PantallaInicial extends Pantalla {
 		registrarOyenteTeclas();
 	}
 	
-	protected void ajustarDisposicion(){
-		botonModo1.setBounds((size.width - botonModo1.getPreferredSize().width) / 2, (size.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
-        botonModo2.setBounds((size.width - botonModo2.getPreferredSize().width) / 2, (size.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
-        botonRanking.setBounds((size.width - botonRanking.getPreferredSize().width) / 2, (size.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
-        fondo.add(botonModo1);
-        fondo.add(botonModo2);
-        fondo.add(botonRanking);
-        fondo.setBounds(0, 0, size.width, size.height);
+	private void inicializarArregloDeBotones() {
+		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
+		arregloDeBotones.agregar(botonModo1);
+		arregloDeBotones.agregar(botonModo2);
+		arregloDeBotones.agregar(botonRanking);
 	}
 	
-	protected void registrarOyenteTeclas(){
-		botonEnfocado.setFocusable(true);
-		this.setFocusable(true);
-	    this.requestFocusInWindow(); 
-	    addKeyListener(sensor);
-	}
-	
-	public void configurarFuente() {
+	private void configurarFuente() {
 		tipoFuentes =  new Fuentes();
 	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
@@ -85,7 +73,7 @@ public class PantallaInicial extends Pantalla {
 	    botonEnfocado.setForeground(Color.DARK_GRAY);
 	}
 	
-	protected void configurarVentana(){
+	private void configurarVentana(){
 		new JPanel();
 		setLayout(null);
 		setPreferredSize(size);
@@ -95,7 +83,7 @@ public class PantallaInicial extends Pantalla {
 		establecerFondo();
 	}
 	
-	protected void establecerFondo(){
+	private void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
 		 fondo = new JLabel(fondoImagen);
@@ -105,11 +93,30 @@ public class PantallaInicial extends Pantalla {
 		 add(fondo);
 	}
 	
-	private void inicializarArregloDeBotones() {
-		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
-		arregloDeBotones.agregar(botonModo1);
-		arregloDeBotones.agregar(botonModo2);
-		arregloDeBotones.agregar(botonRanking);
+	
+	private void ajustarDisposicion(){
+		botonModo1.setBounds((size.width - botonModo1.getPreferredSize().width) / 2, (size.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
+		botonModo2.setBounds((size.width - botonModo2.getPreferredSize().width) / 2, (size.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
+		botonRanking.setBounds((size.width - botonRanking.getPreferredSize().width) / 2, (size.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
+		fondo.add(botonModo1);
+		fondo.add(botonModo2);
+		fondo.add(botonRanking);
+		fondo.setBounds(0, 0, size.width, size.height);
+	}
+	
+	private void registrarOyenteTeclas(){
+		botonEnfocado.setFocusable(true);
+		this.setFocusable(true);
+		this.requestFocusInWindow(); 
+		addKeyListener(sensor);
+	}
+	
+	public void establecerEnFoco(boolean condicion){
+		this.enFoco =  condicion;
+	}
+	
+	public boolean obtenerEnFoco(){
+		return this.enFoco;
 	}
 	
 	 public void refrescar() {
@@ -144,13 +151,6 @@ public class PantallaInicial extends Pantalla {
 	       
     }
 	 
-	 public void establecerEnFoco(boolean condicion){
-	    	this.enFoco =  condicion;
-	    }
-	    
-	 public boolean obtenerEnFoco(){
-	    	return this.enFoco;
-	 }
 	 
 	public void guardarModo (String modo) {
 		this.modo = modo;
