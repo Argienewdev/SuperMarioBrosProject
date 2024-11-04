@@ -13,8 +13,6 @@ public class ContextoMario extends Jugable {
 
 	private EstadoMario estadoMario;
 	
-	private boolean cambiarEstado;
-	
 	protected GeneradorSonidos generadorSonidos;
 		
 	@SuppressWarnings("exports")
@@ -23,22 +21,16 @@ public class ContextoMario extends Jugable {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.generadorSonidos= generadorSonidos;
 		this.estadoMario = estadoMario;
-		this.cambiarEstado = false;
 		this.estadoMario.establecerContexto(this);
 	}
 	
 	public void cambiarEstado(EstadoMario estadoMario) {
 		this.estadoMario = estadoMario;
 		estadoMario.establecerContexto(this);
-		this.cambiarEstado = true;
 	}
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-		/*
-		if (this.cambiarEstado) {
-			this.estadoMario.actualizarHitboxYPosicion(fabricaSprites);
-			this.cambiarEstado = false;
-		}*/
+		this.estadoMario.actualizarHitboxYPosicion(fabricaSprites);
 		this.estadoMario.actualizarSprite(fabricaSprites);
 	}
 	

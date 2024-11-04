@@ -8,18 +8,22 @@ import visitors.VisitorSuperMario;
 
 public class SuperMario extends MarioDefault {
 	
+	@Override
 	public Visitante obtenerVisitante() {
 		return new VisitorSuperMario(this, this.contexto.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos());
 	}
 	
+	@Override
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
 		return fabricaSprites.obtenerSuperMarioFrontalQuieto();
 	}
 	
+	@Override
 	public void aceptarVisitante(Visitante visitante) {
 		visitante.visitarSuperMario(this);
 	}
 	
+	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		Sprite aRetornar = null;
 		if (bajoElNivelDelPiso()){
@@ -40,26 +44,6 @@ public class SuperMario extends MarioDefault {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
 		contexto.establecerSprite(aRetornar);
-	}
-	
-	private boolean enElAire() {
-		return !contexto.obtenerColisionAbajo();
-	}
-	
-	private boolean avanzando() {
-		return contexto.obtenerAvanzando();
-	}
-	
-	private boolean retrocediendo() {
-		return contexto.obtenerRetrocediendo();
-	}
-	
-	private boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
-	}
-	
-	private boolean bajoElNivelDelPiso() {
-		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Silueta {
     
 	public Silueta(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
-        cargarImagen();  
+		this.cargarImagen();  
 	}
 	
 	private void cargarImagen() {
@@ -34,7 +34,7 @@ public class Silueta {
 	
 	public void establecerRutaSilueta(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
-        cargarImagen(); 
+		this.cargarImagen(); 
 	}
 
 	public int obtenerAncho() {

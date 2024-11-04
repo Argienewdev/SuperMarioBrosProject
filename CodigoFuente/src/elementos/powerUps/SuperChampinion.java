@@ -25,11 +25,11 @@ public class SuperChampinion extends PowerUp {
 	}
 	
 	public int obtenerPuntosPorInvulnerable() {
-		return obtenerPuntosPorSuper();
+		return this.obtenerPuntosPorSuper();
 	}
 	
 	public int obtenerPuntosPorFuego() {
-		return obtenerPuntosPorSuper();
+		return this.obtenerPuntosPorSuper();
 	}
 
 	public void aceptarVisitante (Visitante visitante) {

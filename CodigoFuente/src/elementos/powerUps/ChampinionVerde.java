@@ -22,15 +22,15 @@ public class ChampinionVerde extends PowerUp {
 	}
 	
 	public int obtenerPuntosPorSuper() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 	
 	public int obtenerPuntosPorInvulnerable() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 	
 	public int obtenerPuntosPorFuego() {
-		return obtenerPuntosPorDefault();
+		return this.obtenerPuntosPorDefault();
 	}
 
 	public void aceptarVisitante (Visitante visitante) {
@@ -40,15 +40,13 @@ public class ChampinionVerde extends PowerUp {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		} else {
-			if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.obtenerChampinionVerdeSaliendoDelBloqueDePreguntas());
-				this.actualizarHitboxYPosicion();
-			} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
-				this.establecerSprite(fabricaSprites.obtenerChampinionVerde());
-				this.actualizarHitboxYPosicion();
-			}		
-		}
+		} else if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
+			this.establecerSprite(fabricaSprites.obtenerChampinionVerdeSaliendoDelBloqueDePreguntas());
+			this.actualizarHitboxYPosicion();
+		} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
+			this.establecerSprite(fabricaSprites.obtenerChampinionVerde());
+			this.actualizarHitboxYPosicion();
+		}		
 	}
 
 }
