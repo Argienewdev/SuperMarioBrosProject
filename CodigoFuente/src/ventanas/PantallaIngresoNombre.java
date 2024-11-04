@@ -162,10 +162,6 @@ public class PantallaIngresoNombre extends Pantalla {
     public void refrescar() {
     }
     
-    public JTextField obtenerCampoNombre() {
-        return campoNombre;
-    }
-    
     public boolean esRefrescable() {
     	return false;
     }

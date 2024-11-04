@@ -71,26 +71,26 @@ public class DetectorDireccionColision {
 		return ((enemigoImpactaPorIzquierda) || (enemigoImpactaPorDerecha)) && marioNoGolpeoPorArriba;
 	}
 	
-	private boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
 		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicionLogica().x + entidad.obtenerAncho() > elementoDeJuego.obtenerPosicionLogica().x);
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
-	private boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x < elementoDeJuego.obtenerHitbox().x + elementoDeJuego.obtenerAncho();
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().x >= elementoDeJuego.obtenerPosicionLogica().x + elementoDeJuego.obtenerAncho();
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
-	private boolean choquePorArriba(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public boolean choquePorArriba(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y + entidad.obtenerAlto() > elementoDeJuego.obtenerHitbox().y;
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().y + entidad.obtenerAlto() <= elementoDeJuego.obtenerPosicionLogica().y;
 		boolean cayendo = entidad.obtenerVelocidadDireccional().y > 0;
 		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada && cayendo;
 	}
 	
-	private boolean choquePorAbajo(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+	public boolean choquePorAbajo(ElementoDeJuego elementoDeJuego, Entidad entidad) {
 		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().y < elementoDeJuego.obtenerHitbox().y + elementoDeJuego.obtenerAlto();
 		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().y >= elementoDeJuego.obtenerPosicionLogica().y + elementoDeJuego.obtenerAlto();
 		boolean subiendo = entidad.obtenerVelocidadDireccional().y < 0;
