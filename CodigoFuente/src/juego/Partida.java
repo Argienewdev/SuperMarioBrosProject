@@ -70,7 +70,7 @@ public class Partida {
 	private void analizarEstadoTiempo() {
 		int segundos = obtenerTiempoPartida().obtenerPrimerComponente();
 		int milisegundos = obtenerTiempoPartida().obtenerSegundoComponente();
-		if(segundos == 5 && milisegundos == 0) {
+		if (segundos == 5 && milisegundos == 0) {
 			this.obtenerGeneradorSonidos().detenerMusicaFondo();
 			this.obtenerGeneradorSonidos().reproducirSeAcaboElTiempo();
 		}else if(segundos == 0 && milisegundos == 0) {
@@ -126,22 +126,16 @@ public class Partida {
 	}
 
 	public void reiniciarNivel() {
-		
-		
-		obtenerGeneradorSonidos().detenerMusicaFondo();
-		this.juego.obtenerControladorVistas().eliminarNivelActual();
+		eliminarNivelActual();
+		generarNivelActualNuevamente();
+		actualizarReferenciasANivelActual();
+	    iniciarTemporizadorCambioDeNivel();
+	}
+
+	private void generarNivelActualNuevamente() {
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.nivel = generarNivel(numeroNivelActual, this);
 		this.nivel.establecerMario(jugable);
-		this.coordinadorActualizacionesJugador.obtenerControladorDeMovimiento().actualizarNivel(this.nivel);
-		this.masterMind.cambiarNivel(this.nivel);
-	    Timer timer = new Timer(juego.obtenerControladorVistas().obtenerDuracionPantallaEntreNiveles(), new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		obtenerGeneradorSonidos().reproducirMusicaFondo();
-	        }
-	    });
-	    timer.setRepeats(false);
-	    timer.start();
 	}
 	
 	public void finalizarPartida(boolean ganaJuego) {

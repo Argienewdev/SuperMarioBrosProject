@@ -64,17 +64,17 @@ public class DetectorDireccionColision {
 		}
 	}
 	
-	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
-		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
-		boolean posicionTodaviaNoActualizada = entidad.obtenerPosicionLogica().x + entidad.obtenerAncho() <= elementoDeJuego.obtenerPosicionLogica().x;
-		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
-	}
-	
 	public boolean verificarImpactoLateralEntreMarioYEnemigo(Entidad mario, Entidad enemigo) {
 		boolean enemigoImpactaPorDerecha =  enemigo.obtenerHitbox().x < mario.obtenerHitbox().x + mario.obtenerHitbox().width;
 		boolean enemigoImpactaPorIzquierda = enemigo.obtenerHitbox().x + enemigo.obtenerHitbox().width > mario.obtenerHitbox().x;
 		boolean marioNoGolpeoPorArriba = !choquePorArriba(enemigo, mario);
 		return ((enemigoImpactaPorIzquierda) || (enemigoImpactaPorDerecha)) && marioNoGolpeoPorArriba;
+	}
+	
+	public boolean choquePorDerecha(ElementoDeJuego elementoDeJuego, Entidad entidad) {
+		boolean hitboxSuperaPosicionDeElemento = entidad.obtenerHitbox().x + entidad.obtenerHitbox().width > elementoDeJuego.obtenerHitbox().x;
+		boolean posicionTodaviaNoActualizada = !(entidad.obtenerPosicionLogica().x + entidad.obtenerAncho() > elementoDeJuego.obtenerPosicionLogica().x);
+		return hitboxSuperaPosicionDeElemento && posicionTodaviaNoActualizada;
 	}
 	
 	public boolean choquePorIzquierda(ElementoDeJuego elementoDeJuego, Entidad entidad) {
