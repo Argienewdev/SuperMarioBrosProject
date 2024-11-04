@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 import juego.Par;
 
 @SuppressWarnings("serial")

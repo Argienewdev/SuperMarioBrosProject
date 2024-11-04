@@ -12,13 +12,10 @@ public class VisitorPrincesa implements Visitante {
     
 	private PrincesaPeach miEntidad;
     
-	protected ControladorVistas controlador;
-    
     protected GeneradorSonidos generadorSonidos;
     
-    public VisitorPrincesa(ControladorVistas controlador, PrincesaPeach miEntidad, GeneradorSonidos generadorSonidos) {
+    public VisitorPrincesa(PrincesaPeach miEntidad, GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
-    	this.controlador = controlador;
         this.miEntidad = miEntidad;
     }
 
@@ -71,7 +68,7 @@ public class VisitorPrincesa implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	this.controlador.accionarPantallaFinal();
+    	this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().accionarPantallaFinal();
     }
 
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {

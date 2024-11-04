@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import generadores.GeneradorSonidos;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 import visitors.DetectorDireccionColision;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;
@@ -110,5 +110,11 @@ public class MarioInvulnerable extends MarioDefault {
 				generadorSonidos.reproducirMusicaFondo();
 			}
 		}
+	}
+	
+	@Override
+	public void reiniciarEstado() {
+		this.contexto.generadorSonidos.marioPequenioDeNuevo();
+		this.contexto.cambiarEstado(new MarioDefault());
 	}
 }

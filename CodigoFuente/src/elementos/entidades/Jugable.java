@@ -3,11 +3,14 @@ package elementos.entidades;
 import java.awt.Point;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
+import juego.ConstantesGlobales;
+import juego.Partida;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Jugable extends Entidad  {
+	
+	protected Partida partida;
 	
 	protected int vidas;
 	
@@ -35,6 +38,9 @@ public abstract class Jugable extends Entidad  {
 		this.colisionArriba = colisionArriba;
 	}
 	
+	public void establecerPartida(Partida partida) {
+		this.partida = partida;
+	}
 	
 	@SuppressWarnings("exports")
 	public void establecerPosicion (Point posicion) {

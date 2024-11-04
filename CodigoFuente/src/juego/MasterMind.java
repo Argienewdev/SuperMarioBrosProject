@@ -8,7 +8,6 @@ import elementos.entidades.Entidad;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
 import fabricas.FabricaSprites;
-import ventanas.ConstantesGlobales;
 
 public class MasterMind {
 	
@@ -21,7 +20,7 @@ public class MasterMind {
 	public MasterMind(FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.nivel = nivel;
-		movimientoEnemigosActivo=false;
+		movimientoEnemigosActivo = false;
 	}
 
 	public void actualizar() {
@@ -32,7 +31,7 @@ public class MasterMind {
 	}
 	
 	private void actualizarEnemigos() {
-		for(Enemigo enemigo : this.nivel.obtenerEnemigos()) {
+		for (Enemigo enemigo : this.nivel.obtenerEnemigos()) {
 			this.moverEnemigo(enemigo);
 			enemigo.actualizarSprite(this.fabricaSprites);
 			enemigo.obtenerObserverGrafico().actualizar();
@@ -40,7 +39,7 @@ public class MasterMind {
 	}
 	
 	private void actualizarPowerUps() {
-		for(PowerUp powerUp : this.nivel.obtenerPowerUps()) {
+		for (PowerUp powerUp : this.nivel.obtenerPowerUps()) {
 			this.moverPowerUp(powerUp);
 			powerUp.actualizarSprite(this.fabricaSprites);
 			powerUp.obtenerObserverGrafico().actualizar();
@@ -48,7 +47,7 @@ public class MasterMind {
 	}
 	
 	private void actualizarBolasDeFuego() {
-		for(BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
+		for (BolaDeFuego bola : this.nivel.obtenerBolasDeFuego()) {
 			this.moverBolaDeFuego(bola);
 			bola.actualizarSprite(this.fabricaSprites);
 			bola.obtenerObserverGrafico().actualizar();
@@ -56,7 +55,7 @@ public class MasterMind {
 	}
 	
 	private void actualizarPlataformas() {
-		for(Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()){
+		for (Plataforma plataforma: this.nivel.obtenerPlataformasAfectables()) {
 			plataforma.actualizarSprite(this.fabricaSprites);
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
@@ -67,13 +66,13 @@ public class MasterMind {
 	}
 
 	private void moverEnemigo(Enemigo enemigo) {
-		if (enemigo.obtenerVisibleEnPantalla()){
+		if (enemigo.obtenerVisibleEnPantalla()) {
 			this.agregarEntidadVisible(enemigo);
 			if (this.movimientoEnemigosActivo) {
 				this.chequearChoqueBordesEnemigo(enemigo);
 				enemigo.mover();
 				enemigo.aplicarGravedad();
-			} else{
+			} else {
 				enemigo.establecerVelocidadDireccional(new Point(0,0));
 			}
 		} else {
@@ -83,7 +82,7 @@ public class MasterMind {
 	}
 	
 	private void agregarEntidadVisible(Entidad entidad) {
-		if(!this.nivel.estaEntidadVisible(entidad)) {
+		if (!this.nivel.estaEntidadVisible(entidad)) {
 			this.nivel.agregarEntidadVisible(entidad);
 		}
 	}
@@ -121,10 +120,10 @@ public class MasterMind {
 	}
 
 	private void moverPowerUp(PowerUp powerUp) {
-		if(powerUp.obtenerVisibleEnPantalla()) {
+		if (powerUp.obtenerVisibleEnPantalla()) {
 			this.agregarEntidadVisible(powerUp);
 			this.realizarComportamientoPowerUp(powerUp);
-		}else {
+		} else {
 			this.nivel.removerEntidadVisible(powerUp);
 		}
 	}
@@ -153,13 +152,13 @@ public class MasterMind {
 	}
 
 	private void moverBolaDeFuego(BolaDeFuego bolaFuego) {
-		if(bolaFuego.obtenerVisibleEnPantalla()) {
-			if(!this.nivel.estaEntidadVisible(bolaFuego)) {
+		if (bolaFuego.obtenerVisibleEnPantalla()) {
+			if (!this.nivel.estaEntidadVisible(bolaFuego)) {
 				this.nivel.agregarEntidadVisible(bolaFuego);
 			}
 			bolaFuego.aplicarGravedad();
 			this.cambiarYVerificarPosicionHitboxDeEntidad(bolaFuego);
-		}else {
+		} else {
 			this.nivel.removerEntidadVisible(bolaFuego);
 		}
 	}
@@ -192,7 +191,7 @@ public class MasterMind {
 		if ((entidad.obtenerPosicionGrafica().x + entidad.obtenerAncho() < -50) && !entidad.obtenerDebeMantenerseSiempreEnPantalla()) {
 			entidad.establecerRemovido(true);
 		} else {
-			for(ElementoDeJuego elemento : this.nivel.obtenerEntidadesVisiblesEnPantalla()) {
+			for (ElementoDeJuego elemento : this.nivel.obtenerEntidadesVisiblesEnPantalla()) {
 		        if (entidad.huboColision(elemento) && entidad !=  elemento) {
 		            elemento.aceptarVisitante(entidad.obtenerVisitante());
 		            entidad.aceptarVisitante(elemento.obtenerVisitante());
@@ -203,14 +202,12 @@ public class MasterMind {
 	}
 	
 	private void verificarColisionConPlataformas(Entidad entidad) {
-	    
 		for (Plataforma plataforma : nivel.obtenerPlataformasAdyacentes(entidad)) {
 	        if (plataforma != null && entidad.huboColision(plataforma)) {
 	        	plataforma.aceptarVisitante(entidad.obtenerVisitante());
 	            entidad.aceptarVisitante(plataforma.obtenerVisitante());
 	        }
 	    }
-	    
 	}
 
 	public void desactivarMovimientoEnemigos() {
@@ -222,4 +219,3 @@ public class MasterMind {
 	}
 	
 }
-

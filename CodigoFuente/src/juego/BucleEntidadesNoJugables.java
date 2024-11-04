@@ -89,6 +89,5 @@ public class BucleEntidadesNoJugables implements Runnable {
 	private void actualizarBucleEntidadesNoJugables() {
 		this.masterMind.actualizar();
 	}
-	
 
 }

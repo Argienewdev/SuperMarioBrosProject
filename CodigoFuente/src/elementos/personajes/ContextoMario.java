@@ -46,7 +46,7 @@ public class ContextoMario extends Jugable {
 	}
 	
 	public void reiniciarEstado() {
-        this.cambiarEstado(new MarioDefault());
+        this.estadoMario.reiniciarEstado();
 	}
 	
 	public void aceptarVisitante(Visitante visitante) {

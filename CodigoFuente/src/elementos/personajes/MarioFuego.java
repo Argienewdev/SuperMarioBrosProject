@@ -8,7 +8,7 @@ import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import generadores.GeneradorSonidos;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
 

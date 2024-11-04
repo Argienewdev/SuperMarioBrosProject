@@ -4,8 +4,8 @@ import java.awt.Point;
 import elementos.Sprite;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
+import juego.ConstantesGlobales;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public class Lakitu extends Enemigo {

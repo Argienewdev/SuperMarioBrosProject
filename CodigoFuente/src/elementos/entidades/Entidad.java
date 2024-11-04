@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 import elementos.ElementoDeJuego;
 import elementos.Sprite;
+import juego.ConstantesGlobales;
 import observers.ObserverGrafico;
-import ventanas.ConstantesGlobales;
 import visitors.Visitante;
 
 public abstract class Entidad extends ElementoDeJuego {

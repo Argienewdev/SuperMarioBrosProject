@@ -5,7 +5,6 @@ import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
 import sensoresDeTeclas.SensorDeTeclasJuego;
-import ventanas.ConstantesGlobales;
 
 public class ControladorMovimiento {
 	
@@ -82,7 +81,7 @@ public class ControladorMovimiento {
 			this.verificarColisionConEntidades(entidad);
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 		} else {
-			nivel.obtenerPartida().cambiarNivel();
+			this.nivel.obtenerPartida().cambiarNivel();
 		}
 	}
 	
@@ -107,8 +106,8 @@ public class ControladorMovimiento {
 	}
 
 	private void chequearChoquesConBordes() {
-		boolean marioChocoBordeIzquierdo = jugable.obtenerPosicionGrafica().x < 0;
-		boolean marioChocoBordeDerecho = jugable.obtenerPosicionGrafica().x + jugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
+		boolean marioChocoBordeIzquierdo = this.jugable.obtenerPosicionGrafica().x < 0;
+		boolean marioChocoBordeDerecho = this.jugable.obtenerPosicionGrafica().x + this.jugable.obtenerHitbox().width > ConstantesGlobales.PANEL_ANCHO;
 		if (marioChocoBordeIzquierdo) {
 			this.chocarBordeIzquierdo();
 		} else if (marioChocoBordeDerecho) {
@@ -134,77 +133,78 @@ public class ControladorMovimiento {
 	}
 
 	private void cambiarPosicionXDeLaHitboxDelJugador() {
-		int nuevaPosicionX = jugable.obtenerHitbox().x + jugable.obtenerVelocidadDireccional().x;
-		Point nuevaPosicion = new Point(nuevaPosicionX, jugable.obtenerPosicionLogica().y);
-		jugable.moverHitbox(nuevaPosicion);
+		int nuevaPosicionX = this.jugable.obtenerHitbox().x + this.jugable.obtenerVelocidadDireccional().x;
+		Point nuevaPosicion = new Point(nuevaPosicionX, this.jugable.obtenerPosicionLogica().y);
+		this.jugable.moverHitbox(nuevaPosicion);
 	}
 	
 	private void cambiarPosicionYDeLaHitboxDelJugador() {
-		int nuevaPosicionY = jugable.obtenerHitbox().y + jugable.obtenerVelocidadDireccional().y;
-		Point nuevaPosicion = new Point(jugable.obtenerPosicionLogica().x, nuevaPosicionY);
-		jugable.moverHitbox(nuevaPosicion);
+		int nuevaPosicionY = this.jugable.obtenerHitbox().y + this.jugable.obtenerVelocidadDireccional().y;
+		Point nuevaPosicion = new Point(this.jugable.obtenerPosicionLogica().x, nuevaPosicionY);
+		this.jugable.moverHitbox(nuevaPosicion);
 	}
 
 	private boolean deteccionSalto() {
 		boolean retornar = false;
-		if (sensorDeTeclasJuego.obtenerWPresionada()) {
-			retornar = !sensorDeTeclasJuego.obtenerWAccionada();
-			sensorDeTeclasJuego.establecerWAccionada(true);
+		if (this.sensorDeTeclasJuego.obtenerWPresionada()) {
+			retornar = !this.sensorDeTeclasJuego.obtenerWAccionada();
+			this.sensorDeTeclasJuego.establecerWAccionada(true);
 		}
 		return retornar;
 	}
 	
 	private boolean deteccionMovimientoAIzquierda() {
-		return sensorDeTeclasJuego.obtenerAPresionada() && !sensorDeTeclasJuego.obtenerDPresionada();
+		return this.sensorDeTeclasJuego.obtenerAPresionada() && !this.sensorDeTeclasJuego.obtenerDPresionada();
 	}
 	
 	private boolean deteccionMovimientoADerecha() {
-		return sensorDeTeclasJuego.obtenerDPresionada() && !sensorDeTeclasJuego.obtenerAPresionada();
+		return this.sensorDeTeclasJuego.obtenerDPresionada() && !this.sensorDeTeclasJuego.obtenerAPresionada();
 	}
 	
 	private boolean deteccionAccionEspecial() {
 		boolean retornar = false;
-		if (sensorDeTeclasJuego.obtenerSpacePresionada()) {
-			retornar = !sensorDeTeclasJuego.obtenerSpaceAccionada();
-			sensorDeTeclasJuego.establecerSpaceAccionada(true);
+		if (this.sensorDeTeclasJuego.obtenerSpacePresionada()) {
+			retornar = !this.sensorDeTeclasJuego.obtenerSpaceAccionada();
+			this.sensorDeTeclasJuego.establecerSpaceAccionada(true);
 		}
 		return retornar;
 	}
 	
 	private void iniciarSalto() {
 		this.cambiarVelocidadVertical(ConstantesGlobales.FUERZA_SALTO);
-		jugable.establecerColisionAbajo(false);
-		jugable.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos().salto();
+		this.jugable.establecerColisionAbajo(false);
+		this.jugable.obtenerNivel().obtenerPartida().obtenerGeneradorSonidos().salto();
 	}
 	
 	private void realizarMovimientoALaIzquierda() {
 		this.cambiarVelocidadHorizontal(-ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
-		jugable.establecerMirandoAlFrente(false);
-		jugable.establecerRetrocediendo(true);
+		this.jugable.establecerMirandoAlFrente(false);
+		this.jugable.establecerRetrocediendo(true);
 	}
 	
 	private void realizarMovimientoALaDerecha() {
 		this.cambiarVelocidadHorizontal(ConstantesGlobales.VELOCIDAD_MOVIMIENTO_HORIZONTAL);
-		jugable.establecerMirandoAlFrente(true);
-		jugable.establecerAvanzando(true);
+		this.jugable.establecerMirandoAlFrente(true);
+		this.jugable.establecerAvanzando(true);
 	}
 
 	private void realizarAccionEspecial() {
-		jugable.realizarAccionEspecial();
+		this.jugable.realizarAccionEspecial();
 	}
 
 	private void cambiarVelocidadHorizontal(int velocidadX) {
 		int nuevaVelocidadX = velocidadX;
-		int velocidadY = jugable.obtenerVelocidadDireccional().y;
+		int velocidadY = this.jugable.obtenerVelocidadDireccional().y;
 		Point nuevaVelocidad = new Point(nuevaVelocidadX,velocidadY);
-		jugable.establecerVelocidadDireccional(nuevaVelocidad);
+		this.jugable.establecerVelocidadDireccional(nuevaVelocidad);
 	}
 	
 	private void cambiarVelocidadVertical(int velocidadY) {
 		int nuevaVelocidadY = velocidadY;
-		int velocidadX = jugable.obtenerVelocidadDireccional().x;
+		int velocidadX = this.jugable.obtenerVelocidadDireccional().x;
 		Point nuevaVelocidad = new Point(velocidadX,nuevaVelocidadY);
-		jugable.establecerVelocidadDireccional(nuevaVelocidad);
+		this.jugable.establecerVelocidadDireccional(nuevaVelocidad);
 	}
+	
 }
 

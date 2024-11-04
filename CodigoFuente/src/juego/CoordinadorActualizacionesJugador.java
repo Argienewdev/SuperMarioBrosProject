@@ -22,7 +22,7 @@ public class CoordinadorActualizacionesJugador {
 	
 	public void actualizar() {
 		this.actualizarPosicion();
-		jugable.actualizarSprite(fabricaSprites);
+		this.jugable.actualizarSprite(fabricaSprites);
 		this.actualizarObserverMario();
 	}
 	

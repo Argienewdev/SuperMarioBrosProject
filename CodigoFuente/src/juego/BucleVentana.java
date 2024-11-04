@@ -90,4 +90,5 @@ public class BucleVentana implements Runnable{
 	private void actualizarVentana() {
 		this.controlador.refrescar();
 	}
+	
 }

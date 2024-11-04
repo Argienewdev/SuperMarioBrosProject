@@ -98,7 +98,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public Bandera obtenerBandera(Point posicion,ControladorVistas controladorVistas) {
+	public Bandera obtenerBandera(Point posicion) {
 		Sprite spriteBandera = this.fabricaSprites.obtenerBandera();
 		Bandera banderaADevolver = new Bandera(spriteBandera, posicion, null, null);
 		Visitante visitor = new VisitorBandera(banderaADevolver, this.generadorSonidos);
@@ -110,10 +110,10 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public PrincesaPeach obtenerPrincesaPeach(Point posicion,ControladorVistas controladorVistas) {
+	public PrincesaPeach obtenerPrincesaPeach(Point posicion) {
 		Sprite spritePrincesaPeach = this.fabricaSprites.obtenerPrincesaPeach();
 		PrincesaPeach princesaPeachADevolver = new PrincesaPeach(spritePrincesaPeach, posicion, null, null);
-		Visitante visitor = new VisitorPrincesa(controladorVistas,princesaPeachADevolver, this.generadorSonidos);
+		Visitante visitor = new VisitorPrincesa(princesaPeachADevolver, this.generadorSonidos);
 		princesaPeachADevolver.establecerVisitante(visitor);
 		ObserverGrafico observerGraficoPrincesaPeach = new ObserverGrafico(princesaPeachADevolver);
         princesaPeachADevolver.establecerObserverGrafico(observerGraficoPrincesaPeach);
@@ -122,7 +122,7 @@ public class FabricaPlataformas {
 	}
 	
 	@SuppressWarnings("exports")
-	public BloqueDePregunta obtenerBloqueDePregunta(Point posicion, Nivel nivel, PantallaDeJuego pantallaDeJuego){
+	public BloqueDePregunta obtenerBloqueDePregunta(Point posicion, Nivel nivel){
 		Sprite spriteBloqueDePregunta = this.fabricaSprites.obtenerBloqueDePreguntaEncendido();
 		BloqueDePregunta bloqueDePreguntaADevolver = new BloqueDePregunta(spriteBloqueDePregunta, posicion, null, null, null);
 		Visitante visitor = new VisitorBloqueDePregunta(bloqueDePreguntaADevolver, this.generadorSonidos);
@@ -130,8 +130,7 @@ public class FabricaPlataformas {
 		ObserverGrafico observerGraficoBloqueDePregunta = new ObserverGrafico(bloqueDePreguntaADevolver);	  
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
-		int identificadorPowerUp =  1;
-		//generarIdentificadorPowerUpRandom(random); // Genera un número entre 1 (inclusive) y 8 (inclusive)
+		int identificadorPowerUp = generarIdentificadorPowerUpRandom(random); // Genera un número entre 1 (inclusive) y 8 (inclusive)
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <=  identificadorPowerUp; contador++) {

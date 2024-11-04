@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioDefault;
 
@@ -88,6 +88,10 @@ public class MarioDefault implements EstadoMario {
 	
 	private boolean bajoElNivelDelPiso() {
 		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
+	}
+
+	@Override
+	public void reiniciarEstado() {
 	}
 	
 }

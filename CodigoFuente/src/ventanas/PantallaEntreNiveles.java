@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import elementos.Sprite;
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 
 import java.awt.*;
 

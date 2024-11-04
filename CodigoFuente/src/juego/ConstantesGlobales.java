@@ -1,4 +1,4 @@
-package ventanas;
+package juego;
 
 import java.awt.Toolkit;
 
@@ -13,6 +13,8 @@ public class ConstantesGlobales {
 	public static final int PANEL_ANCHO = Math.round(Toolkit.getDefaultToolkit().getScreenSize().width * 0.8f);	
 	
 	public static final int MITAD_PANTALLA = (ConstantesGlobales.PANEL_ANCHO / 2) - 100;
+	
+    public static final int ANCHO_ALTO_BLOQUES_PLATAFORMA = 50;
 	
 	public static final int NIVEL_PISO = 600;
 	

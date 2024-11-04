@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import elementos.ElementoDeJuego;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 
 @SuppressWarnings("serial")
 public class ObserverGrafico extends JLabel implements Observer {

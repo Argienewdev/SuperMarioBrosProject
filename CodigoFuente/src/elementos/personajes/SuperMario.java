@@ -2,7 +2,7 @@ package elementos.personajes;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import ventanas.ConstantesGlobales;
+import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorSuperMario;
 
@@ -60,6 +60,12 @@ public class SuperMario extends MarioDefault {
 	
 	private boolean bajoElNivelDelPiso() {
 		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
+	}
+	
+	@Override
+	public void reiniciarEstado() {
+		this.contexto.generadorSonidos.marioPequenioDeNuevo();
+		this.contexto.cambiarEstado(new MarioDefault());
 	}
 	
 }

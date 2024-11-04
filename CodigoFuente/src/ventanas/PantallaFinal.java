@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import fuentes.Fuente;
+import juego.ConstantesGlobales;
 import sensoresDeTeclas.SensorDeTeclasMenu;
 
 public class PantallaFinal extends Pantalla {
