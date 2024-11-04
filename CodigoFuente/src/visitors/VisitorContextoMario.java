@@ -107,6 +107,7 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		princesaPeach.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 		this.generadorSonidos.detenerMusicaFondo();
 		this.generadorSonidos.reproducirMusicaRescatePrincesa();
 		this.detenerEntidades();

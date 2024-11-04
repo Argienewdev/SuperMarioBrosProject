@@ -71,7 +71,6 @@ public class VisitorPrincesa implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	contextoMario.obtenerEstado().aceptarVisitante(this);
     	this.controlador.accionarPantallaFinal();
     }
 
@@ -94,7 +93,6 @@ public class VisitorPrincesa implements Visitante {
     }
 
     public void visitarMarioInvulnerable(MarioInvulnerable marioInvulnerable) {
-    	this.generadorSonidos.detenerMusicaInvulnerable();
     }
     
     public void visitarMarioRecuperacion(MarioRecuperacion marioRecuperacion) {
