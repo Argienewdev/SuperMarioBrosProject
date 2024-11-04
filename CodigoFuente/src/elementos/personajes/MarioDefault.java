@@ -70,23 +70,23 @@ public class MarioDefault implements EstadoMario {
 	public void actualizarTiempo() {
 	}
 	
-	private boolean enElAire() {
+	protected boolean enElAire() {
 		return !contexto.obtenerColisionAbajo();
 	}
 	
-	private boolean avanzando() {
+	protected boolean avanzando() {
 		return contexto.obtenerAvanzando();
 	}
 	
-	private boolean retrocediendo() {
+	protected boolean retrocediendo() {
 		return contexto.obtenerRetrocediendo();
 	}
 	
-	private boolean mirandoAlFrente() {
+	protected boolean mirandoAlFrente() {
 		return contexto.obtenerMirandoAlFrente();
 	}
 	
-	private boolean bajoElNivelDelPiso() {
+	protected boolean bajoElNivelDelPiso() {
 		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 	

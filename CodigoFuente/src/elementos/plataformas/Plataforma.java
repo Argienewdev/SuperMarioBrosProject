@@ -12,12 +12,8 @@ public abstract class Plataforma extends ElementoDeJuego {
 	
 	protected boolean solido;
 	
-	protected boolean removido;
-	
-	@SuppressWarnings("exports")
-	public Plataforma(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
+	protected Plataforma(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		removido = false;
 	}
 	
 	public void establecerSolido(boolean solido) {

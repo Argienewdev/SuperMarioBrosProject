@@ -16,7 +16,7 @@ public class BloqueDePregunta extends Plataforma {
 	public BloqueDePregunta (Sprite sprite, Point pos, Visitante visitor, PowerUp powerUp,
 							 ObserverGrafico observerGrafico) {
 		super(sprite,pos,visitor,observerGrafico);
-		this.coleccionPowerUps = new LinkedList<PowerUp>();
+		this.coleccionPowerUps = new LinkedList<>();
 		if (powerUp !=  null) {
 			this.coleccionPowerUps.add(powerUp);
 		}
@@ -46,6 +46,8 @@ public class BloqueDePregunta extends Plataforma {
 		}
 		return powerUpARemover;
 	}
+	
+	@Override
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (estaVacio()) {
 			this.establecerSprite(fabricaSprites.obtenerBloqueDePreguntaApagado());
