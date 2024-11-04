@@ -38,12 +38,13 @@ public class Lakitu extends Enemigo {
     }
 
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
+    	boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
     	lanzarSpiny();
 		if (this.removido) {
 			eliminarEntidadGrafica(fabricaSprites);
-		} else if (mirandoAlFrente()) {
+		} else if (mirandoAlFrente) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
-		} else if (!mirandoAlFrente()) {
+		} else if (!mirandoAlFrente) {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
 		}
 	}
@@ -74,6 +75,7 @@ public class Lakitu extends Enemigo {
 	}
 	
     public void invertirDireccion() {
+    	boolean moviendoseHaciaElBordeIzquierdo = this.velocidadDireccional.x < 0;
     	if (removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
@@ -81,7 +83,7 @@ public class Lakitu extends Enemigo {
     		boolean chocoBordeIzquierdo = this.obtenerPosicionGrafica().x <=  0; 
     		boolean chocoBordeDerecho = this.obtenerPosicionGrafica().x + this.obtenerAncho() <=  (ConstantesGlobales.PANEL_ANCHO + 75);
 			if (chocoBordeIzquierdo) {
-				if (moviendoseHaciaElBordeIzquierdo()) {
+				if (moviendoseHaciaElBordeIzquierdo) {
 					Point velocidad = new Point(-this.obtenerVelocidadDireccional().x, this.obtenerVelocidadDireccional().y);
 					this.establecerVelocidadDireccional(velocidad);
 				}
@@ -91,13 +93,5 @@ public class Lakitu extends Enemigo {
 			}
     	}
     }
-    
-	private boolean moviendoseHaciaElBordeIzquierdo() {
-		return this.velocidadDireccional.x < 0;
-	}
-	
-	private boolean mirandoAlFrente() {
-		return this.obtenerMirandoAlFrente();
-	}
 	
 }
