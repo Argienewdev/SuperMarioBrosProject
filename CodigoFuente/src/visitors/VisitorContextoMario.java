@@ -107,6 +107,7 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
+		princesaPeach.aceptarVisitante(this.miEntidad.obtenerEstado().obtenerVisitante());
 		this.generadorSonidos.detenerMusicaFondo();
 		this.generadorSonidos.reproducirMusicaRescatePrincesa();
 		this.detenerEntidades();
@@ -123,6 +124,7 @@ public class VisitorContextoMario implements Visitante {
 			this.generadorSonidos.tocarBanderaFinNivel();
 			this.generadorSonidos.detenerMusicaInvulnerable();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
+			this.miEntidad.obtenerNivel().accionarBandera();
 			Timer timer = new Timer(3000, new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		            miEntidad.reiniciarEstado();
