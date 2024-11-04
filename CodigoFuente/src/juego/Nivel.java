@@ -34,6 +34,8 @@ public class Nivel {
     protected boolean nivelCompletado;
     
     protected Partida partida;
+    
+    protected boolean banderaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
@@ -42,6 +44,7 @@ public class Nivel {
         this.nivelCompletado = false;
         this.partida = partida;
         this.mario = null;
+        this.banderaAccionada = false;
     }
     
     private void inicializarColecciones() {
@@ -52,6 +55,14 @@ public class Nivel {
         this.entidadesVisiblesEnPantalla = new CopyOnWriteArrayList<>();
     }
 
+    public boolean obtenerBanderaAccionada() {
+    	return this.banderaAccionada;
+    }
+    
+    public void accionarBandera() {
+    	this.banderaAccionada = true;
+    }
+    
     public void agregarPlataforma(Plataforma plataforma) {
         matrizPlataformas.agregarPlataforma(plataforma);
         plataforma.establecerNivel(this);

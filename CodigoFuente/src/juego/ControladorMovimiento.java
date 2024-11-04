@@ -1,6 +1,11 @@
 package juego;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import elementos.ElementoDeJuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
@@ -88,7 +93,7 @@ public class ControladorMovimiento {
 			this.verificarColisionConEntidades(entidad);
 			entidad.establecerPosicion(entidad.obtenerHitbox().getLocation());
 		} else {
-			this.nivel.obtenerPartida().cambiarNivel();
+			nivel.obtenerPartida().cambiarNivel();
 		}
 	}
 	
