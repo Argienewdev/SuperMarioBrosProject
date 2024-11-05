@@ -2,7 +2,8 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -16,11 +17,7 @@ import observers.ObserverGrafico;
 @SuppressWarnings("serial")
 public class PantallaDeJuego extends Pantalla {
 
-    private ArrayList<ObserverGrafico> labelsElementoDeJuego;
-
-    private ArrayList<ObserverGrafico> labelsElementoDeJuegoARemover;
-
-    private ArrayList<ObserverGrafico> labelsElementoDeJuegoAAgregar;
+    private List<ObserverGrafico> labelsElementoDeJuego;
 
     private Dimension size;
     
@@ -40,9 +37,7 @@ public class PantallaDeJuego extends Pantalla {
    
     public PantallaDeJuego() {
         configurarVentana();
-        this.labelsElementoDeJuego = new ArrayList<>();
-        this.labelsElementoDeJuegoARemover = new ArrayList<>();
-        this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
+        this.labelsElementoDeJuego = new CopyOnWriteArrayList<>();
     }
     
     public InterfazJuego obtenerHUD() {
@@ -108,22 +103,6 @@ public class PantallaDeJuego extends Pantalla {
 	private void establecerPosicionOriginalJugable () {
 		this.posicionOriginalJugable = this.marioJugable.obtenerPosicionLogica();	
 	}
-
-	public void agregarLabelAAgregar(ObserverGrafico labelElementoDeJuego) {
-		this.labelsElementoDeJuegoAAgregar.add(labelElementoDeJuego);
-	}
-	
-	private void agregarLabelsAAgregar() {
-		for(ObserverGrafico observer : this.labelsElementoDeJuegoAAgregar) {
-			this.agregarLabel(observer);
-		}
-		this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
-	}
-	
-	private void removerLabelsARemover() {
-		this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
-		this.labelsElementoDeJuegoARemover = new ArrayList<>();
-	}
 	
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
 		labelsElementoDeJuego.add(labelElementoDeJuego);
@@ -134,8 +113,6 @@ public class PantallaDeJuego extends Pantalla {
     }
 	
     public void refrescar() {
-    	this.agregarLabelsAAgregar();
-    	
         hud.actualizarTiempo();
         hud.actualizarVidas(marioJugable.obtenerVidas());
         hud.actualizarPuntaje(marioJugable.obtenerPuntos());
@@ -167,11 +144,9 @@ public class PantallaDeJuego extends Pantalla {
     				observerGrafico.actualizar();
     				if (observerGrafico.obtenerRemovido()) {
     					layeredPane.remove(observerGrafico);
-    					this.labelsElementoDeJuegoARemover.add(observerGrafico);
+    					this.labelsElementoDeJuego.remove(observerGrafico);
     				}
     			}
-    			removerLabelsARemover();
-    			
     			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
     			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
             }
@@ -185,9 +160,7 @@ public class PantallaDeJuego extends Pantalla {
     	layeredPane.remove(fondo);
     	layeredPane.remove(hud);
     	this.removerElementos();
-    	this.labelsElementoDeJuego = new ArrayList<>();
-    	this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
-    	this.labelsElementoDeJuegoARemover = new ArrayList<>();
+    	this.labelsElementoDeJuego = new CopyOnWriteArrayList<>();
     }
     
     public void cambiarDeNivel() {
