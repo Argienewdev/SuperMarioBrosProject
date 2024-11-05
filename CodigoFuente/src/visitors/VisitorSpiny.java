@@ -86,7 +86,7 @@ public class VisitorSpiny implements Visitante {
 	public void visitarMarioDefault(MarioDefault marioDefault) {
 		this.generadorSonidos.detenerSonidoActual();
     	this.generadorSonidos.establecerSonidoPerderVida();
-    	this.generadorSonidos.reproducirSonidoActual();
+    	this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
 		ContextoMario contextoMario = marioDefault.obtenerContexto();
         int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
         contextoMario.perderPuntos(perdidaPuntos);

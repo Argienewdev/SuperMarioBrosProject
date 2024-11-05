@@ -7,10 +7,8 @@ import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
-import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
-import generadores.GeneradorDeNivel;
 
 public class Nivel {
 	    
@@ -32,11 +30,11 @@ public class Nivel {
     
     protected Partida partida;
     
-    protected boolean princesaAccionada;
-    
     protected boolean nivelCompletado;
         
     protected boolean banderaAccionada;
+    
+    protected boolean princesaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;

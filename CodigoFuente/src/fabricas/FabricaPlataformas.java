@@ -9,7 +9,6 @@ import generadores.GeneradorSonidos;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
-import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import visitors.Visitante;
 import visitors.VisitorBandera;
@@ -131,7 +130,6 @@ public class FabricaPlataformas {
 		bloqueDePreguntaADevolver.establecerObserverGrafico(observerGraficoBloqueDePregunta);
 		Random random = new Random();
 		int identificadorPowerUp = generarIdentificadorPowerUpRandom(random); 
-		
 		switch(identificadorPowerUp) {
 			case 2,4,6,8: {
 				for(int contador = 1; contador <=  identificadorPowerUp; contador++) {

@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
-import elementos.personajes.ContextoMario;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ControladorVistas;
@@ -76,7 +75,7 @@ public class Juego {
 	}
 
 	private void iniciarTemporizadorSonidoFinDeJuego() {
-		Timer temporizadorFinDeJuego = new Timer(2500, new ActionListener() {
+		Timer temporizadorFinDeJuego = new Timer(3000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	partida.obtenerGeneradorSonidos().detenerSonidoActual();
 	            partida.obtenerGeneradorSonidos().establecerSonidoPerderJuego();

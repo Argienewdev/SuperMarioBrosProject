@@ -8,11 +8,10 @@ import elementos.entidades.BolaDeFuego;
 import fabricas.FabricaEntidades;
 import fabricas.FabricaSprites;
 import generadores.GeneradorSonidos;
-import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
 
-public class MarioFuego extends MarioDefault {
+public class MarioFuego extends SuperMario {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
@@ -25,9 +24,9 @@ public class MarioFuego extends MarioDefault {
 	
 	@Override
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		this.contexto.establecerMirandoAlFrente(true);
 		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 	}
+	
 	@Override
 	
 	public Visitante obtenerVisitante() {

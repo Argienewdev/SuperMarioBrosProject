@@ -41,7 +41,6 @@ public class PantallaFinal extends Pantalla {
     
     protected boolean enFoco;
     
-    @SuppressWarnings("exports")
     public PantallaFinal (ControladorVistas controlador, SensorDeTeclasMenu sensor) {
         this.controlador = controlador;
         this.sensor = sensor;

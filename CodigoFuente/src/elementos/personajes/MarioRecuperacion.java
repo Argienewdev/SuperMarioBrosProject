@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioRecuperacion;
 
@@ -69,6 +68,11 @@ public class MarioRecuperacion extends MarioDefault {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
 		contexto.establecerSprite(aRetornar);
+	}
+	
+	@Override
+	public void reiniciarEstado() {
+		this.contexto.cambiarEstado(new MarioDefault());
 	}
 	
 }

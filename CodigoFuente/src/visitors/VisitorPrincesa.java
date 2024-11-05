@@ -6,7 +6,6 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import generadores.GeneradorSonidos;
-import ventanas.ControladorVistas;
 
 public class VisitorPrincesa implements Visitante {
     
@@ -68,7 +67,6 @@ public class VisitorPrincesa implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().accionarPantallaFinal();
     }
 
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {

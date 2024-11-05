@@ -66,7 +66,7 @@ public class VisitorGoomba implements Visitante {
             contextoMario.perderPuntos(perdidaPuntos);
             this.generadorSonidos.detenerSonidoActual();
             this.generadorSonidos.establecerSonidoPerderVida();
-            this.generadorSonidos.reproducirSonidoActual();
+            this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
             contextoMario.perderVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();
         } else {

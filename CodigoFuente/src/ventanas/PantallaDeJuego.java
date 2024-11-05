@@ -2,12 +2,11 @@ package ventanas;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.ArrayList;
-
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-
 import elementos.Silueta;
 import elementos.entidades.Jugable;
 import juego.ConstantesGlobales;
@@ -16,33 +15,27 @@ import observers.ObserverGrafico;
 @SuppressWarnings("serial")
 public class PantallaDeJuego extends Pantalla {
 
-    private ArrayList<ObserverGrafico> labelsElementoDeJuego;
-
-    private ArrayList<ObserverGrafico> labelsElementoDeJuegoARemover;
-
-    private ArrayList<ObserverGrafico> labelsElementoDeJuegoAAgregar;
+    private List<ObserverGrafico> labelsElementoDeJuego;
 
     private Dimension size;
     
-    private Jugable marioJugable;
+    private Jugable jugable;
     
-    private ObserverGrafico marioLabel;
+    private ObserverGrafico labelJugable;
     
     private InterfazJuego hud;
     
     private JLabel fondo;
     
-    private Point posicionOriginalJugable;
+    private Point posicionOriginalLogicaJugable;
     
     private Point posicionOriginalLabelJugable;
     
     private JLayeredPane layeredPane;
    
     public PantallaDeJuego() {
-        configurarVentana();
-        this.labelsElementoDeJuego = new ArrayList<>();
-        this.labelsElementoDeJuegoARemover = new ArrayList<>();
-        this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
+        this.configurarVentana();
+        this.labelsElementoDeJuego = new CopyOnWriteArrayList<>();
     }
     
     public InterfazJuego obtenerHUD() {
@@ -50,112 +43,99 @@ public class PantallaDeJuego extends Pantalla {
     }
     
     private void configurarVentana(){
-        setVisible(true);
-        setLayout(null);
-        this.size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-        setPreferredSize(size);
-        setMaximumSize(size);
-        setMinimumSize(size);
-        
-        layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(size);
-        layeredPane.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-        add(layeredPane);
-        
-        revalidate();
-        repaint();
-        
-        crearHUD();
+        this.setVisible(true);
+        this.setLayout(null);
+        establecerTamanio();
+        crearLayeredPane();
+        this.add(this.layeredPane);
+        this.crearHUD();
+        this.revalidate();
+        this.repaint();
     }
     
-    private void crearHUD() {
-    	hud = new InterfazJuego();
-    	hud.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-    	layeredPane.add(hud, JLayeredPane.PALETTE_LAYER);
-        hud.setVisible(true);
-        revalidate();
-        repaint();
+    private void crearLayeredPane() {
+    	this.layeredPane = new JLayeredPane();
+        this.layeredPane.setPreferredSize(this.size);
+        this.layeredPane.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+	}
+
+	private void establecerTamanio() {
+    	this.size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+        this.setPreferredSize(this.size);
+        this.setMaximumSize(this.size);
+        this.setMinimumSize(this.size);
+	}
+
+	private void crearHUD() {
+    	this.hud = new InterfazJuego();
+    	this.hud.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    	this.layeredPane.add(this.hud, JLayeredPane.PALETTE_LAYER);
+        this.hud.setVisible(true);
+        this.revalidate();
+        this.repaint();
 	}
 
     public void registrarFondo(Silueta siluetaFondo) {
     	ImageIcon fondoImagen = new ImageIcon(siluetaFondo.obtenerRutaSilueta());
         this.fondo = new JLabel(fondoImagen);
-        establecerFondo();
+        this.establecerFondo();
     }
     
 	private void establecerFondo() {
-        fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
-        layeredPane.add(fondo, JLayeredPane.DEFAULT_LAYER); 
-        revalidate();
-        repaint();
+        this.fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
+        this.layeredPane.add(this.fondo, JLayeredPane.DEFAULT_LAYER); 
+        this.revalidate();
+        this.repaint();
     }
 
 	public void registrarJugable(Jugable jugable) {
-        this.marioJugable = jugable;
-        this.marioLabel = jugable.obtenerObserverGrafico();
-        establecerPosicionOriginalJugable();
-        establecerPosicionOriginalLabelJugable();
-        layeredPane.add(this.marioLabel, JLayeredPane.MODAL_LAYER);
-        this.marioLabel.setVisible(true);
-        revalidate();
-        repaint();
+        this.jugable = jugable;
+        this.labelJugable = jugable.obtenerObserverGrafico();
+        this.establecerPosicionOriginalJugable();
+        this.establecerPosicionOriginalLabelJugable();
+        this.layeredPane.add(this.labelJugable, JLayeredPane.MODAL_LAYER);
+        this.labelJugable.setVisible(true);
+        this.revalidate();
+        this.repaint();
     }
 
     private void establecerPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.marioJugable.obtenerPosicionGrafica();
+		this.posicionOriginalLabelJugable = this.jugable.obtenerPosicionGrafica();
 	}
 
 	private void establecerPosicionOriginalJugable () {
-		this.posicionOriginalJugable = this.marioJugable.obtenerPosicionLogica();	
-	}
-
-	public void agregarLabelAAgregar(ObserverGrafico labelElementoDeJuego) {
-		this.labelsElementoDeJuegoAAgregar.add(labelElementoDeJuego);
-	}
-	
-	private void agregarLabelsAAgregar() {
-		for(ObserverGrafico observer : this.labelsElementoDeJuegoAAgregar) {
-			this.agregarLabel(observer);
-		}
-		this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
-	}
-	
-	private void removerLabelsARemover() {
-		this.labelsElementoDeJuego.removeAll(labelsElementoDeJuegoARemover);
-		this.labelsElementoDeJuegoARemover = new ArrayList<>();
+		this.posicionOriginalLogicaJugable = this.jugable.obtenerPosicionLogica();	
 	}
 	
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
-		labelsElementoDeJuego.add(labelElementoDeJuego);
-		layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
+		this.labelsElementoDeJuego.add(labelElementoDeJuego);
+		this.layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
 		labelElementoDeJuego.setVisible(true);
 		this.revalidate();
         this.repaint();
     }
 	
     public void refrescar() {
-    	this.agregarLabelsAAgregar();
-    	
-        hud.actualizarTiempo();
-        hud.actualizarVidas(marioJugable.obtenerVidas());
-        hud.actualizarPuntaje(marioJugable.obtenerPuntos());
-        hud.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
-        
-        int desplazamiento = this.marioJugable.obtenerDesplazamiento();
+        this.actualizarHUD();
+        this.moverLabels();
+    }
+
+    
+    private void moverLabels() {
+    	int desplazamiento = this.jugable.obtenerDesplazamiento();
         boolean fondoMovido = false;
         
         if (desplazamiento > 0) {
-            Point posicionFondo = fondo.getLocation();
+            Point posicionFondo = this.fondo.getLocation();
             int nuevaPosicionFondoX = posicionFondo.x - (desplazamiento / 2);
-
- 
-            int anchoFondo = fondo.getWidth();
+            int anchoFondo = this.fondo.getWidth();
+            
             if (nuevaPosicionFondoX < -anchoFondo + ConstantesGlobales.PANEL_ANCHO) {
                 nuevaPosicionFondoX = -anchoFondo + ConstantesGlobales.PANEL_ANCHO;
             }
             
         	if (nuevaPosicionFondoX != posicionFondo.x) {
-        		fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
+        		this.fondo.setLocation(nuevaPosicionFondoX, posicionFondo.y);
         		fondoMovido = true; 
         	}
 
@@ -166,46 +146,55 @@ public class PantallaDeJuego extends Pantalla {
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
     				if (observerGrafico.obtenerRemovido()) {
-    					layeredPane.remove(observerGrafico);
-    					this.labelsElementoDeJuegoARemover.add(observerGrafico);
+    					this.layeredPane.remove(observerGrafico);
+    					this.labelsElementoDeJuego.remove(observerGrafico);
     				}
     			}
-    			removerLabelsARemover();
-    			
-    			int cambioDesplazamiento = this.marioJugable.obtenerDesplazamiento() - desplazamiento;
-    			this.marioJugable.establecerDesplazamiento(cambioDesplazamiento);
+    			int cambioDesplazamiento = this.jugable.obtenerDesplazamiento() - desplazamiento;
+    			this.jugable.establecerDesplazamiento(cambioDesplazamiento);
             }
         	this.revalidate();
         	this.repaint();
         }
-    }
+	}
 
-    
-    public void eliminarNivelActual() {
-    	layeredPane.remove(fondo);
-    	layeredPane.remove(hud);
-    	this.removerElementos();
-    	this.labelsElementoDeJuego = new ArrayList<>();
-    	this.labelsElementoDeJuegoAAgregar = new ArrayList<>();
-    	this.labelsElementoDeJuegoARemover = new ArrayList<>();
+	private void actualizarHUD() {
+    	this.hud.actualizarTiempo();
+        this.hud.actualizarVidas(jugable.obtenerVidas());
+        this.hud.actualizarPuntaje(jugable.obtenerPuntos());
+        this.hud.actualizarNivel(jugable.obtenerNivel().obtenerNumeroNivel());
+	}
+
+	public void eliminarNivelActual() {
+    	this.removerLabelsDelPanel();
+    	this.labelsElementoDeJuego = new CopyOnWriteArrayList<>();
     }
     
     public void cambiarDeNivel() {
-    	crearHUD();
-    	this.marioJugable.establecerPosicionLogica(new Point(this.posicionOriginalJugable.x, this.posicionOriginalJugable.y + (50 - marioJugable.obtenerAlto())));
-    	this.marioJugable.establecerPosicionGrafica(this.marioJugable.obtenerPosicionLogica());
-    	this.marioJugable.moverHitbox(this.marioJugable.obtenerPosicionLogica());
-    	this.marioLabel.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - marioJugable.obtenerAlto()));
-    	this.marioJugable.establecerDesplazamiento(0);
+    	this.crearHUD();
+    	this.establecerJugableEnNuevoNivel();
     	this.revalidate();
     	this.repaint();
     }
 
-	private void removerElementos() {
-		for(ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-			layeredPane.remove(observerGrafico);
-		}
+	private void establecerJugableEnNuevoNivel() {
+		this.jugable.establecerPosicionLogica(new Point(this.posicionOriginalLogicaJugable.x, this.posicionOriginalLogicaJugable.y + (50 - jugable.obtenerAlto())));
+    	this.jugable.establecerPosicionGrafica(this.jugable.obtenerPosicionLogica());
+    	this.jugable.moverHitbox(this.jugable.obtenerPosicionLogica());
+    	this.labelJugable.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - jugable.obtenerAlto()));
+    	this.jugable.establecerDesplazamiento(0);
+    	this.revalidate();
+    	this.repaint();
 	}
-    
+
+	private void removerLabelsDelPanel() {
+		this.layeredPane.remove(fondo);
+    	this.layeredPane.remove(hud);
+		for(ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
+			this.layeredPane.remove(observerGrafico);
+		}
+		this.revalidate();
+    	this.repaint();
+	}
     
 }
