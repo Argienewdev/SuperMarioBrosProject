@@ -28,18 +28,18 @@ public class PantallaInicial extends Pantalla {
 	
 	private ArregloDeBotones arregloDeBotones;
 	
-	protected Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+	protected Dimension tamanioPanel;
 	
 	protected ControladorVistas controlador;
 	
-	Fuente tipoFuentes;
+	private Fuente tipoFuentes;
 	
 	private String modo;
 	
 	private boolean enFoco;
 	
-	@SuppressWarnings("exports")
 	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
+		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
 		this.enFoco = true;
 		this.controlador =  controladorVistas;
 		this.sensor = sensor;
@@ -77,10 +77,10 @@ public class PantallaInicial extends Pantalla {
 	protected void configurarVentana(){
 		new JPanel();
 		setLayout(null);
-		setPreferredSize(size);
-		setMaximumSize(size);
-		setMinimumSize(size);
-		setBounds(0, 0, size.width * 2, size.height);
+		setPreferredSize(tamanioPanel);
+		setMaximumSize(tamanioPanel);
+		setMinimumSize(tamanioPanel);
+		setBounds(0, 0, tamanioPanel.width * 2, tamanioPanel.height);
 		establecerFondo();
 	}
 	
@@ -88,21 +88,21 @@ public class PantallaInicial extends Pantalla {
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
 		 fondo = new JLabel(fondoImagen);
-		 fondo.setPreferredSize(size);
-		 fondo.setMaximumSize(size);
-		 fondo.setMinimumSize(size);
+		 fondo.setPreferredSize(tamanioPanel);
+		 fondo.setMaximumSize(tamanioPanel);
+		 fondo.setMinimumSize(tamanioPanel);
 		 add(fondo);
 	}
 	
 	
 	protected void ajustarDisposicion(){
-		botonModo1.setBounds((size.width - botonModo1.getPreferredSize().width) / 2, (size.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
-		botonModo2.setBounds((size.width - botonModo2.getPreferredSize().width) / 2, (size.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
-		botonRanking.setBounds((size.width - botonRanking.getPreferredSize().width) / 2, (size.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
+		botonModo1.setBounds((tamanioPanel.width - botonModo1.getPreferredSize().width) / 2, (tamanioPanel.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
+		botonModo2.setBounds((tamanioPanel.width - botonModo2.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
+		botonRanking.setBounds((tamanioPanel.width - botonRanking.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
 		fondo.add(botonModo1);
 		fondo.add(botonModo2);
 		fondo.add(botonRanking);
-		fondo.setBounds(0, 0, size.width, size.height);
+		fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
 	}
 	
 	private void registrarOyenteTeclas(){

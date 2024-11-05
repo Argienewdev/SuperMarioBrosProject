@@ -21,23 +21,24 @@ public class PantallaRanking extends Pantalla {
     
 	private JLabel fondo;
     
-	private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+	private Dimension tamanioPanel;
     
 	protected ControladorVistas controlador;
     
 	protected SensorDeTeclasMenu sensor;
     
 	public PantallaRanking(List<Jugador> topJugadores, SensorDeTeclasMenu sensor,ControladorVistas controladorVistas) {
+		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     	this.enFoco = false;
     	this.controlador = controladorVistas;
     	this.sensor = sensor;
         setLayout(null);
-        setPreferredSize(size);
+        setPreferredSize(tamanioPanel);
         this.tipoFuentes = new Fuente();
         this.rankingLabel = new ArrayList<>();
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(null);
-        layeredPane.setBounds(0, 0, size.width, size.height);
+        layeredPane.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
         establecerFondo(layeredPane);
         establecerTitulo(layeredPane);
         agregarJugadores(layeredPane, topJugadores);
@@ -56,13 +57,13 @@ public class PantallaRanking extends Pantalla {
         
         for (Jugador jugador : topJugadores) {
             JLabel jugadorLabel = new JLabel(jugador.obtenerNombre() + " " + jugador.obtenerPuntaje());
-            jugadorLabel.setBounds(0, y, size.width, labelHeight);
+            jugadorLabel.setBounds(0, y, tamanioPanel.width, labelHeight);
             jugadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
             rankingLabel.add(jugadorLabel);
             jugadoresPanel.add(jugadorLabel);
             y +=  labelHeight;
         }
-        jugadoresPanel.setBounds(0, startY, size.width, size.height - startY);
+        jugadoresPanel.setBounds(0, startY, tamanioPanel.width, tamanioPanel.height - startY);
         layeredPane.add(jugadoresPanel, Integer.valueOf(1));
         configurarFuenteJugadores();
     }
@@ -71,7 +72,7 @@ public class PantallaRanking extends Pantalla {
     	JLabel botonRegresar =  new JLabel("Regresar");
     	Font font = tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30);
     	botonRegresar.setFont(font);
-    	botonRegresar.setBounds((size.width - botonRegresar.getPreferredSize().width) / 2, ConstantesGlobales.PANEL_ALTO - (ConstantesGlobales.PANEL_ALTO / 3), botonRegresar.getPreferredSize().width, botonRegresar.getPreferredSize().height);
+    	botonRegresar.setBounds((tamanioPanel.width - botonRegresar.getPreferredSize().width) / 2, ConstantesGlobales.PANEL_ALTO - (ConstantesGlobales.PANEL_ALTO / 3), botonRegresar.getPreferredSize().width, botonRegresar.getPreferredSize().height);
     	add(botonRegresar);
     }
 
@@ -85,7 +86,7 @@ public class PantallaRanking extends Pantalla {
 
     private void establecerFondo(JLayeredPane layeredPane) {
         fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoPantallaNombre.png"));
-        fondo.setBounds(0, 0, size.width, size.height);
+        fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
         layeredPane.add(fondo, Integer.valueOf(0));
     }
 
@@ -98,9 +99,9 @@ public class PantallaRanking extends Pantalla {
         JPanel tituloPanel = new JPanel();
         tituloPanel.setLayout(null);
         tituloPanel.setOpaque(false);
-        tituloPanel.setBounds(0, 30, size.width, 50);
+        tituloPanel.setBounds(0, 30, tamanioPanel.width, 50);
         
-        titulo.setBounds(0, 0, size.width, 50);
+        titulo.setBounds(0, 0, tamanioPanel.width, 50);
         tituloPanel.add(titulo);
         
         layeredPane.add(tituloPanel, Integer.valueOf(1));
