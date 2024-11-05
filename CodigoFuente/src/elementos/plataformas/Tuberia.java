@@ -21,16 +21,17 @@ public class Tuberia extends BloqueSolido{
 
     @Override
     public int obtenerAlto() {
-    	return altura;
+    	return this.altura;
     }
 
-  @Override
-      public int obtenerAncho() {
-    	return ancho;
+    @Override
+    public int obtenerAncho() {
+    	return this.ancho;
     }
     
     @Override
     public void aceptarVisitante(Visitante visitante) {
     	visitante.visitarTuberia(this);
     }
+    
 }

@@ -33,7 +33,6 @@ public abstract class Enemigo extends NoJugable {
 
     protected abstract Sprite obtenerSpriteDeMuerte(FabricaSprites fabricaSprites);
     
-    
     protected void moverDerecha() {
     	Point velocidad = new Point(ConstantesGlobales.VELOCIDAD_HORIZONTAL_ENEMIGO, this.obtenerVelocidadDireccional().y);
     	this.establecerVelocidadDireccional(velocidad);
@@ -68,7 +67,7 @@ public abstract class Enemigo extends NoJugable {
 		if (this.obtenerContadorTicks() ==  1){
 			this.establecerSprite(obtenerSpriteDeMuerte(fabricaSprites));
 			this.actualizarHitboxYPosicion();
-		} else if (obtenerContadorTicks() ==  ticksAnimacion) {
+		} else if (obtenerContadorTicks() ==  this.ticksAnimacion) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 			this.obtenerNivel().removerEnemigo(this);
 			this.observerGrafico.establecerRemovido(true);
@@ -78,7 +77,7 @@ public abstract class Enemigo extends NoJugable {
     public abstract void aceptarVisitante(Visitante visitante);
 
 	public void mover() {
-    	if (removido) {
+    	if (this.removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else if (this.obtenerVelocidadDireccional().x <=  0) {

@@ -78,21 +78,21 @@ public class MarioInvulnerable extends MarioDefault {
 			} else {
 				aRetornar = obtenerSpriteInicial(fabricaSprites);
 			}
-			contexto.establecerSprite(aRetornar);
-		}catch(NullPointerException e) {
+			this.contexto.establecerSprite(aRetornar);
+		} catch(NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
 	public void actualizarTiempo () {
-		duracion--;
-		if (duracion ==  0) {
-			contexto.cambiarEstado(estadoPrevio);
-			generadorSonidos.detenerSonidoActual();
-			generadorSonidos.marioPequenioDeNuevo();
+		this.duracion--;
+		if (this.duracion ==  0) {
+			this.contexto.cambiarEstado(this.estadoPrevio);
+			this.generadorSonidos.detenerSonidoActual();
+			this.generadorSonidos.marioPequenioDeNuevo();
 			if (!this.contexto.obtenerNivel().obtenerBanderaAccionada()) {
-				generadorSonidos.reproducirSonidoPrevio();
+				this.generadorSonidos.reproducirSonidoPrevio();
 			}
 		}
 	}

@@ -30,7 +30,7 @@ public class Goomba extends Enemigo {
 			this.establecerVelocidadDireccional(new Point(0, 0));
 			this.eliminarEntidadGrafica(fabricaSprites);
 		} else if (mirandoAlFrente) {
-				this.establecerSprite(fabricaSprites.obtenerGoombaFrontalCaminando());
+			this.establecerSprite(fabricaSprites.obtenerGoombaFrontalCaminando());
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerGoombaReversoCaminando());
 		}

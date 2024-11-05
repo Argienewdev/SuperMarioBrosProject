@@ -11,5 +11,7 @@ public abstract class Meta extends Plataforma{
 		super(sprite, posicion, visitor, observerGrafico);
 		this.solido = false;
 	}
+	
 	public abstract void aceptarVisitante(Visitante visitante);
+	
 }

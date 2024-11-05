@@ -42,6 +42,7 @@ public abstract class Jugable extends Entidad  {
 		this.partida = partida;
 	}
 	
+	@SuppressWarnings("exports")
 	@Override
 	public void establecerPosicion (Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
@@ -87,7 +88,7 @@ public abstract class Jugable extends Entidad  {
 	}
 	
 	public boolean obtenerRetrocediendo() {
-		return retrocediendo;
+		return this.retrocediendo;
 	}
 	
 	public int obtenerDesplazamiento() {
@@ -100,7 +101,7 @@ public abstract class Jugable extends Entidad  {
 	
 	public void perderVida() {
 		this.vidas--;
-		if (vidas ==  0) { 
+		if (this.vidas ==  0) { 
 			this.muerte();
 		}
 	}

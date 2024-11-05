@@ -38,4 +38,5 @@ public class BuzzyBeetle extends Enemigo {
 			this.establecerSprite(fabricaSprites.obtenerBuzzyBeetleReversoCaminando());
 		}
 	}
+	
 }

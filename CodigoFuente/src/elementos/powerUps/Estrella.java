@@ -8,7 +8,7 @@ import visitors.Visitante;
 
 public class Estrella extends PowerUp {
 	
-	public static final int TIEMPO_DURACION = 10;
+	protected static final int TIEMPO_DURACION = 10;
 	
 	@SuppressWarnings("exports")
 	public Estrella(Sprite sprite,Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
@@ -37,10 +37,10 @@ public class Estrella extends PowerUp {
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		} else if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < ticksHastaSalirDelBloque) {
+		} else if (!this.estaDentroDeBloqueDePreguntas && obtenerContadorTicks() < this.ticksHastaSalirDelBloque) {
 			this.establecerSprite(fabricaSprites.obtenerEstrellaApagada());
 			this.actualizarHitboxYPosicion();
-		} else if (obtenerContadorTicks() >=  ticksHastaSalirDelBloque) {
+		} else if (obtenerContadorTicks() >=  this.ticksHastaSalirDelBloque) {
 			this.establecerSprite(fabricaSprites.obtenerEstrellaEncendida());
 			this.actualizarHitboxYPosicion();
 		}		

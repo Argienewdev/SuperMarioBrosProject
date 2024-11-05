@@ -66,7 +66,7 @@ public class MarioFuego extends SuperMario {
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
-		contexto.establecerSprite(aRetornar);
+		this.contexto.establecerSprite(aRetornar);
 	}
 	
 	@Override
@@ -92,7 +92,7 @@ public class MarioFuego extends SuperMario {
 			velocidadDireccionalBolaDeFuego = new Point(-15,0);
 		}
 		
-		BolaDeFuego bolaDeFuego = fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, contexto);
+		BolaDeFuego bolaDeFuego = this.fabricaEntidades.obtenerBolaDeFuego(posicionLogicaBolaDeFuego, velocidadDireccionalBolaDeFuego, this.contexto);
 		
 		bolaDeFuego.establecerPosicionGrafica(posicionGraficaBolaDeFuego);
 		bolaDeFuego.obtenerObserverGrafico().actualizar();
@@ -100,7 +100,7 @@ public class MarioFuego extends SuperMario {
 		
 		this.contexto.obtenerNivel().agregarBolaDeFuego(bolaDeFuego);
 		
-		generadorSonido.disparoBolaFuego();
+		this.generadorSonido.disparoBolaFuego();
 	}
 	
 }
