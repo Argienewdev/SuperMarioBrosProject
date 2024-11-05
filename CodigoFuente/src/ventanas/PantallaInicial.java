@@ -54,14 +54,14 @@ public class PantallaInicial extends Pantalla {
 		registrarOyenteTeclas();
 	}
 	
-	private void inicializarArregloDeBotones() {
+	protected void inicializarArregloDeBotones() {
 		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
 		arregloDeBotones.agregar(botonModo1);
 		arregloDeBotones.agregar(botonModo2);
 		arregloDeBotones.agregar(botonRanking);
 	}
 	
-	private void configurarFuente() {
+	protected void configurarFuente() {
 		tipoFuentes =  new Fuente();
 	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
@@ -74,7 +74,7 @@ public class PantallaInicial extends Pantalla {
 	    botonEnfocado.setForeground(Color.DARK_GRAY);
 	}
 	
-	private void configurarVentana(){
+	protected void configurarVentana(){
 		new JPanel();
 		setLayout(null);
 		setPreferredSize(size);
@@ -84,7 +84,7 @@ public class PantallaInicial extends Pantalla {
 		establecerFondo();
 	}
 	
-	private void establecerFondo(){
+	protected void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
 		 fondo = new JLabel(fondoImagen);
@@ -95,7 +95,7 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	
-	private void ajustarDisposicion(){
+	protected void ajustarDisposicion(){
 		botonModo1.setBounds((size.width - botonModo1.getPreferredSize().width) / 2, (size.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
 		botonModo2.setBounds((size.width - botonModo2.getPreferredSize().width) / 2, (size.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
 		botonRanking.setBounds((size.width - botonRanking.getPreferredSize().width) / 2, (size.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
@@ -121,39 +121,39 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	 public void refrescar() {
-		 if (enFoco) {
-		 if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
+		 if (this.enFoco) {
+		 if (this.sensor.obtenerEnterPresionado() && !this.sensor.obtenerEnterAccionada()){
 			
 			 if (botonEnfocado ==  botonModo1){
-				controlador.accionarInicioJuego("Modo original");
+				this.controlador.accionarInicioJuego("Modo original");
 			 }
 			 else if (botonEnfocado ==  botonModo2){
-				 controlador.accionarInicioJuego("Modo alternativo");
+				 this.controlador.accionarInicioJuego("Modo alternativo");
 			 } 
 			 else if (botonEnfocado ==  botonRanking) {
-				 controlador.mostrarPantallaRanking();
-				 sensor.accionarEnter();
+				 this.controlador.mostrarPantallaRanking();
+				 this.sensor.accionarEnter();
 			 }
 			 
 		 }
 		 
-	        if (sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
-	            botonEnfocado.setForeground(Color.WHITE);
-	            botonEnfocado = arregloDeBotones.siguiente();
-	            botonEnfocado.setForeground(Color.DARK_GRAY);
-	            sensor.accionarS();
+	        if (this.sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
+	        	this.botonEnfocado.setForeground(Color.WHITE);
+	        	this.botonEnfocado = arregloDeBotones.siguiente();
+	        	this. botonEnfocado.setForeground(Color.DARK_GRAY);
+	        	this.sensor.accionarS();
 	        } else if (sensor.obtenerWPresionado()  && !sensor.obtenerWAccionada()) {
-	            botonEnfocado.setForeground(Color.WHITE);
-	            botonEnfocado = arregloDeBotones.previo();
-	            botonEnfocado.setForeground(Color.DARK_GRAY);
-	            sensor.accionarW();
+	        	this.botonEnfocado.setForeground(Color.WHITE);
+	        	this.botonEnfocado = arregloDeBotones.previo();
+	        	this.botonEnfocado.setForeground(Color.DARK_GRAY);
+	        	this.sensor.accionarW();
 	        }
 		 }
 	       
     }
 	 
 	 
-	public void guardarModo (String modo) {
+	public void guardarModo(String modo) {
 		this.modo = modo;
 	}
 	
