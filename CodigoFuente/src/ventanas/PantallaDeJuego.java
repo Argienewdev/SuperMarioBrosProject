@@ -19,7 +19,7 @@ public class PantallaDeJuego extends Pantalla {
 
     private Dimension tamanioPanel;
     
-    private Jugable jugable;
+    private ControladorVistas controlador;
     
     private ObserverGrafico labelJugable;
     
@@ -33,7 +33,8 @@ public class PantallaDeJuego extends Pantalla {
     
     private JLayeredPane panelCapas;
    
-    public PantallaDeJuego() {
+    public PantallaDeJuego(ControladorVistas controladorVistas) {
+    	this.controlador = controladorVistas;
         this.configurarVentana();
         this.labelsElementoDeJuego = new CopyOnWriteArrayList<>();
     }
@@ -89,8 +90,7 @@ public class PantallaDeJuego extends Pantalla {
     }
 
 	public void registrarJugable(Jugable jugable) {
-        this.jugable = jugable;
-        this.labelJugable = jugable.obtenerObserverGrafico();
+        this.labelJugable = controlador.obtenerJugable().obtenerObserverGrafico();
         this.establecerPosicionOriginalJugable();
         this.establecerPosicionOriginalLabelJugable();
         this.panelCapas.add(this.labelJugable, JLayeredPane.MODAL_LAYER);
@@ -100,11 +100,11 @@ public class PantallaDeJuego extends Pantalla {
     }
 
     private void establecerPosicionOriginalLabelJugable() {
-		this.posicionOriginalLabelJugable = this.jugable.obtenerPosicionGrafica();
+		this.posicionOriginalLabelJugable = controlador.obtenerJugable().obtenerPosicionGrafica();
 	}
 
 	private void establecerPosicionOriginalJugable () {
-		this.posicionOriginalLogicaJugable = this.jugable.obtenerPosicionLogica();	
+		this.posicionOriginalLogicaJugable = controlador.obtenerJugable().obtenerPosicionLogica();	
 	}
 	
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
@@ -122,7 +122,7 @@ public class PantallaDeJuego extends Pantalla {
 
     
     private void moverLabels() {
-    	int desplazamiento = this.jugable.obtenerDesplazamiento();
+    	int desplazamiento = controlador.obtenerJugable().obtenerDesplazamiento();
         boolean fondoMovido = false;
         
         if (desplazamiento > 0) {
@@ -150,8 +150,8 @@ public class PantallaDeJuego extends Pantalla {
     					this.labelsElementoDeJuego.remove(observerGrafico);
     				}
     			}
-    			int cambioDesplazamiento = this.jugable.obtenerDesplazamiento() - desplazamiento;
-    			this.jugable.establecerDesplazamiento(cambioDesplazamiento);
+    			int cambioDesplazamiento = this.controlador.obtenerJugable().obtenerDesplazamiento() - desplazamiento;
+    			this.controlador.obtenerJugable().establecerDesplazamiento(cambioDesplazamiento);
             }
         	this.revalidate();
         	this.repaint();
@@ -160,9 +160,9 @@ public class PantallaDeJuego extends Pantalla {
 
 	private void actualizarHUD() {
     	this.hud.actualizarTiempo();
-        this.hud.actualizarVidas(jugable.obtenerVidas());
-        this.hud.actualizarPuntaje(jugable.obtenerPuntos());
-        this.hud.actualizarNivel(jugable.obtenerNivel().obtenerNumeroNivel());
+        this.hud.actualizarVidas(this.controlador.obtenerJugable().obtenerVidas());
+        this.hud.actualizarPuntaje(this.controlador.obtenerJugable().obtenerPuntos());
+        this.hud.actualizarNivel(this.controlador.obtenerJugable().obtenerNivel().obtenerNumeroNivel());
 	}
 
 	public void eliminarNivelActual() {
@@ -178,11 +178,11 @@ public class PantallaDeJuego extends Pantalla {
     }
 
 	private void establecerJugableEnNuevoNivel() {
-		this.jugable.establecerPosicionLogica(new Point(this.posicionOriginalLogicaJugable.x, this.posicionOriginalLogicaJugable.y + (50 - jugable.obtenerAlto())));
-    	this.jugable.establecerPosicionGrafica(this.jugable.obtenerPosicionLogica());
-    	this.jugable.moverHitbox(this.jugable.obtenerPosicionLogica());
-    	this.labelJugable.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - jugable.obtenerAlto()));
-    	this.jugable.establecerDesplazamiento(0);
+		this.controlador.obtenerJugable().establecerPosicionLogica(new Point(this.posicionOriginalLogicaJugable.x, this.posicionOriginalLogicaJugable.y + (50 - this.controlador.obtenerJugable().obtenerAlto())));
+    	this.controlador.obtenerJugable().establecerPosicionGrafica(this.controlador.obtenerJugable().obtenerPosicionLogica());
+    	this.controlador.obtenerJugable().moverHitbox(this.controlador.obtenerJugable().obtenerPosicionLogica());
+    	this.labelJugable.setLocation(this.posicionOriginalLabelJugable.x, this.posicionOriginalLabelJugable.y + (50 - this.controlador.obtenerJugable().obtenerAlto()));
+    	this.controlador.obtenerJugable().establecerDesplazamiento(0);
     	this.revalidate();
     	this.repaint();
 	}
