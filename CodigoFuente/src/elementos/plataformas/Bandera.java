@@ -8,20 +8,10 @@ import visitors.Visitante;
 
 public class Bandera extends Meta {
 	
-	protected boolean activada;
-
 	@SuppressWarnings("exports")
 	public Bandera(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
 		this.activada = false;
-	}
-
-	public boolean obtenerFueActivada() {
-		return this.activada;
-	}
-	
-	public void establecerActivada(boolean activada) {
-		this.activada = activada;
 	}
 
 	public void aceptarVisitante(Visitante visitante) {
