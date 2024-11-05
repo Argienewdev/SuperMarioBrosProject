@@ -3,10 +3,7 @@ package sensoresDeTeclas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
-
-@SuppressWarnings("serial")
-public class SensorDeTeclasJuego extends JFrame implements KeyListener{
+public class SensorDeTeclasJuego implements KeyListener{
 	
 	private boolean aPresionada;
 	
