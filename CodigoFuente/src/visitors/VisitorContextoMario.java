@@ -110,31 +110,27 @@ public class VisitorContextoMario implements Visitante {
 		if (!princesaPeach.obtenerFueActivada()) {
 			princesaPeach.establecerActivada(true);
 			this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().obtenerHUD().detenerTiempo();
-			this.generadorSonidos.detenerMusicaFondo();
-			this.generadorSonidos.reproducirMusicaRescatePrincesa();
+			this.generadorSonidos.detenerSonidoActual();
+			this.generadorSonidos.establecerSonidoGanarJuego();
+			this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
 			miEntidad.obtenerEstado().reiniciarEstado();
-			Timer timer = new Timer(3000, new ActionListener() {
-		    	public void actionPerformed(ActionEvent e) {
-		    		//TODO si esta linea se saca fuera del timer se elimina el bug con la princesa
-		    		miEntidad.obtenerNivel().obtenerPartida().finalizarPartida(true);
-		        }
-		    });
+    		miEntidad.obtenerNivel().accionarPrincesa();
 			this.detenerEntidades();
-			timer.setRepeats(false);
-			timer.start();
+    		miEntidad.obtenerNivel().obtenerPartida().finalizarPartida();		        
 		}
+		
 	}
 
 	public void visitarBandera(Bandera bandera) {
 		if (!bandera.obtenerFueActivada()) {
 			this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().obtenerHUD().detenerTiempo();
-			this.generadorSonidos.detenerMusicaFondo();
+			this.generadorSonidos.detenerSonidoActual();
 			bandera.establecerActivada(true);
 			bandera.actualizarSprite(this.miEntidad.obtenerNivel().obtenerPartida().obtenerFabricaSprites());
 			bandera.obtenerObserverGrafico().actualizar();
-			this.generadorSonidos.tocarBanderaFinNivel();
-			this.generadorSonidos.detenerMusicaInvulnerable();
-		    this.generadorSonidos.detenerSeAcaboElTiempo();
+			this.generadorSonidos.detenerSonidoActual();
+			this.generadorSonidos.establecerSonidoTocarBandera();
+			this.generadorSonidos.reproducirSonidoActual();
 			this.miEntidad.obtenerNivel().accionarBandera();
 			miEntidad.obtenerEstado().reiniciarEstado();
 			Timer timer = new Timer(3000, new ActionListener() {

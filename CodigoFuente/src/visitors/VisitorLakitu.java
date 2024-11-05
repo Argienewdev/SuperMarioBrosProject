@@ -59,9 +59,9 @@ public class VisitorLakitu implements Visitante {
     public void visitarMarioDefault(MarioDefault marioDefault) {
     	if (this.detectorDireccionColision.verificarImpactoLateralEntreMarioYEnemigo(marioDefault.obtenerContexto(), this.miEntidad) 
             && !this.miEntidad.obtenerRemovido()) {
-            this.generadorSonidos.detenerMusicaFondo();
-            this.generadorSonidos.detenerSeAcaboElTiempo();
-        	this.generadorSonidos.pierdeVida();
+            this.generadorSonidos.detenerSonidoActual();
+        	this.generadorSonidos.establecerSonidoPerderVida();
+        	this.generadorSonidos.reproducirSonidoActual();
     		ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);

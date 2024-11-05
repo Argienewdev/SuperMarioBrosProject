@@ -7,13 +7,13 @@ import elementos.plataformas.*;
 import elementos.powerUps.*;
 import generadores.GeneradorSonidos;
 
-public class VisitorMonedas implements Visitante {
+public class VisitorMoneda implements Visitante {
     
     private Moneda miEntidad;
     
     protected GeneradorSonidos generadorSonidos;
 
-    public VisitorMonedas(Moneda miEntidad, GeneradorSonidos generadorSonidos) {
+    public VisitorMoneda(Moneda miEntidad, GeneradorSonidos generadorSonidos) {
     	this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
     }

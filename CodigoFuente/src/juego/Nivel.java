@@ -65,6 +65,14 @@ public class Nivel {
 		return this.entidadesVisiblesEnPantalla;
 	}
     
+    public boolean obtenerPrincesaAccionada() {
+    	return this.banderaAccionada;
+    }
+    
+    public void accionarPrincesa(){
+    	this.princesaAccionada = true;
+    }
+    
     public Iterable<Plataforma> obtenerPlataformasAfectables() {
         return this.plataformasAfectables;
     }

@@ -54,8 +54,7 @@ public class GeneradorDeNivel {
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
 		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
 		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
-		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, pantallaDeJuego, 
-													 this.fabricaSonidos, this.generadorSonidos);
+		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, pantallaDeJuego, this.generadorSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(this.fabricaSprites, this.fabricaEntidades, 
 														 pantallaDeJuego, this.generadorSonidos);
 		this.controladorVistas = controladorVistas;		
@@ -165,17 +164,17 @@ public class GeneradorDeNivel {
 	                    break;
 	                } 
 	                case 42: {
-	                    Goomba goomba = fabricaEntidades.obtenerGoomba(posicion);
+	                    Goomba goomba = this.fabricaEntidades.obtenerGoomba(posicion);
 	                    nivel.agregarEnemigo(goomba);
 	                    break;
 	                }
 	                case 43: {
-	                    Spiny spiny = fabricaEntidades.obtenerSpiny(posicion);
+	                    Spiny spiny = this.fabricaEntidades.obtenerSpiny(posicion);
 	                    nivel.agregarEnemigo(spiny);
 	                    break;
 	                }
 	                case 44: {
-	                    BuzzyBeetle buzzyBeetle = fabricaEntidades.obtenerBuzzyBeetle(posicion);
+	                    BuzzyBeetle buzzyBeetle = this.fabricaEntidades.obtenerBuzzyBeetle(posicion);
 	                    nivel.agregarEnemigo(buzzyBeetle);
 	                    break;
 	                }
@@ -196,7 +195,6 @@ public class GeneradorDeNivel {
 				error.printStackTrace();
 			}
 		}
-		
 		for(Plataforma plataforma : nivel.obtenerPlataformas()) {
 			plataforma.obtenerObserverGrafico().actualizar();
 		}
@@ -206,13 +204,14 @@ public class GeneradorDeNivel {
 		for(Enemigo enemigo : nivel.obtenerEnemigos()) {
 			enemigo.obtenerObserverGrafico().actualizar();
 		}
+		
 		return nivel;
 	}
 	
 	@SuppressWarnings("exports")
 	public void agregarMarioAlNivel(Nivel nivel, Point posicion) {
 		Point posicionInicio = posicion;
-		Jugable jugable = fabricaEntidades.obtenerContextoMario(posicionInicio);
+		Jugable jugable = this.fabricaEntidades.obtenerContextoMario(posicionInicio);
 		nivel.establecerJugable(jugable);
 	}
 	

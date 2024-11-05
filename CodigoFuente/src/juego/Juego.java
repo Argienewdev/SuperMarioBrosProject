@@ -67,19 +67,20 @@ public class Juego {
 		this.controladorVistas = controladorVistas;
 	}
 	
-	public void finalizarJuego(boolean ganaJuego) {
-	    if(!ganaJuego) {
-	    	iniciarTemporizadorSonidoFinDeJuego();
+	public void finalizarJuego() {
+	    if(this.partida.obtenerNivel().obtenerPrincesaAccionada()) {
+	    	this.iniciarTemporizadorSonidoFinDeJuego();
 		}
-	    partida.obtenerGeneradorSonidos().detenerMusicaInvulnerable();
-	    mostrarPantallaIngresoNombre();
-	    detenerBucleJugador();
+	    this.mostrarPantallaIngresoNombre();
+	    this.detenerBucleJugador();
 	}
 
 	private void iniciarTemporizadorSonidoFinDeJuego() {
 		Timer temporizadorFinDeJuego = new Timer(3000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            partida.obtenerGeneradorSonidos().pierdeJuego();
+	        	partida.obtenerGeneradorSonidos().detenerSonidoActual();
+	            partida.obtenerGeneradorSonidos().establecerSonidoPerderJuego();
+	            partida.obtenerGeneradorSonidos().reproducirSonidoActual();
 	        }
 	    });
 	    temporizadorFinDeJuego.setRepeats(false);

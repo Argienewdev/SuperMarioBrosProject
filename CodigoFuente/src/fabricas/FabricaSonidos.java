@@ -28,7 +28,7 @@ public abstract class FabricaSonidos {
 	
 	public abstract Sonido obtenerMatarBolaDeFuego();
 	
-	public abstract Sonido obtenerModoInvencible();
+	public abstract Sonido obtenerModoInvulnerable();
 
 	public abstract Sonido obtenerModoRecuperacion();
 

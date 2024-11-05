@@ -106,8 +106,9 @@ public class VisitorMarioDefault implements Visitante {
     		this.miContexto.ganarPuntos(estrella.obtenerPuntosPorDefault());
             estrella.establecerRemovido(true);
             generadorSonidos.PowerupAgarrado();
-            generadorSonidos.reproducirMusicaInvulnerable();
-            generadorSonidos.detenerMusicaFondo(); 
+            generadorSonidos.detenerSonidoActual(); 
+            generadorSonidos.establecerSonidoInvulnerable();
+            generadorSonidos.reproducirSonidoActual();
     		}
     }
 
