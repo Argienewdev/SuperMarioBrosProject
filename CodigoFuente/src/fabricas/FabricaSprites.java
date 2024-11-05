@@ -6,7 +6,7 @@ public abstract class FabricaSprites {
 	
 	protected String rutaACarpeta;
 	
-	public FabricaSprites(String rutaACarpeta) {
+	protected FabricaSprites(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
 	

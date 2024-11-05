@@ -105,7 +105,7 @@ public class FabricaPlataformas {
 			case 2, 4, 6, 8 -> this.agregarMonedas(bloqueDePregunta, posicion, nivel, identificadorPowerUp);
 			case 1 -> this.agregarPowerUp(bloqueDePregunta, this.fabricaEntidades.obtenerEstrella(posicion), nivel);
 			case 3 -> this.agregarPowerUp(bloqueDePregunta, this.fabricaEntidades.obtenerChampinionVerde(posicion), nivel);
-			case 5 -> this.agregarPowerUp(bloqueDePregunta, this.fabricaEntidades.obtenerFlorDeFuego(posicion, this.fabricaEntidades), nivel);
+			case 5 -> this.agregarPowerUp(bloqueDePregunta, this.fabricaEntidades.obtenerFlorDeFuego(posicion), nivel);
 			case 7 -> this.agregarPowerUp(bloqueDePregunta, this.fabricaEntidades.obtenerSuperChampinion(posicion), nivel);
 		}
 	}

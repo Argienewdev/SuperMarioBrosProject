@@ -10,7 +10,6 @@ public class BloqueSolido extends Plataforma{
 	@SuppressWarnings("exports")
 	public BloqueSolido(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.establecerSolido(true);
 	}
 
 	public void aceptarVisitante(Visitante visitante) {
