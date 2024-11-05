@@ -2,8 +2,6 @@ package ventanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -17,7 +15,7 @@ public class ControladorVistas {
 	
 	private JFrame ventana;
 	
-	private Jugable marioJugable;
+	private Jugable jugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -63,7 +61,6 @@ public class ControladorVistas {
 		return pantallaFinal;
 	}
 	
-	@SuppressWarnings("exports")
 	public Ranking obtenerRanking() {
 		return juego.obtenerRanking();
 	}
@@ -119,14 +116,14 @@ public class ControladorVistas {
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
-		this.marioJugable = juego.crearPartida(this.sensorDeTeclasJuego, modo);
+		this.jugable = juego.crearPartida(this.sensorDeTeclasJuego, modo);
 		this.pantallaEntreNiveles = new PantallaEntreNiveles(this.juego.obtenerSpriteMario()); 
-		this.pantallaDeJuego.registrarJugable(this.marioJugable);
+		this.pantallaDeJuego.registrarJugable(this.jugable);
 		this.registrarOyenteJuego();	    
 		this.mostrarPantallaEntreNiveles();
-		this.pantallaEntreNiveles.actualizarVidas(this.marioJugable.obtenerVidas());
-		this.pantallaEntreNiveles.actualizarPuntaje(this.marioJugable.obtenerPuntos());
-		this.pantallaEntreNiveles.actualizarNivel(this.marioJugable.obtenerNivel().obtenerNumeroNivel());
+		this.pantallaEntreNiveles.actualizarVidas(this.jugable.obtenerVidas());
+		this.pantallaEntreNiveles.actualizarPuntaje(this.jugable.obtenerPuntos());
+		this.pantallaEntreNiveles.actualizarNivel(this.jugable.obtenerNivel().obtenerNumeroNivel());
 		Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarPantallaDeJuego();
@@ -241,9 +238,9 @@ public class ControladorVistas {
 	
 	public void cambiarNivel() {
 		mostrarPantallaEntreNiveles();
-		this.pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
-		this.pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
-		this.pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
+		this.pantallaEntreNiveles.actualizarVidas(jugable.obtenerVidas());
+		this.pantallaEntreNiveles.actualizarPuntaje(jugable.obtenerPuntos());
+		this.pantallaEntreNiveles.actualizarNivel(jugable.obtenerNivel().obtenerNumeroNivel());
 		this.pantallaDeJuego.cambiarDeNivel();
 		ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {

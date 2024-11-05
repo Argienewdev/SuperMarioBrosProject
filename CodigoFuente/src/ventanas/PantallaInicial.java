@@ -24,7 +24,7 @@ public class PantallaInicial extends Pantalla {
 	
 	protected JLabel botonRanking;
 
-	protected SensorDeTeclasMenu sensor;
+	protected SensorDeTeclasMenu sensorDeTeclasMenu;
 	
 	private ArregloDeBotones arregloDeBotones;
 	
@@ -42,7 +42,7 @@ public class PantallaInicial extends Pantalla {
 		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
 		this.enFoco = true;
 		this.controlador =  controladorVistas;
-		this.sensor = sensor;
+		this.sensorDeTeclasMenu = sensor;
 		this.fondo = new JLabel();
 		botonModo1 = new JLabel("MODO ORIGINAL");
 		botonModo2 = new JLabel("MODO ALTERNATIVO"); 
@@ -109,7 +109,7 @@ public class PantallaInicial extends Pantalla {
 		botonEnfocado.setFocusable(true);
 		this.setFocusable(true);
 		this.requestFocusInWindow(); 
-		addKeyListener(sensor);
+		addKeyListener(sensorDeTeclasMenu);
 	}
 	
 	public void establecerEnFoco(boolean condicion){
@@ -122,7 +122,7 @@ public class PantallaInicial extends Pantalla {
 	
 	 public void refrescar() {
 		 if (this.enFoco) {
-		 if (this.sensor.obtenerEnterPresionado() && !this.sensor.obtenerEnterAccionada()){
+		 if (this.sensorDeTeclasMenu.obtenerEnterPresionado() && !this.sensorDeTeclasMenu.obtenerEnterAccionada()){
 			
 			 if (botonEnfocado ==  botonModo1){
 				this.controlador.accionarInicioJuego("Modo original");
@@ -132,21 +132,21 @@ public class PantallaInicial extends Pantalla {
 			 } 
 			 else if (botonEnfocado ==  botonRanking) {
 				 this.controlador.mostrarPantallaRanking();
-				 this.sensor.accionarEnter();
+				 this.sensorDeTeclasMenu.accionarEnter();
 			 }
 			 
 		 }
 		 
-	        if (this.sensor.obtenerSPresionado() && !sensor.obtenerSAccionada()) {
+	        if (this.sensorDeTeclasMenu.obtenerSPresionado() && !sensorDeTeclasMenu.obtenerSAccionada()) {
 	        	this.botonEnfocado.setForeground(Color.WHITE);
 	        	this.botonEnfocado = arregloDeBotones.siguiente();
 	        	this. botonEnfocado.setForeground(Color.DARK_GRAY);
-	        	this.sensor.accionarS();
-	        } else if (sensor.obtenerWPresionado()  && !sensor.obtenerWAccionada()) {
+	        	this.sensorDeTeclasMenu.accionarS();
+	        } else if (sensorDeTeclasMenu.obtenerWPresionado()  && !sensorDeTeclasMenu.obtenerWAccionada()) {
 	        	this.botonEnfocado.setForeground(Color.WHITE);
 	        	this.botonEnfocado = arregloDeBotones.previo();
 	        	this.botonEnfocado.setForeground(Color.DARK_GRAY);
-	        	this.sensor.accionarW();
+	        	this.sensorDeTeclasMenu.accionarW();
 	        }
 		 }
 	       

@@ -21,7 +21,7 @@ public class PantallaIngresoNombre extends Pantalla {
     
     private JLabel fondo;
     
-    private Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    private Dimension tamanioPanel;
     
     private JTextField campoNombre;
     
@@ -32,12 +32,13 @@ public class PantallaIngresoNombre extends Pantalla {
     private String modo;
 
     public PantallaIngresoNombre(ControladorVistas controlador, String modo) {
+    	this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
         this.modo = modo;
         this.controlador = controlador;
         tipoFuentes = new Fuente();
         setLayout(new BorderLayout());  
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(size);
+        layeredPane.setPreferredSize(tamanioPanel);
         layeredPane.setLayout(null); 
 
         establecerFondo(layeredPane);
@@ -52,7 +53,7 @@ public class PantallaIngresoNombre extends Pantalla {
         } else if (this.modo.equals("Modo alternativo")) {
             	fondo = new JLabel(new ImageIcon("src/imagenes/fondos/fondoModoAlternativo/fondoPantallaNombre.png"));
         }
-        fondo.setBounds(0, 0, size.width, size.height);
+        fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
         layeredPane.add(fondo, Integer.valueOf(0));
     }
 
@@ -76,7 +77,7 @@ public class PantallaIngresoNombre extends Pantalla {
         etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 60));
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
-        etiqueta.setPreferredSize(new Dimension(size.width, 50));
+        etiqueta.setPreferredSize(new Dimension(tamanioPanel.width, 50));
         panelContenido.add(etiqueta);
         panelContenido.add(Box.createRigidArea(new Dimension(10, 30))); 
     }
@@ -95,7 +96,8 @@ public class PantallaIngresoNombre extends Pantalla {
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
     }
 
-    private void configurarBotonConfirmar(JPanel panelContenido) {
+    @SuppressWarnings("serial")
+	private void configurarBotonConfirmar(JPanel panelContenido) {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
         botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 45));

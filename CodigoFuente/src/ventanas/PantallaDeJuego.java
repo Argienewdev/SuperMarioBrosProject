@@ -17,7 +17,7 @@ public class PantallaDeJuego extends Pantalla {
 
     private List<ObserverGrafico> labelsElementoDeJuego;
 
-    private Dimension size;
+    private Dimension tamanioPanel;
     
     private Jugable jugable;
     
@@ -31,7 +31,7 @@ public class PantallaDeJuego extends Pantalla {
     
     private Point posicionOriginalLabelJugable;
     
-    private JLayeredPane layeredPane;
+    private JLayeredPane panelCapas;
    
     public PantallaDeJuego() {
         this.configurarVentana();
@@ -47,29 +47,29 @@ public class PantallaDeJuego extends Pantalla {
         this.setLayout(null);
         establecerTamanio();
         crearLayeredPane();
-        this.add(this.layeredPane);
+        this.add(this.panelCapas);
         this.crearHUD();
         this.revalidate();
         this.repaint();
     }
     
     private void crearLayeredPane() {
-    	this.layeredPane = new JLayeredPane();
-        this.layeredPane.setPreferredSize(this.size);
-        this.layeredPane.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    	this.panelCapas = new JLayeredPane();
+        this.panelCapas.setPreferredSize(this.tamanioPanel);
+        this.panelCapas.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
 	}
 
 	private void establecerTamanio() {
-    	this.size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-        this.setPreferredSize(this.size);
-        this.setMaximumSize(this.size);
-        this.setMinimumSize(this.size);
+    	this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+        this.setPreferredSize(this.tamanioPanel);
+        this.setMaximumSize(this.tamanioPanel);
+        this.setMinimumSize(this.tamanioPanel);
 	}
 
 	private void crearHUD() {
     	this.hud = new InterfazJuego();
     	this.hud.setBounds(0, 0, ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
-    	this.layeredPane.add(this.hud, JLayeredPane.PALETTE_LAYER);
+    	this.panelCapas.add(this.hud, JLayeredPane.PALETTE_LAYER);
         this.hud.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -83,7 +83,7 @@ public class PantallaDeJuego extends Pantalla {
     
 	private void establecerFondo() {
         this.fondo.setBounds(0, 0, this.fondo.getIcon().getIconWidth(), this.fondo.getIcon().getIconHeight());
-        this.layeredPane.add(this.fondo, JLayeredPane.DEFAULT_LAYER); 
+        this.panelCapas.add(this.fondo, JLayeredPane.DEFAULT_LAYER); 
         this.revalidate();
         this.repaint();
     }
@@ -93,7 +93,7 @@ public class PantallaDeJuego extends Pantalla {
         this.labelJugable = jugable.obtenerObserverGrafico();
         this.establecerPosicionOriginalJugable();
         this.establecerPosicionOriginalLabelJugable();
-        this.layeredPane.add(this.labelJugable, JLayeredPane.MODAL_LAYER);
+        this.panelCapas.add(this.labelJugable, JLayeredPane.MODAL_LAYER);
         this.labelJugable.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -109,7 +109,7 @@ public class PantallaDeJuego extends Pantalla {
 	
 	public void agregarLabel(ObserverGrafico labelElementoDeJuego) {
 		this.labelsElementoDeJuego.add(labelElementoDeJuego);
-		this.layeredPane.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
+		this.panelCapas.add(labelElementoDeJuego, JLayeredPane.MODAL_LAYER);
 		labelElementoDeJuego.setVisible(true);
 		this.revalidate();
         this.repaint();
@@ -146,7 +146,7 @@ public class PantallaDeJuego extends Pantalla {
     				observerGrafico.obtenerEntidadObservada().establecerPosicionGrafica(posicionLabel);
     				observerGrafico.actualizar();
     				if (observerGrafico.obtenerRemovido()) {
-    					this.layeredPane.remove(observerGrafico);
+    					this.panelCapas.remove(observerGrafico);
     					this.labelsElementoDeJuego.remove(observerGrafico);
     				}
     			}
@@ -188,10 +188,10 @@ public class PantallaDeJuego extends Pantalla {
 	}
 
 	private void removerLabelsDelPanel() {
-		this.layeredPane.remove(fondo);
-    	this.layeredPane.remove(hud);
+		this.panelCapas.remove(fondo);
+    	this.panelCapas.remove(hud);
 		for(ObserverGrafico observerGrafico : this.labelsElementoDeJuego) {
-			this.layeredPane.remove(observerGrafico);
+			this.panelCapas.remove(observerGrafico);
 		}
 		this.revalidate();
     	this.repaint();

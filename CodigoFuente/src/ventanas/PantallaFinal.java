@@ -29,11 +29,11 @@ public class PantallaFinal extends Pantalla {
     
     private JLayeredPane panelCapas;
     
-    protected SensorDeTeclasMenu sensor;
+    protected SensorDeTeclasMenu sensorDeTeclasMenu;
     
     protected ArregloDeBotones arregloDeBotones;
     
-    protected Dimension size = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
+    protected Dimension tamanioPanel;
     
     protected ControladorVistas controlador;
     
@@ -42,15 +42,16 @@ public class PantallaFinal extends Pantalla {
     protected boolean enFoco;
     
     public PantallaFinal (ControladorVistas controlador, SensorDeTeclasMenu sensor) {
+    	this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
         this.controlador = controlador;
-        this.sensor = sensor;
+        this.sensorDeTeclasMenu = sensor;
         this.enFoco = false;
         setLayout(null);
-        setPreferredSize(size);
+        setPreferredSize(tamanioPanel);
         
         panelCapas = new JLayeredPane();
         panelCapas.setLayout(null);
-        panelCapas.setBounds(0, 0, size.width, size.height);
+        panelCapas.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
         botonVolver = new JButton("Volver al menu");
 
         configurarFuente();
@@ -72,7 +73,7 @@ public class PantallaFinal extends Pantalla {
        JLabel fondo = new JLabel();
        fondo.setBackground(Color.BLACK);
        fondo.setOpaque(true);
-       fondo.setBounds(0, 0, size.width, size.height);
+       fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
        panelCapas.add(fondo, Integer.valueOf(0));
     }
     
@@ -81,17 +82,17 @@ public class PantallaFinal extends Pantalla {
         titulo.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
         titulo.setForeground(Color.WHITE);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        int posicionTituloY = size.height / 6;
-        titulo.setBounds(0, posicionTituloY, size.width, 50);
+        int posicionTituloY = tamanioPanel.height / 6;
+        titulo.setBounds(0, posicionTituloY, tamanioPanel.width, 50);
         panelCapas.add(titulo, Integer.valueOf(1));
     }
 
     private void configurarBotones() {
-        int alturaPantalla = size.height;
+        int alturaPantalla = tamanioPanel.height;
         int posicionPrimerBotonY = (2 * alturaPantalla / 3) + 50; 
         
         botonVolver.setBounds(
-            (size.width - botonVolver.getPreferredSize().width) / 2, 
+            (tamanioPanel.width - botonVolver.getPreferredSize().width) / 2, 
             posicionPrimerBotonY,
             botonVolver.getPreferredSize().width + 20, 
             botonVolver.getPreferredSize().height
@@ -136,8 +137,8 @@ public class PantallaFinal extends Pantalla {
     	puntajeLabel.setForeground(Color.WHITE);
     	puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	
-    	int posicionPuntajeY = size.height / 3;
-    	puntajeLabel.setBounds(0, posicionPuntajeY, size.width, 50);
+    	int posicionPuntajeY = tamanioPanel.height / 3;
+    	puntajeLabel.setBounds(0, posicionPuntajeY, tamanioPanel.width, 50);
     	panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
     }
     

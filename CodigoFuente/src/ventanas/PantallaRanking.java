@@ -25,13 +25,13 @@ public class PantallaRanking extends Pantalla {
     
 	protected ControladorVistas controlador;
     
-	protected SensorDeTeclasMenu sensor;
+	protected SensorDeTeclasMenu sensorDeTeclasMenu;
     
 	public PantallaRanking(List<Jugador> topJugadores, SensorDeTeclasMenu sensor,ControladorVistas controladorVistas) {
 		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     	this.enFoco = false;
     	this.controlador = controladorVistas;
-    	this.sensor = sensor;
+    	this.sensorDeTeclasMenu = sensor;
         setLayout(null);
         setPreferredSize(tamanioPanel);
         this.tipoFuentes = new Fuente();
@@ -116,8 +116,8 @@ public class PantallaRanking extends Pantalla {
     }
     
     public void refrescar(){
-    	if (sensor.obtenerEnterPresionado() && !sensor.obtenerEnterAccionada()){
-    		sensor.accionarEnter();
+    	if (sensorDeTeclasMenu.obtenerEnterPresionado() && !sensorDeTeclasMenu.obtenerEnterAccionada()){
+    		sensorDeTeclasMenu.accionarEnter();
     		controlador.dePantallaRankingAPantallaInicial();
     	}
     }
