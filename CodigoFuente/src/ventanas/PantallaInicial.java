@@ -24,8 +24,6 @@ public class PantallaInicial extends Pantalla {
 	
 	protected JLabel botonRanking;
 
-	protected SensorDeTeclasMenu sensorDeTeclasMenu;
-	
 	private ArregloDeBotones arregloDeBotones;
 	
 	protected Dimension tamanioPanel;
@@ -38,40 +36,39 @@ public class PantallaInicial extends Pantalla {
 	
 	private boolean enFoco;
 	
-	public PantallaInicial(SensorDeTeclasMenu sensor, ControladorVistas controladorVistas){
+	public PantallaInicial(ControladorVistas controladorVistas){
 		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
 		this.enFoco = true;
 		this.controlador =  controladorVistas;
-		this.sensorDeTeclasMenu = sensor;
 		this.fondo = new JLabel();
-		botonModo1 = new JLabel("MODO ORIGINAL");
-		botonModo2 = new JLabel("MODO ALTERNATIVO"); 
-		botonRanking =  new JLabel("RANKING");
-		inicializarArregloDeBotones();
-		configurarFuente();
-		configurarVentana();
-		ajustarDisposicion();
-		registrarOyenteTeclas();
+		this.botonModo1 = new JLabel("MODO ORIGINAL");
+		this.botonModo2 = new JLabel("MODO ALTERNATIVO"); 
+		this.botonRanking =  new JLabel("RANKING");
+		this.inicializarArregloDeBotones();
+		this.configurarFuente();
+		this.configurarVentana();
+		this.ajustarDisposicion();
+		this.registrarOyenteTeclas();
 	}
 	
 	protected void inicializarArregloDeBotones() {
-		arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
-		arregloDeBotones.agregar(botonModo1);
-		arregloDeBotones.agregar(botonModo2);
-		arregloDeBotones.agregar(botonRanking);
+		this.arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
+		this.arregloDeBotones.agregar(this.botonModo1);
+		this.arregloDeBotones.agregar(this.botonModo2);
+		this.arregloDeBotones.agregar(this.botonRanking);
 	}
 	
 	protected void configurarFuente() {
-		tipoFuentes =  new Fuente();
-	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    botonRanking.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    botonModo1.setForeground(Color.WHITE);
-	    botonModo2.setForeground(Color.WHITE);
-	    botonRanking.setForeground(Color.WHITE);
-	    botonEnfocado = botonModo1;
-	    arregloDeBotones.siguiente();
-	    botonEnfocado.setForeground(Color.DARK_GRAY);
+		this.tipoFuentes =  new Fuente();
+		this.botonModo1.setFont(this.tipoFuentes.fuente(this.tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+		this.botonModo2.setFont(this.tipoFuentes.fuente(this.tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+		this.botonRanking.setFont(this.tipoFuentes.fuente(this.tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+		this.botonModo1.setForeground(Color.WHITE);
+		this.botonModo2.setForeground(Color.WHITE);
+		this.botonRanking.setForeground(Color.WHITE);
+		this.botonEnfocado = this.botonModo1;
+		this.arregloDeBotones.siguiente();
+		this.botonEnfocado.setForeground(Color.DARK_GRAY);
 	}
 	
 	protected void configurarVentana(){
@@ -81,35 +78,35 @@ public class PantallaInicial extends Pantalla {
 		setMaximumSize(tamanioPanel);
 		setMinimumSize(tamanioPanel);
 		setBounds(0, 0, tamanioPanel.width * 2, tamanioPanel.height);
-		establecerFondo();
+		this.establecerFondo();
 	}
 	
 	protected void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
-		 fondo = new JLabel(fondoImagen);
-		 fondo.setPreferredSize(tamanioPanel);
-		 fondo.setMaximumSize(tamanioPanel);
-		 fondo.setMinimumSize(tamanioPanel);
+		 this.fondo = new JLabel(fondoImagen);
+		 this.fondo.setPreferredSize(tamanioPanel);
+		 this.fondo.setMaximumSize(tamanioPanel);
+		 this.fondo.setMinimumSize(tamanioPanel);
 		 add(fondo);
 	}
 	
 	
 	protected void ajustarDisposicion(){
-		botonModo1.setBounds((tamanioPanel.width - botonModo1.getPreferredSize().width) / 2, (tamanioPanel.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
-		botonModo2.setBounds((tamanioPanel.width - botonModo2.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
-		botonRanking.setBounds((tamanioPanel.width - botonRanking.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
-		fondo.add(botonModo1);
-		fondo.add(botonModo2);
-		fondo.add(botonRanking);
-		fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
+		this.botonModo1.setBounds((tamanioPanel.width - botonModo1.getPreferredSize().width) / 2, (tamanioPanel.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
+		this.botonModo2.setBounds((tamanioPanel.width - botonModo2.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
+		this.botonRanking.setBounds((tamanioPanel.width - botonRanking.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
+		this.fondo.add(botonModo1);
+		this.fondo.add(botonModo2);
+		this.fondo.add(botonRanking);
+		this.fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
 	}
 	
 	private void registrarOyenteTeclas(){
-		botonEnfocado.setFocusable(true);
+		this.botonEnfocado.setFocusable(true);
 		this.setFocusable(true);
 		this.requestFocusInWindow(); 
-		addKeyListener(sensorDeTeclasMenu);
+		addKeyListener(this.controlador.ObtenerSensorDeTeclasMenu());
 	}
 	
 	public void establecerEnFoco(boolean condicion){
@@ -122,7 +119,7 @@ public class PantallaInicial extends Pantalla {
 	
 	 public void refrescar() {
 		 if (this.enFoco) {
-		 if (this.sensorDeTeclasMenu.obtenerEnterPresionado() && !this.sensorDeTeclasMenu.obtenerEnterAccionada()){
+		 if (this.controlador.ObtenerSensorDeTeclasMenu().obtenerEnterPresionado() && !this.controlador.ObtenerSensorDeTeclasMenu().obtenerEnterAccionada()){
 			
 			 if (botonEnfocado ==  botonModo1){
 				this.controlador.accionarInicioJuego("Modo original");
@@ -132,21 +129,21 @@ public class PantallaInicial extends Pantalla {
 			 } 
 			 else if (botonEnfocado ==  botonRanking) {
 				 this.controlador.mostrarPantallaRanking();
-				 this.sensorDeTeclasMenu.accionarEnter();
+				 this.controlador.ObtenerSensorDeTeclasMenu().accionarEnter();
 			 }
 			 
 		 }
 		 
-	        if (this.sensorDeTeclasMenu.obtenerSPresionado() && !sensorDeTeclasMenu.obtenerSAccionada()) {
+	        if (this.controlador.ObtenerSensorDeTeclasMenu().obtenerSPresionado() && !this.controlador.ObtenerSensorDeTeclasMenu().obtenerSAccionada()) {
 	        	this.botonEnfocado.setForeground(Color.WHITE);
 	        	this.botonEnfocado = arregloDeBotones.siguiente();
 	        	this. botonEnfocado.setForeground(Color.DARK_GRAY);
-	        	this.sensorDeTeclasMenu.accionarS();
-	        } else if (sensorDeTeclasMenu.obtenerWPresionado()  && !sensorDeTeclasMenu.obtenerWAccionada()) {
+	        	this.controlador.ObtenerSensorDeTeclasMenu().accionarS();
+	        } else if (this.controlador.ObtenerSensorDeTeclasMenu().obtenerWPresionado()  && !this.controlador.ObtenerSensorDeTeclasMenu().obtenerWAccionada()) {
 	        	this.botonEnfocado.setForeground(Color.WHITE);
 	        	this.botonEnfocado = arregloDeBotones.previo();
 	        	this.botonEnfocado.setForeground(Color.DARK_GRAY);
-	        	this.sensorDeTeclasMenu.accionarW();
+	        	this.controlador.ObtenerSensorDeTeclasMenu().accionarW();
 	        }
 		 }
 	       

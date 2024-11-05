@@ -51,6 +51,7 @@ public class ControladorVistas {
 	public void establecerPanelActual (Pantalla panelActual) {
 		this.panelActual = panelActual;
 	}
+	
 	public PantallaDeJuego obtenerPantallaDeJuego() {
 		return this.pantallaDeJuego;
 	}
@@ -67,6 +68,13 @@ public class ControladorVistas {
 		return this.pantallaIngresoNombre;
 	}
 	
+	public SensorDeTeclasMenu ObtenerSensorDeTeclasMenu() {
+		return this.sensorDeTeclasMenu;
+	}
+
+	public Jugable obtenerJugable() {
+		return this.juego.obtenerPartida().obtenerJugable();
+	}
 	
 	public InterfazJuego obtenerHUD() {
 		return this.pantallaDeJuego.obtenerHUD();
@@ -131,7 +139,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaFinal() {
-		this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
+		this.pantallaFinal = new PantallaFinal(this);
 		this.pantallaFinal.establecerEnFoco(true);
 		this.pantallaFinal.puntajeJugador(this.juego.obtenerPartida().obtenerJugable().obtenerPuntos());
 		this.actualizarVentana(pantallaFinal);
@@ -144,7 +152,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaInicial(){
-		this.pantallaInicial =  new PantallaInicial(sensorDeTeclasMenu, this);
+		this.pantallaInicial =  new PantallaInicial(this);
 		this.ventana.add(pantallaInicial);
 		this.ventana.setContentPane(pantallaInicial);
 		this.panelActual = pantallaInicial;
@@ -181,7 +189,7 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
-		this.pantallaRanking = new PantallaRanking(this.juego.obtenerRanking().obtenerTopRanking(), sensorDeTeclasMenu,this);
+		this.pantallaRanking = new PantallaRanking(this.juego.obtenerRanking().obtenerTopRanking(), this);
 		this.pantallaInicial.establecerEnFoco(false);
 		actualizarVentana(pantallaRanking);
 	}
@@ -253,7 +261,4 @@ public class ControladorVistas {
 		this.juego.cierreDeJuego();
 	}
 	
-	public Jugable obtenerJugable() {
-		return this.juego.obtenerPartida().obtenerJugable();
-	}
 }

@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 
 import fuentes.Fuente;
 import juego.ConstantesGlobales;
-import sensoresDeTeclas.SensorDeTeclasMenu;
 
 public class PantallaFinal extends Pantalla {
     
@@ -29,8 +28,6 @@ public class PantallaFinal extends Pantalla {
     
     private JLayeredPane panelCapas;
     
-    protected SensorDeTeclasMenu sensorDeTeclasMenu;
-    
     protected ArregloDeBotones arregloDeBotones;
     
     protected Dimension tamanioPanel;
@@ -41,31 +38,30 @@ public class PantallaFinal extends Pantalla {
     
     protected boolean enFoco;
     
-    public PantallaFinal (ControladorVistas controlador, SensorDeTeclasMenu sensor) {
+    public PantallaFinal (ControladorVistas controlador) {
     	this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
         this.controlador = controlador;
-        this.sensorDeTeclasMenu = sensor;
         this.enFoco = false;
         setLayout(null);
         setPreferredSize(tamanioPanel);
         
-        panelCapas = new JLayeredPane();
-        panelCapas.setLayout(null);
-        panelCapas.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
-        botonVolver = new JButton("Volver al menu");
+        this.panelCapas = new JLayeredPane();
+        this.panelCapas.setLayout(null);
+        this.panelCapas.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
+        this.botonVolver = new JButton("Volver al menu");
 
-        configurarFuente();
-        establecerFondo();
-        establecerMensaje();
-        configurarBotones();
+        this.configurarFuente();
+        this.establecerFondo();
+        this.establecerMensaje();
+        this.configurarBotones();
         
         add(panelCapas);
-        configurarMapasTeclado();
+        this.configurarMapasTeclado();
     }
     
     private void configurarFuente() {
-    	tipoFuentes = new Fuente();
-    	botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 40));
+    	this.tipoFuentes = new Fuente();
+    	this.botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 40));
     }
     
         
@@ -74,7 +70,7 @@ public class PantallaFinal extends Pantalla {
        fondo.setBackground(Color.BLACK);
        fondo.setOpaque(true);
        fondo.setBounds(0, 0, tamanioPanel.width, tamanioPanel.height);
-       panelCapas.add(fondo, Integer.valueOf(0));
+       this.panelCapas.add(fondo, Integer.valueOf(0));
     }
     
     private void establecerMensaje() {
@@ -91,31 +87,31 @@ public class PantallaFinal extends Pantalla {
         int alturaPantalla = tamanioPanel.height;
         int posicionPrimerBotonY = (2 * alturaPantalla / 3) + 50; 
         
-        botonVolver.setBounds(
-            (tamanioPanel.width - botonVolver.getPreferredSize().width) / 2, 
+        this.botonVolver.setBounds(
+            (this.tamanioPanel.width - this.botonVolver.getPreferredSize().width) / 2, 
             posicionPrimerBotonY,
-            botonVolver.getPreferredSize().width + 20, 
-            botonVolver.getPreferredSize().height
+            this.botonVolver.getPreferredSize().width + 20, 
+            this.botonVolver.getPreferredSize().height
         );
         
-        botonVolver.addActionListener(new ActionListener() {
+        this.botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 realizarAccionVolver();
             }
         });
 
-        botonVolver.setBorderPainted(false);       
-        botonVolver.setContentAreaFilled(false);    
-        botonVolver.setFocusPainted(false);        
-        botonVolver.setOpaque(false);               
-        botonVolver.setForeground(Color.LIGHT_GRAY);
+        this.botonVolver.setBorderPainted(false);       
+        this.botonVolver.setContentAreaFilled(false);    
+        this.botonVolver.setFocusPainted(false);        
+        this.botonVolver.setOpaque(false);               
+        this.botonVolver.setForeground(Color.LIGHT_GRAY);
         
 
         add(botonVolver);
     }
     
     private void realizarAccionVolver() {
-    	controlador.dePantallaFinalAPantallaInicial();
+    	this.controlador.dePantallaFinalAPantallaInicial();
     }
     
     @SuppressWarnings("serial")
@@ -132,14 +128,14 @@ public class PantallaFinal extends Pantalla {
     }
     
     public void puntajeJugador(int puntaje) {
-    	puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
-    	puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
-    	puntajeLabel.setForeground(Color.WHITE);
-    	puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	this.puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
+    	this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+    	this.puntajeLabel.setForeground(Color.WHITE);
+    	this.puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	
     	int posicionPuntajeY = tamanioPanel.height / 3;
-    	puntajeLabel.setBounds(0, posicionPuntajeY, tamanioPanel.width, 50);
-    	panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
+    	this.puntajeLabel.setBounds(0, posicionPuntajeY, tamanioPanel.width, 50);
+    	this.panelCapas.add(puntajeLabel, Integer.valueOf(1)); 
     }
     
     public void refrescar() {

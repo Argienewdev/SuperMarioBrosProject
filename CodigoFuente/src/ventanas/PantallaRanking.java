@@ -4,7 +4,6 @@ import javax.swing.*;
 import fuentes.Fuente;
 import juego.ConstantesGlobales;
 import ranking.Jugador;
-import sensoresDeTeclas.SensorDeTeclasMenu;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +24,10 @@ public class PantallaRanking extends Pantalla {
     
 	protected ControladorVistas controlador;
     
-	protected SensorDeTeclasMenu sensorDeTeclasMenu;
-    
-	public PantallaRanking(List<Jugador> topJugadores, SensorDeTeclasMenu sensor,ControladorVistas controladorVistas) {
+	public PantallaRanking(List<Jugador> topJugadores,ControladorVistas controladorVistas) {
 		this.tamanioPanel = new Dimension(ConstantesGlobales.PANEL_ANCHO, ConstantesGlobales.PANEL_ALTO);
     	this.enFoco = false;
     	this.controlador = controladorVistas;
-    	this.sensorDeTeclasMenu = sensor;
         setLayout(null);
         setPreferredSize(tamanioPanel);
         this.tipoFuentes = new Fuente();
@@ -116,8 +112,8 @@ public class PantallaRanking extends Pantalla {
     }
     
     public void refrescar(){
-    	if (sensorDeTeclasMenu.obtenerEnterPresionado() && !sensorDeTeclasMenu.obtenerEnterAccionada()){
-    		sensorDeTeclasMenu.accionarEnter();
+    	if (this.controlador.ObtenerSensorDeTeclasMenu().obtenerEnterPresionado() && !this.controlador.ObtenerSensorDeTeclasMenu().obtenerEnterAccionada()){
+    		this.controlador.ObtenerSensorDeTeclasMenu().accionarEnter();
     		controlador.dePantallaRankingAPantallaInicial();
     	}
     }
