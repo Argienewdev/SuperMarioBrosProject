@@ -20,7 +20,7 @@ public class Fuente {
             font = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (Exception ex) {
             System.err.println("La fuente " + fontName + " no se pudo cargar. Cargando Arial...");
-            font = new Font("Arial", Font.PLAIN, 14);            
+            font = new Font("Arial", Font.PLAIN, 14);
         }
         return font.deriveFont(estilo, tamanio);
     }

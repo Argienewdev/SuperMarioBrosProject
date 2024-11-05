@@ -5,11 +5,11 @@ import java.util.Random;
 import elementos.enemigos.PiranhaPlant;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
+import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
-import ventanas.PantallaDeJuego;
 import visitors.*;
 
 public class FabricaPlataformas {
@@ -18,23 +18,23 @@ public class FabricaPlataformas {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
-    protected PantallaDeJuego pantallaDeJuego;
+    protected GeneradorDeNivel generadorDeNivel;
     
     protected GeneradorSonidos generadorSonidos;
 
 	public FabricaPlataformas(FabricaSprites fabricaSprites, FabricaEntidades fabricaEntidades,
-							  PantallaDeJuego pantallaDeJuego, GeneradorSonidos generadorSonidos) {
+			GeneradorDeNivel generadorDeNivel, GeneradorSonidos generadorSonidos) {
 		this.generadorSonidos = generadorSonidos;
 		this.fabricaSprites = fabricaSprites;
 		this.fabricaEntidades = fabricaEntidades;
-		this.pantallaDeJuego = pantallaDeJuego;
+		this.generadorDeNivel = generadorDeNivel;
 	}
 
 	private <T extends Plataforma> T crearPlataforma(T plataforma, Visitante visitante) {
 		plataforma.establecerVisitante(visitante);
 		ObserverGrafico observerGrafico = new ObserverGrafico(plataforma);
 		plataforma.establecerObserverGrafico(observerGrafico);
-		this.pantallaDeJuego.agregarLabel(observerGrafico);
+		this.generadorDeNivel.obtenerPantallaDeJuego().agregarLabel(observerGrafico);
 		return plataforma;
 	}
 

@@ -3,7 +3,6 @@ package fabricas;
 import java.awt.Point;
 import elementos.*;
 import observers.ObserverGrafico;
-import ventanas.PantallaDeJuego;
 import visitors.*;
 import elementos.enemigos.*;
 import elementos.entidades.BolaDeFuego;
@@ -12,21 +11,22 @@ import elementos.entidades.Jugable;
 import elementos.personajes.ContextoMario;
 import elementos.personajes.MarioDefault;
 import elementos.powerUps.*;
+import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;
 
 public class FabricaEntidades {
 
     protected FabricaSprites fabricaSprites;
     
-    protected PantallaDeJuego pantallaDeJuego;
+    protected GeneradorDeNivel generadorDeNivel;
     
     protected GeneradorSonidos generadorSonidos;
 
-    public FabricaEntidades(FabricaSprites fabricaSprites, PantallaDeJuego pantallaDeJuego, 
+    public FabricaEntidades(FabricaSprites fabricaSprites, GeneradorDeNivel generadorDeNivel, 
     						GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
         this.fabricaSprites = fabricaSprites;
-        this.pantallaDeJuego = pantallaDeJuego;
+        this.generadorDeNivel = generadorDeNivel;
     }
 
     @SuppressWarnings("exports")
@@ -141,7 +141,7 @@ public class FabricaEntidades {
         entidad.establecerVisitante(visitante);
         ObserverGrafico observerGrafico = new ObserverGrafico(entidad);
         entidad.establecerObserverGrafico(observerGrafico);
-        this.pantallaDeJuego.agregarLabel(observerGrafico);
+        this.generadorDeNivel.obtenerPantallaDeJuego().agregarLabel(observerGrafico);
     }
     
     private void configurarJugable(Jugable jugable, Visitante visitante) {

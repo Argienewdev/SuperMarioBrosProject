@@ -34,8 +34,7 @@ public class Partida {
 		this.juego = juego;
 		this.numeroNivelActual = 1;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), 
-													 this.juego.obtenerPantallaDeJuego(), 
-													 this.juego.obtenerControladorVistas());
+													 this.juego.obtenerPantallaDeJuego());
 		this.obtenerGeneradorSonidos().detenerSonidoActual();
 		this.obtenerGeneradorSonidos().establecerSonidoMusicaFondo();
 		this.obtenerGeneradorSonidos().reproducirSonidoActual();
