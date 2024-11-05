@@ -10,28 +10,28 @@ public class ArregloDeBotones {
 	
 	private int cantidad;
 	
-	public ArregloDeBotones(int tamanho){
-		siguiente = 0;
-		cantidad = 0;
-		arreglo = new JLabel[tamanho];
+	public ArregloDeBotones(int tamanio){
+		this.siguiente = 0;
+		this.cantidad = 0;
+		this.arreglo = new JLabel[tamanio];
 	}
 	
 	@SuppressWarnings("exports")
 	public void agregar(JLabel nuevo) {
-		arreglo[cantidad] = nuevo;
-		cantidad++;
+		this.arreglo[cantidad] = nuevo;
+		this.cantidad++;
 	}
 	
 	@SuppressWarnings("exports")
 	public JLabel siguiente() {
 		JLabel aRetornar = null;
-		if (siguiente >=  arreglo.length) {
-			siguiente = 0;
-			aRetornar = arreglo[siguiente];
-			siguiente++;
+		if (this.siguiente >=  this.arreglo.length) {
+			this.siguiente = 0;
+			aRetornar = this.arreglo[siguiente];
+			this.siguiente++;
 		} else {
-			aRetornar = arreglo[siguiente];
-			siguiente++;
+			aRetornar = this.arreglo[siguiente];
+			this.siguiente++;
 		}
 		return aRetornar;
 	}

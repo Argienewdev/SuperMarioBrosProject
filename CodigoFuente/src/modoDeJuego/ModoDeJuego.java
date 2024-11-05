@@ -24,9 +24,9 @@ public class ModoDeJuego {
 			this.fabricaSprites = new FabricaSpritesModoOriginal("src/imagenes/sprites");
 			this.fabricaSonidos = new FabricaSonidosModoOriginal("src/sonido");
 		} else if (modoDeJuegoSeleccionado.equals("Modo alternativo")) {
-				this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
-				this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
-				this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido");
+			this.fabricaSilueta = new FabricaSiluetaModoAlternativo("src/imagenes/siluetas");
+			this.fabricaSprites = new FabricaSpritesModoAlternativo("src/imagenes/sprites");
+			this.fabricaSonidos = new FabricaSonidosModoAlternativo("src/sonido");
 		}
 	}
 	
