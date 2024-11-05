@@ -11,7 +11,7 @@ import generadores.GeneradorSonidos;
 import visitors.Visitante;
 import visitors.VisitorMarioFuego;
 
-public class MarioFuego extends MarioDefault {
+public class MarioFuego extends SuperMario {
 	
 	protected FabricaEntidades fabricaEntidades;
 	
