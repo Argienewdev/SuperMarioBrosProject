@@ -9,18 +9,18 @@ import juego.ConstantesGlobales;
 @SuppressWarnings("serial")
 public class ObserverGrafico extends JLabel implements Observer {
 	
-	private ElementoDeJuego entidad_observada;
+	private ElementoDeJuego entidadObservada;
 	
 	private boolean removido;
 	
-	public ObserverGrafico(ElementoDeJuego entidad_observada) {
+	public ObserverGrafico(ElementoDeJuego entidadObservada) {
 		super();
-		this.entidad_observada = entidad_observada;
+		this.entidadObservada = entidadObservada;
 		this.removido = false;
 	}
 	
 	public ElementoDeJuego obtenerEntidadObservada() {
-		return this.entidad_observada;
+		return this.entidadObservada;
 	}
 	
 	public void establecerRemovido(boolean removido) {
@@ -32,29 +32,32 @@ public class ObserverGrafico extends JLabel implements Observer {
 	}
 	
 	public void actualizar() {
-		actualizarImagen();
-		actualizarPosicionTamanio();
-		if(this.entidad_observada.obtenerPosicionGrafica().x <  ConstantesGlobales.PANEL_ANCHO
-		&& this.entidad_observada.obtenerPosicionGrafica().x + this.entidad_observada.obtenerAncho() > 0) {
-			this.entidad_observada.establecerVisibleEnPantalla(true);
-		} else {
-			this.entidad_observada.establecerVisibleEnPantalla(false);
-		}
-			
+		this.actualizarImagen();
+		this.actualizarPosicionTamanio();
+		this.actualizarVisibilidadElemento();
 	}
 	
+	private void actualizarVisibilidadElemento() {
+		if(this.entidadObservada.obtenerPosicionGrafica().x <  ConstantesGlobales.PANEL_ANCHO
+		&& this.entidadObservada.obtenerPosicionGrafica().x + this.entidadObservada.obtenerAncho() > 0) {
+			this.entidadObservada.establecerVisibleEnPantalla(true);
+		} else {
+			this.entidadObservada.establecerVisibleEnPantalla(false);
+		}
+	}
+
 	protected void actualizarImagen() {
-		String ruta_imagen = entidad_observada.obtenerSprite().obtenerRutaImagen();
-		ImageIcon icono = new ImageIcon(ruta_imagen);
-		setIcon(icono);
+		String rutaImagen = entidadObservada.obtenerSprite().obtenerRutaImagen();
+		ImageIcon icono = new ImageIcon(rutaImagen);
+		this.setIcon(icono);
 	}
 	
 	protected void actualizarPosicionTamanio() {
-		int x = entidad_observada.obtenerPosicionGrafica().x;
-		int y = entidad_observada.obtenerPosicionGrafica().y;
+		int x = entidadObservada.obtenerPosicionGrafica().x;
+		int y = entidadObservada.obtenerPosicionGrafica().y;
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
-		setBounds(x, y, ancho, alto);
+		this.setBounds(x, y, ancho, alto);
 	}
 	
 }
