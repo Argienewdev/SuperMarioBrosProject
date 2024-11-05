@@ -27,10 +27,9 @@ public class PantallaRanking extends Pantalla {
     
 	protected SensorDeTeclasMenu sensor;
     
-    @SuppressWarnings("exports")
 	public PantallaRanking(List<Jugador> topJugadores, SensorDeTeclasMenu sensor,ControladorVistas controladorVistas) {
     	this.enFoco = false;
-    	controlador = controladorVistas;
+    	this.controlador = controladorVistas;
     	this.sensor = sensor;
         setLayout(null);
         setPreferredSize(size);
@@ -70,14 +69,14 @@ public class PantallaRanking extends Pantalla {
     
     private void agregarBotonRegresar(){
     	JLabel botonRegresar =  new JLabel("Regresar");
-    	Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
+    	Font font = tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30);
     	botonRegresar.setFont(font);
     	botonRegresar.setBounds((size.width - botonRegresar.getPreferredSize().width) / 2, ConstantesGlobales.PANEL_ALTO - (ConstantesGlobales.PANEL_ALTO / 3), botonRegresar.getPreferredSize().width, botonRegresar.getPreferredSize().height);
     	add(botonRegresar);
     }
 
     private void configurarFuenteJugadores() {
-        Font font = tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30);
+        Font font = tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30);
         for (JLabel top : rankingLabel) {
             top.setFont(font);
             top.setForeground(Color.WHITE);
@@ -92,7 +91,7 @@ public class PantallaRanking extends Pantalla {
 
     private void establecerTitulo(JLayeredPane layeredPane) {
         JLabel titulo = new JLabel("Ranking mejores 5 jugadores");
-        titulo.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+        titulo.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
         titulo.setForeground(Color.WHITE);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         
