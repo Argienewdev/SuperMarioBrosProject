@@ -72,17 +72,16 @@ public class Partida {
 	private void analizarEstadoTiempo() {
 		int segundos = this.obtenerTiempoPartida().obtenerPrimerComponente();
 		int milisegundos = this.obtenerTiempoPartida().obtenerSegundoComponente();
-		if (segundos == 5 && milisegundos == 0) {
-			this.obtenerGeneradorSonidos().detenerSonidoActual();
-			this.obtenerGeneradorSonidos().establecerSonidoPocoTiempo();
-			this.obtenerGeneradorSonidos().reproducirSonidoActual();
-		}else if(segundos == 0 && milisegundos == 0) {
+		if(segundos == 0 && milisegundos == 0) {
 			this.matarJugadorPorFaltaDeTiempo();
 		}
 	}
 		
 	private void matarJugadorPorFaltaDeTiempo() {
 		this.jugable.perderVida();
+		this.juego.obtenerPartida().obtenerGeneradorSonidos().detenerSonidoActual();
+		this.juego.obtenerPartida().obtenerGeneradorSonidos().establecerSonidoPerderVida();
+		this.juego.obtenerPartida().obtenerGeneradorSonidos().reproducirSonidoActualPorUnicaVez();
      	this.reiniciarNivel();
 	}
 

@@ -21,8 +21,6 @@ public class GeneradorSonidos {
     
     private File archivoMusicaInvulnerabilidad;
     
-    private File archivoSeAcaboElTiempo;
-    
     private File archivoPerderJuego;
 
     private File archivoPerderVida;
@@ -36,8 +34,6 @@ public class GeneradorSonidos {
     private Clip clipPerderJuego;
     
     private Clip clipCancionInvulnerable;
-    
-    private Clip clipSeAcaboElTiempo;
     
     private Clip clipPerderVida;
     
@@ -81,12 +77,6 @@ public class GeneradorSonidos {
     	this.clipSonidoActual = this.clipTocarBandera;
     }
     
-    public void establecerSonidoPocoTiempo() {
-    	this.clipSonidoPrevio = this.clipSonidoActual;
-    	this.frameCancionPrevia = this.clipSonidoActual.getFramePosition();
-    	this.clipSonidoActual = this.clipSeAcaboElTiempo;
-    }
-    
     public void establecerSonidoPerderJuego() {
     	this.clipSonidoPrevio = this.clipSonidoActual;
     	this.frameCancionPrevia = this.clipSonidoActual.getFramePosition();
@@ -102,14 +92,12 @@ public class GeneradorSonidos {
     protected void establecerArchivos() {
         this.archivoMusicaFondo = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
         this.archivoMusicaInvulnerabilidad = new File(fabricaSonidos.obtenerModoInvulnerable().obtenerRutaSonido());
-        this.archivoSeAcaboElTiempo = new File(fabricaSonidos.obtenerSeAcaboElTiempo().obtenerRutaSonido());
         this.archivoTocarBandera = new File(fabricaSonidos.obtenerTocarBanderaFinNivel().obtenerRutaSonido());
         this.archivoPerderJuego = new File(fabricaSonidos.obtenerPierdeJuego().obtenerRutaSonido());
         this.archivoPerderVida = new File(fabricaSonidos.obtenerPierdeVida().obtenerRutaSonido());
         this.archivoGanarJuego = new File(fabricaSonidos.obtenerRescatePrincesa().obtenerRutaSonido());
         this.establecerMusicaFondo();
         this.establecerMusicaInvulnerable();
-        this.establecerSeAcaboElTiempo();
         this.establecerTocarBandera();
         this.establecerPerderJuego();
         this.establecerPerderVida();
@@ -120,8 +108,8 @@ public class GeneradorSonidos {
     protected void establecerMusicaFondo(){
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoMusicaFondo);
-            clipMusicaFondo = AudioSystem.getClip();
-            clipMusicaFondo.open(audioStream);
+            this.clipMusicaFondo = AudioSystem.getClip();
+            this.clipMusicaFondo.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -140,8 +128,8 @@ public class GeneradorSonidos {
     protected void establecerPerderVida(){
     	try {
     		AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoPerderVida);
-    		clipPerderVida = AudioSystem.getClip();
-    		clipPerderVida.open(audioStream);
+    		this.clipPerderVida = AudioSystem.getClip();
+    		this.clipPerderVida.open(audioStream);
     	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
     		e.printStackTrace();
     	}
@@ -150,8 +138,8 @@ public class GeneradorSonidos {
     protected void establecerPerderJuego(){
     	try {
     		AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoPerderJuego);
-    		clipPerderJuego = AudioSystem.getClip();
-    		clipPerderJuego.open(audioStream);
+    		this.clipPerderJuego = AudioSystem.getClip();
+    		this.clipPerderJuego.open(audioStream);
     	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
     		e.printStackTrace();
     	}
@@ -160,8 +148,8 @@ public class GeneradorSonidos {
     protected void establecerMusicaInvulnerable(){
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoMusicaInvulnerabilidad);
-            clipCancionInvulnerable = AudioSystem.getClip();
-            clipCancionInvulnerable.open(audioStream);
+            this.clipCancionInvulnerable = AudioSystem.getClip();
+            this.clipCancionInvulnerable.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -172,16 +160,6 @@ public class GeneradorSonidos {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoTocarBandera);
             this.clipTocarBandera = AudioSystem.getClip();
             this.clipTocarBandera.open(audioStream);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    protected void establecerSeAcaboElTiempo(){
-        try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoSeAcaboElTiempo);
-            clipSeAcaboElTiempo = AudioSystem.getClip();
-            clipSeAcaboElTiempo.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -272,25 +250,25 @@ public class GeneradorSonidos {
     }
     
     public void reproducirSonidoActual(){
-        clipSonidoActual.setFramePosition(0);
-        clipSonidoActual.start();
-        clipSonidoActual.loop(Clip.LOOP_CONTINUOUSLY);
+    	this.clipSonidoActual.setFramePosition(0);
+    	this.clipSonidoActual.start();
+    	this.clipSonidoActual.loop(Clip.LOOP_CONTINUOUSLY);
     }
     
     public void reproducirSonidoActualPorUnicaVez(){
-    	clipSonidoActual.setFramePosition(0);
-    	clipSonidoActual.start();
+    	this.clipSonidoActual.setFramePosition(0);
+    	this.clipSonidoActual.start();
     }
     
     public void detenerSonidoActual(){
-    	clipSonidoActual.stop();
+    	this.clipSonidoActual.stop();
     }
     
     public void reproducirSonidoPrevio() {
     	this.clipSonidoActual = this.clipSonidoPrevio;
     	this.clipSonidoActual.setFramePosition(this.frameCancionPrevia);
-    	clipSonidoActual.start();
-    	clipSonidoActual.loop(Clip.LOOP_CONTINUOUSLY);
+    	this.clipSonidoActual.start();
+    	this.clipSonidoActual.loop(Clip.LOOP_CONTINUOUSLY);
     }
     
 	public void choqueFireball(){
@@ -488,7 +466,7 @@ public class GeneradorSonidos {
 			System.err.println("Línea de audio no disponible: " + e.getMessage());
 		}
 	}
-	
+
 	
 	public void moneda(){
 		try {
@@ -517,6 +495,7 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+
 	
 	public void PowerupAgarrado(){
 		try {
@@ -546,6 +525,7 @@ public class GeneradorSonidos {
         }
 	}
 	
+	
 	public void powerUpEmerge(){
 		try {
 		    Sonido sonido = fabricaSonidos.obtenerPowerUpEmerge();
@@ -573,6 +553,7 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+	
 	
 	public void recuperaVida(){
 		try {
@@ -602,6 +583,7 @@ public class GeneradorSonidos {
         }
 	}
 	
+	
 	public void romperLadrillo(){
 		try {
 		    Sonido sonido = fabricaSonidos.obtenerRomperLadrillo();
@@ -629,6 +611,7 @@ public class GeneradorSonidos {
             System.err.println("Línea de audio no disponible: " + e.getMessage());
         }
 	}
+	
 	
 	public void salto(){
 		try {
