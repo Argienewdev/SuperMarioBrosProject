@@ -7,10 +7,8 @@ import elementos.enemigos.Enemigo;
 import elementos.entidades.BolaDeFuego;
 import elementos.entidades.Entidad;
 import elementos.entidades.Jugable;
-import elementos.personajes.ContextoMario;
 import elementos.plataformas.Plataforma;
 import elementos.powerUps.PowerUp;
-import generadores.GeneradorDeNivel;
 
 public class Nivel {
 	    

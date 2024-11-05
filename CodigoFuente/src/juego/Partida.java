@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import elementos.Sprite;
 import elementos.entidades.Jugable;
-import elementos.personajes.ContextoMario;
 import fabricas.FabricaSprites;
 import generadores.GeneradorDeNivel;
 import generadores.GeneradorSonidos;

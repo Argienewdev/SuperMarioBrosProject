@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorMarioRecuperacion;
 

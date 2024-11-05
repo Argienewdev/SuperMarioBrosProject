@@ -6,7 +6,6 @@ import elementos.personajes.*;
 import elementos.plataformas.*;
 import elementos.powerUps.*;
 import generadores.GeneradorSonidos;
-import ventanas.ControladorVistas;
 
 public class VisitorPrincesa implements Visitante {
     

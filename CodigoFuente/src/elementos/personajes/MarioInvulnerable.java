@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import elementos.Sprite;
 import fabricas.FabricaSprites;
 import generadores.GeneradorSonidos;
-import juego.ConstantesGlobales;
 import visitors.DetectorDireccionColision;
 import visitors.Visitante;
 import visitors.VisitorMarioInvulnerable;

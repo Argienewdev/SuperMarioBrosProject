@@ -2,7 +2,6 @@ package elementos.personajes;
 
 import elementos.Sprite;
 import fabricas.FabricaSprites;
-import juego.ConstantesGlobales;
 import visitors.Visitante;
 import visitors.VisitorSuperMario;
 

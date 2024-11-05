@@ -9,7 +9,6 @@ import generadores.GeneradorSonidos;
 import juego.Nivel;
 import elementos.Sprite;
 import observers.ObserverGrafico;
-import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import visitors.Visitante;
 import visitors.VisitorBandera;
