@@ -87,8 +87,6 @@ public abstract class Entidad extends ElementoDeJuego {
 		this.establecerVelocidadDireccional(new Point(obtenerVelocidadDireccional().x, 0));
 	}
     
-	public abstract void aceptarVisitante(Visitante visitante);
-	
 	public void incrementarContadorTicks() {
 		this.contadorTicks++;
 	}

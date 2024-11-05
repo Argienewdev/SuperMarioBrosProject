@@ -12,12 +12,6 @@ public abstract class NoJugable extends Entidad {
 				
 	protected NoJugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.colisionAbajo = true;
-	}
-
-	@Override
-	public int obtenerTicksAnimacion() {
-		return this.ticksAnimacion;
 	}
 
 	public abstract void mover();
