@@ -10,12 +10,15 @@ import generadores.GeneradorSonidos;
 public class VisitorPrincesa implements Visitante {
     
 	private PrincesaPeach miEntidad;
-    
+
+	protected DetectorDireccionColision detectorDireccionColision;
+	
     protected GeneradorSonidos generadorSonidos;
     
     public VisitorPrincesa(PrincesaPeach miEntidad, GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
         this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {

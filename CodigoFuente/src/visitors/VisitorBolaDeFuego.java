@@ -11,11 +11,14 @@ public class VisitorBolaDeFuego implements Visitante {
 
     private BolaDeFuego miEntidad;
     
+    protected DetectorDireccionColision detectorDireccionColision;
+    
     protected GeneradorSonidos generadorSonidos;
 
     public VisitorBolaDeFuego(BolaDeFuego miEntidad, GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
     	this.miEntidad = miEntidad;
+        this.detectorDireccionColision = new DetectorDireccionColision();
     }
 
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {
