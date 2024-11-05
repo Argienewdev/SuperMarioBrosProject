@@ -121,6 +121,7 @@ public class ControladorVistas {
 	protected void accionarInicioJuego(String modo) {
 		this.pantallaDeJuego = new PantallaDeJuego(this);
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		this.juego.crearPartida(sensorDeTeclasJuego, modo);
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
 		this.pantallaEntreNiveles = new PantallaEntreNiveles(this.juego.obtenerSpriteMario()); 
 		this.pantallaDeJuego.registrarJugable(this.juego.obtenerPartida().obtenerJugable());

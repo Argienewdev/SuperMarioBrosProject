@@ -55,11 +55,9 @@ public class Juego {
 		return this.partida;
 	}
 
-	public Jugable crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
+	public void crearPartida(SensorDeTeclasJuego sensorDeTeclasJuego, String modo) {
 		this.modoDeJuegoSeleccionado = modo;
 		this.partida = new Partida(sensorDeTeclasJuego, this);
-		Jugable jugable = this.partida.obtenerJugable();
-		return jugable;
 	}
 	
 	public void establecerControladorVistas(ControladorVistas controladorVistas) {
