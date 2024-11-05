@@ -91,7 +91,7 @@ public class VisitorBuzzyBeetle implements Visitante {
             int perdidaPuntos = this.miEntidad.obtenerPuntosSustraidosPorMuerteCausada();
             this.generadorSonidos.detenerSonidoActual();
             this.generadorSonidos.establecerSonidoPerderVida();
-            this.generadorSonidos.reproducirSonidoActual();
+            this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
             contextoMario.perderPuntos(perdidaPuntos);
             contextoMario.perderVida();
             miEntidad.obtenerNivel().obtenerPartida().reiniciarNivel();

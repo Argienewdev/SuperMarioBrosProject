@@ -25,9 +25,9 @@ public class MarioFuego extends MarioDefault {
 	
 	@Override
 	public Sprite obtenerSpriteInicial(FabricaSprites fabricaSprites) {
-		this.contexto.establecerMirandoAlFrente(true);
 		return fabricaSprites.obtenerMarioFuegoFrontalQuieto();
 	}
+	
 	@Override
 	
 	public Visitante obtenerVisitante() {
