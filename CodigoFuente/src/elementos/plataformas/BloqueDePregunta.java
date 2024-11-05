@@ -40,8 +40,8 @@ public class BloqueDePregunta extends Plataforma {
 
 	public PowerUp liberarPowerUp() {
 		PowerUp powerUpARemover = null;
-		if (!estaVacio()) {
-			powerUpARemover = this.coleccionPowerUps.remove(coleccionPowerUps.size() - 1);
+		if (!this.estaVacio()) {
+			powerUpARemover = this.removerPowerUp();
 			powerUpARemover.establecerEstaDentroDeBloqueDePreguntas(false);
 		}
 		return powerUpARemover;
@@ -49,13 +49,14 @@ public class BloqueDePregunta extends Plataforma {
 	
 	@Override
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
-		if (estaVacio()) {
+		if (this.estaVacio()) {
 			this.establecerSprite(fabricaSprites.obtenerBloqueDePreguntaApagado());
 		}
 	}
 
 	public boolean estaVacio() {
-		return coleccionPowerUps.isEmpty();
+		return this.coleccionPowerUps.isEmpty();
 	}
+	
 }
 

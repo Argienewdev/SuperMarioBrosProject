@@ -39,10 +39,10 @@ public class Lakitu extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
     	boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
-    	lanzarSpiny();
+    	this.lanzarSpiny();
 		if (this.removido) {
-			eliminarEntidadGrafica(fabricaSprites);
-		} else if (mirandoAlFrente) {
+			this.eliminarEntidadGrafica(fabricaSprites);
+		} else if (this.mirandoAlFrente) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());
@@ -52,7 +52,7 @@ public class Lakitu extends Enemigo {
 	public void aplicarGravedad() {}
 	
 	public void lanzarSpiny() {
-		if (contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
+		if (this.contadorTicksDisparo < INTERVALO_PARA_DISPARAR) {
 			this.contadorTicksDisparo++;
 		} else {
 			this.contadorTicksDisparo = 0;
@@ -65,7 +65,7 @@ public class Lakitu extends Enemigo {
 			Point posicionGraficaSpiny = new Point(posGraficaX,posGraficaY);
 			Point posicionLogicaSpiny = new Point(posLogicaX,posLogicaY);
 			
-			Spiny spiny = fabricaEntidades.obtenerSpiny(posicionLogicaSpiny);
+			Spiny spiny = this.fabricaEntidades.obtenerSpiny(posicionLogicaSpiny);
 			
 			spiny.establecerPosicionGrafica(posicionGraficaSpiny);
 			spiny.obtenerObserverGrafico().actualizar();
@@ -76,7 +76,7 @@ public class Lakitu extends Enemigo {
 	
     @Override
     public void invertirDireccion() {
-    	if (removido) {
+    	if (this.removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else {

@@ -61,7 +61,7 @@ public class MarioDefault implements EstadoMario {
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
-		contexto.establecerSprite(aRetornar);
+		this.contexto.establecerSprite(aRetornar);
 	}
 	
 	public void realizarAccionEspecial() {		
@@ -71,23 +71,23 @@ public class MarioDefault implements EstadoMario {
 	}
 	
 	protected boolean enElAire() {
-		return !contexto.obtenerColisionAbajo();
+		return !this.contexto.obtenerColisionAbajo();
 	}
 	
 	protected boolean avanzando() {
-		return contexto.obtenerAvanzando();
+		return this.contexto.obtenerAvanzando();
 	}
 	
 	protected boolean retrocediendo() {
-		return contexto.obtenerRetrocediendo();
+		return this.contexto.obtenerRetrocediendo();
 	}
 	
 	protected boolean mirandoAlFrente() {
-		return contexto.obtenerMirandoAlFrente();
+		return this.contexto.obtenerMirandoAlFrente();
 	}
 	
 	protected boolean bajoElNivelDelPiso() {
-		return contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
+		return this.contexto.obtenerPosicionLogica().y > (ConstantesGlobales.NIVEL_PISO);
 	}
 
 	@Override

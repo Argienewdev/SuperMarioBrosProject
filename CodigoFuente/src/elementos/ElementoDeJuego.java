@@ -31,7 +31,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	
 	protected ElementoDeJuego(Sprite sprite, Point posicion, Visitante visitante, ObserverGrafico observerGrafico) {
 		this.sprite = sprite;
-		Point posicionConsiderandoSprite = obtenerPosicionConsiderandoSprite(posicion, sprite);
+		Point posicionConsiderandoSprite = this.obtenerPosicionConsiderandoSprite(posicion, sprite);
 		this.posicionLogica = posicionConsiderandoSprite;
 		this.posicionGrafica = posicionConsiderandoSprite;
 		this.visitante = visitante;
@@ -55,7 +55,7 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	@SuppressWarnings("exports")
-	public void establecerPosicion (Point posicion) {
+	public void establecerPosicion(Point posicion) {
 		int desplazamientoX = posicion.x - this.posicionLogica.x;
 		Point nuevaPosicionGrafica = new Point (this.posicionGrafica.x + desplazamientoX, posicion.y);
 		this.posicionGrafica = nuevaPosicionGrafica;
@@ -63,12 +63,12 @@ public abstract class ElementoDeJuego implements Visitado {
 	}
 	
 	@SuppressWarnings("exports")
-	public void establecerPosicionLogica (Point posicion) {
+	public void establecerPosicionLogica(Point posicion) {
 		this.posicionLogica = posicion;
 	}
 	
 	@SuppressWarnings("exports")
-	public void establecerPosicionGrafica (Point posicion) {
+	public void establecerPosicionGrafica(Point posicion) {
 		this.posicionGrafica = posicion;
 	}
 	
@@ -124,11 +124,11 @@ public abstract class ElementoDeJuego implements Visitado {
     }
 	
 	public int obtenerAncho() {
-		return hitbox.width;
+		return this.hitbox.width;
 	}
 	
 	public int obtenerAlto() {
-		return hitbox.height;
+		return this.hitbox.height;
 	}
 	
 	public ObserverGrafico obtenerObserverGrafico() {

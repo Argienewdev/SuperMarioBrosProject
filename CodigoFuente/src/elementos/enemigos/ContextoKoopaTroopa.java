@@ -55,8 +55,8 @@ public class ContextoKoopaTroopa extends Enemigo {
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		this.estadoKoopa.actualizarSprite(fabricaSprites);
-		if (cambiarEstado) {
-			estadoKoopa.actualizarHitboxYPosicion(fabricaSprites);
+		if (this.cambiarEstado) {
+			this.estadoKoopa.actualizarHitboxYPosicion(fabricaSprites);
 			this.cambiarEstado = false;
 		}
 	}

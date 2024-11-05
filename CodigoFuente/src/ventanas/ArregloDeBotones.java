@@ -39,14 +39,14 @@ public class ArregloDeBotones {
 	@SuppressWarnings("exports")
 	public JLabel previo() {
 		JLabel aRetornar = null;
-		siguiente -=  2;
-		if (siguiente < 0) {
-			siguiente +=  arreglo.length;
-			aRetornar = arreglo[siguiente];
-			siguiente++;
+		this.siguiente -=  2;
+		if (this.siguiente < 0) {
+			this.siguiente +=  this.arreglo.length;
+			aRetornar = this.arreglo[siguiente];
+			this.siguiente++;
 		} else {
-			aRetornar = arreglo[siguiente];
-			siguiente++;
+			aRetornar = this.arreglo[siguiente];
+			this.siguiente++;
 		}
 		return aRetornar;
 	}

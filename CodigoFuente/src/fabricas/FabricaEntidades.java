@@ -22,8 +22,6 @@ public class FabricaEntidades {
     
     protected GeneradorSonidos generadorSonidos;
 
-    protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
-
     public FabricaEntidades(FabricaSprites fabricaSprites, PantallaDeJuego pantallaDeJuego, 
     						GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
@@ -123,33 +121,34 @@ public class FabricaEntidades {
 
     @SuppressWarnings("exports")
     public ContextoMario obtenerContextoMario(Point posicion) {
-    	Sprite sprite = fabricaSprites.obtenerMarioDefaultFrontalQuieto();
-    	MarioDefault estadoInicial = new MarioDefault();
-		ContextoMario marioADevolver = new ContextoMario(sprite, posicion, null, null, 3, estadoInicial, generadorSonidos);
-		Visitante visitorContextoMario = new VisitorContextoMario(marioADevolver, this.generadorSonidos);
-		marioADevolver.establecerVisitante(visitorContextoMario);
-		ObserverGrafico observerGraficoMario = new ObserverGrafico(marioADevolver);
-		marioADevolver.establecerObserverGrafico(observerGraficoMario);
-    	return marioADevolver;
-    } 
+        MarioDefault estadoInicial = new MarioDefault();
+        ContextoMario contextoMario = new ContextoMario(this.fabricaSprites.obtenerMarioDefaultFrontalQuieto(), 
+        												posicion, null, null, 3, estadoInicial, 
+        												this.generadorSonidos);
+        this.configurarJugable(contextoMario, new VisitorContextoMario(contextoMario, generadorSonidos));
+        return contextoMario;
+    }
     
     @SuppressWarnings("exports")
 	public BolaDeFuego obtenerBolaDeFuego(Point posicion, Point velocidadDireccional, Jugable jugador) {
-    	Sprite sprite = fabricaSprites.obtenerBolaDeFuego();
-    	BolaDeFuego bolaDeFuegoADevolver = new BolaDeFuego(sprite, posicion, null, velocidadDireccional, null, jugador);
-    	Visitante visitor = new VisitorBolaDeFuego(bolaDeFuegoADevolver, this.generadorSonidos);
-    	bolaDeFuegoADevolver.establecerVisitante(visitor);
-    	ObserverGrafico observer = new ObserverGrafico(bolaDeFuegoADevolver);
-    	bolaDeFuegoADevolver.establecerObserverGrafico(observer);
-        this.pantallaDeJuego.agregarLabel(observer);
-        return bolaDeFuegoADevolver;
-    } 
+        BolaDeFuego bolaDeFuego = new BolaDeFuego(this.fabricaSprites.obtenerBolaDeFuego(), posicion, 
+        										  null, velocidadDireccional, null, jugador);
+        this.configurarEntidad(bolaDeFuego, new VisitorBolaDeFuego(bolaDeFuego, this.generadorSonidos));
+        return bolaDeFuego;
+    }
+
 
     private void configurarEntidad(Entidad entidad, Visitante visitante) {
         entidad.establecerVisitante(visitante);
         ObserverGrafico observerGrafico = new ObserverGrafico(entidad);
         entidad.establecerObserverGrafico(observerGrafico);
         this.pantallaDeJuego.agregarLabel(observerGrafico);
+    }
+    
+    private void configurarJugable(Jugable jugable, Visitante visitante) {
+    	jugable.establecerVisitante(visitante);
+        ObserverGrafico observerGrafico = new ObserverGrafico(jugable);
+        jugable.establecerObserverGrafico(observerGrafico);
     }
     
 }

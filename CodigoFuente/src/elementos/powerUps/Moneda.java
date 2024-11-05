@@ -43,9 +43,9 @@ public class Moneda extends PowerUp {
 			this.eliminarEntidadGrafica(fabricaSprites);
 		} else if (!this.estaDentroDeBloqueDePreguntas ) {
 				this.establecerSprite(fabricaSprites.obtenerMonedaEncendida());
-				if(!seRealizoAnimacionSalto) {
+				if(!this.seRealizoAnimacionSalto) {
 					this.realizarAnimacionSalto();
-					seRealizoAnimacionSalto=true;
+					this.seRealizoAnimacionSalto = true;
 				}
 		} 
 		
@@ -60,11 +60,12 @@ public class Moneda extends PowerUp {
 		this.establecerVelocidadDireccional(salto);
 	}
 	
+	@Override
 	protected void moverDerecha() {
     }
     
+	@Override
     protected void moverIzquierda() {
     }
     
-
 }

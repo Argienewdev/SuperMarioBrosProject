@@ -42,7 +42,7 @@ public class SuperMario extends MarioDefault {
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
-		contexto.establecerSprite(aRetornar);
+		this.contexto.establecerSprite(aRetornar);
 	}
 	
 	@Override

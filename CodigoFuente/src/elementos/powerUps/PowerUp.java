@@ -85,7 +85,7 @@ public abstract class PowerUp extends NoJugable {
 	}
 	
 	public void mover() {
-		if (removido) {
+		if (this.removido) {
     		Point velocidad = new Point(0, 0);
     		this.establecerVelocidadDireccional(velocidad);
     	} else if (this.obtenerVelocidadDireccional().x < 0) {
@@ -102,4 +102,5 @@ public abstract class PowerUp extends NoJugable {
 	public boolean estaDentroDeBloqueDePreguntas() {
 		return this.estaDentroDeBloqueDePreguntas;
 	}
+	
 }

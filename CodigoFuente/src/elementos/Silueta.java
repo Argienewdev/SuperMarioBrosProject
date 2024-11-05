@@ -38,8 +38,8 @@ public class Silueta {
 	}
 
 	public int obtenerAncho() {
-		if (imagenCargada !=  null) {
-            return imagenCargada.getWidth();
+		if (this.imagenCargada !=  null) {
+            return this.imagenCargada.getWidth();
         } else {
             System.err.println("Imagen no cargada.");
             return 0;
@@ -47,8 +47,8 @@ public class Silueta {
 	}
 	
 	public int obtenerAlto() {
-		if (imagenCargada !=  null) {
-            return imagenCargada.getHeight();
+		if (this.imagenCargada !=  null) {
+            return this.imagenCargada.getHeight();
         } else {
             System.err.println("Imagen no cargada.");
             return 0;

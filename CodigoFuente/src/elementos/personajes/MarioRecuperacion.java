@@ -28,19 +28,22 @@ public class MarioRecuperacion extends MarioDefault {
 	
 	@Override
 	public void actualizarTiempo() {
-		tiempoEnRecuperacion--;
-		if (tiempoEnRecuperacion <=  0)
-			contexto.reiniciarEstado();
+		this.tiempoEnRecuperacion--;
+		if (this.tiempoEnRecuperacion <=  0)
+			this.contexto.reiniciarEstado();
 	}
 	
 	@Override
 	public void aceptarVisitante(Visitante visitante) {
-	        visitante.visitarMarioRecuperacion(this);
+		visitante.visitarMarioRecuperacion(this);
     }
 	
 	@Override
 	public void actualizarHitboxYPosicion(FabricaSprites fabricaSprites) {
-		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
+		Rectangle nuevaHitbox = new Rectangle(this.obtenerContexto().obtenerPosicionLogica().x, 
+											  this.obtenerContexto().obtenerPosicionLogica().y + (this.obtenerContexto().obtenerSprite().obtenerAltoImagen() - obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen()), 
+											  obtenerSpriteInicial(fabricaSprites).obtenerAnchoImagen(), 
+											  obtenerSpriteInicial(fabricaSprites).obtenerAltoImagen());
 		Point nuevaPosicion = new Point(nuevaHitbox.getLocation());
 		this.obtenerContexto().establecerPosicion(nuevaPosicion);
 		this.obtenerContexto().establecerHitbox(nuevaHitbox);
@@ -67,7 +70,7 @@ public class MarioRecuperacion extends MarioDefault {
 		} else {
 			aRetornar = obtenerSpriteInicial(fabricaSprites);
 		}
-		contexto.establecerSprite(aRetornar);
+		this.contexto.establecerSprite(aRetornar);
 	}
 	
 	@Override
