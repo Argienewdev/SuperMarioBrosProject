@@ -29,6 +29,7 @@ public class VisitorMarioFuego implements Visitante {
     		&& !buzzyBeetle.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		otorgarPuntosYEliminar(buzzyBeetle);
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(buzzyBeetle, miContexto);
             this.miContexto.rebotar();
     	}
     }
@@ -41,6 +42,7 @@ public class VisitorMarioFuego implements Visitante {
     	   && !goomba.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(goomba);
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(goomba, miContexto);
             this.miContexto.rebotar();
 		}
     }
@@ -55,6 +57,7 @@ public class VisitorMarioFuego implements Visitante {
     		&& !koopaEnCaparazon.obtenerContext().obtenerRemovido()) {
 			this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 			koopaEnCaparazon.obtenerContext().establecerRemovido(true);
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.obtenerContext(), miContexto);
             this.miContexto.rebotar();
         }
     }
@@ -66,6 +69,7 @@ public class VisitorMarioFuego implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
 	        contextoKoopa.cambiarEstado(nuevoEstado);
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaDefault.obtenerContext(), miContexto);
             this.miContexto.rebotar();
 		}
     }
@@ -75,6 +79,7 @@ public class VisitorMarioFuego implements Visitante {
     	   && !lakitu.obtenerRemovido()) {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
     		otorgarPuntosYEliminar(lakitu);
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(lakitu, miContexto);
             this.miContexto.rebotar();
     	}
     }
