@@ -67,7 +67,6 @@ public class VisitorPrincesa implements Visitante {
     }
 
     public void visitarContextoMario(ContextoMario contextoMario) {
-    	this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().accionarPantallaFinal();
     }
 
     public void visitarContextoKoopaTroopa(ContextoKoopaTroopa contextoKoopaTroopa) {

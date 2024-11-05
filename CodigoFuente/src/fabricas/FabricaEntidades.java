@@ -13,7 +13,7 @@ import visitors.VisitorEstrella;
 import visitors.VisitorFlorDeFuego;
 import visitors.VisitorGoomba;
 import visitors.VisitorLakitu;
-import visitors.VisitorMonedas;
+import visitors.VisitorMoneda;
 import visitors.VisitorPiranhaPlant;
 import visitors.VisitorSpiny;
 import visitors.VisitorSuperChampinion;
@@ -32,10 +32,8 @@ public class FabricaEntidades {
     protected PantallaDeJuego pantallaDeJuego;
     
     protected GeneradorSonidos generadorSonidos;
-
-	protected static final int VELOCIDAD_HORIZONTAL_POWER_UPS_MOVILES = 2;
     
-    public FabricaEntidades(FabricaSprites fabricaSprites,PantallaDeJuego pantallaDeJuego, FabricaSonidos fabricaSonidos, GeneradorSonidos generadorSonidos) {
+    public FabricaEntidades(FabricaSprites fabricaSprites, PantallaDeJuego pantallaDeJuego, GeneradorSonidos generadorSonidos) {
     	this.generadorSonidos = generadorSonidos;
         this.fabricaSprites = fabricaSprites;
         this.pantallaDeJuego = pantallaDeJuego;
@@ -43,8 +41,8 @@ public class FabricaEntidades {
     
     @SuppressWarnings("exports")
 	public Spiny obtenerSpiny(Point posicion) {
-    	Sprite sprite = fabricaSprites.obtenerSpinyCayendo();
-        Spiny spinyADevolver= new Spiny(sprite, posicion, null, null);
+    	Sprite sprite = this.fabricaSprites.obtenerSpinyCayendo();
+        Spiny spinyADevolver = new Spiny(sprite, posicion, null, null);
         Visitante visitorSpiny = new VisitorSpiny(spinyADevolver, this.generadorSonidos);
         spinyADevolver.establecerVisitante(visitorSpiny);
         ObserverGrafico observerGraficoSpiny = new ObserverGrafico(spinyADevolver);
@@ -53,7 +51,7 @@ public class FabricaEntidades {
         return spinyADevolver;
     }
     
-    @SuppressWarnings("exports")
+	@SuppressWarnings("exports")
 	public ContextoKoopaTroopa obtenerContextoKoopaTroopa(Point posicion) {
     	Sprite sprite = fabricaSprites.obtenerKoopaTroopaDefaultReversoCaminando();
     	KoopaDefault estadoInicial =  new KoopaDefault();
@@ -175,7 +173,7 @@ public class FabricaEntidades {
         	sprite = fabricaSprites.obtenerSpriteInvisible();
         }
 		Moneda monedasADevolver = new Moneda(sprite, posicion, null, null, true);
-		Visitante visitorMonedas = new VisitorMonedas(monedasADevolver, this.generadorSonidos);
+		Visitante visitorMonedas = new VisitorMoneda(monedasADevolver, this.generadorSonidos);
 		monedasADevolver.establecerVisitante(visitorMonedas);
         ObserverGrafico observerGraficoMonedas = new ObserverGrafico(monedasADevolver);
         monedasADevolver.establecerObserverGrafico(observerGraficoMonedas);

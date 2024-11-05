@@ -107,12 +107,18 @@ public class VisitorContextoMario implements Visitante {
 	}
 	
 	public void visitarPrincesaPeach(PrincesaPeach princesaPeach) {
-		this.generadorSonidos.detenerSonidoActual();
-		this.generadorSonidos.establecerSonidoGanarJuego();
-		this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
-		this.detenerEntidades();
-		miEntidad.obtenerNivel().accionarPrincesa();
-		miEntidad.obtenerNivel().obtenerPartida().finalizarPartida();
+		if (!princesaPeach.obtenerFueActivada()) {
+			princesaPeach.establecerActivada(true);
+			this.miEntidad.obtenerNivel().obtenerPartida().obtenerJuego().obtenerControladorVistas().obtenerHUD().detenerTiempo();
+			this.generadorSonidos.detenerSonidoActual();
+			this.generadorSonidos.establecerSonidoGanarJuego();
+			this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
+			miEntidad.obtenerEstado().reiniciarEstado();
+    		miEntidad.obtenerNivel().accionarPrincesa();
+			this.detenerEntidades();
+    		miEntidad.obtenerNivel().obtenerPartida().finalizarPartida();		        
+		}
+		
 	}
 
 	public void visitarBandera(Bandera bandera) {
@@ -125,7 +131,6 @@ public class VisitorContextoMario implements Visitante {
 			this.generadorSonidos.detenerSonidoActual();
 			this.generadorSonidos.establecerSonidoTocarBandera();
 			this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
-			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			this.miEntidad.obtenerNivel().accionarBandera();
 			miEntidad.obtenerEstado().reiniciarEstado();
 			Timer timer = new Timer(3000, new ActionListener() {

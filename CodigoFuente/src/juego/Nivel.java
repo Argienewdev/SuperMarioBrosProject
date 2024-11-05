@@ -30,11 +30,11 @@ public class Nivel {
     
     protected Partida partida;
     
-    protected boolean princesaAccionada;
-    
     protected boolean nivelCompletado;
         
     protected boolean banderaAccionada;
+    
+    protected boolean princesaAccionada;
 
     public Nivel(Silueta silueta, Partida partida) {
         this.silueta = silueta;
