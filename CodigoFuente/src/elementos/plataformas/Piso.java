@@ -5,7 +5,7 @@ import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Piso extends Plataforma{
+public class Piso extends Plataforma {
 	
 	@SuppressWarnings("exports")
 	public Piso(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {

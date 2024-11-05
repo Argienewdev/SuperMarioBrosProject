@@ -5,7 +5,7 @@ import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Tuberia extends BloqueSolido{
+public class Tuberia extends BloqueSolido {
     
     protected int altura;
     
