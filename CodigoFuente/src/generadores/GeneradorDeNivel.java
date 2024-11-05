@@ -24,7 +24,6 @@ import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
 import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
-import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import java.awt.Point;
 import java.io.*;
@@ -41,8 +40,6 @@ public class GeneradorDeNivel {
 		
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	protected FabricaSonidos fabricaSonidos;
-		
 	protected GeneradorSonidos generadorSonidos;
 	
 	protected PantallaDeJuego pantallaDeJuego;
@@ -51,8 +48,7 @@ public class GeneradorDeNivel {
 		ModoDeJuego modoDeJuego = new ModoDeJuego(modoDeJuegoSeleccionado);
 		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
-		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
-		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
+		this.generadorSonidos = new GeneradorSonidos(modoDeJuego.obtenerFabricaSonidos());
 		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, this, this.generadorSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(this.fabricaSprites, this.fabricaEntidades, 
 														 this, this.generadorSonidos);
@@ -65,10 +61,6 @@ public class GeneradorDeNivel {
 	
 	public FabricaSilueta obtenerFabricaSilueta() {
 		return this.fabricaSilueta;
-	}
-	
-	public FabricaSonidos obtenerFabricaSonidos() {
-		return this.fabricaSonidos;
 	}
 	
 	public GeneradorSonidos obtenerGeneradorSonidos() {
