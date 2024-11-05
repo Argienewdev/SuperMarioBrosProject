@@ -72,11 +72,6 @@ public class Ranking implements Serializable {
 		}
 	}
     
-    public void reiniciarRanking() {
-    	topJugadores.clear();
-    	guardarEstado();
-    }
-    
     public boolean esTop(int puntaje) {
         boolean esTop = false;
         List<Jugador> ranking = obtenerTopRanking();
