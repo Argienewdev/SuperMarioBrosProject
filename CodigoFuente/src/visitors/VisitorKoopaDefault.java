@@ -90,7 +90,7 @@ public class VisitorKoopaDefault implements Visitante {
     		&& !this.miContexto.obtenerRemovido()) {
     		generadorSonidos.detenerSonidoActual();
     		generadorSonidos.establecerSonidoPerderVida();
-    		generadorSonidos.reproducirSonidoActual();
+    		generadorSonidos.reproducirSonidoActualPorUnicaVez();
             ContextoMario contextoMario = marioDefault.obtenerContexto();
             int perdidaPuntos = this.miContexto.obtenerPuntosSustraidosPorMuerteCausada();
             contextoMario.perderPuntos(perdidaPuntos);

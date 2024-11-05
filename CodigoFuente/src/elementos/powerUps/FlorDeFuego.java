@@ -34,7 +34,10 @@ public class FlorDeFuego extends PowerUp {
 	public int obtenerPuntosPorFuego() {
 		return 50;
 	}
-
+	
+	public void aplicarGravedad() {
+	}
+	
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.obtenerRemovido()) {
 			this.eliminarEntidadGrafica(fabricaSprites);

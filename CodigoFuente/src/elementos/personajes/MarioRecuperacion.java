@@ -71,4 +71,9 @@ public class MarioRecuperacion extends MarioDefault {
 		contexto.establecerSprite(aRetornar);
 	}
 	
+	@Override
+	public void reiniciarEstado() {
+		this.contexto.cambiarEstado(new MarioDefault());
+	}
+	
 }

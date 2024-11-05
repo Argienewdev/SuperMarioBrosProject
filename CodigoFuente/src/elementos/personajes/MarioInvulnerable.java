@@ -103,4 +103,5 @@ public class MarioInvulnerable extends MarioDefault {
 		this.contexto.generadorSonidos.marioPequenioDeNuevo();
 		this.contexto.cambiarEstado(new MarioDefault());
 	}
+	
 }

@@ -124,7 +124,7 @@ public class VisitorContextoMario implements Visitante {
 			bandera.obtenerObserverGrafico().actualizar();
 			this.generadorSonidos.detenerSonidoActual();
 			this.generadorSonidos.establecerSonidoTocarBandera();
-			this.generadorSonidos.reproducirSonidoActual();
+			this.generadorSonidos.reproducirSonidoActualPorUnicaVez();
 			detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(miEntidad, this.miEntidad);
 			this.miEntidad.obtenerNivel().accionarBandera();
 			miEntidad.obtenerEstado().reiniciarEstado();

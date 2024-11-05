@@ -54,7 +54,8 @@ public class VisitorBloqueDePregunta implements Visitante {
         this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, superChampinion);
     }
     
-    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {}
+    public void visitarFlorDeFuego(FlorDeFuego florDeFuego) {
+    }
 
     public void visitarChampinionVerde(ChampinionVerde champinionVerde) {
         this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(this.miEntidad, champinionVerde);
