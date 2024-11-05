@@ -103,11 +103,11 @@ public class FabricaEntidades {
     }
 
     @SuppressWarnings("exports")
-	public FlorDeFuego obtenerFlorDeFuego(Point posicion, FabricaEntidades fabricaEntidades) {
+	public FlorDeFuego obtenerFlorDeFuego(Point posicion) {
         FlorDeFuego florDeFuego = new FlorDeFuego(this.fabricaSprites.obtenerSpriteInvisible(), 
         										  posicion, null, null);
         this.configurarEntidad(florDeFuego, 
-        					   new VisitorFlorDeFuego(florDeFuego, fabricaEntidades, this.generadorSonidos));
+        					   new VisitorFlorDeFuego(florDeFuego, this, this.generadorSonidos));
         return florDeFuego;
     }
 
@@ -136,7 +136,6 @@ public class FabricaEntidades {
         this.configurarEntidad(bolaDeFuego, new VisitorBolaDeFuego(bolaDeFuego, this.generadorSonidos));
         return bolaDeFuego;
     }
-
 
     private void configurarEntidad(Entidad entidad, Visitante visitante) {
         entidad.establecerVisitante(visitante);

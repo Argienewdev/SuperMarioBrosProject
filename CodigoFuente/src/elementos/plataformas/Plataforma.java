@@ -10,23 +10,14 @@ import visitors.Visitante;
 
 public abstract class Plataforma extends ElementoDeJuego {
 	
-	protected boolean solido;
-	
 	protected Plataforma(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-	}
-	
-	public void establecerSolido(boolean solido) {
-		this.solido = solido;
 	}
 
 	public  void actualizarSprite(FabricaSprites fabricaSprites) {
 		if (this.removido) {
 			this.establecerSprite(fabricaSprites.obtenerSpriteInvisible());
 		}
-	}
-	public boolean esSolido() {
-		return this.solido;
 	}
 	
 }

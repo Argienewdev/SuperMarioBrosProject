@@ -12,7 +12,6 @@ public class Vacio extends Plataforma {
 	@SuppressWarnings("exports")
 	public Vacio(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.establecerSolido(true);
 	}
 	
 	public int obtenerPuntosSustraidosPorMuerteCausada() {
