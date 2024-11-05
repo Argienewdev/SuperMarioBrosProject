@@ -64,7 +64,7 @@ public class PantallaFinal extends Pantalla {
     
     private void configurarFuente() {
     	tipoFuentes = new Fuente();
-    	botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 40));
+    	botonVolver.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 40));
     }
     
         
@@ -78,7 +78,7 @@ public class PantallaFinal extends Pantalla {
     
     private void establecerMensaje() {
         JLabel titulo = new JLabel("¡Fin de la partida!");
-        titulo.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+        titulo.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
         titulo.setForeground(Color.WHITE);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         int posicionTituloY = size.height / 6;
@@ -132,7 +132,7 @@ public class PantallaFinal extends Pantalla {
     
     public void puntajeJugador(int puntaje) {
     	puntajeLabel = new JLabel("Puntaje: " + puntaje, SwingConstants.CENTER);
-    	puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+    	puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
     	puntajeLabel.setForeground(Color.WHITE);
     	puntajeLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	

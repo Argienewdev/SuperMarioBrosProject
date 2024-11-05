@@ -73,7 +73,7 @@ public class PantallaIngresoNombre extends Pantalla {
 
     private void establecerTitulo(JPanel panelContenido) {
         JLabel etiqueta = new JLabel("Ingresa tu nombre:");
-        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 60));
+        etiqueta.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 60));
         etiqueta.setAlignmentX(Component.CENTER_ALIGNMENT);
         etiqueta.setForeground(Color.WHITE);  
         etiqueta.setPreferredSize(new Dimension(size.width, 50));
@@ -89,7 +89,7 @@ public class PantallaIngresoNombre extends Pantalla {
         campoNombre.setFocusable(true);
         campoNombre.setBorder(null);
         campoNombre.setOpaque(false);
-        campoNombre.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 75));
+        campoNombre.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 75));
         ((AbstractDocument) campoNombre.getDocument()).setDocumentFilter(new LimitadorDeCaracteres(4));
         panelContenido.add(campoNombre);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20))); 
@@ -98,7 +98,7 @@ public class PantallaIngresoNombre extends Pantalla {
     private void configurarBotonConfirmar(JPanel panelContenido) {
         botonConfirmar = new JButton("Confirmar");
         botonConfirmar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 45));
+        botonConfirmar.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 45));
         botonConfirmar.setFocusPainted(false);
         botonConfirmar.setContentAreaFilled(false);
         botonConfirmar.setBorderPainted(false);

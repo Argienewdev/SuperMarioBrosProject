@@ -98,10 +98,10 @@ public class InterfazJuego extends JPanel{
 	
 	private void configurarFuente() {
 		this.tipoFuentes =  new Fuente();
-		this.vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		this.tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 50));
-		this.nivelLabel.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ALTO / 55));
+		this.vidasLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.puntajeLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.tiempoLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 50));
+		this.nivelLabel.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ALTO / 55));
 		this.vidasLabel.setForeground(Color.WHITE);
 		this.puntajeLabel.setForeground(Color.WHITE);
 		this.tiempoLabel.setForeground(Color.WHITE);

@@ -63,9 +63,9 @@ public class PantallaInicial extends Pantalla {
 	
 	protected void configurarFuente() {
 		tipoFuentes =  new Fuente();
-	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
-	    botonRanking.setFont(tipoFuentes.fuente(tipoFuentes.pxl, 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonModo1.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonModo2.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
+	    botonRanking.setFont(tipoFuentes.fuente(tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
 	    botonModo1.setForeground(Color.WHITE);
 	    botonModo2.setForeground(Color.WHITE);
 	    botonRanking.setForeground(Color.WHITE);
