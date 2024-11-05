@@ -5,7 +5,7 @@ import elementos.Sprite;
 import observers.ObserverGrafico;
 import visitors.Visitante;
 
-public class Vacio extends Plataforma{
+public class Vacio extends Plataforma {
 	
 	private static final int PUNTOS_SUSTRAIDOS_POR_MUERTE_CAUSADA = 15;
 	
