@@ -42,13 +42,13 @@ public class ControladorVistas {
 	
 	private Pantalla panelActual;
 	
-	private static int DURACION_PANTALLA_ENTRE_NIVELES = 3000;
+	private static final int DURACION_PANTALLA_ENTRE_NIVELES = 3000;
 	
 	public ControladorVistas(Juego juego){
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		this.juego = juego;
 		configurarVentana();
-		RegistrarOyenteInicial();	
+		registrarOyenteInicial();	
 		this.bucleVentana = new BucleVentana(this);
 	}
 	
@@ -98,28 +98,35 @@ public class ControladorVistas {
 		this.ventana.setVisible(true);
 	}
 	
-	protected void RegistrarOyenteInicial(){
+	protected void registrarOyenteInicial(){
 		this.ventana.addKeyListener(sensorDeTeclasMenu);
 	}
 	
-	protected void RegistrarOyenteJuego(){
+	protected void registrarOyenteJuego(){
 		this.ventana.removeKeyListener(sensorDeTeclasMenu);
 		this.ventana.addKeyListener(sensorDeTeclasJuego);
 		this.ventana.requestFocusInWindow();
 	}
 
+	private void actualizarVentana(Pantalla pantalla) {
+		this.ventana.setContentPane(pantalla);
+		this.panelActual = pantalla;
+		this.ventana.revalidate();
+		this.ventana.repaint();
+	}
+	
 	protected void accionarInicioJuego(String modo) {
 		this.pantallaDeJuego = new PantallaDeJuego();
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
-		this.marioJugable = juego.crearPartida(sensorDeTeclasJuego, modo);
-		this.pantallaEntreNiveles = new PantallaEntreNiveles(juego.obtenerSpriteMario()); 
-		this.pantallaDeJuego.registrarJugable(marioJugable);
-		this.RegistrarOyenteJuego();	    
+		this.marioJugable = juego.crearPartida(this.sensorDeTeclasJuego, modo);
+		this.pantallaEntreNiveles = new PantallaEntreNiveles(this.juego.obtenerSpriteMario()); 
+		this.pantallaDeJuego.registrarJugable(this.marioJugable);
+		this.registrarOyenteJuego();	    
 		this.mostrarPantallaEntreNiveles();
-		this.pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
-		this.pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
-		this.pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
+		this.pantallaEntreNiveles.actualizarVidas(this.marioJugable.obtenerVidas());
+		this.pantallaEntreNiveles.actualizarPuntaje(this.marioJugable.obtenerPuntos());
+		this.pantallaEntreNiveles.actualizarNivel(this.marioJugable.obtenerNivel().obtenerNumeroNivel());
 		Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarPantallaDeJuego();
@@ -133,11 +140,11 @@ public class ControladorVistas {
 		this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
 		this.pantallaFinal.establecerEnFoco(true);
 		this.pantallaFinal.puntajeJugador(juego.obtenerPartida().obtenerJugable().obtenerPuntos());
-		actualizarVentana(pantallaFinal);
+		this.actualizarVentana(pantallaFinal);
 	}
 
 	public void accionarPantallaIngresoNombre() {
-		actualizarVentana(pantallaIngresoNombre);
+		this.actualizarVentana(pantallaIngresoNombre);
 		this.pantallaIngresoNombre.requestFocusInWindow();
 		this.pantallaIngresoNombre.solicitarFocoCampoTexto();
 	}
@@ -146,32 +153,35 @@ public class ControladorVistas {
 		this.pantallaInicial =  new PantallaInicial(sensorDeTeclasMenu, this);
 		this.ventana.add(pantallaInicial);
 		this.ventana.setContentPane(pantallaInicial);
-		panelActual = pantallaInicial;
+		this.panelActual = pantallaInicial;
 	}
 
-	private void actualizarVentana(Pantalla pantalla) {
-		this.ventana.setContentPane(pantalla);
-		this.panelActual = pantalla;
-		this.ventana.revalidate();
-		this.ventana.repaint();
-	}
-	
 	public void mostrarPantallaEntreNiveles(){
 		this.actualizarVentana(pantallaEntreNiveles);
 		this.juego.obtenerPartida().desactivarMovimientoEnemigos();
 		this.juego.obtenerPartida().desactivarMovimientoPersonaje();
 	}
 	
-	
 	public void mostrarPantallaDeJuego() {
-		actualizarVentana(pantallaDeJuego);
+		this.actualizarVentana(pantallaDeJuego);
 		this.juego.obtenerPartida().activarMovimientoEnemigos();
 		this.juego.obtenerPartida().activarMovimientoPersonaje();
 	}
 	
-
 	public void mostrarPantallaInicial() {
 		this.pantallaInicial.setVisible(true);
+		this.ventana.revalidate();
+		this.ventana.repaint();
+	}
+	
+	public void mostrarPantallaFinal() {
+		this.pantallaFinal.setVisible(true);
+		this.ventana.revalidate();
+		this.ventana.repaint();
+	}
+	
+	public void mostrarPantallaIngresoNombre() {
+		this.pantallaIngresoNombre.setVisible(true);
 		this.ventana.revalidate();
 		this.ventana.repaint();
 	}
@@ -188,6 +198,11 @@ public class ControladorVistas {
 		this.ventana.repaint();
 	}
 	
+	public void ocultarPantallaRanking(){
+		this.ventana.remove(pantallaRanking);
+		this.ventana.revalidate();
+		this.ventana.repaint();
+	}
 	
 	public void dePantallaRankingAPantallaInicial(){
 		this.pantallaRanking.establecerEnFoco(false);
@@ -207,15 +222,9 @@ public class ControladorVistas {
 	    this.ventana.addKeyListener(sensorDeTeclasMenu);      
 	}
 
-	public void ocultarPantallaRanking(){
-		this.ventana.remove(pantallaRanking);
-		this.ventana.revalidate();
-		this.ventana.repaint();
-	}
-	
 	public void refrescar() {
-		if (panelActual.esRefrescable()) {
-			panelActual.refrescar();
+		if (this.panelActual.esRefrescable()) {
+			this.panelActual.refrescar();
 			this.ventana.requestFocusInWindow();
 			this.ventana.revalidate();
 			this.ventana.repaint();
