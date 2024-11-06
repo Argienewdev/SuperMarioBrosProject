@@ -2,8 +2,6 @@ package ventanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -16,8 +14,6 @@ import sensoresDeTeclas.SensorDeTeclasMenu;
 public class ControladorVistas {
 	
 	private JFrame ventana;
-	
-	private Jugable marioJugable;
 	
 	private PantallaDeJuego pantallaDeJuego;
 	
@@ -47,31 +43,38 @@ public class ControladorVistas {
 	public ControladorVistas(Juego juego){
 		this.sensorDeTeclasMenu = new SensorDeTeclasMenu();
 		this.juego = juego;
-		configurarVentana();
-		registrarOyenteInicial();	
+		this.configurarVentana();
+		this.registrarOyenteInicial();	
 		this.bucleVentana = new BucleVentana(this);
 	}
 	
 	public void establecerPanelActual (Pantalla panelActual) {
 		this.panelActual = panelActual;
 	}
+	
 	public PantallaDeJuego obtenerPantallaDeJuego() {
 		return this.pantallaDeJuego;
 	}
 	
 	public PantallaFinal obtenerPantallaFinal() {
-		return pantallaFinal;
+		return this.pantallaFinal;
 	}
 	
-	@SuppressWarnings("exports")
 	public Ranking obtenerRanking() {
-		return juego.obtenerRanking();
+		return this.juego.obtenerRanking();
 	}
 	
 	public PantallaIngresoNombre obtenerPantallaIngresoNombre() {
-		return pantallaIngresoNombre;
+		return this.pantallaIngresoNombre;
 	}
 	
+	public SensorDeTeclasMenu ObtenerSensorDeTeclasMenu() {
+		return this.sensorDeTeclasMenu;
+	}
+
+	public Jugable obtenerJugable() {
+		return this.juego.obtenerPartida().obtenerJugable();
+	}
 	
 	public InterfazJuego obtenerHUD() {
 		return this.pantallaDeJuego.obtenerHUD();
@@ -89,7 +92,7 @@ public class ControladorVistas {
 		this.ventana = new JFrame("Super Mario Bros");
 		this.ventana.setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.png")).getImage());
 		this.ventana.setVisible(true);
-		accionarPantallaInicial();
+		this.accionarPantallaInicial();
 		this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.ventana.setResizable(false);
 		this.ventana.setSize(ConstantesGlobales.VENTANA_ANCHO, ConstantesGlobales.VENTANA_ALTO);
@@ -116,17 +119,17 @@ public class ControladorVistas {
 	}
 	
 	protected void accionarInicioJuego(String modo) {
-		this.pantallaDeJuego = new PantallaDeJuego();
+		this.pantallaDeJuego = new PantallaDeJuego(this);
 		this.sensorDeTeclasJuego = new SensorDeTeclasJuego();
+		this.juego.crearPartida(sensorDeTeclasJuego, modo);
 		this.pantallaIngresoNombre = new PantallaIngresoNombre(this, modo);
-		this.marioJugable = juego.crearPartida(this.sensorDeTeclasJuego, modo);
 		this.pantallaEntreNiveles = new PantallaEntreNiveles(this.juego.obtenerSpriteMario()); 
-		this.pantallaDeJuego.registrarJugable(this.marioJugable);
-		this.registrarOyenteJuego();	    
+		this.pantallaDeJuego.registrarJugable(this.juego.obtenerPartida().obtenerJugable());
+		this.registrarOyenteJuego();
 		this.mostrarPantallaEntreNiveles();
-		this.pantallaEntreNiveles.actualizarVidas(this.marioJugable.obtenerVidas());
-		this.pantallaEntreNiveles.actualizarPuntaje(this.marioJugable.obtenerPuntos());
-		this.pantallaEntreNiveles.actualizarNivel(this.marioJugable.obtenerNivel().obtenerNumeroNivel());
+		this.pantallaEntreNiveles.actualizarVidas(this.juego.obtenerPartida().obtenerJugable().obtenerVidas());
+		this.pantallaEntreNiveles.actualizarPuntaje(this.juego.obtenerPartida().obtenerJugable().obtenerPuntos());
+		this.pantallaEntreNiveles.actualizarNivel(this.juego.obtenerPartida().obtenerJugable().obtenerNivel().obtenerNumeroNivel());
 		Timer timer = new Timer(DURACION_PANTALLA_ENTRE_NIVELES, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarPantallaDeJuego();
@@ -137,9 +140,9 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaFinal() {
-		this.pantallaFinal = new PantallaFinal(this, sensorDeTeclasMenu);
+		this.pantallaFinal = new PantallaFinal(this);
 		this.pantallaFinal.establecerEnFoco(true);
-		this.pantallaFinal.puntajeJugador(juego.obtenerPartida().obtenerJugable().obtenerPuntos());
+		this.pantallaFinal.puntajeJugador(this.juego.obtenerPartida().obtenerJugable().obtenerPuntos());
 		this.actualizarVentana(pantallaFinal);
 	}
 
@@ -150,7 +153,7 @@ public class ControladorVistas {
 	}
 	
 	public void accionarPantallaInicial(){
-		this.pantallaInicial =  new PantallaInicial(sensorDeTeclasMenu, this);
+		this.pantallaInicial =  new PantallaInicial(this);
 		this.ventana.add(pantallaInicial);
 		this.ventana.setContentPane(pantallaInicial);
 		this.panelActual = pantallaInicial;
@@ -187,7 +190,7 @@ public class ControladorVistas {
 	}
 	
 	public void mostrarPantallaRanking() {
-		this.pantallaRanking = new PantallaRanking(juego.obtenerRanking().obtenerTopRanking(), sensorDeTeclasMenu,this);
+		this.pantallaRanking = new PantallaRanking(this.juego.obtenerRanking().obtenerTopRanking(), this);
 		this.pantallaInicial.establecerEnFoco(false);
 		actualizarVentana(pantallaRanking);
 	}
@@ -241,9 +244,9 @@ public class ControladorVistas {
 	
 	public void cambiarNivel() {
 		mostrarPantallaEntreNiveles();
-		this.pantallaEntreNiveles.actualizarVidas(marioJugable.obtenerVidas());
-		this.pantallaEntreNiveles.actualizarPuntaje(marioJugable.obtenerPuntos());
-		this.pantallaEntreNiveles.actualizarNivel(marioJugable.obtenerNivel().obtenerNumeroNivel());
+		this.pantallaEntreNiveles.actualizarVidas(this.juego.obtenerPartida().obtenerJugable().obtenerVidas());
+		this.pantallaEntreNiveles.actualizarPuntaje(this.juego.obtenerPartida().obtenerJugable().obtenerPuntos());
+		this.pantallaEntreNiveles.actualizarNivel(this.juego.obtenerPartida().obtenerJugable().obtenerNivel().obtenerNumeroNivel());
 		this.pantallaDeJuego.cambiarDeNivel();
 		ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -258,4 +261,5 @@ public class ControladorVistas {
 	public void cerrarJuego() {
 		this.juego.cierreDeJuego();
 	}
+	
 }

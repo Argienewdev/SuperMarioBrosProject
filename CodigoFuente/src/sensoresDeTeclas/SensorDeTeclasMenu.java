@@ -5,73 +5,73 @@ import java.awt.event.KeyListener;
 
 public class SensorDeTeclasMenu implements KeyListener{
 	
-	private boolean SPresionado;
-	
-	private boolean WPresionado;
-	
-	private boolean enterPresionado;
+	private boolean teclaWPresionada;
 
-	private boolean WAccionado;
+	private boolean teclaWAccionada;
 
-	private boolean SAccionado;
+	private boolean teclaSAccionada;
 	
-	private boolean enterAccionado;
+	private boolean teclaSPresionada;
+	
+	private boolean teclaEnterPresionada;
+	
+	private boolean teclaEnterAccionado;
 	
 	public SensorDeTeclasMenu() {
-		SPresionado = false;
-		WPresionado = false;
-		enterPresionado = false;
-		WAccionado = false;
-		SAccionado = false;
-		enterAccionado = false;
+		this.teclaSPresionada = false;
+		this.teclaWPresionada = false;
+		this.teclaEnterPresionada = false;
+		this.teclaWAccionada = false;
+		this.teclaSAccionada = false;
+		this.teclaEnterAccionado = false;
 	}
 	
 	public boolean obtenerSPresionado() {
-		return SPresionado;
+		return this.teclaSPresionada;
 	}
 	
 	public boolean obtenerWPresionado() {
-		return WPresionado;
+		return this.teclaWPresionada;
 	}
 	
 	public boolean obtenerWAccionada() {
-		return WAccionado;
+		return this.teclaWAccionada;
 	}
 	
 	public boolean obtenerSAccionada() {
-		return SAccionado;
+		return this.teclaSAccionada;
 	}
 	
 	public boolean obtenerEnterPresionado() {
-		return enterPresionado;
+		return this.teclaEnterPresionada;
 	}
 	
 	public boolean obtenerEnterAccionada() {
-		return enterAccionado;
+		return this.teclaEnterAccionado;
 	}
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (keyCode ==  KeyEvent.VK_ENTER) {
-			enterPresionado = true;
+			this.teclaEnterPresionada = true;
 		} else if (keyCode ==  KeyEvent.VK_S) {
-			SPresionado = true;
+			this.teclaSPresionada = true;
 		} else if (keyCode ==  KeyEvent.VK_W) {
-			WPresionado = true;
+			this.teclaWPresionada = true;
 		}
     }
 
     public void keyReleased(KeyEvent e) {
     	int keyCode = e.getKeyCode();
     	if (keyCode ==  KeyEvent.VK_ENTER) {
-    		enterPresionado = false;
-    		enterAccionado = false;
+    		this.teclaEnterPresionada = false;
+    		this.teclaEnterAccionado = false;
     	} else if (keyCode ==  KeyEvent.VK_S) {
-    		SPresionado = false;
-    		SAccionado = false;
+    		this.teclaSPresionada = false;
+    		this.teclaSAccionada = false;
     	} else if (keyCode ==  KeyEvent.VK_W) {
-    		WPresionado = false;
-    		WAccionado = false;
+    		this.teclaWPresionada = false;
+    		this.teclaWAccionada = false;
     	}
     }
 
@@ -79,15 +79,15 @@ public class SensorDeTeclasMenu implements KeyListener{
     }
     
     public void accionarW() {
-    	WAccionado = true;
+    	this.teclaWAccionada = true;
     }
     
     public void accionarS() {
-    	SAccionado = true;
+    	this.teclaSAccionada = true;
     }
     
     public void accionarEnter() {
-    	enterAccionado = true;
+    	this.teclaEnterAccionado = true;
     }
     
 }

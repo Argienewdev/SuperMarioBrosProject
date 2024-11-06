@@ -14,8 +14,6 @@ public class Partida {
 	
 	private Juego juego;
 		
-	private Jugable jugable;
-	
 	private BucleJugador bucleJugador;
 	
 	private BucleEntidadesNoJugables bucleEntidadesNoJugables;
@@ -26,6 +24,8 @@ public class Partida {
 	
 	private GeneradorDeNivel generadorDeNivel;
 
+	private Jugable jugable;
+	
 	private Nivel nivel;
 			
 	private int numeroNivelActual;
@@ -34,15 +34,14 @@ public class Partida {
 		this.juego = juego;
 		this.numeroNivelActual = 1;
 		this.generadorDeNivel = new GeneradorDeNivel(this.juego.obtenerModoDeJuegoSeleccionado(), 
-													 this.juego.obtenerPantallaDeJuego(), 
-													 this.juego.obtenerControladorVistas());
+													 this.juego.obtenerPantallaDeJuego());
 		this.obtenerGeneradorSonidos().detenerSonidoActual();
 		this.obtenerGeneradorSonidos().establecerSonidoMusicaFondo();
 		this.obtenerGeneradorSonidos().reproducirSonidoActual();
 		this.nivel = generarNivel(this.numeroNivelActual, this);
 		this.jugable = this.nivel.obtenerJugable();
 		this.coordinadorActualizacionesJugador = new CoordinadorActualizacionesJugador(sensorDeTeclasJuego, 
-																					   this.jugable, 
+																					   this.nivel.obtenerJugable(), 
 																					   this.obtenerFabricaSprites(), 
 																					   this.nivel);
 		this.bucleJugador = new BucleJugador(this);
@@ -50,9 +49,8 @@ public class Partida {
 		this.bucleEntidadesNoJugables = new BucleEntidadesNoJugables(this.masterMind);
 	}
 	
-	
 	public Jugable obtenerJugable() {
-		return this.jugable;
+		return this.nivel.obtenerJugable();
 	}
 	
 	public GeneradorSonidos obtenerGeneradorSonidos() {
@@ -77,7 +75,7 @@ public class Partida {
 	}
 		
 	private void matarJugadorPorFaltaDeTiempo() {
-		this.jugable.perderVida();
+		this.nivel.obtenerJugable().perderVida();
 		this.juego.obtenerPartida().obtenerGeneradorSonidos().detenerSonidoActual();
 		this.juego.obtenerPartida().obtenerGeneradorSonidos().establecerSonidoPerderVida();
 		this.juego.obtenerPartida().obtenerGeneradorSonidos().reproducirSonidoActualPorUnicaVez();
@@ -138,7 +136,7 @@ public class Partida {
 	private void generarNivelActualNuevamente() {
 		this.juego.obtenerControladorVistas().reiniciarNivel();
 		this.nivel = this.generarNivel(numeroNivelActual, this);
-		this.nivel.establecerJugable(jugable);
+		this.nivel.establecerJugable(this.jugable);
 	}
 	
 	public void finalizarPartida() {

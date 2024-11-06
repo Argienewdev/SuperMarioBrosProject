@@ -14,12 +14,16 @@ public class VisitorFlorDeFuego implements Visitante {
     
     protected FabricaEntidades fabricaEntidades;
     
+    protected DetectorDireccionColision detectorDireccionColision;
+    
     protected GeneradorSonidos generadorSonidos;
 
     public VisitorFlorDeFuego(FlorDeFuego miEntidad, FabricaEntidades fabricaEntidades, GeneradorSonidos generadorSonidos) {
         this.generadorSonidos = generadorSonidos;
     	this.miEntidad = miEntidad;
-        this.fabricaEntidades=fabricaEntidades;
+        this.fabricaEntidades = fabricaEntidades;
+        this.detectorDireccionColision = new DetectorDireccionColision();
+
     }
 
     public void visitarBuzzyBeetle(BuzzyBeetle buzzyBeetle) {}

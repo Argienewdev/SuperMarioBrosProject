@@ -17,17 +17,16 @@ public class BloqueDePregunta extends Plataforma {
 							 ObserverGrafico observerGrafico) {
 		super(sprite,pos,visitor,observerGrafico);
 		this.coleccionPowerUps = new LinkedList<>();
-		if (powerUp !=  null) {
-			this.coleccionPowerUps.add(powerUp);
-		}
-	}
+		this.agregarPowerUp(powerUp);	}
 	
 	public PowerUp obtenerPowerUp() {
 		return this.coleccionPowerUps.getLast();
 	}
 	
 	public void agregarPowerUp (PowerUp powerUp) {
-		this.coleccionPowerUps.add(powerUp);
+		if (powerUp !=  null) {
+			this.coleccionPowerUps.add(powerUp);
+		}
 	}
 	
 	public PowerUp removerPowerUp() {

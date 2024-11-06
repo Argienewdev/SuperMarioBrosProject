@@ -6,12 +6,19 @@ import observers.ObserverGrafico;
 import visitors.Visitante;
 
 public abstract class Meta extends Plataforma {
+	
+	protected boolean activada;
 
 	protected Meta(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.solido = false;
+		this.activada = false;
 	}
 	
-	public abstract void aceptarVisitante(Visitante visitante);
+	public boolean obtenerFueActivada() {
+		return this.activada;
+	}
 	
+	public void establecerActivada(boolean activada) {
+		this.activada = activada;
+	}
 }

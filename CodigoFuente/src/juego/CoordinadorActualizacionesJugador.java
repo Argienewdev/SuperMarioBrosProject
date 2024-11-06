@@ -16,7 +16,7 @@ public class CoordinadorActualizacionesJugador {
 	public CoordinadorActualizacionesJugador(SensorDeTeclasJuego sensorDeTeclasJuego, Jugable jugable, FabricaSprites fabricaSprites, Nivel nivel) {
 		this.fabricaSprites = fabricaSprites;
 		this.jugable = jugable;
-		this.controladorMovimiento = new ControladorMovimiento(this.jugable, sensorDeTeclasJuego, nivel);
+		this.controladorMovimiento = new ControladorMovimiento(sensorDeTeclasJuego, nivel);
 	}
 	
 	public void actualizar() {

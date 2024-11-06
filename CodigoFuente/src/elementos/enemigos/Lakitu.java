@@ -38,11 +38,10 @@ public class Lakitu extends Enemigo {
 
 	@Override
 	public void actualizarSprite(FabricaSprites fabricaSprites) {
-    	boolean mirandoAlFrente = this.obtenerMirandoAlFrente();
     	this.lanzarSpiny();
 		if (this.removido) {
 			this.eliminarEntidadGrafica(fabricaSprites);
-		} else if (this.mirandoAlFrente) {
+		} else if (this.obtenerMirandoAlFrente()) {
 			this.establecerSprite(fabricaSprites.obtenerLakituFrontalFueraDeLaNube());
 		} else {
 			this.establecerSprite(fabricaSprites.obtenerLakituReversoFueraDeLaNube());

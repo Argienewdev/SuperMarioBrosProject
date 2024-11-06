@@ -30,6 +30,7 @@ public class VisitorMarioDefault implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo2();
     		buzzyBeetle.establecerRemovido(true);
             this.miContexto.ganarPuntos(buzzyBeetle.obtenerPuntosOtorgadosPorEliminacion());
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(buzzyBeetle, miContexto);
             this.miContexto.rebotar();
     	}
     }
@@ -43,6 +44,7 @@ public class VisitorMarioDefault implements Visitante {
     		this.generadorSonidos.emitirSonidoAplastarEnemigo();
             goomba.establecerRemovido(true);
             this.miContexto.ganarPuntos(goomba.obtenerPuntosOtorgadosPorEliminacion());
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(goomba, miContexto);
             this.miContexto.rebotar();
         }
     }
@@ -56,6 +58,7 @@ public class VisitorMarioDefault implements Visitante {
     		&& this.miContexto.obtenerVelocidadDireccional().y > koopaEnCaparazon.obtenerVelocidadNecesariaParaMatarKoopa()) {
     	   koopaEnCaparazon.obtenerContext().establecerRemovido(true);
     	   this.generadorSonidos.emitirSonidoAplastarEnemigo2();
+           this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaEnCaparazon.obtenerContext(), miContexto);
            this.miContexto.rebotar();
         }
     }
@@ -66,6 +69,7 @@ public class VisitorMarioDefault implements Visitante {
     		EstadoKoopa nuevoEstado = new KoopaEnCaparazon();
 	        koopaDefault.obtenerContext().cambiarEstado(nuevoEstado);
 	        this.miContexto.ganarPuntos(koopaDefault.obtenerContext().obtenerPuntosOtorgadosPorEliminacion());
+            this.detectorDireccionColision.verificarColisionElementoDeJuegoYEntidad(koopaDefault.obtenerContext(), miContexto);
             this.miContexto.rebotar();
 		}
     }

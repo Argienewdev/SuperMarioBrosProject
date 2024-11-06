@@ -19,7 +19,7 @@ public class GeneradorSonidos {
     
     private File archivoMusicaFondo;
     
-    private File archivoMusicaInvulnerabilidad;
+    private File archivoMusicaInvulnerable;
     
     private File archivoPerderJuego;
 
@@ -33,7 +33,7 @@ public class GeneradorSonidos {
 
     private Clip clipPerderJuego;
     
-    private Clip clipCancionInvulnerable;
+    private Clip clipMusicaInvulnerable;
     
     private Clip clipPerderVida;
     
@@ -62,7 +62,7 @@ public class GeneradorSonidos {
     public void establecerSonidoInvulnerable() {
     	this.clipSonidoPrevio = this.clipSonidoActual;
     	this.frameCancionPrevia = this.clipSonidoActual.getFramePosition();
-    	this.clipSonidoActual = this.clipCancionInvulnerable;
+    	this.clipSonidoActual = this.clipMusicaInvulnerable;
     }
     
     public void establecerSonidoMusicaFondo() {
@@ -91,7 +91,7 @@ public class GeneradorSonidos {
 
     protected void establecerArchivos() {
         this.archivoMusicaFondo = new File(fabricaSonidos.obtenerMusica().obtenerRutaSonido());
-        this.archivoMusicaInvulnerabilidad = new File(fabricaSonidos.obtenerModoInvulnerable().obtenerRutaSonido());
+        this.archivoMusicaInvulnerable = new File(fabricaSonidos.obtenerModoInvulnerable().obtenerRutaSonido());
         this.archivoTocarBandera = new File(fabricaSonidos.obtenerTocarBanderaFinNivel().obtenerRutaSonido());
         this.archivoPerderJuego = new File(fabricaSonidos.obtenerPierdeJuego().obtenerRutaSonido());
         this.archivoPerderVida = new File(fabricaSonidos.obtenerPierdeVida().obtenerRutaSonido());
@@ -147,9 +147,9 @@ public class GeneradorSonidos {
     
     protected void establecerMusicaInvulnerable(){
         try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoMusicaInvulnerabilidad);
-            this.clipCancionInvulnerable = AudioSystem.getClip();
-            this.clipCancionInvulnerable.open(audioStream);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivoMusicaInvulnerable);
+            this.clipMusicaInvulnerable = AudioSystem.getClip();
+            this.clipMusicaInvulnerable.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }

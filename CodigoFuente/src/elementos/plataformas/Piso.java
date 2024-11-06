@@ -10,7 +10,6 @@ public class Piso extends Plataforma {
 	@SuppressWarnings("exports")
 	public Piso(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.establecerSolido(true);
 	}
 
 	public void aceptarVisitante(Visitante visitante) {

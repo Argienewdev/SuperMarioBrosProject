@@ -24,19 +24,13 @@ public abstract class Jugable extends Entidad  {
 	
 	protected Jugable(Sprite sprite, Point posicion, Visitante visitor, ObserverGrafico observerGrafico) {
 		super(sprite, posicion, visitor, observerGrafico);
-		this.colisionAbajo = true;
-		this.colisionArriba = false;
 		this.retrocediendo = false;
 		this.avanzando = false;
 		this.vidas = 3;
 		this.puntos = 0;
 		this.desplazamiento = 0;
 	}
-	
-	@Override
-	public void establecerColisionArriba(boolean colisionArriba) {
-		this.colisionArriba = colisionArriba;
-	}
+
 	
 	public void establecerPartida(Partida partida) {
 		this.partida = partida;
@@ -66,16 +60,7 @@ public abstract class Jugable extends Entidad  {
 	public void establecerDesplazamiento(int desplazamiento) {
 		this.desplazamiento = desplazamiento;
 	}
-	
-	@Override
-	public boolean obtenerColisionAbajo() {
-		return this.colisionAbajo;
-	}
-	
-	public boolean obtenerColisionArriba() {
-		return this.colisionArriba;
-	}
-	
+
 	public int obtenerVidas() {
 		return this.vidas;
 	}
@@ -83,10 +68,10 @@ public abstract class Jugable extends Entidad  {
 	public int obtenerPuntos() {
 		return this.puntos;
 	}
+	
 	public boolean obtenerAvanzando() {
 		return this.avanzando;
 	}
-	
 	public boolean obtenerRetrocediendo() {
 		return this.retrocediendo;
 	}
@@ -143,8 +128,6 @@ public abstract class Jugable extends Entidad  {
 		Point nuevaVelocidad = new Point(this.obtenerVelocidadDireccional().x, -15);
 		this.establecerVelocidadDireccional(nuevaVelocidad);
 	}
-	
-	public abstract void aceptarVisitante(Visitante visitante);
 	
 	public abstract void actualizarSprite(FabricaSprites fabricaSprites);
 

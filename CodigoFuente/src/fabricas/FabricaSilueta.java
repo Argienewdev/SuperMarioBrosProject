@@ -6,7 +6,7 @@ public abstract class FabricaSilueta {
 
 	protected String rutaACarpeta;
 	
-	public FabricaSilueta(String rutaACarpeta) {
+	protected FabricaSilueta(String rutaACarpeta) {
 		this.rutaACarpeta = rutaACarpeta;
 	}
 	

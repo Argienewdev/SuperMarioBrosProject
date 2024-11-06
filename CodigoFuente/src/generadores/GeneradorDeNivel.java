@@ -24,7 +24,6 @@ import elementos.plataformas.Tuberia;
 import elementos.plataformas.Vacio;
 import elementos.powerUps.Moneda;
 import elementos.powerUps.PowerUp;
-import ventanas.ControladorVistas;
 import ventanas.PantallaDeJuego;
 import java.awt.Point;
 import java.io.*;
@@ -41,23 +40,19 @@ public class GeneradorDeNivel {
 		
 	protected FabricaPlataformas fabricaPlataformas;
 	
-	protected FabricaSonidos fabricaSonidos;
-		
 	protected GeneradorSonidos generadorSonidos;
 	
-	protected ControladorVistas controladorVistas;
+	protected PantallaDeJuego pantallaDeJuego;
 	
-	public GeneradorDeNivel(String modoDeJuegoSeleccionado, PantallaDeJuego pantallaDeJuego, 
-							ControladorVistas controladorVistas) {
+	public GeneradorDeNivel(String modoDeJuegoSeleccionado, PantallaDeJuego pantallaDeJuego) {
 		ModoDeJuego modoDeJuego = new ModoDeJuego(modoDeJuegoSeleccionado);
 		this.fabricaSilueta = modoDeJuego.obtenerFabricaSilueta();
 		this.fabricaSprites = modoDeJuego.obtenerFabricaSprites();
-		this.fabricaSonidos = modoDeJuego.obtenerFabricaSonidos();
-		this.generadorSonidos = new GeneradorSonidos(this.fabricaSonidos);
-		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, pantallaDeJuego, this.generadorSonidos);
+		this.generadorSonidos = new GeneradorSonidos(modoDeJuego.obtenerFabricaSonidos());
+		this.fabricaEntidades = new FabricaEntidades(this.fabricaSprites, this, this.generadorSonidos);
 		this.fabricaPlataformas = new FabricaPlataformas(this.fabricaSprites, this.fabricaEntidades, 
-														 pantallaDeJuego, this.generadorSonidos);
-		this.controladorVistas = controladorVistas;		
+														 this, this.generadorSonidos);
+		this.pantallaDeJuego = pantallaDeJuego;		
 	}
 	
 	public FabricaSprites obtenerFabricaSprites() {
@@ -68,17 +63,13 @@ public class GeneradorDeNivel {
 		return this.fabricaSilueta;
 	}
 	
-	public FabricaSonidos obtenerFabricaSonidos() {
-		return this.fabricaSonidos;
-	}
-	
 	public GeneradorSonidos obtenerGeneradorSonidos() {
 		return this.generadorSonidos;
 	}
 	
 	public Nivel generarNivel(int numeroNivel, Partida partida) {
 		Silueta silueta = fabricaSilueta.obtenerSilueta(numeroNivel);
-		this.controladorVistas.obtenerPantallaDeJuego().registrarFondo(silueta);
+		this.pantallaDeJuego.registrarFondo(silueta);
 		Nivel nivel = new Nivel(silueta, partida);
 		FileReader archivoDeNivel = null;
 		BufferedReader lectorBuffer = null;
@@ -217,6 +208,10 @@ public class GeneradorDeNivel {
 	
 	private Point parsearPosicion(int x, int y) {
 		return new Point(x * 50, ConstantesGlobales.PANEL_ALTO - (y * 50));
+	}
+	
+	public PantallaDeJuego obtenerPantallaDeJuego() {
+		return this.pantallaDeJuego;
 	}
 	
 }
