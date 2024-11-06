@@ -179,7 +179,7 @@ public class GeneradorDeNivel {
 	                    break;
 	                }
 	                case 45:{
-	                	agregarMarioAlNivel(nivel, posicion);
+	                	this.agregarMarioAlNivel(nivel, posicion);
 	                	break;
 	                }
                 }
