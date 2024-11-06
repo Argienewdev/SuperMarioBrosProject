@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import elementos.Sprite;
+import elementos.entidades.Jugable;
 import ranking.Ranking;
 import sensoresDeTeclas.SensorDeTeclasJuego;
 import ventanas.ControladorVistas;

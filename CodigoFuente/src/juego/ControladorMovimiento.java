@@ -14,7 +14,7 @@ public class ControladorMovimiento {
 	
 	private Nivel nivel;
 	
-	public ControladorMovimiento(Jugable jugable, SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel) {
+	public ControladorMovimiento(SensorDeTeclasJuego sensorDeTeclasJuego, Nivel nivel) {
 		this.sensorDeTeclasJuego = sensorDeTeclasJuego;
 		this.nivel = nivel;
 		this.nivel.obtenerJugable().establecerVelocidadDireccional(new Point(0,0));

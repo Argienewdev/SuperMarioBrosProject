@@ -51,14 +51,14 @@ public class PantallaInicial extends Pantalla {
 		this.registrarOyenteTeclas();
 	}
 	
-	protected void inicializarArregloDeBotones() {
+	private void inicializarArregloDeBotones() {
 		this.arregloDeBotones = new ArregloDeBotones(CANTIDAD_BOTONES);
 		this.arregloDeBotones.agregar(this.botonModo1);
 		this.arregloDeBotones.agregar(this.botonModo2);
 		this.arregloDeBotones.agregar(this.botonRanking);
 	}
 	
-	protected void configurarFuente() {
+	private void configurarFuente() {
 		this.tipoFuentes =  new Fuente();
 		this.botonModo1.setFont(this.tipoFuentes.fuente(this.tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
 		this.botonModo2.setFont(this.tipoFuentes.fuente(this.tipoFuentes.nombreFuente(), 0, ConstantesGlobales.PANEL_ANCHO / 30));
@@ -71,7 +71,7 @@ public class PantallaInicial extends Pantalla {
 		this.botonEnfocado.setForeground(Color.DARK_GRAY);
 	}
 	
-	protected void configurarVentana(){
+	private void configurarVentana(){
 		new JPanel();
 		setLayout(null);
 		setPreferredSize(tamanioPanel);
@@ -81,7 +81,7 @@ public class PantallaInicial extends Pantalla {
 		this.establecerFondo();
 	}
 	
-	protected void establecerFondo(){
+	private void establecerFondo(){
 		 ImageIcon fondoImagen = new ImageIcon("src/imagenes/fondos/fondoModoOriginal/fondoMenuPrincipal.png");
 		 
 		 this.fondo = new JLabel(fondoImagen);
@@ -92,7 +92,7 @@ public class PantallaInicial extends Pantalla {
 	}
 	
 	
-	protected void ajustarDisposicion(){
+	private void ajustarDisposicion(){
 		this.botonModo1.setBounds((tamanioPanel.width - botonModo1.getPreferredSize().width) / 2, (tamanioPanel.height / 2) - 30, botonModo1.getPreferredSize().width, botonModo1.getPreferredSize().height);
 		this.botonModo2.setBounds((tamanioPanel.width - botonModo2.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 30, botonModo2.getPreferredSize().width, botonModo2.getPreferredSize().height);
 		this.botonRanking.setBounds((tamanioPanel.width - botonRanking.getPreferredSize().width) / 2, (tamanioPanel.height / 2) + 90, botonRanking.getPreferredSize().width, botonRanking.getPreferredSize().height);
@@ -109,13 +109,6 @@ public class PantallaInicial extends Pantalla {
 		addKeyListener(this.controlador.ObtenerSensorDeTeclasMenu());
 	}
 	
-	public void establecerEnFoco(boolean condicion){
-		this.enFoco =  condicion;
-	}
-	
-	public boolean obtenerEnFoco(){
-		return this.enFoco;
-	}
 	
 	 public void refrescar() {
 		 if (this.enFoco) {
@@ -149,7 +142,15 @@ public class PantallaInicial extends Pantalla {
 	       
     }
 	 
-	 
+	
+	public void establecerEnFoco(boolean condicion){
+			this.enFoco =  condicion;
+	}
+		
+	public boolean obtenerEnFoco(){
+			return this.enFoco;
+	}
+		
 	public void guardarModo(String modo) {
 		this.modo = modo;
 	}
